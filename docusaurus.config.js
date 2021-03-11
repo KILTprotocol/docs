@@ -11,7 +11,7 @@ module.exports = {
   projectName: 'docs', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'KILT',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
