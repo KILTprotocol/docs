@@ -2,6 +2,8 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
+Hosted at https://kiltprotocol.github.io/docs/
+
 ## Installation
 
 ```console
