@@ -1,8 +1,6 @@
 ---
 id: delegation
 title: My Delegations
-sidebar_label: Delegations
-slug: /delegations
 ---
 
-# Delegation
+This is the page for the delegations
