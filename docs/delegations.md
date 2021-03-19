@@ -53,7 +53,8 @@ Although the node is owned by the delegate, it is submitted by the delegating At
     *   Attest
     *   Delegate
 
-  The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
+    The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
+
 ```
         <CODE EXAMPLE: creating a DelegationNode>
 ```
