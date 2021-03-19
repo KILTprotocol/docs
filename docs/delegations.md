@@ -56,7 +56,7 @@ Although the node is owned by the delegate, it is submitted by the delegating At
     *   Attest
     *   Delegate
 
-  The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
+    The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
 
 
         <CODE EXAMPLE: creating a DelegationNode>
@@ -124,4 +124,7 @@ The SDK has code to count child nodes and their children, in addition to functio
 
 The process of revoking a DelegationRootNode is similar to revoking the DelegationNode, but can only be done by owner (as it has no parents). This also means that traversing parent nodes is not required, which is why the respective call lacks this parameter.
 
-<CODE EXAMPLE: revoking a DelegationRootNode with children>
+
+```
+    <CODE EXAMPLE: revoking a DelegationRootNode with children>
+```
