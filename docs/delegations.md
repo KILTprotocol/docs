@@ -1,29 +1,4 @@
----
-id: delegations
-title: Delegation Hierarchies and Delegated Attestations
----
 
-KILT allows attesters to delegate their attestation rights to others, giving them permission to attest in their name, relying on their reputation. For example, an organisation – the attester – can delegate members of staff to attest in the name of the company. Attesters can also build complex delegation hierarchies by allowing delegates to delegate further.
-
-Attesters retain full authority over the delegations and attestations issued by a (sub-)delegate, which allows them to revoke any delegation or attestation issued to a branch in the delegation hierarchy that originates from them. In this way, any employee who leaves the company can have their rights withdrawn.
-
-To enable this functionality, KILT represents these permissions with interlinked delegation nodes stored on the blockchain:
-
-
-
-*   **A DelegationRootNode** establishes a new delegation hierarchy or tree. This is created and owned by the delegating Attester. Because a delegation tree is always specific to one claim type (CType), it also stores a CType hash. A DelegationRootNode cannot be used in an attestation.
-*   **A DelegationNode** is owned by the delegate and stores what the delegate is authorised to do in the name of the delegating Attester: either attest, delegate further, or do both. Links to a parent DelegationRootNode or DelegationNode establish which delegation tree this node is part of. A DelegationNode can be used in an attestation by its owner.
-
-
-## Creating a DelegationRootNode
-
-As an attester, to establish a new delegation tree that allows another to attest to a CType in your name, you need to write a DelegationRootNode to the KILT blockchain.
-
-If delegating the attestation rights for multiple CTypes, a separate delegation tree needs to be created for each CType. To do so, just repeat these steps:
-
-
-
-1. Use the SDK to create a DelegationRootNode object
 
     This requires a unique Id (the DelegationRootNode's identifier), the CType hash, and the owner identity’s address
 ```
