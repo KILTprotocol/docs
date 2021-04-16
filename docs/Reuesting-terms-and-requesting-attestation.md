@@ -14,8 +14,8 @@ These terms are defined and agreed before the attestation is created. This part 
 Both “request terms” and “submit terms” are part of the messaging: the message is sent as “request terms” and received as “submit terms”.
 
 The interaction is as follows:
-*   The claimer creates an <IPartialClaims> from an attester and sends an <IRequestTerms> message
-*   An attester creates an <ITerms> object and sends it as part of a submit terms message <ISubmitTerms> to the claimer.
+*   The claimer creates an `IPartialClaims` from an attester and sends an `IRequestTerms` message
+*   An attester creates an `ITerms` object and sends it as part of a submit terms message `ISubmitTerms` to the claimer.
 *   The claimer receives the submit terms message, checks the terms and, if all is in order, agrees to them.  
 
 Either a claimer or an attester can initiate a request for terms.
@@ -57,7 +57,7 @@ A quote is a description of the terms and conditions of the work to be performed
 
 To come to an agreement on the quote, the participants may message back and forth, signing the object.
 
-If the attester wishes to quote their terms, the attester signs the <IQuote> object before sending it as part of the <ISubmitTerms> to the Claimer.
+If the attester wishes to quote their terms, the attester signs the `IQuote` object before sending it as part of the `ISubmitTerms` to the Claimer.
 
  When agreement is reached, the SDK is used to create a quote object.
 
@@ -81,7 +81,7 @@ After the claimer has received the signed object, then the claimer will request 
 
 Once the terms have been agreed, the claimer must accept the conditions in order to move into the request for attestation. The claimer needs to submit a complete claim using the following process:
 
-*   If the claimer agrees to the terms the claimer signs the <IRequestForAttestation> object.
+*   If the claimer agrees to the terms the claimer signs the `IRequestForAttestation` object.
 *   If the attester sent a quote as part of the agreement, the claimer must also sign and agree to the attester signed quote &lt;IQuoteAttesterSigned>.
 
 The claimer uses the SDK to create a request for attestation. This request must have a claim matching the specified CType. It may have a legitimation, quote, delegation or prerequisite claim.
