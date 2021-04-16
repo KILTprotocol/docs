@@ -82,7 +82,7 @@ After the claimer has received the signed object, then the claimer will request 
 Once the terms have been agreed, the claimer must accept the conditions in order to move into the request for attestation. The claimer needs to submit a complete claim using the following process:
 
 *   If the claimer agrees to the terms the claimer signs the `IRequestForAttestation` object.
-*   If the attester sent a quote as part of the agreement, the claimer must also sign and agree to the attester signed quote &lt;IQuoteAttesterSigned>.
+*   If the attester sent a quote as part of the agreement, the claimer must also sign and agree to the attester signed quote `IQuoteAttesterSigned`.
 
 The claimer uses the SDK to create a request for attestation. This request must have a claim matching the specified CType. It may have a legitimation, quote, delegation or prerequisite claim.
 
