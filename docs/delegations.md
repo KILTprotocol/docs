@@ -12,7 +12,7 @@ To enable this functionality, KILT represents these permissions with interlinked
 
 
 *   **A DelegationRootNode** establishes a new delegation hierarchy or tree. This is created and owned by the delegating Attester. Because a delegation tree is always specific to one claim type (CType), it also stores a CType hash. A DelegationRootNode cannot be used in an attestation.
-*   **A DelegationNode** is owned by the delegate and stores what the delegate is authorised to do in the name of the delegating Attester: either attest, delegate further, or do both. Links to a parent DelegationRootNode or DelegationNode establish which delegation tree this node is part of. A DelegationNode can be used in an attestation by its owner.
+*   **A DelegationNode** is owned by the delegate and stores what the delegate is authorised to do in the name of the delegating attester: either attest, delegate further, or do both. Links to a parent DelegationRootNode or DelegationNode establish which delegation tree this node is part of. A DelegationNode can be used in an attestation by its owner.
 
 
 ## Creating a DelegationRootNode
@@ -40,7 +40,7 @@ If delegating the attestation rights for multiple CTypes, a separate delegation 
 
 In order to actually delegate rights, you now need to create a DelegationNode for the delegate which links to your Delegation(Root)Node.
 
-Although the node is owned by the delegate, it is submitted by the delegating Attester (you). This part of the process requires communication with the delegate as their signature is required during submission as proof of their consent.
+Although the node is owned by the delegate, it is submitted by the delegating attester (you). This part of the process requires communication with the delegate as their signature is required during submission as proof of their consent.
 
 
 
