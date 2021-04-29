@@ -1,5 +1,5 @@
 ---
-id: delegations
+id: claiming
 title: Claiming
 ---
 
@@ -22,7 +22,6 @@ The owner of the CType can store it on their desktop or on a regular web service
 ```
 
 ## Create your Claim from a CType
-
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
 
