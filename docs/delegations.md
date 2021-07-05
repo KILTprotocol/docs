@@ -22,8 +22,15 @@ If delegating the attestation rights for multiple CTypes, a separate delegation 
 
    This requires a unique Id (the DelegationRootNode's identifier), the CType hash, and the owner identity’s address
 
-```
-            <CODE EXAMPLE: creating a unique id & DelegationRootNode>
+```js
+ROOT_IDENTIFIER = Kilt.Crypto.hashStr("unique hash");
+
+new Kilt.Delegation.DelegationRootNode({
+  id: ROOT_IDENTIFIER,
+  cTypeHash,
+  account: identity.address,
+  revoked: false,
+});
 ```
 
 2. Call the .store() method on the DelegationRootNode object to produce a SubmittableExtrinsic, a transaction object which can be dispatched to the KILT blockchain.
@@ -49,8 +56,18 @@ Although the node is owned by the delegate, it is submitted by the delegating at
 
    The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
 
-```
-        <CODE EXAMPLE: creating a DelegationNode>
+```js
+ROOT_IDENTIFIER = Kilt.Crypto.hashStr("unique hash");
+NODE_IDENTIFIER = Kilt.Crypto.hashStr("unique hash");
+
+const delegation = new Kilt.Delegation.DelegationNode({
+  id: NODE_IDENTIFIER,
+  rootId: ROOT_IDENTIFIER,
+  account: identityAlice.address,
+  permissions: [Permission.ATTEST],
+  parentId: undefined,
+  revoked: false,
+});
 ```
 
 2. Obtain the delegate’s signature over the new DelegationNode’s hash.
@@ -59,8 +76,52 @@ Although the node is owned by the delegate, it is submitted by the delegating at
 
    Ideally, send the complete DelegationNode object to the delegate, so they have all the information about what they are signing. You can do this using the KILT messaging system, which has a message type for that purpose: request-accept-delegation
 
-```
-        <CODE EXAMPLE: sending a request-accept-delegation message, signing the hash, returning submit-accept-delegation>
+```js
+const requestAcceptDelegationContent = {
+  delegationData: {
+    account: delegation.address,
+    id: delegation.id,
+    parentId: undefined,
+    permissions: delegation.permissions,
+    isPCR: false,
+  },
+  metaData: {},
+  signatures: {
+    inviter: identityAlice.signStr(delegation.generateHash()),
+  },
+};
+
+const requestAcceptDelegationBody = {
+  content: requestAcceptDelegationContent,
+  type: Message.BodyType.REQUEST_ACCEPT_DELEGATION,
+};
+
+const messageRequestAcceptDelegation = new Kilt.Message(
+  requestAcceptDelegationBody,
+  identityAlice.getPublicIdentity(),
+  identityBob.getPublicIdentity()
+);
+
+const submitAcceptDelegationContent = {
+  delegationData: {
+    account: delegation.address,
+    id: delegation.id,
+    parentId: undefined,
+    permissions: delegation.permissions,
+    isPCR: false,
+  },
+  metaData: {},
+  signatures: {
+    inviter: identityAlice.signStr(delegation.generateHash()),
+    invitee: identityBob.signStr(delegation.generateHash()),
+  },
+};
+
+const messageSubmitAcceptDelegation = new Kilt.Message(
+  submitAcceptDelegationBody,
+  identityAlice.getPublicIdentity(),
+  identityBob.getPublicIdentity()
+);
 ```
 
 3. Call the .store() method on the new DelegationNode
@@ -81,8 +142,22 @@ An attestation is considered to be delegated (i.e. made in another’s name / us
 
 A delegated attestation can only be written to the blockchain by the owner of the referenced DelegationNode, which must still be active (i.e. has not been revoked) and must have the attestation permission flag set.
 
-```
-    <CODE EXAMPLE: creating a delegated attestation>
+```js
+const attestationWithDelegation = {
+  claimHash:
+    "0x21a3448ccf10f6568d8cd9a08af689c220d842b893a40344d010e398ab74e557",
+  cTypeHash:
+    "kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84",
+  owner: identityAlice.address,
+  revoked: false,
+  delegationId:
+    "0xa8c5bdb22aaea3fceb5467d37169cbe49c71f226233037537e70a32a032304ff",
+};
+
+const attestation = Kilt.Attestation.fromRequestAndPublicIdentity(
+  attestationWithDelegation,
+  identityAlice.getPublicIdentity()
+);
 ```
 
 ## Revoking a Delegated Attestation
@@ -93,14 +168,54 @@ Because transaction costs on the blockchain increase proportionally to the numbe
 
 However if the number of actual lookups performed is less than this number, excess funds will be returned after the transaction has completed. If this number is lower than the actual steps required, the transaction will fail.
 
+<div style="background: lightGrey">
+
+## Delegated Attestation
+
+```mermaid
+graph TD;
+    ROOT-->DELEGATION-NODE-1;
+    DELEGATION-NODE-1-->DELEGATION-NODE-2;
+    DELEGATION-NODE-2-->DELEGATION-NODE-3;
+    DELEGATION-NODE-3--HAS ATTESTED--->ATTESTATION;
 ```
-    <CODE EXAMPLE: I revoke a regular attestation (max_depth=0) and delegated attestations with different numbers of lookups (max_depth=2 if I am the parent, max_depth=3 if I’m the parent’s parent>
+
+```info
+CASE 1: shows revokation of the delegation from node 3
+CASE 2: shows revokation of the delegation from node 1
+```
+
+</div>
+
+CASE 1: The delegation node 3 revokes the attestation. The number of lookups performed will be zero as delegation node 3 created the delegatied attestation
+
+CASE 2: The delegation node 1 revokes the attestation. The number of lookups performed will be two as delegation node 3 created the delegated attestation, therefore, must count to find the delegation.
+
+Each CASE the delegator must call the revoke on the instantiated attestation object with the given delegator or parent of the delegator to revoke the attestation.
+
+```js
+attestationWithDelegation.revoke(identityAlice.address).then((transaction) =>
+  Kilt.BlockchainUtils.signAndSubmitTx(transaction, identityAlice, {
+    resolveOn: BlockchainUtils.IS_IN_BLOCK,
+    reSign: true,
+  })
+);
 ```
 
 The SDK has functionality to retrieve the number of lookups required by querying the blockchain:
 
-```
-    <CODE EXAMPLE: revoking a delegated attestation using the helper function `DelegationNodeUtils.countNodeDepth`>
+```js
+const delegationTreeTraversalSteps =
+  await Kilt.DelegationNodeUtils.countNodeDepth(attester, attestation);
+
+attestation
+  .revoke(revocationHandle.claimHash, delegationTreeTraversalSteps)
+  .then((transaction) =>
+    Kilt.BlockchainUtils.signAndSubmitTx(transaction, identityAlice, {
+      resolveOn: BlockchainUtils.IS_IN_BLOCK,
+      reSign: true,
+    })
+  );
 ```
 
 ## Revoking a DelegationNode
@@ -113,14 +228,57 @@ Revoking a DelegationNode requires revoking all its children (and their children
 
 The SDK has code to count child nodes and their children, in addition to functionality counting the number of lookups to find the parent owned by the submitting identity. This is currently included and performed automatically in the revoke() method on the DelegationNode and DelegationRootNode.
 
-```
-    <CODE EXAMPLE: revoking a DelegationNode with children>
+```js
+const DELEGATION_NODE_1 = new Kilt.DelegationNode({
+  id: DELEGATION_NODE_1_ID,
+  rootId,
+  account: identityAlice.address,
+  permissions: [Permission.ATTEST, Permission.DELEGATE],
+  revoked: false,
+});
+
+const DELEGATION_NODE_2 = new Kilt.DelegationNode({
+  id: DELEGATION_NODE_2_ID,
+  rootId,
+  account: identityBob.address,
+  permissions: [Permission.ATTEST, Permission.DELEGATE],
+  parentId: DELEGATION_NODE_1_ID,
+  revoked: false,
+});
+
+DELEGATION_NODE_1.revoke(identityAlice.address).then((transactions) =>
+  Kilt.BlockchainUtils.signAndSubmitTx(transaction, identityAlice, {
+    resolveOn: BlockchainUtils.IS_IN_BLOCK,
+    reSign: true,
+  })
+);
 ```
 
 ## Revoking a DelegationRootNode
 
 The process of revoking a DelegationRootNode is similar to revoking the DelegationNode, but can only be done by owner (as it has no parents). This also means that traversing parent nodes is not required, which is why the respective call lacks this parameter.
 
-```
-<CODE EXAMPLE: revoking a DelegationRootNode with children>
+```js
+const DELEGATION_ROOT_NODE_1 = new Kilt.DelegationRootNode({
+  id: DELEGATION_ROOT_NODE_1_ID,
+  account: identityAlice.address,
+  cTypeHash: ctypeHash,
+  revoked: false,
+});
+
+const DELEGATION_NODE_1 = new Kilt.DelegationNode({
+  id: DELEGATION_NODE_1_ID,
+  rootId: DELEGATION_ROOT_NODE_1_ID,
+  account: identityBob.address,
+  permissions: [Permission.ATTEST, Permission.DELEGATE],
+  parentId: undefined,
+  revoked: false,
+});
+
+DELEGATION_ROOT_NODE_1.revoke().then((transactions) =>
+  Kilt.BlockchainUtils.signAndSubmitTx(transaction, identityAlice, {
+    resolveOn: BlockchainUtils.IS_IN_BLOCK,
+    reSign: true,
+  })
+);
 ```
