@@ -170,13 +170,7 @@ However if the number of actual lookups performed is less than this number, exce
 
 ## Delegated Attestation
 
-```mermaid
-graph TD
-    ROOT-->DELEGATION-NODE-1
-    DELEGATION-NODE-1-->DELEGATION-NODE-2
-    DELEGATION-NODE-2-->DELEGATION-NODE-3
-    DELEGATION-NODE-3--HAS ATTESTED--->ATTESTATION
-```
+![https://i.imgur.com/UmSNC1m.png](https://i.imgur.com/UmSNC1m.png)
 
 ```info
 CASE 1: shows revokation of the delegation from node 3
