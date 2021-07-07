@@ -172,10 +172,6 @@ However if the number of actual lookups performed is less than this number, exce
 
 ![https://i.imgur.com/UmSNC1m.png](https://i.imgur.com/UmSNC1m.png)
 
-```info
-CASE 1: shows revokation of the delegation from node 3
-CASE 2: shows revokation of the delegation from node 1
-```
 
 CASE 1: The delegation node 3 revokes the attestation. The number of lookups performed will be zero as delegation node 3 created the delegatied attestation
 
