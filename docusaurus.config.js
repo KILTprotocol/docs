@@ -18,9 +18,15 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/getting-started',
-          activeBasePath: 'docs',
-          label: 'Docs',
+          to: 'docs/sdk/introduction',
+          activeBasePath: 'docs/sdk',
+          label: 'SDK',
+          position: 'left',
+        },
+        {
+          to: 'docs/chain/introduction',
+          activeBasePath: 'docs/chain',
+          label: 'Chain',
           position: 'left',
         },
         {

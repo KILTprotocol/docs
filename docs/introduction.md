@@ -1,6 +1,6 @@
 ---
-id: getting-started
-title: Getting Started
+id: introduction
+title: Introduction
 ---
 
 WIP: gentile introduction into KILTprotocol!
