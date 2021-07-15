@@ -57,7 +57,7 @@ module.exports = {
             {
               label: 'Clan KILT (Unofficial)',
               href: 'https://clankilt.io',
-            }
+            },
           ],
         },
         {
@@ -83,8 +83,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/KILTprotocol/docs/edit/master/',
+          editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -92,4 +91,4 @@ module.exports = {
       },
     ],
   ],
-};
+}
