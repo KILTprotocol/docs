@@ -1,6 +1,6 @@
 ---
-id: workshop
-title: Workshop
+id: welcome
+title: 👋🏻 Welcome
 ---
 
 SDK version **0.21.0**.

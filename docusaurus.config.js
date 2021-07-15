@@ -35,7 +35,7 @@ module.exports = {
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
-        }
+        },
       ],
     },
     footer: {
@@ -66,12 +66,29 @@ module.exports = {
           title: 'Resources',
           items: [
             {
+              label: 'KILTprotocol',
+              href: 'https://www.kilt.io/',
+            },
+            {
               label: 'Medium',
               href: 'https://kilt-protocol.medium.com/',
             },
             {
               label: 'GitHub',
               href: 'https://github.com/KILTprotocol',
+            },
+          ],
+        },
+        {
+          title: 'Legal',
+          items: [
+            {
+              label: 'Imprint',
+              href: 'https://www.kilt.io/imprint/',
+            },
+            {
+              label: 'Privacy Policy',
+              href: 'https://www.kilt.io/privacy-policy-for-kilt-protocol/',
             },
           ],
         },
