@@ -415,5 +415,5 @@ A collator can follow the steps below to set up monitoring of the nodes.
 
 The following are known issues and the possible solutions:
 
-- https://share.getcloudapp.com/DOuqkdE2 which is fixed by running "cargo update -p environmental"
+- running "cargo update -p environmental" could fix something
 - Using the commands create a `/Data/` directory the folder could possibly be owned by the root user. Switching the ownership of the folder with `chown [options] username:groupname filename`. Solution found [here](https://serverfault.com/questions/106713/how-to-change-ownership-of-a-folder-using-terminal)
