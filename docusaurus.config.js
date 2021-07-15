@@ -11,10 +11,10 @@ module.exports = {
   projectName: 'KILTprotocol', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: '',
+      title: '', // no title since the Name is already in the logo
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'KILT Logo',
+        src: 'img/logo_light.svg',
       },
       items: [
         {
@@ -43,14 +43,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Medium',
-              href: 'https://kilt-protocol.medium.com/',
-            },
-            {
-              label: 'Element',
-              href: 'https://riot.im/app/#/group/+kilt-community:matrix.org',
-            },
-            {
               label: 'Telegram',
               href: 'https://t.me/KILTProtocolChat',
             },
@@ -58,11 +50,23 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
             },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/hX4pc8rdHS',
+            },
+            {
+              label: 'Clan KILT (Unofficial)',
+              href: 'https://clankilt.io',
+            }
           ],
         },
         {
-          title: 'More',
+          title: 'Resources',
           items: [
+            {
+              label: 'Medium',
+              href: 'https://kilt-protocol.medium.com/',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/KILTprotocol',
