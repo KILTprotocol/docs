@@ -8,30 +8,30 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Explore
 
-###  KILT Blockchain
+### KILT Blockchain
 <img width="40" src={useBaseUrl("img/chain.jpg")} />
 
 See the currently running nodes on our [Telemetry][telemetry]. Dive into the transactions happening on the KILT Blockchain at this very moment on our [Blockchain Explorer][chain-explorer].
 
-###  Faucet
+### Faucet
 <img width="34" src={useBaseUrl("img/faucet.jpg")} />
 
 Request test money from the [Mash-Net Faucet][faucet].
 
-###  Demo-client
+### Demo-client
 <img width="40" src={useBaseUrl("img/demo.jpg")} />
 
 Check out our the [Demo Client][demo], a sample application that showcases all the features of the KILT Protocol and connects to the KILT Blockchain.
 
 ## Learn
 
-###  Tutorial/Workshop
-<img width="30" src={useBaseUrl("img/workshop.jpg")} />
+### Tutorial/Workshop
+<img width="40" src={useBaseUrl("img/catbox.svg")} />
 
 Hands-on: try out the [101 Tutorial/Workshop][workshop] to quickly ramp-up on KILT's core concepts and SDK.
 
-###  Whitepaper
-<img width="30" src={useBaseUrl("img/whitepaper.jpg")} />
+### Whitepaper
+<img width="40" src={useBaseUrl("img/whitepaper.svg")} />
 
 Dive deeper into KILT concepts by taking a look at the [Whitepaper][whitepaper].
 
@@ -39,12 +39,12 @@ Dive deeper into KILT concepts by taking a look at the [Whitepaper][whitepaper].
 
 Writing apps for blockchain is not just for blockchain developers anymore.
 
-###  SDK
+### SDK
 <img width="30" src={useBaseUrl("img/tools.jpg")} />
 
 Use the [KILT SDK][sdk-js-repo] to easily build JavaScript- or TypeScript-based applications for credentials.
 
-###  Mobile wallet
+### Mobile wallet
 <img width="28" src={useBaseUrl("img/phone_hand.jpg")} />
 
 **Build a demo in no time.**
