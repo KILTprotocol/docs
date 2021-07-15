@@ -135,7 +135,7 @@ docker run -p 127.0.0.1:9944:9944 -v ~/data:/data \
 
 We recommend following the [repositry](https://github.com/KILTprotocol/mashnet-node). Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
 
-***Do not use master branch to compile the build. Either use develop or the following commit `c82cb51b3c8e20f13aa2f9dbd587890f5e31da97`.***
+***Do not use master branch to compile the build. Either use `develop` or the following commit `c82cb51b3c8e20f13aa2f9dbd587890f5e31da97`.***
 
 ```bash
 cargo build --release -p kilt-parachain
