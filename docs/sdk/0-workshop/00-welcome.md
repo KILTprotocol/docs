@@ -11,7 +11,7 @@ SDK version **0.21.0**.
 >
 > 🤓 Prerequisites: basic JavaScript or TypeScript knowledge.
 >
-> ❓ Questions? Join our <a href="https://riot.im/app/#/group/+kilt-community:matrix.org">developer community channel</a>!
+> ❓ Questions? Join our <a href="https://discord.gg/hX4pc8rdHS">developer community channel</a>!
 
 **Welcome, curious mind!**
 
