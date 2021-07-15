@@ -1,6 +1,6 @@
 ---
 id: verification
-title: ✅ Verify a Claim
+title: 🔐 Verify a Claim
 ---
 
 In this section, you'll play the role of a <span class="label-role verifier">verifier</span>:

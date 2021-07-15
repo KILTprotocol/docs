@@ -1,6 +1,6 @@
 ---
 id: verification-authenticity
-title: ✅ Verify the authenticity
+title: 🥸 Verify the authenticity
 ---
 
 Did you notice anything wrong with our verification in the previous step?
