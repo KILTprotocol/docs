@@ -170,8 +170,7 @@ However if the number of actual lookups performed is less than this number, exce
 
 ## Delegated Attestation
 
-![https://i.imgur.com/UmSNC1m.png](https://i.imgur.com/UmSNC1m.png)
-
+![delegation attestation](/img/delegation-attestation.png)
 
 CASE 1: The delegation node 3 revokes the attestation. The number of lookups performed will be zero as delegation node 3 created the delegatied attestation
 
