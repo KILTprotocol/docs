@@ -249,7 +249,7 @@ The WILT parachain bootnodes:
 
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`. 
 
-***Don't use this binary for running a collator!***
+***Don't use this binary for running a Collator!***
 
 ```bash=
 cargo build --release -p kilt-parchain --features=runtime-benchmark
