@@ -305,7 +305,7 @@ Running a remote node, a Collator can use the following command to rotate the se
 WARNING: you should not be able to run this command from a remote machine, since the RPC endpoints must not be exposed!
 
 ```bash=
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9944
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
 ```
 
 #### Option 2: Polkodat.js apps & Rotate Session Keys
