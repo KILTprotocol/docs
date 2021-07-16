@@ -69,7 +69,7 @@ The docker commands will also map the database files for the relay and parachain
 
 ```bash=
 docker run -p 127.0.0.1:9944:9944 -v ~/data:/data \
-    kiltprotocol/peregrine:0.2.0-72a6684 \
+    kiltprotocol/peregrine:c82cb51b \
     --ws-port=9944 \
     --ws-external \
     --rpc-external \
