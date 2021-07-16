@@ -3,4 +3,4 @@ id: introduction
 title: Introduction
 ---
 
-WIP: gentile introduction into the SDK!
+WIP: gentle introduction into the SDK!

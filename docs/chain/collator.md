@@ -10,7 +10,7 @@ The details of spiritnets benchmarks can be found [here](https://github.com/KILT
 
 - OS - Ubuntu 20.04.2
 - CPU - AMD Ryzen 7 1700X
-- Storage - A NVMe solid state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT's parachain and kusama relay chain, but will need to be re-evaluated every six months.
+- Storage - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT's parachain and Kusama relay chain but will need to be re-evaluated every six months.
 - Memory - 16GB.
 
 The specs posted above are by no means the minimum specs that you could use when running a Collator, however you should be aware that if you are using less you may need to toggle some extra optimizations in order to be equal to other Collator that are running the standard.
@@ -48,7 +48,6 @@ docker pull kiltprotocol/peregrine:0.2.0-d03db82
 
 </details>
 
-<!-- The docker image can be run with existing commands, these can be found within the mashnet-net repositery [here](https://github.com/KILTprotocol/mashnet-node/blob/develop/docs/run-node.md#node-commands). -->
 
 The Collators will need to enable the following:
 
@@ -141,7 +140,7 @@ We recommend following the [repositry](https://github.com/KILTprotocol/mashnet-n
 cargo build --release -p kilt-parachain
 ```
 
-You can find the executable file in `./target/release/kilt-parachain` after you build the project.
+The executable file can be found in `./target/release/kilt-parachain` after building the project.
 
 <details>
 <summary>Peregrine Command</summary>
@@ -256,7 +255,7 @@ To enable benchmarking, the collator must enable the benchmarking feature from a
 cargo build --release -p kilt-parchain --features=runtime-benchmark
 ```
 
-The benchmarking can be run on to compare your hardware to our reference hardware. At the moment, we have benchmarked our Runtime on an AMD Ryzen 7 1700X with 64GB RAM and a NVMe SSD. After you executed the benchmarks on your Server you can compare the weights to the official weights. Lower weights are always better.
+The benchmarking can be run to compare hardware against the referenced hardware. At the moment, we have benchmarked our Runtime on an AMD Ryzen 7 1700X with 64GB RAM and an NVMe SSD. After executing the benchmarks on a Server compare the weights to the official weights. Lower weights are always better.
 
 The commands to excute the benchmarking can be found [here](https://github.com/KILTprotocol/mashnet-node/tree/develop/runtimes/spiritnet/src/weights) inside each file.
 
@@ -281,7 +280,7 @@ benchmark \
 
 ## Sync Data
 
-Before you can author blocks with your collator, your node needs to fully sync up with the blockchain. Depending on which chain and the size of it may take a number of minutes to several hours maybe even a day. 
+Before a Collator can author blocks, the node needs to fully sync up with the blockchain. Depending on which chain and the size of it may take a number of minutes to several hours maybe even a day. 
 
 More details can be found at the [Polkadot network](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data)
 
@@ -310,9 +309,9 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 
 #### Option 2: Polkodat.js apps & Rotate Session Keys
 
-Fist you need to connect to your node using the polkadot apps. For that you need to use ssh port forwarding. The RPC endpoints must not be publicly available!
+First, a Collator needs to connect to a node using the polkadot apps. For that, the Collator need to use ssh port forwarding. The RPC endpoints must not be publicly available!
 
-You can forward the RPC port using `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`.
+The RPC port can be forwarded using `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`.
 
 ![](/img/chain/chain-menu.png)
 

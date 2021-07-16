@@ -3,4 +3,4 @@ id: introduction
 title: Introduction
 ---
 
-WIP: gentile introduction into the KILT Blockchain!
+WIP: gentle introduction into the KILT Blockchain!
