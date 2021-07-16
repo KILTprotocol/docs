@@ -176,7 +176,7 @@ CASE 1: The delegation node 3 revokes the attestation. The number of lookups per
 
 CASE 2: The delegation node 1 revokes the attestation. The number of lookups performed will be two as delegation node 3 created the delegated attestation, therefore, must count to find the delegation.
 
-Each CASE the delegator must call the revoke on the instantiated attestation object with the given delegator or parent of the delegator to revoke the attestation.
+Each CASE the delegator must call the revoke on the instantiated attestation object with the given delegator or parent of the delegator to revoke the attestation. The fee is taking considering the maximum number of lookups needed to reach all cases, these fees will be refunded if paid too much.
 
 ```js
 attestationWithDelegation.revoke(identityAlice.address).then((transaction) =>
