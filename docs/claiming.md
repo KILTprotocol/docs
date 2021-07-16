@@ -17,16 +17,39 @@ When you create a CType from a schema, the SDK determines whether your CType ali
 
 The owner of the CType can store it on their desktop or on a regular web service. Only a hash of the CType is stored on the KILT blockchain, verifying its validity.
 
-```
-<CODE-EXAMPLE: Basic CType>
+```js
+const ctype = Kilt.CType.fromSchema({
+  $schema: "http://kilt-protocol.org/draft-01/ctype#",
+  title: "Drivers License",
+  properties: {
+    name: {
+      type: "string",
+    },
+    age: {
+      type: "integer",
+    },
+  },
+  type: "object",
+});
 ```
 
 ## Create your Claim from a CType
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
 
-```
-<CODE-EXAMPLE: Create a claim “Claim.fromCTypeAndClaimContents”>
+```js
+const claimer = Kilt.Identity.buildFromMnemonic(claimerMnemonic);
+
+const rawClaim = {
+  name: "Alice",
+  age: 29,
+};
+
+const claim = Kilt.Claim.fromCTypeAndClaimContents(
+  ctype,
+  rawClaim,
+  claimer.address
+);
 ```
 
 ## Request an Attestation
@@ -35,6 +58,9 @@ After creating your claim, you can request an attestation by creating another ob
 
 We recommend encrypting this object before sending it by calling encrypt. Additionally, you can also compress the body of the message.
 
-```
-<CODE-EXAMPLE: Create a RequestForAttestation>
+```js
+const requestForAttestation = Kilt.RequestForAttestation.fromClaimAndIdentity(
+  claim,
+  claimer
+);
 ```
