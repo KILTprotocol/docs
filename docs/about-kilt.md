@@ -40,7 +40,7 @@ Dive deeper into KILT concepts by taking a look at the [Whitepaper][whitepaper].
 Writing apps for blockchain is not just for blockchain developers anymore.
 
 ### SDK
-<img width="30" src={useBaseUrl("img/tools.jpg")} />
+<img width="40" src={useBaseUrl("img/tools.svg")} />
 
 Use the [KILT SDK][sdk-js-repo] to easily build JavaScript- or TypeScript-based applications for credentials.
 
@@ -90,7 +90,7 @@ Use our [Demo Mobile Wallet][demo-mobile-wallet-repo] aka Sporran. Easily custom
 Join our [Community Chat on Discord][cmy-channel]!
 
 
-[cmy-channel]: https://riot.im/app/#/room/#kilt-general:matrix.org
+[cmy-channel]: https://discord.gg/hX4pc8rdHS
 [website]: https://kilt.io
 [mashnet-node-repo]: https://github.com/KILTprotocol/mashnet-node
 [sdk-js-repo]: https://github.com/KILTprotocol/sdk-js
@@ -107,5 +107,5 @@ Join our [Community Chat on Discord][cmy-channel]!
 [telemetry]: http://telemetry.kilt.io/#/KILT%20Testnet
 [chain-explorer]: https://chain-explorer.kilt.io
 [chain-explorer-devnet]: https://chain-explorer.devnet.kilt.io
-[workshop]: https://kiltprotocol.github.io/kilt-workshop-101
+[workshop]: /docs/sdk/workshop/welcome
 [whitepaper]: https://kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf

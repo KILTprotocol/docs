@@ -7,8 +7,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'KILTprotocol', // Usually your GitHub org/user name.
-  projectName: 'KILTprotocol', // Usually your repo name.
+  organizationName: 'KILTprotocol',
+  projectName: 'KILTprotocol',
   themeConfig: {
     navbar: {
       title: '', // no title since the Name is already in the logo
