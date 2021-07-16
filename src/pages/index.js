@@ -11,7 +11,7 @@ const featureRows = [
     {
       title: 'Become a Collator',
       imageUrl: 'img/community.svg',
-      link: 'chain/collator',
+      link: 'docs/chain/collator',
       description: (
         <>
           Become a collator in for our Peregrine Testnet and later help
