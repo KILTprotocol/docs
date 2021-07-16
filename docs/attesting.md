@@ -14,9 +14,8 @@ The attester then decrypts the message and the KILT SDK automatically checks the
 
 These ensure that the sender of the message is the owner of the encapsulated claim.
 
-```
-<CODE-EXAMPLE?: Decrypt message>
-
+```js
+const decryptedMessage = Kilt.Message.decrypt(encryptedMessage, identity);
 ```
 
 There are several steps to creating the attestation. The attester:
@@ -25,8 +24,17 @@ There are several steps to creating the attestation. The attester:
 - creates an attestation object from the extracted RequestForAttestation and the attester’s address.
 - stores the attestation hash on the chain by preparing an unsigned transaction and then submitting it with the attester’s signature.
 
-```
-<CODE-EXAMPLE: Store attestation on-chain>
+```js
+const attestation = Kilt.Attestation.fromRequestAndPublicIdentity(
+  requestForAttestation,
+  publicIdentity
+);
+
+transaction = await attestation.store();
+
+await Kilt.BlockchainUtils.submitSignedTx(transaction, {
+  resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK,
+});
 ```
 
 Once this is done, the attester:
@@ -37,6 +45,9 @@ Once this is done, the attester:
 
 The claimer then stores the attestation in their own wallet and can use it as they wish.
 
-```
-<CODE-EXAMPLE?: Create attestedClaim>
+```js
+const attestedClaim = Kilt.AttestedClaim.fromRequestAndAttestation(
+  requestForAttestation,
+  attestation
+);
 ```
