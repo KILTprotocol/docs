@@ -1,6 +1,6 @@
 ---
-id: requesting-terms
-title: Requesting Terms and Requesting an Attestation
+id: requesting-terms-and-attestations
+title: Requesting Terms and Attestations
 ---
 
 If an attester has an established reputation for issuing attestations, the claimer may choose to submit a claim to be attested without going through the process of agreeing terms.
