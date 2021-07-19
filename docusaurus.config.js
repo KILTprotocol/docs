@@ -7,8 +7,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'KILTprotocol',
-  projectName: 'KILTprotocol',
+  organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
+  projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
   themeConfig: {
     navbar: {
       title: '', // no title since the Name is already in the logo
