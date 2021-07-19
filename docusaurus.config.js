@@ -1,27 +1,40 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'KILT Docs',
+  title: 'KILT Documentation',
   tagline: 'Documentation for KILT Node and SDK',
   url: 'https://kiltprotocol.github.io',
   baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'KILTprotocol', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: 'KILTprotocol',
+  projectName: 'KILTprotocol',
   themeConfig: {
     navbar: {
-      title: 'KILT',
+      title: '', // no title since the Name is already in the logo
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'KILT Logo',
+        src: 'img/logo_light.svg',
+        srcDark: 'img/logo_dark.svg',
       },
       items: [
-   
+        {
+          to: 'docs/sdk/introduction',
+          activeBasePath: 'docs/sdk',
+          label: 'SDK',
+          position: 'left',
+        },
+        {
+          to: 'docs/chain/introduction',
+          activeBasePath: 'docs/chain',
+          label: 'Chain',
+          position: 'left',
+        },
         {
           href: 'https://github.com/KILTprotocol/docs',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
@@ -32,14 +45,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Medium',
-              href: 'https://kilt-protocol.medium.com/',
-            },
-            {
-              label: 'Element',
-              href: 'https://riot.im/app/#/group/+kilt-community:matrix.org',
-            },
-            {
               label: 'Telegram',
               href: 'https://t.me/KILTProtocolChat',
             },
@@ -47,19 +52,48 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
             },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/hX4pc8rdHS',
+            },
+            {
+              label: 'Clan KILT (Unofficial)',
+              href: 'https://clankilt.io',
+            },
           ],
         },
         {
-          title: 'More',
+          title: 'Resources',
           items: [
+            {
+              label: 'KILTprotocol',
+              href: 'https://www.kilt.io/',
+            },
+            {
+              label: 'Medium',
+              href: 'https://kilt-protocol.medium.com/',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/KILTprotocol',
             },
           ],
         },
+        {
+          title: 'Legal',
+          items: [
+            {
+              label: 'Imprint',
+              href: 'https://www.kilt.io/imprint/',
+            },
+            {
+              label: 'Privacy Policy',
+              href: 'https://www.kilt.io/privacy-policy-for-kilt-protocol/',
+            },
+          ],
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} BOTLabs GmbH – All rights reserved. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -68,15 +102,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/KILTprotocol/docs/edit/master/docs/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/blog/',
+          editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -84,4 +110,4 @@ module.exports = {
       },
     ],
   ],
-};
+}
