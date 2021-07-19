@@ -107,5 +107,5 @@ Join our [Community Chat on Discord][cmy-channel]!
 [telemetry]: http://telemetry.kilt.io/#/KILT%20Testnet
 [chain-explorer]: https://chain-explorer.kilt.io
 [chain-explorer-devnet]: https://chain-explorer.devnet.kilt.io
-[workshop]: /docs/sdk/workshop/welcome
+[workshop]: sdk/workshop/welcome
 [whitepaper]: https://kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf
