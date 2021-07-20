@@ -1,3 +1,9 @@
+---
+id: delegator
+title: Become a Delegator
+---
+
+
 <!-- omit in toc -->
 # How to Start Delegator
 
