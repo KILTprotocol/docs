@@ -1,6 +1,10 @@
 # How to Start Delegator
 
-[toc]
+- [How to Start Delegator](#how-to-start-delegator)
+  - [How to Join](#how-to-join)
+  - [Adjust Stake](#adjust-stake)
+  - [Revoking](#revoking)
+  - [How to Exit](#how-to-exit)
 
 ## How to Join
 
