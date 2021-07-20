@@ -2,16 +2,6 @@
 id: delegator
 title: Become a Delegator
 ---
-
-
-<!-- omit in toc -->
-# How to Start Delegator
-
-- [How to Join](#how-to-join)
-- [Adjust Stake](#adjust-stake)
-- [Revoking](#revoking)
-- [How to Exit](#how-to-exit)
-
 ## How to Join
 
 **Important: A candidate can only delegate `(join_delegators, delegate_another_candidate)` once per round!**
