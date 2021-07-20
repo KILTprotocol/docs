@@ -55,10 +55,10 @@ Use our [Demo Mobile Wallet][demo-mobile-wallet-repo] aka Sporran. Easily custom
 
 ## Codebases and Dependencies
 
-<p align="center">
-  <img width="820" src={useBaseUrl("img/overview.png")} />
+<div align="center">
+  <img width="820" src={useBaseUrl("img/app-overview.svg")} />
   <div align="center"><sub><sup>Codebases and Dependencies</sup></sub></div>
-</p>
+</div>
 
 ```
 🐥 = DEV environment
@@ -67,10 +67,10 @@ Use our [Demo Mobile Wallet][demo-mobile-wallet-repo] aka Sporran. Easily custom
 
 ## Infrastructure / CI
 
-<p align="center">
+<div align="center">
 <img width="620" src={useBaseUrl("img/infrastructure.jpg")} />
   <div align="center"><sub><sup>Infrastructure</sup></sub></div>
-</p>
+</div>
 
 ## Source code and deployed instances
 
