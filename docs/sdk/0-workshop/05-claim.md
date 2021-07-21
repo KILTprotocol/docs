@@ -2,6 +2,9 @@
 id: claim
 title: 💬 Claim
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/3_1_claim.ts';
+import Example2 from '!!raw-loader!../../../code-examples/3_2_claim.ts';
 
 In this section, you'll play the role of a <span class="label-role claimer">claimer</span>.
 
@@ -27,41 +30,9 @@ You'll now need the first mnemonic you've created; it's referred to as `<claimer
 We'll create a claim using the provided CTYPE and the <span class="label-role claimer">claimer</span> identity.  
 Paste the following in `claim.js`. Make sure to replace the `<claimerMnemonic>`.
 
-<!-- copy and paste 🚧 1️⃣ claim_example from 3_claim.ts -->
-
-<!-- IMPORTANT ❗️ Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-const Kilt = require('@kiltprotocol/sdk-js')
-
-// import the claim type file we've created previously
-const ctype = require('./ctype.json')
-
-// wrap call inside async function
-async function main() {
-  await Kilt.init()
-  
-  // <claimerMnemonic> is for example 'gold upset segment cake universe carry demand comfort dawn invite element capital'
-
-  const mnemonic = '<claimerMnemonic>'
-  const claimer = Kilt.Identity.buildFromMnemonic(mnemonic)
-
-  const claimContents = {
-    name: 'Alice',
-    age: 25,
-  }
-
-  const claim = Kilt.Claim.fromCTypeAndClaimContents(
-    ctype,
-    claimContents,
-    claimer.address
-  )
-}
-
-// execute calls
-main()
-
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 **Don't run the code just yet!** One more thing to add...
 
@@ -72,19 +43,9 @@ To do so, let's build a `RequestForAttestation` object from your `Claim`.
 
 Append the following code to your `main` function inside `claim.js`:
 
-<!-- copy and paste 🚧 2️⃣ requestForAttestation_example from 3_claim.ts -->
-
-<!-- IMPORTANT ❗️ Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-const requestForAttestation = Kilt.RequestForAttestation.fromClaimAndIdentity(claim, claimer)
-
-// log this so you can paste it locally
-console.log(
-  'requestForAttestationJSONString:\n',
-  JSON.stringify(requestForAttestation)
-)
-```
+<CodeBlock className="language-ts">
+  {Example2}
+</CodeBlock>
 
 ## Run
 

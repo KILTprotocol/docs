@@ -2,6 +2,10 @@
 id: attestation
 title: 🔖 Attestation
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/4_1_attestation.ts';
+import Example2 from '!!raw-loader!../../../code-examples/4_2_attestation.ts';
+import Example3 from '!!raw-loader!../../../code-examples/4_3_attestation.ts';
 
 In this section, you'll play the role of the <span class="label-role attester">attester</span>:
 
@@ -37,82 +41,25 @@ In the following, we'll refer to it as `<requestForAttestationJSONString>`.
 
 Paste the following code in `attestation.js` (make sure to replace `<attesterMnemonic>` and `<requestForAttestationJSONString>` with the relevant objects):
 
-<!-- copy and paste 1️⃣ requestForAttestation_example from 4_attestation.ts -->
-
-<!-- IMPORTANT! Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-const Kilt = require('@kiltprotocol/sdk-js')
-
-async function main() {
-  // use the attester mnemonic you've generated in the Identity step
-  const attester = Kilt.Identity.buildFromMnemonic('<attesterMnemonic>')
-
-  // use the JSON string representation of the request attestation generated in the previous step
-  const requestForAttestationStruct = JSON.parse(
-    '<requestForAttestationJSONString>'
-  )
-  const requestForAttestation = Kilt.RequestForAttestation.fromRequest(
-    requestForAttestationStruct
-  )
-}
-
-// execute calls
-main()
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 To check if the object is valid, you can check the data against the CTYPE
 and check if the signature is valid.
 
-<!-- copy and paste 2️⃣ attestationVerify_example from 4_attestation.ts -->
-
-```javascript
-const isDataValid = requestForAttestation.verifyData()
-const isSignatureValid = requestForAttestation.verifySignature()
-console.log('isDataValid: ', isDataValid)
-console.log('isSignatureValid: ', isSignatureValid)
-```
+<CodeBlock className="language-ts">
+  {Example2}
+</CodeBlock>
 
 ## Code: create an `Attestation`
 
 Now is time to interact with the chain, in order to store an attestation on there.  
 Append the following code to your `main` function inside `attestation.js`.
 
-<!-- copy and paste 3️⃣ attestClaim_example from 4_attestation.ts -->
-
-```javascript
-// build the attestation object
-const attestation = await Kilt.Attestation.fromRequestAndPublicIdentity(
-  requestForAttestation,
-  attester.getPublicIdentity()
-)
-
-// connect to the chain (this is one KILT testnet node)
-await Kilt.init({ address: 'wss://full-nodes.kilt.io:9944' })
-await Kilt.connect()
-console.log(
-  'Successfully connected to KILT testnet, storing attestation next...'
-)
-
-// store the attestation on chain
-const tx = await attestation.store()
-await Kilt.BlockchainUtils.signAndSubmitTx(tx, attester, {
-  resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK,
-})
-console.log('Attestation saved on chain.')
-
-// the attestation was successfully stored on the chain, so you can now create the AttestedClaim object
-const attestedClaim = Kilt.AttestedClaim.fromRequestAndAttestation(
-  requestForAttestation,
-  attestation
-)
-// log the attestedClaim so you can copy/send it back to the claimer
-console.log('attestedClaimJSONString:\n', JSON.stringify(attestedClaim))
-
-// disconnect from the chain
-await Kilt.disconnect()
-console.log('Disconnected from KILT testnet')
-```
+<CodeBlock className="language-ts">
+  {Example3}
+</CodeBlock>
 
 ## Run
 

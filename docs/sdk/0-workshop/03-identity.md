@@ -2,6 +2,9 @@
 id: identity
 title: 👤 Identity
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/1_1_identity.ts';
+import Example2 from '!!raw-loader!../../../code-examples/1_2_identity.ts';
 
 Let's create the <span class="label-role claimer">claimer</span> identity and the <span class="label-role attester">attester</span> identity. You'll see that the <span class="label-role verifier">verifier</span> identity won't be needed.
 
@@ -35,27 +38,9 @@ To generate an identity, two methods from the KILT SDK are needed:
 
 Open `identity.js` and paste the following code:
 
-<!-- copy and paste 🚧 1️⃣ identity_example from 1_identity.ts -->
-
-<!-- IMPORTANT ❗️ Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-// import the KILT SDK
-const Kilt = require('@kiltprotocol/sdk-js')
-
-// wrap call inside async function
-async function main() {
-  await Kilt.init()
-  const mnemonic = Kilt.Identity.generateMnemonic()
-  console.log('Mnemonic: ', mnemonic)
-
-  const identity = Kilt.Identity.buildFromMnemonic(mnemonic)
-  console.log('Address: ', identity.address)
-}
-
-// execute calls
-main()
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 You're now ready to generate an identity.
 
@@ -80,28 +65,9 @@ You want to run this command twice, in order to generate 2 identities: the <span
 
 <!-- IMPORTANT ❗️ Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
 
-```javascript
-// import the KILT SDK
-const Kilt = require('@kiltprotocol/sdk-js')
-
-// wrap call inside async function
-async function identities() {
-  await Kilt.init()
-
-  const claimerMnemonic = Kilt.Identity.generateMnemonic()
-  console.log('Claimer mnemonic: ', claimerMnemonic)
-  const claimer = Kilt.Identity.buildFromMnemonic(claimerMnemonic)
-  console.log('Claimer address: ', claimer.address)
-
-  const attesterMnemonic = Kilt.Identity.generateMnemonic()
-  console.log('Attester mnemonic: ', attesterMnemonic)
-  const attester = Kilt.Identity.buildFromMnemonic(attesterMnemonic)
-  console.log('Attester address: ', attester.address)
-}
-
-// execute calls
-identities()
-```
+<CodeBlock className="language-ts">
+  {Example2}
+</CodeBlock>
 
 Copy and paste the two mnemonics and addresses somewhere, you'll need them soon.
 
