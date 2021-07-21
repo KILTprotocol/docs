@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 ### KILT Blockchain
 <img width="40" src={useBaseUrl("img/chain.jpg")} />
 
-See the currently running nodes on our [Telemetry][telemetry]. Dive into the transactions happening on the KILT Blockchain at this very moment on our [Blockchain Explorer][chain-explorer].
+See the currently running nodes on our [Telemetry][telemetry]. Dive into the transactions happening on the KILT Blockchain at this very moment on [subscan][subscan-pere].
 
 ### Faucet
 <img width="34" src={useBaseUrl("img/faucet.jpg")} />
@@ -56,34 +56,24 @@ Use our [Demo Mobile Wallet][demo-mobile-wallet-repo] aka Sporran. Easily custom
 ## Codebases and Dependencies
 
 <div align="center">
-  <img width="820" src={useBaseUrl("img/app-overview.svg")} />
+  <object data={useBaseUrl("img/app-overview.svg")} type="image/svg+xml">
+        <span>Your browser doesn't support SVG images</span>
+    </object>
   <div align="center"><sub><sup>Codebases and Dependencies</sup></sub></div>
-</div>
-
-```
-🐥 = DEV environment
-🐓 = PROD environment, stable
-```
-
-## Infrastructure / CI
-
-<div align="center">
-<img width="620" src={useBaseUrl("img/infrastructure.jpg")} />
-  <div align="center"><sub><sup>Infrastructure</sup></sub></div>
 </div>
 
 ## Source code and deployed instances
 
-|                    | WHERE THE CODE IS                             |  WHERE IT IS DEPLOYED (AWS): DEV ENVIRONMENT🐥  | WHERE IT IS DEPLOYED (AWS): PROD ENVIRONMENT🐓 |
-| ------------------ | --------------------------------------------- | :--------------------------------------------: | :-------------------------------------------: |
-| Blockchain         | [mashnet-node][mashnet-node-repo]             |           full-nodes.devnet.kilt.io            |              full-nodes.kilt.io               |
-| SDK                | [sdk-js][sdk-js-repo]                         |                     (not)                      |                     (not)                     |
-| Demo App           | [demo-client][demo-client-repo]               |           [demo.devnet][demo.devnet]           |                 [demo][demo]                  |
-| Demo App           | [demo-mobile-wallet][demo-mobile-wallet-repo] |                     (not)                      |                     (not)                     |
-| Demo App Companion | [prototype-services][prototype-services-repo] |            services.devnet.kilt.io             |               services.kilt.io                |
-| Demo App Companion | [faucet][faucet-repo]                         |         [faucet-devnet][faucet-devnet]         |               [faucet][faucet]                |
-| Bockchain Monitor  | [telemetry][telemetry-repo]                   |                     (not)                      |            [telemetry][telemetry]             |
-| Low Level App      | [polkadot-apps][polkadot-apps-repo]           | [chain-explorer.devnet][chain-explorer-devnet] |       [chain-explorer][chain-explorer]        |
+|                    | WHERE THE CODE IS                             |       Mashnet Deployment🐓        | Peregrine               | Wilt |
+| ------------------ | --------------------------------------------- | :------------------------------: | ----------------------- | ---- |
+| Blockchain         | [mashnet-node][mashnet-node-repo]             |     wss:/full-nodes.kilt.io      | wss://peregrine.kilt.io |      |
+| SDK                | [sdk-js][sdk-js-repo]                         |              (not)               |                         |      |
+| Demo App           | [demo-client][demo-client-repo]               |           [demo][demo]           |                         |      |
+| Demo App           | [demo-mobile-wallet][demo-mobile-wallet-repo] |              (not)               |                         |      |
+| Demo App Companion | [prototype-services][prototype-services-repo] |     https://services.kilt.io     |                         |      |
+| Demo App Companion | [faucet][faucet-repo]                         |         [faucet][faucet]         |                         |      |
+| Bockchain Monitor  | [telemetry][telemetry-repo]                   |      [telemetry][telemetry]      | [telemetry][telemetry-pere] |      |
+| Low Level App      | [polkadot-apps][polkadot-apps-repo]           | [polkadot-apps][polka-app] | [polkadot-apps][polka-app-pere] |      |
 
 # Community
 
@@ -92,6 +82,8 @@ Join our [Community Chat on Discord][cmy-channel]!
 
 [cmy-channel]: https://discord.gg/hX4pc8rdHS
 [website]: https://kilt.io
+[subscan-pere]: https://kilt-testnet.subscan.io/
+
 [mashnet-node-repo]: https://github.com/KILTprotocol/mashnet-node
 [sdk-js-repo]: https://github.com/KILTprotocol/sdk-js
 [demo-client-repo]: https://github.com/KILTprotocol/demo-client
@@ -100,12 +92,12 @@ Join our [Community Chat on Discord][cmy-channel]!
 [faucet-repo]: https://github.com/KILTprotocol/faucet
 [telemetry-repo]: https://github.com/KILTprotocol/substrate-telemetry
 [polkadot-apps-repo]: https://github.com/polkadot-js/apps
-[demo.devnet]: https://demo.devnet.kilt.io
+
 [demo]: https://demo.kilt.io
-[faucet-devnet]: https://faucet-devnet.kilt.io
 [faucet]: https://faucet.kilt.io
 [telemetry]: http://telemetry.kilt.io/#/KILT%20Testnet
-[chain-explorer]: https://chain-explorer.kilt.io
-[chain-explorer-devnet]: https://chain-explorer.devnet.kilt.io
+[telemetry-pere]: https://telemetry.kilt.io/#list/KILT%20Peregrine
+[polka-app]: https://chain-explorer.kilt.io
+[polka-app-pere]: https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io#/explorer
 [workshop]: sdk/workshop/welcome
 [whitepaper]: https://kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf
