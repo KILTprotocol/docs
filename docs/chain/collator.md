@@ -24,7 +24,8 @@ You can find [a guide on how to run benchmarks](#Benchmarking-(optional)) furthe
 ## Start a Node
 
 There are several ways to build and test a collator node.
-**These commands are based on commits.** The time needed to start a node depends on the method chosen.
+**These commands are based on commits.**
+The time needed to start a node depends on the method chosen.
 We will go through how to use a Docker image or compile directly from our mashnet-node repository.
 There are currently two different runtimes that can be executed.
 
@@ -55,8 +56,12 @@ Exposing the RPC endpoints is done using the following parameters:
 --unsafe-rpc-external
 ```
 
+:::danger
+
 Be aware that this might **expose your collator**!
 You should be the only one that is able to call the RPC endpoints.
+
+:::
 
 #### Execution Wasm
 
@@ -90,7 +95,12 @@ First pull the docker image:
 docker pull kiltprotocol/peregrine:78342538
 ```
 
-**Beware to not point the `keystore` or base-path to `/data/` in a local setup. Running from docker using `/data/` is fine, since we map this folder to the host filesystem**
+:::caution
+
+Beware to not point the `keystore` or base-path to `/data/` in a local setup.
+Running from docker using `/data/` is fine, since we map this folder to the host filesystem
+
+:::
 
 The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
 That way you can make sure to not lose those files when you remove the container.
@@ -125,7 +135,13 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
 We recommend following the [repository](https://github.com/KILTprotocol/mashnet-node).
 Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
 
-***Do not use master branch to compile the build. Either use `develop` or the following commit `78342538b47403694a2ee137f821f9e35b9a1930`.***
+:::info
+
+Do not use master branch to compile the build.
+Either use `develop` or the following commit `78342538b47403694a2ee137f821f9e35b9a1930`.
+
+:::
+
 
 ```bash
 cargo build --release -p kilt-parachain
@@ -249,11 +265,19 @@ The Collator Account binds to the node.
 
 ![](/img/chain/session-setKeys.png)
 
-***A session takes 600 blocks or around 120~ minutes***
+:::info
+
+A session takes 600 blocks or around 120~ minutes
+
+:::
 
 ## Add collator
 
-**It is recommended to set the session keys before doing the following steps.**
+:::info
+
+It is recommended to set the session keys before doing the following steps.
+
+:::
 
 The current number of collators is 17.
 
@@ -319,7 +343,11 @@ For the sake of completeness the bootnodes are listed below:
 
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
-***Don't use this binary for running a Collator!***
+:::caution
+
+Don't use this binary for running a Collator!
+
+:::
 
 ```bash=
 cargo build --release -p kilt-parchain --features=runtime-benchmark
