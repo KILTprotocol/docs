@@ -5,7 +5,9 @@ title: Become a Collator
 
 ## Hardware Requirements
 
-The following hardware was used to benchmark the KILT blockchain and calculate the extrinsic weights. Your hardware should at least be as fast as the hardware used for benchmarking. Having a fast storage is important for the overall performance.
+The following hardware was used to benchmark the KILT blockchain and calculate the extrinsic weights.
+Your hardware should at least be as fast as the hardware used for benchmarking.
+Having a fast storage is important for the overall performance.
 
 - OS - Ubuntu 20.04.2
 - CPU - AMD Ryzen 7 1700X
@@ -14,11 +16,17 @@ The following hardware was used to benchmark the KILT blockchain and calculate t
 
 The specs posted above are by no means the minimum specs that you could use when running a Collator, however you should be aware that if you are using less you may need to toggle some extra optimizations in order to be equal to other Collator that are running the standard.
 
-You can compare your hardware with the above listed hardware by running the benchmarks. If your benchmark results are better (smaller weights) than ours, your hardware is faster than the required minimum. The results of the spiritnet benchmarks can be found [here](https://github.com/KILTprotocol/mashnet-node/tree/develop/runtimes/spiritnet/src/weights). You can find [a guide on how to run benchmarks](#Benchmarking-(optional)) further below.
+You can compare your hardware with the above listed hardware by running the benchmarks.
+If your benchmark results are better (smaller weights) than ours, your hardware is faster than the required minimum.
+The results of the spiritnet benchmarks can be found [here](https://github.com/KILTprotocol/mashnet-node/tree/develop/runtimes/spiritnet/src/weights).
+You can find [a guide on how to run benchmarks](#Benchmarking-(optional)) further below.
 
 ## Start a Node
 
-There are several ways to build and test a collator node. **These commands are based on commits.** The time needed to start a node depends on the method chosen. We will go through how to use a Docker image or compile directly from our mashnet-node repository. There are currently two different runtimes that can be executed.
+There are several ways to build and test a collator node.
+**These commands are based on commits.** The time needed to start a node depends on the method chosen.
+We will go through how to use a Docker image or compile directly from our mashnet-node repository.
+There are currently two different runtimes that can be executed.
 
 - The `peregrine` chain will be matching the closest to our final chain and contains all the KILT functionality that is currently available.
 - The `spiritnet` chain will be the actual network after launch and contains only stable features
@@ -75,7 +83,8 @@ Since you only use session keys for the parachain, there is no need to add this 
 
 ### Option 1: Use the docker image
 
-Docker can be used to run a collator. First pull the docker image:
+Docker can be used to run a collator.
+First pull the docker image:
 
 ```bash=
 docker pull kiltprotocol/peregrine:78342538
@@ -113,7 +122,8 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
 
 ### Option 2: Compile from source
 
-We recommend following the [repository](https://github.com/KILTprotocol/mashnet-node). Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
+We recommend following the [repository](https://github.com/KILTprotocol/mashnet-node).
+Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
 
 ***Do not use master branch to compile the build. Either use `develop` or the following commit `78342538b47403694a2ee137f821f9e35b9a1930`.***
 
@@ -145,13 +155,17 @@ The executable file can be found in `./target/release/kilt-parachain` after buil
 
 ## Sync Data
 
-Before a Collator can author blocks, the node needs to fully sync up with the blockchain. Depending on which chain and the size of it may take a number of minutes to several hours maybe even a day. 
+Before a Collator can author blocks, the node needs to fully sync up with the blockchain.
+Depending on which chain and the size of it may take a number of minutes to several hours maybe even a day.
 
 More details can be found at the [Polkadot network](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data)
 
 ## Session Keys
 
-Once the chain has fully synced. The collator will need sessions keys to begin collating on the network. The session keys are important for collating within the network. A Collator can call a RPC to check whether the account has session keys with the following calls `hasKey` and `hasSessionKeys` in `author`.
+Once the chain has fully synced.
+The collator will need sessions keys to begin collating on the network.
+The session keys are important for collating within the network.
+A Collator can call a RPC to check whether the account has session keys with the following calls `hasKey` and `hasSessionKeys` in `author`.
 
 ![](/img/chain/author-hasKey.png)
 
@@ -159,14 +173,16 @@ Once the chain has fully synced. The collator will need sessions keys to begin c
 
 ### Generate Session Keys
 
-There are two ways to create the session keys. We recommend using the polkadot apps, but the session keys can also be created manually.
+There are two ways to create the session keys.
+We recommend using the polkadot apps, but the session keys can also be created manually.
 
 
 #### Option 1: Curl command
 
 Running a remote node, a Collator can use the following command to rotate the session key.
 
-WARNING: Make sure that nobody is able to run this command and access your node, but yourself. The RPC endpoints must not be exposed!
+WARNING: Make sure that nobody is able to run this command and access your node, but yourself.
+The RPC endpoints must not be exposed!
 
 ```bash=
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
@@ -174,20 +190,23 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 
 #### Option 2: Polkodat.js apps & Rotate Session Keys
 
-First, a Collator needs to connect to a node using the polkadot apps. For that, the Collator need to use ssh port forwarding. The RPC endpoints must not be publicly available!
+First, a Collator needs to connect to a node using the polkadot apps.
+For that, the Collator need to use ssh port forwarding.
+The RPC endpoints must not be publicly available!
 
-The RPC port can be forwarded using `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`.
+The RPC port can be forwarded using `ssh -L 127.0.0.1:9933:127.0.0.1:9933 <user>@<server>`.
 
 ![](/img/chain/chain-menu.png)
 
 ![](/img/chain/chain-selection.png)
 
 
-Collators need to connect a running node to the [polkadot.js apps](https://polkadot.js.org/apps/#/explorer). 
+Collators need to connect a running node to the [polkadot.js apps](https://polkadot.js.org/apps/#/explorer).
 
 After connecting, a Collator must use an RPC with the associated Collator account to generate the keys.
 
-The Extrinsic call in `author` and `rotateKeys`. The method is used to generate a session key and rotate the existing key.
+The Extrinsic call in `author` and `rotateKeys`.
+The method is used to generate a session key and rotate the existing key.
 
 ![](/img/chain/author-rotateKeys.png)
 
@@ -195,7 +214,8 @@ The rotation of the session key should be done periodically to ensure that the c
 
 #### Option 3: subkey
 
-A key pair can be created using the [`subkey` tool](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) and following the steps. The corresponding private and public key can be used within the keystore folder of the local or remote server for the session key.
+A key pair can be created using the [`subkey` tool](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) and following the steps.
+The corresponding private and public key can be used within the keystore folder of the local or remote server for the session key.
 
 ```bash=
 ❯ subkey generate -n kilt
@@ -210,11 +230,12 @@ The name of the file must be the public key prepended with `61757261` (hex repre
 
 ![](/img/chain/session-key-file.png)
 
-Pathing in the root chain folder `./keystores/61757261da3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010`
+Path in the root chain folder `./keystores/61757261da3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010`
 
 ### Set Session Keys
 
-The collator has a session key by following the previous steps. The collator must then make an extrinsic by signing and submiting a transaction before the collator can begin collating on the network.
+The collator has a session key by following the previous steps.
+The collator must then make an extrinsic by signing and submitting a transaction before the collator can begin collating on the network.
 
 `Developer -> Extrinsics -> Submission`
 
@@ -222,7 +243,7 @@ The collator has a session key by following the previous steps. The collator mus
 2. Submit the following extrinsic: session -> setKeys(keys, proof)
 3. Insert the key which was generated in the step "Generate Session Keys"
 
-The proof of the `setKeys` is not used currently and can be set to `0x00`. 
+The proof of the `setKeys` is not used currently and can be set to `0x00`.
 
 The Collator Account binds to the node.
 
@@ -261,15 +282,23 @@ A collator can check the current `SelectedCandidates` to see the position and re
 1. Selected state query: `parachainStaking -> selectedCandidates(): Vec<AccountId>`
 2. Add the item with the "+" on the right side
 
-If the collator has enough self-stake and delegator stake they can be selected to collate. Once the collator has been choosen, the collator will be added to the `SelectedCandidate` pool. A time period of two sessions must pass before the collator will be authoring blocks, e.g. after the rest of current session and the entire next one.
+If the collator has enough self-stake and delegator stake they can be selected to collate.
+Once the collator has been chosen, the collator will be added to the `SelectedCandidate` pool.
+A time period of two sessions must pass before the collator will be authoring blocks, e.g.
+after the rest of current session and the entire next one.
 
 ![](/img/chain/session-validators.png)
 
 ### Stake on collator
 
-A collator can increase/decrease their stake. The corresponding methods can be found as an extrinisc under `parachainStaking > candidateStakeMore / candidateStakeLess`.
+A collator can increase/decrease their stake.
+The corresponding methods can be found as an extrinisc under `parachainStaking > candidateStakeMore / candidateStakeLess`.
 
 ![](/img/chain/parachainStaking.png)
+
+## Monitoring
+
+TODO
 
 ## Bootnodes
 
@@ -288,7 +317,7 @@ For the sake of completeness the bootnodes are listed below:
 
 ## Benchmarking (optional)
 
-To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`. 
+To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
 ***Don't use this binary for running a Collator!***
 
