@@ -3,6 +3,10 @@ id: collator
 title: Become a Collator
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 ## Hardware Requirements
 
 The following hardware was used to benchmark the KILT blockchain and calculate the extrinsic weights.
@@ -86,26 +90,79 @@ This makes sure that the keyfiles are not accidentally lost or published when yo
 You can configure where to store the session keys using `--keystore-path`.
 Since you only use session keys for the parachain, there is no need to add this to the relaychain part of the command.
 
-### Option 1: Use the docker image
+### Acquire the executable
 
-Docker can be used to run a collator.
-First pull the docker image:
+<Tabs
+  defaultValue="Docker"
+  values={[
+    {label: 'Native', value: 'Native'},
+    {label: 'Docker', value: 'Docker'},
+  ]}>
+<TabItem value="Native">
 
-```bash=
-docker pull kiltprotocol/peregrine:78342538
-```
+We recommend following the [repository](https://github.com/KILTprotocol/mashnet-node).
+Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
 
-:::caution
+:::info
 
-Beware to not point the `keystore` or base-path to `/data/` in a local setup.
-Running from docker using `/data/` is fine, since we map this folder to the host filesystem
+Do not use master branch to compile the build.
+Either use `develop` or the following commit `78342538b47403694a2ee137f821f9e35b9a1930`.
 
 :::
 
-The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
-That way you can make sure to not lose those files when you remove the container.
-You should also consider to backup the database files, since it will probably take more than a day to sync up with the Kusama blockchain.
 
+```bash
+./scripts/init.sh
+cargo build --release -p kilt-parachain
+```
+
+The executable file can be found in `./target/release/kilt-parachain` after building the project.
+
+</TabItem>
+<TabItem value="Docker">
+
+Simply pull the docker image:
+
+```bash
+docker pull kiltprotocol/peregrine:78342538
+```
+
+</TabItem>
+</Tabs>
+
+### Start the node
+
+<Tabs
+  defaultValue="Docker"
+  values={[
+    {label: 'Native', value: 'Native'},
+    {label: 'Docker', value: 'Docker'},
+  ]}>
+<TabItem value="Native">
+
+
+```
+./target/release/kilt-parachain \
+  --chain=./dev-specs/kilt-parachain/peregrine-kilt.json \
+  --runtime=peregrine \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-methods=unsafe \
+  --name "name of collator" \
+  --execution=wasm \
+  --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+  --base-path $HOME/data/parachain \
+  --keystore-path $HOME/data/keystore \
+  --collator \
+  -- \
+  --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+  --base-path $HOME/data/relay \
+  --chain=./dev-specs/kilt-parachain/peregrine-relay.json \
+  --execution=wasm
+```
+
+</TabItem>
+<TabItem value="Docker">
 
 ```bash=
 docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
@@ -130,44 +187,16 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
     --execution=wasm
 ```
 
-### Option 2: Compile from source
+The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
+That way you can make sure to not lose those files when you remove the container.
+You should also consider to backup the database files, since it will probably take more than a day to sync up with the Kusama blockchain.
 
-We recommend following the [repository](https://github.com/KILTprotocol/mashnet-node).
-Below is the command to connect as a Collator in the root directory of the mashnet-node repository.
-
-:::info
-
-Do not use master branch to compile the build.
-Either use `develop` or the following commit `78342538b47403694a2ee137f821f9e35b9a1930`.
-
-:::
+The docker container runs as an user with id 1000.
+The container will try to access the mapped volume 
 
 
-```bash
-cargo build --release -p kilt-parachain
-```
-
-The executable file can be found in `./target/release/kilt-parachain` after building the project.
-
-```bash=
-./target/release/kilt-parachain \
-  --chain=./dev-specs/kilt-parachain/peregrine-kilt.json \
-  --runtime=peregrine \
-  --rpc-port=9933 \
-  --rpc-cors=all \
-  --rpc-methods=unsafe \
-  --name "name of collator" \
-  --execution=wasm \
-  --listen-addr=/ip4/0.0.0.0/tcp/30336 \
-  --base-path $HOME/data/parachain \
-  --keystore-path $HOME/data/keystore \
-  --collator \
-  -- \
-  --listen-addr=/ip4/0.0.0.0/tcp/30333 \
-  --base-path $HOME/data/relay \
-  --chain=./dev-specs/kilt-parachain/peregrine-relay.json \
-  --execution=wasm
-```
+</TabItem>
+</Tabs>
 
 ## Sync Data
 
@@ -185,7 +214,11 @@ A Collator can call a RPC to check whether the account has session keys with the
 
 ![](/img/chain/author-hasKey.png)
 
-**The Session keys associate a collator node with an account on KILT**
+:::note
+
+The Session keys associate a collator node with an account on KILT
+
+:::
 
 ### Generate Session Keys
 
@@ -200,7 +233,7 @@ Running a remote node, a Collator can use the following command to rotate the se
 WARNING: Make sure that nobody is able to run this command and access your node, but yourself.
 The RPC endpoints must not be exposed!
 
-```bash=
+```bash
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
 ```
 
@@ -233,7 +266,7 @@ The rotation of the session key should be done periodically to ensure that the c
 A key pair can be created using the [`subkey` tool](https://substrate.dev/docs/en/knowledgebase/integrate/subkey) and following the steps.
 The corresponding private and public key can be used within the keystore folder of the local or remote server for the session key.
 
-```bash=
+```
 ❯ subkey generate -n kilt
 Secret phrase `very secure private key you should not use the example private key` is account:
   Secret seed:      0xcafe97b4b8f0adc1adeb3feef30bf2e5b9d49ddd897f268c8027c850DeadBEEF
