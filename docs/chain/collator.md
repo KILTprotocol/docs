@@ -93,6 +93,7 @@ Since you only use session keys for the parachain, there is no need to add this 
 ### Acquire the executable
 
 <Tabs
+  groupId="exec-strategy"
   defaultValue="Docker"
   values={[
     {label: 'Native', value: 'Native'},
@@ -133,6 +134,7 @@ docker pull kiltprotocol/peregrine:78342538
 ### Start the node
 
 <Tabs
+  groupId="exec-strategy"
   defaultValue="Docker"
   values={[
     {label: 'Native', value: 'Native'},
