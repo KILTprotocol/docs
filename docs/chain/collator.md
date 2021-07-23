@@ -7,6 +7,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
+We will guide you through the steps to become a collator.
+First we will discuss the hardware requirements and how you could test your performance.
+After that we go over a few configurations options and show you how to start a collator.
+When your collator is running you still need to register on chain.
+We will show you how to obtain your session keys and become a collator candidate.
+
+
 ## Hardware Requirements
 
 The following hardware was used to benchmark the KILT blockchain and calculate the extrinsic weights.
@@ -18,7 +25,7 @@ Having a fast storage is important for the overall performance.
 - Storage - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT's parachain and Kusama relay chain but will need to be re-evaluated every six months.
 - Memory - 16GB
 
-The specs posted above are by no means the minimum specs that you could use when running a Collator, however you should be aware that if you are using less you may need to toggle some extra optimizations in order to be equal to other Collator that are running the standard.
+The specification posted above are by no means the minimum specs that you could use when running a Collator, however you should be aware that if you are using less you may need to toggle some extra optimizations in order to be equal to other Collator that are running the standard.
 
 You can compare your hardware with the above listed hardware by running the benchmarks.
 If your benchmark results are better (smaller weights) than ours, your hardware is faster than the required minimum.
