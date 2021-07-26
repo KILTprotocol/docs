@@ -432,10 +432,10 @@ The following are known issues and the possible solutions:
 
 There are a few things that you can check to make sure everything is setup correctly.
 
-0. check that your node is fully synced with the relaychain & parachain. (best and finilazed block number is equal to the one shown in the polkadot apps & on subscan)
+0. Check that your node is fully synced with the relaychain & parachain. (best and finalised block number is equal to the one shown in the polkadot apps & on subscan)
 1. Check that you are a selected collator. Your address should be listed in `parachainStaking > selectedCandidates`
-2. the parachainStaking pallet will register your address in the session pallet. Check that your address is listed in `session > validators`
+2. The parachainStaking pallet will register your address in the session pallet. Check that your address is listed in `session > validators`
 3. Check that session keys are associated with your validatorId (aka AccountId). There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`
 4. Your node will only collator if it has the private key that belongs to the public key that you got in 3. Connect to your node and check with `author > hasKey(<pubKey from 3.>, aura)` if your node has the private key. (I actually never tried that my self but this should work. will test this ASAP)
 5. If your logs print the message that starts with a :gift: emoji you can skip steps 1-4 since your collator is building blocks. But they might not get included by the relay chain.
-6. Check in the Polkadot Apps under `network > explorer` that your accountId is shown next to a block. You can be 100% sure that you produce blocks if you are listed there. If steps 1-5 all look fine for your collator but you don't see your blocks, you might not produce and send blocks fast enough. This can be caused by slow hardware or a slow internet connection. Also note that a high bandwidth connection can still be slow if it has a high ping! Bandwidth != latency
+6. Check in the Polkadot Apps under `network > explorer` that your accountId is shown next to a block. You can be 100% sure that you produce blocks if you are listed there. If steps 1-5 all look fine for your collator but you don't see your blocks, you might not produce and send blocks fast enough. This can be caused by slow hardware or a slow internet connection. Also, note that a high bandwidth connection can still be slow if it has a high ping! Bandwidth != latency

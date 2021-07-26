@@ -83,7 +83,6 @@ Join our [Community Chat on Discord][cmy-channel]!
 [cmy-channel]: https://discord.gg/hX4pc8rdHS
 [website]: https://kilt.io
 [subscan-pere]: https://kilt-testnet.subscan.io/
-
 [mashnet-node-repo]: https://github.com/KILTprotocol/mashnet-node
 [sdk-js-repo]: https://github.com/KILTprotocol/sdk-js
 [demo-client-repo]: https://github.com/KILTprotocol/demo-client
@@ -92,7 +91,6 @@ Join our [Community Chat on Discord][cmy-channel]!
 [faucet-repo]: https://github.com/KILTprotocol/faucet
 [telemetry-repo]: https://github.com/KILTprotocol/substrate-telemetry
 [polkadot-apps-repo]: https://github.com/polkadot-js/apps
-
 [demo]: https://demo.kilt.io
 [faucet]: https://faucet.kilt.io
 [telemetry]: http://telemetry.kilt.io/#/KILT%20Testnet
