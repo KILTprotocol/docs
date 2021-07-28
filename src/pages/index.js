@@ -72,7 +72,7 @@ function Feature({ imageUrl, title, description, link }) {
   const imgUrl = useBaseUrl(imageUrl)
   return (
     <div className={clsx('col col--4', styles.feature)}>
-      <Link to={useBaseUrl(link)}>
+      <a href={useBaseUrl(link)} className={styles.featureLink}>
         {imgUrl && (
           <div className="text--center">
             <img className={styles.featureImage} src={imgUrl} alt={title} />
@@ -80,7 +80,7 @@ function Feature({ imageUrl, title, description, link }) {
         )}
         <h3>{title}</h3>
         <p>{description}</p>
-      </Link>
+      </a>
     </div>
   )
 }
