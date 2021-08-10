@@ -44,6 +44,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: kilt/prototype-chain
           IMAGE_TAG: ${{ matrix.image }}
+          NODE_OPTIONS: --unhandled-rejections=strict
         run: |
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --dev --ws-port 9944 --ws-external
