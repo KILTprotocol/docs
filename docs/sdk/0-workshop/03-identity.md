@@ -83,3 +83,5 @@ In the next steps, we'll refer to the so-generated identities as follows:
 - `<attesterMnemonic>` is the mnemonic for the attester and `<attesterAddress>` the attester's associated address.
 
 That's it - You've successfully generated two new identities and their associated addresses!
+
+🚧 Since there is no faucet for now, you have to request tokens from us directly ([element](https://matrix.to/#/%23kilt-general:matrix.org), [discord](https://discord.gg/hX4pc8rdHS))
