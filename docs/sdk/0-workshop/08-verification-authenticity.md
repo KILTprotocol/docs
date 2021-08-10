@@ -24,7 +24,12 @@ The underlying idea is simple: to prove their identity, the <span class="label-r
 
 What piece of data should be signed? It doesn't really matter; it can be an arbitrary number picked by the <span class="label-role verifier">verifier</span>. What matters is that this number should be used only once. Otherwise, the cryptographic challenge is worthless.
 
-> 💡 In a cryptographic communication, an arbitrary number that can be used just once is called a **nonce**.
+
+:::info Nonce
+
+In a cryptographic communication, an arbitrary number that can be used just once is called a **nonce**.
+
+:::
 
 Here's how it works:
 

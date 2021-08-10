@@ -28,8 +28,7 @@ const faucetSeed = process.env['FAUCET_SEED']
 
 async function test_all() {
   await Kilt.init({ address: wsAddress })
-  await Kilt.Identity.cryptoWaitReady()
-  console.log('ready?', Kilt.Identity.cryptoIsReady)
+
   const faucetAcc = Kilt.Identity.buildFromSeedString(faucetSeed)
 
   console.group('Identity-1')

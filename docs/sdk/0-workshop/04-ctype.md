@@ -5,7 +5,8 @@ title: 💠 CTYPE
 import CodeBlock from '@theme/CodeBlock';
 import Example2 from '!!raw-loader!../../../code-examples/2_ctypeFromSchema.ts';
 
-<!-- import Example1 from '!!raw-loader!../../../code-examples/ctype.json'; -->
+import Example1 from '!!raw-loader!../../../code-examples/ctype.txt';
+
 
 Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, they first need a claim type (CTYPE for short).
 
@@ -14,17 +15,21 @@ A CTYPE defines the structure of a claim. You can think of it as the data model 
 
 For example, a very basic CTYPE for a driver's license could look like this:
 
-<!-- <CodeBlock className="language-json">
+<CodeBlock className="language-json">
   {Example1}
-</CodeBlock> -->
+</CodeBlock>
 
-> 💡 CTYPEs are based on JSON Schema, a standard used to annotate and validate JSON documents.
-> A schema defines which properties exist and what their type should be, i.e. is it a `string`, a `number`, an `object`, etc.
->
-> When you create a CType from a schema, it is checked whether your CType aligns with the underlying schema.
-> Think of checking whether a cook (user) followed a certain recipe (schema) when preparing a meal (creating a CType).
->
-> We don't need to dive into it in this tutorial, for now we can think of CTYPE as JSON objects.
+:::info CType
+
+CTYPEs are based on JSON Schema, a standard used to annotate and validate JSON documents.
+A schema defines which properties exist and what their type should be, i.e. is it a `string`, a `number`, an `object`, etc.
+
+When you create a CType from a schema, it is checked whether your CType aligns with the underlying schema.
+Think of checking whether a cook (user) followed a certain recipe (schema) when preparing a meal (creating a CType).
+
+We don't need to dive into it in this tutorial, for now we can think of CTYPE as JSON objects.
+
+:::
 
 Let's have a look at these attributes.
 

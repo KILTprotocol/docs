@@ -59,13 +59,17 @@ This outputs your `RequestForAttestation` object.
 
 Copy and paste it somewhere: we'll need it in the next step to get it attested by an <span class="label-role attester">attester</span>.
 
-> In a real-life setup, the different actors - claimer, attester and verifier - communicate with each other via a messaging system and can rely on the KILT SDK's messaging capabilities.
->
-> We don't need to do this here.
->
-> If you're following this tutorial on your own, you're playing all three KILT roles: claimer, attester and verifier. So you can simply copy the outputs of the different functions you're calling and use them as inputs for the other actors.
->
-> If you're following this as a workshop, you can simulate message exchange by exchanging your requests via chat, email, or simply by pasting requests for attestations or attested claims in a shared document such as [this hackmd](https://hackmd.io/c6OBNgWWR8yWJhMj7WICUA?edit).
+:::info let others attest your claim
+
+In a real-life setup, the different actors - claimer, attester and verifier - communicate with each other via a messaging system and can rely on the KILT SDK's messaging capabilities.
+
+We don't need to do this here.
+
+If you're following this tutorial on your own, you're playing all three KILT roles: claimer, attester and verifier. So you can simply copy the outputs of the different functions you're calling and use them as inputs for the other actors.
+
+If you're following this as a workshop, you can simulate message exchange by exchanging your requests via chat, email, or simply by pasting requests for attestations or attested claims in a shared document such as [this hackmd](https://hackmd.io/c6OBNgWWR8yWJhMj7WICUA?edit).
+
+:::
 
 OK, you've made a claim as a <span class="label-role claimer">claimer</span> and created a request for attestation.
 
