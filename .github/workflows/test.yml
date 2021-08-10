@@ -38,7 +38,7 @@ jobs:
 
       - name: run integration tests
         timeout-minutes: 60
-        working-directory: ./code-examples
+        # working-directory: code-examples
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: kilt/prototype-chain
@@ -47,6 +47,7 @@ jobs:
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --dev --ws-port 9944 --ws-external
           sleep 5s
+          ls
           yarn install
           yarn run ts-node index.ts
           docker stop $(docker ps -f ancestor=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -q)
