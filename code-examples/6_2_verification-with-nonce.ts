@@ -1,12 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  address: string,
   attestedClaim: Kilt.AttestedClaim,
   nonce: string,
   signedNonce: string
 ) {
-  await Kilt.init({ address })
   // verify the signed nonce (<nonce> is the uuid you've generated as the verifier)
   const isSenderOwner = Kilt.Utils.Crypto.verify(
     nonce,

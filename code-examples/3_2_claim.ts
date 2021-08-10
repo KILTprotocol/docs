@@ -1,11 +1,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
-  address: string,
+export function main(
   claimer: Kilt.Identity,
   claim: Kilt.Claim
-): Promise<Kilt.RequestForAttestation> {
-  await Kilt.init({ address })
+): Kilt.RequestForAttestation {
   const requestForAttestation = Kilt.RequestForAttestation.fromClaimAndIdentity(
     claim,
     claimer

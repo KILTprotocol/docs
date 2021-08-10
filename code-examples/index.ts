@@ -1,5 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import * as BN from 'bn.js'
+
 import { main as identity1 } from './1_1_identity'
 import { main as identity2 } from './1_2_identity'
 import { main as ctypeFromSchema } from './2_ctypeFromSchema'
@@ -8,15 +10,11 @@ import { main as claim2 } from './3_2_claim'
 import { main as attestation1 } from './4_1_attestation'
 import { main as attestation2 } from './4_2_attestation'
 import { main as attestation3 } from './4_3_attestation'
-import { main as verification } from './5_verification'
-import { main as verification1 } from './6_1_verification-with-nonce'
-import { main as verification2 } from './6_2_verification-with-nonce'
+import { main as verification1 } from './5_verification'
+import { main as verification2 } from './6_1_verification-with-nonce'
+import { main as verification3 } from './6_2_verification-with-nonce'
 
-const faucetSeed =
-  'receive clutch item involve chaos clutch furnace arrest claw isolate okay together'
-const claimerSeed =
-  'gold upset segment cake universe carry demand comfort dawn invite element capital'
-const wsAddress = 'ws://127.0.0.1:9944'
+const wsAddress = 'wss://peregrine.kilt.io'
 export const nonce = '3a66fc28-379c-4443-9537-a00169fd76a4'
 export const signedNonce =
   '0x007f6f168bc6f0eda62b3af50bb86a1e5043fa33ec6e44e21ea66c6edda2a51d57de844c3105943a79bfad3851e056687566ee47fac58384a6fb92aaa8c0561800'
@@ -26,25 +24,66 @@ export const dataToVerifyJSONString = JSON.stringify({
   signedNonce,
   attestedClaimStruct: JSON.parse(attestedClaimJSONString),
 })
+const faucetSeed = process.env['FAUCET_SEED']
 
 async function test_all() {
-  await identity1(wsAddress)
-  await identity2(wsAddress)
+  await Kilt.init({ address: wsAddress })
+  await Kilt.Identity.cryptoWaitReady()
+  console.log('ready?', Kilt.Identity.cryptoIsReady)
+  const faucetAcc = Kilt.Identity.buildFromSeedString(faucetSeed)
+
+  console.group('Identity-1')
+  let claimer = identity1()
+  let attester = identity1()
+  console.groupEnd()
+  console.group('Identity-2')
+  identity2()
+  console.groupEnd()
+  console.group('ctypeFromSchema')
   let ctype = ctypeFromSchema()
+  console.groupEnd()
 
-  let [claim, claimer] = await claim1(wsAddress, claimerSeed, ctype)
-  let rfa = await claim2(wsAddress, claimer, claim)
-  let rfa2 = await attestation1(wsAddress, JSON.stringify(rfa))
-  let assert1 = await attestation2(wsAddress, rfa)
+  await Promise.all([
+    Kilt.Balance.makeTransfer(claimer.address, new BN(5), 0) //
+      .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
+      .then(() => console.log('Successfully transferred tokens to claimer')),
+    Kilt.Balance.makeTransfer(attester.address, new BN(5), 0) //
+      .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
+      .then(() => console.log('Successfully transferred tokens to attester')),
+    await ctype
+      .store()
+      .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
+      .then(() => console.log('Stored workshop Ctype on chain'))
+      .catch(
+        (err) => `couldn't store CType. It probably already exists. ${err}`
+      ),
+  ])
 
-  const attester = Kilt.Identity.buildFromURI(faucetSeed, {
-    signingKeyPairType: 'ed25519',
-  })
+  console.group('claim1')
+  let claim = await claim1(claimer, ctype)
+  console.groupEnd()
+  console.group('claim2')
+  let rfa = claim2(claimer, claim)
+  console.groupEnd()
+  console.group('attestation1')
+  let rfa2 = attestation1(JSON.stringify(rfa))
+  console.groupEnd()
+  console.group('attestation2')
+  let assert1 = await attestation2(rfa)
+  console.groupEnd()
 
-  let attestedClaim = await attestation3(wsAddress, attester, rfa)
-  await verification(wsAddress, attestedClaim)
-  let signedNonde = await verification1(wsAddress, '12', attestedClaim, claimer)
-  await verification2(wsAddress, attestedClaim, '12', signedNonde)
+  console.group('attestation3')
+  let attestedClaim = await attestation3(attester, rfa)
+  console.groupEnd()
+  console.group('verification1')
+  await verification1(attestedClaim)
+  console.groupEnd()
+  console.group('verification2')
+  let signedNonde = await verification2('12', attestedClaim, claimer)
+  console.groupEnd()
+  console.group('verification3')
+  await verification3(attestedClaim, '12', signedNonde)
+  console.groupEnd()
 }
 
 test_all()

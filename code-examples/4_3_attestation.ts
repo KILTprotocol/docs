@@ -1,12 +1,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  address: string,
   attester: Kilt.Identity,
   requestForAttestation: Kilt.RequestForAttestation
 ): Promise<Kilt.AttestedClaim> {
-  await Kilt.init({ address })
-
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndPublicIdentity(
     requestForAttestation,

@@ -1,8 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(address: string) {
-  await Kilt.init({ address })
-
+export function main() {
   const claimerMnemonic = Kilt.Identity.generateMnemonic()
   console.log('claimer mnemonic:', claimerMnemonic)
   const claimer = Kilt.Identity.buildFromMnemonic(claimerMnemonic)

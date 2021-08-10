@@ -1,7 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(address: string, attestedClaim: Kilt.AttestedClaim) {
-  await Kilt.init({ address })
+export async function main(attestedClaim: Kilt.AttestedClaim) {
   await Kilt.connect()
 
   // The `verify()` method does two things:

@@ -1,13 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
-  address: string,
-  mnemonic: string,
-  ctype: Kilt.CType
-): Promise<[Kilt.Claim, Kilt.Identity]> {
-  await Kilt.init({ address })
-  const claimer = Kilt.Identity.buildFromMnemonic(mnemonic)
-
+export function main(claimer: Kilt.Identity, ctype: Kilt.CType): Kilt.Claim {
   const claimContents = {
     name: 'Alice',
     age: 25,
@@ -19,5 +12,5 @@ export async function main(
     claimer.address
   )
 
-  return [claim, claimer]
+  return claim
 }
