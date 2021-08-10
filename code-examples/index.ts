@@ -12,8 +12,11 @@ import { main as verification } from './5_verification'
 import { main as verification1 } from './6_1_verification-with-nonce'
 import { main as verification2 } from './6_2_verification-with-nonce'
 
-const FaucetSeed =
+const faucetSeed =
   'receive clutch item involve chaos clutch furnace arrest claw isolate okay together'
+const claimerSeed =
+  'gold upset segment cake universe carry demand comfort dawn invite element capital'
+const wsAddress = 'ws://127.0.0.1:9944'
 export const nonce = '3a66fc28-379c-4443-9537-a00169fd76a4'
 export const signedNonce =
   '0x007f6f168bc6f0eda62b3af50bb86a1e5043fa33ec6e44e21ea66c6edda2a51d57de844c3105943a79bfad3851e056687566ee47fac58384a6fb92aaa8c0561800'
@@ -25,24 +28,23 @@ export const dataToVerifyJSONString = JSON.stringify({
 })
 
 async function test_all() {
-  await identity1('ws://127.0.0.1:9944')
-  await identity2('ws://127.0.0.1:9944')
+  await identity1(wsAddress)
+  await identity2(wsAddress)
   let ctype = ctypeFromSchema()
-  let mnemonic =
-    'gold upset segment cake universe carry demand comfort dawn invite element capital'
-  let [claim, claimer] = await claim1('ws://127.0.0.1:9944', mnemonic, ctype)
-  let rfa = await claim2('ws://127.0.0.1:9944', claimer, claim)
-  let rfa2 = await attestation1(JSON.stringify(rfa))
-  let assert1 = await attestation2('ws://127.0.0.1:9944', rfa)
 
-  const attester = Kilt.Identity.buildFromURI(FaucetSeed, {
+  let [claim, claimer] = await claim1(wsAddress, claimerSeed, ctype)
+  let rfa = await claim2(wsAddress, claimer, claim)
+  let rfa2 = await attestation1(wsAddress, JSON.stringify(rfa))
+  let assert1 = await attestation2(wsAddress, rfa)
+
+  const attester = Kilt.Identity.buildFromURI(faucetSeed, {
     signingKeyPairType: 'ed25519',
   })
 
-  let attestedClaim = await attestation3('ws://127.0.0.1:9944', attester, rfa)
-  await verification('ws://127.0.0.1:9944', attestedClaim)
-  let signedNonde = await verification1('ws://127.0.0.1:9944', '12', attestedClaim, claimer)
-  await verification2('ws://127.0.0.1:9944', attestedClaim, '12', signedNonde)
+  let attestedClaim = await attestation3(wsAddress, attester, rfa)
+  await verification(wsAddress, attestedClaim)
+  let signedNonde = await verification1(wsAddress, '12', attestedClaim, claimer)
+  await verification2(wsAddress, attestedClaim, '12', signedNonde)
 }
 
 test_all()
