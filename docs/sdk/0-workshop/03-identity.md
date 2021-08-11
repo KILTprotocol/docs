@@ -29,7 +29,7 @@ All we need to create an identity is a mnemonic.
 
 :::info mnemonic
 
-In cryptography, a mnemonic is a random series of words. For example, `gold upset segment cake universe` is a mnemonic. It's used to generate keypairs. What's great about a mnemonic is that it's **human-readable**. A person can memorize it, and use it later to re-generate their keypairs and address.
+In cryptography, a mnemonic usually consists of 12 or 24 random series of words. For example, `gold upset segment cake universe` is a mnemonic. It's used to generate keypairs. What's great about a mnemonic is that it's **human-readable**. A person can memorize it, and use it later to re-generate their keypairs and address.
 
 :::
 
