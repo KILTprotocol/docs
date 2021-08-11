@@ -18,10 +18,9 @@ One of them is the `address` : it's the entity's unique and public identifier.
 
 A KILT identity is a set of cryptographic elements:
 
-- A signing keypair, used to sign claims;
-- The address, which is generated from the signing public key;
-- An encryption keypair, used to encrypt messages between participants of the system;
-- A user secret, used for privacy enhanced attestations;
+- A keypair that is used to sign claims
+- The address, which is generated from the public key
+- An encryption keypair, used to encrypt messages between participants of the system
 
 :::
 

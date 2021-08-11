@@ -7,7 +7,7 @@ SDK version **0.21.0**.
 
 :::info What you can expect
 
-📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow without privacy enhancement. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the attested claim.
+📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the attested claim.
 
 ⏳ Duration: 15-45 minutes.
 
