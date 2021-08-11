@@ -245,6 +245,13 @@ The Session keys associate a collator node with an account on KILT
 
 ### Generate Session Keys
 
+:::warning
+
+Make sure that nobody is able to access your collator, but yourself.
+The RPC endpoints must not be exposed!
+
+:::
+
 There are tree ways to create the session keys.
 We recommend using the curl command on the same host that your node is running.
 This way you don't need to add the `--unsafe-rpc-external` argument to your node.
@@ -274,13 +281,6 @@ The `result` key is the public key of your newly created session key.
 ```
 {"jsonrpc":"2.0","result":"0xb2dc33b1ff0c6f8b07f882236bb992e903452791ff5225b5eb4c2c1a40252d5d","id":1}
 ```
-
-:::warning
-
-Make sure that nobody is able to run this command and access your node, but yourself.
-The RPC endpoints must not be exposed!
-
-:::
 
 </TabItem>
 <TabItem value="apps">
