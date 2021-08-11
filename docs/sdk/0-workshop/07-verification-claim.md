@@ -2,6 +2,8 @@
 id: verification
 title: 🔐 Verify a Claim
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/5_verification.ts';
 
 In this section, you'll play the role of a <span class="label-role verifier">verifier</span>:
 
@@ -9,7 +11,11 @@ In this section, you'll play the role of a <span class="label-role verifier">ver
 - You'll verify that its data is correct;
 - You'll verify that the attestation is valid, i.e. its hash exists on-chain and the attestation has not been revoked.
 
-> 💡 An `AttestedClaim` object is also called a Credential: It is what <span class="label-role claimer">claimers</span> present to <span class="label-role verifier">verifiers</span> upon request.
+:::info Credential
+
+An `AttestedClaim` object is also called a Credential: It is what <span class="label-role claimer">claimers</span> present to <span class="label-role verifier">verifiers</span> upon request.
+
+:::
 
 ## Get an `AttestedClaim` object
 
@@ -29,37 +35,9 @@ All of the code for this step needs to go into this file.
 
 Paste the following code in `verification.js`:
 
-<!-- copy and paste verifyClaim_example from 5_verification.ts -->
-
-```javascript
-const Kilt = require('@kiltprotocol/sdk-js')
-
-async function main() {
-  // create an attested claim from the JSON string
-  const attestedClaimStruct = JSON.parse('<attestedClaimJSONString>')
-  const attestedClaim =
-    Kilt.AttestedClaim.fromAttestedClaim(attestedClaimStruct)
-
-  await Kilt.init({ address: 'wss://full-nodes.kilt.io:9944' })
-  await Kilt.connect()
-  console.log(
-    'Successfully connected to KILT testnet, verifying attested claim next...'
-  )
-
-  // The `verify()` method does two things:
-  // 1. verifies that the data is valid for the given CTYPE
-  // 2. verifies that the attestation hash is present on the Kilt blockchain and that the attestation has not been revoked
-  const isValid = await attestedClaim.verify()
-  console.log('Is the attested claim valid?', isValid)
-
-  // disconnect from the chain
-  await Kilt.disconnect()
-  console.log('Disconnected from KILT testnet')
-}
-
-// execute calls
-main()
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 ## Run
 

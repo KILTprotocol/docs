@@ -29,4 +29,12 @@ npm init -y
 npm install @kiltprotocol/sdk-js
 ```
 
+:::caution
+
+Before you call any SDK functionality, you need to initialise the crypto libraries and configure the SDK.
+This is done calling `await Kilt.init({ address })` where `address` is the address of the full node you want to connect to.
+For this workshop use `wss://peregrine.kilt.io`.
+
+:::
+
 That's it for the basic setup - We're good to go!

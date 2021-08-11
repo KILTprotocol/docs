@@ -2,6 +2,10 @@
 id: verification-authenticity
 title: 🥸 Verify the authenticity
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/6_1_verification-with-nonce.ts';
+import Example2 from '!!raw-loader!../../../code-examples/6_2_verification-with-nonce.ts';
+
 
 Did you notice anything wrong with our verification in the previous step?
 
@@ -20,7 +24,12 @@ The underlying idea is simple: to prove their identity, the <span class="label-r
 
 What piece of data should be signed? It doesn't really matter; it can be an arbitrary number picked by the <span class="label-role verifier">verifier</span>. What matters is that this number should be used only once. Otherwise, the cryptographic challenge is worthless.
 
-> 💡 In a cryptographic communication, an arbitrary number that can be used just once is called a **nonce**.
+
+:::info Nonce
+
+In a cryptographic communication, an arbitrary number that can be used just once is called a **nonce**.
+
+:::
 
 Here's how it works:
 
@@ -64,38 +73,9 @@ Create a new file `claim-with-signed-nonce.js`.
 
 Paste the following code into it (make sure to replace `<nonce>` and `<attestedClaimJSONString>` with the data you copied earlier):
 
-<!-- copy and paste 1️⃣ signNonce_example from 6_verification-with-nonce.ts -->
-
-<!-- IMPORTANT! Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-const Kilt = require('@kiltprotocol/sdk-js')
-
-async function main() {
-  // <nonce> = nonce received from the verifier (copied from above)
-  const nonce = '<nonce>'
-
-  // <claimerMnemonic> = claimer mnemonic generated in the Identity step
-  const claimer = Kilt.Identity.buildFromMnemonic('<claimerMnemonic>')
-  // sign the nonce as the claimer with the claimer's private key
-  const signedNonce = claimer.signStr(nonce)
-
-  // same data as in to the simple "Verification" step
-  const attestedClaimStruct = JSON.parse('<attestedClaimJSONString>')
-
-  // this is the message to send to the verifier
-  const dataToVerify = {
-    signedNonce,
-    attestedClaimStruct,
-  }
-
-  console.log('Attested claim:\n', attestedClaimStruct.request.claim)
-  console.log('dataToVerifyJSONString:\n', JSON.stringify(dataToVerify, undefined, 2))
-}
-
-// execute calls
-main()
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
@@ -113,26 +93,9 @@ Create a new file `verification-with-nonce.js`.
 
 Paste the following code into it (make sure to replace `<dataToVerifyJSONString>` and `<nonce>` with the values obtained in the previous steps):
 
-<!-- copy and paste 2️⃣ verifyNonce_example from 6_verification-with-nonce.ts -->
-
-<!-- IMPORTANT! Respect the UNCOMMENT-LINE and REMOVE-LINE comments -->
-
-```javascript
-const Kilt = require('@kiltprotocol/sdk-js')
-
-const { signedNonce, attestedClaimStruct } = JSON.parse('<dataToVerifyJSONString>')
-
-// verify the signed nonce (<nonce> is the one generated in the previous step as the verifier)
-const isSenderOwner = Kilt.Utils.Crypto.verify(
-  nonce,
-  signedNonce,
-  attestedClaimStruct.request.claim.owner
-)
-console.log('isSenderOwner: ', isSenderOwner)
-
-// proceed with verifying the attestedClaim itself
-// --> see simple "Verification" step in this tutorial
-```
+<CodeBlock className="language-ts">
+  {Example2}
+</CodeBlock>
 
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
