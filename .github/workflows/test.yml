@@ -14,16 +14,6 @@ jobs:
   integration_test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        image: ['latest-rc']
-        required: ['required']
-        include:
-          - image: 'latest-develop'
-            required: 'optional'
-
-    continue-on-error: ${{ matrix.required == 'optional' }}
-
     steps:
       - uses: actions/checkout@v1
       - name: Configure AWS credentials
@@ -41,15 +31,8 @@ jobs:
         timeout-minutes: 60
         working-directory: code-examples
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: kilt/prototype-chain
-          IMAGE_TAG: ${{ matrix.image }}
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --dev --ws-port 9944 --ws-external
-          sleep 5s
-          yarn install
+          yarn install --frozen
           yarn run ts-node index.ts
-          docker stop $(docker ps -f ancestor=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -q)
