@@ -3,9 +3,9 @@ id: ctypes
 title: CTypes
 ---
 
-**CTypes are standardised structures for credentials; the JSON scheme which describes the fields in a claim type. These fields are filled out by the claimer, indicating the information that needs to be attested. A CType (and subsequently when attested, the credential) may contain several “attributes”, for example, full name, date of birth, access level and id number. **
+**CTypes are standardised structures for credentials; the JSON scheme which describes the fields in a claim type. These fields are filled out by the claimer, indicating the information that needs to be attested. A CType (and subsequently when attested, the credential) may contain several “attributes”, for example, full name, date of birth, access level and id number.**
 
-# Json-Schema
+## Json-Schema
 
 KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format. This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with definition characteristics. The following are all required properties of the schema, with no additional properties allowed:
 
@@ -14,7 +14,7 @@ KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to valida
 - Title: defines a user-friendly name for the CType that makes it easier for users to contextualise
 - Properties: Each property is the attribute the claimer wishes to have attested by the attester.
 
-## Properties
+### Properties
 
 When making a claim for a CType, all the following properties are required:
 
@@ -39,7 +39,7 @@ When making a claim for a CType, all the following properties are required:
 }
 ```
 
-## Referencing
+### Referencing
 
 JSON-schema provide a referencing keyword `$ref` that can be used as a pointer from other JSON schemas. This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
 
@@ -92,11 +92,11 @@ CType Metadata can be linked to a given CType to give context of its intended us
   - Title
   - Description
 
-# Hashing
+## Hashing
 
 The hash of the CType is used to identify and anchor it to the chain. This `hash` is stored on-chain via the store method.
 
-## Constructing the `hash` for the `$id`
+### Constructing the `hash` for the `$id`
 
 KILT uses the hashing algorithm blake2b as a hex string. The object is sorted by a canonicalization algorithm before hashing to ensure that semantically equivalent CTypes with different order of their properties would produce the same output hash.
 
@@ -123,13 +123,13 @@ hashVal = {
 
 The hash has a prefix of `kilt:ctype` followed by the hex string. A typical `CTypeHash` value would look like: `kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84`
 
-# Storing CTypes
+## Storing CTypes
 
 CTypes are not stored in a centralised storage database. When a credential is created, the schema `$id`/`cTypeHash` is stored on-chain. The hash can then be verified and referenced at any time by making a call to the KILT blockchain to check if the corresponding CType matches the stored `$id`.
 
 A Nested CType is a hierarchical composite schema that includes other simpler CTypes as substructures. The Nested CType needs to list all the included sub-CTypes. This allows verification of the owners of the included CTypes on-chain using the CType hash. For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certs, etc of its current employees.
 
-# Exchange of CTypes with different actors
+## Exchange of CTypes with different actors
 
 There are three actors in the KILT workflow: Claimers (the holder of the credential), Attesters (who do the work and approve or reject the credential) and Verifiers (who require a credential from a Claimer).
 
