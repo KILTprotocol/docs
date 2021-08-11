@@ -5,13 +5,17 @@ title: 👋🏻 Welcome
 
 SDK version **0.21.0**.
 
-> 📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow without privacy enhancement. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the attested claim.
->
-> ⏳ Duration: 15-45 minutes.
->
-> 🤓 Prerequisites: basic JavaScript or TypeScript knowledge.
->
-> ❓ Questions? Join our <a href="https://discord.gg/hX4pc8rdHS">developer community channel</a>!
+:::info What you can expect
+
+📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the attested claim.
+
+⏳ Duration: 15-45 minutes.
+
+🤓 Prerequisites: basic JavaScript or TypeScript knowledge.
+
+❓ Questions? Join our <a href="https://discord.gg/hX4pc8rdHS">developer community channel</a>!
+
+:::
 
 **Welcome, curious mind!**
 
