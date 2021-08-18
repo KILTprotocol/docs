@@ -23,12 +23,7 @@ During the verification process the claimer wants to prove three things to the v
 The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier. They can choose to hide attributes and thus only disclose a subset of the data. For example, if sending a driving licence to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details. This improves the privacy of the claimer, since they only need to show attributes that are required in the specific context.
 
 ```js
-const presentation = Kilt.Actors.Claimer.createPresentation(
-  claimer,
-  request,
-  verifier.getPublicIdentity(),
-  [credential]
-);
+const presentation = Kilt.AttestedClaim.createPresentation([publicAttributes])
 ```
 
 ## Verifying a Credential
@@ -36,7 +31,7 @@ const presentation = Kilt.Actors.Claimer.createPresentation(
 The verifier receives the credential from the claimer, then calculates the attestation hash and queries the revocation status.
 
 ```js
-Kilt.Actors.Verifier.verifyPresentation(presentation, session);
+Kilt.AttestedClaim.verify(credential)
 ```
 
 If the claimer tampered with the credential, the hash won’t match an attestation on chain. If the attestation hash is on chain and has not been revoked, the credential is valid.
@@ -56,12 +51,12 @@ If the claimer is able to sign both the nonce and the credential with the privat
 const requestAttestationEncrypted = reqAttestation.encrypt(
   claimer,
   attester.getPublicIdentity()
-);
+)
 
 Kilt.Message.ensureHashAndSignature(
   requestAttestationEncrypted,
   claimer.address
-);
+)
 ```
 
 Note: A nonce is used to ensure that every message is unique, as if the same number was reused the second message would look the same as the first. This means that a malicious party with access to the first message could use it to impersonate the legitimate owner.
