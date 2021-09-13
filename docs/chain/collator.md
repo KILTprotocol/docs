@@ -212,10 +212,11 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
 
 The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
 That way you can make sure to not lose those files when you remove the container.
-You should also consider to backup the database files, since it will probably take more than a day to sync up with the Kusama blockchain.
 
 The docker container runs as an user with id 1000.
-The container will try to access the mapped volume 
+The container will try to access the mapped volume and the files in it.
+If the files are not owned by a user with id 1000 this will result in an error.
+Run `chown -R 1000:1000 $HOME/data` to give the container access.
 
 
 </TabItem>
@@ -460,6 +461,69 @@ Below is an example of the `pallet_balances`.
   --template \
   ./.maintain/weight-template.hbs
 ```
+
+## Connect to the Spiritnet
+
+After you tested your setup on peregrine you might want to start collating for the spiritnet.
+For that you need to change the chainspec for the relay chain and parachain.
+The relay chain will change from the peregrine-relay chain to kusama.
+The parachain chainspec and runtime will change from peregrine to spiritnet.
+
+<Tabs
+  groupId="exec-strategy"
+  defaultValue="Docker"
+  values={[
+    {label: 'Native', value: 'Native'},
+    {label: 'Docker', value: 'Docker'},
+  ]}>
+<TabItem value="Native">
+
+```
+./target/release/kilt-parachain \
+  --chain=spiritnet \
+  --runtime=spiritnet \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-methods=unsafe \
+  --name "name of collator" \
+  --execution=wasm \
+  --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+  --base-path $HOME/data/parachain \
+  --keystore-path $HOME/data/keystore \
+  --collator \
+  -- \
+  --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+  --base-path $HOME/data/relay \
+  --chain=kusama \
+  --execution=wasm
+```
+
+</TabItem>
+<TabItem value="Docker">
+
+```bash=
+docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
+    kiltprotocol/peregrine:27067d2f \
+    --rpc-port=9933 \
+    --rpc-cors=all \
+    --rpc-methods=unsafe \
+    --chain=spiritnet \
+    --runtime=spiritnet \
+    --execution=wasm \
+    --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+    --name "name of collator" \
+    --base-path /data/parachain \
+    --keystore-path /data/keystore \
+    --collator \
+    -- \
+    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+    --base-path /data/relay \
+    --chain=kusama \
+    --execution=wasm
+```
+
+</TabItem>
+</Tabs>
 
 ## Known Issues
 
