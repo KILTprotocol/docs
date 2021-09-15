@@ -212,10 +212,11 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
 
 The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
 That way you can make sure to not lose those files when you remove the container.
-You should also consider to backup the database files, since it will probably take more than a day to sync up with the Kusama blockchain.
 
 The docker container runs as an user with id 1000.
-The container will try to access the mapped volume 
+The container will try to access the mapped volume and the files in it.
+If the files are not owned by a user with id 1000 this will result in an error.
+Run `chown -R 1000:1000 $HOME/data` to give the container access.
 
 
 </TabItem>
@@ -461,6 +462,69 @@ Below is an example of the `pallet_balances`.
   ./.maintain/weight-template.hbs
 ```
 
+## Connect to the Spiritnet
+
+After you tested your setup on peregrine you might want to start collating for the spiritnet.
+For that you need to change the chainspec for the relay chain and parachain.
+The relay chain will change from the peregrine-relay chain to kusama.
+The parachain chainspec and runtime will change from peregrine to spiritnet.
+
+<Tabs
+  groupId="exec-strategy"
+  defaultValue="Docker"
+  values={[
+    {label: 'Native', value: 'Native'},
+    {label: 'Docker', value: 'Docker'},
+  ]}>
+<TabItem value="Native">
+
+```
+./target/release/kilt-parachain \
+  --chain=spiritnet \
+  --runtime=spiritnet \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-methods=unsafe \
+  --name "name of collator" \
+  --execution=wasm \
+  --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+  --base-path $HOME/data/parachain \
+  --keystore-path $HOME/data/keystore \
+  --collator \
+  -- \
+  --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+  --base-path $HOME/data/relay \
+  --chain=kusama \
+  --execution=wasm
+```
+
+</TabItem>
+<TabItem value="Docker">
+
+```bash=
+docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
+    kiltprotocol/peregrine:27067d2f \
+    --rpc-port=9933 \
+    --rpc-cors=all \
+    --rpc-methods=unsafe \
+    --chain=spiritnet \
+    --runtime=spiritnet \
+    --execution=wasm \
+    --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+    --name "name of collator" \
+    --base-path /data/parachain \
+    --keystore-path /data/keystore \
+    --collator \
+    -- \
+    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+    --base-path /data/relay \
+    --chain=kusama \
+    --execution=wasm
+```
+
+</TabItem>
+</Tabs>
+
 ## Known Issues
 
 The following are known issues and the possible solutions:
@@ -476,6 +540,6 @@ There are a few things that you can check to make sure everything is setup corre
 1. Check that you are a selected collator. Your address should be listed in `parachainStaking > selectedCandidates`
 2. The parachainStaking pallet will register your address in the session pallet. Check that your address is listed in `session > validators`
 3. Check that session keys are associated with your validatorId (aka AccountId). There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`
-4. Your node will only collator if it has the private key that belongs to the public key that you got in 3. Connect to your node and check with `author > hasKey(<pubKey from 3.>, aura)` if your node has the private key. (I actually never tried that my self but this should work. will test this ASAP)
+4. Your node will only collate if it has the private key that belongs to the public key that you got in 3. Connect to your node and check with `author > hasKey(<pubKey from 3.>, aura)` if your node has the private key.
 5. If your logs print the message that starts with a :gift: emoji you can skip steps 1-4 since your collator is building blocks. But they might not get included by the relay chain.
 6. Check in the Polkadot Apps under `network > explorer` that your accountId is shown next to a block. You can be 100% sure that you produce blocks if you are listed there. If steps 1-5 all look fine for your collator but you don't see your blocks, you might not produce and send blocks fast enough. This can be caused by slow hardware or a slow internet connection. Also, note that a high bandwidth connection can still be slow if it has a high ping! Bandwidth != latency
