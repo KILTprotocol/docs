@@ -1,0 +1,80 @@
+version: "3.3"
+services:
+  collator:
+    profiles: ["collator"]
+    container_name: collator
+    image: "kiltprotocol/peregrine:27067d2f"
+    restart: unless-stopped
+    user: "1000"
+    ports:
+      # - "9944:9944"
+      - "30336:30336"
+      - "30333:30333"
+    volumes:
+      - ~/data:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >-
+      --rpc-port=9933
+      --prometheus-external=true
+      --prometheus-port=9615
+      --rpc-cors=all
+      --rpc-methods=unsafe
+      --chain=spiritnet
+      --runtime=spiritnet
+      --execution=wasm
+      --listen-addr=/ip4/0.0.0.0/tcp/30336
+      --name "name of collator"
+      --base-path /data/db/parachain
+      --keystore-path /data/keystore
+      --collator
+      --
+      --listen-addr=/ip4/0.0.0.0/tcp/30333
+      --base-path /data/db/relay
+      --chain=kusama
+      --execution=wasm
+# ----- MONITORING -----
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    user: "root"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ~/data/prometheus:/prometheus
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  grafana:
+    profiles: ["grafana"]
+    container_name: grafana
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    user: "root"
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    volumes:
+      - ~/data/grafana/lib:/var/lib/grafana
+      - ~/data/grafana/lib/plugins:/var/lib/grafana/plugins
+      - ~/data/grafana/log:/var/log/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
