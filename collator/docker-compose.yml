@@ -48,14 +48,14 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
-      - "9100:9100"
+      - "9100"
     extra_hosts:
       - "host.docker.internal:host-gateway"
   prometheus:
     container_name: prometheus
     image: prom/prometheus
     ports:
-      - "9090:9090"
+      - "9090"
     user: "root"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
