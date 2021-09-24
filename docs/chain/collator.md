@@ -435,8 +435,8 @@ Steps:
 You could open and check [localhost:3000 ](http://localhost:3000/d/JGBmHZI7k/kilt-spiritnet?orgId=1&refresh=10s) then authenticate with admin:ADMIN_PASSWORD you set in .env at step 3.
 
 ### Configuring Notification channel
-Choose anyone of the notification channels and follow this documentation so that you get alerts and notifications when there are critical alerts
-https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/
+Choose anyone of the notification channels and [follow this documentation ...](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) so that you get alerts and notifications.
+
 
 
 ## Bootnodes
