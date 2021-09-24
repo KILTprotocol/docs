@@ -406,7 +406,8 @@ The corresponding methods can be found as an extrinisc under `parachainStaking >
 ## Monitoring
 
 It would be ideal if monitoring is done from a different host however in cases of resource constraints it would be better to run these monitoring tools on the same machine where your collator is running than not having.The following Monitoring stack is recommended.
-You can either run grafana by your own or subscribe free cloud option here https://grafana.com/products/cloud/
+You can either run grafana by your own or subscribe free cloud option here https://grafana.com/products/cloud/. 
+NB: if you want to use cloud option you need to expose prometheus to outside access by chaning the ports section to ```  - "9090:9090"``` and reverse proxying with webserver is recommended.
 
 - Prometheus
 - Grafana
@@ -423,7 +424,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 Steps:
 
-1. Clone or download our monitoring template from this link https://github.com/KILTprotocol/docs
+1. Clone or download our monitoring template from this link  https://github.com/KILTprotocol/docs
 2. Change directory to the above cloned project's collator directory: ```cd docs/collator```
 3. Edit .env file to have your change grafana admin password
 4. Run the following command if you want to install only prometheus and node exporter
