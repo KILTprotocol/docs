@@ -130,7 +130,7 @@ Below is the command to connect as a Collator in the root directory of the mashn
 :::info
 
 Do not use master branch to compile the build.
-Either use `develop` or the following commit `c707e6632e6092c642feeb2233e0d512d2295702`.
+Either use `develop` or the following tag `0.26.1`.
 
 :::
 
@@ -148,7 +148,7 @@ The executable file can be found in `./target/release/kilt-parachain` after buil
 Simply pull the docker image:
 
 ```bash
-docker pull kiltprotocol/peregrine:c707e663
+docker pull kiltprotocol/peregrine:0.26.1
 ```
 
 </TabItem>
@@ -191,7 +191,7 @@ docker pull kiltprotocol/peregrine:c707e663
 
 ```bash=
 docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
-    kiltprotocol/peregrine:c707e663 \
+    kiltprotocol/peregrine:0.26.1 \
     --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
@@ -503,7 +503,7 @@ The parachain chainspec and runtime will change from peregrine to spiritnet.
 
 ```bash=
 docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
-    kiltprotocol/peregrine:c707e663 \
+    kiltprotocol/peregrine:0.26.1 \
     --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
