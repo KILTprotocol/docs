@@ -55,11 +55,13 @@ services:
     container_name: prometheus
     image: prom/prometheus
     ports:
-      - "9090"
+      - "9090:9090"
     user: "root"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./auth_config.yml:/etc/config/auth_config.yml
       - ~/data/prometheus:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml --web.config.file=/etc/config/auth_config.yml
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
