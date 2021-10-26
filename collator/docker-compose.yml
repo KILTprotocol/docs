@@ -3,7 +3,7 @@ services:
   collator:
     profiles: ["collator"]
     container_name: collator
-    image: "kiltprotocol/peregrine:27067d2f"
+    image: "kiltprotocol/peregrine:1.0.0"
     restart: unless-stopped
     user: "1000"
     ports:
@@ -12,8 +12,6 @@ services:
       - "30333:30333"
     volumes:
       - ~/data:/data
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     command: >-
       --rpc-port=9933
       --prometheus-external=true
@@ -48,9 +46,7 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     ports:
-      - "9100"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "9100:9100"
   prometheus:
     container_name: prometheus
     image: prom/prometheus
@@ -62,8 +58,6 @@ services:
       - ./auth_config.yml:/etc/config/auth_config.yml
       - ~/data/prometheus:/prometheus
     command: --config.file=/etc/prometheus/prometheus.yml --web.config.file=/etc/config/auth_config.yml
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   grafana:
     profiles: ["grafana"]

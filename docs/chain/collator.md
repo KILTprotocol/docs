@@ -438,7 +438,7 @@ Steps:
 - If ufw is enabled allow Nginx Full : ```sudo ufw allow 'Nginx Full'```
 - Generate SSL certeficate : ```sudo certbot --nginx -d ${DOMAIN_OF_SERVER_NAME}```
 - Enable certeficate renewal    ```crontab -e``` and add at the end  of the file ```0 5 * * * /usr/bin/certbot renew --quiet```
-- Replace the default nginx file with prometheus endpoint (if you chose grafana cloud) or grafana endpoint (if grafana installed)
+- Reload nginx after you replace the default nginx file with prometheus endpoint (if you chose grafana cloud) or grafana endpoint (if grafana installed)
   ``` nano /etc/nginx/sites-enabled/default ``` 
   ```
    location / {
