@@ -405,7 +405,56 @@ The corresponding methods can be found as an extrinisc under `parachainStaking >
 
 ## Monitoring
 
-TODO
+It would be ideal if monitoring is done from a different host.
+However in cases of resource constraints it would be better to run these monitoring tools on the same machine where your collator is running than not having.
+You can either run grafana by your own or subscribe free [grafana cloud ](https://grafana.com/products/cloud/) option. 
+
+NB: if you want to use cloud option you need to expose prometheus to outside access via reverse proxying with webserver.
+The following Monitoring stack is recommended.
+- Prometheus
+- Grafana
+- Node exporter
+- Slack
+- Nginx
+
+There are two types of metrics we are going to collect. **Node Exporter Metrics** and **Blockchain Metrics.**
+
+### Prerequisite
+Install latest version of docker-compose from the [official docker-compose installation guide](https://docs.docker.com/compose/install/)
+
+Steps:
+
+1. Clone or download our monitoring template from this link [KILTprotocol...](https://github.com/KILTprotocol/docs)
+2. Change directory to the above cloned project's collator directory: ```cd docs/collator```
+3. Edit .env file and insert grafana admin password
+4. Run the following command if you want to install only prometheus and node exporter
+   ```docker-compose up -d```
+5. If you want to install prometheus with grafana ``` docker-compose up --profile grafana -d ```
+6. if you want to install prometheus, grafana with  your collator  ``` docker-compose --profile collator --profile grafana up -d```
+
+ Secure Endpoints:
+
+- Install nginx with certbot ```sudo apt install nginx certbot python3-certbot-nginx ```
+- If ufw is enabled allow Nginx Full : ```sudo ufw allow 'Nginx Full'```
+- Generate SSL certeficate : ```sudo certbot --nginx -d ${DOMAIN_OF_SERVER_NAME}```
+- Enable certeficate renewal    ```crontab -e``` and add at the end  of the file ```0 5 * * * /usr/bin/certbot renew --quiet```
+- Reload nginx after you replace the default nginx file with prometheus endpoint (if you chose grafana cloud) or grafana endpoint (if grafana installed)
+  ``` nano /etc/nginx/sites-enabled/default ``` 
+  ```
+   location / {
+    proxy_pass http://localhost:9090/;    #proxy_pass http://localhost:3000/;
+  
+          }
+  ```
+- Enable basic Auth by replacing default pasxsword on prometheus.yml using  ``` htpasswd -nBC 10 "" | tr -d ':\n' ```
+
+### Testing
+You could open and check [localhost:3000 ](http://localhost:3000/d/JGBmHZI7k/kilt-spiritnet?orgId=1&refresh=10s) then authenticate with admin:ADMIN_PASSWORD you set in .env at step 3.
+
+### Configuring Notification channel
+Choose anyone of the notification channels and [follow this documentation ...](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) so that you get alerts and notifications.
+
+
 
 ## Bootnodes
 
