@@ -30,16 +30,6 @@ const featureRows = [
         </>
       ),
     },
-    {
-      title: 'SDK Reference',
-      imageUrl: 'img/tools.svg',
-      link: 'docs/sdk/reference/identity',
-      description: (
-        <>
-          Learn more about the SDK in detail.
-        </>
-      ),
-    },
   ],
   [
     {
