@@ -30,20 +30,6 @@ const featureRows = [
         </>
       ),
     },
-  ],
-  [
-    {
-      title: 'Demo Client',
-      imageUrl: 'img/catbox.svg',
-      link: 'https://demo.kilt.io/',
-      description: (
-        <>
-          Explore the KILTprotocol with our demo application. Claim attributes
-          and verify your attestations.
-        </>
-      ),
-    },
-    {},
     {
       title: 'Whitepaper',
       imageUrl: 'img/whitepaper.svg',
@@ -87,17 +73,6 @@ export default function Home() {
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted
-              )}
-              to={useBaseUrl('docs/about-kilt')}
-            >
-              About KILT
-            </Link>
-          </div>
         </div>
       </header>
       <main>
