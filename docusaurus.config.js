@@ -2,7 +2,7 @@
 module.exports = {
   title: 'KILT Documentation',
   tagline: 'Documentation for KILT Node and SDK',
-  url: 'https://kiltprotocol.github.io',
+  url: 'https://dev.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
