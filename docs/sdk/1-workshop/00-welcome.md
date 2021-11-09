@@ -7,7 +7,7 @@ SDK version **0.21.0**.
 
 :::info What you can expect
 
-📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the attested claim.
+📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CTYPE and a claim; attesting a claim; and finally verifying the credential.
 
 ⏳ Duration: 15-45 minutes.
 
@@ -21,7 +21,7 @@ SDK version **0.21.0**.
 
 In this tutorial, you will:
 
-✔ Get familiar with the essential concepts in KILT: identities, CTYPEs, claims, attested claims and more.
+✔ Get familiar with the essential concepts in KILT: identities, CTYPEs, claims, credentials and more.
 
 ✔ Use the KILT SDK to implement the basic flow of a KILT claim, from creation until verification. You'll create a claim as a <span class="label-role claimer">claimer</span>, attest it as an <span class="label-role attester">attester</span> and verify it as a <span class="label-role verifier">verifier</span>.
 

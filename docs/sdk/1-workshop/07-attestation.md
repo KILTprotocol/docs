@@ -2,6 +2,7 @@
 id: attestation
 title: 🔖 Attestation
 ---
+
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/5_1_attestation.ts';
 import Example2 from '!!raw-loader!../../../code-examples/5_2_attestation.ts';
@@ -12,7 +13,7 @@ In this section, you'll play the role of the <span class="label-role attester">a
 - You'll take a `RequestForAttestation` object;
 - Attest it;
 - Store the attestation on the chain (more specifically only its hash, we'll get to that);
-- Build the `AttestedClaim` object which will be send back to the <span class="label-role claimer">claimer</span>.
+- Build the `Credential` object which will be send back to the <span class="label-role claimer">claimer</span>.
 
 ## Request KILT tokens
 
@@ -73,10 +74,10 @@ You should see in your logs:
 
 - `true` and `true` if the signature and data are valid (they should be);
 - The block hash in which the transaction was finalized;
-- The `AttestedClaim` object.
+- The `Credential` object.
 
-Copy the `AttestedClaim` object, you'll need it soon.
+Copy the `Credential` object, you'll need it soon.
 
-Your job as an <span class="label-role attester">attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `AttestedClaim` object for the <span class="label-role claimer">claimer</span>.
+Your job as an <span class="label-role attester">attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `Credential` object for the <span class="label-role claimer">claimer</span>.
 
 [faucet]: https://faucet.kilt.io/

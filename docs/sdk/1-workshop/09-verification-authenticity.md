@@ -2,28 +2,27 @@
 id: verification-authenticity
 title: 🥸 Verify the authenticity
 ---
+
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/7_1_verification-with-nonce.ts';
 import Example2 from '!!raw-loader!../../../code-examples/7_2_verification-with-nonce.ts';
-
 
 Did you notice anything wrong with our verification in the previous step?
 
 Nothing? Let's see:
 
-- You've checked that the `attestedClaim` data is valid and you've verified that the corresponding attestation is on chain and not revoked. All good.
+- You've checked that the `Credential` data is valid and you've verified that the corresponding attestation is on chain and not revoked. All good.
 
-- But: are you sure that the entity/person that sent you the `attestedClaim` owns it?
-  What if a malicious actor stole this `attestedClaim` and is now presenting it to you as theirs? We'll see how to mitigate this.
+- But: are you sure that the entity/person that sent you the `Credential` owns it?
+  What if a malicious actor stole this `Credential` and is now presenting it to you as theirs? We'll see how to mitigate this.
 
 ## Understand credential theft mitigation
 
 To mitigate credential theft, a <span class="label-role verifier">verifier</span> can initiate a **cryptographic challenge** with a <span class="label-role claimer">claimer</span>.
 
-The underlying idea is simple: to prove their identity, the <span class="label-role claimer">claimer</span> signs **on-the-fly** - that's important - a piece of data under the same identity as the identity associated with their `attestedClaim`. By checking this signature's validity, the <span class="label-role verifier">verifier</span> makes sure that the `attestedClaim` is owned by the person who just sent it.
+The underlying idea is simple: to prove their identity, the <span class="label-role claimer">claimer</span> signs **on-the-fly** - that's important - a piece of data under the same identity as the identity associated with their `Credential`. By checking this signature's validity, the <span class="label-role verifier">verifier</span> makes sure that the `Credential` is owned by the person who just sent it.
 
 What piece of data should be signed? It doesn't really matter; it can be an arbitrary number picked by the <span class="label-role verifier">verifier</span>. What matters is that this number should be used only once. Otherwise, the cryptographic challenge is worthless.
-
 
 :::info Nonce
 
@@ -34,9 +33,9 @@ In a cryptographic communication, an arbitrary number that can be used just once
 Here's how it works:
 
 1. The <span class="label-role verifier">verifier</span> sends a nonce to the <span class="label-role claimer">claimer</span>.
-2. The <span class="label-role claimer">claimer</span> sends back this nonce signed with their **private** key, together with their `attestedClaim`.
+2. The <span class="label-role claimer">claimer</span> sends back this nonce signed with their **private** key, together with their `Credential`.
 3. The <span class="label-role verifier">verifier</span> checks the following:
-   - Does the signature on the nonce match the public key contained in the `attestedClaim`? If so: the entity/person who just sent the `attestedClaim` plus the signed nonce is also the owner of this `attestedClaim`. If not: the `attestedClaim` might be stolen.
+   - Does the signature on the nonce match the public key contained in the `Credential`? If so: the entity/person who just sent the `Credential` plus the signed nonce is also the owner of this `Credential`. If not: the `Credential` might be stolen.
    - Is the data valid? Is the attestation on-chain and not revoked? See the simple [Verification](verification) for more information about the validation logic.
 
 OK, let's see this in action.
@@ -71,7 +70,7 @@ Let's put together the data you would send back to the <span class="label-role v
 
 Create a new file `claim-with-signed-nonce.js`.
 
-Paste the following code into it (make sure to replace `<nonce>` and `<attestedClaimJSONString>` with the data you copied earlier):
+Paste the following code into it (make sure to replace `<nonce>` and `<credentialJSONString>` with the data you copied earlier):
 
 <CodeBlock className="language-ts">
   {Example1}
@@ -87,7 +86,7 @@ You should see in your logs the `dataToVerifyJSONString`, which is a string repr
 
 Copy it, you'll need it in the next step.
 
-## As the <span class="label-role verifier">verifier</span>: verify the `signedNonce` and `attestedClaim`
+## As the <span class="label-role verifier">verifier</span>: verify the `signedNonce` and `credential`
 
 Create a new file `verification-with-nonce.js`.
 
@@ -103,15 +102,15 @@ Run the code by running this command in your terminal, still within your `kilt-r
 node verification-with-nonce.js
 ```
 
-You should see in your logs that `isSenderOwner` is `true`: this means that the claimer presenting the `attestedClaim` is the same that owns it, so it has not been stolen or compromised.
+You should see in your logs that `isSenderOwner` is `true`: this means that the claimer presenting the `credential` is the same that owns it, so it has not been stolen or compromised.
 
 Looking good!
 
-You can also see what would happen when a malicious actor presents a stolen `attestedClaim` to a <span class="label-role verifier">verifier</span>. Try this out:
+You can also see what would happen when a malicious actor presents a stolen `credential` to a <span class="label-role verifier">verifier</span>. Try this out:
 
 - Create another identity, let's refer to it as Mallory (= malicious);
 - Sign the nonce above with Mallory's identity, hence creating a new `signedNonce`;
-- Create a new `invalidDataToVerify` object with this new `signedNonce` and with Alice's `attestedClaim` we've been using so far;
+- Create a new `invalidDataToVerify` object with this new `signedNonce` and with Alice's `credential` we've been using so far;
 - As a <span class="label-role verifier">verifier</span>, verify the `signedNonce` in `invalidDataToVerify` via `KiltUtils.Crypto.verify`;
 - You'll see that this verification will return `false`: the <span class="label-role verifier">verifier</span> will know that this credential is not owned by Mallory.
 

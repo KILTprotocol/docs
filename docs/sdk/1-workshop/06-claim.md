@@ -2,6 +2,7 @@
 id: claim
 title: 💬 Claim
 ---
+
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/4_1_claim.ts';
 import Example2 from '!!raw-loader!../../../code-examples/4_2_claim.ts';
@@ -67,7 +68,7 @@ We don't need to do this here.
 
 If you're following this tutorial on your own, you're playing all three KILT roles: claimer, attester and verifier. So you can simply copy the outputs of the different functions you're calling and use them as inputs for the other actors.
 
-If you're following this as a workshop, you can simulate message exchange by exchanging your requests via chat, email, or simply by pasting requests for attestations or attested claims in a shared document such as [this hackmd](https://hackmd.io/c6OBNgWWR8yWJhMj7WICUA?edit).
+If you're following this as a workshop, you can simulate message exchange by exchanging your requests via chat, email, or simply by pasting requests for attestations or credentials in a shared document such as [this hackmd](https://hackmd.io/c6OBNgWWR8yWJhMj7WICUA?edit).
 
 :::
 
