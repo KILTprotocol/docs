@@ -3,7 +3,7 @@ id: verification
 title: 🔐 Verify a Claim
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/5_verification.ts';
+import Example1 from '!!raw-loader!../../../code-examples/6_verification.ts';
 
 In this section, you'll play the role of a <span class="label-role verifier">verifier</span>:
 

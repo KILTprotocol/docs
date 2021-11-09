@@ -3,8 +3,8 @@ id: verification-authenticity
 title: 🥸 Verify the authenticity
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/6_1_verification-with-nonce.ts';
-import Example2 from '!!raw-loader!../../../code-examples/6_2_verification-with-nonce.ts';
+import Example1 from '!!raw-loader!../../../code-examples/7_1_verification-with-nonce.ts';
+import Example2 from '!!raw-loader!../../../code-examples/7_2_verification-with-nonce.ts';
 
 
 Did you notice anything wrong with our verification in the previous step?

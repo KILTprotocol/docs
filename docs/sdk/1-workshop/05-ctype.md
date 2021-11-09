@@ -3,9 +3,9 @@ id: ctype
 title: 💠 CTYPE
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example2 from '!!raw-loader!../../../code-examples/2_ctypeFromSchema.ts';
-
 import Example1 from '!!raw-loader!../../../code-examples/ctype.txt';
+import Example2 from '!!raw-loader!../../../code-examples/3_ctypeFromSchema.ts';
+
 
 
 Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, they first need a claim type (CTYPE for short).
