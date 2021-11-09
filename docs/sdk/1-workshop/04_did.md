@@ -69,7 +69,26 @@ Create a new file `attestersDid.js`
 To generate a full DID, you will need the claimers account and creation of the corresponding keypairs:
 
 <CodeBlock className="language-ts">
-  {Example1}
+  {Example2}
 </CodeBlock>
 
-Now its time to make the DID's
+Now its time to make the DID's.
+
+## Run
+
+To generate the light DID, run this command in your terminal, still within your `kilt-rocks` directory:
+
+```bash
+node claimersDid.js
+```
+
+Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
+
+// Example light DID Identifier:
+`did:kilt:light:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS:oWFlomlwdWJsaWNLZXlYIBsVppuQ2fi/beBdYf50+n/36FnCjMw+KLSu3AmW9DEGZHR5cGVmeDI1NTE5`
+
+Now to generate the full DID, ensure that you have funds on the account, run this command in your terminal:
+
+```bash
+node attestersDid.js
+```
