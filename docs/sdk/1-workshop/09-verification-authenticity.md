@@ -20,7 +20,7 @@ Nothing? Let's see:
 
 To mitigate credential theft, a <span class="label-role verifier">verifier</span> can initiate a **cryptographic challenge** with a <span class="label-role claimer">claimer</span>.
 
-The underlying idea is simple: to prove their identity, the <span class="label-role claimer">claimer</span> signs **on-the-fly** - that's important - a piece of data under the same identity as the identity associated with their `Credential`. By checking this signature's validity, the <span class="label-role verifier">verifier</span> makes sure that the `Credential` is owned by the person who just sent it.
+The underlying idea is simple: to prove their DID, the <span class="label-role claimer">claimer</span> signs **on-the-fly** - that's important - a piece of data under the same DID as the DID associated with their `Credential`. By checking this signature's validity, the <span class="label-role verifier">verifier</span> makes sure that the `Credential` is owned by the person who just sent it.
 
 What piece of data should be signed? It doesn't really matter; it can be an arbitrary number picked by the <span class="label-role verifier">verifier</span>. What matters is that this number should be used only once. Otherwise, the cryptographic challenge is worthless.
 
@@ -32,8 +32,8 @@ In a cryptographic communication, an arbitrary number that can be used just once
 
 Here's how it works:
 
-1. The <span class="label-role verifier">verifier</span> sends a nonce to the <span class="label-role claimer">claimer</span>.
-2. The <span class="label-role claimer">claimer</span> sends back this nonce signed with their **encryption** key, together with their `Credential`.
+1. The <span class="label-role verifier">verifier</span> sends a nonce to the <span class="label-role claimer">claimer</span> as a challenge.
+2. The <span class="label-role claimer">claimer</span> sends back a presentation of the credential with the nonce signed with their **encryption** key.
 3. The <span class="label-role verifier">verifier</span> checks the following:
    - Does the signature on the nonce match the public key contained in the `Credential`? If so: the entity/person who just sent the `Credential` plus the signed nonce is also the owner of this `Credential`. If not: the `Credential` might be stolen.
    - Is the data valid? Is the attestation on-chain and not revoked? See the simple [Verification](verification) for more information about the validation logic.
@@ -64,7 +64,7 @@ You should see in your logs the resulting HEX string that will be used as a nonc
 
 Copy it, you'll need it in the next step.
 
-## As the <span class="label-role claimer">claimer</span>: sign the nonce and prepare the data
+## As the <span class="label-role claimer">claimer</span>: create the presentation, which will sign with the challenge and prepare the data
 
 Let's put together the data you would send back to the <span class="label-role verifier">verifier</span>, as the <span class="label-role claimer">claimer</span>.
 
