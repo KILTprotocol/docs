@@ -36,7 +36,9 @@ did:kilt:light:014sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar:oWFlomlwdWJsaW
 
 To create a light DID, there needs to be a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts). For the sake of ease of use, this package includes a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
 
-> **Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.**
+:::warning
+Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.
+:::
 
 The following is an example of how to create a light DID after creating an instance of the demo keystore.
 
@@ -53,9 +55,9 @@ For cases in which also an encryption key and some service endpoints need to be 
 ## Full DIDs
 
 As mentioned above, the creation of a full DID requires interaction with the KILT blockchain. Therefore, it is necessary for the DID creation operation to be submitted by a KILT address with enough funds to pay the transaction fees and the required deposit.
-While transaction fees are "burned" during the creation operation, the deposit is returned once and if the DID is deleted from the blockchain: this is to incentivise users to clean the data from the blockchain once such data is not needed anymore.
+While transaction fees cannot be refunded, the deposit is returned when the DID is deleted from the blockchain: this is to incentivise users to clean the data from the blockchain once such data is not needed anymore.
 
-By design, DID signatures and Substrate signatures are decoupled, meaning that the encoded and signed DID creation operation can then be signed and submitted by a different KILT account than the DID subject. We think this opens the path for a wider range of use cases in which, for instance, a service provider might be willing to offer a DID-as-a-Service option for its customers.
+By design, DID signatures and Substrate signatures are decoupled, meaning that the encoded and signed DID creation operation can then be signed and submitted by a different KILT account than the DID subject. This opens the path for a wider range of use cases in which, for instance, a service provider might be willing to offer a DID-as-a-Service option for its customers.
 
 An example of a full DID is the following:
 
