@@ -6,6 +6,7 @@ export async function main(
   attesterMnemonic: string,
   keystore: Kilt.DemoKeystore
 ) {
+  await Kilt.init({ address: 'YOUR_CHAIN_ADDRESS' })
   // Signing keypair
   const attesterSigningKeypair = await keystore.generateKeypair({
     alg: Kilt.Did.SigningAlgorithms.Ed25519,
@@ -63,6 +64,8 @@ export async function main(
   console.log('Attesters Full DID:', attesterFullDid)
 
   console.log('Keystore:', keystore)
+
+  await Kilt.disconnect()
 
   return { ...attesterFullDid, keystore }
 }
