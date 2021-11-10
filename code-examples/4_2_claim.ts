@@ -11,7 +11,6 @@ export async function main(
     claimer
   )
 
-  //
   await requestForAttestation.signWithDid(claimerLightDid)
 
   // log this so you can paste it locally
