@@ -1,24 +1,29 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
+  claimerLightDid: Kilt.LightDidDetails,
+  credential: Kilt.Credential,
   nonce: string,
-  attestedClaim: Kilt.AttestedClaim,
-  claimer: Kilt.Identity
+  keystore: Kilt.DemoKeystore
 ): Promise<string> {
-  // sign the nonce as the claimer with the claimer's private key
-  const signedNonce = claimer.signStr(nonce)
+  // sign the nonce as the claimer with the claimer's DID
+  const presentation = credential.createPresentation({
+    signer: keystore,
+    claimerDid: claimerLightDid,
+    challenge: nonce,
+  })
 
   // this is the message to send to the verifier
   const dataToVerify = {
-    signedNonce,
-    attestedClaim,
+    presentation,
+    nonce,
   }
 
-  console.log('Attested claim:\n', attestedClaim.request.claim)
+  console.log('KILT Credential:\n', presentation.request.claim)
 
   console.log(
     'dataToVerifyJSONString:\n',
     JSON.stringify(dataToVerify, undefined, 2)
   )
-  return signedNonce
+  return { ...presentation, keystore }
 }

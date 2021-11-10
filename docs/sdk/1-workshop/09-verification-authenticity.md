@@ -33,7 +33,7 @@ In a cryptographic communication, an arbitrary number that can be used just once
 Here's how it works:
 
 1. The <span class="label-role verifier">verifier</span> sends a nonce to the <span class="label-role claimer">claimer</span>.
-2. The <span class="label-role claimer">claimer</span> sends back this nonce signed with their **private** key, together with their `Credential`.
+2. The <span class="label-role claimer">claimer</span> sends back this nonce signed with their **encryption** key, together with their `Credential`.
 3. The <span class="label-role verifier">verifier</span> checks the following:
    - Does the signature on the nonce match the public key contained in the `Credential`? If so: the entity/person who just sent the `Credential` plus the signed nonce is also the owner of this `Credential`. If not: the `Credential` might be stolen.
    - Is the data valid? Is the attestation on-chain and not revoked? See the simple [Verification](verification) for more information about the validation logic.
@@ -68,7 +68,7 @@ Copy it, you'll need it in the next step.
 
 Let's put together the data you would send back to the <span class="label-role verifier">verifier</span>, as the <span class="label-role claimer">claimer</span>.
 
-Create a new file `claim-with-signed-nonce.js`.
+Create a new file `create-presentation.js`.
 
 Paste the following code into it (make sure to replace `<nonce>` and `<credentialJSONString>` with the data you copied earlier):
 
@@ -79,16 +79,16 @@ Paste the following code into it (make sure to replace `<nonce>` and `<credentia
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node claim-with-signed-nonce.js
+node create-presentation.js
 ```
 
 You should see in your logs the `dataToVerifyJSONString`, which is a string representation of the data to verify.
 
 Copy it, you'll need it in the next step.
 
-## As the <span class="label-role verifier">verifier</span>: verify the `signedNonce` and `credential`
+## As the <span class="label-role verifier">verifier</span>: verify the `presentation` and `credential`
 
-Create a new file `verification-with-nonce.js`.
+Create a new file `verification-of-presentation.js`.
 
 Paste the following code into it (make sure to replace `<dataToVerifyJSONString>` and `<nonce>` with the values obtained in the previous steps):
 
@@ -99,7 +99,7 @@ Paste the following code into it (make sure to replace `<dataToVerifyJSONString>
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node verification-with-nonce.js
+node verification-of-presentation.js
 ```
 
 You should see in your logs that `isSenderOwner` is `true`: this means that the claimer presenting the `credential` is the same that owns it, so it has not been stolen or compromised.
@@ -108,10 +108,10 @@ Looking good!
 
 You can also see what would happen when a malicious actor presents a stolen `credential` to a <span class="label-role verifier">verifier</span>. Try this out:
 
-- Create another identity, let's refer to it as Mallory (= malicious);
-- Sign the nonce above with Mallory's identity, hence creating a new `signedNonce`;
-- Create a new `invalidDataToVerify` object with this new `signedNonce` and with Alice's `credential` we've been using so far;
-- As a <span class="label-role verifier">verifier</span>, verify the `signedNonce` in `invalidDataToVerify` via `KiltUtils.Crypto.verify`;
+- Create another account and light DID, let's refer to it as Mallory (= malicious);
+- Sign the presentation above with Mallory's light DID, hence creating a new `presentation`;
+- Create a new `invalidDataToVerify` object with this new `presentation` and with Alice's `credential` we've been using so far;
+- As a <span class="label-role verifier">verifier</span>, verify the `presentation` in `invalidDataToVerify` via `Kilt.Credential.verify`;
 - You'll see that this verification will return `false`: the <span class="label-role verifier">verifier</span> will know that this credential is not owned by Mallory.
 
 [uuid]: https://www.npmjs.com/package/uuid
