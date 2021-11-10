@@ -27,6 +27,8 @@ In this tutorial, you will:
 
 ✔ Use the KILT SDK to write onto and read from the KILT blockchain.
 
+🚧 Since there is no faucet for now, you have to request tokens from us directly ([element](https://matrix.to/#/%23kilt-general:matrix.org), [discord](https://discord.gg/hX4pc8rdHS))
+
 Ready? Let's go!
 
 👉 [Step 0: Setup](./01-setup.md)

@@ -51,7 +51,7 @@ Full DID is robust and allows for more use cases.
 
 In order for the <span class="label-role attester">attesters</span> to create the DID they have to pay the angel’s share (gas or transaction fee) and despoit in KILT Tokens. So you'll need tokens to create a full DID.
 
-Go to the [faucet@kilt.io] and request tokens for your `<attesterAddress>`.
+Go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) to request tokens for your `<attesterAddress>`.
 
 Sadly these are just play tokens, not real money.
 
@@ -112,7 +112,7 @@ node claimersDid.js
 
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
-// Example light DID Identifier:
+// Example of a light DID Identifier:
 `did:kilt:light:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS:oWFlomlwdWJsaWNLZXlYIBsVppuQ2fi/beBdYf50+n/36FnCjMw+KLSu3AmW9DEGZHR5cGVmeDI1NTE5`
 
 Now to generate the full DID, ensure that you have funds on the account, run this command in your terminal:
@@ -120,3 +120,7 @@ Now to generate the full DID, ensure that you have funds on the account, run thi
 ```bash
 node attestersDid.js
 ```
+
+The keystore and the two DID's need to be stored for re-use.
+
+Well done - You've successfully generated a light and full DID!
