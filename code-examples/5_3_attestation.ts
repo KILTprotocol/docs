@@ -1,33 +1,40 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+import { KeyringPair } from '@polkadot/keyring/types'
 
 export async function main(
-  attester: Kilt.Identity,
-  requestForAttestation: Kilt.RequestForAttestation
-): Promise<Kilt.AttestedClaim> {
+  attester: KeyringPair,
+  attesterFullDid: Kilt.FullDidDetails,
+  requestForAttestation: Kilt.RequestForAttestation,
+  keystore: Kilt.DemoKeystore
+): Promise<Kilt.Credential> {
   // build the attestation object
-  const attestation = Kilt.Attestation.fromRequestAndPublicIdentity(
+  const attestation = Kilt.Attestation.fromRequestAndDid(
     requestForAttestation,
-    attester.getPublicIdentity()
+    attesterFullDid.did
   )
 
   // store the attestation on chain
-
   const tx = await attestation.store()
-  await Kilt.BlockchainUtils.signAndSubmitTx(tx, attester, {
-    resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK,
+  const authorizedTx = await attester.authorizeExtrinsic(
+    tx,
+    keystore,
+    attester.address
+  )
+  await Kilt.BlockchainUtils.signAndSubmitTx(authorizedTx, attester, {
+    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
   })
   console.log('Attestation saved on chain.')
 
-  // the attestation was successfully stored on the chain, so you can now create the AttestedClaim object
-  const attestedClaim = Kilt.AttestedClaim.fromRequestAndAttestation(
+  // the attestation was successfully stored on the chain, so you can now create the credential object
+  const credential = Kilt.Credential.fromRequestAndAttestation(
     requestForAttestation,
     attestation
   )
-  // log the attestedClaim so you can copy/send it back to the claimer
-  console.log('attestedClaimJSONString:\n', JSON.stringify(attestedClaim))
+  // log the Credential so you can copy/send it back to the claimer
+  console.log('CredentialJSONString:\n', JSON.stringify(credential))
 
   // disconnect from the chain
   await Kilt.disconnect()
   console.log('Disconnected from KILT testnet')
-  return attestedClaim
+  return { ...credential, keystore }
 }
