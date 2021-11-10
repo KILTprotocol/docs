@@ -6,6 +6,7 @@ title: 👤 Did
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/2_1_did.ts';
 import Example2 from '!!raw-loader!../../../code-examples/2_2_did.ts';
+import Example2 from '!!raw-loader!../../../code-examples/2_3_did.ts';
 
 Time to make a DID using the previously created accounts for the <span class="label-role claimer">claimer</span> and the <span class="label-role attester">attester</span>.
 
@@ -54,7 +55,28 @@ Go to the [faucet@kilt.io] and request tokens for your `<attesterAddress>`.
 
 Sadly these are just play tokens, not real money.
 
+Before the creation of a DID there needs to be a keystore.
+
+:::info Keystore
+
+A keystore has multiple purposes:
+
+- The keystore can hold multiple DID keypairs and key types
+- The keystore can encrpyt and decrypt the keys and the corresponding data
+
+:::
+
 ## Code
+
+First, the construction of the keystore.
+
+**Caution the following keystore is only for demo purposes and considered unsafe**
+
+create a new file `keystore.js` and copy the following code:
+
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 Taking the claimer and attester accounts to generate the DID and the assoicated keys.
 
@@ -62,21 +84,27 @@ Create a new file `claimersDid.js`
 To generate a light DID, you will need the claimers account:
 
 <CodeBlock className="language-ts">
-  {Example1}
+  {Example2}
 </CodeBlock>
 
 Create a new file `attestersDid.js`
 To generate a full DID, you will need the claimers account and creation of the corresponding keypairs:
 
 <CodeBlock className="language-ts">
-  {Example2}
+  {Example3}
 </CodeBlock>
 
 Now its time to make the DID's.
 
 ## Run
 
-To generate the light DID, run this command in your terminal, still within your `kilt-rocks` directory:
+The keystore should be instantiated once and used within the workshop passing it through the different stages of the workshop, run this command in your terminal, still within your `kilt-rocks` directory:
+
+```bash
+node keystore.js
+```
+
+To generate the light DID, run this command in your terminal:
 
 ```bash
 node claimersDid.js
