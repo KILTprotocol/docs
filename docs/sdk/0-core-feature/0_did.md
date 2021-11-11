@@ -87,7 +87,7 @@ const encryptionKeyPublicDetails = await keystore.generateKeypair({
 const serviceEndpoints: IDidServiceEndpoint[] = [
   {
     id: 'my-service',
-    types: ['CollatorCredential'],
+    types: ['collatorCredential'],
     urls: ['http://example.domain.org'],
   },
 ]
