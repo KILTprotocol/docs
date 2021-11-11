@@ -66,5 +66,5 @@ export async function main(
 
   await Kilt.disconnect()
 
-  return { ...attesterFullDid, keystore }
+  return [attesterFullDid, keystore]
 }

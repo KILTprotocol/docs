@@ -32,5 +32,5 @@ export async function main(keystore: Kilt.DemoKeystore) {
 
   console.log('Keystore:', keystore)
 
-  return { ...claimerLightDid, keystore }
+  return [claimerLightDid, keystore]
 }

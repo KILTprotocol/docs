@@ -26,5 +26,5 @@ export async function main(
   })
 
   await Kilt.disconnect()
-  return { ...ctype, keystore }
+  return ctype
 }
