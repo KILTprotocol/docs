@@ -1,8 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { KeyringPair } from '@polkadot/keyring/types'
 
 export async function main(
-  attester: KeyringPair,
+  attester: Kilt.KeyringPair,
   attesterFullDid: Kilt.FullDidDetails,
   ctype: Kilt.CType,
   keystore: Kilt.DemoKeystore

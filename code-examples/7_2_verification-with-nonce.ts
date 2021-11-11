@@ -1,10 +1,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { KeyringPair } from '@polkadot/keyring/types'
 
 export async function main(
   presentation: Kilt.Credential,
   nonce: string,
-  keystore: KeyringPair
+  keystore: Kilt.KeyringPair
 ) {
   await Kilt.connect()
   // verify the presentation from the nonce (<nonce> is the uuid you've generated as the verifier)
