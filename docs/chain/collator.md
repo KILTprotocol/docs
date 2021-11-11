@@ -8,56 +8,48 @@ import TabItem from '@theme/TabItem';
 
 
 We will guide you through the steps to become a collator.
-First we will discuss the hardware requirements and how you could test your performance.
-After that we go over a few configurations options and show you how to start a collator.
-When your collator is running you still need to register on chain.
-We will show you how to obtain your session keys and become a collator candidate.
+First we will discuss the hardware requirements and how you could test the performance of your node.
+Then, we go over a few configuration options and show you how to setup and start a KILT collator, including how to generate your sessions keys and join the pool of collator candidates.
 
-## Hardware Requirements
+## Minimum Hardware Requirements
 
-The following hardware was used to benchmark the KILT blockchain and calculate the extrinsic weights.
-Your hardware should at least be as fast as the hardware used for benchmarking.
-Having a fast storage is important for the overall performance.
+The KILT blockchain extrinsic weights were calculated using the following hardware:
 
-- OS - Ubuntu 20.04.2
-- CPU - AMD Ryzen 7 1700X
-- Storage - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT's parachain and Kusama relay chain but will need to be re-evaluated every six months.
-- Memory - 16GB
+- **OS** - Ubuntu 20.04.2
+- **CPU** - AMD Ryzen 7 1700X
+- **Storage** - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT parachain and Kusama relay chain but it will mostly likely grow after that and will have to be re-evaluated on a regular basis.
+- **Memory** - 16GB
 
-The specification posted above are by no means the minimum specs that you could use when running a collator, however you should be aware that if you are using less you may need to toggle some extra optimizations in order to be equal to other collators that are running the standard.
+Although the aforementioned hardware is by no means the minimum spec required, the new node *should* be at least be as capable as that in all the categories.
+Having more perfoment hardware reduces the probability that the node will not be able to produce and propose a valid block on time during the allocated block production slot, missing out on the collating rewards.
 
-You can compare your hardware with the above listed hardware by running the benchmarks.
-If your benchmark results are better (smaller weights) than ours, your hardware is faster than the required minimum.
-The results of the spiritnet benchmarks can be found [here](https://github.com/KILTprotocol/mashnet-node/tree/develop/runtimes/spiritnet/src/weights).
-You can find [a guide on how to run benchmarks](#Benchmarking-(optional)) further below.
+You can measure the performance of the new hardware by benchmarking it using [the steps described in a later section](#benchmarking).
 
-## Start a Node
+## Setup a Node
 
-There are several ways to build and test a collator node.
-**These commands are based on commits.**
-The time needed to start a node depends on the method chosen.
-We will go through how to use a Docker image or compile directly from our chain repository.
-There are currently two different runtimes that can be executed:
+There are several ways to build and run a collator node.
+We show both how to use a Docker image and how to compile the source code directly from [our chain repository](https://github.com/KILTprotocol/mashnet-node).
 
-- The `peregrine` chain is as close to our official chain as possible and is to be considered our public test network. It can be used to try things out before doing them on the live chain, which typically involves spending tokens that have real monetary value.
-- The `spiritnet` chain is our official public network and contains only stable features.
+There are currently two different runtimes (i.e., two different parachain environments) that a KILT collator can be part of:
+
+- `peregrine`: the public test network whose runtime is as close to the official chain as possible. It can be used to try stuff out before executing them on the live chain, which involves spending tokens that have real monetary value.
+- `spiritnet`: the official public network, which contains only stable features.
 
 Each runtime has its own benchmark measurements.
 
 ### Configuration
 
 Running a collator requires a few configuration parameters.
-Some of the parameters might appear twice in the command that start the collator.
-The reason for that is, that a parachain collator actually runs two blockchains.
-The parameter that are listed before the `--` are related to the parachain node itself (the KILT blockchain), whereas the parameters following the `--` are related to the relaychain, i.e., Kusama or Polkadot.
+Some of the parameters might appear twice in the command to start the collator, the reason being that a parachain collator actually runs two blockchains.
+The parameter that are listed before the `--` are related to the parachain node itself (the KILT blockchain), whereas the parameters following the `--` are related to the relaychain, e.g., Kusama or Polkadot.
 
 Following is a description of some of the parameters that can be set when spinning up a parachain collator node.
 
-#### RPC Endpoint
+#### RPC and WS Endpoints
 
-Our collator needs session keys that connect your collator with your KILT account.
-These session keys can be generated by calling an RPC endpoint that your collator optionally exposes.
-Exposing the RPC endpoints can be done using the following parameters:
+Your collator needs session keys that connect it with the collator's KILT account.
+These session keys can be generated by calling an RPC endpoint that the collator optionally exposes.
+Exposing the RPC endpoint can be done using the following parameters:
 
 ```
 --rpc-port=9933
@@ -65,41 +57,30 @@ Exposing the RPC endpoints can be done using the following parameters:
 --rpc-methods=unsafe
 ```
 
-With these parameters you can make RPC calls directly using curl.
-But you won't be able to connect to the node with the polkadot apps.
-The polkadot apps UI tries to connect to your node via a Websocket connection.
-You can use the following arguments for exposing the Websocket endpoint:
+Exposing the RPC endpoint of a collator does not imply that it becomes accessible via the PolkadotJS Apps interface, because it requires a Websocket to connect to the node.
 
-```
---ws-port=9944
-```
+By default, the Websocket port used by the node will be `9944`, but it can be changed by specifying a different value with `--ws-port=<ws_port>`.
 
-If you want to connect from a remote host to your RPC endpoints (e.g. using the polkadot apps) you will need to expose the RPC endpoints.
-This can be done using the following arguments:
-
-```
---ws-external
---rpc-external
-```
+Connecting from a remote host to either the collator RPC endpoint or WS endpoint requires to explicitely expose those endpoints to the public with respectively the `--rpc-external` and `--ws-external` options.
 
 :::danger
 
-Be aware that this might **expose your collator**!
-You should be the only one able to call the RPC endpoints.
-For a secure setup, follow the instructions in the section about [generating the session keys](#generating-session-keys)
+Be aware that it is highly discouraged to publicly expose an RPC endpoint, especially if it allows the execution of unsafe RPC calls!
+You should be the only one able to call the RPC endpoint.
+For a secure setup, follow the instructions in the section about [generating the session keys](#generating-session-keys).
 
 :::
 
-#### Execution Wasm
+#### WASM runtime execution
 
-We pass the `--execution=wasm` parameter to both the relaychain and parachain since we don't want the faster native execution.
-The native execution might be faster but can also deviate from the WASM execution and result in a different state.
-When this happens your collator will crash and will stop producing blocks.
-Since the WASM is the single truth and is part of the blockchain state itself, all collators should execute the WASM version of the state transition function.
+A KILT collator should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
+The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
+When this happens the collator will crash and will stop producing blocks.
+Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all collators should execute the WASM version of the runtime logic.
 
-#### Select which runtime and chain to use
+#### Peregrine and Spiritnet chain specs
 
-The `--chain` parameter decides which blockchain we want to execute.
+The `--chain` parameter decides which blockchain the KILT collator will join.
 We need to pass this parameter to the parachain and the relaychain, since both chains are separate blockchains.
 The KILT parachain accepts an additional runtime parameter to select which runtime is executed.
 This can either be `peregrine` or `spiritnet`.
@@ -109,9 +90,9 @@ For now this parameter is not required, since both runtimes are very similar and
 
 The `--base-path` parameter configures where all the persistent files are written.
 By default the session keys will also be stored in the *base path*, but we recommend to separate them from the other files.
-This makes sure that the keyfiles are not accidentally lost or published when you backup or restore your blockchain database.
+This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is backed up or restored.
 You can configure where to store the session keys using the `--keystore-path` option.
-Since you only use session keys for the parachain, there is no need to add this to the relaychain part of the command.
+Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
 ### Run a Peregrine collator
 
@@ -124,7 +105,7 @@ Since you only use session keys for the parachain, there is no need to add this 
   ]}>
 <TabItem value="Binary">
 
-We recommend following the instructions in our [chain repository](https://github.com/KILTprotocol/mashnet-node).
+We recommend following the instructions in the [KILT chain repository](https://github.com/KILTprotocol/mashnet-node).
 Below is the command to build the KILT collator executable for the Peregrine network, which must be run from the root directory of the repository.
 
 :::info
@@ -186,7 +167,7 @@ docker pull kiltprotocol/kilt-node:latest
   --execution=wasm
 ```
 
-If you want to be able to reach your own node via PolkadotJS Apps, add a `--ws-external` option to the collator options, before the `--` divider.
+If the node needs to be reachable via PolkadotJS Apps, the `--ws-external` flag must be added to the collator options, before the `--` divider.
 
 </TabItem>
 <TabItem value="Docker">
@@ -212,10 +193,10 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
     --execution=wasm
 ```
 
-If you want to be able to reach your own node via PolkadotJS Apps, add a `--ws-external` option to the collator options, before the `--` divider, and expose the container port with an additional `-p 9944:9944` parameter.
+If the node needs to be reachable via PolkadotJS Apps, the `--ws-external` flag must be added to the collator options, before the `--` divider, and expose the container port with an additional `-p 9944:9944` parameter.
 
-The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on your host system using the flag `-v $HOME/data:/data`.
-That way you can make sure to not lose those files when you remove the container.
+The docker commands will map the database files for the relay and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
+That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back to the new container.
 
 The docker container runs as an user with id 1000.
 The container will try to access the mapped volume and the files in it.
@@ -250,14 +231,14 @@ The Session keys associate a collator node with an account on KILT.
 
 :::warning
 
-Make sure that nobody but yourself is able to access the RPC endpoint of your collator. Use SSH forwarding for the RPC port when needing to perform some RPC operations on the node with `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`
+Make sure that no unauthorised party is able to access the RPC endpoint of the collator. Use SSH forwarding for the RPC port when needing to perform some RPC operations on the node with `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`
 
 :::
 
 There are tree ways to create the session keys.
-We recommend using the curl command on the same host that your node is running or from a host that has an active SSH tunnel with your node.
-This way you don't need to add the `--unsafe-rpc-external` argument to your node.
-Nevertheless, the session keys can also be rotated using the polkadot apps interface.
+We recommend using the curl command on the same host that the node is running or from a host that has an active SSH tunnel with it.
+This way there is no need to add the `--unsafe-rpc-external` argument to the node.
+Nevertheless, the session keys can also be rotated using the PolkadotJS Apps interface.
 
 
 <Tabs
@@ -278,7 +259,7 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 ```
 
 The answer should look like the JSON object below.
-The `result` key is the HEX-encoded public half of your newly created session key.
+The `result` key is the HEX-encoded public half of the newly created session key.
 
 ```
 {"jsonrpc":"2.0","result":"0xb2dc33b1ff0c6f8b07f882236bb992e903452791ff5225b5eb4c2c1a40252d5d","id":1}
@@ -327,11 +308,11 @@ For instance, with the keypair generated in the example above, the session key f
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
-Visit the [polkadot apps and connect to the peregrine network](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io#/explorer) (websocket address: `wss://peregrine.kilt.io`).
+Visit the [PolkadotJS Apps and connect to the peregrine network](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io#/explorer) (websocket address: `wss://peregrine.kilt.io`).
 
 `Developer -> Extrinsics -> Submission`
 
-1. Select your collator's KILT address as the extrinsic submitter (the *using the selected account* field)
+1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Submit the following extrinsic: `session -> setKeys(keys, proof)`
     - `keys` -> the public session key (`0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010` in the example above)
     - `proof` -> the proof of ownership. It can be set to `0x00`
@@ -366,13 +347,13 @@ The collator must call an extrinsic from the `parachainStaking -> joinCandidates
 
 `Developer -> Extrinsics -> Submission`
 
-1. Select your collator's KILT address as the extrinsic submitter (the *using the selected account* field)
+1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Submit the following extrinsic: `parachainStaking -> joinCandidates(stake)`
 3. Insert the staked KILT amount for the collator
 
 :::info
 
-A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown. In the current version of PolkadotJS Apps, 1 KILT requires adding 15 trailing `0`s. So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10000 KILT would be `10000000000000000000`. If this changes again in the future, we will make sure to promptly notify our community.
+A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown. In the current version of PolkadotJS Apps, 1 KILT requires adding 15 trailing `0`s. So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10000 KILT would be `10000000000000000000`. If this changes again in the future, we will make sure to promptly notify the community.
 
 :::
 
@@ -403,12 +384,12 @@ The corresponding methods can be found as an extrinsic under `parachainStaking -
 
 It would be ideal if monitoring is performed from a different host.
 However in cases of limited resources it can also be run on the same machine where the collator is running.
-There are two types of metrics we are going to collect. **Node Exporter Metrics** and **Blockchain Metrics.**
-You can either run grafana on your own or subscribe to the free [grafana cloud](https://grafana.com/products/cloud/) option. 
+There are two types of metrics that can be collected. **Node Exporter Metrics** and **Blockchain Metrics.**
+You can either run a whole grafana setup locally or subscribe to the free [grafana cloud option](https://grafana.com/products/cloud/). 
 
 :::info
 
-If you want to use cloud-based solutions, you need to expose the prometheus process to allow remote access via a reverse proxy.
+For cloud-based solutions, the prometheus process must be publicly accessible, e.g., via a reverse proxy.
 We recommend the following monitoring stack.
 - Prometheus
 - Grafana
@@ -423,13 +404,13 @@ Install latest version of docker-compose from the [official docker-compose insta
 
 Steps:
 
-1. Clone or download our monitoring template from our [chain repo](https://github.com/KILTprotocol/docs)
+1. Clone or download the monitoring template from the [KILT chain repo](https://github.com/KILTprotocol/docs)
 2. Change directory to the above cloned project's collator directory: ```cd docs/collator```
 3. Edit the `.env` file and insert grafana admin password
-4. Run the following command if you want to install only prometheus and node exporter
+4. Run the following command to install only prometheus and node exporter
    ```docker-compose up -d```
-5. If you want to install prometheus with grafana ``` docker-compose up --profile grafana -d ```
-6. if you want to install prometheus **and** grafana with  your collator  ``` docker-compose --profile collator --profile grafana up -d```
+5. To install prometheus through grafana ``` docker-compose up --profile grafana -d ```
+6. To install prometheus **and** grafana with the collator  ``` docker-compose --profile collator --profile grafana up -d```
 
  Secure Endpoints:
 
@@ -437,7 +418,7 @@ Steps:
 - If ufw is enabled allow Nginx Full : ```sudo ufw allow 'Nginx Full'```
 - Generate SSL certificate : ```sudo certbot --nginx -d ${DOMAIN_OF_SERVER_NAME}```
 - Enable certificate renewal    ```crontab -e``` and add at the end  of the file ```0 5 * * * /usr/bin/certbot renew --quiet```
-- Reload nginx after you replace the default nginx file with prometheus endpoint (if you chose grafana cloud) or grafana endpoint (if grafana installed)
+- Reload nginx after replacing the default nginx file with prometheus endpoint (if grafana cloud is chosen) or grafana endpoint (if grafana installed)
   ``` nano /etc/nginx/sites-enabled/default ``` 
   ```
    location / {
@@ -448,10 +429,10 @@ Steps:
 - Enable basic Auth by replacing default pasxsword on prometheus.yml using  ``` htpasswd -nBC 10 "" | tr -d ':\n' ```
 
 ### Testing
-You could open and check [localhost:3000 ](http://localhost:3000/d/JGBmHZI7k/kilt-spiritnet?orgId=1&refresh=10s) then authenticate with admin:ADMIN_PASSWORD you set in `.env` at step 3.
+You could open and check [localhost:3000 ](http://localhost:3000/d/JGBmHZI7k/kilt-spiritnet?orgId=1&refresh=10s) then authenticate with admin:ADMIN_PASSWORD set in `.env` at step 3.
 
 ### Configuring Notification channel
-Choose any of the available notification channels and follow the [Graphana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) so that you get alerts and notifications.
+Choose any of the available notification channels and follow the [Graphana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) to receive alerts and notifications.
 
 
 
@@ -470,7 +451,7 @@ For the sake of completeness the bootnodes are listed below:
   - `/dns4/bootnode.kilt.io/tcp/30352/p2p/12D3KooWQ8iTGLH98zLz9BZmq5FXDmR1NytDsJ2VToXvcjvHV16a`
   - `/dns4/bootnode.kilt.io/tcp/30353/p2p/12D3KooWNWNptEoH443LVUgwC5kd7DBVoNYwQtJh6dp4TQxUsAST`
 
-## Benchmarking (optional)
+## Benchmarking (optional) {#benchmarking}
 
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
@@ -485,11 +466,11 @@ cargo build --release -p kilt-parchain --features=runtime-benchmarks
 ```
 
 The benchmarking can be run to compare hardware against the referenced hardware.
-At the moment, we have benchmarked our Runtime on an AMD Ryzen 7 1700X with 64GB RAM and an NVMe SSD.
+At the moment, we have benchmarked the Spiritnet and Peregrine runtimes on an AMD Ryzen 7 1700X with 64GB RAM and an NVMe SSD.
 After executing the benchmarks on a Server compare the weights to the official weights.
 Lower weights are always better.
 
-The commands to execute the benchmarking can be found in our official [benchmarks](https://github.com/KILTprotocol/mashnet-node/tree/master/runtimes/peregrine/src/weights).
+The commands executed to benchmark the runtimes can be found in the official [benchmarks files](https://github.com/KILTprotocol/mashnet-node/tree/master/runtimes/peregrine/src/weights).
 
 Below is an example of benchmarking for the the `balances` pallet.
 
@@ -512,8 +493,8 @@ Below is an example of benchmarking for the the `balances` pallet.
 
 ## Connect to the Spiritnet
 
-After you tested your setup on peregrine you might want to start collating on our official Spiritnet blockchain.
-For that you need to change the chainspec used for the relaychain and parachain.
+After the setup has been tested on peregrine, it is time to start collating on the official Spiritnet blockchain!
+To do that, the chainspec used for the relaychain and parachain must be replaced.
 The relay chain will change from the peregrine-relay spec to the Kusama spec.
 The parachain chainspec and runtime will also change from peregrine to spiritnet.
 
@@ -575,12 +556,14 @@ docker run -p 127.0.0.1:9933:9933 -v ~/data:/data \
 
 ## Troubleshooting
 
-There are a few things that you can check to make sure everything is setup correctly.
+There are a few things that can checked to make sure everything is setup correctly.
 
-0. Check that your node is fully synced with the relaychain & parachain. (best and finalised block number is equal to the one shown in the polkadot apps & on subscan)
-1. Check that you are a selected collator. Your address should be listed in `parachainStaking > topCandidates()`
-2. The `parachainStaking` pallet will register your address in the session pallet. Check that your address is listed in `session > validators()`
-3. Check that session keys are associated with your validatorId (aka AccountId). There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`
-4. Your node will only collate if it has the corresponding private key of the public key . Connect to your node and check with `author > hasKey(<pubKey from 3.>, aura)` if your node has the private key.
-5. If your logs print the message that starts with a :gift: emoji you can skip steps 1-4 since your collator is building blocks. But they might not get included by the relay chain.
-6. Check in the Polkadot Apps under `network > explorer` that your accountId is shown next to a block. You can be 100% sure that you produce blocks if you are listed there. If steps 1-5 all look fine for your collator but you don't see your blocks, you might not produce and send blocks fast enough. This can be caused by slow hardware or a slow internet connection. Also, note that a high bandwidth connection can still be slow if it has a high ping! Bandwidth != latency
+If, from any network explorer, e.g., the one offered by PolkadotJS Apps, the collator's account is shown next to some of the blocks, then the collator is correctly producing blocks and getting rewarded for it.
+If the logs print the message that starts with a :gift: emoji it indicates that the collator setup is correct but that the blocks produced are not included by the relay chain. This typically signals some issues about the node hardware or connectivity.
+If not, it might be that the node does not produce and send blocks fast enough. This can be caused by slow hardware or a slow internet connection. Also, note that a high bandwidth connection can still be slow if it has a high ping! Bandwidth != latency. In this case, it is better to rule out other options before thinking to upgrade the collator's hardware.
+
+1. Check that the session keys are associated with the validatorId (aka AccountId). There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`.
+2. Check that the node has the corresponding private key for the public session key. Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see if it returns `true`.
+3. Check that the node is fully synced with the relaychain & parachain (best and finalised block number is equal to the one shown in the PolkadotJS Apps & on Subscan).
+4. Check that the collator is among the selected candidates. Its address should be listed when querying `parachainStaking > topCandidates()`.
+5. Check that the `parachainStaking` pallet has registered the collator's address among the authorised authors in the `session`. Its address should be listed when querying `session > validators()`.
