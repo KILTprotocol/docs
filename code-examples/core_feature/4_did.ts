@@ -1,31 +1,19 @@
-import Keyring from '@polkadot/keyring'
+import { KeyringPair } from '@polkadot/keyring/types'
 
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { init as kiltInit } from '@kiltprotocol/core'
-import {
-  DefaultResolver,
-  DemoKeystore,
-  DidUtils,
-  SigningAlgorithms,
-} from '@kiltprotocol/did'
-import { KeyRelationship } from '@kiltprotocol/types'
+import { DefaultResolver, DemoKeystore, DidUtils, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
+import { KeyRelationship, SubscriptionPromise } from '@kiltprotocol/types'
 
-export async function main() {
-  const resolveOn =
-    process.env.NODE_ENV === 'production'
-      ? BlockchainUtils.IS_FINALIZED
-      : BlockchainUtils.IS_IN_BLOCK
-
+export async function main(
+  kiltAccount: KeyringPair,
+  resolveOn: SubscriptionPromise.ResultEvaluator,
+  // Generate seed for the authentication key.
+  authenticationSeed: string
+) {
   await kiltInit({ address: 'wss://peregrine.kilt.io' })
 
-  const aliceKiltAccount = new Keyring({
-    type: 'ed25519',
-    ss58Format: 38,
-  }).createFromUri('//Alice')
-
   const keystore = new DemoKeystore()
-
-  const authenticationSeed = '0x123456789'
 
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     seed: authenticationSeed,
@@ -42,26 +30,20 @@ export async function main() {
   })
 
   // Generate the DID-signed creation extrinsic with the provided keys.
-  const { extrinsic, did } = await DidUtils.writeDidFromPublicKeys(
-    keystore,
-    aliceKiltAccount.address,
-    {
-      [KeyRelationship.authentication]: {
-        publicKey: authenticationKeyPublicDetails.publicKey,
-        type: DemoKeystore.getKeypairTypeForAlg(
-          authenticationKeyPublicDetails.alg
-        ),
-      },
-      [KeyRelationship.keyAgreement]: {
-        publicKey: encryptionKeyPublicDetails.publicKey,
-        type: DemoKeystore.getKeypairTypeForAlg(encryptionKeyPublicDetails.alg),
-      },
-    }
-  )
+  const { extrinsic, did } = await DidUtils.writeDidFromPublicKeys(keystore, kiltAccount.address, {
+    [KeyRelationship.authentication]: {
+      publicKey: authenticationKeyPublicDetails.publicKey,
+      type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
+    },
+    [KeyRelationship.keyAgreement]: {
+      publicKey: encryptionKeyPublicDetails.publicKey,
+      type: DemoKeystore.getKeypairTypeForAlg(encryptionKeyPublicDetails.alg),
+    },
+  })
   // Will print `did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar`.
   console.log(did)
 
-  await BlockchainUtils.signAndSubmitTx(extrinsic, aliceKiltAccount, {
+  await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
     resolveOn,
   })
 
