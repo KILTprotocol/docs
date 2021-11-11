@@ -9,7 +9,7 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Become a collator',
+      title: 'Become a Collator',
       imageUrl: 'img/community.svg',
       link: 'docs/chain/collator',
       description: (
