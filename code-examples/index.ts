@@ -41,25 +41,33 @@ async function test_all() {
   let attester
   let attesterMnemonic
   let claimer
+  let claimerMnemonic
   let ctype
   console.group('Account-1')
-  claimer = account1()
-  attester = account1()
+  account1()
   console.groupEnd()
-
+  console.group('Account-2')
+  ;[claimer, claimerMnemonic, attester, attesterMnemonic] = account2()
+  console.groupEnd()
   await Promise.all([
     Kilt.Balance.makeTransfer(claimer.address, new BN(100)) //
-      .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
+      .then((tx) =>
+        Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc, {
+          reSign: true,
+          resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
+        })
+      )
       .then(() => console.log('Successfully transferred tokens to claimer')),
     Kilt.Balance.makeTransfer(attester.address, new BN(100)) //
-      .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
+      .then((tx) =>
+        Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc, {
+          reSign: true,
+          resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
+        })
+      )
       .then(() => console.log('Successfully transferred tokens to attester')),
     ,
   ])
-
-  console.group('Account-2')
-  account2()
-  console.groupEnd()
   console.group('Did-1')
   keystore = await did1()
   console.groupEnd()

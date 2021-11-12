@@ -12,5 +12,4 @@ export function main() {
   })
   const account = keyring.addFromMnemonic(mnemonic)
   console.log('address:', account.address)
-  return [account, mnemonic]
 }
