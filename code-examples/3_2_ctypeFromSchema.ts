@@ -6,7 +6,7 @@ export async function main(
   ctype: Kilt.CType,
   keystore: Kilt.Did.DemoKeystore
 ) {
-  await Kilt.init({ address: 'YOUR_CHAIN_ADDRESS' })
+  await Kilt.connect()
 
   // Good to check if the ctype is stored on chain
   if (ctype.verifyStored()) return { ...ctype, keystore }

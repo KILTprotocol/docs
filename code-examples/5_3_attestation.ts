@@ -6,6 +6,8 @@ export async function main(
   requestForAttestation: Kilt.RequestForAttestation,
   keystore: Kilt.Did.DemoKeystore
 ): Promise<Kilt.Credential> {
+  await Kilt.connect()
+
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(
     requestForAttestation,

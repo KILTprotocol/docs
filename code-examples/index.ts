@@ -110,6 +110,8 @@ async function test_all() {
   console.group('verification3')
   await verification3(presentation, nonce, keystore)
   console.groupEnd()
+
+  await Kilt.disconnect()
 }
 
 test_all()
