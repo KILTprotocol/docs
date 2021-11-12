@@ -4,7 +4,7 @@ export async function main(
   attester: Kilt.KeyringPair,
   attesterMnemonic: string,
   keystore: Kilt.Did.DemoKeystore
-) {
+): Promise<[Kilt.Did.FullDidDetails, Kilt.Did.DemoKeystore]> {
   await Kilt.connect()
 
   // Signing keypair
@@ -64,5 +64,5 @@ export async function main(
   console.log('Attesters Full DID:', attesterFullDid)
   await Kilt.disconnect()
 
-  return [attesterFullDid, keystore]
+  return [attesterFullDid.details as Kilt.Did.FullDidDetails, keystore]
 }

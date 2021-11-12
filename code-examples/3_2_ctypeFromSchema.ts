@@ -9,7 +9,7 @@ export async function main(
   await Kilt.connect()
 
   // Good to check if the ctype is stored on chain
-  if (ctype.verifyStored()) return { ...ctype, keystore }
+  if (ctype.verifyStored()) return ctype
 
   // If the ctype isn't stored on the chain, then an account with a full DID will need to store the ctype on-chain.
   const tx = await ctype.store()
