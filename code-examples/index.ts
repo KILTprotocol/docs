@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { Keyring } from '@polkadot/keyring'
 import * as BN from 'bn.js'
 
 import { main as account1 } from './1_1_account'
@@ -30,7 +29,7 @@ const faucetSeed = process.env['FAUCET_SEED']
 async function test_all() {
   await Kilt.init({ address: wsAddress })
 
-  const keyring = new Keyring({
+  const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
     type: 'ed25519',
   })

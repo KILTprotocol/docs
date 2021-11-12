@@ -14,7 +14,7 @@ export async function main(
 
   // store the attestation on chain
   const tx = await attestation.store()
-  const authorizedTx = await attester.authorizeExtrinsic(
+  const authorizedTx = await attesterFullDid.authorizeExtrinsic(
     tx,
     keystore,
     attester.address
@@ -35,5 +35,5 @@ export async function main(
   // disconnect from the chain
   await Kilt.disconnect()
   console.log('Disconnected from KILT testnet')
-  return { ...credential, keystore }
+  return credential
 }

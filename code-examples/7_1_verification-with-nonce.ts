@@ -5,9 +5,9 @@ export async function main(
   credential: Kilt.Credential,
   nonce: string,
   keystore: Kilt.Did.DemoKeystore
-): Promise<string> {
+): Promise<Kilt.Credential> {
   // sign the nonce as the claimer with the claimer's DID
-  const presentation = credential.createPresentation({
+  const presentation = await credential.createPresentation({
     signer: keystore,
     claimerDid: claimerLightDid,
     challenge: nonce,
@@ -25,5 +25,5 @@ export async function main(
     'dataToVerifyJSONString:\n',
     JSON.stringify(dataToVerify, undefined, 2)
   )
-  return { ...presentation, keystore }
+  return presentation
 }
