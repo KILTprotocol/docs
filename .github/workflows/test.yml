@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  integration_test:
+  workshop:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,3 +36,29 @@ jobs:
         run: |
           yarn install --frozen
           yarn run ts-node index.ts
+
+  core_features:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: run integration tests
+        timeout-minutes: 60
+        working-directory: code-examples
+        env:
+          NODE_OPTIONS: --unhandled-rejections=strict
+          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
+        run: |
+          yarn install --frozen
+          yarn run ts-node core_features/index.ts
