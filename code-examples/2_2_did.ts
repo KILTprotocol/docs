@@ -1,6 +1,8 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(keystore: Kilt.Did.DemoKeystore) {
+export async function main(
+  keystore: Kilt.Did.DemoKeystore
+): Promise<[Kilt.Did.LightDidDetails, Kilt.Did.DemoKeystore]> {
   const claimerMnemonic =
     'gold upset segment cake universe carry demand comfort dawn invite element capital'
 

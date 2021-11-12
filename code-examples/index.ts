@@ -37,10 +37,10 @@ async function test_all() {
   })
 
   const faucetAcc = keyring.addFromMnemonic(faucetSeed)
-  let keystore
-  let claimerLightDid
-  let attesterFullDid
-  let ctype
+  let keystore: Kilt.Did.DemoKeystore
+  let claimerLightDid: Kilt.Did.LightDidDetails
+  let attesterFullDid: Kilt.Did.FullDidDetails
+  let ctype: Kilt.CType
   console.group('Account-1')
   account1()
   console.groupEnd()
@@ -78,7 +78,7 @@ async function test_all() {
   console.groupEnd()
 
   console.group('claim1')
-  let claim = claim1(claimer, ctype)
+  let claim = claim1(claimerLightDid, ctype)
   console.groupEnd()
   console.group('claim2')
   let rfa = await claim2(claimerLightDid, claim, keystore)
