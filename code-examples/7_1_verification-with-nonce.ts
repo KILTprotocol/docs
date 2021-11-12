@@ -1,10 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  claimerLightDid: Kilt.LightDidDetails,
+  claimerLightDid: Kilt.Did.LightDidDetails,
   credential: Kilt.Credential,
   nonce: string,
-  keystore: Kilt.DemoKeystore
+  keystore: Kilt.Did.DemoKeystore
 ): Promise<string> {
   // sign the nonce as the claimer with the claimer's DID
   const presentation = credential.createPresentation({

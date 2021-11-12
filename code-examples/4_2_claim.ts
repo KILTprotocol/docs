@@ -1,16 +1,13 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  claimer: Kilt.KeyringPair,
-  claimerLightDid: Kilt.LightDidDetails,
-  claim: Kilt.Claim
-): Kilt.RequestForAttestation {
-  const requestForAttestation = Kilt.RequestForAttestation.fromClaimAndIdentity(
-    claim,
-    claimer
-  )
+  claimerLightDid: Kilt.Did.LightDidDetails,
+  claim: Kilt.Claim,
+  keystore: Kilt.Did.DemoKeystore
+): Promise<Kilt.RequestForAttestation> {
+  const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
 
-  await requestForAttestation.signWithDid(claimerLightDid)
+  await requestForAttestation.signWithDid(keystore, claimerLightDid)
 
   // log this so you can paste it locally
   console.log(

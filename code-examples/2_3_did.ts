@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function main(
   attester: Kilt.KeyringPair,
   attesterMnemonic: string,
-  keystore: Kilt.DemoKeystore
+  keystore: Kilt.Did.DemoKeystore
 ) {
   await Kilt.init({ address: 'YOUR_CHAIN_ADDRESS' })
   // Signing keypair

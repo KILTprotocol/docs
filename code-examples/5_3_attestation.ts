@@ -2,9 +2,9 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
   attester: Kilt.KeyringPair,
-  attesterFullDid: Kilt.FullDidDetails,
+  attesterFullDid: Kilt.Did.FullDidDetails,
   requestForAttestation: Kilt.RequestForAttestation,
-  keystore: Kilt.DemoKeystore
+  keystore: Kilt.Did.DemoKeystore
 ): Promise<Kilt.Credential> {
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(

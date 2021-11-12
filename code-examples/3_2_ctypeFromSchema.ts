@@ -2,9 +2,9 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
   attester: Kilt.KeyringPair,
-  attesterFullDid: Kilt.FullDidDetails,
+  attesterFullDid: Kilt.Did.FullDidDetails,
   ctype: Kilt.CType,
-  keystore: Kilt.DemoKeystore
+  keystore: Kilt.Did.DemoKeystore
 ) {
   await Kilt.init({ address: 'YOUR_CHAIN_ADDRESS' })
 
