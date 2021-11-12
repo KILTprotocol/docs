@@ -71,10 +71,3 @@ export async function runAll() {
   console.log('main7 - again, delete DID from main8')
   await main7(faucetAccount, BlockchainUtils.IS_IN_BLOCK, did8.details as FullDidDetails)
 }
-
-runAll().catch((e) => {
-  console.error('Oh no! There was an error!!\n', e)
-  process.exit(1)
-}).then(() => {
-  process.exit(0)
-})
