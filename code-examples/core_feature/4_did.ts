@@ -27,16 +27,27 @@ export async function main(
   })
 
   // Generate the DID-signed creation extrinsic with the provided keys.
-  const { extrinsic, did } = await DidUtils.writeDidFromPublicKeys(keystore, kiltAccount.address, {
-    [KeyRelationship.authentication]: {
-      publicKey: authenticationKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
+  const { extrinsic, did } = await DidUtils.writeDidFromPublicKeysAndServices(
+    keystore,
+    kiltAccount.address,
+    {
+      [KeyRelationship.authentication]: {
+        publicKey: authenticationKeyPublicDetails.publicKey,
+        type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
+      },
+      [KeyRelationship.keyAgreement]: {
+        publicKey: encryptionKeyPublicDetails.publicKey,
+        type: DemoKeystore.getKeypairTypeForAlg(encryptionKeyPublicDetails.alg),
+      },
     },
-    [KeyRelationship.keyAgreement]: {
-      publicKey: encryptionKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(encryptionKeyPublicDetails.alg),
-    },
-  })
+    [
+      {
+        id: 'my-service',
+        types: ['service-type'],
+        urls: ['https://www.example.com'],
+      },
+    ]
+  )
   // Will print `did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar`.
   console.log(did)
 
@@ -47,7 +58,7 @@ export async function main(
   const fullDid = await DefaultResolver.resolveDoc(did)
 
   if (fullDid === null) {
-    throw "Could not find DID document for the given identifier"
+    throw 'Could not find DID document for the given identifier'
   }
   return fullDid
 }

@@ -1,36 +1,39 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 import { hexToU8a } from '@polkadot/util'
+import { randomAsHex } from '@polkadot/util-crypto'
 
-import { DefaultResolver, DemoKeystore, LightDidDetails, DidUtils } from '@kiltprotocol/did'
+import { DefaultResolver, DemoKeystore, LightDidDetails, DidUtils, SigningAlgorithms } from '@kiltprotocol/did'
 import { init as kiltInit } from '@kiltprotocol/core'
 import { SubscriptionPromise, KeyRelationship, IDidResolvedDetails } from '@kiltprotocol/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  fundingAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator,
+  keystore: DemoKeystore,
   kiltAccount: KeyringPair,
+  resolveOn: SubscriptionPromise.ResultEvaluator,
+  authenticationSeed: string
 ): Promise<IDidResolvedDetails> {
   await kiltInit({ address: 'wss://kilt-peregrine-k8s.kilt.io' })
-  const keystore = new DemoKeystore()
+
+  // Ask the keystore to generate a new keypair to use for authentication.
+  const authenticationKeyPublicDetails = await keystore.generateKeypair({
+    seed: authenticationSeed,
+    alg: SigningAlgorithms.Ed25519,
+  })
 
   // create a light DID
   const lightDidDetails = new LightDidDetails({
     authenticationKey: {
-      publicKey: kiltAccount.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(kiltAccount.type),
+      publicKey: authenticationKeyPublicDetails.publicKey,
+      type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
     },
   })
 
-  // Generate the DID creation extrinsic with the authentication and encryption keys taken from the light DID.
-  const pubAuthKey = lightDidDetails.getKey(KeyRelationship.authentication)
+  // Generate the DID creation extrinsic with the authentication key taken from the light DID.
+  const pubAuthKey = lightDidDetails.getKeys(KeyRelationship.authentication)[0]
   if (pubAuthKey === undefined) {
     throw 'We just created the did with an authentication key'
-  }
-
-  const pubEncKey = lightDidDetails.getKey(KeyRelationship.keyAgreement)
-  if (pubEncKey === undefined) {
-    throw 'We just created the did with an encryption key'
   }
 
   const { extrinsic, did } = await DidUtils.writeDidFromPublicKeys(keystore, kiltAccount.address, {
@@ -38,14 +41,10 @@ export async function main(
       publicKey: hexToU8a(pubAuthKey.publicKeyHex),
       type: DemoKeystore.getKeypairTypeForAlg(pubAuthKey.type),
     },
-    [KeyRelationship.keyAgreement]: {
-      publicKey: hexToU8a(pubEncKey.publicKeyHex),
-      type: DemoKeystore.getKeypairTypeForAlg(pubEncKey.type),
-    },
   })
 
   // The extrinsic can then be submitted by the authorised account as usual.
-  await BlockchainUtils.signAndSubmitTx(extrinsic, fundingAccount, {
+  await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
     resolveOn,
   })
 

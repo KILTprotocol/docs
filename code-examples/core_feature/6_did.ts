@@ -6,12 +6,12 @@ import { init as kiltInit } from '@kiltprotocol/core'
 import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
 
 export async function main(
+  keystore: DemoKeystore,
   kiltAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator,
   fullDid: FullDidDetails
 ) {
   await kiltInit({ address: 'wss://peregrine.kilt.io' })
-  const keystore = new DemoKeystore()
 
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.

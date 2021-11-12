@@ -1,7 +1,7 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore, DidChain, SigningAlgorithms, FullDidDetails } from '@kiltprotocol/did'
+import { DefaultResolver, DemoKeystore, DidChain, SigningAlgorithms, FullDidDetails } from '@kiltprotocol/did'
 import { KeyRelationship, KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
 import { init as kiltInit } from '@kiltprotocol/core'
 
@@ -40,11 +40,17 @@ export async function main(
     resolveOn,
   })
 
+  // Get the updated DID Doc
+  const updatedDidDetails = (await (await DefaultResolver.resolveDoc(fullDid.did))?.details) as FullDidDetails
+  if (updatedDidDetails === undefined) {
+    throw 'We just created the did'
+  }
+
   // Remove the service endpoint with id `my-service` added upon creation in the previous section.
   const didRemoveExtrinsic = await DidChain.getRemoveEndpointExtrinsic('my-service')
 
   // Sign the DID operation using the new authentication key.
-  const didSignedRemoveExtrinsic = await fullDid.authorizeExtrinsic(
+  const didSignedRemoveExtrinsic = await updatedDidDetails.authorizeExtrinsic(
     didRemoveExtrinsic,
     keystore as KeystoreSigner<string>,
     kiltAccount.address

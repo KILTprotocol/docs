@@ -77,7 +77,7 @@ The following is an example of how to create and write on blockchain a full DID 
   {Example3}
 </CodeBlock>
 
-If additional keys are to be specified, then they can be included in the DID create operation.
+If additional keys or service endpoints are to be specified, then they can be included in the DID create operation.
 
 <CodeBlock className="language-ts">
   {Example4}
