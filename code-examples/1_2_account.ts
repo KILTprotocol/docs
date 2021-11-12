@@ -16,5 +16,5 @@ export function main() {
   console.log('attester mnemonic:', attesterMnemonic)
   const attester = keyring.addFromMnemonic(attesterMnemonic)
   console.log('attester address:', attester.address)
-  return [claimer, claimerMnemonic, attester, attesterMnemonic]
+  return { claimer, attester, attesterMnemonic }
 }

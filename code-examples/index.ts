@@ -38,16 +38,12 @@ async function test_all() {
   let keystore
   let claimerLightDid
   let attesterFullDid
-  let attester
-  let attesterMnemonic
-  let claimer
-  let claimerMnemonic
   let ctype
   console.group('Account-1')
   account1()
   console.groupEnd()
   console.group('Account-2')
-  ;[claimer, claimerMnemonic, attester, attesterMnemonic] = account2()
+  const { claimer, attester, attesterMnemonic } = account2()
   console.groupEnd()
   await Promise.all([
     Kilt.Balance.makeTransfer(claimer.address, new BN(100)) //
