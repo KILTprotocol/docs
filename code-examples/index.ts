@@ -48,10 +48,10 @@ async function test_all() {
   console.groupEnd()
 
   await Promise.all([
-    Kilt.Balance.makeTransfer(claimer.address, new BN(5), 0) //
+    Kilt.Balance.makeTransfer(claimer.address, new BN(100)) //
       .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
       .then(() => console.log('Successfully transferred tokens to claimer')),
-    Kilt.Balance.makeTransfer(attester.address, new BN(5), 0) //
+    Kilt.Balance.makeTransfer(attester.address, new BN(100)) //
       .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAcc))
       .then(() => console.log('Successfully transferred tokens to attester')),
     ,
