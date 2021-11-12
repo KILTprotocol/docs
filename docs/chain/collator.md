@@ -82,7 +82,7 @@ Since the WASM runtime logic is part of the blockchain state itself and hence re
 
 The `--chain` parameter decides which blockchain the KILT collator will join.
 We need to pass this parameter to the parachain and the relaychain, since both chains are separate blockchains.
-The KILT parachain accepts an additional runtime parameter to select which runtime is executed.
+The KILT parachain accepts an additional parameter to select the environment to use for the WASM runtime execution.
 This can either be `peregrine` or `spiritnet`.
 For now this parameter is not required, since both runtimes are very similar and can run in the same environment, but it is safer to provide it already now.
 
@@ -110,7 +110,7 @@ Below is the command to build the KILT collator executable for the Peregrine net
 
 :::info
 
-We discourage to use the `develop` branch to build the executable. Instead, the last released version should be used.
+We discourage to use the `develop` branch to build the executable. Instead, the latest commit from `master` should be used.
 
 :::
 
@@ -208,7 +208,7 @@ If that is the case, run `sudo chown -R 1000:1000 $HOME/data` to give the contai
 ## Sync the Blockchain State
 
 Before a collator can author blocks, the node needs to fully sync up with both the parachain and the relaychain.
-Depending on the size of the blockchain states, it may take a number of minutes to several hours maybe even days for the node to catch up.
+Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
 More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
 ## Session Keys
@@ -220,7 +220,7 @@ To check whether the account has already some session keys set, the RPC `hasKey(
 
 :::note
 
-The session keys associate a collator node with an account on KILT.
+The session keys associate a collator node with an account on the blockchain.
 
 :::
 
@@ -331,7 +331,7 @@ A session takes 600 blocks or around 120~ minutes
 
 :::warning
 
-These steps should be followed only once a collator node has successfully linked a session key to its address by following the steps above.
+These steps should be followed only once a collator node has successfully linked a session key to its address and has synced the parachain and relaychain states by following the steps above.
 
 :::
 
@@ -346,18 +346,21 @@ The collator must call an extrinsic from the `parachainStaking -> joinCandidates
 `Developer -> Extrinsics -> Submission`
 
 1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Submit the following extrinsic: `parachainStaking -> joinCandidates(stake)`
+2. Select the following extrinsic: `parachainStaking -> joinCandidates(stake)`
 3. Insert the staked KILT amount for the collator
+4. Sign and submit the extrinsic
 
 :::info
 
-A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown. In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s. So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
+A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
+In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
+So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
 
 :::
 
 ![](/img/chain/parachainStaking-joinCandidates.png)
 
-A collator can check the current top candidates to see the position and required staked amount to join the network. 
+A collator candidate can check the current top candidates to see their position and required staked amount to become an active collator, i.e., to start authoring new blocks.
 
 `Developer -> Chain state -> Storage`
 
@@ -365,7 +368,6 @@ A collator can check the current top candidates to see the position and required
 2. Execute the query by pressing the "+" button on the right side
 
 If the collator has enough self-stake and delegator stake it will be selected to collate.
-Once the collator has been chosen, it will be part of the `topCandidates()` set.
 A time period of two sessions must pass before the collator will be authoring blocks, e.g.
 after the rest of current session and the entire next one.
 
@@ -380,7 +382,7 @@ The corresponding extrinsics for these operations are `parachainStaking -> candi
 
 ## Monitoring
 
-It would be ideal if the host being monitored is not the host monitoring, a.k.a., if the monitoring process does not run on the same host as the collator process.
+It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the collator process.
 However, in cases of limited resources, the two can also co-exist on the same host.
 
 The monitoring process collects two types of metrics: **Node Exporter metrics** and **blockchain metrics**.
@@ -392,16 +394,25 @@ For cloud-based solutions, the prometheus process must be publicly accessible, e
 
 :::
 
-### Prerequisites
+### What will be installed
+
+The docker compose setup creates and deploys up to four containers, all of which are optional:
+
+- **Node Exporter**: collects metrics from the host machine including CPU, memory, and storage usage, and network traffic statistics
+- **Prometheus**: stores the metrics collected by Node Exporter and collects additional metrics from the blockchain node
+- **Grafana**: shows the collected metrics in a customisable dashboard and can be configured to send alerts when certain conditions are met
+- **Collator**: the collator node itself which runs one of the KILT runtimes available
+
+### Installation
 Install the latest version of docker-compose from the [official docker-compose installation guide](https://docs.docker.com/compose/install/), then:
 
-1. Clone or download the monitoring template from the [KILT chain repo](https://github.com/KILTprotocol/docs)
+1. Clone the [entire KILT chain repo](https://github.com/KILTprotocol/docs) or download only the [monitoring template](https://github.com/KILTprotocol/docs/tree/master/collator).
 2. Change directory to the above with ```cd docs/collator```
 3. Edit the `.env` file and insert grafana admin and password
 4. Depending on the installation type either:
-  - run `docker-compose up -d` to install only prometheus and node exporter or 
-  - run `docker-compose up --profile grafana -d` to install prometheus through grafana or
-  - run `docker-compose --profile collator --profile grafana up -d` to install prometheus **and** grafana with the collator 
+  - run `docker-compose up -d` to install only Node Exporter and prometheus or 
+  - run `docker-compose up --profile grafana -d` to install Node Exporter, prometheus and grafana or
+  - run `docker-compose --profile collator --profile grafana up -d` to install Node Exporter, prometheus, grafana **and** a collator node
 
 5. Secure the endpoints:
     1. Install nginx with certbot ```sudo apt install nginx certbot python3-certbot-nginx```
@@ -420,13 +431,12 @@ Install the latest version of docker-compose from the [official docker-compose i
 The configuration can be checked by visiting `https://localhost:3000` and authenticating with the username and password set in `.env` at step 3.
 
 ### Configuring Alert Notification Channel
-Choose any of the supported notification channels and follow the [Grafana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) to receive alerts and notifications.
+Choose any of the supported notification channels and follow the [grafana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) to receive alerts and notifications.
 
 Overall, for monitoring we recommend the following stack:
 - Prometheus
 - Grafana
 - Node exporter
-- Slack
 - Nginx
 
 ## Bootnodes
@@ -555,7 +565,7 @@ The same process that includes generating and registering sessions keys and join
 
 ## Troubleshooting
 
-There are a few things that can checked to make sure everything is setup correctly.
+There are a few things that can be checked to make sure everything is set up correctly.
 
 If, from any network explorer, e.g., the one offered by PolkadotJS Apps, the collator's account is shown next to some of the blocks, then the collator is correctly producing blocks and getting rewarded for it.
 If the logs print the message that starts with a :gift: emoji it indicates that the collator setup is correct but that the blocks produced are not included by the relaychain. This typically signals some issues about the node hardware or connectivity.

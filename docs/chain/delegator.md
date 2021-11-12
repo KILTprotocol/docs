@@ -1,6 +1,6 @@
 ---
 id: delegator
-title: Become a Delegator
+title: Become a delegator
 ---
 ## How to Join
 
