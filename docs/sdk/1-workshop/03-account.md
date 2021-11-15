@@ -27,7 +27,11 @@ All we need to create an account is a mnemonic.
 
 :::info mnemonic
 
-In cryptography, a mnemonic usually consists of 12 or 24 random series of words. For example, `gold upset segment cake universe` is a mnemonic. It's used to generate signing keypairs. What's great about a mnemonic is that it's **human-readable**. A person can memorize it, and use it later to re-generate their keypairs and address.
+In cryptography, a mnemonic usually consists of 12 or 24 random series of words.
+For example, `gold upset segment cake universe` is a mnemonic.
+It's used to generate signing keypairs.
+What's great about a mnemonic is that it's **human-readable**.
+A person can memorize it, and use it later to re-generate their keypairs and address.
 
 :::
 
@@ -66,7 +70,9 @@ Mnemonic: gold upset segment cake universe carry demand comfort dawn invite elem
 Address: 5CUoo2vAegeaZHPNdxZyuMesR3RWYBKHj4jfVyj4FXzpXPuR
 ```
 
-You want to run this command twice, in order to generate 2 accounts: the <span class="label-role attester">attester</span>'s and the <span class="label-role claimer">claimer</span>'s. Hence, replace the content of `account.js` with the following code:
+You want to run this command twice, in order to generate 2 accounts:
+the <span class="label-role attester">attester</span>'s and the <span class="label-role claimer">claimer</span>'s.
+Hence, replace the content of `account.js` with the following code:
 
 <CodeBlock className="language-ts">
   {Example2}

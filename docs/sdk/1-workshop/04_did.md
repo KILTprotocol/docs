@@ -44,12 +44,13 @@ Full DID is robust and allows for more use cases.
 
 - Store multiple different keys and key types
 - Has all features of a light DID
-- Write deelgations on the blockchain with the key type
-- Creation of ctypes and attestations to be stored on the chain.
+- Write delegations on the blockchain with the key type
+- Creation of ctypes and attestations to be stored on the chain
 
 :::
 
-In order for the <span class="label-role attester">attesters</span> to create the DID they have to pay the angel’s share (gas or transaction fee) and despoit in KILT Tokens. So you'll need tokens to create a full DID.
+In order for the <span class="label-role attester">attesters</span> to create the DID they have to pay the angel’s share (gas or transaction fee) and despoit in KILT Tokens.
+So you'll need tokens to create a full DID.
 
 Go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) to request tokens for your `<attesterAddress>`.
 
@@ -70,9 +71,13 @@ A keystore has multiple purposes:
 
 First, the construction of the keystore.
 
-**Caution the following keystore is only for demo purposes and considered unsafe**
+:::danger
 
-create a new file `keystore.js` and copy the following code:
+Caution the following keystore is only for demo purposes and considered unsafe.
+
+:::
+
+Create a new file `keystore.js` and copy the following code:
 
 <CodeBlock className="language-ts">
   {Example1}
@@ -80,14 +85,14 @@ create a new file `keystore.js` and copy the following code:
 
 Taking the claimer and attester accounts to generate the DID and the assoicated keys.
 
-Create a new file `claimersDid.js`
+Create a new file `claimersDid.js`.
 To generate a light DID, you will need the claimers account:
 
 <CodeBlock className="language-ts">
   {Example2}
 </CodeBlock>
 
-Create a new file `attestersDid.js`
+Create a new file `attestersDid.js`.
 To generate a full DID, you will need the claimers account and creation of the corresponding keypairs:
 
 <CodeBlock className="language-ts">

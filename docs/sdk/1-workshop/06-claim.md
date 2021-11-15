@@ -10,7 +10,9 @@ import Example2 from '!!raw-loader!../../../code-examples/4_2_claim.ts';
 In this section, you'll play the role of a <span class="label-role claimer">claimer</span>.
 
 - You'll first make a claim about yourself in the form of a `Claim` object;
-- But a claim in itself has no value. To become valid in the eyes of <span class="label-role verifier">verifiers</span>, it needs to be attested by an entity that <span class="label-role verifier">verifiers</span> trust: an <span class="label-role attester">attester</span>. So you'll create a `RequestForAttestation` object from your `Claim` object, sign it with the DID, so that an <span class="label-role attester">attester</span> can attest it.
+- But a claim in itself has no value.
+To become valid in the eyes of <span class="label-role verifier">verifiers</span>, it needs to be attested by an entity that <span class="label-role verifier">verifiers</span> trust: an <span class="label-role attester">attester</span>.
+So you'll create a `RequestForAttestation` object from your `Claim` object, sign it with the DID, so that an <span class="label-role attester">attester</span> can attest it.
 - The claim will eventually be attested.
 
 We'll look into the attestation in the next steps - for now, let's just focus on your claim.

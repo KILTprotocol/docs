@@ -8,7 +8,8 @@ import Example1 from '!!raw-loader!../../../code-examples/ctype.txt';
 import Example2 from '!!raw-loader!../../../code-examples/3_1_ctypeFromSchema.ts';
 import Example3 from '!!raw-loader!../../../code-examples/3_2_ctypeFromSchema.ts';
 
-Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, first a claim type (CTYPE for short) needs to be found or created. It requires an account and a full DID with tokens in order to pay the Angel's fee and deposit of a CType.
+Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, first a claim type (CType for short) needs to be found or created.
+It requires an account and a full DID with tokens in order to pay the Angel's fee and deposit of a CType.
 
 A claim type (CTYPE for short) is a KILT-specific term, but the concept is simple:  
 A CTYPE defines the structure of a claim. You can think of it as the data model for your claim.
