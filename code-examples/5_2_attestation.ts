@@ -1,12 +1,16 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function main(
+export async function main(
   requestForAttestation: Kilt.RequestForAttestation
-): boolean {
+): Promise<boolean> {
+  await Kilt.connect()
+
   const isDataValid = requestForAttestation.verifyData()
-  const isSignatureValid = requestForAttestation.verifySignature()
+  const isSignatureValid = await requestForAttestation.verifySignature()
   console.log('isDataValid: ', isDataValid)
   console.log('isSignatureValid: ', isSignatureValid)
+
+  await Kilt.disconnect()
 
   return isDataValid && isSignatureValid
 }

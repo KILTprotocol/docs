@@ -2,13 +2,14 @@
 id: ctype
 title: 💠 CTYPE
 ---
+
 import CodeBlock from '@theme/CodeBlock';
-import Example2 from '!!raw-loader!../../../code-examples/2_ctypeFromSchema.ts';
-
 import Example1 from '!!raw-loader!../../../code-examples/ctype.txt';
+import Example2 from '!!raw-loader!../../../code-examples/3_1_ctypeFromSchema.ts';
+import Example3 from '!!raw-loader!../../../code-examples/3_2_ctypeFromSchema.ts';
 
-
-Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, they first need a claim type (CTYPE for short).
+Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, first a claim type (CType for short) needs to be found or created.
+It requires an account and a full DID with tokens in order to pay the Angel's fee and deposit of a CType.
 
 A claim type (CTYPE for short) is a KILT-specific term, but the concept is simple:  
 A CTYPE defines the structure of a claim. You can think of it as the data model for your claim.
@@ -42,34 +43,34 @@ Let's have a look at these attributes.
 | `owner`                 | The public address of the user who created this CTYPE.                   |
 | `hash`                  | Most important attribute, the hash is the CTYPE's **digital footprint**. |
 
-A CTYPE is stored on the KILT blockchain - more exactly, the CTYPE's hash is stored on the KILT blockchain.
-The full CTYPE can be stored elsewhere, e.g., on a regular web service.
+A CTYPE is stored on the KILT blockchain.
 
-In a real-life setup, a user would simply retrieve an existing CTYPE from a repository of CTYPEs for example via a REST API.
+In a real-life setup, a user would simply retrieve an existing CTYPE from the chain or a repository of CTYPEs for example via a REST API.
 
-In this tutorial, to keep it simple we'll use a CTYPE that we already know exists on the KILT test blockchain.
+In this tutorial, we'll create and try to store a CTYPE on the KILT test blockchain.
 
 ## Code
 
-Create a new file `ctype.json`.
+Create a new file `ctype.js`
 
-Open it and paste the following:
+Copy the following to create a `CType` from a schema:
 
-<!--TODO: This needs to be updated with the correct CTYPE saved on the testnet after it is restarted. -->
-
-<!-- <CodeBlock className="language-json">
+<CodeBlock className="language-ts">
   {Example1}
-</CodeBlock> -->
+</CodeBlock>
 
-OK, now you've got all you need to create a claim: an identity and a CTYPE.
+Once you have constructed the schema, pass the attester, attestersFullDid, keystore and ctype.
 
-Let's move on!
+Creating a new file `storedCtype.js`
 
-### Side note: How to create a `CType` from a schema
-
-This step is **not part of the tutorial** and should be regarded as additional information on how to create a CType in the first place.
-Normally, you would start with a schema which does not have a defined `$id` yet:
+Copy the following to store the `CType` on-chain, an account must have the require amount to pay the Angel's fee and deposit:
 
 <CodeBlock className="language-ts">
   {Example2}
 </CodeBlock>
+
+Create a new file `ctype.json` and store the ctype.
+
+OK, now you've got all you need to create a claim: a light DID and a CTYPE.
+
+Let's move on!
