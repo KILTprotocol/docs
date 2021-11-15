@@ -3,7 +3,7 @@ import { KeyringPair } from '@polkadot/keyring/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { DefaultResolver, DemoKeystore, DidChain, SigningAlgorithms, FullDidDetails } from '@kiltprotocol/did'
 import { KeyRelationship, KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
-import { init as kiltInit } from '@kiltprotocol/core'
+import { init, disconnect } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -12,7 +12,7 @@ export async function main(
   authenticationSeed: string,
   fullDid: FullDidDetails
 ) {
-  await kiltInit({ address: 'wss://peregrine.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const newAuthenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -60,4 +60,6 @@ export async function main(
   await BlockchainUtils.signAndSubmitTx(didSignedRemoveExtrinsic, kiltAccount, {
     resolveOn,
   })
+
+  await disconnect()
 }

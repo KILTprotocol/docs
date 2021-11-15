@@ -1,6 +1,6 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { init as kiltInit } from '@kiltprotocol/core'
+import { init, disconnect } from '@kiltprotocol/core'
 import { DefaultResolver, DemoKeystore, DidUtils, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
 import { KeyRelationship, SubscriptionPromise, IDidResolvedDetails } from '@kiltprotocol/types'
 
@@ -12,7 +12,7 @@ export async function main(
   authenticationSeed: string,
   encryptionSeed: string
 ): Promise<IDidResolvedDetails> {
-  await kiltInit({ address: 'wss://peregrine.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -57,6 +57,7 @@ export async function main(
 
   const fullDid = await DefaultResolver.resolveDoc(did)
 
+  await disconnect()
   if (fullDid === null) {
     throw 'Could not find DID document for the given identifier'
   }
