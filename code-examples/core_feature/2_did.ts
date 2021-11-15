@@ -19,7 +19,7 @@ export async function main() {
   // Generate the seed for the encryption key.
   const encryptionSeed = '0x987654321'
 
-  // Ask the keystore to generate a new keypair to use for encryption.
+  // Use the keystore to generate a new keypair to use for encryption.
   const encryptionKeyPublicDetails = await keystore.generateKeypair({
     alg: EncryptionAlgorithms.NaclBox,
     seed: encryptionSeed,
