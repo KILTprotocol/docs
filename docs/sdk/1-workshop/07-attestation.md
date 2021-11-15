@@ -2,24 +2,25 @@
 id: attestation
 title: 🔖 Attestation
 ---
+
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/4_1_attestation.ts';
-import Example2 from '!!raw-loader!../../../code-examples/4_2_attestation.ts';
-import Example3 from '!!raw-loader!../../../code-examples/4_3_attestation.ts';
+import Example1 from '!!raw-loader!../../../code-examples/5_1_attestation.ts';
+import Example2 from '!!raw-loader!../../../code-examples/5_2_attestation.ts';
+import Example3 from '!!raw-loader!../../../code-examples/5_3_attestation.ts';
 
 In this section, you'll play the role of the <span class="label-role attester">attester</span>:
 
 - You'll take a `RequestForAttestation` object;
 - Attest it;
 - Store the attestation on the chain (more specifically only its hash, we'll get to that);
-- Build the `AttestedClaim` object which will be send back to the <span class="label-role claimer">claimer</span>.
+- Build the `Credential` object which will be send back to the <span class="label-role claimer">claimer</span>.
 
 ## Request KILT tokens
 
 When writing the hash of attestations on the blockchain, <span class="label-role attester">attesters</span> have to pay the angel’s
-share (gas or transaction fee) in KILT Tokens. So you'll need tokens to attest a claim.
+share (gas or transaction fee) and the deposit in KILT Tokens. So you'll need tokens to attest a claim.
 
-Go to the [faucet] and request tokens for your `<attesterAddress>`.
+If you haven't already requested KILT tokens, go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) and request tokens for your `<attesterAddress>`.
 
 Sadly these are just play tokens, not real money.
 
@@ -39,7 +40,7 @@ In this tutorial, you can either:
 
 In the following, we'll refer to it as `<requestForAttestationJSONString>`.
 
-Paste the following code in `attestation.js` (make sure to replace `<attesterMnemonic>` and `<requestForAttestationJSONString>` with the relevant objects):
+Paste the following code in `attestation.js` (make sure to replace `<attesterMnemonic>`, `<attestersFullDid>`, `<attestersAccount>` and `<requestForAttestationJSONString>` with the relevant objects):
 
 <CodeBlock className="language-ts">
   {Example1}
@@ -73,10 +74,10 @@ You should see in your logs:
 
 - `true` and `true` if the signature and data are valid (they should be);
 - The block hash in which the transaction was finalized;
-- The `AttestedClaim` object.
+- The `Credential` object.
 
-Copy the `AttestedClaim` object, you'll need it soon.
+Copy the `Credential` object, you'll need it soon.
 
-Your job as an <span class="label-role attester">attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `AttestedClaim` object for the <span class="label-role claimer">claimer</span>.
+Your job as an <span class="label-role attester">attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `Credential` object for the <span class="label-role claimer">claimer</span>.
 
 [faucet]: https://faucet.kilt.io/
