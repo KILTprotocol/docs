@@ -1,6 +1,6 @@
 ---
 id: delegator
-title: Become a Delegator
+title: Become a delegator
 ---
 ## How to Join
 
@@ -32,7 +32,7 @@ A Delegator can increase and decrease the stake by calling either  `delegator_st
 
 1. Using the selected account: Select the Delegator Account.
 2. Submit the following extrinsic: parachainStaking -> delegator_stake_more or delegator_stake_less.
-3. Selecting the Collator account: Choose the desired stake amount.
+3. Selecting the collator account: Choose the desired stake amount.
 
 ## Revoking
 
