@@ -63,7 +63,8 @@ Before the creation of a DID there needs to be a keystore.
 A keystore has multiple purposes:
 
 - The keystore can hold multiple DID keypairs and key types
-- The keystore can encrpyt and decrypt the keys and the corresponding data
+- The keystore stores the keys encrypted
+- The keystore can be used to encrypt and decrypt data
 
 :::
 
