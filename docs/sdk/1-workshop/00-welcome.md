@@ -3,7 +3,7 @@ id: welcome
 title: 👋🏻 Welcome
 ---
 
-SDK version **0.21.0**.
+SDK version **0.24.0**.
 
 :::info What you can expect
 
