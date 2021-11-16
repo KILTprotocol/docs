@@ -107,7 +107,7 @@ Since the collator will collate only for the parachain, there is no need to add 
 
 Due to an issue in the caching implementation in substrate, it is recommended to reduce the cache size.
 Otherwise the node might get blacklisted by other peers and ultimately disconnected from the p2p network.
-This would prevent a collator from producing blocks.
+This leads to a longer block time and a loss of rewards for the collator.
 
 Through out this guide the option `--state-cache-size=1` was added to reduce the cache size to 1 Byte.
 
