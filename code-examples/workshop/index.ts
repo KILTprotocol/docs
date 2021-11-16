@@ -28,7 +28,7 @@ const faucetSeed = process.env['FAUCET_SEED']
 const EXISTENTIAL_DEPOSIT = new BN(10 ** 13)
 const ENDOWMENT = EXISTENTIAL_DEPOSIT.muln(1000)
 
-async function test_all() {
+export async function test_all() {
   await Kilt.init({ address: wsAddress })
 
   const keyring = new Kilt.Utils.Keyring({
@@ -111,4 +111,3 @@ async function test_all() {
   await Kilt.disconnect()
 }
 
-test_all()
