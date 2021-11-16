@@ -103,6 +103,14 @@ This makes sure that the keyfiles are not accidentally lost or published when th
 You can configure where to store the session keys using the `--keystore-path` option.
 Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
+#### Storage Root Error
+
+Due to an issue in the caching implementation in substrate, it is recommended to reduce the cache size.
+Otherwise the node might get blacklisted by other peers and ultimately disconnected from the p2p network.
+This would prevent a collator from producing blocks.
+
+Through out this guide the option `--state-cache-size=1` was added to reduce the cache size to 1 Byte.
+
 ### Obtain the node executable
 
 <Tabs
@@ -160,6 +168,7 @@ To join the **spiritnet** network, run:
 
 ```
 ./target/release/kilt-parachain \
+  --state-cache-size=1 \
   --chain=spiritnet \
   --runtime=spiritnet \
   --rpc-port=9933 \
@@ -182,6 +191,7 @@ To join the **peregrine** network, run:
 
 ```
 ./target/release/kilt-parachain \
+  --state-cache-size=1 \
   --chain=./dev-specs/kilt-parachain/peregrine-kilt.json \
   --runtime=peregrine \
   --rpc-port=9933 \
@@ -209,6 +219,7 @@ To start the **spiritnet** collator container, run:
 
 ```bash=
 docker run -p 127.0.0.1:9933:9933 -v ~/data:/data kiltprotocol/kilt-node:latest \
+  --state-cache-size=1 \
   --chain=spiritnet \
   --runtime=spiritnet \
   --rpc-port=9933 \
@@ -231,6 +242,7 @@ To start the **peregrine** collator container, run:
 
 ```bash=
 docker run -p 127.0.0.1:9933:9933 -v ~/data:/data kiltprotocol/kilt-node:latest \
+  --state-cache-size=1 \
   --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
   --runtime=peregrine \
   --rpc-port=9933 \
@@ -395,7 +407,7 @@ These steps should be followed only once a collator node has successfully linked
 The maximum number of **active** collators is currently 16 on Peregrine and 17 on Spiritnet.
 
 A collator staking amount must be:
-- minimum 10,000 KILT tokens 
+- minimum 10,000 KILT tokens
 - maximum 200,000 KILT tokens.
 
 The collator must call an extrinsic from the `parachainStaking -> joinCandidates(stake)` with the desired stake to join the candidate pool.
@@ -467,7 +479,7 @@ Install the latest version of docker-compose from the [official docker-compose i
 2. Change directory to the above with ```cd docs/collator```
 3. Edit the `.env` file and insert grafana admin and password
 4. Depending on the installation type either:
-  - run `docker-compose up -d` to install only Node Exporter and prometheus or 
+  - run `docker-compose up -d` to install only Node Exporter and prometheus or
   - run `docker-compose up --profile grafana -d` to install Node Exporter, prometheus and grafana or
   - run `docker-compose --profile collator --profile grafana up -d` to install Node Exporter, prometheus, grafana **and** a collator node
 
