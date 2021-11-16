@@ -4,9 +4,9 @@ title: 👤 Did
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/2_1_did.ts';
-import Example2 from '!!raw-loader!../../../code-examples/2_2_did.ts';
-import Example3 from '!!raw-loader!../../../code-examples/2_3_did.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/2_1_did.ts';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/2_2_did.ts';
+import Example3 from '!!raw-loader!../../../code-examples/workshop/2_3_did.ts';
 
 Time to make a DID using the previously created accounts for the <span class="label-role claimer">claimer</span> and the <span class="label-role attester">attester</span>.
 

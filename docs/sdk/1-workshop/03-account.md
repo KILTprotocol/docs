@@ -4,8 +4,8 @@ title: 👤 Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/1_1_account.ts';
-import Example2 from '!!raw-loader!../../../code-examples/1_2_account.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/1_1_account.ts';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/1_2_account.ts';
 
 Let's create the <span class="label-role claimer">claimer</span> and the <span class="label-role attester">attester</span> account.
 

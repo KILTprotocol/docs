@@ -4,8 +4,8 @@ title: 💬 Claim
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/4_1_claim.ts';
-import Example2 from '!!raw-loader!../../../code-examples/4_2_claim.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/4_1_claim.ts';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/4_2_claim.ts';
 
 In this section, you'll play the role of a <span class="label-role claimer">claimer</span>.
 
