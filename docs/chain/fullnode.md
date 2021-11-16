@@ -94,20 +94,16 @@ Once you have the image, you can spin up the container. Similar options are used
 
 ```bash
 docker run data:/data kiltprotocol/kilt-node:latest \
- --chain={spiritnet, peregrine} \
- --runtime={spiritnet, peregrine} \
- --rpc-port=9933 \
- --rpc-external \
- --rpc-cors=all \
- --rpc-methods=unsafe \
- --name="name of full node" \
- --execution=wasm \
- --listen-addr=/ip4/0.0.0.0/tcp/30336 \
- --base-path=/data/parachain \
- --pruning archive \
- -- \
- --chain=kusama \
- --listen-addr=/ip4/0.0.0.0/tcp/30333 \
- --base-path=/data/relay \
- --execution=wasm
+  --chain={spiritnet, peregrine} \
+  --runtime={spiritnet, peregrine} \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-external \
+  --ws-external \
+  --name="name of full node" \
+  --execution=wasm \
+  --pruning archive \
+  -- \
+  --chain=kusama \
+  --execution=wasm
 ```
