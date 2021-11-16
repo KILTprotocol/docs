@@ -51,16 +51,20 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'Element / Matrix',
+              href: 'https://matrix.to/#/#kilt-general:matrix.org',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/hX4pc8rdHS',
+            },
+            {
               label: 'Telegram',
               href: 'https://t.me/KILTProtocolChat',
             },
             {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/hX4pc8rdHS',
             },
             {
               label: 'Clan KILT (Unofficial)',
@@ -72,7 +76,7 @@ module.exports = {
           title: 'Resources',
           items: [
             {
-              label: 'KILTprotocol',
+              label: 'KILT Protocol',
               href: 'https://www.kilt.io/',
             },
             {

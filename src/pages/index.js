@@ -27,10 +27,7 @@ const featureRows = [
       imageUrlDark: 'img/expert_dark.svg',
       link: 'docs/sdk/workshop/welcome',
       description: (
-        <>
-          Go through our workshop and explore the most fundamental features of
-          the KILTprotocol.
-        </>
+        <>Explore the most fundamental features of the KILTprotocol.</>
       ),
     },
     {
@@ -39,10 +36,7 @@ const featureRows = [
       imageUrlDark: 'img/whitepaper_dark.svg',
       link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
       description: (
-        <>
-          Read up on the theoretical concepts and motivations behind the
-          KILTprotocol.
-        </>
+        <>Read up on the theoretical concepts behind KILT Protocol.</>
       ),
     },
   ],
