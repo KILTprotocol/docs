@@ -3,8 +3,9 @@ id: fullnode
 title: How to set up a Full Node
 ---
 
-We will guide you through the process of connecting to a full node.
-A full node acts differently from a collator node. A full node can't author blocks though the acts as a backend, checks the state of the chain to submit and validate extrinsicis directly on the network.
+We will guide you through the process of setting up and connecting to a full node.
+In contrast to a collator, full nodes to not author blocks.
+They act as a backend for Websites, verify new blocks and validate extrinsics (e.g. coin transfers and other transactions) before they are gossiped to the collator nodes.
 
 ## Setup
 
@@ -14,14 +15,16 @@ There are currently two different runtimes (i.e., two different parachain enviro
 - spiritnet: the official public network, which contains only stable features.
 
 :::info
-The remainder of the guide explaining how to run a full node is for the official spiritnet. Nevertheless, we recommend to try out the setup on our peregrine testnet first. Hence, at each step where it is applicable, we indicate what differs between the peregrine and spiritnet configuration for the full node to join either network.
+The remainder of the guide explaining how to run a full node is for the official spiritnet.
+Nevertheless, we recommend to try out the setup on our peregrine testnet first.
+Hence, at each step where it is applicable, we indicate what differs between the peregrine and spiritnet configuration for the full node to join either network.
 :::
 
 ### WASM runtime execution
 
 A KILT full node should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
 The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
-When this happens the full node will crash and will stop producing blocks.
+When this happens the full node will crash and will stop synchronizing with the network.
 Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all nodes should execute the WASM version of the runtime logic.
 
 ### Specify the right chain spec
@@ -41,7 +44,8 @@ This makes sure that the keyfiles are not accidentally lost or published when th
 
 ## Running an Archive Node
 
-We recommend following the instructions in the KILT chain repository. Below is the command to build the KILT full node executable. The command must be run from the root directory of the repository after it has been cloned.
+Below is the command to build the KILT full node executable.
+The command must be run from the root directory of the repository after it has been cloned.
 
 ```bash
 # Set up the build environment by installing the Rust compiler.
@@ -77,21 +81,25 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
 ## Sync the Blockchain State
 
 The node needs to fully sync up with both the parachain and the relaychain.
-Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
-More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
+Depending on the size of the blockchain state and your hardware, it may take a number of hours to few days for the node to catch up.
+More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
 ## From Docker
 
-A container can be used to run a node. To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`. First, you can fetch the pre-built image or if you have built and complied the chain yourself you will need to create an image of it, the documentation will not go into detail how to create your own image:
+The full node can also be started inside a container.
+To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.
+First, you can fetch the pre-built image:
 
 ```bash
 docker pull kiltprotocol/kilt-node:latest
 ```
 
-Once you have the image, you can spin up the container. Similar options are used as the previous steps.
+Once you have the image, you can spin up the container.
+Make sure to choose whether you want to start a full node for peregrine or spiritnet by selected the correct runtime and chain.
 
 ```bash
 docker run data:/data kiltprotocol/kilt-node:latest \
+  --base-path=/data/para
   --chain={spiritnet, peregrine} \
   --runtime={spiritnet, peregrine} \
   --rpc-port=9933 \
@@ -102,6 +110,7 @@ docker run data:/data kiltprotocol/kilt-node:latest \
   --execution=wasm \
   --pruning archive \
   -- \
+  --base-path=/data/relay \
   --chain=kusama \
   --execution=wasm
 ```
