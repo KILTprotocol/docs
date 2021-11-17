@@ -3,6 +3,9 @@ id: fullnode
 title: How to set up a Full Node
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 We will guide you through the process of setting up and connecting to a full node.
 In contrast to a collator, full nodes to not author blocks.
 They act as a backend for Websites, verify new blocks and validate extrinsics (e.g. coin transfers and other transactions) before they are gossiped to the collator nodes.
@@ -42,7 +45,17 @@ The `--base-path` parameter specifies where all the persistent files must be sto
 By default the session keys will also be stored in the _base path_, but we recommend to separate them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is backed up or restored.
 
-## Running an Archive Node
+<Tabs
+groupId="exec-strategy"
+defaultValue="Binary"
+values={[
+{label: 'Binary', value: 'Binary'},
+{label: 'Docker', value: 'Docker'},
+]}>
+
+<TabItem value="Binary">
+
+## Building the full node
 
 Below is the command to build the KILT full node executable.
 The command must be run from the root directory of the repository after it has been cloned.
@@ -60,7 +73,9 @@ We discourage to use the `develop` branch to build the executable. Instead, the 
 
 :::
 
-The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully.
+### Running an Archive Node
+
+The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully. To run an Archive full node add the option `--pruning archive` to the command.
 
 ```bash
 ./target/release/kilt-parachain \
@@ -78,16 +93,16 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
   --execution=wasm
 ```
 
-## Sync the Blockchain State
+</TabItem>
+<TabItem value="Docker">
 
-The node needs to fully sync up with both the parachain and the relaychain.
-Depending on the size of the blockchain state and your hardware, it may take a number of hours to few days for the node to catch up.
-More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
-
-## From Docker
+## Running an Archive Node from Docker
 
 The full node can also be started inside a container.
 To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.
+
+To run an Archive full node add the option `--pruning archive` to the command.
+
 First, you can fetch the pre-built image:
 
 ```bash
@@ -114,3 +129,12 @@ docker run data:/data kiltprotocol/kilt-node:latest \
   --chain=kusama \
   --execution=wasm
 ```
+
+</TabItem>
+</Tabs>
+
+## Sync the Blockchain State
+
+The node needs to fully sync up with both the parachain and the relaychain.
+Depending on the size of the blockchain state and your hardware, it may take a number of hours to few days for the node to catch up.
+More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
