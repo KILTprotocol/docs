@@ -45,7 +45,7 @@ The `--base-path` parameter specifies where all the persistent files must be sto
 By default the session keys will also be stored in the _base path_, but we recommend to separate them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is backed up or restored.
 
-## Building the full node
+## Running a full node
 
 <Tabs
 groupId="exec-strategy"
@@ -56,6 +56,8 @@ values={[
 ]}>
 
 <TabItem value="Binary">
+
+### Building the full node
 
 Below is the command to build the KILT full node executable.
 The command must be run from the root directory of the repository after it has been cloned.
@@ -73,7 +75,7 @@ We discourage to use the `develop` branch to build the executable. Instead, the 
 
 :::
 
-### Running an Archive Node
+### An archive node
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully. To run an Archive full node add the option `--pruning archive` to the command.
 
@@ -96,7 +98,7 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
 </TabItem>
 <TabItem value="Docker">
 
-### Running an Archive Node from Docker
+### An archive node from Docker
 
 The full node can also be started inside a container.
 To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.
@@ -133,7 +135,7 @@ docker run data:/data kiltprotocol/kilt-node:latest \
 </TabItem>
 </Tabs>
 
-## Sync the Blockchain State
+## Sync the blockchain state
 
 The node needs to fully sync up with both the parachain and the relaychain.
 Depending on the size of the blockchain state and your hardware, it may take a number of hours to few days for the node to catch up.
