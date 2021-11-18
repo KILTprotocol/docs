@@ -45,6 +45,8 @@ The `--base-path` parameter specifies where all the persistent files must be sto
 By default the session keys will also be stored in the _base path_, but we recommend to separate them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is backed up or restored.
 
+## Building the full node
+
 <Tabs
 groupId="exec-strategy"
 defaultValue="Binary"
@@ -54,8 +56,6 @@ values={[
 ]}>
 
 <TabItem value="Binary">
-
-## Building the full node
 
 Below is the command to build the KILT full node executable.
 The command must be run from the root directory of the repository after it has been cloned.
@@ -96,7 +96,7 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
 </TabItem>
 <TabItem value="Docker">
 
-## Running an Archive Node from Docker
+### Running an Archive Node from Docker
 
 The full node can also be started inside a container.
 To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.
