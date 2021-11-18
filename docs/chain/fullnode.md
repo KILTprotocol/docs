@@ -90,6 +90,7 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
+  --state-cache-size=1 \
   -- \
   --chain=kusama \
   --execution=wasm
@@ -126,6 +127,7 @@ docker run data:/data kiltprotocol/kilt-node:latest \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
+  --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
   --chain=kusama \
