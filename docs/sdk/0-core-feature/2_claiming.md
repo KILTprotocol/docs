@@ -2,6 +2,10 @@
 id: claiming
 title: Claiming
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/claiming_feature/1_claiming.ts';
+import Example2 from '!!raw-loader!../../../code-examples/claiming_feature/2_claiming.ts';
+import Example3 from '!!raw-loader!../../../code-examples/claiming_feature/3_claiming.ts';
 
 There are three actors in the KILT workflow: Claimers, Attesters and Verifiers.
 
@@ -17,40 +21,17 @@ When you create a CType from a schema, the SDK determines whether your CType ali
 
 The owner of the CType can store it on their desktop or on a regular web service. Only a hash of the CType is stored on the KILT blockchain, verifying its validity.
 
-```js
-const ctype = Kilt.CType.fromSchema({
-  $schema: "http://kilt-protocol.org/draft-01/ctype#",
-  title: "Drivers License",
-  properties: {
-    name: {
-      type: "string",
-    },
-    age: {
-      type: "integer",
-    },
-  },
-  type: "object",
-});
-```
+<CodeBlock className="language-ts">
+  {Example1}
+</CodeBlock>
 
 ## Create your Claim from a CType
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
 
-```js
-const claimer = Kilt.Identity.buildFromMnemonic(claimerMnemonic);
-
-const rawClaim = {
-  name: "Alice",
-  age: 29,
-};
-
-const claim = Kilt.Claim.fromCTypeAndClaimContents(
-  ctype,
-  rawClaim,
-  claimer.address
-);
-```
+<CodeBlock className="language-ts">
+  {Example2}
+</CodeBlock>
 
 ## Request an Attestation
 
@@ -58,9 +39,6 @@ After creating your claim, you can request an attestation by creating another ob
 
 We recommend encrypting this object before sending it by calling encrypt. Additionally, you can also compress the body of the message.
 
-```js
-const requestForAttestation = Kilt.RequestForAttestation.fromClaimAndIdentity(
-  claim,
-  claimer
-);
-```
+<CodeBlock className="language-ts">
+  {Example3}
+</CodeBlock>
