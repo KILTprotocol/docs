@@ -537,7 +537,7 @@ Don't use this binary for running the collator!
 :::
 
 ```bash=
-cargo build --release -p kilt-parchain --features=runtime-benchmarks
+cargo build --release -p kilt-parachain --features=runtime-benchmarks
 ```
 
 The benchmarks can be run to compare the server's hardware capabilities against the referenced hardware.
