@@ -3,6 +3,8 @@ id: overview
 title: 👓 Overview
 ---
 
+import Mermaid from '@theme/Mermaid';
+
 In this tutorial, we'll run through the full story of a claim.
 
 To do so, three actors will be involved: a <span class="label-role claimer">claimer</span>, an <span class="label-role attester">attester</span> and a <span class="label-role verifier">verifier</span>. You'll be playing all three roles (unless you're in a KILT workshop and different participants are playing different roles).
@@ -10,18 +12,9 @@ To do so, three actors will be involved: a <span class="label-role claimer">clai
 These three actors will be exchanging various objects; the most important one is the `credential`.
 This is how an `credential` is created:
 
-```mermaid
-graph TD
-CTYPE --> claim[claim]
-claimContents --> claim
-claimerAddress --> claim
-claimerIdentity[claimerIdentity] --> requestForAttestation
-claim --> requestForAttestation
-requestForAttestation --> attestation[attestation]
-attesterPublicIdentity --> attestation
-attestation --> credential[credential]
-requestForAttestatIon --> credential[credential]
-```
+<Mermaid
+chart={`graph TD; CTYPE --> claim[claim]; claimContents --> claim; claimerDidIdentifier --> claim; claimerDid[claimerDid] --> requestForAttestation; claim --> requestForAttestation; requestForAttestation --> attestation[attestation]; attesterFullDid --> attestation; attestation --> credential[credential]; requestForAttestatIon --> credential[credential];`}
+/>
 
 That's a mouthful, but don't worry - we'll dig deeper in the elements of this diagram in the next steps! For now, just keep in mind:
 
