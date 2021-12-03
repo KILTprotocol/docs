@@ -11,11 +11,10 @@ To do so, three actors will be involved: a <span class="label-role claimer">clai
 
 These three actors will be exchanging various objects; the most important one is the `credential`.
 This is how an `credential` is created:
-...
+
 <Mermaid
-chart={`graph TD; CTYPE --> claim[claim]; claimContents --> claim; claimerAddress --> claim; claimerIdentity[claimerIdentity] --> requestForAttestation; claim --> requestForAttestation; requestForAttestation --> attestation[attestation]; attesterPublicIdentity --> attestation; attestation --> credential[credential]; requestForAttestatIon --> credential[credential];`}
+chart={`graph TD; CTYPE --> claim[claim]; claimContents --> claim; claimerDidIdentifier --> claim; claimerDid[claimerDid] --> requestForAttestation; claim --> requestForAttestation; requestForAttestation --> attestation[attestation]; attesterFullDid --> attestation; attestation --> credential[credential]; requestForAttestatIon --> credential[credential];`}
 />
-...
 
 That's a mouthful, but don't worry - we'll dig deeper in the elements of this diagram in the next steps! For now, just keep in mind:
 
