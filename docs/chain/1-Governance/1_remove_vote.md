@@ -3,7 +3,7 @@ id: remove_vote
 title: Remove a vote
 ---
 
-If you happen to change your mind and want to remove a vote from an open referendum, you have to find the index of the referendum you voted on and remove your vote from that index.
+If you happen to change your mind and want to remove a vote from an open referendum, you have to find the index of the referendum you voted on, remove your vote from that index and unlock your coins that are no longer locked up by this vote.
 
 ## Find the referendum index
 
@@ -22,3 +22,7 @@ Go to the [extrinsic tab in the Polkadot Apps](https://polkadot.js.org/apps/?rpc
 4. Sign and send the extrinsic
 
 ![](/img/chain/remove-vote.png)
+
+## Unlock expired voting locks
+
+Please refer to the "[Unlock coins after lockup expires](2_unlock_coins.md)" guide.
