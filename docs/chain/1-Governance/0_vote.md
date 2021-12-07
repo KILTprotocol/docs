@@ -10,12 +10,12 @@ title: Casting a Vote
 3. Scroll to the referendum you wish to vote on
 
 4. Click “Vote”
-   ![](/img/chain/cast-vote.png)
 
 5. This opens a separate pop-up.
    Enter the amount of coins you want to lock (1).
    The minimum required to vote is 1 KILT. <br />
-   You can vote with multiplier 0.1 (up to 10% of your voting tokens) without any lock.
+   You can vote with multiplier 0.1 (10% of your voting tokens) and your coins will only get locked for the duration of the vote.
+   ![](/img/chain/cast-vote.png)
 
 6. If you wish to increase your voting power by selecting a period of time to lock your coins, click the arrow next to conviction (2).
    Choose your conviction in the drop-down menu.<br />
