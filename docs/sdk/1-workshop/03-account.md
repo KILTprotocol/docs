@@ -45,7 +45,7 @@ All of the code for this step needs to go into this file.
 To generate an account, one method from the KILT SDK is needed and one method from the polkadot crypto utility:
 
 - `mnemonicGenerate()` // Generates a mnemonic
-- `buildFromMnemonic(mnemonic)` // takes a mnemonic as an input, and outputs an `Account` instance.
+- `addFromMnemonic(mnemonic)` // takes a mnemonic as an input, and outputs an `Account` instance.
 
 Open `account.js` and paste the following code:
 
