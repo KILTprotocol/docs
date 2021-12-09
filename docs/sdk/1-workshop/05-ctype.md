@@ -56,7 +56,7 @@ Create a new file `ctype.js`
 Copy the following to create a `CType` from a schema:
 
 <CodeBlock className="language-ts">
-  {Example1}
+  {Example2}
 </CodeBlock>
 
 Once you have constructed the schema, pass the attester, attestersFullDid, keystore and ctype.
@@ -66,7 +66,7 @@ Creating a new file `storedCtype.js`
 Copy the following to store the `CType` on-chain, an account must have the require amount to pay the Angel's fee and deposit:
 
 <CodeBlock className="language-ts">
-  {Example2}
+  {Example3}
 </CodeBlock>
 
 Create a new file `ctype.json` and store the ctype.
