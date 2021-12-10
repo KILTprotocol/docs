@@ -1,8 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  requestForAttestation: Kilt.RequestForAttestation
-): Promise<boolean> {
+async function main(requestForAttestation) {
   await Kilt.connect()
 
   const isDataValid = requestForAttestation.verifyData()

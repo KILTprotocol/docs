@@ -4,9 +4,9 @@ title: 🔖 Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/workshop/5_1_attestation.ts';
-import Example2 from '!!raw-loader!../../../code-examples/workshop/5_2_attestation.ts';
-import Example3 from '!!raw-loader!../../../code-examples/workshop/5_3_attestation.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/5_1_attestation.js';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/5_2_attestation.js';
+import Example3 from '!!raw-loader!../../../code-examples/workshop/5_3_attestation.js';
 
 In this section, you'll play the role of the <span class="label-role attester">attester</span>:
 

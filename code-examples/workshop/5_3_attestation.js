@@ -1,11 +1,11 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  attester: Kilt.KeyringPair,
-  attesterFullDid: Kilt.Did.FullDidDetails,
-  requestForAttestation: Kilt.RequestForAttestation,
-  keystore: Kilt.Did.DemoKeystore
-): Promise<Kilt.Credential> {
+async function main(
+  attester,
+  attesterFullDid,
+  requestForAttestation,
+  keystore
+) {
   await Kilt.connect()
 
   // build the attestation object

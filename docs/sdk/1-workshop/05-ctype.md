@@ -5,8 +5,8 @@ title: 💠 CTYPE
 
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/workshop/ctype.txt';
-import Example2 from '!!raw-loader!../../../code-examples/workshop/3_1_ctypeFromSchema.ts';
-import Example3 from '!!raw-loader!../../../code-examples/workshop/3_2_ctypeFromSchema.ts';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/3_1_ctypeFromSchema.js';
+import Example3 from '!!raw-loader!../../../code-examples/workshop/3_2_ctypeFromSchema.js';
 
 Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, first a claim type (CType for short) needs to be found or created.
 It requires an account and a full DID with tokens in order to pay the Angel's fee and deposit of a CType.

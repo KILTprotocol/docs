@@ -1,6 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export function main(encodedRequestForAttestation: string) {
+function main(encodedRequestForAttestation) {
   const requestForAttestationStruct = JSON.parse(encodedRequestForAttestation)
 
   return Kilt.RequestForAttestation.fromRequest(requestForAttestationStruct)

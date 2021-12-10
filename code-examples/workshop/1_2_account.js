@@ -1,8 +1,8 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-import { mnemonicGenerate } from '@polkadot/util-crypto'
+const { mnemonicGenerate } = require('@polkadot/util-crypto')
 
-export function main() {
+function main() {
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
     type: 'ed25519',

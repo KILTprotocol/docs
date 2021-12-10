@@ -1,10 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  presentation: Kilt.Credential,
-  nonce: string,
-  keystore: Kilt.Did.DemoKeystore
-) {
+async function main(presentation, nonce) {
   await Kilt.connect()
   // verify the presentation from the nonce (<nonce> is the uuid you've generated as the verifier)
   const isSenderOwner = await Kilt.Credential.verify(presentation, {

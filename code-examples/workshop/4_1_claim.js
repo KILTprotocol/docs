@@ -1,9 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export function main(
-  claimerLightDid: Kilt.Did.LightDidDetails,
-  ctype: Kilt.CType
-): Kilt.Claim {
+function main(claimerLightDid, ctype) {
   const claimContents = {
     name: 'Alice',
     age: 25,

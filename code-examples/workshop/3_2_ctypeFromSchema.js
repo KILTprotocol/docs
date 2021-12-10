@@ -1,11 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  attester: Kilt.KeyringPair,
-  attesterFullDid: Kilt.Did.FullDidDetails,
-  ctype: Kilt.CType,
-  keystore: Kilt.Did.DemoKeystore
-) {
+async function main(attester, attesterFullDid, ctype, keystore) {
   await Kilt.connect()
 
   // Good to check if the ctype is stored on chain

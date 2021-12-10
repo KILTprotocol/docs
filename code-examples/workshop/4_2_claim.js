@@ -1,10 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  claimerLightDid: Kilt.Did.LightDidDetails,
-  claim: Kilt.Claim,
-  keystore: Kilt.Did.DemoKeystore
-): Promise<Kilt.RequestForAttestation> {
+async function main(claimerLightDid, claim, keystore) {
   const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
 
   await requestForAttestation.signWithDid(keystore, claimerLightDid)
