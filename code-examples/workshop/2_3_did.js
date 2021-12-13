@@ -55,7 +55,7 @@ exports = async function attesterFullDid(attester, attesterMnemonic, keystore) {
 
     await Kilt.disconnect()
 
-    return [attesterFullDid.details, keystore]
+    return { attesterFullDid: { details }, keystore }
   }
 
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, attester, {
@@ -68,5 +68,5 @@ exports = async function attesterFullDid(attester, attesterMnemonic, keystore) {
 
   await Kilt.disconnect()
 
-  return [attesterFullDid.details, keystore]
+  return { attesterFullDid: { details }, keystore }
 }
