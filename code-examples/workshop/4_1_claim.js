@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-function main(claimerLightDid, ctype) {
+exports = function claim(claimerLightDid, ctype) {
   const claimContents = {
     name: 'Alice',
     age: 25,

@@ -1,7 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-function main(encodedRequestForAttestation) {
-  const requestForAttestationStruct = JSON.parse(encodedRequestForAttestation)
+exports = function requestReconstructed(signedRequestForAttestation) {
+  const requestForAttestationStruct = JSON.parse(signedRequestForAttestation)
 
   return Kilt.RequestForAttestation.fromRequest(requestForAttestationStruct)
 }

@@ -1,6 +1,11 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-async function main(attester, attesterFullDid, ctype, keystore) {
+exports = async function ctypeStored(
+  attester,
+  attesterFullDid,
+  ctype,
+  keystore
+) {
   await Kilt.connect()
 
   // Good to check if the ctype is stored on chain

@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-async function main(
+exports = async function attestCredential(
   attester,
   attesterFullDid,
   requestForAttestation,

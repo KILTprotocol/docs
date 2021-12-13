@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-async function main() {
+exports = async function keystoreGeneration() {
   const keystore = new Kilt.Did.DemoKeystore()
 
   return keystore

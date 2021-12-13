@@ -1,6 +1,11 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-async function main(claimerLightDid, credential, nonce, keystore) {
+exports = async function createPresentation(
+  claimerLightDid,
+  credential,
+  nonce,
+  keystore
+) {
   // sign the nonce as the claimer with the claimer's DID
   const presentation = await credential.createPresentation({
     signer: keystore,

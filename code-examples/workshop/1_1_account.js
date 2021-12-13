@@ -2,7 +2,7 @@ const Kilt = require('@kiltprotocol/sdk-js')
 
 const { mnemonicGenerate } = require('@polkadot/util-crypto')
 
-function main() {
+function account() {
   const mnemonic = mnemonicGenerate()
   console.log('mnemonic:', mnemonic)
 
@@ -13,3 +13,5 @@ function main() {
   const account = keyring.addFromMnemonic(mnemonic)
   console.log('address:', account.address)
 }
+
+account()

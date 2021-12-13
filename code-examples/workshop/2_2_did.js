@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-async function main(keystore) {
+exports = async function claimersLightDid(keystore) {
   const claimerMnemonic =
     'gold upset segment cake universe carry demand comfort dawn invite element capital'
 
