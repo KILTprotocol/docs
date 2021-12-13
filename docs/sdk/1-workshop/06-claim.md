@@ -11,8 +11,8 @@ In this section, you'll play the role of a <span class="label-role claimer">clai
 
 - You'll first make a claim about yourself in the form of a `Claim` object;
 - But a claim in itself has no value.
-To become valid in the eyes of <span class="label-role verifier">verifiers</span>, it needs to be attested by an entity that <span class="label-role verifier">verifiers</span> trust: an <span class="label-role attester">attester</span>.
-So you'll create a `RequestForAttestation` object from your `Claim` object, sign it with the DID, so that an <span class="label-role attester">attester</span> can attest it.
+  To become valid in the eyes of <span class="label-role verifier">verifiers</span>, it needs to be attested by an entity that <span class="label-role verifier">verifiers</span> trust: an <span class="label-role attester">attester</span>.
+  So you'll create a `RequestForAttestation` object from your `Claim` object, sign it with the DID, so that an <span class="label-role attester">attester</span> can attest it.
 - The claim will eventually be attested.
 
 We'll look into the attestation in the next steps - for now, let's just focus on your claim.
@@ -37,30 +37,32 @@ Paste the following in `claim.js`.
   {Example1}
 </CodeBlock>
 
-**Don't run the code just yet!** One more thing to add...
+**Don't forget to add imports into the `index.js`**
 
 ## Code: create a `RequestForAttestation`
 
 Once your claim will be built, you will want to sign it and prepare it for the <span class="label-role attester">attester</span>.
 To do so, let's build a `RequestForAttestation` object from your `Claim`.
 
-Append the following code to your `main` function inside `claim.js`:
+Now let's create a new file `requestForAttestaion.js` and paste the following code
 
 <CodeBlock className="language-ts">
   {Example2}
 </CodeBlock>
+
+Add the following imports to your `main` function inside `index.js`:
 
 ## Run
 
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node claim.js
+node index.js
 ```
 
-This outputs your `RequestForAttestation` object.
+This outputs all the previous code and now your `RequestForAttestation` object.
 
-Copy and paste it somewhere: we'll need it in the next step to get it attested by an <span class="label-role attester">attester</span>.
+we'll need it in the next step to get it attested by an <span class="label-role attester">attester</span>.
 
 :::info let others attest your claim
 

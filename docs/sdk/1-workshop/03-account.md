@@ -81,6 +81,7 @@ Hence, create a new file called `accounts.js` with the following code:
 Copy and paste the two mnemonics and addresses in a new file called `index.js`, you'll need them soon.
 
 ```js
+// Copy created addresses and mnemonics from accounts.js
 const claimerMnemonic = `<generatedClaimerMnemonic>`
 const claimerAddress = `<generatedClaimerAddress>`
 const attesterMnemonic = `<generatedAttesterMnemonic>`
@@ -91,5 +92,16 @@ In the next steps, we'll refer to the so-generated accounts as follows:
 
 - `<claimerMnemonic>` is the mnemonic for the claimer and `<claimerAddress>` the claimer's associated address;
 - `<attesterMnemonic>` is the mnemonic for the attester and `<attesterAddress>` the attester's associated address.
+
+## Request KILT tokens
+
+When writing the hash of attestations on the blockchain, <span class="label-role attester">attesters</span> have to pay the angel’s
+share (gas or transaction fee) and the deposit in KILT Tokens. So you'll need tokens to attest a claim.
+
+If you haven't already requested KILT tokens, go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) and request tokens for your `<attesterAddress>`.
+
+[faucet]: https://faucet.kilt.io/
+
+Sadly these are just play tokens, not real money.
 
 That's it - You've successfully generated two new on-chain accounts and their associated addresses!

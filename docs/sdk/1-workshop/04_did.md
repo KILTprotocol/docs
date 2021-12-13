@@ -49,13 +49,6 @@ Full DID is robust and allows for more use cases.
 
 :::
 
-In order for the <span class="label-role attester">attesters</span> to create the DID they have to pay the angel’s share (gas or transaction fee) and despoit in KILT Tokens.
-So you'll need tokens to create a full DID.
-
-Go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) to request tokens for your `<attesterAddress>`.
-
-Sadly these are just play tokens, not real money.
-
 Before the creation of a DID there needs to be a keystore.
 
 :::info Keystore
@@ -96,6 +89,8 @@ To generate a light DID, you will need the claimers account:
 Create a new file `attestersDid.js`.
 To generate a full DID, you will need the claimers account and creation of the corresponding keypairs:
 
+**Don't forget you need play tokens as an Attester mention in the setup step**
+
 <CodeBlock className="language-ts">
   {Example3}
 </CodeBlock>
@@ -104,28 +99,19 @@ Now its time to make the DID's.
 
 ## Run
 
-The keystore should be instantiated once and used within the workshop passing it through the different stages of the workshop, run this command in your terminal, still within your `kilt-rocks` directory:
+The keystore should be instantiated once and used within the workshop passing it through the different stages of the workshop. Import the `keystore.js`, `claimersDid.js` and `attestersDid.js` into the `index.js`. Run this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node keystore.js
-```
-
-To generate the light DID, run this command in your terminal:
-
-```bash
-node claimersDid.js
+node index.js
 ```
 
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
-// Example of a light DID Identifier:
+Example of a light DID Identifier:
 `did:kilt:light:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS:oWFlomlwdWJsaWNLZXlYIBsVppuQ2fi/beBdYf50+n/36FnCjMw+KLSu3AmW9DEGZHR5cGVmeDI1NTE5`
 
-Now to generate the full DID, ensure that you have funds on the account, run this command in your terminal:
-
-```bash
-node attestersDid.js
-```
+Example of a full DID Identifier:
+`did:kilt:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS`
 
 The keystore and the two DID's need to be stored for re-use.
 
