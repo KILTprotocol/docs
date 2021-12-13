@@ -1,7 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 const { mnemonicGenerate } = require('@polkadot/util-crypto')
 
-exports = function accounts() {
+function accounts() {
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
     type: 'ed25519',
@@ -15,5 +15,7 @@ exports = function accounts() {
   console.log('attester mnemonic:', attesterMnemonic)
   const attester = keyring.addFromMnemonic(attesterMnemonic)
   console.log('attester address:', attester.address)
-  return { claimer, attester, attesterMnemonic }
+  return { claimer, claimerMnemonic, attester, attesterMnemonic }
 }
+
+accounts()
