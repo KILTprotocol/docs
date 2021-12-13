@@ -1,21 +1,21 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import * as BN from 'bn.js'
 
-import { main as account1 } from './1_1_account'
-import { main as account2 } from './1_2_account'
-import { main as did1 } from './2_1_did'
-import { main as did2 } from './2_2_did'
-import { main as did3 } from './2_3_did'
-import { main as ctypeFromSchema1 } from './3_1_ctypeFromSchema'
-import { main as ctypeFromSchema2 } from './3_2_ctypeFromSchema'
-import { main as claim1 } from './4_1_claim'
-import { main as claim2 } from './4_2_claim'
-import { main as attestation1 } from './5_1_attestation'
-import { main as attestation2 } from './5_2_attestation'
-import { main as attestation3 } from './5_3_attestation'
-import { main as verification1 } from './6_verification'
-import { main as verification2 } from './7_1_verification-with-nonce'
-import { main as verification3 } from './7_2_verification-with-nonce'
+const { account } = require('./1_1_account')
+const { accounts } = require('./1_2_account')
+const { keystoreGeneration } = require('./2_1_did')
+const { createClaimerLightDid } = require('./2_2_did')
+const { createAttesterFullDid } = require('./2_3_did')
+const { createCType } = require('./3_1_ctypeFromSchema')
+const { ctypeStored } = require('./3_2_ctypeFromSchema')
+const { createClaim } = require('./4_1_claim')
+const { createRequestForAttestation } = require('./4_2_claim')
+const { requestForAttestationReconstructed } = require('./5_1_attestation')
+const { verifyRequest } = require('./5_2_attestation')
+const { attestCredential } = require('./5_3_attestation')
+const { verifyCredential } = require('./6_verification')
+const { createPresentation } = require('./7_1_verification-with-nonce')
+const { verifyPresentation } = require('./7_2_verification-with-nonce')
 
 const wsAddress = 'wss://peregrine.kilt.io'
 export const nonce = '3a66fc28-379c-4443-9537-a00169fd76a4'
@@ -38,14 +38,12 @@ export async function test_all() {
 
   const faucetAcc = keyring.addFromMnemonic(faucetSeed)
   let keystore: Kilt.Did.DemoKeystore
-  let claimerLightDid: Kilt.Did.LightDidDetails
-  let attesterFullDid: Kilt.Did.FullDidDetails
   let ctype: Kilt.CType
   console.group('Account-1')
-  account1()
+  account()
   console.groupEnd()
   console.group('Account-2')
-  const { claimer, attester, attesterMnemonic } = account2()
+  const { claimer, claimerMnemonic, attester, attesterMnemonic } = accounts()
 
   await Promise.all([
     Kilt.Balance.makeTransfer(claimer.address, ENDOWMENT) //
@@ -58,46 +56,54 @@ export async function test_all() {
   ])
   console.groupEnd()
   console.group('Did-1')
-  keystore = await did1()
+  keystore = await keystoreGeneration()
   console.groupEnd()
   console.group('Did-2')
-  ;[claimerLightDid, keystore] = await did2(keystore)
+  const { claimerLightDid, claimerKeystore } = await createClaimerLightDid(
+    keystore,
+    claimerMnemonic
+  )
   console.groupEnd()
   console.group('Did-3')
-  ;[attesterFullDid, keystore] = await did3(
+  const { attesterFullDid, attesterKeystore } = await createAttesterFullDid(
     attester,
     attesterMnemonic,
-    keystore
+    claimerKeystore
   )
   console.groupEnd()
   console.group('ctypeFromSchema-1')
-  ctype = ctypeFromSchema1()
+  ctype = createCType()
   console.groupEnd()
   console.group('ctypeFromSchema-2')
-  ctype = await ctypeFromSchema2(attester, attesterFullDid, ctype, keystore)
+  ctype = await ctypeStored(attester, attesterFullDid, ctype, keystore)
   console.groupEnd()
 
   console.group('claim1')
-  let claim = claim1(claimerLightDid, ctype)
+  let claim = createClaim(claimerLightDid, ctype)
   console.groupEnd()
   console.group('claim2')
-  let rfa = await claim2(claimerLightDid, claim, keystore)
+  let rfa = await createRequestForAttestation(claimerLightDid, claim, keystore)
   console.groupEnd()
   console.group('attestation1')
-  attestation1(JSON.stringify(rfa))
+  requestForAttestationReconstructed(JSON.stringify(rfa))
   console.groupEnd()
   console.group('attestation2')
-  await attestation2(rfa)
+  await verifyRequest(rfa)
   console.groupEnd()
 
   console.group('attestation3')
-  let crendetial = await attestation3(attester, attesterFullDid, rfa, keystore)
+  let crendetial = await attestCredential(
+    attester,
+    attesterFullDid,
+    rfa,
+    keystore
+  )
   console.groupEnd()
   console.group('verification1')
-  await verification1(crendetial)
+  await verifyCredential(crendetial)
   console.groupEnd()
   console.group('verification2')
-  let presentation = await verification2(
+  let presentation = await createPresentation(
     claimerLightDid,
     crendetial,
     nonce,
@@ -105,9 +111,8 @@ export async function test_all() {
   )
   console.groupEnd()
   console.group('verification3')
-  await verification3(presentation, nonce, keystore)
+  await verifyPresentation(presentation, nonce, keystore)
   console.groupEnd()
 
   await Kilt.disconnect()
 }
-

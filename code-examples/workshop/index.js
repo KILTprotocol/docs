@@ -1,21 +1,19 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 const { cryptoWaitReady } = require('@polkadot/util-crypto')
 
-const { keystore } = require('./keystore')
-const { createClaimerLightDid } = require('./claimersDid')
-const { createAttesterFullDid } = require('./attestersDid')
-const { createCType } = require('./ctype')
-const { ctypeStored } = require('./storedCtype')
-const { createClaim } = require('./claim')
-const { createRequestForAttestation } = require('./requestForAttestation')
-const {
-  requestForAttestationReconstructed,
-} = require('./reconstructRequestForAttestation')
-const { verifyRequest } = require('./verifyRequest')
-const { attestCredential } = require('./attestation')
-const { verifyCredential } = require('./verification')
-const { createPresentation } = require('./create-presentation')
-const { verifyPresentation } = require('./verification-of-presentation')
+const { keystoreGeneration } = require('./2_1_did')
+const { createClaimerLightDid } = require('./2_2_did')
+const { createAttesterFullDid } = require('./2_3_did')
+const { createCType } = require('./3_1_ctypeFromSchema')
+const { ctypeStored } = require('./3_2_ctypeFromSchema')
+const { createClaim } = require('./4_1_claim')
+const { createRequestForAttestation } = require('./4_2_claim')
+const { requestForAttestationReconstructed } = require('./5_1_attestation')
+const { verifyRequest } = require('./5_2_attestation')
+const { attestCredential } = require('./5_3_attestation')
+const { verifyCredential } = require('./6_verification')
+const { createPresentation } = require('./7_1_verification-with-nonce')
+const { verifyPresentation } = require('./7_2_verification-with-nonce')
 
 // Copy created addresses and mnemonics from accounts.js
 const claimerMnemonic = `safe left nature enact naive thunder square crystal crystal pipe aspect garment`
@@ -36,7 +34,7 @@ async function main() {
 
   // Creates a light DID for the claimer
   const { claimerLightDid, keystore: claimerKeystore } =
-    await createClaimerLightDid(await keystore(), claimerMnemonic)
+    await createClaimerLightDid(await keystoreGeneration(), claimerMnemonic)
 
   // Checks if the attester has balance, if no balance has been found the script will end
   if ((await Kilt.Balance.getBalances(attesterAddress)).free === 0) {
