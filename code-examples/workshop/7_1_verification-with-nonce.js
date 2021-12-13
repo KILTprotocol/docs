@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function createPresentation(
+async function createPresentation(
   claimerLightDid,
   credential,
   nonce,
@@ -27,3 +27,5 @@ exports = async function createPresentation(
   )
   return presentation
 }
+
+module.exports.createPresentation = createPresentation

@@ -1,10 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function createAttesterFullDid(
-  attester,
-  attesterMnemonic,
-  keystore
-) {
+async function createAttesterFullDid(attester, attesterMnemonic, keystore) {
   await Kilt.connect()
 
   // Signing keypair
@@ -52,14 +48,14 @@ exports = async function createAttesterFullDid(
     keys
   )
 
-  if (Kilt.Did.resolveDoc(did)) {
+  if (await Kilt.Did.DidChain.queryById(attester.address)) {
     // The DID has already been written on-chain
     const attesterFullDid = await Kilt.Did.DefaultResolver.resolveDoc(did)
-    console.log('Attesters Full DID:', attesterFullDid)
+    console.log('Attesters Full DID fetched from the chain:', attesterFullDid)
 
     await Kilt.disconnect()
 
-    return { attesterFullDid: { details }, keystore }
+    return { attesterFullDid, keystore }
   }
 
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, attester, {
@@ -72,5 +68,7 @@ exports = async function createAttesterFullDid(
 
   await Kilt.disconnect()
 
-  return { attesterFullDid: { details }, keystore }
+  return { attesterFullDid, keystore }
 }
+
+module.exports.createAttesterFullDid = createAttesterFullDid

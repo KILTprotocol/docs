@@ -1,7 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function verifyPresentation(presentation, nonce) {
-  await Kilt.connect()
+async function verifyPresentation(presentation, nonce) {
+  await Kilt.connect('wss://peregrine.kilt.io')
   // verify the presentation from the nonce (<nonce> is the uuid you've generated as the verifier)
   const isSenderOwner = await Kilt.Credential.verify(presentation, {
     challenge: nonce,
@@ -15,3 +15,5 @@ exports = async function verifyPresentation(presentation, nonce) {
   await Kilt.disconnect()
   return isSenderOwner
 }
+
+module.exports.verifyPresentation = verifyPresentation

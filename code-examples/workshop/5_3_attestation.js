@@ -1,20 +1,20 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function attestCredential(
+async function attestCredential(
   attester,
   attesterFullDid,
   requestForAttestation,
   keystore
 ) {
-  await Kilt.connect()
+  await Kilt.connect('wss://peregrine.kilt.io')
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(
     requestForAttestation,
-    attesterFullDid.did
+    attesterFullDid.details.did
   )
 
-  if (Kilt.Attestation.query(attestation.claimHash)) {
+  if (await Kilt.Attestation.query(attestation.claimHash)) {
     console.log('Attestation found on chain')
 
     const credential = Kilt.Credential.fromRequestAndAttestation(
@@ -32,7 +32,7 @@ exports = async function attestCredential(
 
   // store the attestation on chain
   const tx = await attestation.store()
-  const authorizedTx = await attesterFullDid.authorizeExtrinsic(
+  const authorizedTx = await attesterFullDid.details.authorizeExtrinsic(
     tx,
     keystore,
     attester.address
@@ -55,3 +55,5 @@ exports = async function attestCredential(
   console.log('Disconnected from KILT testnet')
   return credential
 }
+
+module.exports.attestCredential = attestCredential

@@ -1,12 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function ctypeStored(
-  attester,
-  attesterFullDid,
-  ctype,
-  keystore
-) {
-  await Kilt.connect()
+async function ctypeStored(attester, attesterFullDid, ctype, keystore) {
+  await Kilt.connect('wss://peregrine.kilt.io')
 
   // Good to check if the ctype is stored on chain
   if (ctype.verifyStored()) return ctype
@@ -28,3 +23,4 @@ exports = async function ctypeStored(
   await Kilt.disconnect()
   return ctype
 }
+module.exports.ctypeStored = ctypeStored

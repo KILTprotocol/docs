@@ -1,9 +1,9 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function createClaimerLightDid(keystore, claimerMnemonic) {
+async function createClaimerLightDid(keystore, claimerMnemonic) {
   // replace with the claimer mnemonic
-  const claimerMnemonic =
-    'gold upset segment cake universe carry demand comfort dawn invite element capital'
+  // const claimerMnemonic =
+  //   'gold upset segment cake universe carry demand comfort dawn invite element capital'
 
   const claimerSigningKeypair = await keystore.generateKeypair({
     alg: Kilt.Did.SigningAlgorithms.Ed25519,
@@ -33,3 +33,5 @@ exports = async function createClaimerLightDid(keystore, claimerMnemonic) {
 
   return { claimerLightDid, keystore }
 }
+
+module.exports.createClaimerLightDid = createClaimerLightDid
