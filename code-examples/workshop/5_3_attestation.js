@@ -14,6 +14,22 @@ exports = async function attestCredential(
     attesterFullDid.did
   )
 
+  if (Kilt.Attestation.query(attestation.claimHash)) {
+    console.log('Attestation found on chain')
+
+    const credential = Kilt.Credential.fromRequestAndAttestation(
+      requestForAttestation,
+      attestation
+    )
+
+    // log the Credential so you can copy/send it back to the claimer
+    console.log('CredentialJSONString:\n', JSON.stringify(credential))
+
+    // disconnect from the chain
+    await Kilt.disconnect()
+    return credential
+  }
+
   // store the attestation on chain
   const tx = await attestation.store()
   const authorizedTx = await attesterFullDid.authorizeExtrinsic(

@@ -48,14 +48,24 @@ exports = async function attesterFullDid(attester, attesterMnemonic, keystore) {
     keys
   )
 
+  if (Kilt.Did.resolveDoc(did)) {
+    // The DID has already been written on-chain
+    const attesterFullDid = await Kilt.Did.DefaultResolver.resolveDoc(did)
+    console.log('Attesters Full DID:', attesterFullDid)
+
+    await Kilt.disconnect()
+
+    return [attesterFullDid.details, keystore]
+  }
+
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, attester, {
     reSign: true,
     resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
   })
 
   const attesterFullDid = await Kilt.Did.DefaultResolver.resolveDoc(did)
-
   console.log('Attesters Full DID:', attesterFullDid)
+
   await Kilt.disconnect()
 
   return [attesterFullDid.details, keystore]
