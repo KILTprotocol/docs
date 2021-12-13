@@ -1,6 +1,10 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function attesterFullDid(attester, attesterMnemonic, keystore) {
+exports = async function createAttesterFullDid(
+  attester,
+  attesterMnemonic,
+  keystore
+) {
   await Kilt.connect()
 
   // Signing keypair

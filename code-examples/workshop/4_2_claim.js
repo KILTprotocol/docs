@@ -1,6 +1,10 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function requestForAttestation(claimerLightDid, claim, keystore) {
+exports = async function createRequestForAttestation(
+  claimerLightDid,
+  claim,
+  keystore
+) {
   const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
 
   await requestForAttestation.signWithDid(keystore, claimerLightDid)

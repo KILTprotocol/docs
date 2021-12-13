@@ -1,6 +1,6 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = function ctypeSchema() {
+exports = function createCType() {
   return Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
     title: 'Drivers License',

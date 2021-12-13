@@ -1,6 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = function claim(claimerLightDid, ctype) {
+exports = function createClaim(claimerLightDid, ctype) {
+  // These contents can be replaced following the schema types
   const claimContents = {
     name: 'Alice',
     age: 25,

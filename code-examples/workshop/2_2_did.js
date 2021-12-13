@@ -1,6 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
-exports = async function claimersLightDid(keystore) {
+exports = async function createClaimerLightDid(keystore, claimerMnemonic) {
+  // replace with the claimer mnemonic
   const claimerMnemonic =
     'gold upset segment cake universe carry demand comfort dawn invite element capital'
 
@@ -30,5 +31,5 @@ exports = async function claimersLightDid(keystore) {
 
   console.log('Claimers Light DID:', claimerLightDid)
 
-  return [claimerLightDid, keystore]
+  return { claimerLightDid, keystore }
 }

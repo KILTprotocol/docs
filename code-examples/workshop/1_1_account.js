@@ -1,5 +1,4 @@
 const Kilt = require('@kiltprotocol/sdk-js')
-
 const { mnemonicGenerate } = require('@polkadot/util-crypto')
 
 function account() {
