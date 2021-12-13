@@ -72,13 +72,20 @@ Address: 5CUoo2vAegeaZHPNdxZyuMesR3RWYBKHj4jfVyj4FXzpXPuR
 
 You want to run this command twice, in order to generate 2 accounts:
 the <span class="label-role attester">attester</span>'s and the <span class="label-role claimer">claimer</span>'s.
-Hence, replace the content of `account.js` with the following code:
+Hence, create a new file called `accounts.js` with the following code:
 
 <CodeBlock className="language-ts">
   {Example2}
 </CodeBlock>
 
-Copy and paste the two mnemonics and addresses somewhere, you'll need them soon.
+Copy and paste the two mnemonics and addresses in a new file called `index.js`, you'll need them soon.
+
+```js
+const claimerMnemonic = `<generatedClaimerMnemonic>`
+const claimerAddress = `<generatedClaimerAddress>`
+const attesterMnemonic = `<generatedAttesterMnemonic>`
+const attesterAddress = `<generatedAttesterAddress>`
+```
 
 In the next steps, we'll refer to the so-generated accounts as follows:
 
