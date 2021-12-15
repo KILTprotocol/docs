@@ -38,6 +38,9 @@ export async function test_all() {
 
   const faucetAcc = keyring.addFromMnemonic(faucetSeed)
   let ctype: Kilt.CType
+  let claimerLightDid: Kilt.Did.LightDidDetails
+  let attesterFullDid
+  let keystore: Kilt.Did.DemoKeystore
   console.group('Account-1')
   account()
   console.groupEnd()
@@ -55,37 +58,33 @@ export async function test_all() {
   ])
   console.groupEnd()
   console.group('Did-1')
-  let keystore: Kilt.Did.DemoKeystore = await keystoreGeneration()
+  keystore = await keystoreGeneration()
   console.groupEnd()
   console.group('Did-2')
-  const { claimerLightDid, claimerKeystore } = await createClaimerLightDid(
+  ;({ claimerLightDid, keystore } = await createClaimerLightDid(
     keystore,
     claimerMnemonic
-  )
+  ))
   console.groupEnd()
   console.group('Did-3')
-  const { attesterFullDid, attesterKeystore } = await createAttesterFullDid(
+  ;({ attesterFullDid, keystore } = await createAttesterFullDid(
     attester,
     attesterMnemonic,
-    claimerKeystore
-  )
+    keystore
+  ))
   console.groupEnd()
   console.group('ctypeFromSchema-1')
   ctype = createCType()
   console.groupEnd()
   console.group('ctypeFromSchema-2')
-  ctype = await ctypeStored(attester, attesterFullDid, ctype, attesterKeystore)
+  ctype = await ctypeStored(attester, attesterFullDid, ctype, keystore)
   console.groupEnd()
 
   console.group('claim1')
   let claim = createClaim(claimerLightDid, ctype)
   console.groupEnd()
   console.group('claim2')
-  let rfa = await createRequestForAttestation(
-    claimerLightDid,
-    claim,
-    attesterKeystore
-  )
+  let rfa = await createRequestForAttestation(claimerLightDid, claim, keystore)
   console.groupEnd()
   console.group('attestation1')
   requestForAttestationReconstructed(JSON.stringify(rfa))
@@ -99,7 +98,7 @@ export async function test_all() {
     attester,
     attesterFullDid,
     rfa,
-    attesterKeystore
+    keystore
   )
   console.groupEnd()
   console.group('verification1')
@@ -110,7 +109,7 @@ export async function test_all() {
     claimerLightDid,
     crendetial,
     nonce,
-    attesterKeystore
+    keystore
   )
   console.groupEnd()
   console.group('verification3')
