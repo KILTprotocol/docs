@@ -18,4 +18,4 @@ function accounts() {
   return { claimer, claimerMnemonic, attester, attesterMnemonic }
 }
 
-accounts()
+module.exports.accounts = accounts

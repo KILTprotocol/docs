@@ -13,4 +13,4 @@ function account() {
   console.log('address:', account.address)
 }
 
-account()
+module.exports.account = account
