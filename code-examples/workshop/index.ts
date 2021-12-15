@@ -37,7 +37,6 @@ export async function test_all() {
   })
 
   const faucetAcc = keyring.addFromMnemonic(faucetSeed)
-  let keystore: Kilt.Did.DemoKeystore
   let ctype: Kilt.CType
   console.group('Account-1')
   account()
@@ -56,7 +55,7 @@ export async function test_all() {
   ])
   console.groupEnd()
   console.group('Did-1')
-  keystore = await keystoreGeneration()
+  let keystore: Kilt.Did.DemoKeystore = await keystoreGeneration()
   console.groupEnd()
   console.group('Did-2')
   const { claimerLightDid, claimerKeystore } = await createClaimerLightDid(
@@ -75,14 +74,18 @@ export async function test_all() {
   ctype = createCType()
   console.groupEnd()
   console.group('ctypeFromSchema-2')
-  ctype = await ctypeStored(attester, attesterFullDid, ctype, keystore)
+  ctype = await ctypeStored(attester, attesterFullDid, ctype, attesterKeystore)
   console.groupEnd()
 
   console.group('claim1')
   let claim = createClaim(claimerLightDid, ctype)
   console.groupEnd()
   console.group('claim2')
-  let rfa = await createRequestForAttestation(claimerLightDid, claim, keystore)
+  let rfa = await createRequestForAttestation(
+    claimerLightDid,
+    claim,
+    attesterKeystore
+  )
   console.groupEnd()
   console.group('attestation1')
   requestForAttestationReconstructed(JSON.stringify(rfa))
@@ -96,7 +99,7 @@ export async function test_all() {
     attester,
     attesterFullDid,
     rfa,
-    keystore
+    attesterKeystore
   )
   console.groupEnd()
   console.group('verification1')
@@ -107,7 +110,7 @@ export async function test_all() {
     claimerLightDid,
     crendetial,
     nonce,
-    keystore
+    attesterKeystore
   )
   console.groupEnd()
   console.group('verification3')
