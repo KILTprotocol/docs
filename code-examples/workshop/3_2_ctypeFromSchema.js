@@ -4,7 +4,7 @@ async function ctypeStored(attester, attesterFullDid, ctype, keystore) {
   await Kilt.connect()
 
   // Good to check if the ctype is stored on chain
-  if (ctype.verifyStored()) {
+  if (await ctype.verifyStored()) {
     await Kilt.disconnect()
     return ctype
   }
