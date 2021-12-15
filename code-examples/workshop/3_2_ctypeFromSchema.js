@@ -1,7 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
 async function ctypeStored(attester, attesterFullDid, ctype, keystore) {
-  await Kilt.connect('wss://peregrine.kilt.io')
+  await Kilt.connect()
 
   // Good to check if the ctype is stored on chain
   if (ctype.verifyStored()) {

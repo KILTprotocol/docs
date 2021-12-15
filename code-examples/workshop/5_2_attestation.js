@@ -1,7 +1,7 @@
 const Kilt = require('@kiltprotocol/sdk-js')
 
 async function verifyRequest(requestForAttestation) {
-  await Kilt.connect('wss://peregrine.kilt.io')
+  await Kilt.connect()
 
   const isDataValid = requestForAttestation.verifyData()
   const isSignatureValid = await requestForAttestation.verifySignature()

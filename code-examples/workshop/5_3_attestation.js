@@ -6,7 +6,7 @@ async function attestCredential(
   requestForAttestation,
   keystore
 ) {
-  await Kilt.connect('wss://peregrine.kilt.io')
+  await Kilt.connect()
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(
