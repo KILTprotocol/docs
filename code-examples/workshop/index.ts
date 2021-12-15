@@ -39,7 +39,7 @@ export async function test_all() {
   const faucetAcc = keyring.addFromMnemonic(faucetSeed)
   let ctype: Kilt.CType
   let claimerLightDid: Kilt.Did.LightDidDetails
-  let attesterFullDid
+  let attesterFullDid: Kilt.IDidResolvedDetails
   let keystore: Kilt.Did.DemoKeystore
   console.group('Account-1')
   account()
@@ -87,7 +87,7 @@ export async function test_all() {
   let rfa = await createRequestForAttestation(claimerLightDid, claim, keystore)
   console.groupEnd()
   console.group('attestation1')
-  requestForAttestationReconstructed(JSON.stringify(rfa))
+  requestForAttestationReconstructed(rfa)
   console.groupEnd()
   console.group('attestation2')
   await verifyRequest(rfa)
