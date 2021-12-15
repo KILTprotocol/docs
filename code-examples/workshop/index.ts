@@ -1,21 +1,21 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import * as BN from 'bn.js'
 
-const { account } = require('./1_1_account')
-const { accounts } = require('./1_2_account')
-const { keystoreGeneration } = require('./2_1_did')
-const { createClaimerLightDid } = require('./2_2_did')
-const { createAttesterFullDid } = require('./2_3_did')
-const { createCType } = require('./3_1_ctypeFromSchema')
-const { ctypeStored } = require('./3_2_ctypeFromSchema')
-const { createClaim } = require('./4_1_claim')
-const { createRequestForAttestation } = require('./4_2_claim')
-const { requestForAttestationReconstructed } = require('./5_1_attestation')
-const { verifyRequest } = require('./5_2_attestation')
-const { attestCredential } = require('./5_3_attestation')
-const { verifyCredential } = require('./6_verification')
-const { createPresentation } = require('./7_1_verification-with-nonce')
-const { verifyPresentation } = require('./7_2_verification-with-nonce')
+import { account } from './1_1_account'
+import { accounts } from './1_2_account'
+import { keystoreGeneration } from './2_1_did'
+import { createClaimerLightDid } from './2_2_did'
+import { createAttesterFullDid } from './2_3_did'
+import { createCType } from './3_1_ctypeFromSchema'
+import { ctypeStored } from './3_2_ctypeFromSchema'
+import { createClaim } from './4_1_claim'
+import { createRequestForAttestation } from './4_2_claim'
+import { requestForAttestationReconstructed } from './5_1_attestation'
+import { verifyRequest } from './5_2_attestation'
+import { attestCredential } from './5_3_attestation'
+import { verifyCredential } from './6_verification'
+import { createPresentation } from './7_1_verification-with-nonce'
+import { verifyPresentation } from './7_2_verification-with-nonce'
 
 const wsAddress = 'wss://peregrine.kilt.io'
 export const nonce = '3a66fc28-379c-4443-9537-a00169fd76a4'
@@ -111,7 +111,7 @@ export async function test_all() {
   )
   console.groupEnd()
   console.group('verification3')
-  await verifyPresentation(presentation, nonce, keystore)
+  await verifyPresentation(presentation, nonce)
   console.groupEnd()
 
   await Kilt.disconnect()
