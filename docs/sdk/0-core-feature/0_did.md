@@ -42,13 +42,13 @@ Using the demo keystore in production is highly discouraged as all the keys are 
 
 The following is an example of how to create a light DID after creating an instance of the demo keystore.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
 For cases in which also an encryption key and some service endpoints need to be added to a light DID:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
@@ -73,13 +73,13 @@ Beyond an authentication key, an encryption key, and service endpoints, a full D
 
 The following is an example of how to create and write on blockchain a full DID that specifies only an authentication key.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example3}
 </CodeBlock>
 
 If additional keys or service endpoints are to be specified, then they can be included in the DID create operation.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example4}
 </CodeBlock>
 
@@ -87,7 +87,7 @@ If additional keys or service endpoints are to be specified, then they can be in
 
 Once anchored on the KILT blockchain, a KILT full DID can be updated by signing the operation with a valid authentication key. For instance, the following snippet shows how to update the authentication key of a full DID and set it to a new sr25519 key.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example5}
 </CodeBlock>
 
@@ -95,7 +95,7 @@ Once anchored on the KILT blockchain, a KILT full DID can be updated by signing 
 
 Once not needed anymore, it is recommended to remove the DID details from the KILT blockchain. The following snippet shows how to do it:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example6}
 </CodeBlock>
 
@@ -105,7 +105,7 @@ As the creation of a full DID requires a deposit that will lock from the balance
 
 Claiming back the deposit of a DID is semantically equivalent to deleting the DID, with the difference that the extrinsic to claim the deposit can only be called by the deposit owner and does not require a valid signature by the DID subject:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example7}
 </CodeBlock>
 
@@ -117,6 +117,6 @@ Once a light DID is migrated, all the attested claims (i.e., attestations) gener
 
 The following code shows how to migrate a light DID to a full DID. Attested claim presentations and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example8}
 </CodeBlock>

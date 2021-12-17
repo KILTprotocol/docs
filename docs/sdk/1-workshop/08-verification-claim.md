@@ -4,7 +4,7 @@ title: 🔐 Verify a Claim
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/workshop/6_verification.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/6_verification.js';
 
 In this section, you'll play the role of a <span class="label-role verifier">verifier</span>:
 
@@ -25,8 +25,6 @@ You can either:
 - Take the `Credential` object you've generated in the previous step as an <span class="label-role attester">attester</span>;
 - Or if you're in a workshop, ask another participant to send you their `Credential` object.
 
-In the following, we'll refer to it as `<credentialJSONString>`.
-
 ## Create a file
 
 Create a new file `verification.js`.  
@@ -36,7 +34,7 @@ All of the code for this step needs to go into this file.
 
 Paste the following code in `verification.js`:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -45,10 +43,10 @@ Paste the following code in `verification.js`:
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node verification.js
+node index.js
 ```
 
-In your logs, you should see chain queries and successful verification (`isValid: true`).
+In your logs, you should see all the previous steps and the new chain queries and successful verification (`isValid: true`).
 
 That's it!
 You've successfully verified a claim as a <span class="label-role verifier">verifier</span>.

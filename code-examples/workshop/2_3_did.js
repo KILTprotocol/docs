@@ -1,10 +1,6 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  attester: Kilt.KeyringPair,
-  attesterMnemonic: string,
-  keystore: Kilt.Did.DemoKeystore
-): Promise<[Kilt.Did.FullDidDetails, Kilt.Did.DemoKeystore]> {
+async function createAttesterFullDid(attester, attesterMnemonic, keystore) {
   await Kilt.connect()
 
   // Signing keypair
@@ -19,9 +15,7 @@ export async function main(
     seed: attesterMnemonic,
   })
 
-  const keys: Partial<
-    Record<Kilt.KeyRelationship, Kilt.Did.DidTypes.INewPublicKey<string>>
-  > = {
+  const keys = {
     authentication: {
       publicKey: attesterSigningKeypair.publicKey,
       type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(
@@ -54,15 +48,27 @@ export async function main(
     keys
   )
 
+  if (await Kilt.Did.DidChain.queryById(attester.address)) {
+    // The DID has already been written on-chain
+    const attesterFullDid = await Kilt.Did.DefaultResolver.resolveDoc(did)
+    console.log('Attesters Full DID fetched from the chain:', attesterFullDid)
+
+    await Kilt.disconnect()
+
+    return { attesterFullDid, keystore }
+  }
+
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, attester, {
     reSign: true,
     resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
   })
 
   const attesterFullDid = await Kilt.Did.DefaultResolver.resolveDoc(did)
-
   console.log('Attesters Full DID:', attesterFullDid)
+
   await Kilt.disconnect()
 
-  return [attesterFullDid.details as Kilt.Did.FullDidDetails, keystore]
+  return { attesterFullDid, keystore }
 }
+
+module.exports.createAttesterFullDid = createAttesterFullDid

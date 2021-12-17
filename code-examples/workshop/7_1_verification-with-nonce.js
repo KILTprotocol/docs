@@ -1,11 +1,11 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  claimerLightDid: Kilt.Did.LightDidDetails,
-  credential: Kilt.Credential,
-  nonce: string,
-  keystore: Kilt.Did.DemoKeystore
-): Promise<Kilt.Credential> {
+async function createPresentation(
+  claimerLightDid,
+  credential,
+  nonce,
+  keystore
+) {
   // sign the nonce as the claimer with the claimer's DID
   const presentation = await credential.createPresentation({
     signer: keystore,
@@ -27,3 +27,5 @@ export async function main(
   )
   return presentation
 }
+
+module.exports.createPresentation = createPresentation

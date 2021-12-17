@@ -4,8 +4,8 @@ title: 👤 Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/workshop/1_1_account.ts';
-import Example2 from '!!raw-loader!../../../code-examples/workshop/1_2_account.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/1_1_account.js';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/1_2_account.js';
 
 Let's create the <span class="label-role claimer">claimer</span> and the <span class="label-role attester">attester</span> account.
 
@@ -49,7 +49,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 
 Open `account.js` and paste the following code:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -72,17 +72,36 @@ Address: 5CUoo2vAegeaZHPNdxZyuMesR3RWYBKHj4jfVyj4FXzpXPuR
 
 You want to run this command twice, in order to generate 2 accounts:
 the <span class="label-role attester">attester</span>'s and the <span class="label-role claimer">claimer</span>'s.
-Hence, replace the content of `account.js` with the following code:
+Hence, create a new file called `accounts.js` with the following code:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
-Copy and paste the two mnemonics and addresses somewhere, you'll need them soon.
+Copy and paste the two mnemonics and addresses in a new file called `index.js`, you'll need them soon.
+
+```js
+// Copy created addresses and mnemonics from accounts.js
+const claimerMnemonic = `<generatedClaimerMnemonic>`
+const claimerAddress = `<generatedClaimerAddress>`
+const attesterMnemonic = `<generatedAttesterMnemonic>`
+const attesterAddress = `<generatedAttesterAddress>`
+```
 
 In the next steps, we'll refer to the so-generated accounts as follows:
 
 - `<claimerMnemonic>` is the mnemonic for the claimer and `<claimerAddress>` the claimer's associated address;
 - `<attesterMnemonic>` is the mnemonic for the attester and `<attesterAddress>` the attester's associated address.
+
+## Request KILT tokens
+
+When writing the hash of attestations on the blockchain, <span class="label-role attester">attesters</span> have to pay the angel’s
+share (gas or transaction fee) and the deposit in KILT Tokens. So you'll need tokens to attest a claim.
+
+If you haven't already requested KILT tokens, go to the ([element](https://matrix.to/#/%23kilt-general:matrix.org) and [discord](https://discord.gg/hX4pc8rdHS)) and request tokens for your `<attesterAddress>`.
+
+[faucet]: https://faucet.kilt.io/
+
+Sadly these are just play tokens, not real money.
 
 That's it - You've successfully generated two new on-chain accounts and their associated addresses!

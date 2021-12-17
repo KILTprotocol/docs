@@ -4,8 +4,8 @@ title: 🥸 Verify the authenticity
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/workshop/7_1_verification-with-nonce.ts';
-import Example2 from '!!raw-loader!../../../code-examples/workshop/7_2_verification-with-nonce.ts';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/7_1_verification-with-nonce.js';
+import Example2 from '!!raw-loader!../../../code-examples/workshop/7_2_verification-with-nonce.js';
 
 Did you notice anything wrong with our verification in the previous step?
 
@@ -70,37 +70,28 @@ Let's put together the data you would send back to the <span class="label-role v
 
 Create a new file `create-presentation.js`.
 
-Paste the following code into it (make sure to replace `<nonce>` and `<credentialJSONString>` with the data you copied earlier):
+Copy the following code into the `create-presentation.js`
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
-
-Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
-
-```bash
-node create-presentation.js
-```
-
-You should see in your logs the `dataToVerifyJSONString`, which is a string representation of the data to verify.
-
-Copy it, you'll need it in the next step.
 
 ## As the <span class="label-role verifier">verifier</span>: verify the `presentation` and `credential`
 
 Create a new file `verification-of-presentation.js`.
 
-Paste the following code into it (make sure to replace `<dataToVerifyJSONString>` and `<nonce>` with the values obtained in the previous steps):
-
-<CodeBlock className="language-ts">
-  {Example2}
+Copy the following code into the `verification-of-presentation.js`
+<CodeBlock className="language-js">
+{Example2}
 </CodeBlock>
 
 Run the code by running this command in your terminal, still within your `kilt-rocks` directory:
 
 ```bash
-node verification-of-presentation.js
+node index.js
 ```
+
+You should see in your logs the `dataToVerifyJSONString`, which is a string representation of the data to verify.
 
 You should see in your logs that `isSenderOwner` is `true`: this means that the claimer presenting the `credential` is the same that owns it, so it has not been stolen or compromised.
 
