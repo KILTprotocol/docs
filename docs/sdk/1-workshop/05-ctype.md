@@ -55,7 +55,7 @@ Create a new file `ctype.js`
 
 Copy the following to create a `CType` from a schema:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
@@ -65,7 +65,7 @@ Creating a new file `storedCtype.js`
 
 Copy the following to store the `CType` on-chain, an account must have the require amount to pay the Angel's fee and deposit:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example3}
 </CodeBlock>
 

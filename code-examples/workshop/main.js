@@ -16,10 +16,10 @@ const { createPresentation } = require('./7_1_verification-with-nonce')
 const { verifyPresentation } = require('./7_2_verification-with-nonce')
 
 // Copy created addresses and mnemonics from accounts.js
-const claimerMnemonic = `safe left nature enact naive thunder square crystal crystal pipe aspect garment`
-const claimerAddress = `4tCJTpKruJeDubA9vYmcFSqdrStVKooQSZZF9MaykYpQfqcr`
-const attesterMnemonic = `shock drastic forget grass multiply peanut copy hip grab already muscle seek`
-const attesterAddress = `4pkHJoq85VY8aXQE6nkfR27PGtw4DAPyNsRRPeocLcUSHmA1`
+const claimerMnemonic = '<Claimer Mnemonic>'
+const claimerAddress = '<Claimer Address>'
+const attesterMnemonic = `<Attester Mnemonic>`
+const attesterAddress = `<Attester Address>`
 
 async function main() {
   await cryptoWaitReady()

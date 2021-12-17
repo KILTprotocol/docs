@@ -72,7 +72,7 @@ Create a new file `create-presentation.js`.
 
 Copy the following code into the `create-presentation.js`
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -81,7 +81,7 @@ Copy the following code into the `create-presentation.js`
 Create a new file `verification-of-presentation.js`.
 
 Copy the following code into the `verification-of-presentation.js`
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
 {Example2}
 </CodeBlock>
 

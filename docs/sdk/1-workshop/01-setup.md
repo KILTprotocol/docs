@@ -3,6 +3,10 @@ id: setup
 title: 🎒 Setup
 ---
 
+import Tabs from '@theme/Tabs';
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!../../../code-examples/workshop/main.js';
+
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed. Any stable (LTS) version is sufficient.
@@ -36,5 +40,17 @@ This is done calling `await Kilt.init({ address })` where `address` is the addre
 For this workshop use `wss://peregrine.kilt.io`.
 
 :::
+
+Finally, it is a good idea to create a script to run through the workshop. Let's call it `index.js`. We have prepared a file incase you need help here.
+
+<details><summary>Reveal how to run the examples</summary>
+<p>
+
+<CodeBlock className="language-js">
+  {Example1}
+</CodeBlock>
+
+</p>
+</details>
 
 That's it for the basic setup - We're good to go!

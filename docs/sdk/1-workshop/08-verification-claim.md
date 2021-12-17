@@ -34,7 +34,7 @@ All of the code for this step needs to go into this file.
 
 Paste the following code in `verification.js`:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 

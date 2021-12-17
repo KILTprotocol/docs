@@ -73,7 +73,7 @@ Caution the following keystore is only for demo purposes and considered unsafe.
 
 Create a new file `keystore.js` and copy the following code:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -82,7 +82,7 @@ Taking the claimer and attester accounts to generate the DID and the assoicated 
 Create a new file `claimersDid.js`.
 To generate a light DID, you will need the claimers account:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
@@ -91,7 +91,7 @@ To generate a full DID, you will need the claimers account and creation of the c
 
 **Don't forget you need play tokens as an Attester mention in the setup step**
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example3}
 </CodeBlock>
 

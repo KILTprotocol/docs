@@ -32,7 +32,7 @@ Create a new file `reconstructRequestForAttestation.js` and add the following co
 
 To ensure the correct structure of the request for attestation.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -41,7 +41,7 @@ Create a new file `verifyRequest.js` and add the following code
 To check if the object is valid, you can check the data against the CTYPE
 and check if the signature is valid
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
@@ -53,7 +53,7 @@ Now is time to interact with the chain, in order to store an attestation on ther
 
 Add the following code to `attestation.js`
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example3}
 </CodeBlock>
 

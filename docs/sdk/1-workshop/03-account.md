@@ -49,7 +49,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 
 Open `account.js` and paste the following code:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -74,7 +74,7 @@ You want to run this command twice, in order to generate 2 accounts:
 the <span class="label-role attester">attester</span>'s and the <span class="label-role claimer">claimer</span>'s.
 Hence, create a new file called `accounts.js` with the following code:
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 

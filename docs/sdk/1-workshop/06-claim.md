@@ -33,7 +33,7 @@ You'll now need the first mnemonic you've created; it's referred to as `<claimer
 We'll create a claim using the provided CTYPE and the <span class="label-role claimer">claimer</span> account.  
 Paste the following in `claim.js`.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -46,7 +46,7 @@ To do so, let's build a `RequestForAttestation` object from your `Claim`.
 
 Now let's create a new file `requestForAttestaion.js` and paste the following code
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
