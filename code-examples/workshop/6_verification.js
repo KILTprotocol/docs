@@ -1,6 +1,7 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(credential: Kilt.Credential) {
+async function verifyCredential(credential) {
+  await Kilt.connect()
   // The `verify()` method does two things:
   // 1. verifies that the data is valid for the given CTYPE
   // 2. verifies that the attestation hash is present on the Kilt blockchain and that the attestation has not been revoked
@@ -11,3 +12,5 @@ export async function main(credential: Kilt.Credential) {
   await Kilt.disconnect()
   console.log('Disconnected from KILT testnet')
 }
+
+module.exports.verifyCredential = verifyCredential

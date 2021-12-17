@@ -21,7 +21,7 @@ When you create a CType from a schema, the SDK determines whether your CType ali
 
 The owner of the CType can store it on their desktop or on a regular web service. Only a hash of the CType is stored on the KILT blockchain, verifying its validity.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example1}
 </CodeBlock>
 
@@ -29,7 +29,7 @@ The owner of the CType can store it on their desktop or on a regular web service
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example2}
 </CodeBlock>
 
@@ -39,6 +39,6 @@ After creating your claim, you can request an attestation by creating another ob
 
 We recommend encrypting this object before sending it by calling encrypt. Additionally, you can also compress the body of the message.
 
-<CodeBlock className="language-ts">
+<CodeBlock className="language-js">
   {Example3}
 </CodeBlock>

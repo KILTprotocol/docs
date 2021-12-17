@@ -1,15 +1,13 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+const Kilt = require('@kiltprotocol/sdk-js')
 
-export async function main(
-  attester: Kilt.KeyringPair,
-  attesterFullDid: Kilt.Did.FullDidDetails,
-  ctype: Kilt.CType,
-  keystore: Kilt.Did.DemoKeystore
-) {
+async function ctypeStored(attester, attesterFullDid, ctype, keystore) {
   await Kilt.connect()
 
   // Good to check if the ctype is stored on chain
-  if (ctype.verifyStored()) return ctype
+  if (await ctype.verifyStored()) {
+    await Kilt.disconnect()
+    return ctype
+  }
 
   // If the ctype isn't stored on the chain, then an account with a full DID will need to store the ctype on-chain.
   const tx = await ctype.store()
@@ -28,3 +26,4 @@ export async function main(
   await Kilt.disconnect()
   return ctype
 }
+module.exports.ctypeStored = ctypeStored
