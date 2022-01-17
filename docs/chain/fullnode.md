@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 We will guide you through the process of setting up and connecting to a full node.
-In contrast to a collator, full nodes to not author blocks.
+In contrast to a collator, full nodes do not author blocks.
 They act as a backend for Websites, verify new blocks and validate extrinsics (e.g. coin transfers and other transactions) before they are gossiped to the collator nodes.
 
 ## Setup
