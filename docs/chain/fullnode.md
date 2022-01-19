@@ -117,7 +117,7 @@ Make sure to choose whether you want to start a full node for peregrine or spiri
 
 ```bash
 docker run data:/data kiltprotocol/kilt-node:latest \
-  --base-path=/data/para
+  --base-path=/data/para \
   --chain={spiritnet, peregrine} \
   --runtime={spiritnet, peregrine} \
   --rpc-port=9933 \
