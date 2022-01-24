@@ -69,7 +69,6 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: kilt/prototype-chain
-          IMAGE_TAG: latest-rc
         run: |
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc
           docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc --dev --ws-port 9944 --ws-external
