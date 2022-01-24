@@ -5,7 +5,7 @@ on:
     branches:
       - master
     tags:
-      - "*"
+      - '*'
   pull_request:
     branches:
       - master
@@ -43,7 +43,7 @@ jobs:
           yarn install --frozen
           yarn run ts-node run_core_features.ts
 
- run_getting-started:
+  run_getting-started:
     runs-on: ubuntu-latest
 
     steps:
@@ -73,5 +73,6 @@ jobs:
           docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc
           docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc --dev --ws-port 9944 --ws-external
           sleep 5s
+          yarn install --frozen
           yarn run ts-node getting_started/getting-started.ts
           docker stop $(docker ps -f ancestor=$ECR_REGISTRY/$ECR_REPOSITORY:latest-rc -q)
