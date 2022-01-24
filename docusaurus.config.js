@@ -111,6 +111,9 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
         },
