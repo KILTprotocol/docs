@@ -63,7 +63,7 @@ To keep the examples short, we will not wrap each one in an asynchronous functio
 
 In case you are unsure, please have a look at our [workshop](https://kiltprotocol.github.io/kilt-workshop-101/#/) where we provide everything ready to be copied and pasted.
 
-💡 At any point, you can **check out our [getting-started.ts](./getting-started.ts) for a working example of the code presented in the following**.
+💡 At any point, you can **check out our [getting-started.ts](../../../code-examples/getting_started/getting-started.ts) for a working example of the code presented in the following**.
 
 ### 1.2 Initializing the KILT SDK
 
@@ -160,7 +160,7 @@ At this point the generated account has no tokens. If you want to interact with 
 
 ### 2.1. Generate a Keystore
 
-To create a light DID, there needs to be a keystore instance that conforms to the [Keystore interface](../types/src/Keystore.ts). For the sake of ease of use, this package includes a [demo keystore](./src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
+To create a light DID, there needs to be a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts). For the sake of ease of use, this package includes a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
 
 **Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.**
 
@@ -561,9 +561,7 @@ As sender account and message validity are also checked during decryption, if th
 At this point the Attester has the original request for attestation object:
 
 ```typescript
-if (
-  decrypted.body.type === Kilt.Message.BodyType.REQUEST_ATTESTATION
-) {
+if (decrypted.body.type === Kilt.Message.BodyType.REQUEST_ATTESTATION) {
   const extractedRequestForAttestation: IRequestForAttestation =
     decrypted.body.content.requestForAttestation
 }
@@ -693,9 +691,7 @@ After receiving the message, the Claimer just needs to save it and use it later 
 
 ```typescript
 let myCredential: Credential
-if (
-  messageBack.body.type === Kilt.Message.BodyType.SUBMIT_ATTESTATION
-) {
+if (messageBack.body.type === Kilt.Message.BodyType.SUBMIT_ATTESTATION) {
   myCredential = Kilt.Credential.fromCredential({
     ...messageBack.body.content,
     request: requestForAttestation,
@@ -771,10 +767,7 @@ When verifying the claimer's message, the verifier has to use their session whic
 The result will be a boolean indicating the result of the verification and the credential(s) which are either sent in their entirety OR have been stripped off of the properties that the verifier did not request to verify.
 
 ```typescript
-if (
-  messageForVerifier.body.type ===
-  Kilt.Message.BodyType.SUBMIT_CREDENTIAL
-) {
+if (messageForVerifier.body.type === Kilt.Message.BodyType.SUBMIT_CREDENTIAL) {
   const claims = messageForVerifier.body.content
   const isValid = await Kilt.Credential.fromCredential(claims[0]).verify()
   console.log('Verifcation success?', isValid)
