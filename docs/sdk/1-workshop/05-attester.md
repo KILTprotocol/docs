@@ -1,6 +1,6 @@
 ---
 id: attester-ctype
-title: 👤 Attester CTYPE
+title: 🏢 Attester CTYPE
 ---
 
 import CodeBlock from '@theme/CodeBlock';

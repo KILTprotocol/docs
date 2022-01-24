@@ -1,6 +1,6 @@
 ---
 id: attester-account
-title: 👤 Attester Account
+title: 🏢 Attester Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';

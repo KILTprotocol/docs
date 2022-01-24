@@ -1,6 +1,6 @@
 ---
 id: verification
-title: 🔐 Verification
+title: 🤝 Verification
 ---
 
 import CodeBlock from '@theme/CodeBlock';

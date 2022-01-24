@@ -1,6 +1,6 @@
 ---
 id: attester-did
-title: 👤 Attester DID
+title: 🏢 Attester DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';

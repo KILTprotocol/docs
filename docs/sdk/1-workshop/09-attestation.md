@@ -1,6 +1,6 @@
 ---
 id: attestation
-title: 🔖 Attestation
+title: 🧾 Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
