@@ -15,7 +15,7 @@ const {
 // load Attester helper functions
 const getAccount = require('./getAccount');
 const getFullDid = require('./getFullDid');
-const getCType = require('./getCType');
+const getCtype = require('./getCtype');
 const attestCredential = require('./attestCredential');
 
 // initialize the Attester account
@@ -30,10 +30,10 @@ async function initialize() {
 
 // export for the outside world
 module.exports = {
-  async getCType() {
+  async getCtype() {
     // load the account, get the CType, return as data
     const { fullDid, account, keystore } = await initialize();
-    const ctype = await getCType(fullDid, keystore, account);
+    const ctype = await getCtype(fullDid, keystore, account);
     return JSON.stringify(ctype);
   },
   async attestCredential(requestJSON) {

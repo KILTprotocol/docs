@@ -17,7 +17,7 @@ async function main() {
   // connect to the KILT wss node
   await Kilt.init({ address });
 
-  const json = await attester.getCType();
+  const json = await attester.getCtype();
   const ctype = JSON.parse(json);
   console.log(JSON.stringify(ctype, null, 2));
 
