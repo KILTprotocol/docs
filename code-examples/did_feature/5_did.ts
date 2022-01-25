@@ -1,8 +1,18 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DefaultResolver, DemoKeystore, DidChain, SigningAlgorithms, FullDidDetails } from '@kiltprotocol/did'
-import { KeyRelationship, KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
+import {
+  DefaultResolver,
+  DemoKeystore,
+  DidChain,
+  SigningAlgorithms,
+  FullDidDetails,
+} from '@kiltprotocol/did'
+import {
+  KeyRelationship,
+  KeystoreSigner,
+  SubscriptionPromise,
+} from '@kiltprotocol/types'
 import { init, disconnect } from '@kiltprotocol/core'
 
 export async function main(
@@ -12,7 +22,7 @@ export async function main(
   authenticationSeed: string,
   fullDid: FullDidDetails
 ) {
-  await init({ address: 'wss://peregrine.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const newAuthenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -21,10 +31,15 @@ export async function main(
   })
 
   // Create a DID operation to replace the authentication key with the new one generated.
-  const didUpdateExtrinsic = await DidChain.getSetKeyExtrinsic(KeyRelationship.authentication, {
-    publicKey: newAuthenticationKeyPublicDetails.publicKey,
-    type: DemoKeystore.getKeypairTypeForAlg(newAuthenticationKeyPublicDetails.alg),
-  })
+  const didUpdateExtrinsic = await DidChain.getSetKeyExtrinsic(
+    KeyRelationship.authentication,
+    {
+      publicKey: newAuthenticationKeyPublicDetails.publicKey,
+      type: DemoKeystore.getKeypairTypeForAlg(
+        newAuthenticationKeyPublicDetails.alg
+      ),
+    }
+  )
 
   // Sign the DID operation using the old DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
@@ -41,13 +56,17 @@ export async function main(
   })
 
   // Get the updated DID Doc
-  const updatedDidDetails = (await (await DefaultResolver.resolveDoc(fullDid.did))?.details) as FullDidDetails
+  const updatedDidDetails = (await (
+    await DefaultResolver.resolveDoc(fullDid.did)
+  )?.details) as FullDidDetails
   if (updatedDidDetails === undefined) {
     throw 'We just created the did'
   }
 
   // Remove the service endpoint with id `my-service` added upon creation in the previous section.
-  const didRemoveExtrinsic = await DidChain.getRemoveEndpointExtrinsic('my-service')
+  const didRemoveExtrinsic = await DidChain.getRemoveEndpointExtrinsic(
+    'my-service'
+  )
 
   // Sign the DID operation using the new authentication key.
   const didSignedRemoveExtrinsic = await updatedDidDetails.authorizeExtrinsic(

@@ -10,11 +10,14 @@ export async function main(
   resolveOn: SubscriptionPromise.ResultEvaluator,
   fullDid: FullDidDetails
 ) {
-  await init({ address: 'wss://peregrine.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Generate the submittable extrinsic to claim the deposit back, by including the DID identifier for which the deposit needs to be returned and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
   const endpointsCountForDid = await DidChain.queryEndpointsCounts(fullDid.did)
-  const depositClaimExtrinsic = await DidChain.getReclaimDepositExtrinsic(fullDid.did.replace("did:kilt:", ""), endpointsCountForDid)
+  const depositClaimExtrinsic = await DidChain.getReclaimDepositExtrinsic(
+    fullDid.did.replace('did:kilt:', ''),
+    endpointsCountForDid
+  )
 
   // The submission will fail if `aliceKiltAccount` is not the owner of the deposit associated with the given DID identifier.
   await BlockchainUtils.signAndSubmitTx(depositClaimExtrinsic, kiltAccount, {
