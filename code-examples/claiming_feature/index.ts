@@ -39,7 +39,7 @@ async function getLightDid() {
 }
 
 export async function runAll() {
-  await kiltInit({ address: 'wss://peregrine.kilt.io' })
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   const { lightDID: claimer, keystore } = await getLightDid()
 

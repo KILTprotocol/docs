@@ -1,8 +1,18 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { init, disconnect } from '@kiltprotocol/core'
-import { DefaultResolver, DemoKeystore, DidUtils, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
-import { KeyRelationship, SubscriptionPromise, IDidResolvedDetails } from '@kiltprotocol/types'
+import {
+  DefaultResolver,
+  DemoKeystore,
+  DidUtils,
+  SigningAlgorithms,
+  EncryptionAlgorithms,
+} from '@kiltprotocol/did'
+import {
+  KeyRelationship,
+  SubscriptionPromise,
+  IDidResolvedDetails,
+} from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
@@ -12,7 +22,7 @@ export async function main(
   authenticationSeed: string,
   encryptionSeed: string
 ): Promise<IDidResolvedDetails> {
-  await init({ address: 'wss://peregrine.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -33,7 +43,9 @@ export async function main(
     {
       [KeyRelationship.authentication]: {
         publicKey: authenticationKeyPublicDetails.publicKey,
-        type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
+        type: DemoKeystore.getKeypairTypeForAlg(
+          authenticationKeyPublicDetails.alg
+        ),
       },
       [KeyRelationship.keyAgreement]: {
         publicKey: encryptionKeyPublicDetails.publicKey,

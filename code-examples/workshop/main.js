@@ -23,7 +23,7 @@ const attesterAddress = `<Attester Address>`
 
 async function main() {
   await cryptoWaitReady()
-  await Kilt.init({ address: 'wss://peregrine.kilt.io' })
+  await Kilt.init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Fetch the keyring pair for the attester as in accounts using the generated mnemonic
   const keyring = new Kilt.Utils.Keyring({
