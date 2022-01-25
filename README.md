@@ -1,11 +1,3 @@
-# TODO
-
-Some things left to do on this branch
-- [ ] Go through and simplify the text - KISS
-- [ ] Setup index.ts with proper tests
-- [ ] Provide a link to Peregrine faucet
-- [ ] Provide a link to workshop code as stand alone repo
-
 # Website
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
