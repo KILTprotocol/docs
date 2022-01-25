@@ -6,7 +6,7 @@ import { accounts } from './1_2_account'
 import { keystoreGeneration } from './2_1_did'
 import { createClaimerLightDid } from './2_2_did'
 import { createAttesterFullDid } from './2_3_did'
-import { createCType } from './3_1_ctypeFromSchema'
+import { createCtype } from './3_1_ctypeFromSchema'
 import { ctypeStored } from './3_2_ctypeFromSchema'
 import { createClaim } from './4_1_claim'
 import { createRequestForAttestation } from './4_2_claim'
@@ -74,7 +74,7 @@ export async function test_all() {
   ))
   console.groupEnd()
   console.group('ctypeFromSchema-1')
-  ctype = createCType()
+  ctype = createCtype()
   console.groupEnd()
   console.group('ctypeFromSchema-2')
   ctype = await ctypeStored(attester, attesterFullDid, ctype, keystore)

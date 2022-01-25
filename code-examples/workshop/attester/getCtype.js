@@ -1,9 +1,9 @@
 const Kilt = require('@kiltprotocol/sdk-js');
-const createCType = require('./createCType');
+const createCtype = require('./createCtype');
 
 async function getCtype(fullDid, keystore, account) {
   // get the CTYPE and see if it's stored, if yes return it
-  const ctype = createCType();
+  const ctype = createCtype();
   const isStored = await ctype.verifyStored();
   if (isStored) return ctype;
 
