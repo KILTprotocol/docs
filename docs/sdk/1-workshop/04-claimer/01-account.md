@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index-1.js';
 import GetAccount from '!!raw-loader!../../../../code-examples/workshop/claimer/getAccount.js';
 
-Now we'll create an account for a `Claimer`. 
+Now we'll create an account for a `Claimer`.
 
 ## Folder
 
@@ -53,7 +53,7 @@ node ./claimer/index.js
 Your output will provide you with `CLAIMER_MNEMONIC` and `CLAIMER_ADDRESS`. Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io
+WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
 ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...

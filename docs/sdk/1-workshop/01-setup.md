@@ -13,13 +13,13 @@ You need to have [Node.js](https://nodejs.org/) installed. Any stable (LTS) vers
 
 ## Project Folder
 
-Create a new folder, named for example `kilt-rocks`. 
-Create `attester`, `claimer`, `verifier` folders. 
+Create a new folder, named for example `kilt-rocks`.
+Create `attester`, `claimer`, `verifier` folders.
 Create `.env` and our main entry files `index.js`.
 
 ```bash
 └─ kilt-rocks # project
-    ├─ attester # all attester code 
+    ├─ attester # all attester code
     ├─ claimer # all claimer code
     ├─ verifier # all verifier code
     ├─ .env # environment variables
@@ -40,16 +40,17 @@ npm install @kiltprotocol/sdk-js @polkadot/util-crypto dotenv
 
 ## Connection
 
-Before you call any SDK functionality, you need to connect to a full node. 
-For this workshop we'll be using [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2F#/explorer). Add the address to your `.env` file.
+Before you call any SDK functionality, you need to initialise the crypto libraries and configure the SDK.
+This is done calling `await Kilt.init({ address })` where `address` is the address of the full node you want to connect to.
+For this workshop use `wss://peregrine.kilt.io/parachain-public-ws`.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io
+WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 ```
 
 ## Index
 
-Finally, we'll setup our `index.js` file. This will be the main script we use to run through the workshop. Copy the code below, we'll go through it step by step later. 
+Finally, we'll setup our `index.js` file. This will be the main script we use to run through the workshop. Copy the code below, we'll go through it step by step later.
 
 <CodeBlock className="language-js" title="index.js">
   {Index}

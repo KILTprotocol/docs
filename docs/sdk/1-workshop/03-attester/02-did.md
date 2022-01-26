@@ -118,7 +118,7 @@ Example of a full DID Identifier:
 Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io
+WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
 ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
