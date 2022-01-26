@@ -4,8 +4,8 @@ title: CTYPE
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import CType from '!!raw-loader!../../../../code-examples/workshop/attester/createCType.js';
-import GetCType from '!!raw-loader!../../../../code-examples/workshop/attester/getCType.js';
+import CType from '!!raw-loader!../../../../code-examples/workshop/attester/createCtype.js';
+import GetCType from '!!raw-loader!../../../../code-examples/workshop/attester/getCtype.js';
 import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index-3.js';
 import Index from '!!raw-loader!../../../../code-examples/workshop/index-2.js';
 
