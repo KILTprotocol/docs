@@ -9,7 +9,8 @@ import Index from '!!raw-loader!../../../code-examples/workshop/index-1.js';
 
 ## Node.js
 
-You need to have [Node.js](https://nodejs.org/) installed. Any stable (LTS) version is sufficient.
+You need to have [Node.js](https://nodejs.org/) installed.
+Any stable (LTS >= 14.0) version is sufficient.
 
 ## Project Folder
 
@@ -33,16 +34,19 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 - [PolkadotJS Crypto-Utils](https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme) - for a few crypto utilities
 - [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
 
+<!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js @polkadot/util-crypto dotenv
+npm install @kiltprotocol/sdk-js@0.25.0 @polkadot/util-crypto@8.1.2 dotenv
 ```
 
-## Connection
+## Blockchain Connection
 
 Before you call any SDK functionality, you need to initialise the crypto libraries and configure the SDK.
+For this workshop we'll be using [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws#/explorer).
 This is done calling `await Kilt.init({ address })` where `address` is the address of the full node you want to connect to.
 For this workshop use `wss://peregrine.kilt.io/parachain-public-ws`.
+Add the address to your `.env` file.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
@@ -50,7 +54,9 @@ WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
 ## Index
 
-Finally, we'll setup our `index.js` file. This will be the main script we use to run through the workshop. Copy the code below, we'll go through it step by step later.
+Finally, we'll setup our `index.js` file.
+This will be the main script we use to run through the workshop.
+Copy the code below, we'll go through it step by step later.
 
 <CodeBlock className="language-js" title="index.js">
   {Index}

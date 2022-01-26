@@ -3,7 +3,8 @@ id: welcome
 title: 👋🏻 Welcome
 ---
 
-SDK version **0.24.0**.
+<!-- When updating this version also update 01-setup.md! -->
+SDK version **0.25.0**.
 
 :::info What you can expect
 
@@ -21,7 +22,7 @@ SDK version **0.24.0**.
 
 In this tutorial, you will:
 
-✔ Get familiar with the essential concepts in KILT: identities, CTypes, claims, credentials and more.
+✔ Get familiar with the essential concepts in KILT: accounts, DIDs, CTypes, claims, credentials and more.
 
 ✔ Use the KILT SDK to implement the basic flow of a KILT claim, from creation until verification. You'll create a claim as a <span class="label-role claimer">claimer</span>, attest it as an <span class="label-role attester">attester</span> and verify it as a <span class="label-role verifier">verifier</span>.
 
