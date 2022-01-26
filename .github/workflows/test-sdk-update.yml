@@ -1,0 +1,61 @@
+name: test-getting-started-sdk-update
+
+on:
+  repository_dispatch:
+    types: [sdk-update]
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+run_getting-started:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: run getting started tests
+        timeout-minutes: 60
+        working-directory: code-examples
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: run getting started
+        timeout-minutes: 10
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: kilt/prototype-chain
+        run: |
+          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc
+          docker run -d --rm -p 9944:9944 $ECR_REGISTRY/$ECR_REPOSITORY:latest-rc --dev --ws-port 9944 --ws-external
+          sleep 5s
+          yarn install --frozen
+          yarn run ts-node getting_started/getting-started.ts
+          docker stop $(docker ps -f ancestor=$ECR_REGISTRY/$ECR_REPOSITORY:latest-rc -q)
+
+
+- name: Create issue on failure
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          title: fix getting started after sdk-js upgrade
+          labels: bug
+          assignees: ${{ github.event.client_payload.github.sender.login }}
+          SHA: ${{ github.event.client_payload.github.sha }}
+          URL: https://github.com/KILTprotocol/sdk-js/commit/${{ github.event.client_payload.github.sha }}
+        with:
+          filename: .github/sdk-update-issue-template.md
