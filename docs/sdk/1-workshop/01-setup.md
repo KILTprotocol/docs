@@ -40,6 +40,13 @@ npm init -y
 npm install @kiltprotocol/sdk-js@0.25.0 @polkadot/util-crypto@8.1.2 dotenv
 ```
 
+## PILT Tokens
+
+In this workshop you will interact with the Peregrine blockchain.
+You are required to pay for each transaction with PILT coins.
+But worry not!
+PILT coins don't have any value and can easily be requested through our communication channels ([Element](https://matrix.to/#/%23kilt-general:matrix.org) and [Discord](https://discord.gg/5VZnPdTZMy)).
+
 ## Blockchain Connection
 
 Before you call any SDK functionality, you need to initialise the crypto libraries and configure the SDK.

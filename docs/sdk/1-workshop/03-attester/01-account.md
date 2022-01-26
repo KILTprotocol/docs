@@ -7,10 +7,11 @@ import CodeBlock from '@theme/CodeBlock';
 import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-1.js';
 import GetAccount from '!!raw-loader!../../../../code-examples/workshop/attester/getAccount.js';
 
-Now we'll create our `Attester` account.
+After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.
 An accounts contains multiple properties.
 One of them is the `address`: it's the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
+All we need to create an account is a mnemonic.
 
 :::info KILT Account
 
@@ -20,8 +21,6 @@ A KILT account is a set of cryptographic elements:
 - A signing keypair write transactions on-chain
 
 :::
-
-All we need to create an account is a mnemonic.
 
 :::info mnemonic
 
@@ -33,32 +32,16 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 :::
 
-## Folder Structure
-
-Create the following files in the `attester` folder.
-This folders serves to mimi an `Attester` service, the
-outside world will interact with `index.js` from out main project file.
-
-```bash
-└─ kilt-rocks # project
-    └─ attester # all attester code
-      ├─ attestCredentials.js # issues credentials
-      ├─ getAccount.js # loads the Attester account
-      ├─ getCtype.js # returns a specific ctype
-      ├─ getFullDid.js # loads the Attester on chain DID
-      └─ index.js # main entry for outside world (Claimer, Verifier)
-  ...
-```
-
 ## Create the Account
 
 To generate an account, one method from the KILT SDK is needed and one method from the polkadot crypto utility:
 
-- `mnemonicGenerate()` // Generates a mnemonic
-- `addFromMnemonic(mnemonic)` // takes a mnemonic as an input, and outputs an `Account` instance.
+- `mnemonicGenerate()` - Generates a mnemonic
+- `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-You'll note we're getting a mnemonic from `.env`. This is because we want to keep our seed phrase safe,
-and it may vary when moving environments (`development`, `production`). You'll be prompted to save it after the first run.
+You'll note we're getting a mnemonic from `.env`.
+This is because we want to keep our seed phrase safe, and it may vary when moving environments (`development`, `production`).
+You'll be prompted to save it after the first run.
 
 Open `attester/getAccount.js` and paste the following code:
 
@@ -68,13 +51,13 @@ Open `attester/getAccount.js` and paste the following code:
 
 ## Execute
 
-Let's setup our `Attester` index. Copy the below into `attester/index.js`
+Let's setup our <span class="label-role attester">attester</span> index. Copy the below into `attester/index.js`
 
 <CodeBlock className="language-js" title="attester/index.js">
   {Index}
 </CodeBlock>
 
-Now run it to get your `Attester` `<address>` and `<mnenomic>`.
+Now run it to get your <span class="label-role attester">attester</span> `<address>` and `<mnenomic>`.
 ```bash
 node ./attester/index.js
 ```
@@ -89,14 +72,9 @@ ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
 ```
 
-## PILT Tokens
+:::warning Get PILT coins!
 
-When writing the hash of attestations on the blockchain, `Attesters` have to pay the angel’s
-share (gas or transaction fee) and the deposit in KILT Tokens. So you'll need tokens to attest a claim.
-While testing you can use PILT Testnet Tokens.
-
+You now have a blockchain account, which will be used to pay fees and deposits.
 If you haven't already requested PILT, go to the ([Element](https://matrix.to/#/%23kilt-general:matrix.org) and [Discord](https://discord.gg/5VZnPdTZMy)) and request tokens for your `<address>`.
 
-Sadly these are just play tokens, not real money.
-
-That's it - You've successfully generated your `Attester` account! Let's setup the `Attester`'s on-chain `DID` next!
+:::
