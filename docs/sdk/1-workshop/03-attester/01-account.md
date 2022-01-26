@@ -1,15 +1,16 @@
 ---
-id: attester-account
-title: 🏢 Attester Account
+id: account
+title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Index from '!!raw-loader!../../../code-examples/workshop/attester/index-1.js';
-import GetAccount from '!!raw-loader!../../../code-examples/workshop/attester/getAccount.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-1.js';
+import GetAccount from '!!raw-loader!../../../../code-examples/workshop/attester/getAccount.js';
 
-Now we'll create our `Attester` account. In KILT, there is an account 
-which is an object that interacts with the blockchain. An accounts contains 
-multiple properties. One of them is the `address` : it's the entity's unique and public on-chain identifier.
+Now we'll create our `Attester` account.
+In KILT, there is an account which is an object that interacts with the blockchain.
+An accounts contains multiple properties.
+One of them is the `address`: it's the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
 
 :::info KILT Account
 
@@ -32,15 +33,15 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 :::
 
-## Folder
+## Folder Structure
 
-Create the following files in the `attester` folder. 
+Create the following files in the `attester` folder.
 This folders serves to mimi an `Attester` service, the
 outside world will interact with `index.js` from out main project file.
 
 ```bash
 └─ kilt-rocks # project
-    └─ attester # all attester code 
+    └─ attester # all attester code
       ├─ attestCredentials.js # issues credentials
       ├─ getAccount.js # loads the Attester account
       ├─ getCtype.js # returns a specific ctype
@@ -49,7 +50,7 @@ outside world will interact with `index.js` from out main project file.
   ...
 ```
 
-## Account
+## Create the Account
 
 To generate an account, one method from the KILT SDK is needed and one method from the polkadot crypto utility:
 
@@ -65,7 +66,7 @@ Open `attester/getAccount.js` and paste the following code:
   {GetAccount}
 </CodeBlock>
 
-## Index
+## Execute
 
 Let's setup our `Attester` index. Copy the below into `attester/index.js`
 
@@ -73,18 +74,18 @@ Let's setup our `Attester` index. Copy the below into `attester/index.js`
   {Index}
 </CodeBlock>
 
-Now run it to get your `Attester` `<address>` and `<mnenomic>`. 
+Now run it to get your `Attester` `<address>` and `<mnenomic>`.
 ```bash
 node ./attester/index.js
 ```
 
-Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`. Be sure to save it in your `.env` 
+Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`. Be sure to save it in your `.env`
 file, it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
 
-ATTESTER_MNEMONIC="gold upset segment ca... 
+ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
 ```
 
@@ -95,8 +96,6 @@ share (gas or transaction fee) and the deposit in KILT Tokens. So you'll need to
 While testing you can use PILT Testnet Tokens.
 
 If you haven't already requested PILT, go to the ([Element](https://matrix.to/#/%23kilt-general:matrix.org) and [Discord](https://discord.gg/5VZnPdTZMy)) and request tokens for your `<address>`.
-
-[faucet]: https://faucet.kilt.io/
 
 Sadly these are just play tokens, not real money.
 

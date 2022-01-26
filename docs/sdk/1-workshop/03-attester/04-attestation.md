@@ -1,12 +1,12 @@
 ---
 id: attestation
-title: 🧾 Attestation
+title: Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import AttestCredential from '!!raw-loader!../../../code-examples/workshop/attester/attestCredential.js';
-import AttesterIndex from '!!raw-loader!../../../code-examples/workshop/attester/index.js';
-import Index from '!!raw-loader!../../../code-examples/workshop/index-4.js';
+import AttestCredential from '!!raw-loader!../../../../code-examples/workshop/attester/attestCredential.js';
+import AttesterIndex from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/index-4.js';
 
 In this section, your `Attester` will recieve a `RequestForAttestation` where you'll
 
@@ -41,13 +41,13 @@ and will recieve our `Credential`!
   {Index}
 </CodeBlock>
 
-run it from command line 
+run it from command line
 
 ```bash
 node index.js
 ```
 
-You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-) 
+You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-)
 
 Your job as an `Attester` is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `Credential` object for the `Claimer`.
 

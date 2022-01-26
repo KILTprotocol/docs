@@ -1,18 +1,18 @@
 ---
-id: attester-ctype
-title: 🏢 Attester CTYPE
+id: ctype
+title: CTYPE
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import CType from '!!raw-loader!../../../code-examples/workshop/attester/createCType.js';
-import GetCType from '!!raw-loader!../../../code-examples/workshop/attester/getCType.js';
-import Attester from '!!raw-loader!../../../code-examples/workshop/attester/index-3.js';
-import Index from '!!raw-loader!../../../code-examples/workshop/index-2.js';
+import CType from '!!raw-loader!../../../../code-examples/workshop/attester/createCType.js';
+import GetCType from '!!raw-loader!../../../../code-examples/workshop/attester/getCType.js';
+import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index-3.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/index-2.js';
 
 Before the <span class="label-role claimer">claimer</span> can make a claim about themselves, first a claim type (CType for short) needs to be found or created.
 It requires an account and a full DID with tokens in order to pay the Angel's fee and deposit of a CType.
 
-A claim type (CTYPE for short) is a KILT-specific term, but the concept is simple:  
+A claim type (CTYPE for short) is a KILT-specific term, but the concept is simple:
 A CTYPE defines the structure of a claim. You can think of it as the data model for your claim.
 
 For example, a very basic CTYPE for a driver's license could look like this:
@@ -71,7 +71,7 @@ In this tutorial, we'll have the `Attester` create and attempt to store a CTYPE 
 
 Let's add a function called `getCtype` in our `attester/index.js` file. In the real world `Claimers` will
 be calling this from another device, let's mimic this by exporting the function. We can also make use of the
-`initialize` function we built earlier. 
+`initialize` function we built earlier.
 
 <CodeBlock className="language-js" title="attester/index.js">
   {Attester}
@@ -87,7 +87,7 @@ Now we have our entry ready, create a new file `attester/ctype.js`. Copy the fol
 
 ## Get CTYPE
 
-Create a new file `attester/getCType.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll 
+Create a new file `attester/getCType.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll
 return it, otherwise we'll store it on-chain. Remember, an account must have the require amount to pay the Angel's fee and deposit.
 
 <CodeBlock className="language-js">

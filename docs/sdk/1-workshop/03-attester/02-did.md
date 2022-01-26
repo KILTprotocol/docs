@@ -1,13 +1,13 @@
 ---
-id: attester-did
-title: 🏢 Attester DID
+id: did
+title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import GenerateKeypairs from '!!raw-loader!../../../code-examples/workshop/attester/generateKeypairs.js';
-import CreateFullDid from '!!raw-loader!../../../code-examples/workshop/attester/createFullDid.js';
-import GetFullDid from '!!raw-loader!../../../code-examples/workshop/attester/getFullDid.js';
-import Index from '!!raw-loader!../../../code-examples/workshop/attester/index-2.js';
+import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/attester/generateKeypairs.js';
+import CreateFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/createFullDid.js';
+import GetFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/getFullDid.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-2.js';
 
 Time to make a DID using the previously created account for the <span class="label-role attester">attester</span>.
 
@@ -64,7 +64,7 @@ A keystore has multiple purposes:
 
 ## Key Pairs
 
-For our `Attester` we'll need signing and encryption `keypairs`. We'll use an inbound keystore to generate them. 
+For our `Attester` we'll need signing and encryption `keypairs`. We'll use an inbound keystore to generate them.
 Create a file `attester/generateKeypairs.js` and copy the code below.
 
 <CodeBlock className="language-js" title="attester/generateKeypairs.js">
@@ -74,7 +74,7 @@ Create a file `attester/generateKeypairs.js` and copy the code below.
 ## Create DID
 
 Here we use the `keystore`, `keypairs` and `account` to create the required `keys`.
-We then get the `didUri`, `extrinsic` and write the `DID` to the chain. 
+We then get the `didUri`, `extrinsic` and write the `DID` to the chain.
 You will also be promtped to save the `didUri` to `.env`. Once you do this once,
 we can then resolve the `DID` instead of creating one.
 
@@ -95,7 +95,7 @@ to happen once. After created, DIDs have a `didUri` that can be used to resolve 
 ## Index
 
 Ok let's update our `attester/index.js`. We bring in the `ATTESTER_DID_URI` form `.env` and our `getFullDid` function.
-Finally we'll return the `keystore`, `account` and `fullDid` for use elsewhere later. 
+Finally we'll return the `keystore`, `account` and `fullDid` for use elsewhere later.
 
 <CodeBlock className="language-js">
   {Index}
@@ -120,7 +120,7 @@ Be sure to save it in your `.env` file, it should now look similar to this.
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
 
-ATTESTER_MNEMONIC="gold upset segment ca... 
+ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
 ATTESTER_DID_URI=did:kilt:4pjUYTbttjJHqT...
 ```

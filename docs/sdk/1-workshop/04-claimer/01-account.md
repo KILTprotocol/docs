@@ -1,23 +1,22 @@
 ---
-id: claimer-account
-title: 👤 Claimer Account
+id: account
+title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Index from '!!raw-loader!../../../code-examples/workshop/claimer/index-1.js';
-import GetAccount from '!!raw-loader!../../../code-examples/workshop/claimer/getAccount.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index-1.js';
+import GetAccount from '!!raw-loader!../../../../code-examples/workshop/claimer/getAccount.js';
 
-Now we'll create our `Claimer` account. Same as `Attester` account except off-chain
+Now we'll create an account for a `Claimer`. 
 
 ## Folder
 
-Create the following files in the `Claimer` folder. 
-This folders serves to mimi an `Claimer` service, the
-outside world will interact with `index.js` from out main project file.
+Create the following files in the `Claimer` folder.
+This folders serves to mimic a `Claimer` service, the outside world will interact with `index.js` from out main project file.
 
 ```bash
 └─ kilt-rocks # project
-    └─ claimer # all claimer code 
+    └─ claimer # all claimer code
       ├─ createClaim.js # creates a claim
       ├─ createPresentation.js # creates a presentation for verifiers
       ├─ createRequest.js # creates a request for attestation
@@ -46,7 +45,7 @@ Let's setup our `Claimer` index. Copy the below into `claimer/index.js`
   {Index}
 </CodeBlock>
 
-Now run it to get your `Claimer` `<address>` and `<mnenomic>`. 
+Now run it to get your `Claimer` `<address>` and `<mnenomic>`.
 ```bash
 node ./claimer/index.js
 ```
@@ -56,11 +55,11 @@ Your output will provide you with `CLAIMER_MNEMONIC` and `CLAIMER_ADDRESS`. Be s
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
 
-ATTESTER_MNEMONIC="gold upset segment ca... 
+ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
 ATTESTER_DID_URI=did:kilt:4pjUYTbttjJHqT...
 
-CLAIMER_MNEMONIC="gold upset segment cak... 
+CLAIMER_MNEMONIC="gold upset segment cak...
 CLAIMER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMes...
 ```
 
