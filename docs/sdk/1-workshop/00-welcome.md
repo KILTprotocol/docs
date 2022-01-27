@@ -24,7 +24,7 @@ In this tutorial, you will:
 
 ✔ Get familiar with the essential concepts in KILT: accounts, DIDs, CTypes, claims, credentials and more.
 
-✔ Use the KILT SDK to implement the basic flow of a KILT claim, from creation until verification. You'll create a claim as a <span class="label-role claimer">claimer</span>, attest it as an <span class="label-role attester">attester</span> and verify it as a <span class="label-role verifier">verifier</span>.
+✔ Use the KILT SDK to implement the basic flow of a KILT claim, from creation until verification. You'll create a claim as a <span class="label-role claimer">Claimer</span>, attest it as an <span class="label-role attester">Attester</span> and verify it as a <span class="label-role verifier">Verifier</span>.
 
 ✔ Use the KILT SDK to write onto and read from the KILT blockchain.
 

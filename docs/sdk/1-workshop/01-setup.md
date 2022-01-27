@@ -15,7 +15,7 @@ Any stable (LTS >= 14.0) version is sufficient.
 ## Project Folder
 
 Create a new folder, named for example `kilt-rocks`.
-Create `attester`, `claimer`, `verifier` folders.
+Create  <span class="label-role attester">Attester</span>,  <span class="label-role claimer">Claimer</span>,  <span class="label-role verifier">Verifier</span> folders.
 Create `.env` and our main entry files `index.js`.
 
 ```bash

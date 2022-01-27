@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-1.js';
 import GetAccount from '!!raw-loader!../../../../code-examples/workshop/attester/getAccount.js';
 
-After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">attester</span> account.
+After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">Attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.
 An accounts contains multiple properties.
 One of them is the `address`: it's the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
@@ -51,13 +51,13 @@ Open `attester/getAccount.js` and paste the following code:
 
 ## Execute
 
-Let's setup our <span class="label-role attester">attester</span> index. Copy the below into `attester/index.js`
+Let's setup our <span class="label-role attester">Attester</span> index. Copy the below into `attester/index.js`
 
 <CodeBlock className="language-js" title="attester/index.js">
   {Index}
 </CodeBlock>
 
-Now run it to get your <span class="label-role attester">attester</span> `<address>` and `<mnenomic>`.
+Now run it to get your <span class="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
 ```bash
 node ./attester/index.js
 ```

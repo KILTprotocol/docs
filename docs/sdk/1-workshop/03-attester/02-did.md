@@ -9,7 +9,7 @@ import CreateFullDid from '!!raw-loader!../../../../code-examples/workshop/attes
 import GetFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/getFullDid.js';
 import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-2.js';
 
-Time to make a DID using the previously created account for the <span class="label-role attester">attester</span>.
+Time to make a DID using the previously created account for the <span class="label-role attester">Attester</span>.
 
 A DID may represents any entity, may it be a person, an organization or a machine.
 
@@ -58,7 +58,7 @@ The keystore ...
 :::
 
 In order to create a DID we need a keystore.
-For our <span class="label-role attester">attester</span> we'll need all four types of keys.
+For our <span class="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types use are used for signatures, we can use the same key for these.
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.js` and copy the code below.

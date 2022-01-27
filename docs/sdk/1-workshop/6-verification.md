@@ -9,12 +9,12 @@ import CreatePresentation from '!!raw-loader!../../../code-examples/workshop/cla
 import ClaimerIndex from '!!raw-loader!../../../code-examples/workshop/claimer/index.js';
 import Index from '!!raw-loader!../../../code-examples/workshop/index.js';
 
-In this section, you'll play the role of a <span class="label-role verifier">verifier</span>:
+In this section, you'll play the role of a <span class="label-role verifier">Verifier</span>:
 
-- You'll take an `Credential` object given to you by a <span class="label-role claimer">claimer</span>;
+- You'll take an `Credential` object given to you by a <span class="label-role claimer">Claimer</span>;
 - You'll verify that its data is correct;
 - You'll verify that the attestation is valid, i.e. its hash exists on-chain and the attestation has not been revoked.
-- You'll verify that the `Credential` is owned by the `Claimer` sending it
+- You'll verify that the `Credential` is owned by the  <span class="label-role claimer">Claimer</span> sending it
 
 :::info Credential
 
@@ -25,8 +25,8 @@ A `Credential` object is also called an Attested Claim: It is what <span class="
 ## Verifier Index
 
 Let's create our `verifier/index.js`. Here we'll expose `getChallenge` which returns a random and unique
-challenge for the `Claimer` to sign, this is used to prove ownership. We'll also expose `verifyCredential`
-which will do the actual verification. Copy the code below, this completes the `Verifier` code!
+challenge for the  <span class="label-role claimer">Claimer</span> to sign, this is used to prove ownership. We'll also expose `verifyCredential`
+which will do the actual verification. Copy the code below, this completes the  <span class="label-role verifier">Verifier</span> code!
 
 <CodeBlock className="language-js" title="verifier/index.js">
   {VerifierIndex}
@@ -34,8 +34,8 @@ which will do the actual verification. Copy the code below, this completes the `
 
 ## Claimer Create Presentation
 
-It's not enough to just send our credential as a `Claimer` as we also need to prove our ownership.
-This is done by creating a presentation by signing the `Verifier`'s challenge.
+It's not enough to just send our credential as a  <span class="label-role claimer">Claimer</span> as we also need to prove our ownership.
+This is done by creating a presentation by signing the  <span class="label-role verifier">Verifier</span>'s challenge.
 
 Create `claimer/createPresentation.js` helper and copy the following code.
 
@@ -53,7 +53,7 @@ Let's update our main `claimer/index.js`
 
 ## Index
 
-Let's update our main `index.js` and bring this all together. Here we get a `challenge` from the `Verifier`, 
+Let's update our main `index.js` and bring this all together. Here we get a `challenge` from the  <span class="label-role verifier">Verifier</span>, 
 create a `presentation` and have it send if for verification!
 
 <CodeBlock className="language-js">

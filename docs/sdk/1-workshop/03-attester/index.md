@@ -3,7 +3,7 @@ id: attester
 title: 🏢 Attester
 ---
 
-In this section you will walk though all processes done by the <span class="label-role attester">attester</span>.
+In this section you will walk though all processes done by the <span class="label-role attester">Attester</span>.
 
 1. You will [create an account](./account) that is used to pay for all transactions and the storage deposits.
 2. Next step is to [create a DID](./did) which is the identity that is used to create attestations.
@@ -13,8 +13,8 @@ In this section you will walk though all processes done by the <span class="labe
 
 ## Folder Structure
 
-Create the following files in the <span class="label-role attester">attester</span> folder.
-This folders serves to mimic an <span class="label-role attester">attester</span> service, the
+Create the following files in the <span class="label-role attester">Attester</span> folder.
+This folders serves to mimic an <span class="label-role attester">Attester</span> service, the
 outside world will interact with `index.js` from our main project file.
 
 ```bash

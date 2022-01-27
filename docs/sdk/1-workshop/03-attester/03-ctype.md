@@ -22,7 +22,7 @@ A claim type (CType for short) is a KILT-specific term, but the concept is simpl
 A CType defines the structure of a claim.
 You can think of it as the data model for your claim.
 
-Before the <span class="label-role attester">attester</span> can issue attestations, they need to decide which CType they support.
+Before the <span class="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
 A traffic authority will only issue drivers licenses (=> CType for drivers license) and not trade register excerpts.
 Since CTypes enable interoperability between attesters, it is highly recommended to use existing CTypes instead of creating new once.
 But in this workshop we create our own CType.
@@ -68,7 +68,7 @@ A CType is stored on the KILT blockchain.
 
 In a real-life setup, a user would simply retrieve an existing CType from the chain or a repository of CTypes for example via a a Credential Registry's REST API.
 
-In this tutorial, we'll have the <span class="label-role attester">attester</span> create and attempt to store a CType on the KILT test blockchain.
+In this tutorial, we'll have the <span class="label-role attester">Attester</span> create and attempt to store a CType on the KILT test blockchain.
 
 ## Create CType
 
@@ -99,7 +99,7 @@ We can also make use of the `initialize` function we built earlier.
 
 ## Run
 
-To run it, let's call it from our main `index.js`. First we import our <span class="label-role attester">attester</span>.
+To run it, let's call it from our main `index.js`. First we import our <span class="label-role attester">Attester</span>.
 Then simple call `attester.getCType`, we can store the result in `ctype.json` for reference.
 
 <CodeBlock className="language-js" title="index.js">
@@ -110,4 +110,4 @@ Then simple call `attester.getCType`, we can store the result in `ctype.json` fo
 node ./index.js
 ```
 
-OK, now before we can issue credentials, we need a `Claimer` to request one! Let's move on!
+OK, now before we can issue credentials, we need a  <span class="label-role claimer">Claimer</span> to request one! Let's move on!

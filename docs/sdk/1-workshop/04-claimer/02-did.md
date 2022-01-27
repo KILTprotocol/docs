@@ -8,7 +8,7 @@ import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/cl
 import GetLightDid from '!!raw-loader!../../../../code-examples/workshop/claimer/getLightDid.js';
 import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index-2.js';
 
-Time to make a light DID using the previously created account for the `Claimer`. Remember light DIDs can:
+Time to make a light DID using the previously created account for the  <span class="label-role claimer">Claimer</span>. Remember light DIDs can:
 
 - Sign claims and attestations with the authentication keys
 - Encrypting messages with the encryption keys
