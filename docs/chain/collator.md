@@ -377,7 +377,7 @@ For instance, with the keypair generated in the example, the session key file wo
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
-For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io#/explorer).
+For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io/parachain-public-ws#/explorer).
 
 `Developer -> Extrinsics -> Submission`
 
@@ -523,8 +523,8 @@ For **spiritnet**, the parachain bootnodes are:
 - `/dns4/node-6840781141641752576-0.p2p.onfinality.io/tcp/28779/ws/p2p/12D3KooWKMCaxjsvaNkYkdQGnPQnkYFouHFdJ3S36aBhV6QTXzaE`
 
 For **peregrine**, the parachain bootnodes are:
-- `/dns4/bootnode.kilt.io/tcp/30340/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M`
-- `/dns4/bootnode.kilt.io/tcp/30341/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ`
+- `/dns4/peregrine.kilt.io/tcp/30340/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M`
+- `/dns4/peregrine.kilt.io/tcp/30341/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ`
 
 ## Benchmarking (optional) {#benchmarking}
 
