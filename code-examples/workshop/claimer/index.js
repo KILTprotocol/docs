@@ -24,7 +24,7 @@ async function initialize() {
   await cryptoWaitReady();
   await Kilt.init({ address });
   const keystore = new Kilt.Did.DemoKeystore();
-  const account = await getAccount(mnemonic);
+  const account = getAccount(mnemonic);
   const lightDid = await getLightDid(didUri, keystore, mnemonic);
   return { keystore, account, lightDid }
 }
