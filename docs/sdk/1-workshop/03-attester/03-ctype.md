@@ -4,10 +4,11 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
 import CType from '!!raw-loader!../../../../code-examples/workshop/attester/createCtype.js';
 import GetCType from '!!raw-loader!../../../../code-examples/workshop/attester/getCtype.js';
-import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index-3.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/index-2.js';
+import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/index.js';
 
 :::info CType
 
@@ -74,7 +75,7 @@ In this tutorial, we'll have the <span class="label-role attester">Attester</spa
 
 Now we have our entry ready, create a new file `attester/ctype.js`. Copy the following to create a `CType` from a schema:
 
-<CodeBlock className="language-js">
+<CodeBlock title="attester/ctype.js" className="language-js">
   {CType}
 </CodeBlock>
 
@@ -83,7 +84,7 @@ Now we have our entry ready, create a new file `attester/ctype.js`. Copy the fol
 Create a new file `attester/getCType.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll
 return it, otherwise we'll store it on-chain. Remember, an account must have the require amount to pay the Angel's fee and deposit.
 
-<CodeBlock className="language-js">
+<CodeBlock title="attester/getCtype.js" className="language-js">
   {GetCType}
 </CodeBlock>
 
@@ -93,18 +94,37 @@ Let's add a function called `getCtype` in our `attester/index.js` file.
 In the real world <span class="label-role claimer">claimers</span> will be calling this from another device, let's mimic this by exporting the function.
 We can also make use of the `initialize` function we built earlier.
 
-<CodeBlock className="language-js" title="attester/index.js">
+<SnippetBlock 
+  title="attester/index.js"
+  className="language-js"
+  snippets='[
+    [0,18],
+    [19,38],
+    [45,47]
+  ]'
+>
   {Attester}
-</CodeBlock>
+</SnippetBlock>
 
 ## Run
 
 To run it, let's call it from our main `index.js`. First we import our <span class="label-role attester">Attester</span>.
 Then simple call `attester.getCType`, we can store the result in `ctype.json` for reference.
 
-<CodeBlock className="language-js" title="index.js">
+<SnippetBlock 
+  title="index.js"
+  className="language-js" 
+  snippets='[
+    [0, 11],
+    [12,13],
+    [16,24],
+    "  const ctype = JSON.parse(json);",
+    "  console.log(JSON.stringify(ctype, null, 2));\n",
+    [49,54]
+  ]'
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 ```bash
 node ./index.js

@@ -4,9 +4,10 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
 import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/claimer/generateKeypairs.js';
 import GetLightDid from '!!raw-loader!../../../../code-examples/workshop/claimer/getLightDid.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index-2.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index.js';
 
 Time to make a light DID using the previously created account for the  <span class="label-role claimer">Claimer</span>. Remember light DIDs can:
 
@@ -37,9 +38,17 @@ we can just create the DID object everytime, no need to resolve. But we'll still
 Ok let's update our `claimer/index.js`. We bring in the `CLAIMER_DID_URI` form `.env` and our `getLightDid` function.
 Finally we'll return the `keystore`, `account` and `lightDid` for use elsewhere later.
 
-<CodeBlock className="language-js">
+<SnippetBlock 
+  title="claimer/index.js"
+  className="language-js"
+  snippets='[
+    [0, 17],
+    [20,31],
+    "initialize();"
+  ]' 
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 ## Run
 

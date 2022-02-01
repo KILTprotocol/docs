@@ -4,10 +4,11 @@ title: Request an Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
 import CreateClaim from '!!raw-loader!../../../../code-examples/workshop/claimer/createClaim.js';
 import CreateRequest from '!!raw-loader!../../../../code-examples/workshop/claimer/createRequest.js';
-import ClaimerIndex from '!!raw-loader!../../../../code-examples/workshop/claimer/index-3.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/index-3.js';
+import ClaimerIndex from '!!raw-loader!../../../../code-examples/workshop/claimer/index.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/index.js';
 
 In this section we'll create a `Claim` and request a `RequestForAttestation`.
 But a claim in itself has no value. To become valid in the eyes of `Verifiers`,
@@ -43,17 +44,34 @@ request to others in the workshop to see how they get denied from fraudulent sen
 Ok, let's continue our `claimer/index.js`. This will serve to export to convenience functions.
 First we'll import our helper functions we made above, then export `createClaim` and `createRequest`.
 
-<CodeBlock className="language-js">
+<SnippetBlock 
+  title="claimer/index.js"
+  className="language-js"
+  snippets='[
+    [0, 19],
+    [20,56],
+    "}"
+  ]' 
+>
   {ClaimerIndex}
-</CodeBlock>
+</SnippetBlock>
 
 ## Index
 
 Alright update our `index.js`, we'll run it from there.
 
-<CodeBlock className="language-js">
+<SnippetBlock 
+  title="index.js"
+  className="language-js" 
+  snippets='[
+    [0, 13],
+    [14,32],
+    "  console.log(requestJSON);",
+    [48,54]
+  ]'
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 run it from command line
 ```bash

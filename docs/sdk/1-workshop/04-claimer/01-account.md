@@ -4,7 +4,8 @@ title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index-1.js';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
+import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index.js';
 import GetAccount from '!!raw-loader!../../../../code-examples/workshop/claimer/getAccount.js';
 
 Now we'll create an account for a  <span class="label-role claimer">Claimer</span>.
@@ -41,9 +42,21 @@ Open `claimer/getAccount.js` and paste the following code:
 
 Let's setup our  <span class="label-role claimer">Claimer</span> index. Copy the below into `claimer/index.js`
 
-<CodeBlock className="language-js" title="claimer/index.js">
+<SnippetBlock 
+  title="claimer/index.js"
+  className="language-js"
+  snippets='[
+    [0, 16],
+    [20,25],
+    [26,27],
+    "  console.log(account);",
+    [29,31],
+    "initialize();"
+  ]' 
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
+
 
 Now run it to get your  <span class="label-role claimer">Claimer</span> `<address>` and `<mnenomic>`.
 ```bash

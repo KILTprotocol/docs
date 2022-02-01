@@ -5,7 +5,8 @@ title: 🎒 Setup
 
 import Tabs from '@theme/Tabs';
 import CodeBlock from '@theme/CodeBlock';
-import Index from '!!raw-loader!../../../code-examples/workshop/index-1.js';
+import SnippetBlock from '../../../src/components/SnippetBlock';
+import Index from '!!raw-loader!../../../code-examples/workshop/index.js';
 
 ## Node.js
 
@@ -65,8 +66,17 @@ Finally, we'll setup our `index.js` file.
 This will be the main script we use to run through the workshop.
 Copy the code below, we'll go through it step by step later.
 
-<CodeBlock className="language-js" title="index.js">
+<SnippetBlock 
+  title="index.js"
+  className="language-js" 
+  snippets='[
+    [0,10],
+    [16,22],
+    "  // magic will happen here\n",
+    [49,54]
+  ]'
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 That's it for the basic setup - We're good to go!

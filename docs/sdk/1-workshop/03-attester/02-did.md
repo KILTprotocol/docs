@@ -4,10 +4,11 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
 import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/attester/generateKeypairs.js';
 import CreateFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/createFullDid.js';
 import GetFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/getFullDid.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-2.js';
+import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
 
 Time to make a DID using the previously created account for the <span class="label-role attester">Attester</span>.
 
@@ -93,9 +94,17 @@ Ok let's update our `attester/index.js`.
 We bring in the `ATTESTER_DID_URI` form `.env` and our `getFullDid` function.
 Finally we'll return the `keystore`, `account` and `fullDid` for use elsewhere later.
 
-<CodeBlock className="language-js">
+<SnippetBlock 
+  title="attester/index.js"
+  className="language-js"
+  snippets='[
+    [0,17],
+    [19,30],
+    "initialize();"  
+  ]'
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 You can now execute the script with:
 

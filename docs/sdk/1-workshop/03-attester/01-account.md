@@ -4,7 +4,8 @@ title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index-1.js';
+import SnippetBlock from '../../../../src/components/SnippetBlock';
+import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
 import GetAccount from '!!raw-loader!../../../../code-examples/workshop/attester/getAccount.js';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">Attester</span> account.
@@ -53,9 +54,21 @@ Open `attester/getAccount.js` and paste the following code:
 
 Let's setup our <span class="label-role attester">Attester</span> index. Copy the below into `attester/index.js`
 
-<CodeBlock className="language-js" title="attester/index.js">
+<SnippetBlock 
+  title="attester/index.js"
+  className="language-js"
+  snippets='[
+    [0, 11],
+    [12, 14],
+    [14,16],
+    [20,25],
+    "  console.log(account);",
+    [28,30],
+    "initialize();"
+  ]' 
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 Now run it to get your <span class="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
 ```bash

@@ -4,9 +4,10 @@ title: 🧾 Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '../../../src/components/SnippetBlock';
 import AttestCredential from '!!raw-loader!../../../code-examples/workshop/attester/attestCredential.js';
 import AttesterIndex from '!!raw-loader!../../../code-examples/workshop/attester/index.js';
-import Index from '!!raw-loader!../../../code-examples/workshop/index-4.js';
+import Index from '!!raw-loader!../../../code-examples/workshop/index.js';
 
 In this section, your <span class="label-role attester">Attester</span> will recieve and process a `RequestForAttestation` where you'll
 
@@ -37,9 +38,18 @@ to the outside world!. This completes the <span class="label-role attester">Atte
 Let's update our main `index.js`. Here we send our previous request to the <span class="label-role attester">Attester</span>
 and will recieve our `Credential`!
 
-<CodeBlock className="language-js">
+<SnippetBlock 
+  title="index.js"
+  className="language-js" 
+  snippets='[
+    [0, 13],
+    [14,35],
+    "  console.log(credentialJSON);",
+    [48,54]
+  ]'
+>
   {Index}
-</CodeBlock>
+</SnippetBlock>
 
 run it from command line
 
