@@ -9,7 +9,7 @@ In this section you will walk though all processes done by the <span class="labe
 2. Next step is to [create a DID](./did) which is the identity that is used to create attestations.
    While you always can switch the KILT account and pay deposits and fees with any account you like, your DID is the way claimers will identify you and put trust in you.
 3. Before we can attest claims, [we need a CType](./ctype) which describes and gives context to what we attest.
-4. After we can pay fees and deposits, have an identity and a CType [we can create attestations](./attestation).
+4. After we can pay fees and deposits, have an identity and a CType [we can create attestations](../attestation).
 
 ## Folder Structure
 
@@ -21,6 +21,7 @@ outside world will interact with `index.js` from our main project file.
 └─ kilt-rocks # project
     └─ attester # all attester code
       ├─ attestCredentials.js # issues credentials
+      ├─ generateKeypairs.js # Executed only once to generate your private keypairs for the DID
       ├─ getAccount.js # loads the Attester account
       ├─ getCtype.js # returns a specific ctype
       ├─ getFullDid.js # loads the Attester on chain DID

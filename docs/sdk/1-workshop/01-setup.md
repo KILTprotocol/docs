@@ -20,10 +20,10 @@ Create  <span class="label-role attester">Attester</span>,  <span class="label-r
 Create `.env` and our main entry files `index.js`.
 
 ```bash
-└─ kilt-rocks # project
-    ├─ attester # all attester code
-    ├─ claimer # all claimer code
-    ├─ verifier # all verifier code
+└─ kilt-rocks/ # project
+    ├─ attester/ # all attester code
+    ├─ claimer/ # all claimer code
+    ├─ verifier/ # all verifier code
     ├─ .env # environment variables
     └─ index.js # main entry file
 ```
@@ -38,7 +38,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.25.0 @polkadot/util-crypto@8.1.2 dotenv
+npm install @kiltprotocol/sdk-js@0.25.2 @polkadot/util-crypto@8.3.3 dotenv
 ```
 
 ## PILT Tokens
@@ -66,12 +66,12 @@ Finally, we'll setup our `index.js` file.
 This will be the main script we use to run through the workshop.
 Copy the code below, we'll go through it step by step later.
 
-<SnippetBlock 
+<SnippetBlock
   title="index.js"
-  className="language-js" 
+  className="language-js"
   snippets='[
     [0,10],
-    [16,22],
+    [15,22],
     "  // magic will happen here\n",
     [49,54]
   ]'
