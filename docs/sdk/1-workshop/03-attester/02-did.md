@@ -68,20 +68,25 @@ Create a file `attester/generateKeypairs.js` and copy the code below.
   {GenerateKeypairs}
 </CodeBlock>
 
-Here we use the `keystore`, `keypairs` and `account` to create the required `keys`.
-We then get the `didUri` and `extrinsic` to write the `DID` on the chain.
-You will also be prompted to save the `didUri` to `.env`.
-Once you done this, we can then resolve the `DID` from chain and don't need a new one.
+Now we have all we need to create our `DID`: a `keystore`, `keypairs` and `account`. Create
+a file `attester/createFullDid.js` and paster the following code. 
 
-<CodeBlock className="language-js">
+Let's walk through `attester/createFullDid.js`. First we create the required `keys`.
+We use the `keys`, `keystore`, and `address` to get the `didUri` and `extrinsic`.
+Finally we use the `extrinsic` and `account` to write the `DID` on chain.
+
+Once you have the `didUri`, we can then resolve the `DID` from chain, So this creation
+function only needs to run once per `DID`. You'll be prompted to save the `didUri` to `.env`.
+
+<CodeBlock className="language-js" title="attester/createFullDid.js">
   {CreateFullDid}
 </CodeBlock>
 
 ## Get DID
 
-Once our `keypairs` are generated we can create our on chain DID.
-This only needs to happen once.
-After created, DIDs have a `didUri` that can be used to resolve DIDs.
+Create a file `attester/getFullDid.js`. This is a convenience function that 
+first tries to load the `DID` from `.env`'s `DID_URI`. If it doesn't exist
+it will create and write it to chain. Once it exists it resolves and returns the full `DID`.
 
 <CodeBlock className="language-js" title="attester/getFullDid.js">
   {GetFullDid}

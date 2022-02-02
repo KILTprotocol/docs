@@ -15,13 +15,13 @@ In this section you will walk though all processes done by the <span class="labe
 
 Create the following files in the <span class="label-role attester">Attester</span> folder.
 This folders serves to mimic an <span class="label-role attester">Attester</span> service, the
-outside world will interact with `index.js` from our main project file.
+outside world will interact with `attester/index.js` from our main project file.
 
 ```bash
 └─ kilt-rocks # project
     └─ attester # all attester code
       ├─ attestCredentials.js # issues credentials
-      ├─ generateKeypairs.js # Executed only once to generate your private keypairs for the DID
+      ├─ generateKeypairs.js # executed only once to generate your private keypairs for the DID
       ├─ getAccount.js # loads the Attester account
       ├─ getCtype.js # returns a specific ctype
       ├─ getFullDid.js # loads the Attester on chain DID
