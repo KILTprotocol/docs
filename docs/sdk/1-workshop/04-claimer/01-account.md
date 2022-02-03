@@ -10,24 +10,6 @@ import GetAccount from '!!raw-loader!../../../../code-examples/workshop/claimer/
 
 Now we'll create an account for a  <span class="label-role claimer">Claimer</span>.
 
-## Folder
-
-Create the following files in the  <span class="label-role claimer">Claimer</span> folder.
-This folders serves to mimic a  <span class="label-role claimer">Claimer</span> service, the outside world will interact with `index.js` from out main project file.
-
-```bash
-└─ kilt-rocks # project
-    └─ claimer # all claimer code
-      ├─ createClaim.js # creates a claim
-      ├─ createPresentation.js # creates a presentation for verifiers
-      ├─ createRequest.js # creates a request for attestation
-      ├─ getAccount.js # returns Claimer account
-      ├─ getLightDid.js # returns Claimer's light DID
-      ├─ index.js # main entry for out test script
-      └─ _request.json # development request to prevent dupe attestations
-  ...
-```
-
 ## Account
 
 To generate an account, we'll repeat the steps from the `Attester Account`.
@@ -42,7 +24,7 @@ Open `claimer/getAccount.js` and paste the following code:
 
 Let's setup our  <span class="label-role claimer">Claimer</span> index. Copy the below into `claimer/index.js`
 
-<SnippetBlock 
+<SnippetBlock
   title="claimer/index.js"
   className="language-js"
   snippets='[
@@ -52,7 +34,7 @@ Let's setup our  <span class="label-role claimer">Claimer</span> index. Copy the
     "  console.log(account);",
     [29,31],
     "initialize();"
-  ]' 
+  ]'
 >
   {Index}
 </SnippetBlock>

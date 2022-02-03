@@ -18,13 +18,15 @@ This folders serves to mimic an <span class="label-role attester">Attester</span
 outside world will interact with `attester/index.js` from our main project file.
 
 ```bash
-└─ kilt-rocks # project
-    └─ attester # all attester code
-      ├─ attestCredentials.js # issues credentials
-      ├─ generateKeypairs.js # executed only once to generate your private keypairs for the DID
-      ├─ getAccount.js # loads the Attester account
-      ├─ getCtype.js # returns a specific ctype
-      ├─ getFullDid.js # loads the Attester on chain DID
-      └─ index.js # main entry for outside world (Claimer, Verifier)
+└─ kilt-rocks/ # project
+  └─ attester/ # all attester code
+    ├─ attestCredentials.js # issues credentials
+    ├─ generateKeypairs.js # executed only once to generate your private keypairs for the DID
+    ├─ getAccount.js # loads the Attester account
+    ├─ createCtype.js # create a local ctype definition
+    ├─ getCtype.js # returns a specific ctype
+    ├─ createFullDid.js # registers the Attester on chain DID
+    ├─ getFullDid.js # loads the Attester on chain DID
+    └─ index.js # main entry for outside world (Claimer, Verifier)
   ...
 ```

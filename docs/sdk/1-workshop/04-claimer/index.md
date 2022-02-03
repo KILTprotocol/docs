@@ -16,14 +16,14 @@ This folders serves to mimic a <span class="label-role claimer">Claimer</span>'s
 we'll interact with `claimer/index.js` from our main project file.
 
 ```bash
-└─ kilt-rocks # project
-    └─ claimer # all attester code
-      ├─ createClaim.js # creates a claim object
-      ├─ createPresentiation.js # creates a credential presentation for Verifiers
-      ├─ createRequest.js # creates a claim request for Attesters
-      ├─ generateKeypairs.js # generates your private keypairs for the light DID
-      ├─ getAccount.js # loads the Claimer account
-      ├─ getLightDid.js # loads the Claimer light DID
-      └─ index.js # main entry for project index
+└─ kilt-rocks/ # project
+  └─ claimer/ # all claimer code
+    ├─ createClaim.js # creates a claim
+    ├─ createPresentation.js # creates a presentation for verifiers
+    ├─ createRequest.js # creates a request for attestation
+    ├─ getAccount.js # returns Claimer account
+    ├─ getLightDid.js # returns Claimer's light DID
+    ├─ index.js # main entry for out test script
+    └─ _request.json # development request to prevent dupe attestations
   ...
 ```

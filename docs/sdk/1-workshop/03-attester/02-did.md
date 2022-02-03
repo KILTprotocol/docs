@@ -69,7 +69,7 @@ Create a file `attester/generateKeypairs.js` and copy the code below.
 </CodeBlock>
 
 Now we have all we need to create our `DID`: a `keystore`, `keypairs` and `account`. Create
-a file `attester/createFullDid.js` and paster the following code. 
+a file `attester/createFullDid.js` and paster the following code.
 
 Let's walk through `attester/createFullDid.js`. First we create the required `keys`.
 We use the `keys`, `keystore`, and `address` to get the `didUri` and `extrinsic`.
@@ -84,7 +84,7 @@ function only needs to run once per `DID`. You'll be prompted to save the `didUr
 
 ## Get DID
 
-Create a file `attester/getFullDid.js`. This is a convenience function that 
+Create a file `attester/getFullDid.js`. This is a convenience function that
 first tries to load the `DID` from `.env`'s `DID_URI`. If it doesn't exist
 it will create and write it to chain. Once it exists it resolves and returns the full `DID`.
 
@@ -99,13 +99,13 @@ Ok let's update our `attester/index.js`.
 We bring in the `ATTESTER_DID_URI` form `.env` and our `getFullDid` function.
 Finally we'll return the `keystore`, `account` and `fullDid` for use elsewhere later.
 
-<SnippetBlock 
+<SnippetBlock
   title="attester/index.js"
   className="language-js"
   snippets='[
     [0,17],
     [19,30],
-    "initialize();"  
+    "initialize();"
   ]'
 >
   {Index}
@@ -120,13 +120,11 @@ node ./attester/index.js
 Once you executed the script, the output should provide you with your `ATTESTER_DID_URI`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
-<!-- TODO: Add example output -->
+```
+save following to .env to continue
 
-Example of a light DID Identifier:
-`did:kilt:light:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS:oWFlomlwdWJsaWNLZXlYIBsVppuQ2fi/beBdYf50+n/36FnCjMw+KLSu3AmW9DEGZHR5cGVmeDI1NTE5`
-
-Example of a full DID Identifier:
-`did:kilt:014ons5NFdNeaVfxCkcXhPc9Hv2pWNR5muzuxW3iGTHUKuMnCS`
+ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
+```
 
 Be sure to save it in your `.env` file, it should now look similar to this:
 
