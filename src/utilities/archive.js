@@ -15,7 +15,7 @@ function archive(folders) {
   if (!directory) process.exit();
   const folder = `${__dirname}/../../code-examples/${directory}`;
   if (!fs.existsSync(folder)) throw Error(`no such folder ${folder}`);
-  const output = fs.createWriteStream(`${folder}/${directory}.zip`);
+  const output = fs.createWriteStream(`${__dirname}/../../static/${directory}.zip`);
   const archive = archiver('zip', { zlib: { level: 9 } });
   archive.pipe(output);
   archive.glob('.', { pattern: [ '**/*.js', '*.json' ], cwd: folder, skip: 'node_modules' });
