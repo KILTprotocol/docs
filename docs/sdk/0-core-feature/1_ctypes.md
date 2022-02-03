@@ -28,7 +28,7 @@ When making a claim for a CType, all the following properties are required:
 
 ```js
 {
-  $id: 'kilt:ctype0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
+  $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
   $schema: 'http://kilt-protocol.org/draft-01/ctype#',
   title: 'CtypeModel 2',
   properties: {
