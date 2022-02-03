@@ -5,9 +5,9 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "yarn run package-code && docusaurus build",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
+    "deploy": "yarn run package-code && docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "package-code": "node ./src/utilities/archive.js --folders workshop",
