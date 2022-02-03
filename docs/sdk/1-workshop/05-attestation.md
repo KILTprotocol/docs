@@ -20,7 +20,7 @@ In this section, your <span class="label-role attester">Attester</span> will rec
 We'll use our `account`, `fullDid`, `keystore` and provided `RequestForAttestaion` to ensure
 the request is `attested` and return a `Credential`.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-js" title="attester/attestCredential.js">
   {AttestCredential}
 </CodeBlock>
 
@@ -29,7 +29,7 @@ the request is `attested` and return a `Credential`.
 Let's update our `attester/index.js` to bring in the helper function above and expose `attestCredential`
 to the outside world!. This completes the <span class="label-role attester">Attester</span> code!
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-js" title="attester/index.js">
   {AttesterIndex}
 </CodeBlock>
 
@@ -38,9 +38,9 @@ to the outside world!. This completes the <span class="label-role attester">Atte
 Let's update our main `index.js`. Here we send our previous request to the <span class="label-role attester">Attester</span>
 and will recieve our `Credential`!
 
-<SnippetBlock 
+<SnippetBlock
   title="index.js"
-  className="language-js" 
+  className="language-js"
   snippets='[
     [0, 13],
     [14,35],

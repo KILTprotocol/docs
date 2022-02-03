@@ -53,14 +53,14 @@ Let's update our main `claimer/index.js`
 
 ## Index
 
-Let's update our main `index.js` and bring this all together. Here we get a `challenge` from the  <span class="label-role verifier">Verifier</span>, 
+Let's update our main `index.js` and bring this all together. Here we get a `challenge` from the  <span class="label-role verifier">Verifier</span>,
 create a `presentation` and have it send if for verification!
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-js" title="index.js">
   {Index}
 </CodeBlock>
 
-run the workshop on command line 
+run the workshop on command line
 
 ```bash
 node index.js

@@ -20,7 +20,7 @@ outside world will interact with `attester/index.js` from our main project file.
 ```bash
 └─ kilt-rocks/ # project
   └─ attester/ # all attester code
-    ├─ attestCredentials.js # issues credentials
+    ├─ attestCredential.js # issues credentials
     ├─ generateKeypairs.js # executed only once to generate your private keypairs for the DID
     ├─ getAccount.js # loads the Attester account
     ├─ createCtype.js # create a local ctype definition

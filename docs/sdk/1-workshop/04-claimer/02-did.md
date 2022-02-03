@@ -9,10 +9,14 @@ import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/cl
 import GetLightDid from '!!raw-loader!../../../../code-examples/workshop/claimer/getLightDid.js';
 import Index from '!!raw-loader!../../../../code-examples/workshop/claimer/index.js';
 
-Time to make a light DID using the previously created account for the  <span class="label-role claimer">Claimer</span>. Remember light DIDs can:
+Time to make a light DID using the previously created account for the <span class="label-role claimer">Claimer</span>.
+Since a light DID is not registered on the blockchain, you don't need funds for creating one.
+Remember light DIDs can:
 
 - Sign claims and attestations with the authentication keys
 - Encrypting messages with the encryption keys
+
+Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
 
 ## generateKeypairs
 
@@ -38,14 +42,14 @@ we can just create the DID object everytime, no need to resolve. But we'll still
 Ok let's update our `claimer/index.js`. We bring in the `CLAIMER_DID_URI` form `.env` and our `getLightDid` function.
 Finally we'll return the `keystore`, `account` and `lightDid` for use elsewhere later.
 
-<SnippetBlock 
+<SnippetBlock
   title="claimer/index.js"
   className="language-js"
   snippets='[
     [0, 17],
     [20,31],
     "initialize();"
-  ]' 
+  ]'
 >
   {Index}
 </SnippetBlock>
