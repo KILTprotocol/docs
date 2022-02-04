@@ -19,6 +19,6 @@ You also learned how to:
 
 Here's some resources to continue your journey in the KILT ecosystem:
 
-- [Workshop](/workshop.zip) - workshop code
+- [Download Workshop Code](/workshop.zip) - workshop code
 - [Discord](https://discord.gg/5VZnPdTZMy) - DAO inspired, outcome focused community
 - [Element](https://matrix.to/#/%23kilt-general:matrix.org) - technical, governance, treasury discussion
