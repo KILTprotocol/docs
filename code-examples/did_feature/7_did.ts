@@ -10,7 +10,7 @@ export async function main(
   resolveOn: SubscriptionPromise.ResultEvaluator,
   fullDid: FullDidDetails
 ) {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await init({ address: 'wss://peregrine-stg.kilt.io/para-public-ws' })
 
   // Generate the submittable extrinsic to claim the deposit back, by including the DID identifier for which the deposit needs to be returned and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
   const endpointsCountForDid = await DidChain.queryEndpointsCounts(fullDid.did)

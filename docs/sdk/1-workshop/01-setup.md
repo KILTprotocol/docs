@@ -51,13 +51,13 @@ PILT coins don't have any value and can easily be requested through our communic
 ## Blockchain Connection
 
 Before you call any SDK functionality, you need to initialise the crypto libraries and configure the SDK.
-For this workshop we'll be using [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws#/explorer).
+For this workshop we'll be using [Peregrine Staging Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
 This is done calling `await Kilt.init({ address })` where `address` is the address of the full node you want to connect to.
-For this workshop use `wss://peregrine.kilt.io/parachain-public-ws`.
+For this workshop use `wss://peregrine-stg.kilt.io/para-public-ws`.
 Add the address to your `.env` file.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine-stg.kilt.io/para-public-ws
 ```
 
 ## Index
