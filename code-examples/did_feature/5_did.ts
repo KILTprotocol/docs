@@ -22,7 +22,7 @@ export async function main(
   authenticationSeed: string,
   fullDid: FullDidDetails
 ) {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await init({ address: 'wss://peregrine-stg.kilt.io/para-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const newAuthenticationKeyPublicDetails = await keystore.generateKeypair({

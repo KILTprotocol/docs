@@ -48,7 +48,7 @@ node ./claimer/index.js
 Your output will provide you with `CLAIMER_MNEMONIC` and `CLAIMER_ADDRESS`. Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine-stg.kilt.io/para-public-ws
 
 ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...

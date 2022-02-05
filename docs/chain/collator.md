@@ -377,7 +377,7 @@ For instance, with the keypair generated in the example, the session key file wo
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
-For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io/parachain-public-ws#/explorer).
+For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine-stg.kilt.io/para-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
 
 `Developer -> Extrinsics -> Submission`
 
