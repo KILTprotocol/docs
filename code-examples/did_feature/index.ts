@@ -21,7 +21,7 @@ import { main as main8 } from './8_did'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll() {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltInit({ address: 'wss://peregrine-stg.kilt.io/para-public-ws' })
 
   let keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
