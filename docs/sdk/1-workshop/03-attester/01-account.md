@@ -54,7 +54,7 @@ Open `attester/getAccount.js` and paste the following code:
 
 Let's setup our <span class="label-role attester">Attester</span> index. Copy the below into `attester/index.js`
 
-<SnippetBlock 
+<SnippetBlock
   title="attester/index.js"
   className="language-js"
   snippets='[
@@ -65,7 +65,7 @@ Let's setup our <span class="label-role attester">Attester</span> index. Copy th
     "  console.log(account);",
     [28,30],
     "initialize();"
-  ]' 
+  ]'
 >
   {Index}
 </SnippetBlock>
@@ -79,7 +79,7 @@ Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`. Be
 file, it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine-stg.kilt.io/para-public-ws
+WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
 ATTESTER_MNEMONIC="gold upset segment ca...
 ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...

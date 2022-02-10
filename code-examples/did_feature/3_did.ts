@@ -22,7 +22,7 @@ export async function main(
   authenticationSeed: string
 ): Promise<IDidResolvedDetails> {
   // Initialise connection to the public KILT test network.
-  await init({ address: 'wss://peregrine-stg.kilt.io/para-public-ws' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
