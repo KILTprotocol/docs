@@ -377,7 +377,7 @@ For instance, with the keypair generated in the example, the session key file wo
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
-For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine-stg.kilt.io/para-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
+For spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
 
 `Developer -> Extrinsics -> Submission`
 
@@ -516,15 +516,16 @@ For the sake of completeness, the bootnodes are listed below:
 
 For **spiritnet**, the parachain bootnodes are:
 
-- `/dns4/bootnode.kilt.io/tcp/30390/p2p/12D3KooWEViDAJgLbeB5hg1KBNg42Ys2V5C6FTCCv6jJXCft41g9`
 - `/dns4/hetzner-1.kilt.io/tcp/30333/p2p/12D3KooWKU8ehzuKAzHEMCy4i4kpJtgCFBCYYhqcub4Y1HR8FRoT`
 - `/dns4/hetzner-2.kilt.io/tcp/30333/p2p/12D3KooWDJzJ7TRNKvE2DWXMSSsoKR5TgxsnNy3W1eCBPveX6g9i`
 - `/dns4/node-6840569230186737664-0.p2p.onfinality.io/tcp/11578/ws/p2p/12D3KooWQapPfoSDxLBnsVZmpRA1yNApXEAEuhexPcFa7fECqpHa`
 - `/dns4/node-6840781141641752576-0.p2p.onfinality.io/tcp/28779/ws/p2p/12D3KooWKMCaxjsvaNkYkdQGnPQnkYFouHFdJ3S36aBhV6QTXzaE`
+- `/dns4/node-6840781099853901824-0.p2p.onfinality.io/tcp/15360/ws/p2p/12D3KooWLWSE85c5PSsgo62Dy5UM68Sx8p3vnJvtvDVC8QHXFpR`
 
 For **peregrine**, the parachain bootnodes are:
-- `/dns4/peregrine.kilt.io/tcp/30340/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M`
-- `/dns4/peregrine.kilt.io/tcp/30341/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ`
+
+- `/dns4/eyrie-1.kilt.io/tcp/30371/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M`
+- `/dns4/eyrie-2.kilt.io/tcp/30372/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ`
 
 ## Benchmarking (optional) {#benchmarking}
 
