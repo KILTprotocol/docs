@@ -11,7 +11,7 @@ export async function main(
   resolveOn: SubscriptionPromise.ResultEvaluator,
   fullDid: FullDidDetails
 ) {
-  await init({ address: 'wss://peregrine-stg.kilt.io/para-public-ws' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.

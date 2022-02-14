@@ -12,7 +12,7 @@ export async function main(
   resolveOn: SubscriptionPromise.ResultEvaluator,
   authenticationSeed: string
 ): Promise<IDidResolvedDetails> {
-  await init({ address: 'wss://kilt-peregrine-k8s.kilt.io' })
+  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
