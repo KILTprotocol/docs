@@ -28,7 +28,7 @@ In this tutorial, you will:
 
 ✔ Use the KILT SDK to write onto and read from the KILT blockchain.
 
-🚧 Since there is no faucet for now, you have to request tokens from us directly ([element](https://matrix.to/#/%23kilt-general:matrix.org), [discord](https://discord.gg/hX4pc8rdHS))
+🚀 Claim KILT Peregrine test tokens from the [faucet](https://faucet.peregrine.kilt.io).
 
 Ready? Let's go!
 
