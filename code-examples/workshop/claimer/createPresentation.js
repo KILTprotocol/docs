@@ -1,6 +1,6 @@
-const Kilt = require('@kiltprotocol/sdk-js');
+import * as Kilt from '@kiltprotocol/sdk-js'
 
-async function createPresentation(credentialObj, challenge, lightDid, keystore) {
+export async function createPresentation(credentialObj, challenge, lightDid, keystore) {
   // creates a Credential from object
   const credential = new Kilt.Credential(credentialObj)
 
@@ -9,9 +9,7 @@ async function createPresentation(credentialObj, challenge, lightDid, keystore) 
     signer: keystore,
     claimerDid: lightDid,
     challenge: challenge,
-  });
+  })
 
-  return presentation;
+  return presentation
 }
-
-module.exports = createPresentation;

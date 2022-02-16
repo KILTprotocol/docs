@@ -1,21 +1,19 @@
-const Kilt = require('@kiltprotocol/sdk-js');
+import * as Kilt from '@kiltprotocol/sdk-js'
 
-module.exports = {
-  // returns a challenge for Claimer to sign
-  getChallenge() {
-    return Kilt.Utils.UUID.generate();
-  },
-  // verifies validity, ownership & attestation returning true|false
-  async verifyCredential(presentationJSON, challenge) {
-    const presentation = JSON.parse(presentationJSON);
-    const credential = new Kilt.Credential(presentation);
+// returns a challenge for Claimer to sign
+export function getChallenge() {
+  return Kilt.Utils.UUID.generate()
+}
+// verifies validity, ownership & attestation returning true|false
+export async function verifyCredential(presentationJSON, challenge) {
+  const presentation = JSON.parse(presentationJSON)
+  const credential = new Kilt.Credential(presentation)
 
-    const isValid = await credential.verify();
+  const isValid = await credential.verify()
 
-    const isSenderOwner = await Kilt.Credential.verify(presentation, { challenge });
+  const isSenderOwner = await Kilt.Credential.verify(presentation, { challenge })
 
-    const isAttested = !credential.attestation.revoked;
+  const isAttested = !credential.attestation.revoked
 
-    return isValid && isSenderOwner && isAttested
-  },
+  return isValid && isSenderOwner && isAttested
 }

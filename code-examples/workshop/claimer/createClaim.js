@@ -1,14 +1,8 @@
-const Kilt = require('@kiltprotocol/sdk-js');
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 // create a Claim object from lightDid, ctype and given content
-function createClaim(lightDid, ctype, content) {
-  const claim = Kilt.Claim.fromCTypeAndClaimContents(
-    ctype,
-    content,
-    lightDid.did
-  );
+export function createClaim(lightDid, ctype, content) {
+  const claim = Kilt.Claim.fromCTypeAndClaimContents(ctype, content, lightDid.did)
 
-  return claim;
+  return claim
 }
-
-module.exports = createClaim;

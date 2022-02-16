@@ -1,6 +1,6 @@
-const Kilt = require('@kiltprotocol/sdk-js')
+import * as Kilt from '@kiltprotocol/sdk-js';
 
-async function attestCredential(account, fullDid, keystore, request) {
+export async function attestCredential(account, fullDid, keystore, request) {
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.details.did);
 
@@ -32,5 +32,3 @@ async function attestCredential(account, fullDid, keystore, request) {
 
   return credential;
 }
-
-module.exports = attestCredential;
