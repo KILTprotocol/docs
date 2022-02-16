@@ -13,5 +13,17 @@ export async function generateKeypairs(keystore, mnemonic) {
     seed: mnemonic,
   })
 
-  return { signing, encryption }
+  // build the Attester keys object
+  const keys = {
+    authenticationKey: {
+      publicKey: signing.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+    },
+    encryptionKey: {
+      publicKey: encryption.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(encryption.alg),
+    },
+  }
+
+  return keys
 }

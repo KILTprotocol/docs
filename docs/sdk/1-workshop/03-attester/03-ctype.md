@@ -7,8 +7,6 @@ import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '../../../../src/components/SnippetBlock';
 import CtypeSchema from '!!raw-loader!../../../../code-examples/workshop/attester/ctypeSchema.js';
 import GenerateCtype from '!!raw-loader!../../../../code-examples/workshop/attester/generateCtype.js';
-import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/index.js';
 
 A claim type (CType for short) is a KILT-specific term, but the concept is simple:
 A CType defines the structure of a claim.
