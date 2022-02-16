@@ -4,11 +4,8 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '../../../../src/components/SnippetBlock';
 import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/attester/generateKeypairs.js';
-import CreateFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/createFullDid.js';
-import GetFullDid from '!!raw-loader!../../../../code-examples/workshop/attester/getFullDid.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
+import generateDid from '!!raw-loader!../../../../code-examples/workshop/attester/generateDid.js';
 
 Time to make a DID using the previously created account for the <span class="label-role attester">Attester</span>.
 
@@ -68,53 +65,22 @@ Create a file `attester/generateKeypairs.js` and copy the code below.
   {GenerateKeypairs}
 </CodeBlock>
 
-Now we have all we need to create our `DID`: a `keystore`, `keypairs` and `account`. Create
-a file `attester/createFullDid.js` and paster the following code.
+Once we have created all the necessary keys for a DID we can create the DID on chain.
+To create a DID we first initialize everything as we always do.
+After that, we load the account that we created in the [last section](./01-account.md).
+The account will be used to pay for the DID registration.
+Finally we create and submit the extrinsic (aka transaction) that will register our DID.
 
-Let's walk through `attester/createFullDid.js`. First we create the required `keys`.
-We use the `keys`, `keystore`, and `address` to get the `didUri` and `extrinsic`.
-Finally we use the `extrinsic` and `account` to write the `DID` on chain.
-
-Once you have the `didUri`, we can then resolve the `DID` from chain, So this creation
-function only needs to run once per `DID`. You'll be prompted to save the `didUri` to `.env`.
-
-<CodeBlock className="language-js" title="attester/createFullDid.js">
-  {CreateFullDid}
+<CodeBlock className="language-js" title="attester/generateDid.js">
+  {generateDid}
 </CodeBlock>
-
-## Get DID
-
-Create a file `attester/getFullDid.js`. This is a convenience function that
-first tries to load the `DID` from `.env`'s `DID_URI`. If it doesn't exist
-it will create and write it to chain. Once it exists it resolves and returns the full `DID`.
-
-<CodeBlock className="language-js" title="attester/getFullDid.js">
-  {GetFullDid}
-</CodeBlock>
-
 
 ## Execute
-
-Ok let's update our `attester/index.js`.
-We bring in the `ATTESTER_DID_URI` form `.env` and our `getFullDid` function.
-Finally we'll return the `keystore`, `account` and `fullDid` for use elsewhere later.
-
-<SnippetBlock
-  title="attester/index.js"
-  className="language-js"
-  snippets='[
-    [0,17],
-    [19,30],
-    "initialize();"
-  ]'
->
-  {Index}
-</SnippetBlock>
 
 You can now execute the script with:
 
 ```bash
-node ./attester/index.js
+node ./attester/generateDid.js
 ```
 
 Once you executed the script, the output should provide you with your `ATTESTER_DID_URI`.
