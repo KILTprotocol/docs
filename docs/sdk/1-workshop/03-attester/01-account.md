@@ -39,15 +39,15 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-You'll note we're getting a mnemonic from `.env`.
-This is because we want to keep our seed phrase safe, and it may vary when moving environments (`development`, `production`).
-You'll be prompted to save it after the first run.
+Open `attester/generateAccount.js` and paste the following code:
 
-Open `attester/getAccount.js` and paste the following code:
-
-<CodeBlock className="language-js" title="attester/getAccount.js">
+<CodeBlock className="language-js" title="attester/generateAccount.js">
   {GenerateAccount}
 </CodeBlock>
+
+The code contains two methods.
+`generateAccount` create and returns a new account while `getAccount` loads an existing secret and creates an account from it.
+We will use `getAccount` later to load the account that we will create and store in the next step.
 
 ## Execute
 
@@ -56,8 +56,8 @@ Now run it to get your <span class="label-role attester">Attester</span> `<addre
 node ./attester/generateAccount.js
 ```
 
-Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`. Be sure to save it in your `.env`
-file, it should now look similar to this.
+Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`.
+Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws

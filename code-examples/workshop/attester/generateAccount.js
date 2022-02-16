@@ -16,22 +16,33 @@ export async function generateAccount() {
   })
 
   // use the mnemonic from .env or make a new one
-  const phrase = mnemonicGenerate()
-  const account = keyring.addFromMnemonic(phrase)
+  const mnemonic = mnemonicGenerate()
+  const account = keyring.addFromMnemonic(mnemonic)
 
   // save the mnemonic and address in .env to we keep the same account
   console.log('save to mnemonic and address to .env to continue!\n\n')
-  console.log(`ATTESTER_MNEMONIC="${phrase}"`)
+  console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
   console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
-  process.env.ATTESTER_MNEMONIC = phrase
+  process.env.ATTESTER_MNEMONIC = mnemonic
   process.env.ATTESTER_ADDRESS = account.address
 
   return account
 }
 
-// don't execute if we are imported by another files
+export async function getAccount(mnemonic) {
+  await cryptoWaitReady()
+  await Kilt.init({ address })
+  const keyring = new Kilt.Utils.Keyring({
+    ss58Format: 38,
+    type: 'sr25519',
+  })
+  return keyring.addFromMnemonic(mnemonic)
+}
+
+// don't execute if this is imported by another files
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   generateAccount().catch((e) => {
     console.log('Error while setting up attester account', e)
+    process.exit(1)
   })
 }
