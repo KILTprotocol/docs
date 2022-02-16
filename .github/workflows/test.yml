@@ -19,13 +19,13 @@ jobs:
 
       - name: run integration tests
         timeout-minutes: 60
-        working-directory: code-examples
+        working-directory: code-examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen
-          yarn run ts-node run_workshop.ts
+          yarn run ts-node index.ts
 
   core_features:
     runs-on: ubuntu-latest
@@ -33,9 +33,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: run integration tests
+      - name: run tests
         timeout-minutes: 60
-        working-directory: code-examples
+        working-directory: code-examples/core_features
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
