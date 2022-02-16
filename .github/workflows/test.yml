@@ -30,7 +30,7 @@ jobs:
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen
-          node index.ts
+          node index.js
 
   core_features:
     runs-on: ubuntu-latest

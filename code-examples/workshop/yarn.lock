@@ -77,7 +77,7 @@
     "@kiltprotocol/utils" "0.25.3"
     "@polkadot/util" "^8.1.2"
 
-"@kiltprotocol/sdk-js@^0.25.3":
+"@kiltprotocol/sdk-js@0.25.3":
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/@kiltprotocol/sdk-js/-/sdk-js-0.25.3.tgz#cc39e45317962deb73c746bdb489b2e66854b34e"
   integrity sha512-2ZovhudPidIMyEi5Xi2rluk5IZnUNaAxDP5pb8pFQ+UBz9xUJTh1lGHPgNWNHOgJAfxdrmG4YiEBrroQAcpXDA==
@@ -220,7 +220,7 @@
     "@polkadot/util-crypto" "^8.1.2"
     rxjs "^7.4.0"
 
-"@polkadot/util-crypto@8.3.3", "@polkadot/util-crypto@^8.1.2", "@polkadot/util-crypto@^8.3.2":
+"@polkadot/util-crypto@8.3.3", "@polkadot/util-crypto@^8.1.2":
   version "8.3.3"
   resolved "https://registry.yarnpkg.com/@polkadot/util-crypto/-/util-crypto-8.3.3.tgz#684a04c26bd390a150e83fe34840d9e219a22d24"
   integrity sha512-kXaT2VTEbJq1wNiV0Dz5qJuVWy7pK+x1QLcyWC+6OFERYO+BCp1Y2bTOcLUeF/gyyR/ZaRMMdTyu0ZbHrwH0xg==
