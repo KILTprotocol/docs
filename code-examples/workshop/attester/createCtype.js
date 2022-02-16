@@ -17,4 +17,4 @@ function createCtype() {
   });
 }
 
-module.exports = createCtype
+module.exports = createCtype;

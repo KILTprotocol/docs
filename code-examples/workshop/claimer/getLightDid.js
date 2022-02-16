@@ -26,7 +26,7 @@ async function createLightDid(didUri, keypairs) {
     console.log('\nsave following to .env to continue\n');
     console.error(`CLAIMER_DID_URI=${lightDid.didUri}\n`);
     process.exit();
-  } 
+  }
 
   return lightDid
 }
