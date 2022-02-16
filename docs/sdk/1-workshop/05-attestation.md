@@ -45,7 +45,7 @@ and will recieve our `Credential`!
     [0, 13],
     [14,35],
     "  console.log(credentialJSON);",
-    [48,54]
+    [48]
   ]'
 >
   {Index}

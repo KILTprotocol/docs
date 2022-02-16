@@ -121,7 +121,7 @@ Then simple call `attester.getCType`, we can store the result in `ctype.json` fo
     [14,24],
     "  const ctype = JSON.parse(ctypeJSON);",
     "  console.log(JSON.stringify(ctype, null, 2));\n",
-    [49,54]
+    [49]
   ]'
 >
   {Index}

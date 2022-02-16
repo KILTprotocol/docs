@@ -70,7 +70,7 @@ Alright update our `index.js`, we'll run it from there.
   snippets='[
     [0, 13],
     [14,32],
-    [48,54]
+    [48]
   ]'
 >
   {Index}
