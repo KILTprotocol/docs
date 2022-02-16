@@ -37,9 +37,10 @@ export async function createFullDid() {
   process.env.ATTESTER_DID_URI = didUri
 }
 
-export async function getFullDid(account) {
+export async function getFullDid(didUri) {
+  const rawDidId = Kilt.Did.DidUtils.getIdentifierFromKiltDid(didUri)
   // make sure the did is already on chain
-  const onChain = await Kilt.Did.DidChain.queryById(account.address)
+  const onChain = await Kilt.Did.DidChain.queryById(rawDidId)
   if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
 
   // load and return the DID using the default resolver
