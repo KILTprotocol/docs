@@ -38,7 +38,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.25.2 @polkadot/util-crypto@8.3.3 dotenv
+npm install @kiltprotocol/sdk-js@0.25.3 @polkadot/util-crypto@8.3.3 dotenv
 ```
 
 ## PILT Tokens
