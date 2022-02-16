@@ -1,5 +1,5 @@
-import { runAll as runAllCore } from './did_feature'
-import { runAll as runAllClaiming } from './claiming_feature'
+import { runAll as runAllCore } from './did'
+import { runAll as runAllClaiming } from './claiming'
 
 async function main() {
   try {

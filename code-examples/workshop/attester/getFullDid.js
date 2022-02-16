@@ -17,4 +17,4 @@ async function getFullDid(didUri, keystore, mnemonic, account) {
   return await Kilt.Did.DefaultResolver.resolveDoc(didUri);
 }
 
-module.exports = getFullDid
+module.exports = getFullDid;

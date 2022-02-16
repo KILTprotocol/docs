@@ -32,7 +32,7 @@ async function main() {
 
   // Claimer sends request to the Attester for approval or rejection
   const credentialJSON = await attester.attestCredential(requestJSON);
-  if (!credentialJSON) throw Error('credential denied'); 
+  if (!credentialJSON) throw Error('credential denied');
 
   // Claimer gets a challenge from Verifier
   const challenge = verifier.getChallenge();
@@ -51,4 +51,7 @@ async function main() {
   await Kilt.disconnect();
 }
 
-main();
+main().catch((e) => {
+  console.log('Error in the workshop!', e)
+  process.exit(1)
+})

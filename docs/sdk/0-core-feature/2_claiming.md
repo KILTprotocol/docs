@@ -3,9 +3,9 @@ id: claiming
 title: Claiming
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/claiming_feature/1_claiming.ts';
-import Example2 from '!!raw-loader!../../../code-examples/claiming_feature/2_claiming.ts';
-import Example3 from '!!raw-loader!../../../code-examples/claiming_feature/3_claiming.ts';
+import Example1 from '!!raw-loader!../../../code-examples/core_features/claiming/1_claiming.ts';
+import Example2 from '!!raw-loader!../../../code-examples/core_features/claiming/2_claiming.ts';
+import Example3 from '!!raw-loader!../../../code-examples/core_features/claiming/3_claiming.ts';
 
 There are three actors in the KILT workflow: Claimers, Attesters and Verifiers.
 

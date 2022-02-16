@@ -1,9 +1,4 @@
-import {
-  DemoKeystore,
-  LightDidDetails,
-  SigningAlgorithms,
-  EncryptionAlgorithms,
-} from '@kiltprotocol/did'
+import { DemoKeystore, LightDidDetails, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
 import type { IDidServiceEndpoint } from '@kiltprotocol/types'
 
 export async function main() {
@@ -37,9 +32,7 @@ export async function main() {
   const lightDID = new LightDidDetails({
     authenticationKey: {
       publicKey: authenticationKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(
-        authenticationKeyPublicDetails.alg
-      ),
+      type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
     },
     encryptionKey: {
       publicKey: encryptionKeyPublicDetails.publicKey,

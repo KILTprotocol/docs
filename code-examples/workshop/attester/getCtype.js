@@ -20,4 +20,4 @@ async function getCtype(fullDid, keystore, account) {
   return ctype;
 }
 
-module.exports = getCtype
+module.exports = getCtype;

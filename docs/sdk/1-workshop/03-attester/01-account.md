@@ -88,6 +88,6 @@ ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
 :::warning Get PILT coins!
 
 You now have a blockchain account, which will be used to pay fees and deposits.
-If you haven't already requested PILT, go to the ([Element](https://matrix.to/#/%23kilt-general:matrix.org) and [Discord](https://discord.gg/5VZnPdTZMy)) and request tokens for your `<address>`.
+If you haven't already requested PILT, go to the [faucet](https://faucet.peregrine.kilt.io). and request tokens for your `<address>`.
 
 :::

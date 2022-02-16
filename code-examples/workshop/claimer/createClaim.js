@@ -11,4 +11,4 @@ function createClaim(lightDid, ctype, content) {
   return claim;
 }
 
-module.exports = createClaim
+module.exports = createClaim;
