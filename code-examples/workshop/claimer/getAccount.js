@@ -7,7 +7,7 @@ function getAccount(mnemonic) {
     ss58Format: 38,
     type: 'sr25519',
   });
-  
+
   // use the mnemonic from .env or make a new one
   const phrase = mnemonic || mnemonicGenerate();
   const account = keyring.addFromMnemonic(phrase);
@@ -23,4 +23,4 @@ function getAccount(mnemonic) {
   return account;
 }
 
-module.exports = getAccount
+module.exports = getAccount;

@@ -14,4 +14,4 @@ async function createPresentation(credentialObj, challenge, lightDid, keystore) 
   return presentation;
 }
 
-module.exports = createPresentation
+module.exports = createPresentation;

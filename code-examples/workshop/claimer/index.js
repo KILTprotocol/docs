@@ -6,7 +6,7 @@ const Kilt = require('@kiltprotocol/sdk-js');
 const { cryptoWaitReady } = require('@polkadot/util-crypto');
 
 // bring in environment variables
-const { 
+const {
   WSS_ADDRESS: address,
   CLAIMER_MNEMONIC: mnemonic,
   CLAIMER_DID_URI: didUri,

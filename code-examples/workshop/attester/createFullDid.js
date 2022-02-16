@@ -35,7 +35,7 @@ async function createFullDid(keystore, keypairs, account) {
     account.address,
     keys
   );
-  
+
   // write the DID to blockchain
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
     reSign: true,

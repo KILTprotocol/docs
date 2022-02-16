@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@kiltprotocol/sdk-js": "^0.24.0-17",
-    "@polkadot/util-crypto": "^8.3.2",
+    "@kiltprotocol/sdk-js": "0.25.3",
+    "@polkadot/util-crypto": "8.3.3",
     "dotenv": "^14.2.0"
   }
 }

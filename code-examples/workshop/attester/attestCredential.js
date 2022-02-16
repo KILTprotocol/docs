@@ -33,4 +33,4 @@ async function attestCredential(account, fullDid, keystore, request) {
   return credential;
 }
 
-module.exports = attestCredential
+module.exports = attestCredential;
