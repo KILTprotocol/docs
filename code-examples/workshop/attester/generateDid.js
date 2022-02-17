@@ -7,15 +7,13 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { getAccount } from './generateAccount.js'
 import { generateKeypairs } from './generateKeypairs.js'
 
-// bring in environment variables
-const { WSS_ADDRESS: address, ATTESTER_MNEMONIC: mnemonic } = process.env
-
 export async function createFullDid() {
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
+  const mnemonic = process.env.ATTESTER_MNEMONIC
 
   // Init keystore and load attester account
-  const account = await getAccount(mnemonic)
+  const account = await getAccount(process.env.ATTESTER_MNEMONIC)
   const keystore = new Kilt.Did.DemoKeystore()
 
   // generate the keypairs

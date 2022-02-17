@@ -16,7 +16,7 @@ In this section, you'll play the role of a <span class="label-role verifier">Ver
 
 :::info Credential
 
-A `Credential` object is also called an Attested Claim: It is what <span class="label-role claimer">claimers</span> present to <span class="label-role verifier">verifiers</span> upon request.
+A `Credential` object is also called an Attested Claim: It is what <span class="label-role claimer">claimers</span> need to create `Presentations`.
 
 :::
 

@@ -7,8 +7,6 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { createPresentation } from './claimer/createPresentation.js'
 import { generateKeypairs } from './claimer/generateKeypairs.js'
 
-const { WSS_ADDRESS: address, CLAIMER_CREDENTIAL: credentialRaw, CLAIMER_MNEMONIC: claimerMnemonic } = process.env
-
 // returns a challenge for Claimer to sign
 export function getChallenge() {
   return Kilt.Utils.UUID.generate()
@@ -30,12 +28,13 @@ export async function verifyPresentation(presentation, challenge) {
 
 export async function verificationFlow() {
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // Load credential and claimer DID
-  const credential = JSON.parse(credentialRaw)
+  console.log(process.env.CLAIMER_CREDENTIAL)
+  const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL)
   const keystore = new Kilt.Did.DemoKeystore()
-  const keys = await generateKeypairs(keystore, claimerMnemonic)
+  const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
   const lightDid = new Kilt.Did.LightDidDetails(keys)
 
   // Verifier sends a unique challenge to the claimer 🕊

@@ -9,18 +9,17 @@ import { getAccount } from './generateAccount.js'
 import { getFullDid } from './generateDid.js'
 import { generateKeypairs } from './generateKeypairs.js'
 
-const { WSS_ADDRESS: address, ATTESTER_MNEMONIC: mnemonic, ATTESTER_DID_URI: didUri } = process.env
-
 export async function attestClaim(request) {
   // Init
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // load account & DID
+  const mnemonic = process.env.ATTESTER_MNEMONIC
   const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(didUri)
+  const fullDid = await getFullDid(process.env.ATTESTER_DID_URI)
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.details.did)

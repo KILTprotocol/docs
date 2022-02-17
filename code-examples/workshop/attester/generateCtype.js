@@ -9,12 +9,12 @@ import { getAccount } from './generateAccount.js'
 import { getFullDid } from './generateDid.js'
 import { generateKeypairs } from './generateKeypairs.js'
 
-const { WSS_ADDRESS: address, ATTESTER_MNEMONIC: mnemonic, ATTESTER_DID_URI: didUri } = process.env
-
 export async function ensureStoredCtype() {
   // Init
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
+  const mnemonic = process.env.ATTESTER_MNEMONIC
+  const didUri = process.env.ATTESTER_DID_URI
 
   // Load Account
   const account = await getAccount(mnemonic)
@@ -28,11 +28,10 @@ export async function ensureStoredCtype() {
   const ctype = getCtypeSchema()
   const isStored = await ctype.verifyStored()
   if (isStored) {
-    console.log("Ctype already stored. Skipping creation")
+    console.log('Ctype already stored. Skipping creation')
     return ctype
   }
-  console.log("Ctype not present. Creating it now...")
-
+  console.log('Ctype not present. Creating it now...')
 
   // authorize the extrinsic
   const tx = await ctype.store()

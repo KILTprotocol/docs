@@ -6,12 +6,10 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs.js'
 
-const { WSS_ADDRESS: address } = process.env
-
 export async function generateLightDid() {
   // init
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // create secret and DID public keys
   const keystore = new Kilt.Did.DemoKeystore()
@@ -25,7 +23,7 @@ export async function generateLightDid() {
   console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
   console.log(`CLAIMER_DID_URI="${lightDid.didUri}"`)
   process.env.CLAIMER_DID_URI = lightDid.didUri
-  process.env.CLAIMER_MNEMONIC = lightDid.didUri
+  process.env.CLAIMER_MNEMONIC = mnemonic
 
   return {
     lightDid,

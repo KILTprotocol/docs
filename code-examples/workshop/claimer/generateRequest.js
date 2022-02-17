@@ -8,8 +8,6 @@ import { createClaim } from './createClaim.js'
 import { getCtypeSchema } from '../attester/ctypeSchema.js'
 import { generateKeypairs } from './generateKeypairs.js'
 
-const { WSS_ADDRESS: address, CLAIMER_MNEMONIC: mnemonic } = process.env
-
 // create and return a RequestForAttestation from claim
 export async function requestFromClaim(lightDid, keystore, claim) {
   const request = Kilt.RequestForAttestation.fromClaim(claim)
@@ -21,10 +19,10 @@ export async function requestFromClaim(lightDid, keystore, claim) {
 export async function generateRequest(claimAttributes) {
   // init
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   const keystore = new Kilt.Did.DemoKeystore()
-  const keys = await generateKeypairs(keystore, mnemonic)
+  const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
 
   // create the DID
   const lightDid = new Kilt.Did.LightDidDetails(keys)
@@ -34,7 +32,7 @@ export async function generateRequest(claimAttributes) {
   const claim = await createClaim(lightDid, ctype, claimAttributes)
 
   // create request
-  console.log("claimer -> create request")
+  console.log('claimer -> create request')
   return await requestFromClaim(lightDid, keystore, claim)
 }
 

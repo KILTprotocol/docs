@@ -4,11 +4,9 @@ import { fileURLToPath } from 'url'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-const { WSS_ADDRESS: address } = process.env
-
 export async function generateAccount() {
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // setup keyring
   const keyring = new Kilt.Utils.Keyring({
@@ -32,7 +30,7 @@ export async function generateAccount() {
 
 export async function getAccount(mnemonic) {
   await cryptoWaitReady()
-  await Kilt.init({ address })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
     type: 'sr25519',
