@@ -6,8 +6,6 @@ title: 🧾 Attestation
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '../../../src/components/SnippetBlock';
 import AttestCredential from '!!raw-loader!../../../code-examples/workshop/attester/attestCredential.js';
-import AttesterIndex from '!!raw-loader!../../../code-examples/workshop/attester/index.js';
-import Index from '!!raw-loader!../../../code-examples/workshop/index.js';
 
 In this section, your <span class="label-role attester">Attester</span> will recieve and process a `RequestForAttestation` where you'll
 

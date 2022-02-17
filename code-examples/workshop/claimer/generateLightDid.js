@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { mnemonicGenerate, cryptoWaitReady } from '@polkadot/util-crypto'
 import { fileURLToPath } from 'url'
 
