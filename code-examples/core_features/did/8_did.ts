@@ -43,6 +43,7 @@ export async function main(
 
   // The extrinsic can then be submitted by the authorised account as usual.
   await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 

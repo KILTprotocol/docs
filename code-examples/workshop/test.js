@@ -46,7 +46,11 @@ async function testWorkshop() {
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
   await Kilt.Balance.makeTransfer(attesterAccount.address, 5n, 0)
-    .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount))
+    .then((tx) =>
+      Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
+        reSign: true,
+      })
+    )
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
