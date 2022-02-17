@@ -34,12 +34,12 @@ export async function main() {
   // create claim
   const ctype = getCtypeSchema()
   const claim = await createClaim(lightDid, ctype, {
-    age: 12,
+    age: 28,
     name: 'Max Mustermann',
   })
 
   // create request
-  await createRequest(lightDid, keystore, claim)
+  return await createRequest(lightDid, keystore, claim)
 }
 
 // don't execute if this is imported by another files

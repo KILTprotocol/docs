@@ -28,6 +28,15 @@ Create a file `claimer/createClaim.js` and copy the code below.
   {CreateClaim}
 </CodeBlock>
 
+The magic is happening in the `createRequest` function.
+There we create a request for attestation from a claim.
+Attestations can only be created for attributes that the <span class="label-role claimer">Claimer</span> wants to publish.
+To ensure that the claimer also approves of the attributes in the claim, he has to digitally sign the request for attestation.
+The signature makes sure that the attester doesn't change the attributes and the attestation is created for the agreed values.
+
+The `main` function puts all together.
+There we load our light DID, create a claim and finally the request for attestation.
+
 ## Create Request
 
 A claim are attributes that we claim to be true about us.
