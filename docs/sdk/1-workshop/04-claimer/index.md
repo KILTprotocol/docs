@@ -11,19 +11,14 @@ In this section you will walk though all processes done by the <span class="labe
 ## Folder Structure
 
 Create the following files in the <span class="label-role claimer">Claimer</span> folder.
-This folders serves to mimic a <span class="label-role claimer">Claimer</span>'s perspective,
-we'll interact with `claimer/index.js` from our main project file.
+This folders serves to mimic a <span class="label-role claimer">Claimer</span>'s perspective.
 
 ```bash
 └─ kilt-rocks/ # project
   └─ claimer/ # all claimer code
-    ├─ generateKeypairs.js # create keypairs for the light DID
     ├─ createClaim.js # creates a claim
     ├─ createPresentation.js # creates a presentation for verifiers
-    ├─ createRequest.js # creates a request for attestation
-    ├─ getAccount.js # returns Claimer account
-    ├─ getLightDid.js # returns Claimer's light DID
-    ├─ index.js # main entry for out test script
-    └─ _request.json # development request to prevent dupe attestations
-  ...
+    ├─ generateKeypairs.js # create keypairs for the light DID
+    ├─ generateLightDid.js # create the light DID for the claimer
+    └─ generateRequest.js # create request for attestation that send to the attester
 ```

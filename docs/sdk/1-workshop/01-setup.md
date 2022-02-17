@@ -10,21 +10,6 @@ import Tabs from '@theme/Tabs';
 You need to have [Node.js](https://nodejs.org/) installed.
 Any stable (LTS >= 14.0) version is sufficient.
 
-## Project Folder
-
-Create a new folder, named for example `kilt-rocks`.
-Create <span class="label-role attester">Attester</span>, <span class="label-role claimer">Claimer</span>, <span class="label-role verifier">Verifier</span> folders.
-Create `.env` and our main entry files `index.js`.
-
-```bash
-└─ kilt-rocks/ # project
-    ├─ attester/ # all attester code
-    ├─ claimer/ # all claimer code
-    ├─ verifier/ # all verifier code
-    ├─ .env # environment variables
-    └─ index.js # main entry file
-```
-
 ## Dependencies
 
 Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.<br/>
@@ -37,6 +22,24 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 npm init -y
 npm install @kiltprotocol/sdk-js@0.25.3 @polkadot/util-crypto@8.3.3 dotenv
 ```
+
+Make sure to add `"type": "module"` to the `package.json` since this workshop uses ES6 Modules.
+
+## Project Folder
+
+The project structure looks like the following:
+
+```bash
+└─ kilt-rocks/ # project
+    ├─ attester/ # all attester code
+    ├─ claimer/ # all claimer code
+    ├─ verify.js # all verifier code
+    ├─ .env # environment variables
+    ├─ package.json # the project file
+    └─ yarn.lock # dependency lock file
+```
+
+You can setup the directories now or later when we need them.
 
 ## PILT Tokens
 

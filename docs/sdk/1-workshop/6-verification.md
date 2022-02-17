@@ -42,8 +42,9 @@ Create `claimer/createPresentation.js` helper and copy the following code.
 ## Verify
 
 Let's create our `verify.js`. Here we'll expose `getChallenge` which returns a random and unique
-challenge for the <span class="label-role claimer">Claimer</span> to sign, this is used to prove ownership. We'll also expose `verifyCredential`
-which will do the actual verification. Copy the code below, this completes the <span class="label-role verifier">Verifier</span> code!
+challenge for the <span class="label-role claimer">Claimer</span> to sign, this is used to prove ownership.
+We'll also expose `verifyCredential` which will do the actual verification.
+Copy the code below, this completes the <span class="label-role verifier">Verifier</span> code!
 
 <CodeBlock className="language-js" title="verify.js">
   {Verify}
@@ -51,12 +52,10 @@ which will do the actual verification. Copy the code below, this completes the <
 
 ## Run
 
-run the workshop on command line:
+run the verification flow on command line:
 
 ```bash
-node index.js
+node verify.js
 ```
 
 That's it! all done :-)
-
-
