@@ -11,16 +11,14 @@ import { generateKeypairs } from './generateKeypairs.js'
 const { WSS_ADDRESS: address, CLAIMER_MNEMONIC: mnemonic } = process.env
 
 // create and return a RequestForAttestation from claim
-export async function createRequest(lightDid, keystore, claim) {
+export async function requestFromClaim(lightDid, keystore, claim) {
   const request = Kilt.RequestForAttestation.fromClaim(claim)
   await request.signWithDid(keystore, lightDid)
 
-  console.log('⚠️  save this to ./claimer/_request.json for testing  ⚠️\n\n')
-  console.log(JSON.stringify(request, null, 2))
   return request
 }
 
-export async function main() {
+export async function generateRequest(claimAttributes) {
   // init
   await cryptoWaitReady()
   await Kilt.init({ address })
@@ -33,21 +31,26 @@ export async function main() {
 
   // create claim
   const ctype = getCtypeSchema()
-  const claim = await createClaim(lightDid, ctype, {
-    age: 28,
-    name: 'Max Mustermann',
-  })
+  const claim = await createClaim(lightDid, ctype, claimAttributes)
 
   // create request
-  return await createRequest(lightDid, keystore, claim)
+  console.log("claimer -> create request")
+  return await requestFromClaim(lightDid, keystore, claim)
 }
 
 // don't execute if this is imported by another files
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  main()
+  generateRequest({
+    age: 28,
+    name: 'Max Mustermann',
+  })
     .catch((e) => {
       console.log('Error while building request for attestation', e)
       process.exit(1)
     })
-    .then(() => process.exit())
+    .then((request) => {
+      console.log('⚠️  save this to ./claimer/_request.json for testing  ⚠️\n\n')
+      console.log(JSON.stringify(request, null, 2))
+      process.exit()
+    })
 }
