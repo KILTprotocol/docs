@@ -30,9 +30,7 @@ export async function createFullDid() {
   })
 
   // save the didUri so we don't attempt to write it to chain again
-  console.log('\nsave following to .env to continue\n')
-  console.error(`ATTESTER_DID_URI=${didUri}\n`)
-  process.env.ATTESTER_DID_URI = didUri
+  return didUri
 }
 
 export async function getFullDid(didUri) {
@@ -52,5 +50,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       console.log('Error while creating attester DID', e)
       process.exit(1)
     })
-    .then(() => process.exit())
+    .then((didUri) => {
+      console.log('\nsave following to .env to continue\n')
+      console.error(`ATTESTER_DID_URI=${didUri}\n`)
+      process.exit()
+    })
 }

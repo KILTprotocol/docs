@@ -31,7 +31,6 @@ export async function verificationFlow() {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // Load credential and claimer DID
-  console.log(process.env.CLAIMER_CREDENTIAL)
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL)
   const keystore = new Kilt.Did.DemoKeystore()
   const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
@@ -61,6 +60,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       process.exit(1)
     })
     .then(() => {
-      process.exit(0)
+      process.exit()
     })
 }

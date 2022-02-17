@@ -12,11 +12,18 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 const SEED_ENV = 'FAUCET_SEED'
 
 async function testWorkshop() {
+  process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
+
   // setup attester account
-  let attesterAccount = await generateAccount()
+  let { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
+  process.env.ATTESTER_MNEMONIC = attesterMnemonic
+  process.env.ATTESTER_ADDRESS = attesterAccount.address
 
   // setup claimer & create attestation request
-  await generateLightDid()
+  let { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
+  process.env.CLAIMER_DID_URI = claimerDid
+  process.env.CLAIMER_MNEMONIC = claimerMnemonic
+
   let _request = await generateRequest({
     age: 27,
     name: 'Karl',
@@ -43,7 +50,9 @@ async function testWorkshop() {
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
-  await createFullDid()
+  const attersterDidUri = await createFullDid()
+  process.env.ATTESTER_DID_URI = attersterDidUri
+
   await ensureStoredCtype()
 
   // do attestation & verification
@@ -57,5 +66,5 @@ testWorkshop()
     process.exit(1)
   })
   .then(() => {
-    process.exit(0)
+    process.exit()
   })

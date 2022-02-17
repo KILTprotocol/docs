@@ -19,13 +19,7 @@ export async function generateAccount() {
   const account = keyring.addFromMnemonic(mnemonic)
 
   // save the mnemonic and address in .env to we keep the same account
-  console.log('save to mnemonic and address to .env to continue!\n\n')
-  console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
-  console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
-  process.env.ATTESTER_MNEMONIC = mnemonic
-  process.env.ATTESTER_ADDRESS = account.address
-
-  return account
+  return { account, mnemonic }
 }
 
 export async function getAccount(mnemonic) {
@@ -40,8 +34,14 @@ export async function getAccount(mnemonic) {
 
 // don't execute if this is imported by another files
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  generateAccount().catch((e) => {
-    console.log('Error while setting up attester account', e)
-    process.exit(1)
-  })
+  generateAccount()
+    .catch((e) => {
+      console.log('Error while setting up attester account', e)
+      process.exit(1)
+    })
+    .then(({ mnemonic, account }) => {
+      console.log('save to mnemonic and address to .env to continue!\n\n')
+      console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
+      console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
+    })
 }
