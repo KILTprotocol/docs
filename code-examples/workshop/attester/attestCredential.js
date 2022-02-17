@@ -69,7 +69,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       process.exit(1)
     })
     .then((c) => {
-      console.log(`The attester issued the credential: ${JSON.stringify(c, null, 2)}`)
+      console.log('The claimer build their credential and now has to store it.')
+      console.log('⚠️  add the following to your .env file. ⚠️')
+      console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
       process.exit(0)
     })
 }

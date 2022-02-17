@@ -39,6 +39,6 @@ node attester/attestCredential.js
 
 You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-)
 
-Your job as an <span class="label-role attester">Attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `Credential` object for the  <span class="label-role claimer">Claimer</span>.
+Your job as an <span class="label-role attester">Attester</span> is done: you've successfully attested a claim, written the attestation hash onto the chain, and prepared the `Credential` object for the <span class="label-role claimer">Claimer</span>.
 
 Let's move on to setup our <span class="label-role verifier">Verifier</span>!
