@@ -37,6 +37,12 @@ module.exports = {
           position: 'left',
         },
         {
+          to: 'docs/development/introduction',
+          activeBasePath: 'docs/development',
+          label: 'Development',
+          position: 'left',
+        },
+        {
           href: 'https://github.com/KILTprotocol/docs',
           position: 'right',
           className: 'header-github-link',
