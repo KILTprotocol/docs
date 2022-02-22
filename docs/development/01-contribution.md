@@ -16,10 +16,11 @@ If you are interested in contributing but unsure how to begin, start in our [Cla
 
 For the integrity of the protocol, requesting a feature requires approval from KILT governance. The request should follow the guidelines below, which are subject to change:
 
- - Begin a discussion with the community to ensure that they agree that it adds to the KILT protocol in a meaningful way, supporting its goals
-  - Give your proposal a clear title
-  - Open an issue on the corresponding repository
-  - Provide a written outline of the feature request for discussion
+ - Begin a discussion with the community to ensure that they agree that it adds to the KILT protocol in a meaningful way, supporting its goals. 
+
+ - Give your proposal a clear title
+ - Open an issue on the corresponding repository
+ - Provide a written outline of the feature request for discussion
 
 At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer.
 
@@ -40,3 +41,5 @@ The following section is inspired by Rust langs [Bug Report](https://rustc-dev-g
 Pull Requests (PR) are an integral part of contributions to change KILT. GitHub itself has some [excellent documentation](https://help.github.com/articles/about-pull-requests/) on using the Pull Request feature. KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model described here, where contributors push changes to their personal fork and create pull requests to bring those changes into the source repository.
 
 Before starting a PR, it’s best to contact other active developers and discuss the proposed changes. Open an issue or directly contact some of the devs on  [Discord](https://discord.gg/7uyfMXh6AT) to begin discussing and making the proposal. Once approved, contributors can open a PR for review. The PR will be reviewed and, if accepted, merge it into the corresponding repository.
+
+The following section is inspired by Rust langs [Bug Report](https://rustc-dev-guide.rust-lang.org/contributing.html#bug-reports) contribution guide.
