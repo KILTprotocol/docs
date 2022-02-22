@@ -19,7 +19,7 @@ Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want t
 
 ## Generate Keys
 
-Similar to the attester, the claimer too has to setup the DID keys.
+Similar to the attester, the claimer must set up the DID keys.
 Create a file `claimer/generateKeypairs.js` and copy the code below.
 
 <CodeBlock className="language-js" title="claimer/generateKeypairs.js">
