@@ -34,11 +34,11 @@ chart={`graph TD
     B --> D{Stake?}
     D -->|high enough|F(Collator)
     D -->|to low|B
-    F -->|init_leave_candidates|I(Leaving Candidate)
+    F -->|init_leave_candidates|I("Inactive Candidate (balance locked)")
     I --> G{7 days passed?}
     I -->|cancel_leave_candidates|F
     G -->|no|I
-    G -->|yes|H(Inactive Candidate)
+    G -->|yes|H("Inactive Candidate (balance locked expired)")
     H -->|execute_leave_candidates|A
     H -->|cancel_leave_candidates|F
 `}
