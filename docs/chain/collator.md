@@ -26,21 +26,6 @@ Having more perfoment hardware reduces the probability that the node will not be
 
 You can measure the performance of the new hardware by benchmarking it using [the steps described in the benchmarking section](#benchmarking).
 
-## Lifecycle of a Collator
-
-<Mermaid
-chart={`graph TD
-    A[Hold 10K kilt] -->|join_candidates| B(Candidate)
-    B -->|init_leave_candidates|I("Inactive Candidate (balance locked)")
-    I --> G{7 days passed?}
-    I -->|cancel_leave_candidates|B
-    G -->|no|I
-    G -->|yes|H("Inactive Candidate (balance locked expired)")
-    H -->|execute_leave_candidates|A
-    H -->|cancel_leave_candidates|B
-`}
-/>
-
 ## Setup a Node
 
 There are several ways to build and run a collator node.
@@ -542,6 +527,25 @@ For **peregrine**, the parachain bootnodes are:
 
 - `/dns4/eyrie-1.kilt.io/tcp/30371/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M`
 - `/dns4/eyrie-2.kilt.io/tcp/30372/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ`
+
+## Lifecycle of a Collator
+
+<Mermaid
+chart={`flowchart TD
+    A["Hold (at least) 10K KILT"] -->|join_candidates| B(Candidate)
+    B --->|init_leave_candidates|I("Leaving Candidate\n(locked)")
+    I ---> G{"2 Sessions (4h)\n passed?"}
+    I -->|cancel_leave_candidates|B
+    G -->|no|I
+    G -->|yes|H("Leaving Candidate\n(unlocked)")
+    H -->|execute_leave_candidates|J("Locked Balance")
+    H -->|cancel_leave_candidates|B
+    J --->K{"At least 7 days\npassed?"}
+    K -->|yes|L("Balance with expired lock")
+    K -->|no|J
+    L -->|unlock_unstaked|A
+`}
+/>
 
 ## Benchmarking (optional) {#benchmarking}
 
