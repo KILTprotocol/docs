@@ -5,6 +5,7 @@ title: Become a collator
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Mermaid from '@theme/Mermaid';
 
 
 We will guide you through the steps to become a collator.
@@ -24,6 +25,21 @@ Although the aforementioned hardware is by no means the minimum spec required, t
 Having more perfoment hardware reduces the probability that the node will not be able to produce and propose a valid block on time during the allocated block production slot, missing out on the collating rewards.
 
 You can measure the performance of the new hardware by benchmarking it using [the steps described in the benchmarking section](#benchmarking).
+
+## Lifecycle of a Collator
+
+<Mermaid
+chart={`graph TD
+    A[Hold 10K kilt] -->|join_candidates| B(Candidate)
+    B -->|init_leave_candidates|I("Inactive Candidate (balance locked)")
+    I --> G{7 days passed?}
+    I -->|cancel_leave_candidates|B
+    G -->|no|I
+    G -->|yes|H("Inactive Candidate (balance locked expired)")
+    H -->|execute_leave_candidates|A
+    H -->|cancel_leave_candidates|B
+`}
+/>
 
 ## Setup a Node
 
