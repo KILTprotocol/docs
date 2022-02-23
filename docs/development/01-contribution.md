@@ -14,7 +14,7 @@ If you are interested in contributing but unsure how to begin, start in our [Cla
 
 ## Feature Requests
 
-For the integrity of the protocol, requesting a feature requires approval from KILT governance. The request should follow the guidelines below, which are subject to change:
+For the integrity of the protocol, requesting a feature requires approval from KILT governance. The request should follow the guidelines below:
 
  - Begin a discussion with the community to ensure that they agree that it adds value to the KILT protocol in a meaningful way, supporting its goals
  - Give your proposal a clear title
@@ -23,7 +23,7 @@ For the integrity of the protocol, requesting a feature requires approval from K
 
 ## Feature Proposals
 
-At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer.
+At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer, and the active developers or appropriate teams can start working on the proposal deliverables.
 
 ## Bug Reports
 
