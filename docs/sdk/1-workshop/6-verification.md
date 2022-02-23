@@ -22,7 +22,7 @@ A `Credential` object is also called an Attested Claim: It is what <span class="
 
 :::info Presentation
 
-A `Presentation` object is created by the <span class="label-role claimer">claimer</span> using a credential.
+A credential is used to create the `Presentation` object by the <span class="label-role claimer">claimer</span>.
 Unlike the credential, a `Presentation` can hide some attributes that are not required by the <span class="label-role verifier">verifiers</span>.
 A `Presentation` also contains a prove that the <span class="label-role claimer">claimer</span> owns the credential.
 
