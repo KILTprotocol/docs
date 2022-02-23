@@ -16,7 +16,7 @@ If you are interested in contributing but unsure how to begin, start in our [Cla
 
 For the integrity of the protocol, requesting a feature requires approval from KILT governance. The request should follow the guidelines below, which are subject to change:
 
- - Begin a discussion with the community to ensure that they agree that it adds to the KILT protocol in a meaningful way, supporting its goals
+ - Begin a discussion with the community to ensure that they agree that it adds value to the KILT protocol in a meaningful way, supporting its goals
  - Give your proposal a clear title
  - Open an issue on the corresponding repository
  - Provide a written outline of the feature request for discussion
