@@ -74,7 +74,7 @@ Copy the code below, we'll go through it step by step later.
     [0,10],
     [15,22],
     "  // magic will happen here\n",
-    [49,54]
+    [49,57]
   ]'
 >
   {Index}
