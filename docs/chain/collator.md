@@ -31,13 +31,16 @@ You can measure the performance of the new hardware by benchmarking it using [th
 <Mermaid
 chart={`graph TD
     A[Hold 10K kilt] -->|join_collators| B(Candidate)
-    B --> D{Stake}
+    B --> D{Stake?}
     D -->|high enough|F(Collator)
     D -->|to low|B
-    F -->|init_leave_candidates|G{time passed}
-    G -->|wait|G
-    G -->|after 7 days|H(Inactive Candidate)
+    F -->|init_leave_candidates|I(Leaving Candidate)
+    I --> G{7 days passed?}
+    I -->|cancel_leave_candidates|F
+    G -->|no|I
+    G -->|yes|H(Inactive Candidate)
     H -->|execute_leave_candidates|A
+    H -->|cancel_leave_candidates|F
 `}
 />
 
