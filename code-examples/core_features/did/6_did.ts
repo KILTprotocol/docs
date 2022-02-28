@@ -16,9 +16,7 @@ export async function main(
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
   const endpointsCountForDid = await DidChain.queryEndpointsCounts(fullDid.did)
-  const didDeletionExtrinsic = await DidChain.getDeleteDidExtrinsic(
-    endpointsCountForDid
-  )
+  const didDeletionExtrinsic = await DidChain.getDeleteDidExtrinsic(endpointsCountForDid)
 
   // Sign the DID deletion operation using the DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
@@ -29,13 +27,10 @@ export async function main(
     kiltAccount.address
   )
 
-  await BlockchainUtils.signAndSubmitTx(
-    didSignedDeletionExtrinsic,
-    kiltAccount,
-    {
-      resolveOn,
-    }
-  )
+  await BlockchainUtils.signAndSubmitTx(didSignedDeletionExtrinsic, kiltAccount, {
+    reSign: true,
+    resolveOn,
+  })
 
   await disconnect()
 }

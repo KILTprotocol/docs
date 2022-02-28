@@ -52,6 +52,7 @@ export async function main(
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorised KILT account.
   await BlockchainUtils.signAndSubmitTx(didSignedUpdateExtrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 
@@ -77,6 +78,7 @@ export async function main(
 
   // Submit the signed operation as before.
   await BlockchainUtils.signAndSubmitTx(didSignedRemoveExtrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 

@@ -1,19 +1,37 @@
-const Kilt = require('@kiltprotocol/sdk-js');
+import * as Kilt from '@kiltprotocol/sdk-js'
 
-async function generateKeypairs(keystore, mnemonic) {
+export async function generateKeypairs(keystore, mnemonic) {
   // signing keypair
   const signing = await keystore.generateKeypair({
     alg: Kilt.Did.SigningAlgorithms.Sr25519,
     seed: mnemonic,
-  });
+  })
 
   // encryption keypair
   const encryption = await keystore.generateKeypair({
     alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
     seed: mnemonic,
-  });
+  })
 
-  return { signing, encryption }
+  // build the Attester keys object
+  const keys = {
+    authentication: {
+      publicKey: signing.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+    },
+    keyAgreement: {
+      publicKey: encryption.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(encryption.alg),
+    },
+    capabilityDelegation: {
+      publicKey: signing.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+    },
+    assertionMethod: {
+      publicKey: signing.publicKey,
+      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+    },
+  }
+
+  return keys
 }
-
-module.exports = generateKeypairs;

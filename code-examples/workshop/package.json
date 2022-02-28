@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.25.3",
     "@polkadot/util-crypto": "8.3.3",
