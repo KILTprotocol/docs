@@ -64,6 +64,7 @@ export async function main(
   console.log(did)
 
   await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 

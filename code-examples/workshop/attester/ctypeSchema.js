@@ -1,7 +1,7 @@
-const Kilt = require('@kiltprotocol/sdk-js')
+import * as Kilt from '@kiltprotocol/sdk-js';
 
 // returns CTYPE from a schema
-function createCtype() {
+export function getCtypeSchema() {
   return Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
     title: 'Drivers License',
@@ -14,7 +14,5 @@ function createCtype() {
       },
     },
     type: 'object',
-  });
+  })
 }
-
-module.exports = createCtype;

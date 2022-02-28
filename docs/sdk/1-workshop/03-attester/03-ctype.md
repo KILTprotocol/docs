@@ -5,10 +5,8 @@ title: CType
 
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '../../../../src/components/SnippetBlock';
-import CType from '!!raw-loader!../../../../code-examples/workshop/attester/createCtype.js';
-import GetCType from '!!raw-loader!../../../../code-examples/workshop/attester/getCtype.js';
-import Attester from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
-import Index from '!!raw-loader!../../../../code-examples/workshop/index.js';
+import CtypeSchema from '!!raw-loader!../../../../code-examples/workshop/attester/ctypeSchema.js';
+import GenerateCtype from '!!raw-loader!../../../../code-examples/workshop/attester/generateCtype.js';
 
 A claim type (CType for short) is a KILT-specific term, but the concept is simple:
 A CType defines the structure of a claim.
@@ -74,61 +72,27 @@ In this tutorial, we'll have the <span class="label-role attester">Attester</spa
 
 ## Create CType
 
-Now we have our entry ready, create a new file `attester/createCtype.js`. Copy the following to create a `CType` from a schema:
+Now we have our entry ready, create a new file `attester/ctypeSchema.js`. Copy the following to create a `CType` from a schema:
 
-<CodeBlock title="attester/createCtype.js" className="language-js">
-  {CType}
+<CodeBlock title="attester/ctypeSchema.js" className="language-js">
+  {CtypeSchema}
 </CodeBlock>
 
 ## Get CType
 
-Create a new file `attester/getCtype.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll
+Create a new file `attester/generateCtype.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll
 return it, otherwise we'll store it on-chain. Remember, an account must have the require amount to pay the Angel's fee and deposit.
 
-<CodeBlock title="attester/getCtype.js" className="language-js">
-  {GetCType}
+<CodeBlock title="attester/generateCtype.js" className="language-js">
+  {GenerateCtype}
 </CodeBlock>
-
-## Index
-
-Let's add a function called `getCtype` in our `attester/index.js` file.
-In the real world <span class="label-role claimer">claimers</span> will be calling this from another device, let's mimic this by exporting the function.
-We can also make use of the `initialize` function we built earlier.
-
-<SnippetBlock
-  title="attester/index.js"
-  className="language-js"
-  snippets='[
-    [0,18],
-    [19,38],
-    [45,47]
-  ]'
->
-  {Attester}
-</SnippetBlock>
 
 ## Run
 
-To run it, let's call it from our main `index.js`. First we import our <span class="label-role attester">Attester</span>.
-Then simple call `attester.getCType`, we can store the result in `ctype.json` for reference.
-
-<SnippetBlock
-  title="index.js"
-  className="language-js"
-  snippets='[
-    [0, 11],
-    [12,13],
-    [14,24],
-    "  const ctype = JSON.parse(ctypeJSON);",
-    "  console.log(JSON.stringify(ctype, null, 2));\n",
-    [49,54]
-  ]'
->
-  {Index}
-</SnippetBlock>
+To run it, just execute the `attester/generateCtype.js` file.
 
 ```bash
-node ./index.js
+node attester/generateCtype.js
 ```
 
-OK, now before we can issue credentials, we need a  <span class="label-role claimer">Claimer</span> to request one! Let's move on!
+OK, now before we can issue credentials, we need a <span class="label-role claimer">Claimer</span> to request one! Let's move on!

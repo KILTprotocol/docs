@@ -4,29 +4,11 @@ title: 🎒 Setup
 ---
 
 import Tabs from '@theme/Tabs';
-import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '../../../src/components/SnippetBlock';
-import Index from '!!raw-loader!../../../code-examples/workshop/index.js';
 
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed.
 Any stable (LTS >= 14.0) version is sufficient.
-
-## Project Folder
-
-Create a new folder, named for example `kilt-rocks`.
-Create  <span class="label-role attester">Attester</span>,  <span class="label-role claimer">Claimer</span>,  <span class="label-role verifier">Verifier</span> folders.
-Create `.env` and our main entry files `index.js`.
-
-```bash
-└─ kilt-rocks/ # project
-    ├─ attester/ # all attester code
-    ├─ claimer/ # all claimer code
-    ├─ verifier/ # all verifier code
-    ├─ .env # environment variables
-    └─ index.js # main entry file
-```
 
 ## Dependencies
 
@@ -38,8 +20,26 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.25.2 @polkadot/util-crypto@8.3.3 dotenv
+npm install @kiltprotocol/sdk-js@0.25.3 @polkadot/util-crypto@8.3.3 dotenv
 ```
+
+Make sure to add `"type": "module"` to the `package.json` since this workshop uses ES6 Modules.
+
+## Project Folder
+
+The project structure looks like the following:
+
+```bash
+└─ kilt-rocks/ # project
+    ├─ attester/ # all attester code
+    ├─ claimer/ # all claimer code
+    ├─ verify.js # all verifier code
+    ├─ .env # environment variables
+    ├─ package.json # the project file
+    └─ yarn.lock # dependency lock file
+```
+
+You can setup the directories now or later when we need them.
 
 ## PILT Tokens
 
@@ -60,24 +60,5 @@ Add the address to your `.env` file.
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 ```
-
-## Index
-
-Finally, we'll setup our `index.js` file.
-This will be the main script we use to run through the workshop.
-Copy the code below, we'll go through it step by step later.
-
-<SnippetBlock
-  title="index.js"
-  className="language-js"
-  snippets='[
-    [0,10],
-    [15,22],
-    "  // magic will happen here\n",
-    [49,57]
-  ]'
->
-  {Index}
-</SnippetBlock>
 
 That's it for the basic setup - We're good to go!

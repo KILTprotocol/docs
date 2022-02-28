@@ -21,6 +21,7 @@ export async function main(
 
   // The submission will fail if `aliceKiltAccount` is not the owner of the deposit associated with the given DID identifier.
   await BlockchainUtils.signAndSubmitTx(depositClaimExtrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 

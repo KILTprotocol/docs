@@ -14,19 +14,15 @@ In this section you will walk though all processes done by the <span class="labe
 ## Folder Structure
 
 Create the following files in the <span class="label-role attester">Attester</span> folder.
-This folders serves to mimic an <span class="label-role attester">Attester</span> service, the
-outside world will interact with `attester/index.js` from our main project file.
+This folders serves to mimic an <span class="label-role attester">Attester</span> service.
 
 ```bash
 └─ kilt-rocks/ # project
   └─ attester/ # all attester code
-    ├─ attestCredential.js # issues credentials
-    ├─ generateKeypairs.js # executed only once to generate your private keypairs for the DID
-    ├─ getAccount.js # loads the Attester account
-    ├─ createCtype.js # create a local ctype definition
-    ├─ getCtype.js # returns a specific ctype
-    ├─ createFullDid.js # registers the Attester on chain DID
-    ├─ getFullDid.js # loads the Attester on chain DID
-    └─ index.js # main entry for outside world (Claimer, Verifier)
-  ...
+    ├─ attestClaim.js # issues attestations
+    ├─ ctypeSchema.js # create a local ctype definition
+    ├─ generateAccount.js # functions for setting up and loading the attesters account
+    ├─ generateCtype.js # register the ctype on chain
+    ├─ generateDid.js # registers the attesters on chain DID
+    └─ generateKeypairs.js # setup the keys for the attesters DID
 ```

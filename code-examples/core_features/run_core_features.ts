@@ -9,7 +9,7 @@ async function main() {
     console.error('Oh no! There was an error!!\n', e)
     process.exit(1)
   } finally {
-    process.exit(0)
+    process.exit()
   }
 }
 

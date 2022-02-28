@@ -5,8 +5,7 @@ title: Account
 
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '../../../../src/components/SnippetBlock';
-import Index from '!!raw-loader!../../../../code-examples/workshop/attester/index.js';
-import GetAccount from '!!raw-loader!../../../../code-examples/workshop/attester/getAccount.js';
+import GenerateAccount from '!!raw-loader!../../../../code-examples/workshop/attester/generateAccount.js';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">Attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.
@@ -40,43 +39,25 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-You'll note we're getting a mnemonic from `.env`.
-This is because we want to keep our seed phrase safe, and it may vary when moving environments (`development`, `production`).
-You'll be prompted to save it after the first run.
+Open `attester/generateAccount.js` and paste the following code:
 
-Open `attester/getAccount.js` and paste the following code:
-
-<CodeBlock className="language-js" title="attester/getAccount.js">
-  {GetAccount}
+<CodeBlock className="language-js" title="attester/generateAccount.js">
+  {GenerateAccount}
 </CodeBlock>
+
+The code contains two methods.
+`generateAccount` create and returns a new account while `getAccount` loads an existing secret and creates an account from it.
+We will use `getAccount` later to load the account that we will create and store in the next step.
 
 ## Execute
 
-Let's setup our <span class="label-role attester">Attester</span> index. Copy the below into `attester/index.js`
-
-<SnippetBlock
-  title="attester/index.js"
-  className="language-js"
-  snippets='[
-    [0, 11],
-    [12, 14],
-    [14,16],
-    [20,25],
-    "  console.log(account);",
-    [28,30],
-    "initialize();"
-  ]'
->
-  {Index}
-</SnippetBlock>
-
 Now run it to get your <span class="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
 ```bash
-node ./attester/index.js
+node ./attester/generateAccount.js
 ```
 
-Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`. Be sure to save it in your `.env`
-file, it should now look similar to this.
+Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`.
+Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws

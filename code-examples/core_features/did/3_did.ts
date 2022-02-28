@@ -51,6 +51,7 @@ export async function main(
 
   // Submit the DID creation tx to the KILT blockchain after signing it with the KILT account specified in the creation operation.
   await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
+    reSign: true,
     resolveOn,
   })
 
