@@ -9,7 +9,8 @@ import { generateKeypairs } from './generateKeypairs.js'
 
 export async function createFullDid() {
   await cryptoWaitReady()
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
+  Kilt.config({ address: process.env.WSS_ADDRESS })
+  const { api } = await Kilt.connect()
   const mnemonic = process.env.ATTESTER_MNEMONIC
 
   // Init keystore and load attester account
@@ -21,26 +22,25 @@ export async function createFullDid() {
   const keys = await generateKeypairs(keystore, mnemonic)
 
   // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
-  const { extrinsic, did: didUri } = await Kilt.Did.DidUtils.writeDidFromPublicKeys(keystore, account.address, keys)
-
-  // write the DID to blockchain
-  await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
-    reSign: true,
-    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
-  })
-
-  // save the didUri so we don't attempt to write it to chain again
-  return didUri
+  return new Kilt.Did.FullDidCreationBuilder(api, keys.authentication)
+    .addEncryptionKey(keys.keyAgreement)
+    .setAttestationKey(keys.assertionMethod)
+    .setDelegationKey(keys.capabilityDelegation)
+    .consumeWithHandler(keystore, account.address, async (creationTx) => {
+      await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
+        reSign: true,
+        resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
+      })
+    })
 }
 
-export async function getFullDid(didUri) {
-  const rawDidId = Kilt.Did.DidUtils.getIdentifierFromKiltDid(didUri)
+export async function getFullDid(didIdentifier) {
   // make sure the did is already on chain
-  const onChain = await Kilt.Did.DidChain.queryById(rawDidId)
-  if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
+  const onChain = await Kilt.Did.DidChain.queryDetails(didIdentifier)
+  if (!onChain) throw Error(`failed to find on chain did: did:kilt:${didIdentifier}`)
 
   // load and return the DID using the default resolver
-  return await Kilt.Did.DefaultResolver.resolveDoc(didUri)
+  return Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)
 }
 
 // don't execute if this is imported by another files
@@ -52,7 +52,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     })
     .then((didUri) => {
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_URI=${didUri}\n`)
+      console.error(`ATTESTER_DID_ID=${didUri}\n`)
       process.exit()
     })
 }

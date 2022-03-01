@@ -11,7 +11,7 @@ import { generateKeypairs } from './generateKeypairs.js'
 // create and return a RequestForAttestation from claim
 export async function requestFromClaim(lightDid, keystore, claim) {
   const request = Kilt.RequestForAttestation.fromClaim(claim)
-  await request.signWithDid(keystore, lightDid)
+  await request.signWithDidKey(keystore, lightDid, lightDid.authenticationKey.id)
 
   return request
 }
@@ -25,7 +25,7 @@ export async function generateRequest(claimAttributes) {
   const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
 
   // create the DID
-  const lightDid = new Kilt.Did.LightDidDetails(keys)
+  const lightDid = Kilt.Did.LightDidDetails.fromDetails(keys)
 
   // create claim
   const ctype = getCtypeSchema()

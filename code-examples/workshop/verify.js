@@ -34,7 +34,7 @@ export async function verificationFlow() {
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL)
   const keystore = new Kilt.Did.DemoKeystore()
   const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
-  const lightDid = new Kilt.Did.LightDidDetails(keys)
+  const lightDid = Kilt.Did.LightDidDetails.fromDetails(keys)
 
   // Verifier sends a unique challenge to the claimer 🕊
   const challenge = getChallenge()
