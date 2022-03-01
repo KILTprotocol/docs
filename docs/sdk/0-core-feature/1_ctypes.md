@@ -109,8 +109,8 @@ The `hash` is made from the schema object from the following values:
   - `type`
 - `title`
 - `type`
-  Excluding
-- `$id`
+
+The `$id` property, if present, is excluded from the hashing process since it represents the result of such a process.
 
 ```js
 hashVal = {

@@ -50,19 +50,6 @@ The verifier assumes that the private key for this public key is only known to t
 
 If the claimer is able to sign both the nonce and the credential with the private key that corresponds to the public key in the credential, the verifier can be sure that the claimer is indeed the legitimate owner of the credential.
 
-```js
-// The message can be encrypted as follows
-const requestAttestationEncrypted = reqAttestation.encrypt(
-  claimer,
-  attester.getPublicIdentity()
-)
-
-Kilt.Message.ensureHashAndSignature(
-  requestAttestationEncrypted,
-  claimer.address
-)
-```
-
 Note: A nonce is used to ensure that every message is unique, as if the same number was reused the second message would look the same as the first. This means that a malicious party with access to the first message could use it to impersonate the legitimate owner.
 
 ## Verifying the Content of the Credential

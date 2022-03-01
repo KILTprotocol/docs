@@ -11,6 +11,7 @@ import Example5 from '!!raw-loader!../../../code-examples/core_features/did/5_di
 import Example6 from '!!raw-loader!../../../code-examples/core_features/did/6_did.ts';
 import Example7 from '!!raw-loader!../../../code-examples/core_features/did/7_did.ts';
 import Example8 from '!!raw-loader!../../../code-examples/core_features/did/8_did.ts';
+import Example9 from '!!raw-loader!../../../code-examples/core_features/did/9_did.ts';
 
 A KILT Decentralised Identifier (DID) is a string uniquely identifying each KILT user. A DID can be thought of as a container of different keys that are all under the control of the same DID subject (see the [DID Core spec](https://www.w3.org/TR/did-core/) for more information).
 
@@ -123,4 +124,15 @@ The following code shows how to migrate a light DID to a full DID. Attested clai
 
 <CodeBlock className="language-js">
   {Example8}
+</CodeBlock>
+
+## Batching multiple operations with a full DID
+
+Full DIDs can also be used to batch multiple extrinsics that require the signature of the DID subject.
+For instance, a batch could include the creation of two different CTypes in the same operation. This would save the user one block time and one signature, as multiple extrinsics are batched and signed once, and they are submitted and executed in the same block. For more information, refer to the [official Substrate documentation](https://paritytech.github.io/substrate/master/pallet_utility/pallet/struct.Pallet.html).
+
+An example of a batched creation of two CTypes using a `DidBatchBuilder` is provided below.
+
+<CodeBlock className="language-js">
+  {Example9}
 </CodeBlock>
