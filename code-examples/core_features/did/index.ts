@@ -38,7 +38,7 @@ export async function runAll() {
 
   console.log('main3 - create full DID')
   const randomMini3 = randomAsHex(32)
-  await main3(keystore, faucetAccount, randomMini3)
+  const did3 = await main3(keystore, faucetAccount, randomMini3)
 
   console.log('main4 - create full DID with encryption key and service endpoints')
   const authSeed4 = randomAsHex(32)
@@ -47,13 +47,13 @@ export async function runAll() {
 
   console.log('main5 - update auth key, remove service endpoint')
   const randomMini5 = randomAsHex(32)
-  const updatedDidDetails = await main5(keystore, faucetAccount, randomMini5, did4)
+  const did5 = await main5(keystore, faucetAccount, randomMini5, did4)
 
   console.log('main6 - delete DID')
-  await main6(keystore, faucetAccount, updatedDidDetails)
+  await main6(keystore, faucetAccount, did5)
 
   console.log('main7 - claim DID deposit')
-  await main7(faucetAccount, updatedDidDetails.identifier)
+  await main7(faucetAccount, did3.identifier)
 
   console.log('main8 - upgrade light DID')
   const randomMini8 = randomAsHex(32)

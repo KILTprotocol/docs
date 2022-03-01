@@ -37,8 +37,8 @@ export async function main(
   })
 
   await disconnect()
-  if (migratedFullDid === null) {
-    throw `Could not find the migrated DID ${migratedFullDid.did}`
+  if (!migratedFullDid) {
+    throw 'Could not find the DID just migrated.'
   }
   return migratedFullDid
 }

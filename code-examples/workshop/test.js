@@ -36,7 +36,7 @@ async function testWorkshop() {
   })
 
   const faucetSeed = process.env[SEED_ENV]
-  if (faucetSeed === undefined) {
+  if (!faucetSeed) {
     console.log(
       `Account seed with sufficient balance is required. Set the secret seed using the ${SEED_ENV} environment variable.`
     )

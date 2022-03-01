@@ -44,8 +44,8 @@ export async function main(
   })
 
   await disconnect()
-  if (fullDid === null) {
-    throw `Could not find the created DID ${fullDid.did}`
+  if (!fullDid) {
+    throw 'Could not find the DID just created.'
   }
   return fullDid
 }
