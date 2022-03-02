@@ -18,7 +18,7 @@ export async function main(
   kiltAccount: KeyringPair,
   // Generate seed for the authentication key.
   authenticationSeed: string,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_IN_BLOCK
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   // Initialise connection to the public KILT test network and get the api object.
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })

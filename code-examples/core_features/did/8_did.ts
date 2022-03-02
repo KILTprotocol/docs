@@ -9,7 +9,7 @@ export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
   authenticationSeed: string,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_IN_BLOCK
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 

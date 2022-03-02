@@ -8,7 +8,7 @@ import { init, disconnect } from '@kiltprotocol/core'
 export async function main(
   kiltAccount: KeyringPair,
   didIdentifier: IDidIdentifier,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_IN_BLOCK
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
