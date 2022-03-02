@@ -1,12 +1,11 @@
 {
-  "name": "documentation",
-  "version": "1.0.0",
+  "author": "KILT Protocol",
+  "name": "kilt-workshop",
   "license": "MIT",
-  "type": "commonjs",
   "scripts": {
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
-    "style": "prettier --config .prettierrc **/*.ts",
+    "style": "prettier --check --config .prettierrc **/*.ts",
     "style:fix": "yarn style --write",
     "test": "ts-node test.ts"
   },
