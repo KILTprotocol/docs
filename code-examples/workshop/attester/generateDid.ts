@@ -1,20 +1,17 @@
-import 'dotenv/config'
-import { cryptoWaitReady } from '@polkadot/util-crypto'
-import { fileURLToPath } from 'url'
+import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { getAccount } from './generateAccount.js'
-import { generateKeypairs } from './generateKeypairs.js'
+import { getAccount } from './generateAccount'
+import { generateKeypairs } from './generateKeypairs'
 
-export async function createFullDid() {
-  await cryptoWaitReady()
+export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
   Kilt.config({ address: process.env.WSS_ADDRESS })
   const { api } = await Kilt.connect()
-  const mnemonic = process.env.ATTESTER_MNEMONIC
+  const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
   // Init keystore and load attester account
-  const account = await getAccount(process.env.ATTESTER_MNEMONIC)
+  const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
 
   // generate the keypairs
@@ -34,18 +31,17 @@ export async function createFullDid() {
     })
 }
 
-export async function getFullDid(didIdentifier) {
+export async function getFullDid(didIdentifier: Kilt.IDidIdentifier): Promise<Kilt.Did.FullDidDetails> {
   // make sure the did is already on chain
-  const onChain = await Kilt.Did.DidChain.queryDetails(didIdentifier)
+  const onChain = await Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)
   if (!onChain)
     throw Error(`failed to find on chain did: did:kilt:${didIdentifier}`)
-
-  // load and return the DID using the default resolver
-  return Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)
+  return onChain
 }
 
 // don't execute if this is imported by another files
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (require.main === module) {
+  envConfig()
   createFullDid()
     .catch((e) => {
       console.log('Error while creating attester DID', e)

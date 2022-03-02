@@ -1,14 +1,14 @@
 {
   "name": "documentation",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --config .prettierrc **/*.ts",
-    "style:fix": "yarn style --write"
+    "style:fix": "yarn style --write",
+    "test": "ts-node test.ts"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.26.0-rc.4",

@@ -1,11 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createPresentation(
-  credentialObj,
-  challenge,
-  lightDid,
-  keystore
-) {
+  credentialObj: Kilt.ICredential,
+  lightDid: Kilt.Did.LightDidDetails,
+  keystore: Kilt.Did.DemoKeystore,
+  challenge?: string,
+): Promise<Kilt.ICredential> {
   // creates a Credential from object
   const credential = new Kilt.Credential(credentialObj)
 

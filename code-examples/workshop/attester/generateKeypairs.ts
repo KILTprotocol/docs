@@ -1,6 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function generateKeypairs(keystore, mnemonic) {
+export async function generateKeypairs(keystore: Kilt.Did.DemoKeystore, mnemonic?: string): Promise<{
+  authentication: Kilt.NewDidVerificationKey,
+  keyAgreement: Kilt.NewDidEncryptionKey,
+  assertionMethod: Kilt.NewDidVerificationKey,
+  capabilityDelegation: Kilt.NewDidVerificationKey,
+}> {
   // signing keypair
   const signing = await keystore.generateKeypair({
     alg: Kilt.Did.SigningAlgorithms.Sr25519,

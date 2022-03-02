@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'url'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateRequest } from '../claimer/generateRequest'
@@ -7,16 +5,17 @@ import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
 import { generateKeypairs } from './generateKeypairs'
 
-export async function attestClaim(request) {
+export async function attestClaim(request: Kilt.IRequestForAttestation): Promise<Kilt.IAttestation> {
   // Init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // load account & DID
-  const mnemonic = process.env.ATTESTER_MNEMONIC
+  const mnemonic = process.env.ATTESTER_MNEMONIC as string
+  const attesterId = process.env.ATTESTER_DID_ID as Kilt.IDidIdentifier
   const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(process.env.ATTESTER_DID_ID)
+  const fullDid = await getFullDid(attesterId)
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.did)
@@ -47,7 +46,7 @@ export async function attestClaim(request) {
   return attestation
 }
 
-export async function attestingFlow() {
+export async function attestingFlow(): Promise<Kilt.ICredential> {
   // first the claimer
   const request = await generateRequest({
     age: 27,
@@ -71,7 +70,7 @@ export async function attestingFlow() {
 }
 
 // don't execute if this is imported by another files
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (require.main === module) {
   attestingFlow()
     .catch((e) => {
       console.log('Error while going throw attesting workflow', e)

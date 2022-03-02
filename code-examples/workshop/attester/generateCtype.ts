@@ -1,20 +1,17 @@
-import 'dotenv/config'
-import { cryptoWaitReady } from '@polkadot/util-crypto'
-import { fileURLToPath } from 'url'
+import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { getCtypeSchema } from './ctypeSchema.js'
-import { getAccount } from './generateAccount.js'
-import { getFullDid } from './generateDid.js'
-import { generateKeypairs } from './generateKeypairs.js'
+import { getCtypeSchema } from './ctypeSchema'
+import { getAccount } from './generateAccount'
+import { getFullDid } from './generateDid'
+import { generateKeypairs } from './generateKeypairs'
 
-export async function ensureStoredCtype() {
+export async function ensureStoredCtype(): Promise<Kilt.CType> {
   // Init
-  await cryptoWaitReady()
   await Kilt.init({ address: process.env.WSS_ADDRESS })
-  const mnemonic = process.env.ATTESTER_MNEMONIC
-  const didIdentifier = process.env.ATTESTER_DID_ID
+  const mnemonic = process.env.ATTESTER_MNEMONIC as string
+  const didIdentifier = process.env.ATTESTER_DID_ID as Kilt.IDidIdentifier
 
   // Load Account
   const account = await getAccount(mnemonic)
@@ -51,7 +48,8 @@ export async function ensureStoredCtype() {
 }
 
 // don't execute if this is imported by another files
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (require.main === module) {
+  envConfig()
   ensureStoredCtype()
     .catch((e) => {
       console.log('Error while checking on chain ctype', e)
