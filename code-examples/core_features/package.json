@@ -7,7 +7,7 @@
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc **/*.ts",
     "style:fix": "yarn style --write",
-    "test": "ts-node test.ts"
+    "test": "ts-node run_core_features.ts"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.26.0-rc.4",
