@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.26.0-rc.2",
+    "@kiltprotocol/sdk-js": "0.26.0-rc.3",
     "@polkadot/util-crypto": "8.3.3",
     "dotenv": "^14.2.0"
   }
