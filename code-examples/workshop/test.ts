@@ -15,22 +15,22 @@ async function testWorkshop() {
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
 
   // setup attester account
-  let { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
+  const { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
   process.env.ATTESTER_MNEMONIC = attesterMnemonic
   process.env.ATTESTER_ADDRESS = attesterAccount.address
 
   // setup claimer & create attestation request
-  let { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
+  const { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
   process.env.CLAIMER_DID_URI = claimerDid
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
-  let _request = await generateRequest({
+  await generateRequest({
     age: 27,
     name: 'Karl',
   })
 
   // send tokens to attester...
-  let keyring = new Kilt.Utils.Keyring({
+  const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
     ss58Format: 38,
   })

@@ -1,4 +1,4 @@
-import * as Kilt from '@kiltprotocol/sdk-js';
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 // returns CTYPE from a schema
 export function getCtypeSchema() {
@@ -7,12 +7,12 @@ export function getCtypeSchema() {
     title: 'Drivers License',
     properties: {
       name: {
-        type: 'string',
+        type: 'string'
       },
       age: {
-        type: 'integer',
-      },
+        type: 'integer'
+      }
     },
-    type: 'object',
+    type: 'object'
   })
 }

@@ -21,7 +21,7 @@ export async function generateLightDid() {
 
   return {
     lightDid,
-    mnemonic,
+    mnemonic
   }
 }
 

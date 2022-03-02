@@ -1,17 +1,14 @@
-import 'dotenv/config'
-import { cryptoWaitReady } from '@polkadot/util-crypto'
 import { fileURLToPath } from 'url'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { generateRequest } from '../claimer/generateRequest.js'
-import { getAccount } from './generateAccount.js'
-import { getFullDid } from './generateDid.js'
-import { generateKeypairs } from './generateKeypairs.js'
+import { generateRequest } from '../claimer/generateRequest'
+import { getAccount } from './generateAccount'
+import { getFullDid } from './generateDid'
+import { generateKeypairs } from './generateKeypairs'
 
 export async function attestClaim(request) {
   // Init
-  await cryptoWaitReady()
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // load account & DID
@@ -29,13 +26,22 @@ export async function attestClaim(request) {
 
   // form tx and authorized extrinsic
   const tx = await attestation.getStoreTx()
-  const extrinsic = await fullDid.authorizeExtrinsic(tx, keystore, account.address)
+  const extrinsic = await fullDid.authorizeExtrinsic(
+    tx,
+    keystore,
+    account.address
+  )
 
   // write to chain
   console.log('Attester -> submit attestation...')
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
+<<<<<<< HEAD:code-examples/workshop/attester/attestClaim.js
     resolveOn: Kilt.BlockchainUtils.K,
     reSign: true,
+=======
+    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
+    reSign: true
+>>>>>>> 215289d (chore: setup typescript + lint + prettier for workshop code):code-examples/workshop/attester/attestClaim.ts
   })
 
   return attestation
@@ -45,18 +51,21 @@ export async function attestingFlow() {
   // first the claimer
   const request = await generateRequest({
     age: 27,
-    name: 'Mia Musterfrau',
+    name: 'Mia Musterfrau'
   })
 
   // send the request to the attester 🕊
 
   // the attester checks the attributes and issues an attestation
-  let attestation = await attestClaim(request)
+  const attestation = await attestClaim(request)
 
   // send the attestation back to the claimer 🕊
 
   // build the credential and return it
-  const credential = Kilt.Credential.fromRequestAndAttestation(request, attestation)
+  const credential = Kilt.Credential.fromRequestAndAttestation(
+    request,
+    attestation
+  )
 
   return credential
 }

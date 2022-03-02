@@ -4,33 +4,25 @@ export async function generateKeypairs(keystore, mnemonic) {
   // signing keypair
   const signing = await keystore.generateKeypair({
     alg: Kilt.Did.SigningAlgorithms.Sr25519,
-    seed: mnemonic,
+    seed: mnemonic
   })
 
   // encryption keypair
   const encryption = await keystore.generateKeypair({
     alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
-    seed: mnemonic,
+    seed: mnemonic
   })
 
   // build the Attester keys object
   const keys = {
-    authentication: {
+    authenticationKey: {
       publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519,
+      type: Kilt.VerificationKeyType.Sr25519
     },
-    keyAgreement: {
+    encryptionKey: {
       publicKey: encryption.publicKey,
-      type: Kilt.EncryptionKeyType.X25519,
-    },
-    capabilityDelegation: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519,
-    },
-    assertionMethod: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519,
-    },
+      type: Kilt.EncryptionKeyType.X25519
+    }
   }
 
   return keys

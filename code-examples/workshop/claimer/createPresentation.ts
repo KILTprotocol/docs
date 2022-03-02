@@ -1,6 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function createPresentation(credentialObj, challenge, lightDid, keystore) {
+export async function createPresentation(
+  credentialObj,
+  challenge,
+  lightDid,
+  keystore
+) {
   // creates a Credential from object
   const credential = new Kilt.Credential(credentialObj)
 
@@ -8,7 +13,7 @@ export async function createPresentation(credentialObj, challenge, lightDid, key
   const presentation = await credential.createPresentation({
     signer: keystore,
     claimerDid: lightDid,
-    challenge: challenge,
+    challenge: challenge
   })
 
   return presentation

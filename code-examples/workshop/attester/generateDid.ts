@@ -29,7 +29,7 @@ export async function createFullDid() {
     .consumeWithHandler(keystore, account.address, async (creationTx) => {
       await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
         reSign: true,
-        resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
+        resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
       })
     })
 }
@@ -37,7 +37,8 @@ export async function createFullDid() {
 export async function getFullDid(didIdentifier) {
   // make sure the did is already on chain
   const onChain = await Kilt.Did.DidChain.queryDetails(didIdentifier)
-  if (!onChain) throw Error(`failed to find on chain did: did:kilt:${didIdentifier}`)
+  if (!onChain)
+    throw Error(`failed to find on chain did: did:kilt:${didIdentifier}`)
 
   // load and return the DID using the default resolver
   return Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)

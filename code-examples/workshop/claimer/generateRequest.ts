@@ -11,7 +11,11 @@ import { generateKeypairs } from './generateKeypairs.js'
 // create and return a RequestForAttestation from claim
 export async function requestFromClaim(lightDid, keystore, claim) {
   const request = Kilt.RequestForAttestation.fromClaim(claim)
-  await request.signWithDidKey(keystore, lightDid, lightDid.authenticationKey.id)
+  await request.signWithDidKey(
+    keystore,
+    lightDid,
+    lightDid.authenticationKey.id
+  )
 
   return request
 }
@@ -40,14 +44,16 @@ export async function generateRequest(claimAttributes) {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   generateRequest({
     age: 28,
-    name: 'Max Mustermann',
+    name: 'Max Mustermann'
   })
     .catch((e) => {
       console.log('Error while building request for attestation', e)
       process.exit(1)
     })
     .then((request) => {
-      console.log('⚠️  save this to ./claimer/_request.json for testing  ⚠️\n\n')
+      console.log(
+        '⚠️  save this to ./claimer/_request.json for testing  ⚠️\n\n'
+      )
       console.log(JSON.stringify(request, null, 2))
       process.exit()
     })

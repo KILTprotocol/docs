@@ -35,12 +35,16 @@ export async function ensureStoredCtype() {
 
   // authorize the extrinsic
   const tx = await ctype.getStoreTx()
-  const extrinsic = await fullDid.authorizeExtrinsic(tx, keystore, account.address)
+  const extrinsic = await fullDid.authorizeExtrinsic(
+    tx,
+    keystore,
+    account.address
+  )
 
   // write to chain then return ctype
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
     resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
-    reSign: true,
+    reSign: true
   })
 
   return ctype

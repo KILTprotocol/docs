@@ -11,7 +11,7 @@ export async function generateAccount() {
   // setup keyring
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: 'sr25519',
+    type: 'sr25519'
   })
 
   // use the mnemonic from .env or make a new one
@@ -27,7 +27,7 @@ export async function getAccount(mnemonic) {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: 'sr25519',
+    type: 'sr25519'
   })
   return keyring.addFromMnemonic(mnemonic)
 }
