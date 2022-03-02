@@ -1,3 +1,4 @@
+import { config as envConfig } from 'dotenv'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateRequest } from '../claimer/generateRequest'
@@ -66,14 +67,18 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   return credential
 }
 
-attestingFlow()
-  .catch((e) => {
-    console.log('Error while going throw attesting workflow', e)
-    process.exit(1)
-  })
-  .then((c) => {
-    console.log('The claimer build their credential and now has to store it.')
-    console.log('⚠️  add the following to your .env file. ⚠️')
-    console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
-    process.exit()
-  })
+// don't execute if this is imported by another files
+if (require.main === module) {
+  envConfig()
+  attestingFlow()
+    .catch((e) => {
+      console.log('Error while going throw attesting workflow', e)
+      process.exit(1)
+    })
+    .then((c) => {
+      console.log('The claimer build their credential and now has to store it.')
+      console.log('⚠️  add the following to your .env file. ⚠️')
+      console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
+      process.exit()
+    })
+}
