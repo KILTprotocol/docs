@@ -18,7 +18,7 @@ function archive(folders) {
   const output = fs.createWriteStream(`${__dirname}/../../static/${directory}.zip`);
   const archive = archiver('zip', { zlib: { level: 9 } });
   archive.pipe(output);
-  archive.glob('.', { pattern: [ '**/*.js', '*.json' ], cwd: folder, skip: 'node_modules' });
+  archive.glob('.', { pattern: ['**/*.ts', '*.json'], cwd: folder, skip: 'node_modules' });
   archive.finalize();
   output.on('end', () => archive(folders));
 }
