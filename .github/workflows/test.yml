@@ -22,7 +22,13 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: run integration tests
+      - name: Test style conventions
+        working-directory: code-examples/workshop
+        run: |
+          yarn install --frozen
+          yarn test
+
+      - name: Run tests
         timeout-minutes: 60
         working-directory: code-examples/workshop
         env:
@@ -38,7 +44,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: run tests
+      - name: Test style conventions
+        working-directory: code-examples/core_features
+        run: |
+          yarn install --frozen
+          yarn test      
+
+      - name: Run tests
         timeout-minutes: 60
         working-directory: code-examples/core_features
         env:
