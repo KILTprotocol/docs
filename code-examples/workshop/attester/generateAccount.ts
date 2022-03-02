@@ -4,7 +4,7 @@ import { mnemonicGenerate } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateAccount(): Promise<{
-  account: Kilt.KeyringPair,
+  account: Kilt.KeyringPair
   mnemonic: string
 }> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })

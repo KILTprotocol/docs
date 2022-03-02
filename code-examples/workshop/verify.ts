@@ -1,5 +1,4 @@
 import { config as envConfig } from 'dotenv'
-import { fileURLToPath } from 'url'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 

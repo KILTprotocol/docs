@@ -31,7 +31,9 @@ export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
     })
 }
 
-export async function getFullDid(didIdentifier: Kilt.IDidIdentifier): Promise<Kilt.Did.FullDidDetails> {
+export async function getFullDid(
+  didIdentifier: Kilt.IDidIdentifier
+): Promise<Kilt.Did.FullDidDetails> {
   // make sure the did is already on chain
   const onChain = await Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)
   if (!onChain)

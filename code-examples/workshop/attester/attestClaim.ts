@@ -5,7 +5,9 @@ import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
 import { generateKeypairs } from './generateKeypairs'
 
-export async function attestClaim(request: Kilt.IRequestForAttestation): Promise<Kilt.IAttestation> {
+export async function attestClaim(
+  request: Kilt.IRequestForAttestation
+): Promise<Kilt.IAttestation> {
   // Init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 

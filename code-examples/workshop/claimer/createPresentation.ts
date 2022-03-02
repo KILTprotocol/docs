@@ -4,7 +4,7 @@ export async function createPresentation(
   credentialObj: Kilt.ICredential,
   lightDid: Kilt.Did.LightDidDetails,
   keystore: Kilt.Did.DemoKeystore,
-  challenge?: string,
+  challenge?: string
 ): Promise<Kilt.ICredential> {
   // creates a Credential from object
   const credential = new Kilt.Credential(credentialObj)

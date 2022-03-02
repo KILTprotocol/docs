@@ -6,7 +6,7 @@ import { generateKeypairs } from './generateKeypairs'
 import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 export async function generateLightDid(): Promise<{
-  lightDid: Kilt.Did.LightDidDetails,
+  lightDid: Kilt.Did.LightDidDetails
   mnemonic: string
 }> {
   // init
@@ -23,7 +23,7 @@ export async function generateLightDid(): Promise<{
     authenticationKey: {
       publicKey: keys.authenticationKey.publicKey,
       type: Kilt.VerificationKeyType.Sr25519
-    },
+    }
   })
 
   return {

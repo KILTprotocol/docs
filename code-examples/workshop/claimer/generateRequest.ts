@@ -7,7 +7,11 @@ import { getCtypeSchema } from '../attester/ctypeSchema'
 import { generateKeypairs } from './generateKeypairs'
 
 // create and return a RequestForAttestation from claim
-async function requestFromClaim(lightDid: Kilt.Did.LightDidDetails, keystore: Kilt.Did.DemoKeystore, claim: Kilt.IClaim): Promise<Kilt.IRequestForAttestation> {
+async function requestFromClaim(
+  lightDid: Kilt.Did.LightDidDetails,
+  keystore: Kilt.Did.DemoKeystore,
+  claim: Kilt.IClaim
+): Promise<Kilt.IRequestForAttestation> {
   const request = Kilt.RequestForAttestation.fromClaim(claim)
   await request.signWithDidKey(
     keystore,
@@ -18,7 +22,9 @@ async function requestFromClaim(lightDid: Kilt.Did.LightDidDetails, keystore: Ki
   return request
 }
 
-export async function generateRequest(claimAttributes: Kilt.IClaim['contents']): Promise<Kilt.IRequestForAttestation> {
+export async function generateRequest(
+  claimAttributes: Kilt.IClaim['contents']
+): Promise<Kilt.IRequestForAttestation> {
   // init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
@@ -31,7 +37,7 @@ export async function generateRequest(claimAttributes: Kilt.IClaim['contents']):
     authenticationKey: {
       publicKey: keys.authenticationKey.publicKey,
       type: Kilt.VerificationKeyType.Sr25519
-    },
+    }
   })
 
   // create claim
