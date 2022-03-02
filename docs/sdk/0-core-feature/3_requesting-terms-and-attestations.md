@@ -28,43 +28,6 @@ When creating a terms object, at least one of the following must be complete: Le
 
 - **Legitimations**: Legitimations are attested claims that the attester has issued previously, showing that the attester has the authority or legitimacy to attest the claim requested. This is a way of establishing trust between the participants.
 
-```js
-const attestedClaimObject = {
-  request: {
-    claim: {
-      cTypeHash:
-        "0xf53f460a9e96cf7ea3321ac001a89674850493e12fad28cbc868e026935436d2",
-      contents: {},
-      owner: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy",
-    },
-    claimHashes: [
-      "0x8a78eedae0f16daa45f09f603a973d245c0602614a21551bb9b7d5a850539acf",
-    ],
-    claimNonceMap: {
-      "0xb1c5613aefedbebdb1a766a2541984bb8d8e8d337448e4b47eea0476c36a9cab":
-        "6d521485-e8ce-484f-885a-e372125cf5b9",
-    },
-    legitimations: [],
-    delegationId: null,
-    rootHash:
-      "0x4eee0931756d1bff16ea3c5dff3a1586e57ad2fa686bd002bd90b258e83f05ee",
-    claimerSignature: {
-      "keyId": "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-      "signature": "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
-    }
-  },
-  attestation: {
-    claimHash:
-      "0x4eee0931756d1bff16ea3c5dff3a1586e57ad2fa686bd002bd90b258e83f05ee",
-    cTypeHash:
-      "0xf53f460a9e96cf7ea3321ac001a89674850493e12fad28cbc868e026935436d2",
-    delegationId: null,
-    owner: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb",
-    revoked: false,
-  },
-};
-```
-
 - **Quote**: Details on how to create a quote are outlined here. In brief, the quote could include any or all of the following:
 
   - The time frame the claim will be completed in
@@ -91,7 +54,6 @@ const termsMessageBody = {
       owner: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy",
     },
     legitimations: [[AttestedClaim]],
-    delegationId: undefined,
     quote: {
       attesterAddress: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb",
       cTypeHash:
@@ -101,8 +63,8 @@ const termsMessageBody = {
       termsAndConditions: "https://coolcompany.io/terms.pdf",
       timeframe: "2019-12-09T23:00:00.000Z",
       attesterSignature: {
-        "keyId": "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xc56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183",
-        "signature": "0x01a4d9c3395113ce76d2830a4fb436bdd04c7ca9442a152cd18eca1ba029c9a07c56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183"
+        keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xc56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183",
+        signature: "0x01a4d9c3395113ce76d2830a4fb436bdd04c7ca9442a152cd18eca1ba029c9a07c56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183"
       },
     },
     prerequisiteClaims: undefined,
@@ -148,8 +110,8 @@ const attesterSignedQuoteObj = {
   timeframe: "2020-12-03T23:00:00.000Z",
   termsAndConditions: "www.example.de/helpful-terms-&-conditions",
   attesterSignature: {
-    "keyId": "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    "signature": "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
+    keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
+    signature: "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
   },
 };
 ```
@@ -166,14 +128,14 @@ const agreedSignedQuoteObj = {
   timeframe: "2020-12-03T23:00:00.000Z",
   termsAndConditions: "www.example.de/helpful-terms-&-conditions",
   attesterSignature: {
-    "keyId": "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    "signature": "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
+    keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
+    signature: "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
   },
   rootHash:
     "0x43c756b5a92413e7d804fcfaa76eb27dcd58fc61f18dd1baac185a86ee0ea89f",
   claimerSignature: {
-    "keyId": "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    "signature": "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
+    keyId: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
+    signature: "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
   }
 };
 ```
@@ -207,8 +169,8 @@ const requestForAttestation = Kilt.RequestForAttestation.fromRequest({
   rootHash:
     "0x4eee0931756d1bff16ea3c5dff3a1586e57ad2fa686bd002bd90b258e83f05ee",
   claimerSignature: {
-    "keyId": "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    "signature": "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
+    keyId: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
+    signature: "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
   }
 });
 ```
@@ -234,4 +196,4 @@ const messageRequestAttestationForClaim = new Kilt.Message(
 );
 ```
 
-After the final exchange, the process is then attested by the attester. See the attesting and claiming process here.
+After the final exchange, the process is then attested by the attester. See the attesting and claiming process in the next section.

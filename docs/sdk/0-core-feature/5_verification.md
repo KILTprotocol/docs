@@ -22,21 +22,9 @@ During the verification process the claimer wants to prove three things to the v
 
 The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier. They can choose to hide attributes and thus only disclose a subset of the data. For example, if sending a driving licence to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details. This improves the privacy of the claimer, since they only need to show attributes that are required in the specific context.
 
-```js
-const credential = Kilt.AttestedClaim.fromAttestedClaim(AttestedClaimObject)
-
-const presentation = credential.createPresentation([publicAttributes])
-```
-
 ## Verifying a Credential
 
 The verifier receives the credential from the claimer, then calculates the attestation hash and queries the revocation status.
-
-```js
-const presentation = Kilt.AttestedClaim.fromAttestedClaim(AttestedClaimObject)
-
-presentation.verify()
-```
 
 If the claimer tampered with the credential, the hash won’t match an attestation on chain. If the attestation hash is on chain and has not been revoked, the credential is valid.
 
