@@ -4,7 +4,7 @@ title: 👋🏻 Welcome
 ---
 
 <!-- When updating this version also update 01-setup.md! -->
-SDK version **0.25.3**.
+SDK version **0.26.0**.
 
 :::info What you can expect
 

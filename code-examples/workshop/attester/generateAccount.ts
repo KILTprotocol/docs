@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import { config as envConfig } from 'dotenv'
 import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -34,6 +34,7 @@ export async function getAccount(mnemonic: string): Promise<Kilt.KeyringPair> {
 
 // don't execute if this is imported by another files
 if (require.main === module) {
+  envConfig()
   generateAccount()
     .catch((e) => {
       console.log('Error while setting up attester account', e)

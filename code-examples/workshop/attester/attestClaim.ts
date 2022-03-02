@@ -13,11 +13,11 @@ export async function attestClaim(
 
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
-  const attesterId = process.env.ATTESTER_DID_ID as Kilt.IDidIdentifier
+  const attesterDid = process.env.ATTESTER_DID_URI as string
   const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(attesterId)
+  const fullDid = await getFullDid(Kilt.Did.DidUtils.getIdentifierFromKiltDid(attesterDid))
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.did)
@@ -66,17 +66,14 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   return credential
 }
 
-// don't execute if this is imported by another files
-if (require.main === module) {
-  attestingFlow()
-    .catch((e) => {
-      console.log('Error while going throw attesting workflow', e)
-      process.exit(1)
-    })
-    .then((c) => {
-      console.log('The claimer build their credential and now has to store it.')
-      console.log('⚠️  add the following to your .env file. ⚠️')
-      console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
-      process.exit()
-    })
-}
+attestingFlow()
+  .catch((e) => {
+    console.log('Error while going throw attesting workflow', e)
+    process.exit(1)
+  })
+  .then((c) => {
+    console.log('The claimer build their credential and now has to store it.')
+    console.log('⚠️  add the following to your .env file. ⚠️')
+    console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
+    process.exit()
+  })

@@ -11,7 +11,7 @@ export async function ensureStoredCtype(): Promise<Kilt.CType> {
   // Init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
-  const didIdentifier = process.env.ATTESTER_DID_ID as Kilt.IDidIdentifier
+  const did = process.env.ATTESTER_DID_URI as string
 
   // Load Account
   const account = await getAccount(mnemonic)
@@ -19,7 +19,7 @@ export async function ensureStoredCtype(): Promise<Kilt.CType> {
   // Load DID
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(didIdentifier)
+  const fullDid = await getFullDid(Kilt.Did.DidUtils.getIdentifierFromKiltDid(did))
 
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()

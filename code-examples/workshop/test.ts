@@ -55,7 +55,7 @@ async function testWorkshop() {
 
   // create attester did & ensure ctype
   const attesterDid = await createFullDid()
-  process.env.ATTESTER_DID_ID = attesterDid.identifier
+  process.env.ATTESTER_DID_URI = attesterDid.did
 
   await ensureStoredCtype()
 

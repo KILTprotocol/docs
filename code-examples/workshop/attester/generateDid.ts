@@ -6,7 +6,7 @@ import { getAccount } from './generateAccount'
 import { generateKeypairs } from './generateKeypairs'
 
 export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
-  Kilt.config({ address: process.env.WSS_ADDRESS })
+  await Kilt.init({ address: process.env.WSS_ADDRESS })
   const { api } = await Kilt.connect()
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
@@ -49,9 +49,9 @@ if (require.main === module) {
       console.log('Error while creating attester DID', e)
       process.exit(1)
     })
-    .then((didUri) => {
+    .then((did) => {
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_ID=${didUri}\n`)
+      console.error(`ATTESTER_DID_URI=${did.did}\n`)
       process.exit()
     })
 }

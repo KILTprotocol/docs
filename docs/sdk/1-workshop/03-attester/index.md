@@ -19,10 +19,10 @@ This folders serves to mimic an <span class="label-role attester">Attester</span
 ```bash
 └─ kilt-rocks/ # project
   └─ attester/ # all attester code
-    ├─ attestClaim.js # issues attestations
-    ├─ ctypeSchema.js # create a local ctype definition
-    ├─ generateAccount.js # functions for setting up and loading the attesters account
-    ├─ generateCtype.js # register the ctype on chain
-    ├─ generateDid.js # registers the attesters on chain DID
-    └─ generateKeypairs.js # setup the keys for the attesters DID
+    ├─ attestClaim.ts # issues attestations
+    ├─ ctypeSchema.ts # create a local ctype definition
+    ├─ generateAccount.ts # functions for setting up and loading the attesters account
+    ├─ generateCtype.ts # register the ctype on chain
+    ├─ generateDid.ts # registers the attesters on chain DID
+    └─ generateKeypairs.ts # setup the keys for the attesters DID
 ```
