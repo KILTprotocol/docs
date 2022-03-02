@@ -1,4 +1,9 @@
-import { DemoKeystore, LightDidDetails, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
+import {
+  DemoKeystore,
+  LightDidDetails,
+  SigningAlgorithms,
+  EncryptionAlgorithms
+} from '@kiltprotocol/did'
 import type { DidServiceEndpoint } from '@kiltprotocol/types'
 import { VerificationKeyType, EncryptionKeyType } from '@kiltprotocol/types'
 
@@ -7,7 +12,7 @@ export async function main(keystore: DemoKeystore): Promise<void> {
 
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     alg: SigningAlgorithms.Ed25519,
-    seed: authenticationSeed,
+    seed: authenticationSeed
   })
 
   // Generate the seed for the encryption key.
@@ -16,15 +21,15 @@ export async function main(keystore: DemoKeystore): Promise<void> {
   // Use the keystore to generate a new keypair to use for encryption.
   const encryptionKeyPublicDetails = await keystore.generateKeypair({
     alg: EncryptionAlgorithms.NaclBox,
-    seed: encryptionSeed,
+    seed: encryptionSeed
   })
 
   const serviceEndpoints: DidServiceEndpoint[] = [
     {
       id: 'my-service',
       types: ['CollatorCredential'],
-      urls: ['http://example.domain.org'],
-    },
+      urls: ['http://example.domain.org']
+    }
   ]
 
   // Generate the KILT light DID with the information generated.
@@ -37,7 +42,7 @@ export async function main(keystore: DemoKeystore): Promise<void> {
       publicKey: encryptionKeyPublicDetails.publicKey,
       type: EncryptionKeyType.X25519
     },
-    serviceEndpoints,
+    serviceEndpoints
   })
   console.log(lightDID.did)
 }

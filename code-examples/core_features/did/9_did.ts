@@ -1,9 +1,20 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { DemoKeystore, SigningAlgorithms, FullDidCreationBuilder, DidBatchBuilder } from '@kiltprotocol/did'
+import {
+  DemoKeystore,
+  SigningAlgorithms,
+  FullDidCreationBuilder,
+  DidBatchBuilder
+} from '@kiltprotocol/did'
 import { init, disconnect, CType } from '@kiltprotocol/core'
-import { SubscriptionPromise, VerificationKeyType, ICType } from '@kiltprotocol/types'
-import { BlockchainUtils, BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
+import {
+  SubscriptionPromise,
+  VerificationKeyType,
+} from '@kiltprotocol/types'
+import {
+  BlockchainUtils,
+  BlockchainApiConnection
+} from '@kiltprotocol/chain-helpers'
 import { UUID } from '@kiltprotocol/utils'
 
 export async function main(
@@ -16,21 +27,23 @@ export async function main(
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
-    alg: SigningAlgorithms.EcdsaSecp256k1,
+    alg: SigningAlgorithms.EcdsaSecp256k1
   })
 
   const fullDid = await new FullDidCreationBuilder(api, {
     publicKey: authenticationKeyPublicDetails.publicKey,
     type: VerificationKeyType.Ecdsa
-  }).setAttestationKey({
-    publicKey: authenticationKeyPublicDetails.publicKey,
-    type: VerificationKeyType.Ecdsa
-  }).consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
-    await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
-      reSign: true,
-      resolveOn
-    })
   })
+    .setAttestationKey({
+      publicKey: authenticationKeyPublicDetails.publicKey,
+      type: VerificationKeyType.Ecdsa
+    })
+    .consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
+      await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
+        reSign: true,
+        resolveOn
+      })
+    })
 
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
@@ -39,10 +52,9 @@ export async function main(
   const ctype2CreationTx = await ctype2.getStoreTx()
 
   // Create the DID-signed batch
-  const batch =
-    await new DidBatchBuilder(api, fullDid)
-      .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-      .consume(keystore, kiltAccount.address)
+  const batch = await new DidBatchBuilder(api, fullDid)
+    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
+    .consume(keystore, kiltAccount.address)
 
   // The authorised used submits the batch to the chain
   await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
@@ -65,12 +77,12 @@ function getRandomCType(): CType {
     title: `CType ${randomFactor}`,
     properties: {
       name: {
-        type: 'string',
+        type: 'string'
       },
       age: {
-        type: 'integer',
-      },
+        type: 'integer'
+      }
     },
-    type: 'object',
+    type: 'object'
   })
 }

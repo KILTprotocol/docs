@@ -2,7 +2,7 @@ import { init as kiltInit } from '@kiltprotocol/core'
 import {
   LightDidDetails,
   DemoKeystore,
-  SigningAlgorithms,
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import { VerificationKeyType } from '@kiltprotocol/sdk-js'
 
@@ -10,7 +10,10 @@ import { main as main1 } from './1_claiming'
 import { main as main2 } from './2_claiming'
 import { main as main3 } from './3_claiming'
 
-async function getLightDid(): Promise<{ lightDid: LightDidDetails, keystore: DemoKeystore }> {
+async function getLightDid(): Promise<{
+  lightDid: LightDidDetails
+  keystore: DemoKeystore
+}> {
   // Instantiate the demo keystore.
   const keystore = new DemoKeystore()
 
@@ -21,7 +24,7 @@ async function getLightDid(): Promise<{ lightDid: LightDidDetails, keystore: Dem
   // For random seed generation, just omit the `seed` argument.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     alg: SigningAlgorithms.Sr25519,
-    seed: authenticationSeed,
+    seed: authenticationSeed
   })
 
   // Create a light DID from the generated authentication key.
@@ -29,7 +32,7 @@ async function getLightDid(): Promise<{ lightDid: LightDidDetails, keystore: Dem
     authenticationKey: {
       publicKey: authenticationKeyPublicDetails.publicKey,
       type: VerificationKeyType.Sr25519
-    },
+    }
   })
 
   return { lightDid, keystore }
