@@ -7,10 +7,7 @@ import {
   DidBatchBuilder
 } from '@kiltprotocol/did'
 import { init, disconnect, CType } from '@kiltprotocol/core'
-import {
-  SubscriptionPromise,
-  VerificationKeyType,
-} from '@kiltprotocol/types'
+import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 import {
   BlockchainUtils,
   BlockchainApiConnection
