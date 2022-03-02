@@ -36,13 +36,8 @@ export async function attestClaim(
   // write to chain
   console.log('Attester -> submit attestation...')
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
-<<<<<<< HEAD:code-examples/workshop/attester/attestClaim.js
-    resolveOn: Kilt.BlockchainUtils.K,
-    reSign: true,
-=======
     resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
-    reSign: true
->>>>>>> 215289d (chore: setup typescript + lint + prettier for workshop code):code-examples/workshop/attester/attestClaim.ts
+    reSign: true,
   })
 
   return attestation

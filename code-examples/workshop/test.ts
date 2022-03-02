@@ -45,7 +45,7 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
-  await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5_000_000_000_000_000), 0)
+  await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
     .then((tx) =>
       Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
         reSign: true,
@@ -54,8 +54,8 @@ async function testWorkshop() {
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
-  const attersterDid = await createFullDid()
-  process.env.ATTESTER_DID_ID = attersterDid.identifier
+  const attesterDid = await createFullDid()
+  process.env.ATTESTER_DID_ID = attesterDid.identifier
 
   await ensureStoredCtype()
 
