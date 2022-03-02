@@ -23,7 +23,7 @@ For the integrity of the protocol, requesting a feature requires approval from K
 
 ## Feature Proposals
 
-At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer, and the active developers or appropriate teams can start working on the proposal deliverables.
+A proposal must be made before moving ahead, see above. At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer, and the active developers or appropriate teams can start working on the proposal deliverables.
 
 ## Bug Reports
 
