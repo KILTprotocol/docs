@@ -22,9 +22,9 @@ If delegating the attestation rights for multiple CTypes, a separate delegation 
 
 This requires a unique Id (the DelegationRootNode's identifier), the CType hash, and the owner identity’s address
 
-/2. Call the .store() method on the DelegationRootNode object to produce a SubmittableExtrinsic, a transaction object which can be dispatched to the KILT blockchain.
+/2. Call the `.getStoreTx()` method on the DelegationRootNode object to produce a SubmittableExtrinsic, a transaction object which can be dispatched to the KILT blockchain.
 
-The .store() method takes the owner identity as its argument in order to sign the transaction, which acts as a proof of authority. This owner identity also pays the transaction fees, which are triggered in the next steps.
+The `.getStoreTx()` method takes the owner identity as its argument in order to sign the transaction, which acts as a proof of authority. This owner identity also pays the transaction fees, which are triggered in the next steps.
 
 /3. Submit the transaction.
 
@@ -51,7 +51,7 @@ The hash is obtained by calling the .generateHash() method on the DelegationNode
 
 Ideally, send the complete DelegationNode object to the delegate, so they have all the information about what they are signing. You can do this using the KILT messaging system, which has a message type for that purpose: request-accept-delegation
 
-/3. Call the .getStoreTx() method on the new DelegationNode
+/3. Call the `.getStoreTx()` method on the new DelegationNode
 
 This takes two arguments: the delegating identity (owner of the parent node) to sign the transaction (proof of authority, payment of fees) and the delegate’s signature as proof of consent (owner of the new DelegationNode).
 
