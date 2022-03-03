@@ -18,7 +18,9 @@ export async function attestClaim(
   const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(Kilt.Did.DidUtils.getIdentifierFromKiltDid(attesterDid))
+  const fullDid = await getFullDid(
+    Kilt.Did.DidUtils.getIdentifierFromKiltDid(attesterDid)
+  )
 
   // build the attestation object
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.did)

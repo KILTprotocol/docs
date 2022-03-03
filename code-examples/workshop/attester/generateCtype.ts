@@ -19,7 +19,9 @@ export async function ensureStoredCtype(): Promise<Kilt.CType> {
   // Load DID
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(Kilt.Did.DidUtils.getIdentifierFromKiltDid(did))
+  const fullDid = await getFullDid(
+    Kilt.Did.DidUtils.getIdentifierFromKiltDid(did)
+  )
 
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()
