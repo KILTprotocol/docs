@@ -29,7 +29,7 @@ export async function createFullDid() {
     .consumeWithHandler(keystore, account.address, async (creationTx) => {
       await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
         reSign: true,
-        resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK,
+        resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
       })
     })
 }

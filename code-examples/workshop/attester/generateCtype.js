@@ -39,7 +39,7 @@ export async function ensureStoredCtype() {
 
   // write to chain then return ctype
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
-    resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK,
+    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED,
     reSign: true,
   })
 
