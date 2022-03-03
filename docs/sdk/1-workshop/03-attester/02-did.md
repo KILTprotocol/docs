@@ -87,8 +87,6 @@ Once you executed the script, the output should provide you with your `ATTESTER_
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
-save following to .env to continue
-
 ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
 ```
 
@@ -97,9 +95,9 @@ Be sure to save it in your `.env` file, it should now look similar to this:
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
-ATTESTER_MNEMONIC="gold upset segment ca...
-ATTESTER_ADDRESS=5CUoo2vAegeaZHPNdxZyuMe...
-ATTESTER_DID_URI=did:kilt:4pjUYTbttjJHqT...
+ATTESTER_MNEMONIC="warrior icon use cry...
+ATTESTER_ADDRESS=4ohMvUHsyeDhMVZF...
+ATTESTER_DID_URI=did:kilt:4ohMvUHsyeDhMVZF...
 ```
 
 Well done - You've successfully generated a full DID! Let's create a CType!

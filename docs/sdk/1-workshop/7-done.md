@@ -8,12 +8,12 @@ title: 🚀 Done
 Well done. You know understand the main actors in KILT, the `Claimers`, `Attesters` and `Verifiers`.
 
 You also learned how to:
-- create Accounts
+- create accounts
 - create light and full DIDs
-- create Claims and Requests
-- process Requests and issue Credentials
-- sign your Credentials to Present them
-- recieve and Verify Credentials
+- create claims and requests
+- process requests and issue credentials
+- sign your credentials to present them
+- receive and verify credentials
 
 ## Resources
 

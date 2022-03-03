@@ -20,7 +20,7 @@ After that we can load the account and DID of the <span class="label-role attest
 When everything is prepared, we can create an attestation using the request we received from the <span class="label-role claimer">Claimer</span>.
 The attestation becomes valid once it is submitted to the chain.
 
-<CodeBlock className="language-js" title="attester/attestClaim.js">
+<CodeBlock className="language-js" title="attester/attestClaim.ts">
   {AttestClaim}
 </CodeBlock>
 
@@ -34,7 +34,7 @@ The once the attestation is written on chain and send back to the <span class="l
 run it from command line:
 
 ```bash
-node attester/attestClaim.js
+yarn ts-node attester/attestClaim.ts
 ```
 
 You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-)

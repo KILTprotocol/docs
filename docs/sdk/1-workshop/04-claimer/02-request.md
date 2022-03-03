@@ -22,9 +22,9 @@ To become valid in the eyes of <span class="label-role verifier">Verifiers</span
 ## Create Claim
 
 We'll use provided `light DID`, `ctype` and <span class="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
-Create a file `claimer/createClaim.js` and copy the code below.
+Create a file `claimer/createClaim.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="claimer/createClaim.js">
+<CodeBlock className="language-js" title="claimer/createClaim.ts">
   {CreateClaim}
 </CodeBlock>
 
@@ -42,9 +42,9 @@ There we load our light DID, create a claim and finally the request for attestat
 A claim are attributes that we claim to be true about us.
 Since we want to receive an attestation for that claim, we build a `RequestForAttestation`.
 The request contains all necessary information, so that the <span class="label-role attester">Attester</span> can create an attestation for us.
-Create a file `claimer/generateRequest.js` and copy the code below.
+Create a file `claimer/generateRequest.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="claimer/generateRequest.js">
+<CodeBlock className="language-js" title="claimer/generateRequest.ts">
   {GenerateRequest}
 </CodeBlock>
 
@@ -57,7 +57,7 @@ request to others in the workshop to see how they get denied from fraudulent sen
 Run it from command line:
 
 ```bash
-node claimer/generateRequest.js
+yarn ts-node claimer/generateRequest.ts
 ```
 
 OK, you've made a claim as a <span class="label-role claimer">Claimer</span> and

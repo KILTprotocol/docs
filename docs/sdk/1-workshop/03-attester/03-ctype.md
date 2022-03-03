@@ -48,7 +48,7 @@ For example, a very basic CType for a driver's license could look like this:
     },
     "type": "object"
   },
-  "owner": "5DD7fAZKSpgctg1ZQigAYuk3ypBtr2Q9RPKJBx5UpUwQw4vB",
+  "owner": "did:kilt:4rDtLxs1PKzeKvxoMUv8NwhugYiSqTvKBwaPfv8xCLsghKaf",
   "hash": "0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5"
 }
 ```
@@ -61,7 +61,7 @@ Let's have a look at these attributes.
 | `schema` > `$schema`    | The JSON schema on which the CType is based.                             |
 | `schema` > `title`      | The title of the CType.                                                  |
 | `schema` > `properties` | The properties that a claim of type in `$schema` should have.            |
-| `owner`                 | The public address of the user who created this CType.                   |
+| `owner`                 | The DID of the user who created this CType.                              |
 | `hash`                  | Most important attribute, the hash is the CType's **digital footprint**. |
 
 A CType is stored on the KILT blockchain.
@@ -72,27 +72,27 @@ In this tutorial, we'll have the <span class="label-role attester">Attester</spa
 
 ## Create CType
 
-Now we have our entry ready, create a new file `attester/ctypeSchema.js`. Copy the following to create a `CType` from a schema:
+Now we have our entry ready, create a new file `attester/ctypeSchema.ts`. Copy the following to create a `CType` from a schema:
 
-<CodeBlock title="attester/ctypeSchema.js" className="language-js">
+<CodeBlock title="attester/ctypeSchema.ts" className="language-js">
   {CtypeSchema}
 </CodeBlock>
 
 ## Get CType
 
-Create a new file `attester/generateCtype.js`. We'll use this to check if the `CType` is on-chain already. If yes we'll
+Create a new file `attester/generateCtype.ts`. We'll use this to check if the `CType` is on-chain already. If yes we'll
 return it, otherwise we'll store it on-chain. Remember, an account must have the require amount to pay the Angel's fee and deposit.
 
-<CodeBlock title="attester/generateCtype.js" className="language-js">
+<CodeBlock title="attester/generateCtype.ts" className="language-js">
   {GenerateCtype}
 </CodeBlock>
 
 ## Run
 
-To run it, just execute the `attester/generateCtype.js` file.
+To run it, just execute the `attester/generateCtype.ts` file.
 
 ```bash
-node attester/generateCtype.js
+yarn ts-node attester/generateCtype.ts
 ```
 
 OK, now before we can issue credentials, we need a <span class="label-role claimer">Claimer</span> to request one! Let's move on!
