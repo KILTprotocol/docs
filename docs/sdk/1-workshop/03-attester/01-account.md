@@ -9,7 +9,7 @@ import GenerateAccount from '!!raw-loader!../../../../code-examples/workshop/att
 
 After you have [setup the project structure](./) in the last step, we'll create our <span class="label-role attester">Attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.
-An accounts contains multiple properties.
+An account contains multiple properties.
 One of them is the `address`: it's the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
 All we need to create an account is a mnemonic.
 
@@ -46,7 +46,7 @@ Open `attester/generateAccount.ts` and paste the following code:
 </CodeBlock>
 
 The code contains two methods.
-`generateAccount` create and returns a new account while `getAccount` loads an existing secret and creates an account from it.
+`generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
 We will use `getAccount` later to load the account that we will create and store in the next step.
 
 ## Execute

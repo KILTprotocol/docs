@@ -40,7 +40,7 @@ But we'll still accept `didUri` and prompt to save it in `.env` for our referenc
 </CodeBlock>
 
 After everything is initialized, we create a mnemonic that will be used to create the light DID.
-As you may have noticed the claimer doesn't have a `account`.
+As you may have noticed the claimer doesn't have an `account`.
 The claimer doesn't need to hold funds and also doesn't need a blockchain account.
 
 ## Run

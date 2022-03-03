@@ -67,7 +67,7 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   return credential
 }
 
-// don't execute if this is imported by another files
+// don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
   attestingFlow()

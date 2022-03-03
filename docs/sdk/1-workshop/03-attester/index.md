@@ -20,9 +20,9 @@ This folders serves to mimic an <span class="label-role attester">Attester</span
 └─ kilt-rocks/ # project
   └─ attester/ # all attester code
     ├─ attestClaim.ts # issues attestations
-    ├─ ctypeSchema.ts # create a local ctype definition
-    ├─ generateAccount.ts # functions for setting up and loading the attesters account
-    ├─ generateCtype.ts # register the ctype on chain
-    ├─ generateDid.ts # registers the attesters on chain DID
-    └─ generateKeypairs.ts # setup the keys for the attesters DID
+    ├─ ctypeSchema.ts # create a local CType definition
+    ├─ generateAccount.ts # functions for setting up and loading the attester's account
+    ├─ generateCtype.ts # register the CType on chain
+    ├─ generateDid.ts # registers the attester's on-chain DID
+    └─ generateKeypairs.ts # setup the keys for the attester's DID
 ```

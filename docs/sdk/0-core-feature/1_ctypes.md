@@ -3,11 +3,11 @@ id: ctypes
 title: CTypes
 ---
 
-**CTypes are standardised structures for credentials; the JSON scheme which describes the fields in a claim type. These fields are filled out by the claimer, indicating the information that needs to be attested. A CType (and subsequently when attested, the credential) may contain several “attributes”, for example, full name, date of birth, access level and id number.**
+**CTypes are standardised structures for credentials: the JSON scheme which describes the fields in a claim type. These fields are filled out by the claimer, indicating the information that needs to be attested. A CType (and subsequently when attested, the credential) may contain several “attributes”, for example, full name, date of birth, access level and id number.**
 
-## Json-Schema
+## JSON-Schema
 
-KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format. This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with definition characteristics. The following are all required properties of the schema, with no additional properties allowed:
+KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format. This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with the definition of its characteristics. The following are all required properties of the schema, with no additional properties allowed:
 
 - Identifier: `$id` in the format `kilt:ctype:0x{cTypeHash}`
 - KILT specific JSON-Schema: '[http://kilt-protocol.org/draft-01/ctype-input#](http://kilt-protocol.org/draft-01/ctype-input#)'
@@ -41,7 +41,7 @@ When making a claim for a CType, all the following properties are required:
 
 ### Referencing
 
-JSON-schema provide a referencing keyword `$ref` that can be used as a pointer from other JSON schemas. This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
+JSON-schema provides a referencing keyword `$ref` that can be used as a pointer from other JSON schemas. This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
 
 This facility requires all JSON objects to build the schema and allows the reuse of previous schemas, reducing the need for copy-and-paste.
 
@@ -84,7 +84,7 @@ nested = {
 
 ## CType Metadata
 
-CType Metadata can be linked to a given CType to give context of its intended use-case: These include the:
+CType Metadata can be linked to a given CType to give the context of its intended use-case: These include the:
 
 - Title
 - Description

@@ -41,7 +41,7 @@ export async function getFullDid(
   return onChain
 }
 
-// don't execute if this is imported by another files
+// don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
   createFullDid()

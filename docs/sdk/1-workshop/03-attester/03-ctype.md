@@ -14,15 +14,15 @@ You can think of it as the data model for your claim.
 
 
 Before the <span class="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
-A traffic authority will only issue drivers licenses (=> CType for drivers license) and not trade register excerpts.
-Since CTypes enable interoperability between attesters, it is highly recommended to use existing CTypes instead of creating new once.
-But in this workshop we create our own CType.
+A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
+Since CTypes enable interoperability between attesters, it is highly recommended to use existing CTypes instead of creating new ones.
+But in this workshop, we create our own CType.
 
 :::info CType
 
 A CType ensures that a claim contains all required attributes.
-E.g. a drivers license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
-The CType is especially important since a verifier would request attestations for a specific CType (e.g. the traffic police wants to see your drivers license and not your gym membership).
+E.g. a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
+The CType is especially important since a verifier would request attestations for a specific CType (e.g. the traffic police wants to see your driver's license and not your gym membership).
 
 If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/sdk/core-feature/ctypes).
 :::
@@ -81,7 +81,7 @@ Now we have our entry ready, create a new file `attester/ctypeSchema.ts`. Copy t
 ## Get CType
 
 Create a new file `attester/generateCtype.ts`. We'll use this to check if the `CType` is on-chain already. If yes we'll
-return it, otherwise we'll store it on-chain. Remember, an account must have the require amount to pay the Angel's fee and deposit.
+return it, otherwise we'll store it on-chain. Remember, an account must have the required amount to pay the Angel's fee and deposit.
 
 <CodeBlock title="attester/generateCtype.ts" className="language-js">
   {GenerateCtype}

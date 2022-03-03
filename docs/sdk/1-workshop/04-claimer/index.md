@@ -20,5 +20,5 @@ This folders serves to mimic a <span class="label-role claimer">Claimer</span>'s
     ├─ createPresentation.js # creates a presentation for verifiers
     ├─ generateKeypairs.js # create keypairs for the light DID
     ├─ generateLightDid.js # create the light DID for the claimer
-    └─ generateRequest.js # create request for attestation that send to the attester
+    └─ generateRequest.js # create the request for attestation that is sent to the attester
 ```

@@ -47,7 +47,7 @@ export async function ensureStoredCtype(): Promise<Kilt.CType> {
   return ctype
 }
 
-// don't execute if this is imported by another files
+// don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
   ensureStoredCtype()

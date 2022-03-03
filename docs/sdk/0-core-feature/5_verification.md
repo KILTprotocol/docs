@@ -10,7 +10,7 @@ The verifier trusts this third party (attester) either because they trust the re
 For the verification process:
 
 - The claimer needs their credential and the private key associated with their identifier.
-- The verifier needs the the identifier of the trusted attester
+- The verifier needs the identifier of the trusted attester
 
 During the verification process the claimer wants to prove three things to the verifier:
 
@@ -20,13 +20,13 @@ During the verification process the claimer wants to prove three things to the v
 
 ## Presenting a Credential
 
-The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier. They can choose to hide attributes and thus only disclose a subset of the data. For example, if sending a driving licence to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details. This improves the privacy of the claimer, since they only need to show attributes that are required in the specific context.
+The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier. They can choose to hide attributes and thus only disclose a subset of the data. For example, if sending a driving licence to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details. This improves the privacy of the claimer since they only need to show attributes that are required in the specific context.
 
 ## Verifying a Credential
 
 The verifier receives the credential from the claimer, then calculates the attestation hash and queries the revocation status.
 
-If the claimer tampered with the credential, the hash won’t match an attestation on chain. If the attestation hash is on chain and has not been revoked, the credential is valid.
+If the claimer tampered with the credential, the hash won’t match any attestation on the chain. On the other hand, if the attestation hash is on the chain and has not been revoked, the credential is valid.
 
 However, this does not verify that the claimer is the rightful/legitimate owner of the credential presented.
 
@@ -36,9 +36,9 @@ A credential is linked to the identifier of the claimer via the owner field in t
 
 The verifier assumes that the private key for this public key is only known to the legitimate owner of the credential. Therefore, when sending the request for the credential, the verifier challenges the claimer to sign a nonce (a number that is used once) that the verifier sends together with his request.
 
-If the claimer is able to sign both the nonce and the credential with the private key that corresponds to the public key in the credential, the verifier can be sure that the claimer is indeed the legitimate owner of the credential.
+If the claimer can sign both the nonce and the credential with the private key that corresponds to the public key in the credential, the verifier can be sure that the claimer is indeed the legitimate owner of the credential.
 
-Note: A nonce is used to ensure that every message is unique, as if the same number was reused the second message would look the same as the first. This means that a malicious party with access to the first message could use it to impersonate the legitimate owner.
+Note: A nonce is used to ensure that every message is unique as if the same number was reused the second message would look the same as the first. This means that a malicious party with access to the first message could use it to impersonate the legitimate owner.
 
 ## Verifying the Content of the Credential
 
