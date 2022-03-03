@@ -26,7 +26,7 @@ jobs:
         working-directory: code-examples/workshop
         run: |
           yarn install --frozen
-          yarn test
+          yarn lint
 
       - name: Run tests
         timeout-minutes: 60
@@ -48,7 +48,7 @@ jobs:
         working-directory: code-examples/core_features
         run: |
           yarn install --frozen
-          yarn test      
+          yarn lint
 
       - name: Run tests
         timeout-minutes: 60
