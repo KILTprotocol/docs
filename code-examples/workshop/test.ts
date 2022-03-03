@@ -53,8 +53,6 @@ async function testWorkshop() {
     )
     .then(() => console.log('Successfully transferred tokens'))
 
-  console.log(process.env)
-
   // create attester did & ensure ctype
   const attesterDid = await createFullDid()
   process.env.ATTESTER_DID_URI = attesterDid.did
