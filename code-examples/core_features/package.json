@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.26.0-rc.4",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
