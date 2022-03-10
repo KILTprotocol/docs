@@ -26,7 +26,7 @@ After a discussion, a request may move further and requires implementation. If t
 
 ## Treasury Proposals
 
-A treasury proposal is a request to spend funds within the treasure pool. Usually, the proposals have altered or enhanced KILT to better the protocol in a meaningful way. The proposal should begin with a proposal with a clear title and a written outline of the idea and a discussion about implementation or deliverables as outlined above for feature requests.
+A treasury proposal is a request to spend funds from the treasure pool. Usually, the proposals would alter or enhance KILT to better the protocol in a meaningful way. The proposal should begin with a clear title and a written outline of the idea and a discussion about implementation or deliverables as outlined above for feature requests.
 
 In addition you should:
 
