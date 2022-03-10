@@ -2,28 +2,40 @@
 id: contribution
 title: Contribution guidelines
 ---
-
 As a decentralized network, KILT depends on the support of its community. There are many ways to contribute to KILT protocol and the products and services built on it. 
 
-If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.gg/7uyfMXh6AT) channel. The active developers, which include the team that originally developed KILT, and the wider KILT community are engaged there, and can:
+If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.gg/7uyfMXh6AT) channel. The developers active there, which include the team that originally developed KILT, and the wider KILT community can:
 
-- provide feedback on proposals or ideas
-- discuss possible use-cases or feature requests
-- make suggestions for non-technical contributions, including events, writing, or business models
-- answer questions about the protocol, services and products.
+- Provide feedback on proposals or ideas
+- Discuss possible use-cases or feature requests
+- Make suggestions for non-technical contributions, including events, writing, or business models
+- Answer questions about the protocol, services and products.
 
-## Feature Requests
+## Feature Requests 
 
-For the integrity of the protocol, requesting a feature requires approval from KILT governance. The request should follow the guidelines below:
+A feature request may be used to change KILT and its services by adding, removing or altering features within the scope of KILT Protocol.
 
- - Begin a discussion with the community to ensure that they agree that it adds value to the KILT protocol in a meaningful way, supporting its goals
- - Give your proposal a clear title
+A feature request is a meaningful way to contribute from anyone following the guidelines below:
+
+ - Begin a discussion with the community to ensure that they agree that it adds to the KILT protocol in a meaningful way, supporting its goals. 
  - Open an issue on the corresponding repository
+ - Give your request a clear title
  - Provide a written outline of the feature request for discussion
 
-## Feature Proposals
+After a discussion, a request may move further and requires implementation. If this is the case and needs implementation from a team that may require a treasure proposal: Check out the treasury proposals section.
 
-A proposal must be made before moving ahead, see above. At the end of the discussion, the proposal needs the approval of the community, KILT Technical Committee, governance, or relevant project team (depending on the subject) to progress to the next stage. If approved, acceptable deliverables will be agreed with the proposer, and the active developers or appropriate teams can start working on the proposal deliverables.
+## Treasury Proposals
+
+A treasury proposal is a request to spend funds within the treasure pool. Usually, the proposals have altered or enhanced KILT to better the protocol in a meaningful way. The proposal should begin with a proposal with a clear title and a written outline of the idea and a discussion about implementation or deliverables as outlined above for feature requests.
+
+In addition you should:
+
+- Explain any deliverables that have been achieved
+- Outline what needs to be done for the proposal to be completed
+
+At the end of the discussion the community (including for example the KILT Technical Committee, governance, or relevant project team ) should be in favour for the proposal to have a chance to be approved by governance. See the guide here to create a proposal - https://www.kilt.io/treasury/create-a-proposal/ 
+
+Once the governance has approved the treasury spend, deliverables have been included in  the proposal.
 
 ## Bug Reports
 
