@@ -1,9 +1,8 @@
 import { DemoKeystore, LightDidDetails, SigningAlgorithms, EncryptionAlgorithms } from '@kiltprotocol/did'
-import type { IDidServiceEndpoint } from '@kiltprotocol/types'
+import type { DidServiceEndpoint } from '@kiltprotocol/types'
+import { VerificationKeyType, EncryptionKeyType } from '@kiltprotocol/types'
 
-export async function main() {
-  const keystore = new DemoKeystore()
-
+export async function main(keystore: DemoKeystore): Promise<void> {
   const authenticationSeed = '0x123456789'
 
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -20,7 +19,7 @@ export async function main() {
     seed: encryptionSeed,
   })
 
-  const serviceEndpoints: IDidServiceEndpoint[] = [
+  const serviceEndpoints: DidServiceEndpoint[] = [
     {
       id: 'my-service',
       types: ['CollatorCredential'],
@@ -29,18 +28,16 @@ export async function main() {
   ]
 
   // Generate the KILT light DID with the information generated.
-  const lightDID = new LightDidDetails({
+  const lightDID = LightDidDetails.fromDetails({
     authenticationKey: {
       publicKey: authenticationKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(authenticationKeyPublicDetails.alg),
+      type: VerificationKeyType.Ed25519
     },
     encryptionKey: {
       publicKey: encryptionKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(encryptionKeyPublicDetails.alg),
+      type: EncryptionKeyType.X25519
     },
     serviceEndpoints,
   })
-
-  // Will print `did:kilt:light:014sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar:omFlomlwdWJsaWNLZXlYILu7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7ZHR5cGVmeDI1NTE5YXOBo2JpZHNteS1zZXJ2aWNlLWVuZHBvaW50ZXR5cGVzgnZDb2xsYXRvckNyZWRlbnRpYWxUeXBlbVNvY2lhbEtZQ1R5cGVkdXJsc4J1aHR0cHM6Ly9teV9kb21haW4ub3JnbXJhbmRvbV9kb21haW4`.
   console.log(lightDID.did)
 }

@@ -14,7 +14,7 @@ export async function ensureStoredCtype() {
   await cryptoWaitReady()
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC
-  const didUri = process.env.ATTESTER_DID_URI
+  const didIdentifier = process.env.ATTESTER_DID_ID
 
   // Load Account
   const account = await getAccount(mnemonic)
@@ -22,7 +22,7 @@ export async function ensureStoredCtype() {
   // Load DID
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(didUri)
+  const fullDid = await getFullDid(didIdentifier)
 
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()
@@ -34,8 +34,8 @@ export async function ensureStoredCtype() {
   console.log('Ctype not present. Creating it now...')
 
   // authorize the extrinsic
-  const tx = await ctype.store()
-  const extrinsic = await fullDid.details.authorizeExtrinsic(tx, keystore, account.address)
+  const tx = await ctype.getStoreTx()
+  const extrinsic = await fullDid.authorizeExtrinsic(tx, keystore, account.address)
 
   // write to chain then return ctype
   await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {

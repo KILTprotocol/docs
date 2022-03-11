@@ -17,19 +17,19 @@ export async function generateKeypairs(keystore, mnemonic) {
   const keys = {
     authentication: {
       publicKey: signing.publicKey,
-      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+      type: Kilt.VerificationKeyType.Sr25519,
     },
     keyAgreement: {
       publicKey: encryption.publicKey,
-      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(encryption.alg),
+      type: Kilt.EncryptionKeyType.X25519,
     },
     capabilityDelegation: {
       publicKey: signing.publicKey,
-      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+      type: Kilt.VerificationKeyType.Sr25519,
     },
     assertionMethod: {
       publicKey: signing.publicKey,
-      type: Kilt.Did.DemoKeystore.getKeypairTypeForAlg(signing.alg),
+      type: Kilt.VerificationKeyType.Sr25519,
     },
   }
 

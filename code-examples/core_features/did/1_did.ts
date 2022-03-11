@@ -3,11 +3,11 @@ import {
   LightDidDetails,
   SigningAlgorithms,
 } from '@kiltprotocol/did'
+import {
+  VerificationKeyType,
+} from '@kiltprotocol/types'
 
-export async function main() {
-  // Instantiate the demo keystore.
-  const keystore = new DemoKeystore()
-
+export async function main(keystore: DemoKeystore): Promise<void> {
   // Generate seed for the authentication key.
   // For random mnemonic generation, refer to the `UUID` module of the `@kiltprotocol/utils` package.
   const authenticationSeed = '0x123456789'
@@ -19,14 +19,11 @@ export async function main() {
   })
 
   // Create a light DID from the generated authentication key.
-  const lightDID = new LightDidDetails({
+  const lightDID = LightDidDetails.fromDetails({
     authenticationKey: {
       publicKey: authenticationKeyPublicDetails.publicKey,
-      type: DemoKeystore.getKeypairTypeForAlg(
-        authenticationKeyPublicDetails.alg
-      ),
+      type: VerificationKeyType.Ed25519
     },
   })
-  // Will print `did:kilt:light:014sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar`.
   console.log(lightDID.did)
 }
