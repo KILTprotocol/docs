@@ -1,28 +1,28 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { BlockchainUtils, BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
 import { init, disconnect } from '@kiltprotocol/core'
 import {
-  DefaultResolver,
+  FullDidCreationBuilder,
   DemoKeystore,
-  DidUtils,
   SigningAlgorithms,
+  FullDidDetails
 } from '@kiltprotocol/did'
 import {
-  KeyRelationship,
   SubscriptionPromise,
-  IDidResolvedDetails,
+  VerificationKeyType
 } from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator,
   // Generate seed for the authentication key.
-  authenticationSeed: string
-): Promise<IDidResolvedDetails> {
-  // Initialise connection to the public KILT test network.
+  authenticationSeed: string,
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+): Promise<FullDidDetails> {
+  // Initialise connection to the public KILT test network and get the api object.
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -30,37 +30,22 @@ export async function main(
     alg: SigningAlgorithms.Ed25519,
   })
 
-  // Generate the DID-signed creation extrinsic.
-  // The extrinsic is unsigned and contains the DID creation operation signed with the DID authentication key.
-  // The second argument, the submitter account, ensures that only an entity authorised by the DID subject
+  // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
+  // The submitter account parameter, ensures that only an entity authorised by the DID subject
   // can submit the extrinsic to the KILT blockchain.
-  const { extrinsic, did } = await DidUtils.writeDidFromPublicKeys(
-    keystore,
-    kiltAccount.address,
-    {
-      [KeyRelationship.authentication]: {
-        publicKey: authenticationKeyPublicDetails.publicKey,
-        type: DemoKeystore.getKeypairTypeForAlg(
-          authenticationKeyPublicDetails.alg
-        ),
-      },
-    }
-  )
-  // Will print `did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar`.
-  console.log(did)
-
-  // Submit the DID creation tx to the KILT blockchain after signing it with the KILT account specified in the creation operation.
-  await BlockchainUtils.signAndSubmitTx(extrinsic, kiltAccount, {
-    reSign: true,
-    resolveOn,
+  const fullDid = await new FullDidCreationBuilder(api, {
+    publicKey: authenticationKeyPublicDetails.publicKey,
+    type: VerificationKeyType.Ed25519
+  }).consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
+    await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
+      reSign: true,
+      resolveOn
+    })
   })
 
-  // Retrieve the newly created DID from the KILT blockchain.
-  const fullDid = await DefaultResolver.resolveDoc(did)
-
   await disconnect()
-  if (fullDid === null) {
-    throw 'Could not find DID document for the given identifier'
+  if (!fullDid) {
+    throw 'Could not find the DID just created.'
   }
   return fullDid
 }

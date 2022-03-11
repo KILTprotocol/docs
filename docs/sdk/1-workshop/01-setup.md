@@ -20,7 +20,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.25.3 @polkadot/util-crypto@8.3.3 dotenv
+npm install @kiltprotocol/sdk-js@0.26.0 dotenv
 ```
 
 Make sure to add `"type": "module"` to the `package.json` since this workshop uses ES6 Modules.

@@ -36,7 +36,7 @@ async function testWorkshop() {
   })
 
   const faucetSeed = process.env[SEED_ENV]
-  if (faucetSeed === undefined) {
+  if (!faucetSeed) {
     console.log(
       `Account seed with sufficient balance is required. Set the secret seed using the ${SEED_ENV} environment variable.`
     )
@@ -45,7 +45,7 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
-  await Kilt.Balance.makeTransfer(attesterAccount.address, 5n, 0)
+  await Kilt.Balance.getTransferTx(attesterAccount.address, 5n, 0)
     .then((tx) =>
       Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
         reSign: true,
@@ -54,8 +54,8 @@ async function testWorkshop() {
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
-  const attersterDidUri = await createFullDid()
-  process.env.ATTESTER_DID_URI = attersterDidUri
+  const attersterDid = await createFullDid()
+  process.env.ATTESTER_DID_ID = attersterDid.identifier
 
   await ensureStoredCtype()
 

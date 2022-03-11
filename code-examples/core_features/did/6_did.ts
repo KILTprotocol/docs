@@ -8,14 +8,14 @@ import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
 export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator,
-  fullDid: FullDidDetails
+  fullDid: FullDidDetails,
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
-  const endpointsCountForDid = await DidChain.queryEndpointsCounts(fullDid.did)
+  const endpointsCountForDid = await DidChain.queryEndpointsCounts(fullDid.identifier)
   const didDeletionExtrinsic = await DidChain.getDeleteDidExtrinsic(endpointsCountForDid)
 
   // Sign the DID deletion operation using the DID authentication key.

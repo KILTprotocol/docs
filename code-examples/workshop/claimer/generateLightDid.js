@@ -17,7 +17,7 @@ export async function generateLightDid() {
   const keys = await generateKeypairs(keystore, mnemonic)
 
   // create the DID
-  const lightDid = new Kilt.Did.LightDidDetails(keys)
+  const lightDid = Kilt.Did.LightDidDetails.fromDetails(keys)
 
   return {
     lightDid,
