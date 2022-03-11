@@ -48,7 +48,7 @@ Create a file `claimer/generateRequest.js` and copy the code below.
   {GenerateRequest}
 </CodeBlock>
 
-When `Attestations` are given by <span class="label-role attester">Attesters</span>, they are written to chain which requires a deposit. Each new `RequestForAttestation` is unique. While we're testing, we can store and reuse requests to avoid to avoid
+When `Attestations` are given by <span class="label-role attester">Attesters</span>, they are written to chain which requires a deposit. Each new `RequestForAttestation` is unique. While we're testing, we can store and reuse requests to avoid
 multiple attestations. To do this store the output into `./claimer/_request.json`. You can also share this
 request to others in the workshop to see how they get denied from fraudulent senders.
 
