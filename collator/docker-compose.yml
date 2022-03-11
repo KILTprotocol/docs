@@ -14,7 +14,7 @@ services:
       - ~/data:/data
     command: >-
       --rpc-port=9933
-      --prometheus-external=true
+      --prometheus-external
       --prometheus-port=9615
       --rpc-cors=all
       --rpc-methods=unsafe

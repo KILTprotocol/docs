@@ -14,14 +14,13 @@ Any stable (LTS >= 14.0) version is sufficient.
 
 Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.<br/>
 - [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
-- [PolkadotJS Crypto-Utils](https://github.com/polkadot-js/common/tree/master/packages/util-crypto#readme) - for a few crypto utilities
 - [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
 - [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
 
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.26.0 @polkadot/util-crypto@8.3.3 dotenv ts-node typescript
+npm install @kiltprotocol/sdk-js@0.26.0 dotenv ts-node typescript
 ```
 
 ## Project Folder
