@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.26.0-rc.4",
+    "@kiltprotocol/sdk-js": "0.26.0",
     "dotenv": "^14.2.0"
   }
 }
