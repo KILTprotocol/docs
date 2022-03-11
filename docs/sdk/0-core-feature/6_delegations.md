@@ -24,13 +24,13 @@ This requires a unique Id (the DelegationRootNode's identifier), the CType hash,
 
 /2. Call the `.getStoreTx()` method on the DelegationRootNode object to produce a SubmittableExtrinsic, a transaction object which can be dispatched to the KILT blockchain.
 
-The `.getStoreTx()` method takes the owner identity as its argument in order to sign the transaction, which acts as a proof of authority. This owner identity also pays the transaction fees, which are triggered in the next steps.
+The `.getStoreTx()` method takes the owner's identity as its argument to sign the transaction, which acts as proof of authority. This owner identity also pays the transaction fees, which are triggered in the next steps.
 
 /3. Submit the transaction.
 
 ## Creating a DelegationNode
 
-In order to actually delegate rights, you now need to create a DelegationNode for the delegate which links to your Delegation(Root)Node.
+To actually delegate rights, you now need to create a DelegationNode for the delegate which links to your Delegation(Root)Node.
 
 Although the node is owned by the delegate, it is submitted by the delegating attester (you). This part of the process requires communication with the delegate as their signature is required during submission as proof of their consent.
 
@@ -43,7 +43,7 @@ You will also need an array of permission flags, which are available as an enum 
 - Attest
 - Delegate
 
-The last argument lets you add a parentId. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the rootId indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
+The last argument lets you add a `parentId`. This indicates the direct parent node (the owner of which is the one creating the new delegation), just as the `rootId` indicates the root node. Note that this field will be cleared if the parent is the root node (i.e. if both fields are equal).
 
 /2. Obtain the delegate’s signature over the new DelegationNode’s hash.
 
@@ -59,9 +59,9 @@ Again, this method call returns a SubmittableExtrinsic.
 
 /4. Submit the transaction.
 
-If the “Permission.delegate” flag is set on the new DelegationNode, the delegate can now repeat this process and delegate permissions further. To do so, their DelegationNode id is added as parentId to the new DelegationNode.
+If the `Permission.delegate` flag is set on the new DelegationNode, the delegate can now repeat this process and delegate permissions further. To do so, their DelegationNode id is added as parentId to the new DelegationNode.
 
-If the Permisson.delegate flag is not set on the parent, or if it is no longer active (i.e. has been revoked in the meantime), the blockchain will reject new delegations.
+If the `Permisson.delegate` flag is not set on the parent, or if it is no longer active (i.e. has been revoked in the meantime), the blockchain will reject new delegations.
 
 ## Making a Delegated Attestation
 
@@ -71,23 +71,23 @@ A delegated attestation can only be written to the blockchain by the owner of th
 
 ## Revoking a Delegated Attestation
 
-While a regular attestation can only be revoked by its issuer (Attester), an attestation with a delegationId can also be revoked by any of the identities who had delegated to the respective DelegationNode or to a parent (who own one of the ancestor nodes). This works irrespective of the revocation of delegation nodes.
+While a regular attestation can only be revoked by its issuer (Attester), an attestation with a `delegationId` can also be revoked by any of the identities who had delegated to the respective DelegationNode or to a parent (who own one of the ancestor nodes). This works irrespective of the revocation of delegation nodes.
 
-Because transaction costs on the blockchain increase proportionally to the number of lookups that need to be performed to retrace the delegation tree to the node owned by the revoking identity, the revocation call takes a maximum number of delegation node lookups as argument. This will increase the funds locked and thus required to submit the transaction.
+Because transaction costs on the blockchain increase proportionally to the number of lookups that need to be performed to retrace the delegation tree to the node owned by the revoking identity, the revocation call takes a maximum number of delegation node lookups as an argument. This will increase the funds locked and thus required to submit the transaction.
 
-However if the number of actual lookups performed is less than this number, excess funds will be returned after the transaction has completed. If this number is lower than the actual steps required, the transaction will fail.
+However, if the number of actual lookups performed is less than this number, excess funds will be returned after the transaction has been completed. If this number is lower than the actual steps required, the transaction will fail.
 
 ## Delegated Attestation
 
 ![delegation attestation](/img/delegation-attestation.png)
 
-CASE 1: The delegation node 3 revokes the attestation. The number of lookups performed will be zero as delegation node 3 created the delegatied attestation
+CASE 1: Delegation node 3 revokes the attestation. The number of lookups performed will be zero as delegation node 3 created the delegated attestation
 
-CASE 2: The delegation node 1 revokes the attestation. The number of lookups performed will be two as delegation node 3 created the delegated attestation, therefore, must count to find the delegation.
+CASE 2: Delegation node 1 revokes the attestation. The number of lookups performed will be two as delegation node 3 created the delegated attestation, therefore, must count to find the delegation.
 
-Each CASE the delegator must call the revoke on the instantiated attestation object with the given delegator or parent of the delegator to revoke the attestation. The fee is taking considering the maximum number of lookups needed to reach all cases, these fees will be refunded if paid too much.
+Each CASE the delegator must call the revoke on the instantiated attestation object with the given delegator or parent of the delegator to revoke the attestation. The fee is taken considering the maximum number of lookups needed to reach all cases, these fees will be refunded if paid too much.
 
-The SDK has functionality to retrieve the number of lookups required by querying the blockchain.
+The SDK provides functions to retrieve the number of lookups required by querying the blockchain.
 
 ## Revoking a DelegationNode
 
@@ -95,10 +95,10 @@ Revoking a DelegationNode has similar logic to revoking delegated attestations. 
 
 Credentials attested using a DelegationNode that is later revoked are still valid (but revocable, if required), but no further attestations can be created using this DelegationNode.
 
-Revoking a DelegationNode requires revoking all its children (and their children, and so on), with extra fees applying for each revocation.For this reason, the call has an additional parameter `maxRevocations`. As with max_depth, this increases the funds required. Child nodes are revoked first, so if this number is lower than the actual revocations required, the revocation process will abort before revoking the targeted node, leaving only `maxRevocation` child/descendant nodes revoked. If the number is higher than actually required, excess funds will be returned at the end.
+Revoking a DelegationNode requires revoking all its children (and their children, and so on), with extra fees applying for each revocation. For this reason, the call has an additional parameter `maxRevocations`. As with max_depth, this increases the funds required. Child nodes are revoked first, so if this number is lower than the actual revocations required, the revocation process will abort before revoking the targeted node, leaving only `maxRevocation` child/descendant nodes revoked. If the number is higher than actually required, excess funds will be returned at the end.
 
 The SDK has code to count child nodes and their children, in addition to functionality counting the number of lookups to find the parent owned by the submitting identity. This is currently included and performed automatically in the getRevokeTx() method on the DelegationNode and DelegationRootNode.
 
 ## Revoking a DelegationRootNode
 
-The process of revoking a DelegationRootNode is similar to revoking the DelegationNode, but can only be done by owner (as it has no parents). This also means that traversing parent nodes is not required, which is why the respective call lacks this parameter.
+The process of revoking a DelegationRootNode is similar to revoking the DelegationNode, but can only be done by the owner (as it has no parents). This also means that traversing parent nodes is not required, which is why the respective call lacks this parameter.

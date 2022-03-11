@@ -4,11 +4,11 @@ title: 👋🏻 Welcome
 ---
 
 <!-- When updating this version also update 01-setup.md! -->
-SDK version **0.25.3**.
+SDK version **0.26.0**.
 
 :::info What you can expect
 
-📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CType and a claim; attesting a claim; and finally verifying the credential.
+📦 Topics: <a href="https://github.com/KILTprotocol/sdk-js">KILT SDK</a> essentials, basic credential workflow. This includes creating a CType and a claim, attesting a claim, and finally verifying the credential.
 
 ⏳ Duration: 15-45 minutes.
 

@@ -1,5 +1,8 @@
 import { KeyringPair } from '@polkadot/keyring/types'
-import { BlockchainUtils, BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
+import {
+  BlockchainUtils,
+  BlockchainApiConnection
+} from '@kiltprotocol/chain-helpers'
 import { init, disconnect } from '@kiltprotocol/core'
 import {
   DemoKeystore,
@@ -28,32 +31,34 @@ export async function main(
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     seed: authenticationSeed,
-    alg: SigningAlgorithms.Ed25519,
+    alg: SigningAlgorithms.Ed25519
   })
 
   // Ask the keystore to generate a new keypar to use for encryption.
   const encryptionKeyPublicDetails = await keystore.generateKeypair({
     seed: encryptionSeed,
-    alg: EncryptionAlgorithms.NaclBox,
+    alg: EncryptionAlgorithms.NaclBox
   })
 
   const fullDid = await new FullDidCreationBuilder(api, {
     publicKey: authenticationKeyPublicDetails.publicKey,
     type: VerificationKeyType.Ed25519
-  }).addEncryptionKey({
-    publicKey: encryptionKeyPublicDetails.publicKey,
-    type: EncryptionKeyType.X25519
-  }).addServiceEndpoint({
-    id: 'my-service',
-    types: ['service-type'],
-    urls: ['https://www.example.com'],
-  }).consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
-    await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
-      reSign: true,
-      resolveOn
-    })
   })
-
+    .addEncryptionKey({
+      publicKey: encryptionKeyPublicDetails.publicKey,
+      type: EncryptionKeyType.X25519
+    })
+    .addServiceEndpoint({
+      id: 'my-service',
+      types: ['service-type'],
+      urls: ['https://www.example.com']
+    })
+    .consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
+      await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
+        reSign: true,
+        resolveOn
+      })
+    })
 
   await disconnect()
   if (!fullDid) {

@@ -21,7 +21,7 @@ export async function runAll() {
 
   const keyring = new Keyring({
     type: 'sr25519',
-    ss58Format: 38,
+    ss58Format: 38
   })
   const keystore = new DemoKeystore()
 
@@ -41,7 +41,9 @@ export async function runAll() {
   const randomMini3 = randomAsHex(32)
   const did3 = await main3(keystore, faucetAccount, randomMini3)
 
-  console.log('main4 - create full DID with encryption key and service endpoints')
+  console.log(
+    'main4 - create full DID with encryption key and service endpoints'
+  )
   const authSeed4 = randomAsHex(32)
   const encSeed4 = randomAsHex(32)
   const did4 = await main4(keystore, faucetAccount, authSeed4, encSeed4)

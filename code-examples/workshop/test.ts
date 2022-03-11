@@ -1,13 +1,13 @@
-import 'https'
-import { generateAccount } from './attester/generateAccount.js'
-import { createFullDid } from './attester/generateDid.js'
-import { ensureStoredCtype } from './attester/generateCtype.js'
-import { generateLightDid } from './claimer/generateLightDid.js'
-import { generateRequest } from './claimer/generateRequest.js'
-import { attestingFlow } from './attester/attestClaim.js'
-import { verificationFlow } from './verify.js'
+import { generateAccount } from './attester/generateAccount'
+import { createFullDid } from './attester/generateDid'
+import { ensureStoredCtype } from './attester/generateCtype'
+import { generateLightDid } from './claimer/generateLightDid'
+import { generateRequest } from './claimer/generateRequest'
+import { attestingFlow } from './attester/attestClaim'
+import { verificationFlow } from './verify'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
+import { BN } from '@polkadot/util'
 
 const SEED_ENV = 'FAUCET_SEED'
 
@@ -15,22 +15,22 @@ async function testWorkshop() {
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
 
   // setup attester account
-  let { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
+  const { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
   process.env.ATTESTER_MNEMONIC = attesterMnemonic
   process.env.ATTESTER_ADDRESS = attesterAccount.address
 
   // setup claimer & create attestation request
-  let { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
-  process.env.CLAIMER_DID_URI = claimerDid
+  const { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
+  process.env.CLAIMER_DID_URI = claimerDid.did
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
-  let _request = await generateRequest({
+  await generateRequest({
     age: 27,
     name: 'Karl',
   })
 
   // send tokens to attester...
-  let keyring = new Kilt.Utils.Keyring({
+  const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
     ss58Format: 38,
   })
@@ -45,7 +45,7 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
-  await Kilt.Balance.getTransferTx(attesterAccount.address, 5n, 0)
+  await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
     .then((tx) =>
       Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
         reSign: true,
@@ -54,8 +54,8 @@ async function testWorkshop() {
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
-  const attersterDid = await createFullDid()
-  process.env.ATTESTER_DID_ID = attersterDid.identifier
+  const attesterDid = await createFullDid()
+  process.env.ATTESTER_DID_URI = attesterDid.did
 
   await ensureStoredCtype()
 

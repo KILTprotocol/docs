@@ -4,8 +4,8 @@ title: 🤝 Verification
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Verify from '!!raw-loader!../../../code-examples/workshop/verify.js';
-import CreatePresentation from '!!raw-loader!../../../code-examples/workshop/claimer/createPresentation.js';
+import Verify from '!!raw-loader!../../../code-examples/workshop/verify.ts';
+import CreatePresentation from '!!raw-loader!../../../code-examples/workshop/claimer/createPresentation.ts';
 
 In this section, you'll play the role of a <span class="label-role verifier">Verifier</span>:
 
@@ -33,20 +33,20 @@ A `Presentation` also contains a prove that the <span class="label-role claimer"
 It's not enough to just send our credential as a <span class="label-role claimer">Claimer</span> as we also need to prove our ownership.
 This is done by creating a presentation by signing the <span class="label-role verifier">Verifier</span>'s challenge.
 
-Create `claimer/createPresentation.js` helper and copy the following code.
+Create `claimer/createPresentation.ts` helper and copy the following code.
 
-<CodeBlock className="language-js" title="claimer/createPresentation.js">
+<CodeBlock className="language-js" title="claimer/createPresentation.ts">
   {CreatePresentation}
 </CodeBlock>
 
 ## Verify
 
-Let's create our `verify.js`. Here we'll expose `getChallenge` which returns a random and unique
+Let's create our `verify.ts`. Here we'll expose `getChallenge` which returns a random and unique
 challenge for the <span class="label-role claimer">Claimer</span> to sign, this is used to prove ownership.
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span class="label-role verifier">Verifier</span> code!
 
-<CodeBlock className="language-js" title="verify.js">
+<CodeBlock className="language-js" title="verify.ts">
   {Verify}
 </CodeBlock>
 
@@ -55,7 +55,7 @@ Copy the code below, this completes the <span class="label-role verifier">Verifi
 run the verification flow on command line:
 
 ```bash
-node verify.js
+yarn ts-node verify.ts
 ```
 
 That's it! all done :-)

@@ -35,7 +35,7 @@ did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS:z1ERkVVjngcarM
 
 ### Creating a light DID
 
-The creation of a light DID requires a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts). For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
+The creation of a light DID require a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts). For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
 
 :::warning
 Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.
@@ -55,7 +55,7 @@ For cases in which also an encryption key and some service endpoints need to be 
 
 ## Full DIDs
 
-As mentioned above, the creation of a full DID requires interaction with the KILT blockchain. Therefore, it is necessary for the DID creation operation to be submitted by a KILT address with enough funds to pay the transaction fees and the required deposit.
+As mentioned above, the creation of a full DID requires interaction with the KILT blockchain. Therefore, the DID creation operation must be submitted by a KILT address with enough funds to pay the transaction fees and the required deposit.
 While transaction fees cannot be refunded, the deposit is returned when the DID is deleted from the blockchain: this is to incentivise users to clean the data from the blockchain once such data is not needed anymore.
 
 By design, DID signatures and Substrate signatures are decoupled, meaning that the encoded and signed DID creation operation can then be signed and submitted by a different KILT account than the DID subject. This opens the path for a wider range of use cases in which, for instance, a service provider might be willing to offer a DID-as-a-Service option for its customers.
@@ -72,7 +72,7 @@ Beyond an authentication key, an encryption key, and service endpoints, a full D
 
 ### Creating and anchoring a full DID
 
-The following is an example of how to create and write on blockchain a full DID that specifies only an authentication key, by using the `FullDidCreationBuilder` class.
+The following is an example of how to create and write on the blockchain a full DID that specifies only an authentication key, by using the `FullDidCreationBuilder` class.
 
 <CodeBlock className="language-js">
   {Example3}
@@ -101,7 +101,7 @@ Once not needed anymore, it is recommended to remove the DID details from the KI
 </CodeBlock>
 
 :::warning
-Please note that once deleted, a full DID becomes unusable and cannot be created anymore, meaning that all credentials obtained with that DID must be re-obtained with a different one, if needed.
+Please note that once deleted, a full DID becomes unusable and cannot be created anymore, meaning that all credentials obtained with that DID must be re-obtained with a different one if needed.
 :::
 
 ### Claiming back a DID deposit
@@ -118,7 +118,7 @@ Claiming back the deposit of a DID is semantically equivalent to deleting the DI
 
 The **migration** of a DID means that a light, off-chain DID is anchored to the KILT blockchain, supporting all the features that full DIDs provide. In the current version (v1) of the KILT DID protocol, a light DID of the form `did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS` would become a full DID of the form `did:kilt:4nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS`. Note that the identifier of the two DIDs, apart from the initial `01` sequence of the light DID, are equal since both DIDs are derived from the same KILT account.
 
-Once a light DID is migrated, all the credentials collected by the light DID can only be presented using the migrated on-chain DID. This is by design, as it is assumed that the user had valid reasons to migrate the DID on chain, and as on-chain DIDs offer greater security guarantees, KILT will reject light DID signatures even in case the original claim in the attestation was generated with that off-chain DID.
+Once a light DID is migrated, all the credentials collected by the light DID can only be presented using the migrated on-chain DID. This is by design, as it is assumed that the user had valid reasons to migrate the DID on the chain, and as on-chain DIDs offer greater security guarantees, KILT will reject light DID signatures even in case the original claim in the attestation was generated with that off-chain DID.
 
 The following code shows how to migrate a light DID to a full DID. Attested claim presentations and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 

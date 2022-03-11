@@ -1,7 +1,9 @@
+import { config as envConfig } from 'dotenv'
 import { runAll as runAllCore } from './did'
 import { runAll as runAllClaiming } from './claiming'
 
 async function main() {
+  envConfig()
   try {
     await runAllCore()
     await runAllClaiming()

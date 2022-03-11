@@ -1,6 +1,9 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { BlockchainUtils, BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
+import {
+  BlockchainUtils,
+  BlockchainApiConnection
+} from '@kiltprotocol/chain-helpers'
 import { init, disconnect } from '@kiltprotocol/core'
 import {
   FullDidCreationBuilder,
@@ -8,10 +11,7 @@ import {
   SigningAlgorithms,
   FullDidDetails
 } from '@kiltprotocol/did'
-import {
-  SubscriptionPromise,
-  VerificationKeyType
-} from '@kiltprotocol/types'
+import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
@@ -27,7 +27,7 @@ export async function main(
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     seed: authenticationSeed,
-    alg: SigningAlgorithms.Ed25519,
+    alg: SigningAlgorithms.Ed25519
   })
 
   // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
