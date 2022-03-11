@@ -1,46 +1,47 @@
-import 'dotenv/config'
-import { cryptoWaitReady } from '@polkadot/util-crypto'
-import { fileURLToPath } from 'url'
+import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { createPresentation } from './claimer/createPresentation.js'
-import { generateKeypairs } from './claimer/generateKeypairs.js'
+import { createPresentation } from './claimer/createPresentation'
+import { generateKeypairs } from './claimer/generateKeypairs'
 
-// returns a challenge for Claimer to sign
-export function getChallenge() {
+function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
 }
 
-// verifies validity, ownership & attestation returning true|false
-export async function verifyPresentation(presentation, challenge) {
+// verifies validity, ownership & attestation
+async function verifyPresentation(presentation: Kilt.ICredential, challenge: string): Promise<boolean> {
   const credential = new Kilt.Credential(presentation)
 
   const isValid = await credential.verify({ challenge })
-
-  const isNotRevoked = !credential.attestation.revoked
+  const isRevoked = credential.attestation.revoked
 
   // Custom logic
   // e.g. only allow access if age >= 18
 
-  return isValid && isNotRevoked
+  return isValid && !isRevoked
 }
 
 export async function verificationFlow() {
-  await cryptoWaitReady()
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // Load credential and claimer DID
-  const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL)
+  const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
   const keystore = new Kilt.Did.DemoKeystore()
   const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
-  const lightDid = Kilt.Did.LightDidDetails.fromDetails(keys)
+  const lightDid = Kilt.Did.LightDidDetails.fromDetails({
+    ...keys,
+    authenticationKey: {
+      publicKey: keys.authenticationKey.publicKey,
+      type: Kilt.VerificationKeyType.Sr25519
+    },
+  })
 
   // Verifier sends a unique challenge to the claimer 🕊
   const challenge = getChallenge()
 
   // create a presentation and send it to the verifier 🕊
-  const presentation = await createPresentation(credential, challenge, lightDid, keystore)
+  const presentation = await createPresentation(credential, lightDid, keystore, challenge)
 
   // The verifier checks the presentation
   const isValid = await verifyPresentation(presentation, challenge)
@@ -52,8 +53,9 @@ export async function verificationFlow() {
   }
 }
 
-// don't execute if this is imported by another files
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// don't execute if this is imported by another file
+if (require.main === module) {
+  envConfig()
   verificationFlow()
     .catch((e) => {
       console.log('Error in the verification flow', e)

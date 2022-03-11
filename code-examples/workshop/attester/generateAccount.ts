@@ -1,17 +1,18 @@
-import 'dotenv/config'
-import { mnemonicGenerate, cryptoWaitReady } from '@polkadot/util-crypto'
-import { fileURLToPath } from 'url'
+import { config as envConfig } from 'dotenv'
+import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function generateAccount() {
-  await cryptoWaitReady()
+export async function generateAccount(): Promise<{
+  account: Kilt.KeyringPair
+  mnemonic: string
+}> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // setup keyring
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: 'sr25519',
+    type: 'sr25519'
   })
 
   // use the mnemonic from .env or make a new one
@@ -22,18 +23,18 @@ export async function generateAccount() {
   return { account, mnemonic }
 }
 
-export async function getAccount(mnemonic) {
-  await cryptoWaitReady()
+export async function getAccount(mnemonic: string): Promise<Kilt.KeyringPair> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: 'sr25519',
+    type: 'sr25519'
   })
   return keyring.addFromMnemonic(mnemonic)
 }
 
-// don't execute if this is imported by another files
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// don't execute if this is imported by another file
+if (require.main === module) {
+  envConfig()
   generateAccount()
     .catch((e) => {
       console.log('Error while setting up attester account', e)

@@ -16,9 +16,9 @@ This folders serves to mimic a <span class="label-role claimer">Claimer</span>'s
 ```bash
 └─ kilt-rocks/ # project
   └─ claimer/ # all claimer code
-    ├─ createClaim.js # creates a claim
-    ├─ createPresentation.js # creates a presentation for verifiers
-    ├─ generateKeypairs.js # create keypairs for the light DID
-    ├─ generateLightDid.js # create the light DID for the claimer
-    └─ generateRequest.js # create request for attestation that send to the attester
+    ├─ createClaim.ts # creates a claim
+    ├─ createPresentation.ts # creates a presentation for verifiers
+    ├─ generateKeypairs.ts # create keypairs for the light DID
+    ├─ generateLightDid.ts # create the light DID for the claimer
+    └─ generateRequest.ts # create the request for attestation that is sent to the attester
 ```

@@ -5,7 +5,7 @@ title: 🧾 Attestation
 
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '../../../src/components/SnippetBlock';
-import AttestClaim from '!!raw-loader!../../../code-examples/workshop/attester/attestClaim.js';
+import AttestClaim from '!!raw-loader!../../../code-examples/workshop/attester/attestClaim.ts';
 
 In this section, your <span class="label-role attester">Attester</span> will receive and process a `RequestForAttestation` where you'll
 
@@ -20,21 +20,21 @@ After that we can load the account and DID of the <span class="label-role attest
 When everything is prepared, we can create an attestation using the request we received from the <span class="label-role claimer">Claimer</span>.
 The attestation becomes valid once it is submitted to the chain.
 
-<CodeBlock className="language-js" title="attester/attestClaim.js">
+<CodeBlock className="language-js" title="attester/attestClaim.ts">
   {AttestClaim}
 </CodeBlock>
 
 The function `attestingFlow` shows the process from the beginning to the end.
 First the <span class="label-role claimer">Claimer</span> generates the request and sends it to the <span class="label-role attester">Attester</span>.
 After that the <span class="label-role attester">Attester</span> checks the attributes and either issues an attestation or denies the attestation because the attributes are invalid.
-The once the attestation is written on chain and send back to the <span class="label-role claimer">Claimer</span>, they can build a credential from the request they send and the attestation they received.
+Once the attestation is written on the chain and sent back to the <span class="label-role claimer">Claimer</span>, they can build a credential from the request they send and the attestation they received.
 
 ## Run
 
 run it from command line:
 
 ```bash
-node attester/attestClaim.js
+yarn ts-node attester/attestClaim.ts
 ```
 
 You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-)

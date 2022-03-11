@@ -3,12 +3,12 @@ id: requesting-terms-and-attestations
 title: Requesting Terms and Attestations
 ---
 
-If an attester has an established reputation for issuing attestations, the claimer may choose to submit a claim to be attested without going through the process of agreeing terms.
+If an attester has an established reputation for issuing attestations, the claimer may choose to submit a claim to be attested without going through the process of agreeing to terms.
 In that case, they may submit a request following this process.
 
 Otherwise, either the attester or the claimer may request the terms of the attestation, i.e., the requirements set by the participants (the claimer and the attester) that set the conditions to attest a claim.
 
-These terms are defined and agreed before the attestation is created. This part of the process requires interaction and communication between both parties. This communication can be done independently, e.g. in person, via messaging, on social media etc., or via the KILT software development kit (SDK).
+These terms are defined and agreed upon before the attestation is created. This part of the process requires interaction and communication between both parties. This communication can be done independently, e.g. in person, via messaging, on social media etc., or via the KILT software development kit (SDK).
 
 ## Sending terms using the KILT SDK
 
@@ -26,7 +26,7 @@ Either a claimer or an attester can initiate a request for terms.
 
 When creating a terms object, at least one of the following must be complete: Legitimations, Quote or Delegations.
 
-- **Legitimations**: Legitimations are attested claims that the attester has issued previously, showing that the attester has the authority or legitimacy to attest the claim requested. This is a way of establishing trust between the participants.
+- **Legitimations**: Legitimations are composed of attested claims that the attester has issued previously, showing that the attester has the authority or legitimacy to attest the claim requested. This is a way of establishing trust between the participants.
 
 - **Quote**: Details on how to create a quote are outlined here. In brief, the quote could include any or all of the following:
 
@@ -42,7 +42,7 @@ When creating a terms object, at least one of the following must be complete: Le
 
 A CType hash is required to create a “request for terms”, along with at least one of the following: a quote, a delegation, or a legitimation.
 
-Claims, PrerequisiteClaims and delegationIds are optional (as an attester might submit terms from a claimer and will not have all the necessary information to create the claim. They can just send the required CType for the claimer to build the claim).
+Claims, PrerequisiteClaims and delegation IDs are optional (as an attester might submit terms from a claimer and will not have all the necessary information to create the claim. They can just send the required CType for the claimer to build the claim).
 
 ```js
 const termsMessageBody = {
@@ -78,13 +78,13 @@ The terms object is sent via the messaging in the SDK using the interface “ISu
 
 ## How to create a quote
 
-A quote is a description of the terms and conditions of the work to be performed. It may be sent to the attester from the claimer, but may also be sent from a claimer to an attester. In cases where multiple attesters provide the same attestation (for example, a car inspection) the claimer may send a quote to several attesters in order to choose the attester with the best conditions.
+A quote is a description of the terms and conditions of the work to be performed. It may be sent to the attester from the claimer, but may also be sent from a claimer to an attester. In cases where multiple attesters provide the same attestation (for example, a car inspection) the claimer may send a quote to several attesters to choose the attester with the best conditions.
 
 To come to an agreement on the quote, the participants may message back and forth, signing the object.
 
 If the attester wishes to quote their terms, the attester signs the `IQuote` object before sending it as part of the `ISubmitTerms` to the Claimer.
 
-When agreement is reached, the SDK is used to create a quote object.
+When an agreement is reached, the SDK is used to create a quote object.
 
 ```js
 const quoteObj = {
@@ -142,10 +142,10 @@ const agreedSignedQuoteObj = {
 
 ## How to create a request for attestation
 
-Once the terms have been agreed, the claimer must accept the conditions in order to move into the request for attestation. The claimer needs to submit a complete claim using the following process:
+Once the terms have been agreed, the claimer must accept the conditions to move into the request for attestation. The claimer needs to submit a complete claim using the following process:
 
 - If the claimer agrees to the terms the claimer signs the `IRequestForAttestation` object.
-- If the attester sent a quote as part of the agreement, the claimer must also sign and agree to the attester signed quote `IQuoteAttesterSigned`.
+- If the attester sent a quote as part of the agreement, the claimer must also sign and agree to the attester's signed quote `IQuoteAttesterSigned`.
 
 The claimer uses the SDK to create a request for attestation. This request must have a claim matching the specified CType. It may have a legitimation, quote, delegation or prerequisite claim.
 

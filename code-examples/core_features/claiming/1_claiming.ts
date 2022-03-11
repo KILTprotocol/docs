@@ -6,13 +6,13 @@ export async function main(): Promise<CType> {
     title: 'Drivers License',
     properties: {
       name: {
-        type: 'string',
+        type: 'string'
       },
       age: {
-        type: 'integer',
-      },
+        type: 'integer'
+      }
     },
-    type: 'object',
+    type: 'object'
   })
 
   return ctype
