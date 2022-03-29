@@ -15,7 +15,9 @@ A full DID can then be used to perform certain on-chain actions which include:
 
 ## Registering a DID
 
-A full DID is needed if the user wants to become an attester or wants to setup delegations. A full DID also allows the user to embed a list of URLs, known as service endpoints, into the DID document so that it can be retrieved from the chain.
+A full DID is needed if the user wants to become an attester or wants to setup delegations. 
+
+A full DID also allows the user to embed a list of URLs, known as service endpoints, into the DID document so that they can be retrieved from the chain as part of the DID document.
 
 To create a full DID the user first has to create a set of keys and service endpoints:
 
@@ -25,9 +27,9 @@ To create a full DID the user first has to create a set of keys and service endp
 * one delegation key for authorizing delegations (optional)
 * service endpoints that point to external hostings for others to find (optional)
 
-With these they are ready to write the DID to the KILT blockchain.
+With those keys prepared and the service endpoints set up, they are ready to write the DID to the KILT blockchain.
 
-The user then has to create the `did::create` extrinsic and sign it with any KILT account that has enough funding to pay both the transaction fees and the  DID deposit. The extrinsic consists of  
+The user then has to create the `did::create` extrinsic and sign it with any KILT account that has enough funding to pay both the transaction fees and the DID deposit. The extrinsic consists of  
 
 * The `DidCreationDetails` object containing keys and service endpoints
 * The `DidSignature` which is a signature using your authentication key over the scale encoded `DidCreationDetails` from above
