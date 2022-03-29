@@ -31,11 +31,15 @@ With those keys prepared and the service endpoints set up, they are ready to wri
 
 The user then has to create the `did::create` extrinsic and sign it with any KILT account that has enough funding to pay both the transaction fees and the DID deposit. The extrinsic consists of  
 
-* The `DidCreationDetails` object containing keys and service endpoints
+* The `DidCreationDetails` object containing keys, service endpoints and the account id of the submitter for the creation
 * The `DidSignature` which is a signature using your authentication key over the scale encoded `DidCreationDetails` from above
 * A regular signature authenticating the sender of the extrinsic
 
-Once this extrinsic is submitted and executed, the DID is written to the chain.
+The DID owner and the submitter can be two different parties. This allows the creation of a DID without having to pay any fees or deposits. 
+
+Beware that this also means that the DID creator gives up some power over the DID: The submitter who pays the deposit will be able to delete the DID from the blockchain and claim back its deposit. 
+
+Once the `did::create` extrinsic is submitted and executed, the DID is written to the chain.
 
 ## Updating a DID
 
@@ -53,7 +57,11 @@ There is a set of extrinsics available to update a full DID. These are:
 * `delete`
 
 
-All of them have to be authenticated using the DID that is updated. For that there is the special `submit_did_call` extrinsic. This extrinsic contains another call and a signature from the DID that is authorizing the inner call.
+All of them have to be authenticated using the DID that is updated. 
+
+For that there is the special `submit_did_call` extrinsic. 
+
+This extrinsic contains another call and a signature from the DID that is authorizing the inner call.
 
 For example when you want to add a new service endpoint:
 
@@ -62,7 +70,13 @@ For example when you want to add a new service endpoint:
 3. Take this call and put it into a `DidAuthorizedCallOperation` object together with the DID, the tx_counter of the DID, the current block number and the account id of the submitter of the final extrinsic.
 4. Now we can put together the actual `submit_did_call` extrinsic by signing the scale encoded `DidAuthorizedCallOperation` with our DID and then signing and submitting the call together with the DID-signature using the key of the account that is specified as `submitter` in the `DidAuthorizedCallOperation`.
 
-The `did::submit_did_call` will verify that 1) the submitters signature is correct and 2) that the DID signature is correct. After that it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
+The extrinsic will then be dispatched to the `did::submit_did_call` function which will verify that 1) the submitters signature is correct and 2) that the DID signature is correct and all other parameters are in reasonable bounds. 
+
+This includes that the block number is not older than ~1h and that the tx_counter is the same number as the number of transactions that already have been executed from this DID plus one. 
+
+Those two extra checks guarantee that DID calls can not be replayed and that they can not be hold back by the submitter for an arbitrary time.
+
+After all this checks it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
 
 Please note that the submitter has to pay all the transaction fees and/or deposits that the inner call may require, but doesn’t have to be related to any of the keys that make up the DID; this can be done from any KILT account.
 
