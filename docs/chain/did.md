@@ -39,7 +39,7 @@ Once this extrinsic is submitted and executed, the DID is written to the chain.
 
 ## Updating a DID
 
-There is a whole set of extrinsics needed to update a full DID. These are:
+There is a set of extrinsics available to update a full DID. These are:
 
 * `set_authentication_key`
 * `set_delegation_key`
@@ -62,7 +62,7 @@ For example when you want to add a new service endpoint:
 3. Take this call and put it into a `DidAuthorizedCallOperation` object together with the DID, the tx_counter of the DID, the current block number and the account id of the submitter of the final extrinsic.
 4. Now we can put together the actual `submit_did_call` extrinsic by signing the scale encoded `DidAuthorizedCallOperation` with our DID and then signing and submitting the call together with the DID-signature using the key of the account that is specified as `submitter` in the `DidAuthorizedCallOperation`.
 
-The extrinsic will then be dispatched to the `did::submit_did_call` function which will verify that 1) the submitters signature is correct and 2) that the DID signature is correct. After that it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
+The `did::submit_did_call` will verify that 1) the submitters signature is correct and 2) that the DID signature is correct. After that it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
 
 Please note that the submitter has to pay all the transaction fees and/or deposits that the inner call may require, but doesn’t have to be related to any of the keys that make up the DID; this can be done from any KILT account.
 
