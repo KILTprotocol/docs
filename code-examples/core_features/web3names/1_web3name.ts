@@ -1,4 +1,5 @@
 import { ApiPromise } from '@polkadot/api'
+import { randomAsHex } from '@polkadot/util-crypto'
 import { KeyringPair } from '@kiltprotocol/types'
 
 import {
@@ -22,8 +23,8 @@ export async function main(
   web3Name: Web3Names.Web3Name,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
-  // Generate a new full DID.
-  const authenticationSeed = '0x918273645'
+  // Generate a random new full DID.
+  const authenticationSeed = randomAsHex(32)
 
   // Ask the keystore to generate a new keypair to use for authentication with the generated seed.
   const authenticationKeyPublicDetails: NewDidVerificationKey = await keystore
