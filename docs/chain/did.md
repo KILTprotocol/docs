@@ -42,6 +42,42 @@ This allows the creation of a DID without having to pay any fees or deposits.
 Beware that this also means that the DID creator gives up some power over the DID: The submitter who pays the deposit will be able to delete the DID from the blockchain and claim back its deposit.
 Once the `did::create` extrinsic is submitted and executed, the DID is written to the chain.
 
+## Using a DID
+
+Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account. 
+This includes handling of attestations and ctypes, setting up trust hierarchies through delegations, managing web3 names and much more.
+
+Those actions need to be signed by the DID before they can be submitted to chain by any account that the DID owner specifies when signing.
+We are naming those actions "DID-Calls". To submit those there is a special extrinsic called `submit_did_call`. 
+
+The process of doing any DID-Call is always the same:
+
+* Construct the actual call you want to execute including all arguments of that extrinsic.
+* Wrap the call in a `DidAuthorizedCallOperation` together with
+    * Senders DID to indicate who wants this operation to happen
+    * Senders DID tx_counter + 1 to prevent replay attacks
+    * Current block number to prevent the operation to be submitted too far in the future
+    * Account of the submitter to allow the DID owner to specify who is allowed to submit
+* Create a signature over the `DidAuthorizedCallOperation` by scale-encoding it and signing it using the appropriate key
+    * Most operations require the authentication key of the DID to be used
+    * Managing attestations requires the attestation key
+    * Managing delegations requires the delegation key
+* Construct the `submit_did_call` extrinsic consisting of
+    * The `DidAuthorizedCallOperation`
+    * The DID signature
+* Pass the call over to the submitter who can now sign and submit it to the chain
+    * The submitter will have to pay for all fees and deposits that result from the operation
+    * In general the submitter will have the power to delete all on-chain objects to reclaim its deposit
+* The chain now checks that
+    * The submitters signature is correct
+    * The submitter is the one specified in the `DidAuthorizedCallOperation`
+    * The DID signature is correct
+    * The tx_counter is valid (current tx_counter + 1)
+    * The blocknumber is not older than an hour (given 12s block time)
+* After that the actual call gets dispatched with a special `DidOrigin`
+    * This allows the executer of the actual call to get the DID and the account of the submitter
+
+
 ## Updating a DID
 
 There is a set of extrinsics available to update a full DID.
@@ -59,6 +95,7 @@ These are:
 * `delete`
 
 
+<<<<<<< HEAD
 All of them have to be authenticated using the DID that is updated.
 For that there is the special `submit_did_call` extrinsic.
 This extrinsic contains another call and a signature from the DID that is authorizing the inner call.
@@ -74,6 +111,10 @@ This includes that the block number is not older than ~1h and that the tx_counte
 Those two extra checks guarantee that DID calls can not be replayed and that they can not be hold back by the submitter for an arbitrary time.
 After all this checks it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
 Please note that the submitter has to pay all the transaction fees and/or deposits that the inner call may require, but doesn’t have to be related to any of the keys that make up the DID; this can be done from any KILT account.
+=======
+All of them have to be authenticated using the DID that is updated following the process described above. 
+
+>>>>>>> 5c952a5 (added section about submit_did_call)
 
 ## What about the deposit?
 
