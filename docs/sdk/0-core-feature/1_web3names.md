@@ -6,6 +6,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!../../../code-examples/core_features/web3names/1_web3name.ts';
 import Example2 from '!!raw-loader!../../../code-examples/core_features/web3names/2_web3name.ts';
 import Example3 from '!!raw-loader!../../../code-examples/core_features/web3names/3_web3name.ts';
+import Example4 from '!!raw-loader!../../../code-examples/core_features/web3names/4_web3name.ts';
 
 Web3 names are user-friendly aliases for a KILT DID.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
@@ -51,4 +52,15 @@ On the other hand, releasing the Web3 name by the deposit payer does not require
 
 <CodeBlock className="language-js">
   {Example3}
+</CodeBlock>
+
+## DIDs and Web3 names
+
+There is a one-to-one relationship between DIDs and Web3 names.
+This means that a KILT DID can be linked to at most one Web3 name, and a Web3 name can be claimed only by one DID.
+
+The KILT SDK provides easy-to-use querying functions to perform both operations as shown below.
+
+<CodeBlock className="language-js">
+  {Example4}
 </CodeBlock>

@@ -36,7 +36,13 @@ export async function runAll() {
   }
 
   console.log('main1 - claim new Web3 name')
-  let fullDid = await main1(api, keystore, faucetAccount, web3Name, BlockchainUtils.IS_IN_BLOCK)
+  let fullDid = await main1(
+    api,
+    keystore,
+    faucetAccount,
+    web3Name,
+    BlockchainUtils.IS_IN_BLOCK
+  )
 
   console.log('main2 - release the Web3 name by the owner')
   await main2(api, keystore, faucetAccount, fullDid, web3Name)
