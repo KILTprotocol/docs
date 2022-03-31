@@ -95,26 +95,7 @@ These are:
 * `delete`
 
 
-<<<<<<< HEAD
-All of them have to be authenticated using the DID that is updated.
-For that there is the special `submit_did_call` extrinsic.
-This extrinsic contains another call and a signature from the DID that is authorizing the inner call.
-For example when you want to add a new service endpoint:
-
-1. Create a `DidEndpoint` object containing a service id, a list of service types and a list of URLs.
-2. Wrap it in an `add_service_endpoint` extrinsic.
-3. Take this call and put it into a `DidAuthorizedCallOperation` object together with the DID, the tx_counter of the DID, the current block number and the account id of the submitter of the final extrinsic.
-4. Now we can put together the actual `submit_did_call` extrinsic by signing the scale encoded `DidAuthorizedCallOperation` with our DID and then signing and submitting the call together with the DID-signature using the key of the account that is specified as `submitter` in the `DidAuthorizedCallOperation`.
-
-The extrinsic will then be dispatched to the `did::submit_did_call` function which will verify that 1) the submitters signature is correct and 2) that the DID signature is correct and all other parameters are in reasonable bounds.
-This includes that the block number is not older than ~1h and that the tx_counter is the same number as the number of transactions that already have been executed from this DID plus one.
-Those two extra checks guarantee that DID calls can not be replayed and that they can not be hold back by the submitter for an arbitrary time.
-After all this checks it will execute the inner call with a special `DidOrigin` that allows the inner call to access both the account id of the submitter and the id of the affected DID.
-Please note that the submitter has to pay all the transaction fees and/or deposits that the inner call may require, but doesn’t have to be related to any of the keys that make up the DID; this can be done from any KILT account.
-=======
 All of them have to be authenticated using the DID that is updated following the process described above. 
-
->>>>>>> 5c952a5 (added section about submit_did_call)
 
 ## What about the deposit?
 
