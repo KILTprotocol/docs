@@ -29,13 +29,13 @@ export async function main(
   // Ask the keystore to generate a new keypair to use for authentication with the generated seed.
   const authenticationKeyPublicDetails: NewDidVerificationKey = await keystore
     .generateKeypair({
-      alg: SigningAlgorithms.Ed25519,
+      alg: SigningAlgorithms.Sr25519,
       seed: authenticationSeed
     })
     .then((key) => {
       return {
         publicKey: key.publicKey,
-        type: VerificationKeyType.Ed25519
+        type: VerificationKeyType.Sr25519
       }
     })
 
