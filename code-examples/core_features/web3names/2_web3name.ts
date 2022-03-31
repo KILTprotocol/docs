@@ -13,15 +13,11 @@ export async function main(
   web3Name: Web3Names.Web3Name,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  // Release the Web3 name if the owner is the provided DID.
-  const web3NameOwner = await Web3Names.queryDidForWeb3Name(web3Name)
-  if (web3NameOwner === didOwner.did) {
-    const web3NameReleaseTx = await Web3Names.getReleaseByOwnerTx().then((tx) =>
-      didOwner.authorizeExtrinsic(tx, keystore, kiltAccount.address)
-    )
-    await BlockchainUtils.signAndSubmitTx(web3NameReleaseTx, kiltAccount, {
-      reSign: true,
-      resolveOn
-    })
-  }
+  const web3NameReleaseTx = await Web3Names.getReleaseByOwnerTx().then((tx) =>
+    didOwner.authorizeExtrinsic(tx, keystore, kiltAccount.address)
+  )
+  await BlockchainUtils.signAndSubmitTx(web3NameReleaseTx, kiltAccount, {
+    reSign: true,
+    resolveOn
+  })
 }

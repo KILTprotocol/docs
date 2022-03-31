@@ -1,6 +1,7 @@
 import { init as kiltInit, connect as kiltConnect } from '@kiltprotocol/core'
-import { DemoKeystore } from '@kiltprotocol/did'
-import { Keyring } from '@kiltprotocol/utils'
+import { DemoKeystore, Web3Names } from '@kiltprotocol/did'
+import { BlockchainUtils } from '@kiltprotocol/sdk-js'
+import { Keyring, UUID } from '@kiltprotocol/utils'
 
 import { main as main1 } from './1_web3name'
 import { main as main2 } from './2_web3name'
@@ -25,9 +26,17 @@ export async function runAll() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
+  // Generate a random web3 name each time
+  const web3Name = UUID.generate().substring(2, 34).toLowerCase()
+  console.log(`Web3 name randomly generated: "${web3Name}"`)
+  const web3NameOwner = await Web3Names.queryDidForWeb3Name(web3Name)
+  if (web3NameOwner) {
+    console.log(`Early exit. Web3 name "${web3Name}" already present.`)
+    return
+  }
+
   console.log('main1 - claim new Web3 name')
-  const web3Name = 'example-web3-name'
-  let fullDid = await main1(api, keystore, faucetAccount, web3Name)
+  let fullDid = await main1(api, keystore, faucetAccount, web3Name, BlockchainUtils.IS_IN_BLOCK)
 
   console.log('main2 - release the Web3 name by the owner')
   await main2(api, keystore, faucetAccount, fullDid, web3Name)

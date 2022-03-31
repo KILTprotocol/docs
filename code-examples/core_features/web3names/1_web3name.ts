@@ -50,17 +50,13 @@ export async function main(
   })
   console.log(fullDid.did)
 
-  // Claim the Web3 name if it has not been claimed by anyone else.
-  const doesNameExist = await Web3Names.queryDidForWeb3Name(web3Name)
-  if (!doesNameExist) {
-    const web3NameClaimTx = await Web3Names.getClaimTx(web3Name).then((tx) =>
-      fullDid.authorizeExtrinsic(tx, keystore, kiltAccount.address)
-    )
-    await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, kiltAccount, {
-      reSign: true,
-      resolveOn
-    })
-  }
+  const web3NameClaimTx = await Web3Names.getClaimTx(web3Name).then((tx) =>
+    fullDid.authorizeExtrinsic(tx, keystore, kiltAccount.address)
+  )
+  await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, kiltAccount, {
+    reSign: true,
+    resolveOn
+  })
 
   return fullDid
 }
