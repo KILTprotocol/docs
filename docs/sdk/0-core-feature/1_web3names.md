@@ -11,7 +11,7 @@ import Example4 from '!!raw-loader!../../../code-examples/core_features/web3name
 Web3 names are user-friendly aliases for a KILT DID.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
 
-Each Web3 name is globally unique, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the changes of "two Web3 names looking the same, despite being different".
+Each Web3 name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the changes of "two Web3 names looking the same, despite being different".
 The character set include only:
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
