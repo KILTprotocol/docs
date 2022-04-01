@@ -41,7 +41,6 @@ export async function runAll() {
     keystore,
     faucetAccount,
     web3Name,
-    BlockchainUtils.IS_IN_BLOCK
   )
 
   console.log('main2 - release the Web3 name by the owner')

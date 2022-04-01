@@ -6,9 +6,9 @@ import { runAll as runAllClaiming } from './claiming'
 async function main() {
   envConfig()
   try {
-    await runAllCore()
+    // await runAllCore()
     await runAllWeb3()
-    await runAllClaiming()
+    // await runAllClaiming()
   } catch (e) {
     console.error('Oh no! There was an error!!\n', e)
     process.exit(1)
