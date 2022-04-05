@@ -1,11 +1,6 @@
-import { randomAsHex } from '@polkadot/util-crypto'
-
 import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
-import { DemoKeystore, Web3Names } from '@kiltprotocol/did'
+import { DemoKeystore, FullDidDetails, Web3Names } from '@kiltprotocol/did'
 import { Keyring, UUID } from '@kiltprotocol/utils'
-import { connect as kiltConnect, init as kiltInit } from '@kiltprotocol/core'
-
-import { main as createDid } from '../did/3_did'
 
 import { main as main1 } from './1_web3name'
 import { main as main2 } from './2_web3name'
@@ -14,11 +9,9 @@ import { main as main3 } from './3_web3name'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
+  did: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  await kiltConnect()
-
   const keyring = new Keyring({
     type: 'sr25519',
     ss58Format: 38
@@ -31,9 +24,6 @@ export async function runAll(
   }
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
-
-  const did = await createDid(keystore, faucetAccount, randomAsHex(32), resolveOn)
-  console.log(`DID randomly generated: "${did.did}"`)
 
   // Generate a random web3 name each time
   const web3Name = UUID.generate().substring(2, 34).toLowerCase()

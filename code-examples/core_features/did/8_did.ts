@@ -7,8 +7,9 @@ import {
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import { disconnect, init } from '@kiltprotocol/core'
+import { BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -17,6 +18,7 @@ export async function main(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -37,7 +39,7 @@ export async function main(
     kiltAccount.address,
     keystore,
     async (migrationTx) => {
-      // The extrinsic can then be submitted by the authorised account as usual.
+      // The extrinsic can then be submitted by the authorized account as usual.
       await BlockchainUtils.signAndSubmitTx(migrationTx, kiltAccount, {
         reSign: true,
         resolveOn
@@ -45,7 +47,7 @@ export async function main(
     }
   )
 
-  await disconnect()
+  await api.disconnect()
   if (!migratedFullDid) {
     throw 'Could not find the DID just migrated.'
   }

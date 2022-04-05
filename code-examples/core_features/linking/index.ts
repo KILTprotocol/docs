@@ -1,11 +1,8 @@
-import { mnemonicGenerate, randomAsHex } from '@polkadot/util-crypto'
+import { mnemonicGenerate } from '@polkadot/util-crypto'
 
-import { AccountLinks, DemoKeystore } from '@kiltprotocol/did'
+import { AccountLinks, DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
 import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
 import { Keyring } from '@kiltprotocol/utils'
-import { init as kiltInit } from '@kiltprotocol/core'
-
-import { main as createDid } from '../did/3_did'
 
 import { main as main1 } from './1_account_linking'
 import { main as main2 } from './2_account_linking'
@@ -15,10 +12,9 @@ import { main as main4 } from './4_account_linking'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
+  did: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-
   const keyring = new Keyring({
     type: 'sr25519',
     ss58Format: 38
@@ -31,9 +27,6 @@ export async function runAll(
   }
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
-
-  const did = await createDid(keystore, faucetAccount, randomAsHex(32), resolveOn)
-  console.log(`DID randomly generated: "${did.did}"`)
 
   // Generate a random account each time
   const newAccount = keyring.addFromMnemonic(mnemonicGenerate())

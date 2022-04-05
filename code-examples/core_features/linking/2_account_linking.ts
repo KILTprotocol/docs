@@ -1,8 +1,4 @@
-import {
-  AccountLinks,
-  DemoKeystore,
-  FullDidDetails,
-} from '@kiltprotocol/did'
+import { AccountLinks, DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { KeyringPair } from '@kiltprotocol/types'
 import { SubscriptionPromise } from '@kiltprotocol/types'

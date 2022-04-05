@@ -4,7 +4,6 @@ import {
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { VerificationKeyType } from '@kiltprotocol/types'
-import { init as kiltInit } from '@kiltprotocol/core'
 
 import { main as main1 } from './1_claiming'
 import { main as main2 } from './2_claiming'
@@ -39,8 +38,6 @@ async function getLightDid(): Promise<{
 }
 
 export async function runAll(): Promise<void> {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-
   const { lightDid: claimer, keystore } = await getLightDid()
 
   console.log('main1 - create ctype')

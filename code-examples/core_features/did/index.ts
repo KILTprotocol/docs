@@ -1,10 +1,9 @@
 import { randomAsHex } from '@polkadot/util-crypto'
 
+import { DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore } from '@kiltprotocol/did'
 import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/sdk-js'
-import { init as kiltInit } from '@kiltprotocol/core'
 
 import { main as main1 } from './1_did'
 import { main as main2 } from './2_did'
@@ -20,9 +19,7 @@ const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-) {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-
+): Promise<FullDidDetails> {
   const keyring = new Keyring({
     type: 'sr25519',
     ss58Format: 38
@@ -81,5 +78,7 @@ export async function runAll(
   await main7(faucetAccount, did8.identifier, resolveOn)
 
   console.log('main9 - batching extrinsics')
-  await main9(keystore, faucetAccount, resolveOn)
+  const returnDid = await main9(keystore, faucetAccount, resolveOn)
+
+  return returnDid
 }

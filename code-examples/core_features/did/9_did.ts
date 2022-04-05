@@ -4,11 +4,12 @@ import {
   BlockchainApiConnection,
   BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
-import { CType, disconnect, init } from '@kiltprotocol/core'
+import { CType, init } from '@kiltprotocol/core'
 import {
   DemoKeystore,
   DidBatchBuilder,
   FullDidCreationBuilder,
+  FullDidDetails,
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
@@ -18,7 +19,7 @@ export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-): Promise<void> {
+): Promise<FullDidDetails> {
   await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
@@ -53,7 +54,7 @@ export async function main(
     .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
     .consume(keystore, kiltAccount.address)
 
-  // The authorised used submits the batch to the chain
+  // The authorized user submits the batch to the chain
   await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
     reSign: true,
     resolveOn
@@ -63,7 +64,8 @@ export async function main(
     throw 'One of the two CTypes has not been properly stored.'
   }
 
-  await disconnect()
+  await api.disconnect()
+  return fullDid
 }
 
 function getRandomCType(): CType {

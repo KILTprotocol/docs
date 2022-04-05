@@ -11,7 +11,7 @@ import {
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import { disconnect, init } from '@kiltprotocol/core'
+import { init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -50,7 +50,7 @@ export async function main(
   const updatedDidDetails = await FullDidDetails.fromChainInfo(
     fullDid.identifier
   )
-  await disconnect()
+  await api.disconnect()
 
   if (!updatedDidDetails) {
     throw `Could not find the updated DID ${fullDid.did}`

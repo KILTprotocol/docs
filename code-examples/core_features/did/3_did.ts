@@ -11,7 +11,7 @@ import {
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import { disconnect, init } from '@kiltprotocol/core'
+import { init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -43,7 +43,7 @@ export async function main(
     })
   })
 
-  await disconnect()
+  await api.disconnect()
   if (!fullDid) {
     throw 'Could not find the DID just created.'
   }

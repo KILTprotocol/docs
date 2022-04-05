@@ -1,10 +1,6 @@
 import { KeyringPair } from '@kiltprotocol/types'
 
-import {
-  DemoKeystore,
-  FullDidDetails,
-  Web3Names
-} from '@kiltprotocol/did'
+import { DemoKeystore, FullDidDetails, Web3Names } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 
