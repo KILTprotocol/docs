@@ -1,13 +1,14 @@
-import { generateAccount } from './attester/generateAccount'
-import { createFullDid } from './attester/generateDid'
-import { ensureStoredCtype } from './attester/generateCtype'
-import { generateLightDid } from './claimer/generateLightDid'
-import { generateRequest } from './claimer/generateRequest'
-import { attestingFlow } from './attester/attestClaim'
-import { verificationFlow } from './verify'
+import { BN } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { BN } from '@polkadot/util'
+
+import { attestingFlow } from './attester/attestClaim'
+import { createFullDid } from './attester/generateDid'
+import { ensureStoredCtype } from './attester/generateCtype'
+import { generateAccount } from './attester/generateAccount'
+import { generateLightDid } from './claimer/generateLightDid'
+import { generateRequest } from './claimer/generateRequest'
+import { verificationFlow } from './verify'
 
 const SEED_ENV = 'FAUCET_SEED'
 

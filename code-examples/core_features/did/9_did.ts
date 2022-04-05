@@ -1,17 +1,17 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import {
-  DemoKeystore,
-  SigningAlgorithms,
-  FullDidCreationBuilder,
-  DidBatchBuilder
-} from '@kiltprotocol/did'
-import { init, disconnect, CType } from '@kiltprotocol/core'
-import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
+import { CType, disconnect, init } from '@kiltprotocol/core'
+import {
+  DemoKeystore,
+  DidBatchBuilder,
+  FullDidCreationBuilder,
+  SigningAlgorithms
+} from '@kiltprotocol/did'
+import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 import { UUID } from '@kiltprotocol/utils'
 
 export async function main(

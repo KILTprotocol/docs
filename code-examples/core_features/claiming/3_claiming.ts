@@ -3,9 +3,8 @@ import type {
   IRequestForAttestation,
   KeystoreSigner
 } from '@kiltprotocol/types'
-
-import { RequestForAttestation } from '@kiltprotocol/core'
 import { DidDetails } from '@kiltprotocol/did'
+import { RequestForAttestation } from '@kiltprotocol/core'
 
 export async function main(
   claim: IClaim,

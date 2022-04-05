@@ -1,21 +1,22 @@
 import { KeyringPair } from '@polkadot/keyring/types'
+
 import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
-import { init, disconnect } from '@kiltprotocol/core'
 import {
   DemoKeystore,
-  SigningAlgorithms,
   EncryptionAlgorithms,
+  FullDidCreationBuilder,
   FullDidDetails,
-  FullDidCreationBuilder
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import {
+  EncryptionKeyType,
   SubscriptionPromise,
-  VerificationKeyType,
-  EncryptionKeyType
+  VerificationKeyType
 } from '@kiltprotocol/types'
+import { disconnect, init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,

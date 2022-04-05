@@ -1,17 +1,17 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
 import {
   DemoKeystore,
-  SigningAlgorithms,
   FullDidDetails,
-  FullDidUpdateBuilder
+  FullDidUpdateBuilder,
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import { init, disconnect } from '@kiltprotocol/core'
+import { disconnect, init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -31,7 +31,7 @@ export async function main(
 
   // Create and sign the DID operation to replace the authentication key with the new one generated.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
-  // authorised in this operation, Alice in this case.
+  // authorized in this operation, Alice in this case.
   const didUpdateExtrinsic = await new FullDidUpdateBuilder(api, fullDid)
     .setAuthenticationKey({
       publicKey: newAuthenticationKeyPublicDetails.publicKey,
@@ -40,7 +40,7 @@ export async function main(
     .removeServiceEndpoint('my-service')
     .consume(keystore, kiltAccount.address)
 
-  // Submit the DID update tx to the KILT blockchain after signing it with the authorised KILT account.
+  // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
   await BlockchainUtils.signAndSubmitTx(didUpdateExtrinsic, kiltAccount, {
     reSign: true,
     resolveOn

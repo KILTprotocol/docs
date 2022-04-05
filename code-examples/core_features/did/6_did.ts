@@ -1,9 +1,9 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
-import { init, disconnect } from '@kiltprotocol/core'
 import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
+import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
+import { disconnect, init } from '@kiltprotocol/core'
+import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 
 export async function main(
   keystore: DemoKeystore,
@@ -24,7 +24,7 @@ export async function main(
 
   // Sign the DID deletion operation using the DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
-  // authorised in this operation, Alice in this case.
+  // authorized in this operation, Alice in this case.
   const didSignedDeletionExtrinsic = await fullDid.authorizeExtrinsic(
     didDeletionExtrinsic,
     keystore as KeystoreSigner<string>,

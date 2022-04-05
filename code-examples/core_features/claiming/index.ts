@@ -1,10 +1,10 @@
-import { init as kiltInit } from '@kiltprotocol/core'
 import {
-  LightDidDetails,
   DemoKeystore,
+  LightDidDetails,
   SigningAlgorithms
 } from '@kiltprotocol/did'
-import { VerificationKeyType } from '@kiltprotocol/sdk-js'
+import { VerificationKeyType } from '@kiltprotocol/types'
+import { init as kiltInit } from '@kiltprotocol/core'
 
 import { main as main1 } from './1_claiming'
 import { main as main2 } from './2_claiming'

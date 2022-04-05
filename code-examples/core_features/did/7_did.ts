@@ -1,9 +1,9 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { DidChain } from '@kiltprotocol/did'
+import { IDidIdentifier, SubscriptionPromise } from '@kiltprotocol/types'
+import { disconnect, init } from '@kiltprotocol/core'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { SubscriptionPromise, IDidIdentifier } from '@kiltprotocol/types'
-import { init, disconnect } from '@kiltprotocol/core'
+import { DidChain } from '@kiltprotocol/did'
 
 export async function main(
   kiltAccount: KeyringPair,

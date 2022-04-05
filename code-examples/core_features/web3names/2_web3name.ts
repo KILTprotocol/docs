@@ -1,12 +1,9 @@
-import { ApiPromise } from '@polkadot/api'
-import { KeyringPair } from '@kiltprotocol/types'
-
 import { DemoKeystore, FullDidDetails, Web3Names } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { KeyringPair } from '@kiltprotocol/types'
+import { SubscriptionPromise } from '@kiltprotocol/types'
 
 export async function main(
-  api: ApiPromise,
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
   didOwner: FullDidDetails,

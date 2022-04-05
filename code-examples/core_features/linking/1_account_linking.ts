@@ -1,14 +1,12 @@
 import { ApiPromise } from '@polkadot/api'
 import { randomAsHex } from '@polkadot/util-crypto'
 
-import { KeyringPair } from '@kiltprotocol/types'
-
 import {
+  AccountLinks,
   DemoKeystore,
   FullDidCreationBuilder,
   FullDidDetails,
-  SigningAlgorithms,
-  Web3Names
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import {
   NewDidVerificationKey,
@@ -16,12 +14,12 @@ import {
   VerificationKeyType
 } from '@kiltprotocol/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { KeyringPair } from '@kiltprotocol/types'
 
 export async function main(
   api: ApiPromise,
   keystore: DemoKeystore,
-  kiltAccount: KeyringPair,
-  web3Name: Web3Names.Web3Name,
+  submitterAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   // Generate a random new full DID.
@@ -43,18 +41,21 @@ export async function main(
   const fullDid = await new FullDidCreationBuilder(
     api,
     authenticationKeyPublicDetails
-  ).consumeWithHandler(keystore, kiltAccount.address, async (tx) => {
-    await BlockchainUtils.signAndSubmitTx(tx, kiltAccount, {
+  ).consumeWithHandler(keystore, submitterAccount.address, async (tx) => {
+    await BlockchainUtils.signAndSubmitTx(tx, submitterAccount, {
       reSign: true,
       resolveOn
     })
   })
   console.log(fullDid.did)
 
-  const web3NameClaimTx = await Web3Names.getClaimTx(web3Name).then((tx) =>
-    fullDid.authorizeExtrinsic(tx, keystore, kiltAccount.address)
+  // Authorizing the extrinsic with the full DID and submitting it with the provided account
+  // results in the submitter's account being linked to the DID authorizing the operation.
+  const accountLinkingTx = await AccountLinks.getAssociateSenderTx().then(
+    (tx) => fullDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
   )
-  await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, kiltAccount, {
+
+  await BlockchainUtils.signAndSubmitTx(accountLinkingTx, submitterAccount, {
     reSign: true,
     resolveOn
   })
