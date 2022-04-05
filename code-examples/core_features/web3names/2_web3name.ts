@@ -5,9 +5,8 @@ import { SubscriptionPromise } from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
-  kiltAccount: KeyringPair,
   didOwner: FullDidDetails,
-  web3Name: Web3Names.Web3Name,
+  kiltAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   const web3NameReleaseTx = await Web3Names.getReleaseByOwnerTx().then((tx) =>

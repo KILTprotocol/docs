@@ -1,7 +1,11 @@
+import { randomAsHex } from '@polkadot/util-crypto'
+
 import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
 import { DemoKeystore, Web3Names } from '@kiltprotocol/did'
 import { Keyring, UUID } from '@kiltprotocol/utils'
 import { connect as kiltConnect, init as kiltInit } from '@kiltprotocol/core'
+
+import { main as createDid } from '../did/3_did'
 
 import { main as main1 } from './1_web3name'
 import { main as main2 } from './2_web3name'
@@ -13,7 +17,7 @@ export async function runAll(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  const { api } = await kiltConnect()
+  await kiltConnect()
 
   const keyring = new Keyring({
     type: 'sr25519',
@@ -28,6 +32,9 @@ export async function runAll(
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
+  const did = await createDid(keystore, faucetAccount, randomAsHex(32), resolveOn)
+  console.log(`DID randomly generated: "${did.did}"`)
+
   // Generate a random web3 name each time
   const web3Name = UUID.generate().substring(2, 34).toLowerCase()
   console.log(`Web3 name randomly generated: "${web3Name}"`)
@@ -38,13 +45,13 @@ export async function runAll(
   }
 
   console.log('main1 - claim new Web3 name')
-  let fullDid = await main1(api, keystore, faucetAccount, web3Name, resolveOn)
+  await main1(keystore, did, faucetAccount, web3Name, resolveOn)
 
   console.log('main2 - release the Web3 name by the owner')
-  await main2(keystore, faucetAccount, fullDid, web3Name, resolveOn)
+  await main2(keystore, did, faucetAccount, resolveOn)
 
   console.log('main1 - again, claim the Web3 name again')
-  fullDid = await main1(api, keystore, faucetAccount, web3Name, resolveOn)
+  await main1(keystore, did, faucetAccount, web3Name, resolveOn)
 
   console.log('main3 - reclaim the Web3 name by the deposit payer')
   await main3(faucetAccount, web3Name, resolveOn)
