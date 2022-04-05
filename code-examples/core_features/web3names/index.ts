@@ -9,6 +9,7 @@ import { main as main3 } from './3_web3name'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
+  keystore: DemoKeystore,
   did: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
@@ -16,7 +17,6 @@ export async function runAll(
     type: 'sr25519',
     ss58Format: 38
   })
-  const keystore = new DemoKeystore()
 
   const faucetSeed = process.env[SEED_ENV]
   if (!faucetSeed) {

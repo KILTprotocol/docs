@@ -16,7 +16,10 @@ import {
   SubscriptionPromise,
   VerificationKeyType
 } from '@kiltprotocol/types'
-import { init as kiltInit } from '@kiltprotocol/core'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -61,7 +64,7 @@ export async function main(
       })
     })
 
-  await api.disconnect()
+  await kiltDisconnect()
   if (!fullDid) {
     throw 'Could not find the DID just created.'
   }

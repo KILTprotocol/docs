@@ -2,9 +2,12 @@ import { KeyringPair } from '@polkadot/keyring/types'
 
 import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
 import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
-import { BlockchainApiConnection } from '@kiltprotocol/chain-helpers'
+import {
+  connect as kiltConnect,
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { init } from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -12,8 +15,8 @@ export async function main(
   fullDid: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltConnect()
 
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
@@ -42,5 +45,5 @@ export async function main(
     }
   )
 
-  await api.disconnect()
+  await kiltDisconnect()
 }

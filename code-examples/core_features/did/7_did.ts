@@ -1,20 +1,19 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import {
-  BlockchainApiConnection,
-  BlockchainUtils
-} from '@kiltprotocol/chain-helpers'
 import { IDidIdentifier, SubscriptionPromise } from '@kiltprotocol/types'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
+import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { DidChain } from '@kiltprotocol/did'
-import { init } from '@kiltprotocol/core'
 
 export async function main(
   kiltAccount: KeyringPair,
   didIdentifier: IDidIdentifier,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Generate the submittable extrinsic to claim the deposit back, by including the DID identifier for which the deposit needs to be returned and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
   const endpointsCountForDid = await DidChain.queryEndpointsCounts(
@@ -31,5 +30,5 @@ export async function main(
     resolveOn
   })
 
-  await api.disconnect()
+  await kiltDisconnect()
 }

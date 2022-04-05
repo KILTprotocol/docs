@@ -18,13 +18,13 @@ import { main as main9 } from './9_did'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
+  keystore: DemoKeystore,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   const keyring = new Keyring({
     type: 'sr25519',
     ss58Format: 38
   })
-  const keystore = new DemoKeystore()
 
   const faucetSeed = process.env[SEED_ENV]
   if (!faucetSeed) {

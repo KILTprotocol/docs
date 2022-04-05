@@ -12,6 +12,7 @@ import { main as main4 } from './4_account_linking'
 const SEED_ENV = 'FAUCET_SEED'
 
 export async function runAll(
+  keystore: DemoKeystore,
   did: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
@@ -19,7 +20,6 @@ export async function runAll(
     type: 'sr25519',
     ss58Format: 38
   })
-  const keystore = new DemoKeystore()
 
   const faucetSeed = process.env[SEED_ENV]
   if (!faucetSeed) {
@@ -41,13 +41,13 @@ export async function runAll(
   }
 
   console.log('main1 - link account to DID')
-  await main1(did, keystore, faucetAccount, newAccount, resolveOn)
+  await main1(keystore, did, faucetAccount, newAccount, resolveOn)
 
   console.log('main2 - link submitter (faucet) to DID')
-  await main2(did, keystore, faucetAccount, resolveOn)
+  await main2(keystore, did, faucetAccount, resolveOn)
 
   console.log('main3 - remove account link by DID')
-  await main3(did, keystore, faucetAccount, newAccount.address, resolveOn)
+  await main3(keystore, did, faucetAccount, newAccount.address, resolveOn)
 
   console.log('main4 - remove sender (faucet) link from DID')
   await main4(faucetAccount, resolveOn)

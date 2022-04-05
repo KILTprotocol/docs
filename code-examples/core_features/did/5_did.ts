@@ -11,7 +11,10 @@ import {
   SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import { init } from '@kiltprotocol/core'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -20,7 +23,7 @@ export async function main(
   fullDid: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
@@ -50,7 +53,7 @@ export async function main(
   const updatedDidDetails = await FullDidDetails.fromChainInfo(
     fullDid.identifier
   )
-  await api.disconnect()
+  await kiltDisconnect()
 
   if (!updatedDidDetails) {
     throw `Could not find the updated DID ${fullDid.did}`

@@ -5,8 +5,8 @@ import { KeyringPair, SubscriptionPromise } from '@kiltprotocol/types'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 
 export async function main(
-  did: FullDidDetails,
   keystore: DemoKeystore,
+  did: FullDidDetails,
   submitterAccount: KeyringPair,
   linkedAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED

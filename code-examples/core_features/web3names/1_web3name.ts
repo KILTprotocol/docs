@@ -6,13 +6,13 @@ import { SubscriptionPromise } from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
-  did: FullDidDetails,
+  didOwner: FullDidDetails,
   kiltAccount: KeyringPair,
   web3Name: Web3Names.Web3Name,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   const web3NameClaimTx = await Web3Names.getClaimTx(web3Name).then((tx) =>
-    did.authorizeExtrinsic(tx, keystore, kiltAccount.address)
+    didOwner.authorizeExtrinsic(tx, keystore, kiltAccount.address)
   )
   await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, kiltAccount, {
     reSign: true,
