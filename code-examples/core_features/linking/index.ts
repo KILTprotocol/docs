@@ -1,9 +1,11 @@
-import { mnemonicGenerate } from '@polkadot/util-crypto'
+import { mnemonicGenerate, randomAsHex } from '@polkadot/util-crypto'
 
 import { AccountLinks, DemoKeystore } from '@kiltprotocol/did'
 import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
-import { connect as kiltConnect, init as kiltInit } from '@kiltprotocol/core'
 import { Keyring } from '@kiltprotocol/utils'
+import { init as kiltInit } from '@kiltprotocol/core'
+
+import { main as createDid } from '../did/3_did'
 
 import { main as main1 } from './1_account_linking'
 import { main as main2 } from './2_account_linking'
@@ -16,7 +18,6 @@ export async function runAll(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
   await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  const { api } = await kiltConnect()
 
   const keyring = new Keyring({
     type: 'sr25519',
@@ -31,6 +32,9 @@ export async function runAll(
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
+  const did = await createDid(keystore, faucetAccount, randomAsHex(32), resolveOn)
+  console.log(`DID randomly generated: "${did.did}"`)
+
   // Generate a random account each time
   const newAccount = keyring.addFromMnemonic(mnemonicGenerate())
   console.log(`Account randomly generated: "${newAccount.address}"`)
@@ -43,24 +47,15 @@ export async function runAll(
     return
   }
 
-  console.log('main1 - link sender to DID')
-  const fullDid = await main1(api, keystore, faucetAccount, resolveOn)
+  console.log('main1 - link account to DID')
+  await main1(did, keystore, faucetAccount, newAccount, resolveOn)
 
-  const faucetLinkedDid = await AccountLinks.getConnectedDidForAccount(
-    faucetAccount.address
-  )
-  if (faucetLinkedDid) {
-    console.log(
-      `Skipping main2 as the faucet account is already linked to did:kilt:${faucetLinkedDid}`
-    )
-    return
-  }
-  console.log('main2 - link submitter to DID')
-  await main2(keystore, faucetAccount, newAccount, fullDid, resolveOn)
+  console.log('main2 - link submitter (faucet) to DID')
+  await main2(did, keystore, faucetAccount, resolveOn)
 
-  console.log('main3 - remove submitter account link')
-  await main3(faucetAccount, resolveOn)
+  console.log('main3 - remove account link by DID')
+  await main3(did, keystore, faucetAccount, newAccount.address, resolveOn)
 
-  console.log('main4 - remove account link via DID')
-  await main4(keystore, faucetAccount, newAccount.address, fullDid, resolveOn)
+  console.log('main4 - remove sender (faucet) link from DID')
+  await main4(faucetAccount, resolveOn)
 }

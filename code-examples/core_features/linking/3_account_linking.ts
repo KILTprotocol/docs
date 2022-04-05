@@ -1,16 +1,21 @@
-import { AccountLinks } from '@kiltprotocol/did'
+import { AccountLinks, DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { KeyringPair } from '@kiltprotocol/types'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 
 export async function main(
-  kiltAccount: KeyringPair,
+  did: FullDidDetails,
+  keystore: DemoKeystore,
+  submitterAccount: KeyringPair,
+  linkedAccount: KeyringPair['address'],
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  // The tx does not need to be authorized by a DID, but the submitter account removes its own link.
-  const accountUnlinkTx = await AccountLinks.getLinkRemovalByAccountTx()
+  // The DID owner removes the link between itself and the specified account.
+  const accountUnlinkTx = await AccountLinks.getLinkRemovalByDidTx(
+    linkedAccount
+  ).then((tx) => did.authorizeExtrinsic(tx, keystore, submitterAccount.address))
 
-  await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, kiltAccount, {
+  await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, submitterAccount, {
     reSign: true,
     resolveOn
   })
