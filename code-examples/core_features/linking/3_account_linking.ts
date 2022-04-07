@@ -1,22 +1,13 @@
-import { AccountLinks, DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { AccountLinks } from '@kiltprotocol/did'
 import { KeyringPair } from '@kiltprotocol/types'
-import { SubscriptionPromise } from '@kiltprotocol/types'
 
-export async function main(
-  keystore: DemoKeystore,
-  did: FullDidDetails,
-  submitterAccount: KeyringPair,
-  linkedAccount: KeyringPair['address'],
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-) {
-  // The DID owner removes the link between itself and the specified account.
-  const accountUnlinkTx = await AccountLinks.getLinkRemovalByDidTx(
-    linkedAccount
-  ).then((tx) => did.authorizeExtrinsic(tx, keystore, submitterAccount.address))
-
-  await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, submitterAccount, {
-    reSign: true,
-    resolveOn
-  })
+export async function main(linkedAccount: KeyringPair['address']) {
+  const accountWeb3Name = await AccountLinks.queryWeb3Name(linkedAccount)
+  if (accountWeb3Name) {
+    console.log(
+      `Web3 name for account "${linkedAccount}" -> "${accountWeb3Name}"`
+    )
+  } else {
+    console.log(`Account "${linkedAccount}" does not have a linked Web3 name.`)
+  }
 }
