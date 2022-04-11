@@ -1,16 +1,16 @@
+import { AccountLinks } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { KeyringPair } from '@kiltprotocol/types'
 import { SubscriptionPromise } from '@kiltprotocol/types'
-import { Web3Names } from '@kiltprotocol/did'
 
 export async function main(
   kiltAccount: KeyringPair,
-  web3Name: Web3Names.Web3Name,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  // Release the Web3 name by the deposit payer.
-  const web3NameReleaseTx = await Web3Names.getReclaimDepositTx(web3Name)
-  await BlockchainUtils.signAndSubmitTx(web3NameReleaseTx, kiltAccount, {
+  // The tx does not need to be authorized by a DID, but the submitter account removes its own link.
+  const accountUnlinkTx = await AccountLinks.getLinkRemovalByAccountTx()
+
+  await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, kiltAccount, {
     reSign: true,
     resolveOn
   })

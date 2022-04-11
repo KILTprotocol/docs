@@ -2,10 +2,10 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { getCtypeSchema } from './ctypeSchema'
-import { getAccount } from './generateAccount'
-import { getFullDid } from './generateDid'
 import { generateKeypairs } from './generateKeypairs'
+import { getAccount } from './generateAccount'
+import { getCtypeSchema } from './ctypeSchema'
+import { getFullDid } from './generateDid'
 
 export async function ensureStoredCtype(): Promise<Kilt.CType> {
   // Init

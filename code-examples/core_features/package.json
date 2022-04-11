@@ -10,7 +10,7 @@
     "test": "ts-node run_core_features.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.26.0-rc.4",
+    "@kiltprotocol/sdk-js": "0.27.0",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

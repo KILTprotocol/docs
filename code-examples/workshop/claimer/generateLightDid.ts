@@ -1,9 +1,10 @@
 import { config as envConfig } from 'dotenv'
 
+import { mnemonicGenerate } from '@polkadot/util-crypto'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
-import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 export async function generateLightDid(): Promise<{
   lightDid: Kilt.Did.LightDidDetails

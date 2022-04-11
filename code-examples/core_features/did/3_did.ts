@@ -1,17 +1,20 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
-import { init, disconnect } from '@kiltprotocol/core'
 import {
-  FullDidCreationBuilder,
   DemoKeystore,
-  SigningAlgorithms,
-  FullDidDetails
+  FullDidCreationBuilder,
+  FullDidDetails,
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -20,8 +23,8 @@ export async function main(
   authenticationSeed: string,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
-  // Initialise connection to the public KILT test network and get the api object.
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  // Initialize connection to the public KILT test network and get the api object.
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
@@ -31,7 +34,7 @@ export async function main(
   })
 
   // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
-  // The submitter account parameter, ensures that only an entity authorised by the DID subject
+  // The submitter account parameter, ensures that only an entity authorized by the DID subject
   // can submit the extrinsic to the KILT blockchain.
   const fullDid = await new FullDidCreationBuilder(api, {
     publicKey: authenticationKeyPublicDetails.publicKey,
@@ -43,7 +46,7 @@ export async function main(
     })
   })
 
-  await disconnect()
+  await kiltDisconnect()
   if (!fullDid) {
     throw 'Could not find the DID just created.'
   }

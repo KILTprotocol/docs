@@ -1,9 +1,13 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
-import { init, disconnect } from '@kiltprotocol/core'
 import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
+import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
+import {
+  connect as kiltConnect,
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
+import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 
 export async function main(
   keystore: DemoKeystore,
@@ -11,7 +15,8 @@ export async function main(
   fullDid: FullDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ) {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltConnect()
 
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
@@ -24,7 +29,7 @@ export async function main(
 
   // Sign the DID deletion operation using the DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
-  // authorised in this operation, Alice in this case.
+  // authorized in this operation, Alice in this case.
   const didSignedDeletionExtrinsic = await fullDid.authorizeExtrinsic(
     didDeletionExtrinsic,
     keystore as KeystoreSigner<string>,
@@ -40,5 +45,5 @@ export async function main(
     }
   )
 
-  await disconnect()
+  await kiltDisconnect()
 }

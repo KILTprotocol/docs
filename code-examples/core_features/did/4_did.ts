@@ -1,21 +1,25 @@
 import { KeyringPair } from '@polkadot/keyring/types'
+
 import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
-import { init, disconnect } from '@kiltprotocol/core'
 import {
   DemoKeystore,
-  SigningAlgorithms,
   EncryptionAlgorithms,
+  FullDidCreationBuilder,
   FullDidDetails,
-  FullDidCreationBuilder
+  SigningAlgorithms
 } from '@kiltprotocol/did'
 import {
+  EncryptionKeyType,
   SubscriptionPromise,
-  VerificationKeyType,
-  EncryptionKeyType
+  VerificationKeyType
 } from '@kiltprotocol/types'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 
 export async function main(
   keystore: DemoKeystore,
@@ -25,7 +29,7 @@ export async function main(
   encryptionSeed: string,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
@@ -60,7 +64,7 @@ export async function main(
       })
     })
 
-  await disconnect()
+  await kiltDisconnect()
   if (!fullDid) {
     throw 'Could not find the DID just created.'
   }

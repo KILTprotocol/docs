@@ -2,8 +2,8 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { getAccount } from './generateAccount'
 import { generateKeypairs } from './generateKeypairs'
+import { getAccount } from './generateAccount'
 
 export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
