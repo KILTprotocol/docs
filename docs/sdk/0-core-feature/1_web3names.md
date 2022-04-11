@@ -81,7 +81,7 @@ For DIDs that have also claimed a Web3 name, the linking feature opens up the wa
 
 An account can be linked to a DID in one of two ways:
 
-1. The account to be linked generates a signature over the raw byte-encoded `(SubmitterDid, BlockNumberExpiration)` payload:
+1. The account to be linked generates a signature over the payload `<Bytes>(SubmitterDid, BlockNumberExpiration)</Bytes>`, which is the default encoding of the PolkadotJS extension:
 
 <CodeBlock className="language-js">
   {Example5}
