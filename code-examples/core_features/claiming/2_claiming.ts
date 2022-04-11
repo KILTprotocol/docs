@@ -1,5 +1,5 @@
 import { CType, Claim } from '@kiltprotocol/core'
-import type { IClaim, IDidDetails } from '@kiltprotocol/sdk-js'
+import type { IClaim, IDidDetails } from '@kiltprotocol/types'
 
 export async function main(
   ctype: CType,

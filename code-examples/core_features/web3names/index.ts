@@ -1,6 +1,7 @@
-import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
 import { DemoKeystore, FullDidDetails, Web3Names } from '@kiltprotocol/did'
 import { Keyring, UUID } from '@kiltprotocol/utils'
+import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { SubscriptionPromise } from '@kiltprotocol/types'
 
 import { main as main1 } from './1_web3name'
 import { main as main2 } from './2_web3name'

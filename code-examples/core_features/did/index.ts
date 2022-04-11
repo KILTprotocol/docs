@@ -3,7 +3,7 @@ import { randomAsHex } from '@polkadot/util-crypto'
 import { DemoKeystore, FullDidDetails } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
-import { SubscriptionPromise } from '@kiltprotocol/sdk-js'
+import { SubscriptionPromise } from '@kiltprotocol/types'
 
 import { main as main1 } from './1_did'
 import { main as main2 } from './2_did'

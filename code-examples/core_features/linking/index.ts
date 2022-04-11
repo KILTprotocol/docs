@@ -6,8 +6,9 @@ import {
   FullDidDetails,
   Web3Names
 } from '@kiltprotocol/did'
-import { BlockchainUtils, SubscriptionPromise } from '@kiltprotocol/sdk-js'
+import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
+import { SubscriptionPromise } from '@kiltprotocol/types'
 
 import { main as main1 } from './1_account_linking'
 import { main as main2 } from './2_account_linking'
