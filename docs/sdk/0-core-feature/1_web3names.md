@@ -71,7 +71,7 @@ The KILT SDK provides easy-to-use querying functions to perform both operations 
   {Example4}
 </CodeBlock>
 
-### Linking accounts to DIDs and Web3 names
+### Link accounts to DIDs and Web3 names
 
 Beyond linking a Web3 name, KILT allows DID owners to link multiple accounts under the same DID.
 These accounts are not specific to the KILT blockchain but can reference any chain within the Kusama ecosystem.
@@ -93,11 +93,15 @@ An account can be linked to a DID in one of two ways:
   {Example6}
 </CodeBlock>
 
+### Query the Web3 name for an account
+
 Once an account has been linked to a DID, its Web3 name can be retrieved via the SDK:
 
 <CodeBlock className="language-js">
   {Example7}
 </CodeBlock>
+
+### Unlink an account from its DID and viceversa
 
 Similarly to how a new account <-> DID link is created, removing a link can happen in one of two ways:
 
