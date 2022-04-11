@@ -1,10 +1,11 @@
 import { config as envConfig } from 'dotenv'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateKeypairs } from './generateKeypairs'
 import { generateRequest } from '../claimer/generateRequest'
 import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
-import { generateKeypairs } from './generateKeypairs'
 
 export async function attestClaim(
   request: Kilt.IRequestForAttestation

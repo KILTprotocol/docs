@@ -3,8 +3,8 @@ import { config as envConfig } from 'dotenv'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createClaim } from './createClaim'
-import { getCtypeSchema } from '../attester/ctypeSchema'
 import { generateKeypairs } from './generateKeypairs'
+import { getCtypeSchema } from '../attester/ctypeSchema'
 
 // create and return a RequestForAttestation from claim
 async function requestFromClaim(

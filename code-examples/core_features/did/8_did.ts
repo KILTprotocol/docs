@@ -2,12 +2,15 @@ import { KeyringPair } from '@polkadot/keyring/types'
 
 import {
   DemoKeystore,
+  FullDidDetails,
   LightDidDetails,
-  SigningAlgorithms,
-  FullDidDetails
+  SigningAlgorithms
 } from '@kiltprotocol/did'
-import { init, disconnect } from '@kiltprotocol/core'
 import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
+import {
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 
 export async function main(
@@ -16,7 +19,7 @@ export async function main(
   authenticationSeed: string,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
@@ -37,7 +40,7 @@ export async function main(
     kiltAccount.address,
     keystore,
     async (migrationTx) => {
-      // The extrinsic can then be submitted by the authorised account as usual.
+      // The extrinsic can then be submitted by the authorized account as usual.
       await BlockchainUtils.signAndSubmitTx(migrationTx, kiltAccount, {
         reSign: true,
         resolveOn
@@ -45,7 +48,7 @@ export async function main(
     }
   )
 
-  await disconnect()
+  await kiltDisconnect()
   if (!migratedFullDid) {
     throw 'Could not find the DID just migrated.'
   }

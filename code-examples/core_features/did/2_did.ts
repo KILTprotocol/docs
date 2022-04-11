@@ -1,11 +1,11 @@
 import {
   DemoKeystore,
+  EncryptionAlgorithms,
   LightDidDetails,
-  SigningAlgorithms,
-  EncryptionAlgorithms
+  SigningAlgorithms
 } from '@kiltprotocol/did'
+import { EncryptionKeyType, VerificationKeyType } from '@kiltprotocol/types'
 import type { DidServiceEndpoint } from '@kiltprotocol/types'
-import { VerificationKeyType, EncryptionKeyType } from '@kiltprotocol/types'
 
 export async function main(keystore: DemoKeystore): Promise<void> {
   const authenticationSeed = '0x123456789'

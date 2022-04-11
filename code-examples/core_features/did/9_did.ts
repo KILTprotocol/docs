@@ -1,25 +1,30 @@
 import { KeyringPair } from '@polkadot/keyring/types'
 
 import {
-  DemoKeystore,
-  SigningAlgorithms,
-  FullDidCreationBuilder,
-  DidBatchBuilder
-} from '@kiltprotocol/did'
-import { init, disconnect, CType } from '@kiltprotocol/core'
-import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
-import {
-  BlockchainUtils,
-  BlockchainApiConnection
+  BlockchainApiConnection,
+  BlockchainUtils
 } from '@kiltprotocol/chain-helpers'
+import {
+  CType,
+  disconnect as kiltDisconnect,
+  init as kiltInit
+} from '@kiltprotocol/core'
+import {
+  DemoKeystore,
+  DidBatchBuilder,
+  FullDidCreationBuilder,
+  FullDidDetails,
+  SigningAlgorithms
+} from '@kiltprotocol/did'
+import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 import { UUID } from '@kiltprotocol/utils'
 
 export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-): Promise<void> {
-  await init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+): Promise<FullDidDetails> {
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
 
   // Ask the keystore to generate a new keypair to use for authentication.
@@ -53,7 +58,7 @@ export async function main(
     .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
     .consume(keystore, kiltAccount.address)
 
-  // The authorised used submits the batch to the chain
+  // The authorized user submits the batch to the chain
   await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
     reSign: true,
     resolveOn
@@ -63,7 +68,8 @@ export async function main(
     throw 'One of the two CTypes has not been properly stored.'
   }
 
-  await disconnect()
+  await kiltDisconnect()
+  return fullDid
 }
 
 function getRandomCType(): CType {
