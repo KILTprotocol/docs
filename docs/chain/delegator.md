@@ -12,8 +12,8 @@ Anyone can delegate to a collator candidate by delegating at least 20 KILT and c
 
 If the collator has a delegation pool reaching the maximum (30 at the time of writing), a delegator candidate must stake more than the lowest delegator.
 
-- That kicked delegator will be replaced by the delegator with a higher delegation immediately.
-- The kicked delegator's stake is prepared for unstaking as if revoking the delegation (*see [revoking](#Revoking)*).
+- The kicked delegator will be replaced by the delegator with a higher delegation immediately.
+- The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*).
 - A delegator needs to wait 7 days to be able to unlock the stake.
 
 **An account can only delegate to one collator!**
@@ -58,21 +58,24 @@ Once a collator candidate exits by calling `execute_leave_candidates`, all of th
 A revoking delegation has to wait 7 days before unlocking the staked amount back by executing `unlock_unstaked`.
 
 ## Lifecycle of a Delegator
+
+The following diagram depicts the lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
+
 ```mermaid
 flowchart TD
-   A["Hold at least 20 KILT"] --> |chose candidate| B("Candidate chosen")
-   B --> |join_delegators| C{"Can delegate? E.g. \n 1. There are empty \n delegations or \n 2. You delegate more \n than someone else"}
-   C --> |yes| D("Delegating to \n Collator Candidate")
-   C --> |no| C2{"Previously delegated \n without unlocking?"}
+   A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen")
+   B --> |join_delegators| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"}
+   C --> |yes| D("Delegating to a Collator Candidate")
+   C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
    C2 --> |no| A
    C2 --> |yes| G 
    D --> |"leave \n delegators"| E("Not delegating")
    D --> |"revoke \n delegation"| E
-   D --> |"your candidate \n  leaves"| E
-   E --> F{"Delegate to \n another Candidate?"}
+   D --> |"your collator \n candidate leaves"| E
+   E --> F{"Delegate to \n another candidate?"}
    F --> |yes| B
    F --> |no| G("Locked tokens")
-   G --> H{"Waited 7 days?"}
+   G --> |want to unlock| H{"Waited 7 days?"}
    H --> |yes| I("Balance with expired lock")
    H --> |no| F
    I --> |unlock_unstaked| A
