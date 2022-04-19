@@ -81,21 +81,21 @@ flowchart TD
    I --> |unlock_unstaked| A
 
        %% Styles
-    A:::unstaked_free_kilt
-    B:::pre_delegating_check
-    C:::pre_delegating_check
-    C2:::not_delegating
-    D:::actively_delegating
-    E:::not_delegating
-    F:::not_delegating
-    G:::pre_unlock_unstaked
-    H:::pre_unlock_unstaked
-    I:::pre_unlock_unstaked
+    A:::unstakedFreeKilt
+    B:::preDelegationCheck
+    C:::preDelegationCheck
+    C2:::notDelegating
+    D:::activelyDelegating
+    E:::notDelegating
+    F:::notDelegating
+    G:::preUnlockStaked
+    H:::preUnlockStaked
+    I:::preUnlockStaked
     
     %% StyleDef
-    classDef pre_delegating_check fill:#FFF4BD,stroke:none;
-    classDef not_delegating fill:#F1C0B9, stroke:black, stroke-width:1px;;
-    classDef unstaked_free_kilt fill:#85D2D0,stroke:black, stroke-width:1px;
-    classDef actively_delegating fill:#94C973,stroke:#333, stroke-width:2px;
-    classDef pre_unlock_unstaked fill:#F37970, stroke:black;
+    classDef preDelegationCheck fill:#FFF4BD,stroke:none;
+    classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;;
+    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
+    classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
+    classDef preUnlockStaked fill:#F37970, stroke:black;
 ```

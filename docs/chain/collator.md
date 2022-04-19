@@ -534,6 +534,8 @@ When you intent to stop collating or just being a collator candidate, you have t
 
 First, you signal your intent by calling `init_leave_candidates`.
 You will both be removed from the `CandidatePool` and your state switches from `Active` to `Leaving(leave_round)`, where `leave_round` reflects the number of sessions in which you can actually leave.
+You still need to stay online and build blocks for the current and next sessions.
+Of course, you will continue to receive rewards for your authored blocks.
 A leaving candidate cannot be selected as an active collator for the sessions hereinafter.
 Moreover, you cannot receive new Delegations and existing Delegations cannot be adjusted.
 However, Delegations can still be revoked.
@@ -565,21 +567,21 @@ flowchart TD
     L -->|unlock_unstaked|A
     
     %% style assignement
-    A:::unstaked_free_kilt
-    B:::active_collator
-    I:::leaving_locked
-    G:::leaving_locked
-    H:::leaving_unlocked
-    J:::leaving_unlocked
-    K:::leaving_unlocked
-    L:::staked_releasable_kilt
+    A:::unstakedFreeKilt
+    B:::activeCollator
+    I:::leavingLocked
+    G:::leavingLocked
+    H:::leavingUnlocked
+    J:::leavingUnlocked
+    K:::leavingUnlocked
+    L:::stakedReleasableKilt
     
     %% style definition
-    classDef leaving_locked fill:#FFF4BD,stroke:none;
-    classDef leaving_unlocked fill:#F1C0B9, stroke:black, stroke-width:1px;;
-    classDef unstaked_free_kilt fill:#85D2D0,stroke:black, stroke-width:1px;
-    classDef active_collator fill:#94C973,stroke:#333, stroke-width:2px;
-    classDef staked_releasable_kilt fill:#F37970, stroke:black;
+    classDef leavingLocked fill:#FFF4BD,stroke:none;
+    classDef leavingUnlocked fill:#F1C0B9, stroke:black, stroke-width:1px;;
+    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
+    classDef activeCollator fill:#94C973,stroke:#333, stroke-width:2px;
+    classDef stakedReleasableKilt fill:#F37970, stroke:black;
 ```
 
 ## Benchmarking (optional) {#benchmarking}
