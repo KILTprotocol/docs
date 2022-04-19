@@ -57,7 +57,7 @@ The keystore ...
 
 To create a DID we need a keystore.
 For our <span class="label-role attester">Attester</span> we'll need all four types of keys.
-Since three of the key types use are used for signatures, we can use the same key for these.
+Since three of the key types are used for signatures, we can use the same key for these.
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.
 
