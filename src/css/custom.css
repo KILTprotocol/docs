@@ -66,3 +66,9 @@ html[data-theme='dark'] .header-github-link:before {
 .label-role.verifier {
 	background-color: #ff00bd38;
 }
+
+#mermaid-svg-0,
+#mermaid-svg-1,
+#mermaid-svg-2 {
+	min-width: 100% !important;
+}

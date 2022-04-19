@@ -61,10 +61,10 @@ A revoking delegation has to wait 7 days before unlocking the staked amount back
 
 The following diagram depicts the lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
 
-<Mermaid
-chart={`flowchart TD
-   A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen")
-   B --> |join_delegators| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"}
+```mermaid
+flowchart TD
+   A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen");
+   B --> |join_delegators| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
    C --> |yes| D("Delegating to a Collator Candidate")
    C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
    C2 --> |no| A
@@ -80,7 +80,7 @@ chart={`flowchart TD
    H --> |no| F
    I --> |unlock_unstaked| A
 
-       %% Styles
+    %% Styles
     A:::unstakedFreeKilt
     B:::preDelegationCheck
     C:::preDelegationCheck
@@ -98,5 +98,4 @@ chart={`flowchart TD
     classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
     classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
     classDef preUnlockStaked fill:#F37970, stroke:black;
-  }
->
+```

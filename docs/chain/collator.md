@@ -5,8 +5,6 @@ title: Become a collator
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Mermaid from '@theme/Mermaid';
-
 
 We will guide you through the steps to become a collator.
 First we will discuss the hardware requirements and how you could test the performance of your node.
@@ -551,8 +549,8 @@ Moreover, if you are you are one of the top staked candidates, you will automati
 In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
 There is a delay of 7 days in block time before you can free them by calling `unlock_unstaked`.
 
-<Mermaid
-chart={`flowchart TD
+```mermaid
+flowchart TD
     A["Hold (at least) 10K KILT"] -->|join_candidates| B(Candidate)
     B --->|init_leave_candidates|I("Leaving Candidate\n(locked)")
     I ---> G{"2 Sessions (4h)\n passed?"}
@@ -582,8 +580,7 @@ chart={`flowchart TD
     classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
     classDef activeCollator fill:#94C973,stroke:#333, stroke-width:2px;
     classDef stakedReleasableKilt fill:#F37970, stroke:black;
-  }
->
+```
 
 ## Benchmarking (optional) {#benchmarking}
 

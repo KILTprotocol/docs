@@ -3,8 +3,6 @@ id: overview
 title: 👓 Overview
 ---
 
-import Mermaid from '@theme/Mermaid';
-
 In this tutorial, we'll run through the full story of a claim.
 
 To do so, three actors will be involved: a <span class="label-role claimer">Claimer</span>, an <span class="label-role attester">Attester</span> and a <span class="label-role verifier">Verifier</span>.
@@ -14,18 +12,34 @@ These three actors will be exchanging various objects.
 The most important one is the `credential`.
 This is how a `credential` is created:
 
-<Mermaid
-chart={`graph TD;
-CType --> claim;
-claimContents[Claim Content] --> claim;
-claimerDid[Claimer DID] --> claim;
-claim --> requestForAttestation;
-requestForAttestation --> attestation;
-requestForAttestation --> credential;
-AttesterDID[Attester DID] --> attestation;
-attestation --> credential;
-`}
-/>
+```mermaid
+graph TD;
+    CType --> claim;
+    claimContents[Claim Content] --> claim;
+    claimerDid[Claimer DID] --> claim;
+    claim --> requestForAttestation;
+    requestForAttestation --> attestation;
+    requestForAttestation --> credential;
+    AttesterDID[Attester DID] --> attestation;
+    attestation --> credential;
+
+    %% style assignement
+    claimContents:::claimContent
+    claimerDid:::claimer
+    claim:::claim
+    AttesterDID:::attester
+    attestation:::attestation
+    requestForAttestation:::claim
+    credential:::verifier
+    
+    %% style definition
+    classDef attester fill:#ff690036, stroke:black, stroke-width:1px;;
+    classDef attestation fill:#ff690036, stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
+    classDef claimer fill:#00ffff44,stroke:black, stroke-width:1px;
+    classDef claimContent fill:#00ffff44,stroke:none;
+    classDef claim fill:#00ffff44,stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
+    classDef verifier fill:#ff00bd38,stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
+```
 
 That's a mouthful, but don't worry - we'll dig deeper into the elements of this diagram in the next steps! For now, just keep in mind:
 
