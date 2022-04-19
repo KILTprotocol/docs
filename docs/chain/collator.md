@@ -538,7 +538,8 @@ Second, after waiting until the `leave_round`-th session, you can call `execute_
 
 However, you can still cancel your exit request by calling `cancel_leave_candidates` if you have not exited yet and the CandidatePool is not full already. Upon cancelling your exit intent, your state switches back to `Active` and you still have all Delegations which were not revoked in the meantime. Moreover, if you are you are one of the top staked candidates, you will automatically become a Collator in two rounds (~4 hours).
 
-In case you executed the exit request, you cannot immediately unlock your previously staked tokens. There is a delay of 7 days in block time before you can free them by calling `unlock_unstaked`. 
+In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
+There is a delay of 7 days in block time before you can free them by calling `unlock_unstaked`.
 
 ```mermaid
 flowchart TD

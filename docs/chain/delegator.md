@@ -34,7 +34,7 @@ A delegator can increase and decrease the stake by calling either  `delegator_st
 2. Submit the following extrinsic: parachainStaking -> `delegator_stake_more` or `delegator_stake_less`.
 3. Select the collator account: Choose the desired stake amount.
 
-## How to revoke
+## How to revoke your stake
 
 A delegator revokes their delegation by calling `revoke_delegation`, reducing the delegation by the full amount of the delegation.
 
