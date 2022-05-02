@@ -8,42 +8,47 @@ In this tutorial, we'll run through the full story of a claim.
 To do so, three actors will be involved: a <span class="label-role claimer">Claimer</span>, an <span class="label-role attester">Attester</span> and a <span class="label-role verifier">Verifier</span>.
 You'll be playing all three roles. In the real world, these actors would be running different services, so we set up different folders to mimic this separation.
 
-These three actors will be exchanging various objects.
-The most important one is the `credential`.
-This is how a `credential` is created:
+Both the <span class="label-role verifier">Verifier</span> and the <span class="label-role attester">Attester</span> have to interact with the KILT blockchain.
+But only the <span class="label-role attester">Attester</span> is required to own KILTs since he has to pay for storing attestation on chain.
+The <span class="label-role verifier">Verifier</span> only needs to query the KILT blockchain to ensure that the attestation is still valid and wasn't revoked.
+The <span class="label-role claimer">Claimer</span> is not required to query the blockchain, but he might do so to check whether their credential is still valid or the attester has revoked it.
+
+## Request an Attestation
+
+Before the <span class="label-role claimer">Claimer</span> can receive an attestation, he needs to generate a LightDID, which he can do completely off-chain.
+The <span class="label-role attester">Attester</span> has to register their DID on chain and therefore needs KILT coins.
+
+After <span class="label-role attester">Attester</span> and <span class="label-role claimer">Claimer</span> have setup their identities the claimer can start the attestation process by requesting an attestation from the <span class="label-role attester">Attester</span>.
 
 ```mermaid
-graph TD;
-    CType --> claim;
-    claimContents[Claim Content] --> claim;
-    claimerDid[Claimer DID] --> claim;
-    claim --> requestForAttestation;
-    requestForAttestation --> attestation;
-    requestForAttestation --> credential;
-    AttesterDID[Attester DID] --> attestation;
-    attestation --> credential;
-
-    %% style assignement
-    claimContents:::claimContent
-    claimerDid:::claimer
-    claim:::claim
-    AttesterDID:::attester
-    attestation:::attestation
-    requestForAttestation:::claim
-    credential:::verifier
-    
-    %% style definition
-    classDef attester fill:#ff690036, stroke:black, stroke-width:1px;;
-    classDef attestation fill:#ff690036, stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
-    classDef claimer fill:#00ffff44,stroke:black, stroke-width:1px;
-    classDef claimContent fill:#00ffff44,stroke:none;
-    classDef claim fill:#00ffff44,stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
-    classDef verifier fill:#ff00bd38,stroke:black, stroke-width:1px, stroke-dasharray: 5 5;
+sequenceDiagram
+actor C as Claimer
+actor A as Attester
+participant B as KILT Blockchain
+    C->>+C: Setup request for attestation
+    C->>+A: Transmit request for attestation
+    A->>A: Validate received attributes
+    A->>+B: Store attestation
+    B-->>-A: Attestation hash
+    A-->>-C: Attestation Hash
+    C->>C: Build Credential
 ```
 
-That's a mouthful, but don't worry - we'll dig deeper into the elements of this diagram in the next steps! For now, just keep in mind:
+## Verify an Attestation
 
-- A credential has a certain type (CType);
-- Obtaining a credential is a multiple-step process that involves a <span class="label-role claimer">Claimer</span> - such as a citizen who makes a claim about themselves - and an <span class="label-role attester">Attester</span> - such as a government agency that certifies this claim. A <span class="label-role verifier">Verifier</span> - such as a government officer - will later on check the validity of the credential.
+The <span class="label-role verifier">Verifier</span> request a presentation for the claimer for a specific CType.
+It's important to require a specific CType since that's what gives the presentation meaning.
+We will [explain CType in more detail](attester/ctype) in a later chapter.
+A presentation is derived from a credential and doesn't need to contain all attributes.
+A <span class="label-role claimer">Claimer</span> could choose to hide their address from their Passport if the <span class="label-role verifier">Verifier</span> only is interested in their age.
 
-OK, let's start by generating KILT <span class="label-role attester">Attester</span> account, and then we'll go on and create a claim.
+```mermaid
+sequenceDiagram
+actor C as Claimer
+actor V as Verifier
+participant B as KILT Blockchain
+    V->>+C: Request presentation for CType
+    C->>C: Derive a presentation from a credential
+    C-->>-V: submit presentation
+    V->>B: check validity of presentation
+```
