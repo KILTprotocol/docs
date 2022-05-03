@@ -15,10 +15,7 @@ const featureRows = [
       imageUrlDark: 'img/community_dark.svg',
       link: 'docs/chain/collator',
       description: (
-        <>
-          Become a collator in for our Peregrine Testnet and later help
-          decentralizing the KILT Blockchain.
-        </>
+        <>Become a collator in for our Peregrine Testnet and later help decentralizing the KILT Blockchain.</>
       ),
     },
     {
@@ -26,17 +23,18 @@ const featureRows = [
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
       link: 'docs/sdk/workshop/welcome',
-      description: (
-        <>Explore the most fundamental features of the KILTprotocol.</>
-      ),
+      description: <>Explore the most fundamental features of the KILTprotocol.</>,
     },
     {
-      title: 'Whitepaper',
+      title: 'Whitepaper 2020',
       imageUrl: 'img/whitepaper_light.svg',
       imageUrlDark: 'img/whitepaper_dark.svg',
       link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
       description: (
-        <>Read up on the theoretical concepts behind KILT Protocol.</>
+        <>
+          Read the original whitepaper. KILT evolved a lot since then, but the ideas and values are still part of our
+          identity even though the technical details are outdated
+        </>
       ),
     },
   ],
@@ -71,10 +69,7 @@ export default function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
   return (
-    <Layout
-      title={siteConfig.title}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout title={siteConfig.title} description="Description will go into a meta tag in <head />">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
