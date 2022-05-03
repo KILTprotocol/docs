@@ -36,7 +36,7 @@ For example, a very basic CType for a driver's license could look like this:
 {
   "schema": {
     "$id": "kilt:ctype:0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5",
-    "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+    "$schema": "ipns://k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json",
     "title": "Drivers License",
     "properties": {
       "name": {

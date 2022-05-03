@@ -76,7 +76,7 @@ function getRandomCType(): CType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
   const randomFactor = UUID.generate()
   return CType.fromSchema({
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
+    $schema: 'ipns://k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json',
     title: `CType ${randomFactor}`,
     properties: {
       name: {

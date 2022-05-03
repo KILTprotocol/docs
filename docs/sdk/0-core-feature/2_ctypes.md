@@ -10,7 +10,7 @@ title: CTypes
 KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format. This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with the definition of its characteristics. The following are all required properties of the schema, with no additional properties allowed:
 
 - Identifier: `$id` in the format `kilt:ctype:0x{cTypeHash}`
-- KILT specific JSON-Schema: '[http://kilt-protocol.org/draft-01/ctype-input#](http://kilt-protocol.org/draft-01/ctype-input#)'
+- KILT specific JSON-Schema: [`ipns://k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json`](https://ipfs.io/ipns/k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json)
 - Title: defines a user-friendly name for the CType that makes it easier for users to contextualise
 - Properties: Each property is the attribute the claimer wishes to have attested by the attester.
 
@@ -29,7 +29,7 @@ When making a claim for a CType, all the following properties are required:
 ```js
 {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
-  $schema: 'http://kilt-protocol.org/draft-01/ctype#',
+  $schema: 'ipns://k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json',
   title: 'CtypeModel 2',
   properties: {
     name: { type: 'string' },
@@ -50,7 +50,7 @@ A claim from a nested CType requires the given CType, a list of comprised schema
 ```js
 nested = {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c20f9f126e5053fas503e459af4255cf8011d51010',
-  $schema: 'http://kilt-protocol.org/draft-01/ctype#',
+  $schema: 'ipns://k51qzi5uqu5dkglos1mtdukd4axyhwav7e98bga8g2nptrkgcbj9506ruoadiz/v1/ctype.json',
   title: 'KYC and Passport',
   type: 'object',
   properties: {
