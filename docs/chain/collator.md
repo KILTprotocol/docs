@@ -27,7 +27,7 @@ You can measure the performance of the new hardware by benchmarking it using [th
 ## Setup a Node
 
 There are several ways to build and run a collator node.
-We show both how to use a Docker image and how to compile the source code directly from [our chain repository](https://github.com/KILTprotocol/mashnet-node).
+We show both how to use a Docker image and how to compile the source code directly from [our chain repository](https://github.com/KILTprotocol/kilt-node).
 
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT collator can be part of:
 
@@ -121,7 +121,7 @@ Through out this guide the option `--state-cache-size=1` was added to reduce the
   ]}>
 <TabItem value="Binary">
 
-We recommend following the instructions in the [KILT chain repository](https://github.com/KILTprotocol/mashnet-node).
+We recommend following the instructions in the [KILT chain repository](https://github.com/KILTprotocol/kilt-node).
 Below is the command to build the KILT collator executable.
 The command must be run from the root directory of the repository after it has been cloned.
 
@@ -563,7 +563,7 @@ flowchart TD
     K -->|yes|L("Balance with expired lock")
     K -->|no|J
     L -->|unlock_unstaked|A
-    
+
     %% style assignement
     A:::unstakedFreeKilt
     B:::activeCollator
@@ -573,7 +573,7 @@ flowchart TD
     J:::leavingUnlocked
     K:::leavingUnlocked
     L:::stakedReleasableKilt
-    
+
     %% style definition
     classDef leavingLocked fill:#FFF4BD,stroke:none;
     classDef leavingUnlocked fill:#F1C0B9, stroke:black, stroke-width:1px;;
@@ -601,7 +601,7 @@ At the moment, we have benchmarked the spiritnet and peregrine runtimes on an AM
 After executing the benchmarks on a server compare the weights to the official KILT weights.
 Lower weights are always better.
 
-The commands executed to benchmark the KILT runtimes can be found in the official benchmark files for both [spiritnet](https://github.com/KILTprotocol/mashnet-node/tree/master/runtimes/spiritnet/src/weights) and [peregrine](https://github.com/KILTprotocol/mashnet-node/tree/master/runtimes/peregrine/src/weights).
+The commands executed to benchmark the KILT runtimes can be found in the official benchmark files for both [spiritnet](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/spiritnet/src/weights) and [peregrine](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/peregrine/src/weights).
 
 Below is an example of benchmarking for the the `balances` pallet.
 
