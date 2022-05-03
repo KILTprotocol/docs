@@ -14,6 +14,13 @@
 	--ifm-color-primary-light: #f16e42;
 	--ifm-color-primary-lighter: #f2784f;
 	--ifm-color-primary-lightest: #f59676;
+	--ifm-color-secondary: #8c175b;
+	--ifm-color-secondary-dark: #7e1552;
+	--ifm-color-secondary-darker: #77144d;
+	--ifm-color-secondary-darkest: #621040;
+	--ifm-color-secondary-light: #9a1964;
+	--ifm-color-secondary-lighter: #a11a69;
+	--ifm-color-secondary-lightest: #b61e76;
 	--ifm-code-font-size: 95%;
 }
 
@@ -71,4 +78,8 @@ html[data-theme='dark'] .header-github-link:before {
 #mermaid-svg-1,
 #mermaid-svg-2 {
 	min-width: 100% !important;
+}
+
+.nested-tab {
+  padding-left: 20px;
 }

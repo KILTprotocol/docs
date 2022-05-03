@@ -44,3 +44,35 @@
 html[data-theme='dark'] .featureLink {
   color: white;
 }
+
+.nested-tab-magenta[data-theme='light'] {
+  color: var(--ifm-color-secondary);
+}
+
+.nested-tab-magenta[aria-selected='true'] {
+  border-bottom-color: var(--ifm-color-secondary);
+  background: var(--ifm-color-secondary);
+  color: white;
+}
+
+.nested-tab-magenta[data-theme='dark'] {
+    color: var(--ifm-color-secondary-lightest)
+}
+
+li[data-value='magenta'][data-theme='light'] {
+  color: var(--ifm-color-secondary);
+}
+
+li[data-value='magenta'][aria-selected='true'] {
+  border-bottom-color: var(--ifm-color-secondary);
+  background: var(--ifm-color-secondary);
+  color: white;
+}
+
+li[data-value='magenta'][aria-selected='false'] {
+  color:  var(--ifm-tabs-color);
+}
+
+li[data-value='magenta'][data-theme='dark'] {
+    color: var(--ifm-color-secondary-lightest)
+}
