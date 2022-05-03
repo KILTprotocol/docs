@@ -15,7 +15,7 @@ const featureRows = [
       imageUrlDark: 'img/community_dark.svg',
       link: 'docs/chain/collator',
       description: (
-        <>Become a collator in for our Peregrine Testnet and later help decentralizing the KILT Blockchain.</>
+        <>Become a collator and help decentralizing the KILT Blockchain.</>
       ),
     },
     {
@@ -23,7 +23,7 @@ const featureRows = [
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
       link: 'docs/sdk/workshop/welcome',
-      description: <>Explore the most fundamental features of the KILTprotocol.</>,
+      description: <>Claim, Attest and verify in our SDK workshop.</>,
     },
     {
       title: 'Whitepaper 2020',
@@ -33,7 +33,7 @@ const featureRows = [
       description: (
         <>
           Read the original whitepaper. KILT evolved a lot since then, but the ideas and values are still part of our
-          identity even though the technical details are outdated
+          identity even though the technical details are outdated.
         </>
       ),
     },
