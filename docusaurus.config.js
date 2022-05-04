@@ -19,6 +19,11 @@ module.exports = {
       },
       items: [
         {
+          type: 'doc',
+          docId: 'what-is-kilt',
+          label: 'What is KILT?',
+        },
+        {
           to: 'docs/sdk/introduction',
           activeBasePath: 'docs/sdk',
           label: 'SDK',
@@ -112,7 +117,7 @@ module.exports = {
       {
         docs: {
           remarkPlugins: [
-            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
             require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),
