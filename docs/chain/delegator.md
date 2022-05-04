@@ -16,11 +16,9 @@ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%
 5. Choose the desired stake amount.
 
 :::info
-
 A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
 In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
 So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
-
 :::
 
 
@@ -32,10 +30,8 @@ If your chosen collator candidate has at least one empty slot in their delegatio
 <!-- TODO: Add Diagram -->
 
 :::info
-
 If your chosen collator fails to produce blocks, neither the collator itself nor their delegators receive rewards.
 This can happen if they have connectivity issues or are not building blocks fast enough. 
-
 :::
 
 ### Unhappy path 
@@ -52,10 +48,8 @@ When that happens,
 
 <!-- TODO: Link round to Glossary -->
 :::info
-
 For now, an account can only delegate to one collator at any time!
 Moreover, you can only (re-) delegate once per staking round, e.g. call `parachainStaking -> {joinDelegators, delegateAnotherCandidate}`.
-    
 :::
 
 
@@ -78,13 +72,11 @@ However, if you decreased your delegation amount, the reverse applies and you re
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount which you want to add or remove from your current stake
    1. If you want to increase your stake, you can add up to your maximum available balance
-   2. If you want to decrease your stake, you can reduce down to 20 KILT, e.g., any value up to `current_stake - 20` will be accepted
+   2. If you want to decrease your stake, you can reduce down to 20 KILT, e.g., any value up to the difference of your current stake and the minimum delegation (20 KILT) will be accepted
 
 :::info
-
 You cannot adjust your stake if your collator candidate is in the leaving state, e.g., they want to stop collating.
 However, you can still [revoke](#how-to-revoke-your-delegation) your delegation or [exit](#how-to-exit).
-
 :::
 
 ## How to revoke your delegation
@@ -107,7 +99,7 @@ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%
 
 :::info
 Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [exiting](#how-to-exit).
-Of course, this will change if the community decides to enable multiple delegations per account.
+Of course, this will change if the community decides to enable multiple delegations per account
 :::
 
 ## How to exit
@@ -124,7 +116,7 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 
 :::info
 Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [revoking a single delegation](#how-to-revoke-your-delegation).
-Of course, this will change if the community decides to enable multiple delegations per account.
+Of course, this will change if the community decides to enable multiple delegations per account
 :::
 
 ## How to unlock unstaked tokens
@@ -139,12 +131,10 @@ Before you can unlock your previously staked tokens, you have to wait 7 days (in
 4. Select the delegator's KILT address (the *Id: AccountId* field)
 
 :::info
-
 Even if you have not exited, reduced or removed your delegation, you can still have unstaked tokens.
 This can happen if either of the following events occurred
 * You were kicked out of your collator candidate's delegation pool because all current delegators have a higher stake
 * Your collator candidate intentionally left the collator pool.
-
 :::
 
 ## Lifecycle of a Delegator

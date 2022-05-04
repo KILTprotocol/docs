@@ -39,11 +39,9 @@ There are currently two different runtimes (i.e., two different parachain enviro
 Each runtime has its own benchmark measurements.
 
 :::info
-
 The remainder of this guide explain how to set up and run a collator for the official **Spiritnet** parachain.
 Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
 Hence, at each step where it is applicable, we indicate what differs between the Peregrine and Spiritnet configuration for the collator node to join either network.
-
 :::
 
 ### Configuration
@@ -77,7 +75,6 @@ Connecting from a remote host to either the collator RPC endpoint or WS endpoint
 Be aware that it is highly discouraged to publicly expose an RPC endpoint, especially if it allows the execution of unsafe RPC calls!
 You should be the only one able to call the RPC endpoint.
 For a secure setup, follow the instructions in the section about [generating the session keys](#generating-session-keys).
-
 :::
 
 #### WASM runtime execution
@@ -139,10 +136,8 @@ cargo build --release -p kilt-parachain
 ```
 
 :::info
-
 We discourage to use the default `develop` branch to build the executable.
 Instead, the latest commit from `master` should be used.
-
 :::
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully.
@@ -204,11 +199,9 @@ To check whether the account has already set some session keys, the RPC `hasKey(
 ![](/img/chain/author-hasKey.png)
 
 :::info
-
 The session keys associate a collator node with an account on the blockchain.
 They are hot keys that must be kept online.
 It is recommended to change them throughout sessions.
-
 :::
 
 ### Generate New Session Keys {#generating-session-keys}
@@ -220,7 +213,6 @@ Use SSH forwarding for the RPC port when needing to perform some RPC operations 
 ```
 ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>
 ```
-
 :::
 
 There are tree ways to create the session keys.
@@ -295,10 +287,8 @@ For instance, with the keypair generated in the example, the session key file wo
 
 
 :::info
-
 The rotation of the session key should be done periodically to ensure that the collator can remain secure and safe from attack.
 You can find more information about session keys in the [Substrate Documentation](https://docs.substrate.io/v3/concepts/session-keys/#generation-and-use).
-
 :::
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
@@ -318,9 +308,7 @@ Once the extrinsic is executed, the collator has linked the new session key to i
 However, the new session key does not become effective immediately but with the start of the next session.
 
 :::info
-
 A session takes 600 blocks or around 120~ minutes
-
 :::
 
 ## Join the collator candidates pool
@@ -328,7 +316,6 @@ A session takes 600 blocks or around 120~ minutes
 :::warning
 
 These steps should be followed only once a collator node has successfully linked a session key to its address and has synced the parachain and relaychain states by following the steps above.
-
 :::
 
 The maximum number of **active** collators is currently (2022-05-05) 16 on Peregrine and 30 on Spiritnet.
@@ -347,11 +334,9 @@ The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` 
 4. Sign and submit the extrinsic
 
 :::info
-
 A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
 In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
 So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
-
 :::
 
 ![](/img/chain/parachainStaking-joinCandidates.png)
@@ -384,9 +369,7 @@ The monitoring process collects two types of metrics: **Node Exporter metrics** 
 The monitoring infrastructure can either be run as a local grafana cluster or as a [cloud-based solution](https://grafana.com/products/cloud/).
 
 :::info
-
 For cloud-based solutions, the prometheus process must be publicly accessible, e.g., via a reverse proxy.
-
 :::
 
 ### What will be installed
@@ -530,9 +513,7 @@ flowchart TD
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
 :::caution
-
 Don't use this binary for running the collator!
-
 :::
 
 ```bash=
