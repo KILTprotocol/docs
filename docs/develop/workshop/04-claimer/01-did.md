@@ -15,7 +15,7 @@ Remember light DIDs can:
 - Sign claims and attestations with the authentication keys
 - Encrypting messages with the encryption keys
 
-Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](/docs/develop/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
 
 ## Generate Keys
 
