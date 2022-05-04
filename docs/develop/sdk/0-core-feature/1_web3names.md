@@ -3,16 +3,16 @@ id: web3names
 title: Web3 names
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../../code-examples/core_features/web3names/1_web3name.ts';
-import Example2 from '!!raw-loader!../../../../code-examples/core_features/web3names/2_web3name.ts';
-import Example3 from '!!raw-loader!../../../../code-examples/core_features/web3names/3_web3name.ts';
-import Example4 from '!!raw-loader!../../../../code-examples/core_features/web3names/4_web3name.ts';
+import Example1 from '!!raw-loader!@site/code-examples/core_features/web3names/1_web3name.ts';
+import Example2 from '!!raw-loader!@site/code-examples/core_features/web3names/2_web3name.ts';
+import Example3 from '!!raw-loader!@site/code-examples/core_features/web3names/3_web3name.ts';
+import Example4 from '!!raw-loader!@site/code-examples/core_features/web3names/4_web3name.ts';
 
-import Example5 from '!!raw-loader!../../../../code-examples/core_features/linking/1_account_linking.ts';
-import Example6 from '!!raw-loader!../../../../code-examples/core_features/linking/2_account_linking.ts';
-import Example7 from '!!raw-loader!../../../../code-examples/core_features/linking/3_account_linking.ts';
-import Example8 from '!!raw-loader!../../../../code-examples/core_features/linking/4_account_linking.ts';
-import Example9 from '!!raw-loader!../../../../code-examples/core_features/linking/5_account_linking.ts';
+import Example5 from '!!raw-loader!@site/code-examples/core_features/linking/1_account_linking.ts';
+import Example6 from '!!raw-loader!@site/code-examples/core_features/linking/2_account_linking.ts';
+import Example7 from '!!raw-loader!@site/code-examples/core_features/linking/3_account_linking.ts';
+import Example8 from '!!raw-loader!@site/code-examples/core_features/linking/4_account_linking.ts';
+import Example9 from '!!raw-loader!@site/code-examples/core_features/linking/5_account_linking.ts';
 
 Web3 names are user-friendly aliases for a KILT DID.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
