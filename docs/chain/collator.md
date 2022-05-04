@@ -331,7 +331,7 @@ These steps should be followed only once a collator node has successfully linked
 
 :::
 
-The maximum number of **active** collators is currently (2022-05-05) 16 on Peregrine and 35 on Spiritnet.
+The maximum number of **active** collators is currently (2022-05-05) 16 on Peregrine and 30 on Spiritnet.
 
 In order to become a collator, you must stake
 - at least 10,000 KILT tokens and
