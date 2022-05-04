@@ -23,7 +23,7 @@ const featureRows = [
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
       link: 'docs/sdk/workshop/welcome',
-      description: <>Claim, Attest and verify in our SDK workshop.</>,
+      description: <>Claim, attest and verify in our SDK workshop.</>,
     },
     {
       title: 'Whitepaper 2020',
