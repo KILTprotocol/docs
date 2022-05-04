@@ -3,15 +3,15 @@ id: did
 title: Kilt DIDs
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!../../../code-examples/core_features/did/1_did.ts';
-import Example2 from '!!raw-loader!../../../code-examples/core_features/did/2_did.ts';
-import Example3 from '!!raw-loader!../../../code-examples/core_features/did/3_did.ts';
-import Example4 from '!!raw-loader!../../../code-examples/core_features/did/4_did.ts';
-import Example5 from '!!raw-loader!../../../code-examples/core_features/did/5_did.ts';
-import Example6 from '!!raw-loader!../../../code-examples/core_features/did/6_did.ts';
-import Example7 from '!!raw-loader!../../../code-examples/core_features/did/7_did.ts';
-import Example8 from '!!raw-loader!../../../code-examples/core_features/did/8_did.ts';
-import Example9 from '!!raw-loader!../../../code-examples/core_features/did/9_did.ts';
+import Example1 from '!!raw-loader!../../../../code-examples/core_features/did/1_did.ts';
+import Example2 from '!!raw-loader!../../../../code-examples/core_features/did/2_did.ts';
+import Example3 from '!!raw-loader!../../../../code-examples/core_features/did/3_did.ts';
+import Example4 from '!!raw-loader!../../../../code-examples/core_features/did/4_did.ts';
+import Example5 from '!!raw-loader!../../../../code-examples/core_features/did/5_did.ts';
+import Example6 from '!!raw-loader!../../../../code-examples/core_features/did/6_did.ts';
+import Example7 from '!!raw-loader!../../../../code-examples/core_features/did/7_did.ts';
+import Example8 from '!!raw-loader!../../../../code-examples/core_features/did/8_did.ts';
+import Example9 from '!!raw-loader!../../../../code-examples/core_features/did/9_did.ts';
 
 A KILT Decentralised Identifier (DID) is a string uniquely identifying each KILT user. A DID can be thought of as a container of different keys that are all under the control of the same DID subject (see the [DID Core spec](https://www.w3.org/TR/did-core/) for more information).
 

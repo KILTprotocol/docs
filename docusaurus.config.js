@@ -40,35 +40,51 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'chain/collator',
+              docId: 'participate/collator',
               label: 'Collating',
             },
             {
               type: 'doc',
-              docId: 'chain/delegator',
+              docId: 'participate/delegator',
               label: 'Delegating',
             },
             {
               type: 'doc',
-              docId: 'chain/Governance/vote',
+              docId: 'participate/Governance/vote',
               label: 'Voting',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/apps/introduction',
+              label: 'Apps',
             },
           ],
         },
         {
-          to: 'docs/sdk/introduction',
-          activeBasePath: 'docs/sdk',
+          type: 'dropdown',
           label: 'Develop',
+          items: [
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain API Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/sdk/introduction',
+              label: 'SDK Documentation',
+            },
+          ],
         },
         {
           type: 'doc',
           docId: 'glossary',
           label: 'Glossary',
-        },
-        {
-          to: 'docs/apps/introduction',
-          activeBasePath: 'docs/apps',
-          label: 'Apps',
         },
         {
           href: 'https://github.com/KILTprotocol/docs',

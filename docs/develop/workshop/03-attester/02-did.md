@@ -4,8 +4,8 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import GenerateKeypairs from '!!raw-loader!../../../code-examples/workshop/attester/generateKeypairs.ts';
-import generateDid from '!!raw-loader!../../../code-examples/workshop/attester/generateDid.ts';
+import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/attester/generateKeypairs.ts';
+import generateDid from '!!raw-loader!../../../../code-examples/workshop/attester/generateDid.ts';
 
 Time to make a DID using the previously created account for the <span class="label-role attester">Attester</span>.
 
