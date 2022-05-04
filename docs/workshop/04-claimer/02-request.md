@@ -4,9 +4,9 @@ title: Request an Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '../../../../src/components/SnippetBlock';
-import CreateClaim from '!!raw-loader!../../../../code-examples/workshop/claimer/createClaim.ts';
-import GenerateRequest from '!!raw-loader!../../../../code-examples/workshop/claimer/generateRequest.ts';
+import SnippetBlock from '../../../src/components/SnippetBlock';
+import CreateClaim from '!!raw-loader!../../../code-examples/workshop/claimer/createClaim.ts';
+import GenerateRequest from '!!raw-loader!../../../code-examples/workshop/claimer/generateRequest.ts';
 
 In this section, we'll create a `Claim` and a `RequestForAttestation`.
 But a claim in itself has no value.
