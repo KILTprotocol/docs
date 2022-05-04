@@ -18,15 +18,25 @@
     "@docusaurus/core": "^2.0.0-beta.15",
     "@docusaurus/preset-classic": "^2.0.0-beta.15",
     "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.15",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@mdx-js/react": "^1.6.21",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.3",
+    "@mui/styled-engine-sc": "^5.6.1",
+    "@polkadot/api": "^8.2.1",
+    "@polkadot/extension-dapp": "^0.42.9",
+    "@types/styled-components": "^5.1.24",
     "archiver": "^5.3.0",
     "clsx": "^1.1.1",
     "mdx-mermaid": "^1.2.2",
     "mermaid": "^9.0.0",
     "node-args": "^2.1.8",
+    "process": "^0.11.10",
     "raw-loader": "^4.0.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.3.5"
   },
   "browserslist": {
     "production": [
@@ -39,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "docusaurus-node-polyfills": "^1.0.0"
   }
 }

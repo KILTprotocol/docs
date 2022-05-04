@@ -1,0 +1,17 @@
+---
+id: linking
+title: Link DID
+---
+
+<head>
+  <script>window ||= new Object(); window.kilt = new Object()</script>
+</head>
+
+You may link your on-chain DID, with your new web3name, to any accounts you have in the Polkadot ecosystem.
+
+In this way, people with your Polkadot ecosystem account address will be able to see your DID and your web3 name and, vice versa, those with your web3name can see your public address. This is especially useful for validators and collators, who can provide a personalized name that makes them easily identifiable.
+
+import BrowserOnly from '@docusaurus/BrowserOnly'
+import LinkingComponent from '@site/src/components/AccountLinking'
+
+<BrowserOnly>{() => <LinkingComponent />}</BrowserOnly>
