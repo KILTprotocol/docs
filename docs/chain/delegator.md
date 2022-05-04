@@ -2,60 +2,150 @@
 id: delegator
 title: Become a delegator
 ---
-## How to join
+## How to become a delegator
 
-**Important: A candidate can only delegate `(join_delegators, delegate_another_candidate)` once per round!**
+In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple. 
+Anyone can delegate to a collator candidate by staking at least 20 KILT and calling `parachainStaking -> joinDelegators`.
 
-Anyone can delegate to a collator candidate by delegating at least 20 KILT and calling `join_delegators`.
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
+
+1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
+3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
+4. Select the collator account (the *Id: AccountId* field)
+5. Choose the desired stake amount.
+
+:::info
+
+A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
+In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
+So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
+
+:::
+
+
+### Happy path
+If your chosen collator candidate has at least one empty slot in their delegation pool (35 at the time of writing), your delegation is successful and you immediately receive rewards for each authored block of your collator.
 
 ![](https://i.imgur.com/rXSdGHe.png)
 
-If the collator has a delegation pool reaching the maximum (30 at the time of writing), a delegator candidate must stake more than the lowest delegator.
+<!-- TODO: Add Diagram -->
 
-- The kicked delegator will be replaced by the delegator with a higher delegation immediately.
-- The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*).
+:::info
+
+If your chosen collator fails to produce blocks, neither the collator itself nor their delegators receive rewards.
+This can happen if they have connectivity issues or are not building blocks fast enough. 
+
+:::
+
+### Unhappy path 
+
+If your collator candidate has a maxed out delegation pool, an upcoming delegator candidate must stake more than the current lowest delegator of that pool.
+When that happens,
+
+- The kicked delegator will be replaced by the delegator with a higher delegation immediately
+- The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*)
 - A delegator needs to wait 7 days to be able to unlock the stake.
 
-**An account can only delegate to one collator!**
+<!-- TODO: Add Diagram -->
+
+
+<!-- TODO: Link round to Glossary -->
+:::info
+
+For now, an account can only delegate to one collator at any time!
+Moreover, you can only (re-) delegate once per staking round, e.g. call `parachainStaking -> {joinDelegators, delegateAnotherCandidate}`.
+    
+:::
+
 
 ## How to adjust your stake
 
-A delegator can increase and decrease the stake by calling either  `delegator_stake_more` or `delegator_stake_less`.
-
-**The candidate can not increase or decrease stake if leaving!**
+A delegator can increase and decrease their stake by calling either  `parachainStaking -> delegatorStakeMore` or `delegatorStakeLess`.
+Your adjustment becomes effective immediately!
+In case you increased your stake, you instantly receive higher rewards for any produced blocks of your collator.
+However, if you decreased your delegation amount, the reverse applies and you receive less rewards.
 
 ![](https://i.imgur.com/5IFJ2bz.png)
 
 ![](https://i.imgur.com/kfdIZra.png)
 
-`Developer -> Extrinsics -> parachainStaking`
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
 
-1. Use the selected account: Select the Delegator Account.
-2. Submit the following extrinsic: parachainStaking -> `delegator_stake_more` or `delegator_stake_less`.
-3. Select the collator account: Choose the desired stake amount.
+1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
+3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
+4. Select the collator account (the *Id: AccountId* field)
+5. Choose the desired stake amount which you want to add or remove from your current stake
+   1. If you want to increase your stake, you can add up to your maximum available balance
+   2. If you want to decrease your stake, you can reduce down to 20 KILT, e.g., any value up to `current_stake - 20` will be accepted
 
-## How to revoke your stake
+:::info
 
-A delegator revokes their delegation by calling `revoke_delegation`, reducing the delegation by the full amount of the delegation.
+You cannot adjust your stake if your collator candidate is in the leaving state, e.g., they want to stop collating.
+However, you can still [revoke](#how-to-revoke-your-delegation) your delegation or [exit](#how-to-exit).
+
+:::
+
+## How to revoke your delegation
+
+You can revoke your delegation at any time by calling `parachainStaking -> revokeDelegation`.
+As a result, you won't receive any rewards immediately after the transaction is successful.
+- The corresponding amount will be prepared for unstaking.
+- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see [below](#how-to-unlock-unstaked-tokens) for more information.
+- Revoking a delegation does not count towards the limit of “1 delegation per round”.
 
 ![](https://i.imgur.com/nf5NgLs.png)
 
-- The corresponding amount will be prepared for unstaking.
-- Revoking a delegation does not count towards the limit of “1 delegation per round”.
+
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
+
+1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
+3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
+4. Select the collator account (the *Id: AccountId* field)
+
+:::info
+Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [exiting](#how-to-exit).
+Of course, this will change if the community decides to enable multiple delegations per account.
+:::
 
 ## How to exit
 
-An account can revoke all delegations at once by calling `leave_delegators`.
+A delegator can revoke all of their delegations at once by calling `parachainStaking -> leaveDelegators`.
+- Your previously delegated amount will be prepared for unstaking.
+- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see [below](#how-to-unlock-unstaked-tokens) for more information.
+- Exiting does not count towards the limit of “1 delegation per round”.
 
 ![](https://i.imgur.com/xemN4fu.png)
 
-Once a collator candidate exits by calling `execute_leave_candidates`, all of their delegations are automatically removed and the corresponding amounts are prepared for unstaking.
+1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> leaveDelegators`.
+
+:::info
+Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [revoking a single delegation](#how-to-revoke-your-delegation).
+Of course, this will change if the community decides to enable multiple delegations per account.
+:::
 
 ## How to unlock unstaked tokens
 
+Before you can unlock your previously staked tokens, you have to wait 7 days (in block time).
+
 ![](https://i.imgur.com/holdTKq.png)
 
-A revoking delegation has to wait 7 days before unlocking the staked amount back by executing `unlock_unstaked`.
+1. Select any account with enough balance to cover the transaction fee which is around 0.005 KILT (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> unlockUnstaked(target)`
+3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
+4. Select the delegator's KILT address (the *Id: AccountId* field)
+
+:::info
+
+Even if you have not exited, reduced or removed your delegation, you can still have unstaked tokens.
+This can happen if either of the following events occurred
+* You were kicked out of your collator candidate's delegation pool because all current delegators have a higher stake
+* Your collator candidate intentionally left the collator pool.
+
+:::
 
 ## Lifecycle of a Delegator
 
@@ -99,3 +189,24 @@ flowchart TD
     classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
     classDef preUnlockStaked fill:#F37970, stroke:black;
 ```
+
+## Troubleshooting
+
+### Rewards have stopped
+
+If you have stopped to receive rewards, either
+1. You were kicked out of your collator candidate's delegation pool because all current delegators have a higher stake or
+2. Your collator candidate stopped producing blocks, because they...
+   1. Left the collator candidate pool intentionally such that they don't have an associated collator state on-chain henceforth
+   2. Are not among the top staked candidates (of which are 30 at the time of writing 2022-05-05)
+   3. Are offline
+
+In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](#how-to-unlock-unstaked-tokens).
+Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](#how-to-exit) if you don't want to/cannot delegate to another collator candidate.
+
+<!-- TODO: Move to Staking Troubleshooting once it exists -->
+### Why can't I transfer unstaked tokens?
+
+Staking puts a lock on your tokens which blocks them from being transferred.
+You can still use them for participating in Governance.
+If your funds are unstaked, you still need to wait 7 days (in block time) to [unlock tokens after unstaking them](#how-to-unlock-unstaked-tokens).
