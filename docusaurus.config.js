@@ -24,6 +24,11 @@ module.exports = {
           label: 'What is KILT?',
         },
         {
+          type: 'doc',
+          docId: 'workshop/welcome',
+          label: 'Workshop',
+        },
+        {
           to: 'docs/sdk/introduction',
           activeBasePath: 'docs/sdk',
           label: 'SDK',
