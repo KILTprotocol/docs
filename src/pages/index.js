@@ -14,9 +14,7 @@ const featureRows = [
       imageUrl: 'img/community_light.svg',
       imageUrlDark: 'img/community_dark.svg',
       link: 'docs/chain/collator',
-      description: (
-        <>Become a collator and help decentralizing the KILT Blockchain.</>
-      ),
+      description: <>Become a collator and help decentralizing the KILT Blockchain.</>,
     },
     {
       title: 'Workshop',
@@ -32,8 +30,8 @@ const featureRows = [
       link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
       description: (
         <>
-          Read the original whitepaper. KILT evolved a lot since then, but the ideas and values are still part of our
-          identity even though the technical details are outdated.
+          Read the original whitepaper. KILT evolved since then, but the ideas and values are still part of our identity
+          even though the technical details are outdated.
         </>
       ),
     },
