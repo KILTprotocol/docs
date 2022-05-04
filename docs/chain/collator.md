@@ -140,7 +140,8 @@ cargo build --release -p kilt-parachain
 
 :::info
 
-We discourage to use the default `develop` branch to build the executable. Instead, the latest commit from `master` should be used.
+We discourage to use the default `develop` branch to build the executable.
+Instead, the latest commit from `master` should be used.
 
 :::
 
@@ -577,8 +578,12 @@ Also, note that a high bandwidth connection can still be slow if it has a high p
 Bandwidth and latency do not necessarily come hand in hand.
 In this case, it is better to rule out other options before thinking to upgrade the collator's hardware.
 
-1. Check that the session keys are associated with the validatorId (aka AccountId). There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`.
-2. Check that the node has the corresponding private key for the public session key. Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see if it returns `true`.
+1. Check that the session keys are associated with the validatorId (aka AccountId).
+There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`.
+2. Check that the node has the corresponding private key for the public session key.
+Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see if it returns `true`.
 3. Check that the node is fully synced with the relaychain & parachain (best and finalised block number is equal to the one shown in the PolkadotJS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) and on Subscan ([Spiritnet](https://spiritnet.subscan.io/), [Peregrine](https://kilt-testnet.subscan.io/)).
-4. Check that the collator is among the selected candidates. Its address should included in the list returned by querying `parachainStaking > topCandidates()`.
-5. Check that the `parachainStaking` pallet has registered the collator's address among the authorised authors in the `session`. Its address should be listed when querying `session > validators()`.
+4. Check that the collator is among the selected candidates.
+Its address should included in the list returned by querying `parachainStaking > topCandidates()`.
+5. Check that the `parachainStaking` pallet has registered the collator's address among the authorised authors in the `session`.
+Its address should be listed when querying `session > validators()`.
