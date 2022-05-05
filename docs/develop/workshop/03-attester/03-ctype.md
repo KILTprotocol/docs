@@ -4,9 +4,9 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '../../../../src/components/SnippetBlock';
-import CtypeSchema from '!!raw-loader!../../../../code-examples/workshop/attester/ctypeSchema.ts';
-import GenerateCtype from '!!raw-loader!../../../../code-examples/workshop/attester/generateCtype.ts';
+import SnippetBlock from '@site/src/components/SnippetBlock';
+import CtypeSchema from '!!raw-loader!@site/code-examples/workshop/attester/ctypeSchema.ts';
+import GenerateCtype from '!!raw-loader!@site/code-examples/workshop/attester/generateCtype.ts';
 
 A claim type (CType for short) is a KILT-specific term, but the concept is simple:
 A CType defines the structure of a claim.
@@ -24,7 +24,7 @@ A CType ensures that a claim contains all required attributes.
 E.g. a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
 The CType is especially important since a verifier would request attestations for a specific CType (e.g. the traffic police wants to see your driver's license and not your gym membership).
 
-If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/sdk/core-feature/ctypes).
+If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/develop/sdk/core-feature/ctypes).
 :::
 
 Creating CTypes requires an account and a full DID.
