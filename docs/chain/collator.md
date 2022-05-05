@@ -355,10 +355,24 @@ A time period of two sessions must pass before the collator will be authoring bl
 
 ### Change a Collator's Stake
 
-A collator can increase/decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
+A collator can increase or decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
 The corresponding extrinsics for these operations are `parachainStaking -> candidateStakeMore(more)` and `parachainStaking -> candidateStakeLess(less)`.
 
-![](/img/chain/parachainStaking.png)
+<Tabs
+  groupId="collator-adjust-stake"
+  defaultValue="Stake more"
+>
+<TabItem value="Stake more" label="Stake more">
+
+![](/img/chain/parachainStaking-candidateStakeMore.png)
+
+</TabItem>
+<TabItem value="Stake less" label="Stake less">
+
+![](/img/chain/parachainStaking-candidateStakeLess.png)
+
+</TabItem>
+</Tabs>
 
 ## Monitoring
 

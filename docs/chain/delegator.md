@@ -2,12 +2,16 @@
 id: delegator
 title: About delegating
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## How to become a delegator
 
 In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple. 
 Anyone can delegate to a collator candidate by staking at least 20 KILT and calling `parachainStaking -> joinDelegators`.
 
-![](https://i.imgur.com/rXSdGHe.png)
+![](/img/chain/parachainStaking-joinDelegators.png)
 
 In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
@@ -91,24 +95,42 @@ Moreover, you can only (re-) delegate once per staking round, e.g. call `paracha
 
 ## How to adjust your stake
 
-A delegator can increase and decrease their stake by calling either  `parachainStaking -> delegatorStakeMore` or `delegatorStakeLess`.
+A delegator can increase and decrease their stake by calling either  `parachainStaking -> delegatorStakeMore(more)` or `parachainStaking -> delegatorStakeLess(less)`.
 Your adjustment becomes effective immediately!
 In case you increased your stake, you instantly receive higher rewards for any produced blocks of your collator.
 However, if you decreased your delegation amount, the reverse applies and you receive less rewards.
 
-![](https://i.imgur.com/5IFJ2bz.png)
-
-![](https://i.imgur.com/kfdIZra.png)
-
  In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
+
+<Tabs
+  groupId="delegator-adjust-stake"
+  defaultValue="Stake more"
+>
+<TabItem value="Stake more" label="Stake more">
+
+![](/img/chain/parachainStaking-delegatorStakeMore.png)
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
-5. Choose the desired stake amount which you want to add or remove from your current stake
-   1. If you want to increase your stake, you can add up to your maximum available balance
-   2. If you want to decrease your stake, you can reduce down to 20 KILT, e.g., any value up to the difference of your current stake and the minimum delegation (20 KILT) will be accepted
+5. Choose the desired stake amount which you want to add or remove from your current stake.
+You can add up to your maximum available balance.
+
+</TabItem>
+<TabItem value="Stake less" label="Stake less">
+
+![](/img/chain/parachainStaking-delegatorStakeLess.png)
+
+1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
+3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
+4. Select the collator account (the *Id: AccountId* field)
+5. Choose the desired stake amount which you want to remove from your current stake.
+You can reduce down to minimum delegation (20 KILT), e.g., any value up to the difference of your current stake and the minimum delegation (20 KILT) will be accepted.
+
+</TabItem>
+</Tabs>
 
 :::caution
 You cannot adjust your stake if your collator candidate is in the leaving state, e.g., they want to stop collating.
@@ -123,7 +145,7 @@ As a result, you won't receive any rewards immediately after the transaction is 
 - You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see [below](#how-to-unlock-unstaked-tokens) for more information.
 - Revoking a delegation does not count towards the limit of “1 delegation per round”.
 
-![](https://i.imgur.com/nf5NgLs.png)
+![](/img/chain/parachainStaking-revokeDelegation.png)
 
 
 In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
@@ -145,7 +167,7 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 - You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see [below](#how-to-unlock-unstaked-tokens) for more information.
 - Exiting does not count towards the limit of “1 delegation per round”.
 
-![](https://i.imgur.com/xemN4fu.png)
+![](/img/chain/parachainStaking-leaveDelegators.png)
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> leaveDelegators`.
@@ -159,7 +181,7 @@ Of course, this will change if the community decides to enable multiple delegati
 
 Before you can unlock your previously staked tokens, you have to wait 7 days (in block time).
 
-![](https://i.imgur.com/holdTKq.png)
+![](/img/chain/parachainStaking-unlockUnstaked.png)
 
 1. Select any account with enough balance to cover the transaction fee which is around 0.005 KILT (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> unlockUnstaked(target)`
