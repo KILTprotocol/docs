@@ -20,6 +20,7 @@ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount.
+6. Sign and submit the extrinsic.
 
 :::info
 A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
@@ -111,11 +112,12 @@ However, if you decreased your delegation amount, the reverse applies and you re
 ![](/img/chain/parachainStaking-delegatorStakeMore.png)
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
+2. Select the extrinsic: `parachainStaking -> delegatorStakeMore`
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
-5. Choose the desired stake amount which you want to add or remove from your current stake.
+5. Choose the desired stake amount which you want to add to your current stake.
 You can add up to your maximum available balance.
+6. Sign and submit the extrinsic
 
 </TabItem>
 <TabItem value="Stake less" label="Stake less">
@@ -123,11 +125,12 @@ You can add up to your maximum available balance.
 ![](/img/chain/parachainStaking-delegatorStakeLess.png)
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
+2. Select the extrinsic: `parachainStaking -> delegatorStakeLess`
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount which you want to remove from your current stake.
-You can reduce down to minimum delegation (20 KILT), e.g., any value up to the difference of your current stake and the minimum delegation (20 KILT) will be accepted.
+You can reduce down to the minimum delegation amount (20 KILT), e.g., any value up to the difference of your current stake and the minimum will be accepted.
+6. Sign and submit the extrinsic
 
 </TabItem>
 </Tabs>
@@ -154,6 +157,7 @@ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
+5. Sign and submit the extrinsic
 
 :::info
 Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [exiting](#how-to-exit).
@@ -171,6 +175,7 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> leaveDelegators`.
+3. Sign and submit the extrinsic
 
 :::info
 Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [revoking a single delegation](#how-to-revoke-your-delegation).
@@ -187,6 +192,7 @@ Before you can unlock your previously staked tokens, you have to wait 7 days (in
 2. Select the appropriate extrinsic: `parachainStaking -> unlockUnstaked(target)`
 3. Select the `Id` option (the *collator: MultiAddress (LookupSource) field*)
 4. Select the delegator's KILT address (the *Id: AccountId* field)
+5. Sign and submit the extrinsic
 
 :::info
 Even if you have not exited, reduced or removed your delegation, you can still have unstaked tokens.

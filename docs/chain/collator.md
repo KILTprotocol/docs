@@ -293,6 +293,7 @@ You can find more information about session keys in the [Substrate Documentation
 
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
+
 For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for Peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
 
 `Developer -> Extrinsics -> Submission`
@@ -301,6 +302,7 @@ For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org
 2. Submit the following extrinsic: `session -> setKeys(keys, proof)`
     - `keys` -> the public session key (`0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010` in the example above)
     - `proof` -> the proof of ownership. It can be set to `0x00`
+3. Sign and submit the extrinsic
 
 ![](/img/chain/session-setKeys.png)
 
@@ -314,7 +316,6 @@ A session takes 600 blocks or around 120~ minutes
 ## Join the collator candidates pool
 
 :::warning
-
 These steps should be followed only once a collator node has successfully linked a session key to its address and has synced the parachain and relaychain states by following the steps above.
 :::
 
@@ -330,7 +331,7 @@ The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` 
 
 1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the following extrinsic: `parachainStaking -> joinCandidates(stake)`
-3. Insert the staked KILT amount for the collator
+3. Insert the staked KILT amount for the collator (any value between `10000000000000000000` and `200000000000000000000`)
 4. Sign and submit the extrinsic
 
 :::info
@@ -338,6 +339,8 @@ A recent change in the blockchain metadata resulted in a change in the UI regard
 In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
 So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
 :::
+
+### How to check your position
 
 ![](/img/chain/parachainStaking-joinCandidates.png)
 
@@ -349,6 +352,7 @@ A collator candidate can check the current top candidates to see their position 
 2. Execute the query by pressing the "+" button on the right side
 
 If the collator has enough self-stake and delegator stake it will be selected to collate.
+Otherwise, the last address in the list will be the least staked candidate.
 A time period of two sessions must pass before the collator will be authoring blocks, e.g.,  after the remainder of the current session and the entire next one.
 
 ![](/img/chain/session-validators.png)
@@ -358,6 +362,8 @@ A time period of two sessions must pass before the collator will be authoring bl
 A collator can increase or decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
 The corresponding extrinsics for these operations are `parachainStaking -> candidateStakeMore(more)` and `parachainStaking -> candidateStakeLess(less)`.
 
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
+
 <Tabs
   groupId="collator-adjust-stake"
   defaultValue="Stake more"
@@ -366,10 +372,21 @@ The corresponding extrinsics for these operations are `parachainStaking -> candi
 
 ![](/img/chain/parachainStaking-candidateStakeMore.png)
 
+1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the extrinsic: `parachainStaking -> collatorStakeMore`
+3. Choose the desired stake amount which you want to add or remove from your current stake.
+You can add up to the minimum of 200,000 KILT and your maximum available balance.
+
 </TabItem>
 <TabItem value="Stake less" label="Stake less">
 
 ![](/img/chain/parachainStaking-candidateStakeLess.png)
+
+1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
+2. Select the extrinsic: `parachainStaking -> collatorStakeLess`
+3. Choose the desired stake amount which you want to remove from your current stake.
+You can reduce down to minimum collator amount (10,000 KILT), e.g., any value up to the difference of your current stake and the minimum will be accepted.
+4. Sign and submit the extrinsic
 
 </TabItem>
 </Tabs>
@@ -470,24 +487,24 @@ For **Peregrine**, the parachain bootnodes are:
 
 When you intent to stop collating or just being a collator candidate, you have to go through three stages until your staked tokens are unlocked and your collator state is purged from the chain.
 
-First, you signal your intent by calling `init_leave_candidates`.
-You will both be removed from the `CandidatePool` and your state switches from `Active` to `Leaving(leave_round)`, where `leave_round` reflects the number of sessions in which you can actually leave.
+First, you signal your intent by calling `parachainStaking -> initLeaveCandidates`.
+You will both be removed from the `CandidatePool` and your state switches from `Active` to `Leaving(leaveRound)`, where `leaveRound` reflects the number of sessions in which you can actually leave.
 You still need to stay online and build blocks for the current and next sessions.
 Of course, you will continue to receive rewards for your authored blocks.
 A leaving candidate cannot be selected as an active collator for the sessions hereinafter.
 Moreover, you cannot receive new Delegations and existing Delegations cannot be adjusted.
 However, Delegations can still be revoked.
 
-Second, after waiting until the `leave_round`-th session, you can call `execute_leave_candidate` to remove all of your `Candidate` associated storage.
+Second, after waiting until the `leaveRound`-th session, you can call `executeLeaveCandidate` to remove all of your `Candidate` associated storage.
 You should be certain as there is no turning back afterwards.
 If you wish to become a Candidate at a later stage, you have to apply again and miss out on all of your former delegations.
 
-However, you can still cancel your exit request by calling `cancel_leave_candidates` if you have not exited yet and the CandidatePool is not full already.
+However, you can still cancel your exit request by calling `cancelLeaveCandidates` if you have not exited yet and the CandidatePool is not full already.
 Upon cancelling your exit intent, your state switches back to `Active` and you still have all Delegations which were not revoked in the meantime.
 Moreover, if you are you are one of the top staked candidates, you will automatically become a Collator in two rounds (~4 hours).
 
 In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
-There is a delay of 7 days in block time before you can free them by calling `unlock_unstaked`.
+There is a delay of 7 days in block time before you can free them by calling `unlockUnstaked`.
 
 ```mermaid
 flowchart TD
@@ -582,3 +599,11 @@ Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see i
 Its address should included in the list returned by querying `parachainStaking > topCandidates()`.
 5. Check that the `parachainStaking` pallet has registered the collator's address among the authorised authors in the `session`.
 Its address should be listed when querying `session > validators()`.
+
+### Rewards have stopped
+
+If you have stopped to receive rewards, either
+1. You were kicked out of the top collator candidate list because your total stake is too low. 
+See [above](#how-to-check-your-position) for the necessary steps to retrieve the least staked candidate address in that list.
+You can query their stake by going to `Developer -> Chain State` calling `parachainStaking -> candidatePool(address) -> +`.
+2. You have connectivity issues, see [above](#troubleshooting) for resolution tips
