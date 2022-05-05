@@ -4,9 +4,9 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '../../../../src/components/SnippetBlock';
-import GenerateKeypairs from '!!raw-loader!../../../../code-examples/workshop/claimer/generateKeypairs.ts';
-import GenerateLightDid from '!!raw-loader!../../../../code-examples/workshop/claimer/generateLightDid.ts';
+import SnippetBlock from '@site/src/components/SnippetBlock';
+import GenerateKeypairs from '!!raw-loader!@site/code-examples/workshop/claimer/generateKeypairs.ts';
+import GenerateLightDid from '!!raw-loader!@site/code-examples/workshop/claimer/generateLightDid.ts';
 
 Time to make a light DID using the previously created account for the <span class="label-role claimer">Claimer</span>.
 Since a light DID is not registered on the blockchain, you don't need funds for creating one.
@@ -15,7 +15,7 @@ Remember light DIDs can:
 - Sign claims and attestations with the authentication keys
 - Encrypting messages with the encryption keys
 
-Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](/docs/develop/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
 
 ## Generate Keys
 

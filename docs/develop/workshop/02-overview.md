@@ -15,7 +15,7 @@ The <span class="label-role claimer">Claimer</span> is not required to query the
 
 ## Request an Attestation
 
-Before the <span class="label-role claimer">Claimer</span> can receive an attestation, they need to generate a [light DID](../0-core-feature/0_did.md#light-dids), which they can do completely off-chain.
+Before the <span class="label-role claimer">Claimer</span> can receive an attestation, they need to generate a [light DID](../sdk/0-core-feature/0_did.md#light-dids), which they can do completely off-chain.
 The <span class="label-role attester">Attester</span> has to register their DID on chain and therefore needs KILT coins.
 
 After both the <span class="label-role attester">Attester</span> as well as the <span class="label-role claimer">Claimer</span> have set up their identities, the <span class="label-role claimer">Claimer</span> can start the attestation process by requesting an attestation from the <span class="label-role attester">Attester</span>.
