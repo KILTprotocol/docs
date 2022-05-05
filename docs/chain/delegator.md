@@ -1,13 +1,15 @@
 ---
 id: delegator
-title: Become a delegator
+title: About delegating
 ---
 ## How to become a delegator
 
 In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple. 
 Anyone can delegate to a collator candidate by staking at least 20 KILT and calling `parachainStaking -> joinDelegators`.
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
+![](https://i.imgur.com/rXSdGHe.png)
+
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
@@ -25,9 +27,26 @@ So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000
 ### Happy path
 If your chosen collator candidate has at least one empty slot in their delegation pool (35 at the time of writing), your delegation is successful and you immediately receive rewards for each authored block of your collator.
 
-![](https://i.imgur.com/rXSdGHe.png)
-
-<!-- TODO: Add Diagram -->
+```mermaid
+flowchart TD
+   A["Hold at least 20 KILT"] --> |"decide on candidate"| B("Collator Candidate chosen");
+   B --> |"call extrinsic joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
+   C --> |yes| D("Delegating to a Collator Candidate")
+   D --> |"Collator produces block"| E("Receive rewards")
+    %% Styles
+    A:::unstakedFreeKilt
+    B:::preDelegationCheck
+    C:::preDelegationCheck
+    D:::activelyDelegating
+    E:::activelyDelegating
+    
+    %% StyleDef
+    classDef preDelegationCheck fill:#FFF4BD,stroke:none;
+    classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;;
+    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
+    classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
+    classDef preUnlockStaked fill:#F37970, stroke:black;
+```
 
 :::info
 If your chosen collator fails to produce blocks, neither the collator itself nor their delegators receive rewards.
@@ -43,7 +62,24 @@ When that happens,
 - The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*)
 - A delegator needs to wait 7 days to be able to unlock the stake.
 
-<!-- TODO: Add Diagram -->
+```mermaid
+flowchart TD
+   A["Hold at least 20 KILT"] --> |"decide on candidate"| B("Collator Candidate chosen");
+   B --> |"call extrinsic joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
+   C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
+   C2 --> |no| A
+
+    %% Styles
+    A:::unstakedFreeKilt
+    B:::preDelegationCheck
+    C:::preDelegationCheck
+    C2:::notDelegating
+    
+    %% StyleDef
+    classDef preDelegationCheck fill:#FFF4BD,stroke:none;
+    classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;
+    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px
+```
 
 
 <!-- TODO: Link round to Glossary -->
@@ -64,7 +100,7 @@ However, if you decreased your delegation amount, the reverse applies and you re
 
 ![](https://i.imgur.com/kfdIZra.png)
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> {delegatorStakeMore, delegatorStakeLess}`
@@ -74,7 +110,7 @@ However, if you decreased your delegation amount, the reverse applies and you re
    1. If you want to increase your stake, you can add up to your maximum available balance
    2. If you want to decrease your stake, you can reduce down to 20 KILT, e.g., any value up to the difference of your current stake and the minimum delegation (20 KILT) will be accepted
 
-:::info
+:::caution
 You cannot adjust your stake if your collator candidate is in the leaving state, e.g., they want to stop collating.
 However, you can still [revoke](#how-to-revoke-your-delegation) your delegation or [exit](#how-to-exit).
 :::
@@ -90,7 +126,7 @@ As a result, you won't receive any rewards immediately after the transaction is 
 ![](https://i.imgur.com/nf5NgLs.png)
 
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission -> parahainStaking`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
@@ -99,7 +135,7 @@ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%
 
 :::info
 Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [exiting](#how-to-exit).
-Of course, this will change if the community decides to enable multiple delegations per account
+Of course, this will change if the community decides to enable multiple delegations per account.
 :::
 
 ## How to exit
@@ -116,7 +152,7 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 
 :::info
 Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [revoking a single delegation](#how-to-revoke-your-delegation).
-Of course, this will change if the community decides to enable multiple delegations per account
+Of course, this will change if the community decides to enable multiple delegations per account.
 :::
 
 ## How to unlock unstaked tokens
@@ -139,12 +175,12 @@ This can happen if either of the following events occurred
 
 ## Lifecycle of a Delegator
 
-The following diagram depicts the lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
+The following diagram depicts the full lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
 
 ```mermaid
 flowchart TD
    A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen");
-   B --> |join_delegators| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
+   B --> |"call \n joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
    C --> |yes| D("Delegating to a Collator Candidate")
    C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
    C2 --> |no| A
@@ -158,7 +194,7 @@ flowchart TD
    G --> |want to unlock| H{"Waited 7 days?"}
    H --> |yes| I("Balance with expired lock")
    H --> |no| F
-   I --> |unlock_unstaked| A
+   I --> |"call \n unlockUnstaked"| A
 
     %% Styles
     A:::unstakedFreeKilt
@@ -187,9 +223,9 @@ flowchart TD
 If you have stopped to receive rewards, either
 1. You were kicked out of your collator candidate's delegation pool because all current delegators have a higher stake or
 2. Your collator candidate stopped producing blocks, because they...
-   1. Left the collator candidate pool intentionally such that they don't have an associated collator state on-chain henceforth
-   2. Are not among the top staked candidates (of which are 30 at the time of writing 2022-05-05)
-   3. Are offline
+   1. Left the collator candidate pool intentionally such that they don't have an associated collator state on-chain henceforth; or
+   2. Are not among the top staked candidates (of which are 30 at the time of writing 2022-05-05); or
+   3. Are offline.
 
 In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](#how-to-unlock-unstaked-tokens).
 Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](#how-to-exit) if you don't want to/cannot delegate to another collator candidate.
