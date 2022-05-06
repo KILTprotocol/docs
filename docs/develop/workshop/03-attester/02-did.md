@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import GenerateKeypairs from '!!raw-loader!@site/code-examples/workshop/attester/generateKeypairs.ts';
 import generateDid from '!!raw-loader!@site/code-examples/workshop/attester/generateDid.ts';
 
-Time to make a DID using the previously created account for the <span class="label-role attester">Attester</span>.
+Time to make a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
 A DID may represent any entity, may it be a person, an organization or a machine.
 
@@ -55,7 +55,7 @@ The keystore ...
 :::
 
 To create a DID we need a keystore.
-For our <span class="label-role attester">Attester</span> we'll need all four types of keys.
+For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types use are used for signatures, we can use the same key for these.
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.

@@ -13,7 +13,7 @@ A CType defines the structure of a claim.
 You can think of it as the data model for your claim.
 
 
-Before the <span class="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
+Before the <span className="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
 A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
 Since CTypes enable interoperability between attesters, it is highly recommended to use existing CTypes instead of creating new ones.
 But in this workshop, we create our own CType.
@@ -68,7 +68,7 @@ A CType is stored on the KILT blockchain.
 
 In a real-life setup, a user would simply retrieve an existing CType from the chain or a repository of CTypes for example via a Credential Registry's REST API.
 
-In this tutorial, we'll have the <span class="label-role attester">Attester</span> create and attempt to store a CType on the KILT test blockchain.
+In this tutorial, we'll have the <span className="label-role attester">Attester</span> create and attempt to store a CType on the KILT test blockchain.
 
 ## Create CType
 
@@ -95,4 +95,4 @@ To run it, just execute the `attester/generateCtype.ts` file.
 yarn ts-node attester/generateCtype.ts
 ```
 
-OK, now before we can issue credentials, we need a <span class="label-role claimer">Claimer</span> to request one! Let's move on!
+OK, now before we can issue credentials, we need a <span className="label-role claimer">Claimer</span> to request one! Let's move on!
