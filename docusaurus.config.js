@@ -72,7 +72,7 @@ module.exports = {
             {
               type: 'doc',
               docId: 'develop/chain/introduction',
-              label: 'Blockchain API Documentation',
+              label: 'Blockchain Documentation',
             },
             {
               type: 'doc',
