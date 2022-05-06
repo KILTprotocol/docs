@@ -32,6 +32,8 @@ So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000
 ### Happy path
 If your chosen collator candidate has at least one empty slot in their delegation pool (35 at the time of writing), your delegation is successful and you immediately receive rewards for each authored block of your collator.
 
+<div className="kilt-mermaid">
+
 ```mermaid
 flowchart TD
    A["Hold at least 20 KILT"] --> |"decide on candidate"| B("Collator Candidate chosen");
@@ -52,6 +54,7 @@ flowchart TD
     classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
     classDef preUnlockStaked fill:#F37970, stroke:black;
 ```
+</div>
 
 :::info
 If your chosen collator fails to produce blocks, neither the collator itself nor their delegators receive rewards.
@@ -66,6 +69,8 @@ When that happens,
 - The kicked delegator will be replaced by the delegator with a higher delegation immediately
 - The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*)
 - A delegator needs to wait 7 days to be able to unlock the stake.
+
+<div className="kilt-mermaid">
 
 ```mermaid
 flowchart TD
@@ -85,7 +90,7 @@ flowchart TD
     classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;
     classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px
 ```
-
+</div>
 
 <!-- TODO: Link round to Glossary -->
 :::info
@@ -205,6 +210,8 @@ This can happen if either of the following events occurred
 
 The following diagram depicts the full lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
 
+<div className="kilt-mermaid">
+
 ```mermaid
 flowchart TD
    A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen");
@@ -243,6 +250,7 @@ flowchart TD
     classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
     classDef preUnlockStaked fill:#F37970, stroke:black;
 ```
+</div>
 
 ## Troubleshooting
 

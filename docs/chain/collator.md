@@ -506,6 +506,8 @@ Moreover, if you are you are one of the top staked candidates, you will automati
 In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
 There is a delay of 7 days in block time before you can free them by calling `unlockUnstaked`.
 
+<div className="kilt-mermaid">
+
 ```mermaid
 flowchart TD
     A["Hold (at least) 10K KILT"] -->|join_candidates| B(Candidate)
@@ -538,6 +540,8 @@ flowchart TD
     classDef activeCollator fill:#94C973,stroke:#333, stroke-width:2px;
     classDef stakedReleasableKilt fill:#F37970, stroke:black;
 ```
+
+</div>
 
 ## Benchmarking (optional) {#benchmarking}
 
