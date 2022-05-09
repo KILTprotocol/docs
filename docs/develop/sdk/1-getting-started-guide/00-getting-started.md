@@ -103,7 +103,7 @@ Inside the `main` function, lets get the conncetion using an asynchronous call t
 ...
 ```
 
-Now you have connected you have access to the chain, but lets not forget to close any connections.
+Now you have connected you have access to the chain, but lets not forget to **close** any connections.
 Its best practice not to leave an connections open, add `Kilt.disconnect()` at the bottom of `main` function.
 
 ``` js
@@ -158,7 +158,7 @@ We will add a new line under the `console.log` and lets resolve the DID with the
 ...
 ```
 
-Now we have the endpoints! Lets see if we can find a credential among them.
+Now we have the **endpoints**! Lets see if we can find a credential among them.
 We can select one of the endpoints and query the url to see if it returns a credential!
 
 A new line after `endPoints` add the following:
@@ -198,7 +198,7 @@ Lets query and fetch the credential's **attestation** and combine it all into a 
 ```
 
 Time to verify the credential and make sure it is valid.
-If the verification returns true it is valid!
+If the **verification** returns true it is **valid**!
 
 ``` js
 ...
