@@ -138,7 +138,9 @@ Underneath the blockchain connection, add the following lines.
 ...
 ```
 
-Nice work! You have `john_doe`'s DID.
+Try excuting it and see what comes out.
+
+Did you get the DID? Nice work! You have `john_doe`'s DID.
 Now let's see if they have any credentials availale to verify!
 
 ## Verifying a credential
@@ -159,8 +161,12 @@ We will add a new line under the `console.log` and lets resolve the DID with the
 
     const johnDoeDid = await Kilt.Did.DidResolver.resolveDoc(johnDoeDidId)
     const endPoints = johnDoeDid?.details?.getEndpoints()
+
+    if (!endPoints) return console.log('no endpoints')
 ...
 ```
+
+Try excuting it and see what comes out.
 
 Now we have the **endpoints**! Lets see if we can find a credential among them.
 We can select one of the endpoints and query the url to see if it returns a credential!
@@ -169,8 +175,6 @@ A new line after `endPoints` add the following:
 
 ``` js
 ...
-    const endPoints = johnDoeDid?.details?.getEndpoints()
-
     if (!endPoints) return console.log('no endpoints')
 
     const request = await fetch(endPoints[0].urls[0]).then((request) =>
@@ -178,6 +182,9 @@ A new line after `endPoints` add the following:
     )
 ...
 ```
+
+Try excuting it and see what comes out.
+Did you get a partial credential object?
 
 **Wow! You have part of John Doe's credential!**
 
@@ -211,6 +218,8 @@ const attestation = await Kilt.Attestation.query(request.rootHash)
 ...
 ```
 
+Excute the script and see if you get John Doe's Credential!
+
 Time to verify the credential and make sure it is valid.
 If the **verification** returns true it is **valid**!
 
@@ -224,4 +233,7 @@ If the **verification** returns true it is **valid**!
 ...
 ```
 
+Last step is to excute the code and see what is returned at the end of it!
+
+Was it successful?
 Nice Job! Want to explore more of KILT's features, check out the DID guide!
