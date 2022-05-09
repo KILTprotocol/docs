@@ -89,11 +89,10 @@ Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection
 We will initalise the **KILT blockchain** named the **Spiritnet**.  
 
 ``` js
+    ...
 async function main() {
-...
     await Kilt.init({address: 'wss://spiritnet.kilt.io/'})
 ...
-}
 ```
 
 Now you have initalised the connection, lets connect to the chain.
@@ -194,10 +193,10 @@ Lets query with `rootHash` to see if an **attestation** has been writen on-chain
 ``` js
 ...
     const request = await fetch(endPoints[0].urls[0]).then((request) =>
-    request.json()
-  )
+        request.json()
+    )
 
-  const attestation = await Kilt.Attestation.query(request.rootHash)
+    const attestation = await Kilt.Attestation.query(request.rootHash)
 ...
 ```
 
@@ -206,15 +205,14 @@ Lets see if we can validate the data to reconstruct the Credential.
 
 ``` js
 ...
+    const attestation = await Kilt.Attestation.query(request.rootHash)
 
-const attestation = await Kilt.Attestation.query(request.rootHash)
+    const credential = Kilt.Credential.fromRequestAndAttestation(
+        request,
+        attestation
+    )
 
-  const credential = Kilt.Credential.fromRequestAndAttestation(
-    request,
-    attestation
-  )
-
-  console.log('John Doe:', credential)
+    console.log('John Doe:', credential)
 ...
 ```
 
