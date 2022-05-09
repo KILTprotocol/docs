@@ -44,9 +44,6 @@ The output should look like this:
 ```
 Seed //Alice has account id 4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy and 0
 Seed //Bob has account id 4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb and 0
-Seed //Charlie has account id 4rBogi2Xk6vQsTZHdaihYvz4DTJCYTFFYqc1DJCcAH9fJnh7 and 0
-Seed //Dave has account id 4p1XktZVx7y6AYQJt48frJuVMcwgsWrAysky4k5M4LfSLGLJ and 0
-Seed //Ferdie has account id 4oZkMuUur4hh8VtLwxqhDmk4GjyZ97FF2shWPiDSuM4MtuHj and 0
 ```
 
 None of the development accounts have usable balance on the public peregrine network.
@@ -131,3 +128,15 @@ Any of the following pallets are not part of the standalone chain, but part of t
 Staking is a feature that is used to elect who is allowed to produce blocks.
 It is important for parachains to do this election as decentralized as possible.
 But for a local development chain it is not necessary since you will be the only one producing blocks.
+
+### Deployment Complexity
+
+The complexity to deploy a parachain is way higher than the one of the standalone chain.
+For the standalone node, you simple execute a single docker command.
+The task of spinning up a parachain can be split up in three steps.
+
+1. Setup a relay chain with 4 validators.
+2. Start and connect your parachain node to the relaychain.
+3. register your parachain using the Runtime WASM and the genesis state.
+
+These three steps
