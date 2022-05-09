@@ -1,4 +1,7 @@
-# Getting Started
+---
+id: getting-started
+title: Kilt Getting Started Guide
+---
 
 The following guide will give you a started point to begin with KILT. 
 What will you be able to do after this guide:
