@@ -12,18 +12,18 @@ export async function main() {
   })
 
   // Get a list of development accounts
-  let accounts_seeds = ['//Alice', '//Bob']
-  let addresses = accounts_seeds.map((seed) => {
+  const accounts_seeds = ['//Alice', '//Bob']
+  const addresses = accounts_seeds.map((seed) => {
     return [seed, keyring.addFromUri(seed).address]
   })
 
   // Query the balance for all of them
-  let promise_balances = addresses.map(
+  const promise_balances = addresses.map(
     async ([seed, addr]): Promise<[string, string, kilt.Balances]> => {
       return [seed, addr, await kilt.Balance.getBalances(addr)]
     }
   )
-  let balances = await Promise.all(promise_balances)
+  const balances = await Promise.all(promise_balances)
 
   // Print the gathered information for all
   balances.forEach(([seed, addr, balance]: [string, string, kilt.Balances]) => {
