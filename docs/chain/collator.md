@@ -294,12 +294,12 @@ You can find more information about session keys in the [Substrate Documentation
 Once a new session key is generated, the collator must then link that key to its own account in order to receive rewards for producing new blocks.
 This operation is performed by submitting a signed extrinsic to the blockchain.
 
-For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), while for Peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
+For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), while for Peregrine is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
 
 `Developer -> Extrinsics -> Submission`
 
 1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Submit the following extrinsic: `session -> setKeys(keys, proof)`
+2. Set up the following extrinsic: `session -> setKeys(keys, proof)`
     - `keys` -> the public session key (`0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010` in the example above)
     - `proof` -> the proof of ownership. It can be set to `0x00`
 3. Sign and submit the extrinsic
@@ -315,6 +315,11 @@ A session takes 600 blocks or around 120~ minutes
 
 ## Join the collator candidates pool
 
+After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
+You can either do this in Polkadot JS Apps or the KILT Stakeboard, which serves as an in-house developed Frontend for all KILT staking activity.
+Below, we explain how to do it for the former case.
+However, the latter option is explained in detail in the [KILT Support hub](https://support.kilt.io/support/solutions/80000442174).
+
 :::warning
 These steps should be followed only once a collator node has successfully linked a session key to its address and has synced the parachain and relaychain states by following the steps above.
 :::
@@ -327,7 +332,7 @@ In order to become a collator, you must stake
 
 The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` with the desired stake to join the candidate pool:
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`
 
 1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the following extrinsic: `parachainStaking -> joinCandidates(stake)`
@@ -346,7 +351,7 @@ So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000
 
 A collator candidate can check the current top candidates to see their position and required staked amount to become an active collator, i.e., to start authoring new blocks.
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Chain state -> Storage`
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Chain state -> Storage`
 
 1. Selected state query: `parachainStaking -> topCandidates(): ParachainStakingSetOrderedSet`
 2. Execute the query by pressing the "+" button on the right side
@@ -362,7 +367,7 @@ A time period of two sessions must pass before the collator will be authoring bl
 A collator can increase or decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
 The corresponding extrinsics for these operations are `parachainStaking -> candidateStakeMore(more)` and `parachainStaking -> candidateStakeLess(less)`.
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
 
 <Tabs
   groupId="collator-adjust-stake"
@@ -594,7 +599,7 @@ In this case, it is better to rule out other options before thinking to upgrade 
 There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`.
 2. Check that the node has the corresponding private key for the public session key.
 Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see if it returns `true`.
-3. Check that the node is fully synced with the relaychain & parachain (best and finalised block number is equal to the one shown in the PolkadotJS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) and on Subscan ([Spiritnet](https://spiritnet.subscan.io/), [Peregrine](https://kilt-testnet.subscan.io/)).
+3. Check that the node is fully synced with the relaychain & parachain (best and finalised block number is equal to the one shown in the PolkadotJS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) and on Subscan ([Spiritnet](https://spiritnet.subscan.io/), [Peregrine](https://kilt-testnet.subscan.io/)).
 4. Check that the collator is among the selected candidates.
 Its address should included in the list returned by querying `parachainStaking > topCandidates()`.
 5. Check that the `parachainStaking` pallet has registered the collator's address among the authorised authors in the `session`.

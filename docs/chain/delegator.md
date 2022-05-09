@@ -8,12 +8,16 @@ import TabItem from '@theme/TabItem';
 
 ## How to become a delegator
 
-In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple. 
+In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple.
+You can either do this in Polkadot JS Apps or the KILT Stakeboard, which serves as an in-house developed Frontend for all KILT staking activity.
+Below, we explain how to do it for the former case.
+However, the latter option is explained in detail in the [KILT Support hub](https://support.kilt.io/support/solutions/80000442174).
+
 Anyone can delegate to a collator candidate by staking at least 20 KILT and calling `parachainStaking -> joinDelegators`.
 
 ![](/img/chain/parachainStaking-joinDelegators.png)
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
@@ -65,7 +69,8 @@ When that happens,
 
 - The kicked delegator will be replaced by the delegator with a higher delegation immediately
 - The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*)
-- A delegator needs to wait 7 days to be able to unlock the stake.
+- A delegator needs to wait 7 days (in block time) to be able to unlock the stake.
+Please note that it can take longer in real time as the block times assumes a constant block time of 12s which is not guaranteed.
 
 ```mermaid
 flowchart TD
@@ -101,7 +106,7 @@ Your adjustment becomes effective immediately!
 In case you increased your stake, you instantly receive higher rewards for any produced blocks of your collator.
 However, if you decreased your delegation amount, the reverse applies and you receive less rewards.
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
 
 <Tabs
   groupId="delegator-adjust-stake"
@@ -151,7 +156,7 @@ As a result, you won't receive any rewards immediately after the transaction is 
 ![](/img/chain/parachainStaking-revokeDelegation.png)
 
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
