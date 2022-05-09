@@ -3,7 +3,7 @@ id: getting-started
 title: Kilt Getting Started Guide
 ---
 
-The following guide will give you a started point to begin with KILT. 
+The following guide will give you a started point to begin with KILT.
 What will you be able to do after this guide:
 
 1. Import the **KILT SDK** into a project
@@ -14,8 +14,6 @@ What will you be able to do after this guide:
 After completing the getting started, you should have learn a little about KILT and a guide to learn by doing.
 The guide requires some experience with javascript and command-line tools.
 We will have recommended guides to other tutorials for further learnings.
-
-We have a complete copy of the script here, in case you get stuck. **Add link**
 
 ## Setup
 
@@ -50,6 +48,12 @@ main()
 ```
 
 If the setup is correct you can excute the script by calling the name of the file using node.
+
+```bash
+npm node getting-started.js
+```
+
+Or with `yarn`:
 
 ``` bash
 yarn node getting-started.js
@@ -120,7 +124,7 @@ You have done connected, lets start querying and fetching data from the chain!**
 
 ## Lets query the chain
 
-Now you have a connection to the chain, you are able to query a variety of information using the exposed KILT functionality from the SDK.
+Now you have a connection to the chain to query a variety of information using the exposed KILT SDK functionality.
 We will be looking at the **web3names** (`john_doe`) and using them to fetch the corresponding **DID identifier**.
 Underneath the blockchain connection, add the following lines.
 
@@ -135,13 +139,13 @@ Underneath the blockchain connection, add the following lines.
 ```
 
 Nice work! You have `john_doe`'s DID.
-Now Let's see if they have any credentials availale to verify!
+Now let's see if they have any credentials availale to verify!
 
 ## Verifying a credential
 
-**DIDs** are great tools for identification, you are able to have service endpoints on the DID.
+**DIDs** are great tools for identification.
+A DID can have service endpoints on the DID linking to public data.
 Therefore, you can take your credentials and display them for others to see!
-The usecases are almost endless when you have access to a credential or see a credential.
 Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any public credentials for us to **query** and **verify**.
 
 Lets take the DID that was fetch and see if we can retreives the contents.
@@ -178,7 +182,7 @@ A new line after `endPoints` add the following:
 **Wow! You have part of John Doe's credential!**
 
 We will have to make sure the credential is **valid** and **structured** correctly.
-Lets query and fetch the credential's **attestation** and combine it all into a credential!
+Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
 
 ``` js
 ...
@@ -187,6 +191,16 @@ Lets query and fetch the credential's **attestation** and combine it all into a 
   )
 
   const attestation = await Kilt.Attestation.query(request.rootHash)
+...
+```
+
+The attestation assoicated with the `rootHash` is on-chain.
+Lets see if we can validate the data to reconstruct the Credential.
+
+``` js
+...
+
+const attestation = await Kilt.Attestation.query(request.rootHash)
 
   const credential = Kilt.Credential.fromRequestAndAttestation(
     request,
