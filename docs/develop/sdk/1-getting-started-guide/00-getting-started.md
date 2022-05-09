@@ -14,27 +14,26 @@ We will have recommended guides to other tutorials for further learnings.
 
 We have a complete copy of the script here, in case you get stuck. **Add link**
 
-**NOTE: Code will be written and then added to the testing later. To be DELETED afterwards**
-
 ## Setup
 
 We will focus on creating a new project from stratch, which will require a little setup.
 First, we need to create a new project in a new directory. For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-From inside the `kilt-rocks` project directory, install the **SDK** and **typescript** with either of the following package managers:
+From inside the `kilt-rocks` project directory, install the **SDK**, **node** and **node-fetch** with either of the following package managers:
 
 ```bash
-npm install @kiltprotocol/sdk-js ts-node typescript
+npm install @kiltprotocol/sdk-js node node-fetch
 ```
 
 Or with `yarn`:
 
 ```bash
-yarn add @kiltprotocol/sdk-js ts-node typescript
+yarn add @kiltprotocol/sdk-js node node-fetch
 ```
 
 After you have imported the SDK, you are now able to access the functionality of KILT.
-With all the required dependencies set, just create a new (empty) TS script file with `touch getting-started.ts`.
+With all the required dependencies set, just create a new (empty) script file with `touch getting-started.js`.
+Inside the `package.json` add in the object `"type": "module"`.
 
 Lets first create an asynchronous function called `main` in order to excute the script.
 Underneath the first line add the following:
@@ -50,7 +49,7 @@ main()
 If the setup is correct you can excute the script by calling the name of the file using node.
 
 ``` bash
-yarn ts-node getting-started.ts
+yarn node getting-started.js
 ```
 
 You can always excute this file with the command.
@@ -60,10 +59,11 @@ It will refer to this command when requested to excute.
 
 ### Importing KILT's SDK into a project
 
-Lets begin by importing the SDK into the `getting-started.ts` add the following line to import the SDK.
+Lets begin by importing the **SDK** and **node-fetch** into the `getting-started.js`.
 
 ``` js
 import * as Kilt from '@kiltprotocol/sdk-js'
+import fetch from 'node-fetch'
 ```
 
 Now you are able to access the SDK and all its functionality.
@@ -76,7 +76,7 @@ The connection allows to **query**, **verify** and **interact** with the chain.
 
 **Lets get connected.**
 
-Inside the `getting-started.ts` inside the `main` function, you will need to begin by connecting to a **KILT node**.
+Inside the `getting-started.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
 Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection to the KILT blockchain via an address.
 
 We will initalise the **KILT blockchain** named the **Spiritnet**.  
@@ -101,8 +101,7 @@ Inside the `main` function, lets get the conncetion using an asynchronous call t
 ```
 
 Now you have connected you have access to the chain, but lets not forget to close any connections.
-Its best practice not to leave an connections open.
-At the bottom of the `main` function, add the following function.
+Its best practice not to leave an connections open, add `Kilt.disconnect()` at the bottom of `main` function.
 
 ``` js
 ...
@@ -150,6 +149,7 @@ We will add a new line under the `console.log` and lets resolve the DID with the
     console.log(`Hello world, my name is john_doe and this is my DID ${johnDoeDidId}`)
     
     if (!johnDoeDidId) return 
+
     const johnDoeDid = await Kilt.Did.DidResolver.resolveDoc(johnDoeDidId)
     const endPoints = johnDoeDid?.details?.getEndpoints()
 ...
@@ -164,10 +164,47 @@ A new line after `endPoints` add the following:
 ...
     const endPoints = johnDoeDid?.details?.getEndpoints()
 
-    console.log(`John Doe first endpoint: ${endpoints[0].url}`)
+    if (!endPoints) return console.log('no endpoints')
 
-    fetch()
+    const request = await fetch(endPoints[0].urls[0]).then((request) =>
+        request.json()
+    )
 ...
 ```
 
+**Wow! You have part of John Doe's credential!**
 
+We will have to make sure the credential is **valid** and **structured** correctly.
+Lets query and fetch the credential's **attestation** and combine it all into a credential!
+
+``` js
+...
+    const request = await fetch(endPoints[0].urls[0]).then((request) =>
+    request.json()
+  )
+
+  const attestation = await Kilt.Attestation.query(request.rootHash)
+
+  const credential = Kilt.Credential.fromRequestAndAttestation(
+    request,
+    attestation
+  )
+
+  console.log('John Doe:', credential)
+...
+```
+
+Time to verify the credential and make sure it is valid.
+If the verification returns true it is valid!
+
+``` js
+...
+  console.log('John Doe:', credential)
+  const verifiedCrdential = await credential.verify()
+
+  await Kilt.disconnect()
+  return console.log(`Is John Doe's credential valid: ${verifiedCrdential}`)
+...
+```
+
+Nice Job! Want to explore more of KILT's features, check out the DID guide!
