@@ -77,7 +77,7 @@ For example, the full URI for the Web3 name `example-web3name` is `w3n:example-w
 ### Linking accounts to a Web3 name
 
 Beyond linking a Web3 name, KILT allows DID owners to link multiple accounts to a single DID.
-These accounts are not specific to the KILT blockchain but can reference any chain within the Kusama ecosystem.
+These accounts are not specific to the KILT blockchain but can reference any chain within the Polkadot/Kusama ecosystem.
 Each account <-> DID link requires the payment of a small deposit, which is returned whenever the link is removed.
 
 For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
