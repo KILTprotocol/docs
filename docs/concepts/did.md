@@ -81,3 +81,14 @@ These accounts are not specific to the KILT blockchain but can reference any cha
 Each account <-> DID link requires the payment of a small deposit, which is returned whenever the link is removed.
 
 For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
+
+:::caution
+While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
+
+KILT *accounts* are classical blockchain accounts, that can be used to hold and send KILT tokens, as well as signing and submitting transactions.
+On the other hand, KILT *DIDs* are a L2 construct which are derived from KILT accounts, but are completely separated from them.
+This means that **KILT DIDs cannot hold any KILT tokens**.
+DIDs are used to authorize (sign) some operations, but the resulting signature must then be submitted to the blockchain by a KILT account, which must pay for the transaction fees.
+
+Hence, even though a DID has the format `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` with `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` being a valid KILT account, there is no (immediate) relationship between the DID and this account and hence this account should not be considered in isolation as a KILT account, but only with its `did:kilt` prefix, which makes it a valid DID.
+Hence, if instructed to "*send some funds to the account in your DID by removing the `did:kilt` prefix*", please ignore the advice, as sending funds to a DID can result in those funds being lost without the proper technical expertise.
