@@ -3,6 +3,8 @@ id: did
 title: DIDs
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 A DID can be thought of as a container of different keys that are all under the control of the same DID subject.
 For the official W3C DID spec, please visit the [DID Core spec page](https://www.w3.org/TR/did-core/), while for the official KILT DID method specification, please visit the [KILT DID spec page](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).
@@ -82,6 +84,14 @@ Each account <-> DID link requires the payment of a small deposit, which is retu
 
 For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
 
+<ThemedImage
+  alt="DID lookup diagram"
+  sources={{
+    light: '/img/concepts/did/did-lookup-light.png',
+    dark: '/img/concepts/did/did-lookup-dark.png',
+  }}
+/>;
+
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
 
@@ -91,4 +101,4 @@ This means that **KILT DIDs cannot hold any KILT tokens**.
 DIDs are used to authorize (sign) some operations, but the resulting signature must then be submitted to the blockchain by a KILT account, which must pay for the transaction fees.
 
 Hence, even though a DID has the format `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` with `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` being a valid KILT account, there is no (immediate) relationship between the DID and this account and hence this account should not be considered in isolation as a KILT account, but only with its `did:kilt` prefix, which makes it a valid DID.
-Hence, if instructed to "*send some funds to the account in your DID by removing the `did:kilt` prefix*", please ignore the advice, as sending funds to a DID can result in those funds being lost without the proper technical expertise.
+Hence, if instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*", please ignore the advice, as sending funds to a DID can result in those funds being lost without the required technical expertise.
