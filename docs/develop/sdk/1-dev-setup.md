@@ -5,28 +5,36 @@ title: Development Setup
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.ts';
 
-If you want to develop a DApp, Wallet, web3 login or similar you will need a running blockchain that doesn't require you to buy KILT just to develop and test the next big thing.
+If you want to develop a DApp, Wallet, web3 login or similar, you will need a running blockchain that doesn't require you to buy KILT just to develop and test the next big thing.
 For that you can use the peregrine network.
 The peregrine network is a parachain that is similar to the spiritnet (our mainnet) in functionality, but it's coin, the PILT, doesn't hold any monetary value.
-New features that we add to our blockchain will first be tested on peregrine before they are introduced to the spiritnet.
+New features that we add to our blockchain, will first be tested on Peregrine before they are introduced to the Spiritnet.
 This gives you the chance to test your software with the newest blockchain features, before they are available on the mainnet.
 
 Even though the peregrine network is convenient, there are a scenarios where a public network is not the right choice for developers.
 If you need more funds than the faucet can provide, or if you need to reset the state of the blockchain, you will need to setup your own little KILT blockchain.
-How this works will be explained in here.
+
+Below, we will guide you through the process of connecting to the Peregrine network as well as running your own KILT blockchain.
+Moreover, we will explain the difference between our _Standalone_ and _Parachain_ runtimes Peregrine/Spiritnet.
 
 ## Setup your Project
 
-Before we can connect to our blockchain we need create a small project that can connect to the chain.
+Before we can connect to our blockchain, we need to create a small project that can connect to the chain.
 For that create a new directory and initialize a new project.
-We are also adding the KILT SDK, typescript and a couple of peer dependencies.
+We are also adding the KILT SDK, TypeScript and a couple of peer dependencies.
 
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.27.0 ts-node typescript @polkadot/keyring@8.7.1 @polkadot/util@8.7.1 @polkadot/util-crypto@8.7.1 @types/node
+npm install @kiltprotocol/sdk-js@0.27.0 \
+ ts-node \
+ typescript \
+ @types/node
+ @polkadot/keyring@8.7.1 \
+ @polkadot/util@8.7.1 \
+ @polkadot/util-crypto@8.7.1 \
 ```
 
-After all these dependencies are added we will add a simple script that prints the balance of a couple of well known development accounts.
+After all these dependencies are added, we will add a simple script that prints the balance of a couple of well known development accounts.
 
 <CodeBlock className="language-js">
   {Example1}
@@ -50,7 +58,7 @@ None of the development accounts have usable balance on the public peregrine net
 
 ## BYOB - Bring Your Own Blockchain
 
-If you don't want to rely on peregrine, need more funds or want to reset the state of your transactions you will need to run your own blockchain.
+If you don't want to rely on peregrine, need more funds or want to reset the state of your transactions, you will need to run your own blockchain.
 For this purpose, we provide a docker image which runs in standalone mode.
 This means that the blockchain doesn't act as a parachain but as an independent chain.
 There is no need to run a relaychain and register the KILT chain as a parachain.
@@ -89,7 +97,7 @@ You should see output similar to the following:
 Congratulations!
 You are running your own blockchain. 🎉
 
-The blockchain exposes a websocket endpoint on port `9944` and a RPC endpoint on port `9933`.
+The blockchain exposes a websocket endpoint on port `9944` and an RPC endpoint on port `9933`.
 You can test that by first calling an RPC endpoint using curl.
 
 ```
@@ -103,7 +111,7 @@ Simple replace the peregrine address `wss://peregrine.kilt.io/parachain-public-w
 Note that we connect to the port `9944` as we are using the websocket protocol for our SDK and not bare http.
 
 
-## Standalone vs Mainnet (Spiritnet)
+## Standalone vs. Parachain (Peregrine testnet/Spiritnet mainnet)
 
 The standalone chain is very close in functionality to our parachains but there are a few fundamental differences between them.
 
@@ -113,7 +121,7 @@ Block time is actually the same, but this might change in the future. -->
 
 ### Governance
 
-While governance is a very important part of our paracahains it is not used in the standalone version and replaced by the sudo pallet.
+While governance is a very important part of our parachains, it is not used in the standalone version and replaced by the sudo pallet.
 Any of the following pallets are not part of the standalone chain, but part of the parachain runtime:
 
 * Democracy
@@ -126,7 +134,7 @@ Any of the following pallets are not part of the standalone chain, but part of t
 ### Staking
 
 Staking is a feature that is used to elect who is allowed to produce blocks.
-It is important for parachains to do this election as decentralized as possible.
+It is important for parachains to have this election as decentralized as possible.
 But for a local development chain it is not necessary since you will be the only one producing blocks.
 
 ### Deployment Complexity
@@ -137,6 +145,6 @@ The task of spinning up a parachain can be split up in three steps.
 
 1. Setup a relay chain with 4 validators.
 2. Start and connect your parachain node to the relaychain.
-3. register your parachain using the Runtime WASM and the genesis state.
+3. Register your parachain using the runtime WASM and the genesis state.
 
 These three steps
