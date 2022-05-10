@@ -1,6 +1,6 @@
 ---
 id: did
-title: Kilt DIDs
+title: KILT DIDs
 ---
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/did/1_did.ts';
