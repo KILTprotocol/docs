@@ -17,7 +17,7 @@ Anyone can delegate to a collator candidate by staking at least 20 KILT and call
 
 ![](/img/chain/parachainStaking-joinDelegators.png)
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
@@ -106,7 +106,7 @@ Your adjustment becomes effective immediately!
 In case you increased your stake, you instantly receive higher rewards for any produced blocks of your collator.
 However, if you decreased your delegation amount, the reverse applies and you receive less rewards.
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
+ In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
 
 <Tabs
   groupId="delegator-adjust-stake"
@@ -156,7 +156,7 @@ As a result, you won't receive any rewards immediately after the transaction is 
 ![](/img/chain/parachainStaking-revokeDelegation.png)
 
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpcrpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission.`
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
