@@ -24,6 +24,15 @@
 	--ifm-code-font-size: 95%;
 }
 
+.footer {
+	--ifm-footer-background-color: #51425b;
+	--ifm-footer-link-color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .footer {
+	--ifm-footer-background-color: black;
+}
+
 html[data-theme='dark'] .hero--primary {
 	--ifm-hero-text-color: white;
 }
