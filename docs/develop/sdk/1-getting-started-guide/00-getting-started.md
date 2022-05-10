@@ -22,14 +22,8 @@ First, we need to create a new project in a new directory. For this, we run `mkd
 
 From inside the `kilt-rocks` project directory, install the **SDK**, **node** and **node-fetch** with either of the following package managers:
 
-```bash
+```bash npm2yarn
 npm install @kiltprotocol/sdk-js node node-fetch
-```
-
-Or with `yarn`:
-
-```bash
-yarn add @kiltprotocol/sdk-js node node-fetch
 ```
 
 After you have imported the SDK, you are now able to access the functionality of KILT.
@@ -49,15 +43,10 @@ main()
 
 If the setup is correct you can excute the script by calling the name of the file using node.
 
-```bash
+```bash npm2yarn
 npm node getting-started.js
 ```
-
-Or with `yarn`:
-
-``` bash
-yarn node getting-started.js
-```
+ 
 
 You can always excute this file with the command.
 It will refer to this command when requested to excute.
@@ -89,7 +78,7 @@ Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection
 We will initalise the **KILT blockchain** named the **Spiritnet**.  
 
 ``` js
-    ...
+...
 async function main() {
     await Kilt.init({address: 'wss://spiritnet.kilt.io/'})
 ...
@@ -112,7 +101,6 @@ Its best practice not to leave an connections open, add `Kilt.disconnect()` at t
 ``` js
 ...
     await Kilt.disconnect()
-    return
 ...
 ```
 
@@ -156,7 +144,7 @@ We will add a new line under the `console.log` and lets resolve the DID with the
 ...
     console.log(`Hello world, my name is john_doe and this is my DID ${johnDoeDidId}`)
     
-    if (!johnDoeDidId) return 
+    if (!johnDoeDidId) return console.log(`john_doe doesn't exist`)
 
     const johnDoeDid = await Kilt.Did.DidResolver.resolveDoc(johnDoeDidId)
     const endPoints = johnDoeDid?.details?.getEndpoints()
@@ -184,8 +172,6 @@ A new line after `endPoints` add the following:
 
 Try excuting it and see what comes out.
 Did you get a partial credential object?
-
-**Wow! You have part of John Doe's credential!**
 
 We will have to make sure the credential is **valid** and **structured** correctly.
 Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
