@@ -23,16 +23,15 @@ Before we can connect to our blockchain, we need to create a small project that 
 For that create a new directory and initialize a new project.
 We are also adding the KILT SDK, TypeScript and a couple of peer dependencies.
 
-```bash npm2yarn
-npm init -y
-yarn global add ts-node
-npm install @kiltprotocol/sdk-js@0.27.0 \
-    ts-node \
-    typescript \
-    @types/node
+```bash
+yarn init -y
+yarn add @kiltprotocol/sdk-js@0.27.0 \
     @polkadot/keyring@8.7.1 \
     @polkadot/util@8.7.1 \
-    @polkadot/util-crypto@8.7.1 \
+    @polkadot/util-crypto@8.7.1
+yarn add -D ts-node \
+    typescript \
+    @types/node
 ```
 
 After all these dependencies are added, we will add a simple script that prints the balance of a couple of well known development accounts.
@@ -45,7 +44,7 @@ Copy the above code into index.ts.
 You can know execute the script:
 
 ```bash
-ts-node index.ts
+yarn exec ts-node index.ts
 ```
 
 The output should look like this:
