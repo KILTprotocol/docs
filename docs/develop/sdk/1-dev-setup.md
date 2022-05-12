@@ -25,6 +25,7 @@ We are also adding the KILT SDK, TypeScript and a couple of peer dependencies.
 
 ```bash npm2yarn
 npm init -y
+yarn global add ts-node
 npm install @kiltprotocol/sdk-js@0.27.0 \
     ts-node \
     typescript \
@@ -43,8 +44,8 @@ After all these dependencies are added, we will add a simple script that prints 
 Copy the above code into index.ts.
 You can know execute the script:
 
-```bash npm2yarn
-npm exec ts-node index.ts
+```bash
+ts-node index.ts
 ```
 
 The output should look like this:
