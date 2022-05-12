@@ -17,8 +17,6 @@ The interaction is as follows:
 - An attester creates an `Terms` object and sends it as part of a submit terms message back to the claimer.
 - The claimer receives the terms message, checks the terms and, if all is in order, agrees to them
 
-Either a claimer or an attester can initiate a request for terms.
-
 ## How to create a terms object
 
 When creating a terms object, at least one of the following must be set: Legitimations, Quote or Delegations.
@@ -75,7 +73,7 @@ The terms object is sent via the messaging in the SDK using the interface “ISu
 
 ## How to create a quote
 
-A quote is a description of the terms and conditions of the work to be performed. It may be sent to the attester from the claimer, but may also be sent from a claimer to an attester. In cases where multiple attesters provide the same attestation (for example, a car inspection) the claimer may send a quote to several attesters to choose the attester with the best conditions.
+A quote consists of costs, a timeframe and the terms and conditions of the work to be performed. It may be sent to the claimer by the attester. In cases where multiple attesters provide the same attestation (for example, a car inspection) the claimer may request a quote of several attesters to choose the attester with the best conditions.
 
 To come to an agreement on the quote, the participants may message back and forth, signing the object.
 

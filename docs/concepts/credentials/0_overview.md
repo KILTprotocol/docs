@@ -3,7 +3,7 @@ id: overview
 title: Credentials - Overview
 ---
 
-Credentials are attested claims, which are owned by the Claimer, attested by an Attester and can be verified by a Verifier.
+Credentials are attested claims, which are owned by a Claimer, attested by an Attester and can be verified by a Verifier.
 
 To get a Credential a Claimer needs to go through following process:
 1. Find a CType, a Claim should be based on (Can be advertised by the potential Attester and Verifier)
