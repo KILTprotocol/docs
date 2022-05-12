@@ -15,9 +15,9 @@ Even though the peregrine network is convenient, there are a scenarios where a p
 If you need more funds than the faucet can provide, or if you need to reset the state of the blockchain, you will need to setup your own little KILT blockchain.
 
 Below, we will guide you through the process of connecting to the Peregrine network as well as running your own KILT blockchain.
-Moreover, we will explain the difference between our _Standalone_ and _Parachain_ runtimes Peregrine/Spiritnet.
+Moreover, we will explain the difference between our _Standalone_ and _Parachain_ runtimes.
 
-## Setup your Project
+## Set up your project
 
 Before we can connect to our blockchain, we need to create a small project that can connect to the chain.
 For that create a new directory and initialize a new project.
@@ -58,7 +58,7 @@ None of the development accounts have usable balance on the public peregrine net
 
 ## BYOB - Bring Your Own Blockchain
 
-If you don't want to rely on peregrine, need more funds or want to reset the state of your transactions, you will need to run your own blockchain.
+If you don't want to rely on peregrine, need more funds or need to periodically reset the state of the blockchain, you will need to run your own blockchain.
 For this purpose, we provide a docker image which runs in standalone mode.
 This means that the blockchain doesn't act as a parachain but as an independent chain.
 There is no need to run a relaychain and register the KILT chain as a parachain.
@@ -139,7 +139,7 @@ But for a local development chain it is not necessary since you will be the only
 
 ### Deployment Complexity
 
-The complexity to deploy a parachain is way higher than the one of the standalone chain.
+Deploying a parachain is more complext than deploying a standalone chain.
 For the standalone node, you simple execute a single docker command.
 The task of spinning up a parachain can be split up in three steps.
 
