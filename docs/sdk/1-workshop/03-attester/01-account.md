@@ -18,7 +18,7 @@ All we need to create an account is a mnemonic.
 A KILT account is a set of cryptographic elements:
 
 - The address, which is generated from the public key
-- A signing keypair write transactions on-chain
+- A signing keypair to write transactions on-chain
 
 :::
 
@@ -52,6 +52,7 @@ We will use `getAccount` later to load the account that we will create and store
 ## Execute
 
 Now run it to get your <span class="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
+
 ```bash
 yarn ts-node ./attester/generateAccount.ts
 ```
