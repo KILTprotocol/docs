@@ -7,7 +7,7 @@ import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.t
 
 If you want to develop a DApp, Wallet, web3 login or similar, you will need a running blockchain that doesn't require you to buy KILT just to develop and test the next big thing.
 For that you can use the Peregrine network.
-The Peregrine network is a parachain that is similar to the Spiritnet (our mainnet) in functionality, but it's coin, the PILT, doesn't hold any monetary value.
+The Peregrine network is a parachain that is similar to the Spiritnet (our mainnet) in functionality, but its coin, the PILT, doesn't hold any monetary value.
 New features that we add to our blockchain, will first be tested on Peregrine before they are introduced to the Spiritnet.
 This gives you the chance to test your software with the newest blockchain features, before they are available on the mainnet.
 
