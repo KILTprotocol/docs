@@ -6,8 +6,8 @@ import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.ts';
 
 If you want to develop a DApp, Wallet, web3 login or similar, you will need a running blockchain that doesn't require you to buy KILT just to develop and test the next big thing.
-For that you can use the peregrine network.
-The peregrine network is a parachain that is similar to the spiritnet (our mainnet) in functionality, but it's coin, the PILT, doesn't hold any monetary value.
+For that you can use the Peregrine network.
+The Peregrine network is a parachain that is similar to the Spiritnet (our mainnet) in functionality, but it's coin, the PILT, doesn't hold any monetary value.
 New features that we add to our blockchain, will first be tested on Peregrine before they are introduced to the Spiritnet.
 This gives you the chance to test your software with the newest blockchain features, before they are available on the mainnet.
 
@@ -26,12 +26,12 @@ We are also adding the KILT SDK, TypeScript and a couple of peer dependencies.
 ```bash npm2yarn
 npm init -y
 npm install @kiltprotocol/sdk-js@0.27.0 \
- ts-node \
- typescript \
- @types/node
- @polkadot/keyring@8.7.1 \
- @polkadot/util@8.7.1 \
- @polkadot/util-crypto@8.7.1 \
+    ts-node \
+    typescript \
+    @types/node
+    @polkadot/keyring@8.7.1 \
+    @polkadot/util@8.7.1 \
+    @polkadot/util-crypto@8.7.1 \
 ```
 
 After all these dependencies are added, we will add a simple script that prints the balance of a couple of well known development accounts.
@@ -111,7 +111,7 @@ Simple replace the peregrine address `wss://peregrine.kilt.io/parachain-public-w
 Note that we connect to the port `9944` as we are using the websocket protocol for our SDK and not bare http.
 
 
-## Standalone vs. Parachain (Peregrine testnet/Spiritnet mainnet)
+## Standalone vs. Parachain (Peregrine/Spiritnet)
 
 The standalone chain is very close in functionality to our parachains but there are a few fundamental differences between them.
 
