@@ -2,6 +2,17 @@
 id: getting-started
 title: Kilt Getting Started Guide
 ---
+import CodeBlock from '@theme/CodeBlock';
+import Example1 from '!!raw-loader!@site/code-examples/core_features/getting_started/1_getting_started.ts';
+import Example2 from '!!raw-loader!@site/code-examples/core_features/getting_started/2_getting_started.ts';
+import Example3 from '!!raw-loader!@site/code-examples/core_features/getting_started/3_getting_started.ts';
+import Example4 from '!!raw-loader!@site/code-examples/core_features/getting_started/4_getting_started.ts';
+import Example5 from '!!raw-loader!@site/code-examples/core_features/getting_started/5_getting_started.ts';
+import Example6 from '!!raw-loader!@site/code-examples/core_features/getting_started/6_getting_started.ts';
+import Example7 from '!!raw-loader!@site/code-examples/core_features/getting_started/7_getting_started.ts';
+import Example8 from '!!raw-loader!@site/code-examples/core_features/getting_started/8_getting_started.ts';
+import Example9 from '!!raw-loader!@site/code-examples/core_features/getting_started/9_getting_started.ts';
+import Example10 from '!!raw-loader!@site/code-examples/core_features/getting_started/10_getting_started.ts';
 
 The following guide will give you a started point to begin with KILT.
 What will you be able to do after this guide:
@@ -33,13 +44,9 @@ Inside the `package.json` add in the object `"type": "module"`.
 Lets first create an asynchronous function called `main` in order to excute the script.
 Underneath the first line add the following:
 
-``` js
-async function main() {
-    console.log('hello world')
-}
-
-main()
-```
+<CodeBlock className="language-js">
+  {Example1}
+</CodeBlock>
 
 If the setup is correct you can excute the script by calling the name of the file using node.
 
@@ -77,32 +84,23 @@ Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection
 
 We will initalise the **KILT blockchain** named the **Spiritnet**.  
 
-``` js
-...
-async function main() {
-    await Kilt.init({address: 'wss://spiritnet.kilt.io/'})
-...
-```
+<CodeBlock className="language-js">
+  {Example2}
+</CodeBlock>
 
 Now you have initalised the connection, lets connect to the chain.
 Inside the `main` function, lets get the conncetion using an asynchronous call that creates a connection, or checks if an existing connection is available and connects directly.
 
-``` js
-...
-    await Kilt.init({address: 'wss://spiritnet.kilt.io/'})
-    
-    await Kilt.ChainHelpers.BlockchainApiConnection.getConnectionOrConnect()
-...
-```
+<CodeBlock className="language-js">
+  {Example3}
+</CodeBlock>
 
 Now you have connected you have access to the chain, but lets not forget to **close** any connections.
 Its best practice not to leave an connections open, add `Kilt.disconnect()` at the bottom of `main` function.
 
-``` js
-...
-    await Kilt.disconnect()
-...
-```
+<CodeBlock className="language-js">
+  {Example10}
+</CodeBlock>
 
 The `Kilt.disconncet()` will close any established connections.
 
@@ -115,15 +113,9 @@ Now you have a connection to the chain to query a variety of information using t
 We will be looking at the **web3names** (`john_doe`) and using them to fetch the corresponding **DID identifier**.
 Underneath the blockchain connection, add the following lines.
 
-``` js
-...
-    await Kilt.ChainHelpers.BlockchainApiConnection.getConnectionOrConnect()
-
-    const johnDoeDidId = await Kilt.Did.Web3Names.queryDidForWeb3Name('john_doe')
-    
-    console.log(`Hello world, my name is john_doe and this is my DID ${johnDoeDidId}`)
-...
-```
+<CodeBlock className="language-js">
+  {Example4}
+</CodeBlock>
 
 Try excuting it and see what comes out.
 
@@ -140,18 +132,9 @@ Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any pub
 Lets take the DID that was fetch and see if we can retreives the contents.
 We will add a new line under the `console.log` and lets resolve the DID with the **DID identifier** fetched with the **web3name**.
 
-``` js
-...
-    console.log(`Hello world, my name is john_doe and this is my DID ${johnDoeDidId}`)
-    
-    if (!johnDoeDidId) return console.log(`john_doe doesn't exist`)
-
-    const johnDoeDid = await Kilt.Did.DidResolver.resolveDoc(johnDoeDidId)
-    const endPoints = johnDoeDid?.details?.getEndpoints()
-
-    if (!endPoints) return console.log('no endpoints')
-...
-```
+<CodeBlock className="language-js">
+  {Example5}
+</CodeBlock>
 
 Try excuting it and see what comes out.
 
@@ -160,15 +143,9 @@ We can select one of the endpoints and query the url to see if it returns a cred
 
 A new line after `endPoints` add the following:
 
-``` js
-...
-    if (!endPoints) return console.log('no endpoints')
-
-    const request = await fetch(endPoints[0].urls[0]).then((request) =>
-        request.json()
-    )
-...
-```
+<CodeBlock className="language-js">
+  {Example6}
+</CodeBlock>
 
 Try excuting it and see what comes out.
 Did you get a partial credential object?
@@ -176,46 +153,25 @@ Did you get a partial credential object?
 We will have to make sure the credential is **valid** and **structured** correctly.
 Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
 
-``` js
-...
-    const request = await fetch(endPoints[0].urls[0]).then((request) =>
-        request.json()
-    )
-
-    const attestation = await Kilt.Attestation.query(request.rootHash)
-...
-```
+<CodeBlock className="language-js">
+  {Example7}
+</CodeBlock>
 
 The attestation assoicated with the `rootHash` is on-chain.
 Lets see if we can validate the data to reconstruct the Credential.
 
-``` js
-...
-    const attestation = await Kilt.Attestation.query(request.rootHash)
-
-    const credential = Kilt.Credential.fromRequestAndAttestation(
-        request,
-        attestation
-    )
-
-    console.log('John Doe:', credential)
-...
-```
+<CodeBlock className="language-js">
+  {Example8}
+</CodeBlock>
 
 Excute the script and see if you get John Doe's Credential!
 
 Time to verify the credential and make sure it is valid.
 If the **verification** returns true it is **valid**!
 
-``` js
-...
-  console.log('John Doe:', credential)
-  const verifiedCrdential = await credential.verify()
-
-  await Kilt.disconnect()
-  return console.log(`Is John Doe's credential valid: ${verifiedCrdential}`)
-...
-```
+<CodeBlock className="language-js">
+  {Example9}
+</CodeBlock>
 
 Last step is to excute the code and see what is returned at the end of it!
 
