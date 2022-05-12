@@ -25,7 +25,7 @@ Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want t
 
 There are currently four different key types that a DID supports:
 
-- An _authentication keypair_, used to sign claims and credential presentations
+- An _authentication keypair_, used to sign claims and create authenticated credential presentations
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
 - A _capability-delegation keypair_, used to write delegations on chain
