@@ -44,7 +44,7 @@ Copy the above code into index.ts.
 You can know execute the script:
 
 ```bash
-yarn exec ts-node index.ts
+yarn ts-node index.ts
 ```
 
 The output should look like this:
