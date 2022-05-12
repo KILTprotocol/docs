@@ -1,12 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { Keyring } from '@kiltprotocol/utils'
 
 export async function main() {
   // connect to the blockchain
   await Kilt.init({
     address: 'wss://peregrine.kilt.io/parachain-public-ws'
   })
-  const keyring = new Keyring({
+  const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
     ss58Format: 38
   })
