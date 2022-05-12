@@ -122,7 +122,7 @@ Block time is actually the same, but this might change in the future. -->
 ### Governance
 
 While governance is a very important part of our parachains, it is not used in the standalone version and replaced by the sudo pallet.
-Any of the following pallets are not part of the standalone chain, but part of the parachain runtime:
+None of the following pallets are part of the standalone chain, but they are all part of the parachain runtime:
 
 * Democracy
 * Council
