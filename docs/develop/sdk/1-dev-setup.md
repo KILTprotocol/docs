@@ -11,7 +11,7 @@ The Peregrine network is a parachain that is similar to the Spiritnet (our mainn
 New features that we add to our blockchain, will first be tested on Peregrine before they are introduced to the Spiritnet.
 This gives you the chance to test your software with the newest blockchain features, before they are available on the mainnet.
 
-Even though the peregrine network is convenient, there are a scenarios where a public network is not the right choice for developers.
+Even though the Peregrine network is convenient, there are a scenarios where a public network is not the right choice for developers.
 If you need more funds than the faucet can provide, or if you need to reset the state of the blockchain, you will need to setup your own little KILT blockchain.
 
 Below, we will guide you through the process of connecting to the Peregrine network as well as running your own KILT blockchain.
