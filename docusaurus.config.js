@@ -32,6 +32,11 @@ module.exports = {
               docId: 'concepts/did',
               label: 'DIDs',
             },
+            {
+              type: 'doc',
+              docId: 'concepts/credentials/overview',
+              label: 'Credentials',
+            },
           ],
         },
         {
