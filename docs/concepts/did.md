@@ -100,5 +100,6 @@ On the other hand, KILT *DIDs* are a higher level construct which are derived fr
 This means that **KILT DIDs cannot hold any KILT tokens**.
 DIDs are used to authorize (sign) some operations, but the resulting signature must then be submitted to the blockchain by a KILT account, which must pay for the transaction fees.
 
-Hence, even though a DID has the format `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` with `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` being a valid KILT account, there is no (immediate) relationship between the DID and this account and hence this account should not be considered in isolation as a KILT account, but only with its `did:kilt` prefix, which makes it a valid DID.
+A DID `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` is not to be considered the same as the account `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e`, although they share the same identifier.
+There is no (immediate) relationship between the two, thus the DID should always be considered a DID and never used as an account.
 Therefore, if instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*", please ignore the advice, as sending funds to a DID can result in those funds being lost without the required technical expertise.
