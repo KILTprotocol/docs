@@ -1,9 +1,9 @@
-import * as kilt from '@kiltprotocol/sdk-js'
+import * as Kilt from '@kiltprotocol/sdk-js'
 import { Keyring } from '@kiltprotocol/utils'
 
 export async function main() {
   // connect to the blockchain
-  await kilt.init({
+  await Kilt.init({
     address: 'wss://peregrine.kilt.io/parachain-public-ws'
   })
   const keyring = new Keyring({
@@ -19,14 +19,14 @@ export async function main() {
 
   // Query the balance for all of them
   const promise_balances = addresses.map(
-    async ([seed, addr]): Promise<[string, string, kilt.Balances]> => {
-      return [seed, addr, await kilt.Balance.getBalances(addr)]
+    async ([seed, addr]): Promise<[string, string, Kilt.Balances]> => {
+      return [seed, addr, await Kilt.Balance.getBalances(addr)]
     }
   )
   const balances = await Promise.all(promise_balances)
 
   // Print the gathered information for all
-  balances.forEach(([seed, addr, balance]: [string, string, kilt.Balances]) => {
+  balances.forEach(([seed, addr, balance]: [string, string, Kilt.Balances]) => {
     console.log(
       `Seed ${seed} has account id ${addr} and ${balance.free.toString()}`
     )
