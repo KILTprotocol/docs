@@ -25,7 +25,7 @@ Take a look at our [DID documentation](/docs/sdk/core-feature/did) if you want t
 
 There are currently four different key types that a DID supports:
 
-- An _authentication keypair_, used to sign claims and presented them when requested
+- An _authentication keypair_, used to sign claims and create authenticated credential presentations
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
 - A _capability-delegation keypair_, used to write delegations on chain
@@ -48,6 +48,7 @@ Because the DID and the account are not connected, DIDs do not hold any coins.
 A keystore has multiple purposes:
 
 The keystore ...
+
 - stores private keys that belong to a DID
 - creates new keys
 - encrypts and decrypts arbitrary data
@@ -56,7 +57,7 @@ The keystore ...
 
 To create a DID we need a keystore.
 For our <span class="label-role attester">Attester</span> we'll need all four types of keys.
-Since three of the key types use are used for signatures, we can use the same key for these.
+Since three of the key types are used for signatures, we can use the same key for these.
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.
 
