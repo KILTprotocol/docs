@@ -54,11 +54,11 @@ Seed //Alice has account id 4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy and
 Seed //Bob has account id 4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb and 0
 ```
 
-None of the development accounts have usable balance on the public peregrine network.
+None of the development accounts have usable balance on the public Peregrine network.
 
 ## BYOB - Bring Your Own Blockchain
 
-If you don't want to rely on peregrine, need more funds or need to periodically reset the state of the blockchain, you will need to run your own blockchain.
+If you don't want to rely on Peregrine, need more funds or need to periodically reset the state of the blockchain, you will need to run your own blockchain.
 For this purpose, we provide a docker image which runs in standalone mode.
 This means that the blockchain doesn't act as a parachain but as an independent chain.
 There is no need to run a relaychain and register the KILT chain as a parachain.
@@ -107,7 +107,7 @@ curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method":
 This should give you `{"jsonrpc":"2.0","result":"KILT Node","id":1}` as a response.
 
 But you can also connect to the websocket endpoints using our little script above.
-Simple replace the peregrine address `wss://peregrine.kilt.io/parachain-public-ws` with `ws://127.0.0.1:9944`.
+Simple replace the Peregrine address `wss://peregrine.kilt.io/parachain-public-ws` with `ws://127.0.0.1:9944`.
 Note that we connect to the port `9944` as we are using the websocket protocol for our SDK and not bare http.
 
 
