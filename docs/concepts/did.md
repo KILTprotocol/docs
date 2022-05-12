@@ -96,7 +96,7 @@ For DIDs that have also claimed a Web3 name, the linking feature opens up the wa
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
 
 KILT *accounts* are classical blockchain accounts, that can be used to hold and send KILT tokens, as well as signing and submitting transactions.
-On the other hand, KILT *DIDs* are a L2 construct which are derived from KILT accounts, but are completely separated from them.
+On the other hand, KILT *DIDs* are a higher level construct which are derived from KILT accounts, but are completely separated from them.
 This means that **KILT DIDs cannot hold any KILT tokens**.
 DIDs are used to authorize (sign) some operations, but the resulting signature must then be submitted to the blockchain by a KILT account, which must pay for the transaction fees.
 
