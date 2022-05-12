@@ -16,7 +16,7 @@ KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to valida
 
 ### Properties
 
-When making a claim for a CType, all the following properties are required:
+When making a new CType schema, the following properties are required:
 
 - One of the following fields: `type` or `$ref`
 - A type of 'string', 'integer', 'number' and 'boolean' to define the attribute
@@ -26,7 +26,7 @@ When making a claim for a CType, all the following properties are required:
   - Time format e.g. T18:25:43.511Z
   - URI format e.g. https://www.example.com
 
-```js title="CType example"
+```js title="CType schema example"
 {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
   $schema: 'http://kilt-protocol.org/draft-01/ctype#',
@@ -36,6 +36,16 @@ When making a claim for a CType, all the following properties are required:
     age: { $ref: `kilt:ctype:0x1`, },
     },
   type: 'object',
+}
+```
+
+The CType schema is afterwards wrapped into the full CType object:
+
+```js title="CType example"
+{
+  schema:  {...} // as defined in the example above>,
+  owner: null, // DID of the owner, or null
+  hash: '0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010' // For looking up on-chain
 }
 ```
 
