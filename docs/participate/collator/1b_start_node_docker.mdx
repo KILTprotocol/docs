@@ -20,6 +20,7 @@ Please select your target network:
     --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
+    --unsafe-rpc-external \
     --name="name of collator" \
     --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30336 \
@@ -31,10 +32,10 @@ Please select your target network:
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=/data/relay \
     --execution=wasm
-  ``` 
+  ```
   </TabItem>
 
-  <TabItem value="Peregrine" label="Peregrine" attributes={{'data-value': 'magenta'}}>   
+  <TabItem value="Peregrine" label="Peregrine" attributes={{'data-value': 'magenta'}}>
 
   To start the **Peregrine** collator container, run:
   ```bash=
@@ -45,6 +46,7 @@ Please select your target network:
     --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
+    --unsafe-rpc-external \
     --name="name of collator" \
     --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30336 \
@@ -56,7 +58,7 @@ Please select your target network:
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=/data/relay \
     --execution=wasm
-  ``` 
+  ```
 
   </TabItem>
   </Tabs>
