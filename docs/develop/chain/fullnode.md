@@ -79,10 +79,20 @@ We discourage to use the `develop` branch to build the executable. Instead, the 
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully. To run an Archive full node add the option `--pruning archive` to the command.
 
+<Tabs
+groupId="runtime"
+defaultValue="Spiritnet"
+values={[
+{label: 'Spiritnet', value: 'Spiritnet'},
+{label: 'Peregrine', value: 'Peregrine'},
+]}>
+
+<TabItem value="Spiritnet">
+
 ```bash
 ./target/release/kilt-parachain \
-  --chain={spiritnet, peregrine} \
-  --runtime={spiritnet, peregrine} \
+  --chain=spiritnet \
+  --runtime=spiritnet \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
@@ -95,6 +105,27 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
   --chain=kusama \
   --execution=wasm
 ```
+</TabItem>
+<TabItem value="Peregrine">
+
+```bash
+./target/release/kilt-parachain \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
+  --runtime=peregrine \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-external \
+  --ws-external \
+  --name="name of full node" \
+  --execution=wasm \
+  --pruning archive \
+  --state-cache-size=1 \
+  -- \
+  --chain=kusama \
+  --execution=wasm
+```
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="Docker">
