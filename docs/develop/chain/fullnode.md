@@ -116,7 +116,7 @@ Once you have the image, you can spin up the container.
 Make sure to choose whether you want to start a full node for peregrine or spiritnet by selected the correct runtime and chain.
 
 ```bash
-docker run -v ~/data:/data kiltprotocol/kilt-node:latest \
+docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --base-path=/data/para \
   --chain={spiritnet, peregrine} \
   --runtime={spiritnet, peregrine} \
@@ -131,27 +131,6 @@ docker run -v ~/data:/data kiltprotocol/kilt-node:latest \
   -- \
   --base-path=/data/relay \
   --chain=kusama \
-  --execution=wasm
-```
-
-Specifically, if you want to run a peregrine node:
-  
- ```bash
-  docker run -v ~/data:/data kiltprotocol/kilt-node:latest \
-  --base-path=/data/para \
-  --chain=/data/dev-specs/kilt-parachain/peregrine-kilt.json \
-  --runtime=peregrine \
-  --rpc-port=9933 \
-  --rpc-cors=all \
-  --rpc-external \
-  --ws-external \
-  --name=kilt-full-node \
-  --execution=wasm \
-  --pruning archive \
-  --state-cache-size=1 \
-  -- \
-  --base-path=/data/relay \
-  --chain=/data/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
 ```
 </TabItem>
