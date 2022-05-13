@@ -48,4 +48,4 @@ A time period of two sessions must pass before the collator will be authoring bl
 A collator can increase/decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
 The corresponding extrinsics for these operations are `parachainStaking -> candidateStakeMore(more)` and `parachainStaking -> candidateStakeLess(less)`.
 
-![](/img/chain/parachainStaking.png)
+![](/img/chain/parachainStaking-candidateStakeMore.png)

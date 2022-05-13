@@ -3,11 +3,6 @@ id: collator
 title: Become a collator
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import StartNodeBinary from './collator/1a_start_node_binary.mdx';
-import StartNodeDocker from './collator/1b_start_node_docker.mdx';
-
 import HardwareRequirements from './collator/1_hardware_requirements.md';
 import SessionKeys from './collator/2_session_keys.md';
 import SetupNode from './collator/3_setup_node.md';
