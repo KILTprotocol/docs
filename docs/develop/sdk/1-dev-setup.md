@@ -20,7 +20,12 @@ Moreover, we will explain the difference between our _Standalone_ and _Parachain
 ## Set up your project
 
 Before we can connect to our blockchain, we need to create a small project that can connect to the chain.
-For that create a new directory and initialize a new project.
+The script will query the balances for `//Alice` and `//Bob` which are two well known development accounts.
+When we connect to Peregrine, Alice and Bob won't have any funds.
+It is a public chain and therefore all accounts that hold balance are private.
+But when we connect to the standalone chain, you will see that both have a lot of tokens that you can use to try out the KILT protocol.
+
+Let's start by creating a new directory and initializing a new project.
 We are also adding the KILT SDK, TypeScript and a couple of peer dependencies.
 
 ```bash
