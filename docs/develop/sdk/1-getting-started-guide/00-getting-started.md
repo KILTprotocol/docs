@@ -3,6 +3,7 @@ id: getting-started
 title: Kilt Getting Started Guide
 ---
 import CodeBlock from '@theme/CodeBlock';
+import SnippetBlock from '@site/src/components/SnippetBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/getting_started/1_getting_started.ts';
 import Example2 from '!!raw-loader!@site/code-examples/core_features/getting_started/2_getting_started.ts';
 import Example3 from '!!raw-loader!@site/code-examples/core_features/getting_started/3_getting_started.ts';
@@ -53,7 +54,6 @@ If the setup is correct you can excute the script by calling the name of the fil
 ```bash npm2yarn
 npm node getting-started.js
 ```
- 
 
 You can always excute this file with the command.
 It will refer to this command when requested to excute.
@@ -84,23 +84,32 @@ Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection
 
 We will initalise the **KILT blockchain** named the **Spiritnet**.  
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[3,4]]'
+>
   {Example2}
-</CodeBlock>
+</SnippetBlock>
 
 Now you have initalised the connection, lets connect to the chain.
 Inside the `main` function, lets get the conncetion using an asynchronous call that creates a connection, or checks if an existing connection is available and connects directly.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[3,4]]'
+>
   {Example3}
-</CodeBlock>
+</SnippetBlock>
 
 Now you have connected you have access to the chain, but lets not forget to **close** any connections.
 Its best practice not to leave an connections open, add `Kilt.disconnect()` at the bottom of `main` function.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[3,4]]'
+>
   {Example10}
-</CodeBlock>
+</SnippetBlock>
 
 The `Kilt.disconncet()` will close any established connections.
 
@@ -113,9 +122,12 @@ Now you have a connection to the chain to query a variety of information using t
 We will be looking at the **web3names** (`john_doe`) and using them to fetch the corresponding **DID identifier**.
 Underneath the blockchain connection, add the following lines.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[3,6]]'
+>
   {Example4}
-</CodeBlock>
+</SnippetBlock>
 
 Try excuting it and see what comes out.
 
@@ -132,9 +144,12 @@ Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any pub
 Lets take the DID that was fetch and see if we can retreives the contents.
 We will add a new line under the `console.log` and lets resolve the DID with the **DID identifier** fetched with the **web3name**.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[4,10]]'
+>
   {Example5}
-</CodeBlock>
+</SnippetBlock>
 
 Try excuting it and see what comes out.
 
@@ -143,9 +158,12 @@ We can select one of the endpoints and query the url to see if it returns a cred
 
 A new line after `endPoints` add the following:
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[1,4]]'
+>
   {Example6}
-</CodeBlock>
+</SnippetBlock>
 
 Try excuting it and see what comes out.
 Did you get a partial credential object?
@@ -153,25 +171,34 @@ Did you get a partial credential object?
 We will have to make sure the credential is **valid** and **structured** correctly.
 Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[4,5]]'
+>
   {Example7}
-</CodeBlock>
+</SnippetBlock>
 
 The attestation assoicated with the `rootHash` is on-chain.
 Lets see if we can validate the data to reconstruct the Credential.
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[3,9]]'
+>
   {Example8}
-</CodeBlock>
+</SnippetBlock>
 
 Excute the script and see if you get John Doe's Credential!
 
 Time to verify the credential and make sure it is valid.
 If the **verification** returns true it is **valid**!
 
-<CodeBlock className="language-js">
+<SnippetBlock
+  className="language-js"
+  snippets='[[1,4]]'
+>
   {Example9}
-</CodeBlock>
+</SnippetBlock>
 
 Last step is to excute the code and see what is returned at the end of it!
 
