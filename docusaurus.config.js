@@ -19,22 +19,72 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/sdk/introduction',
-          activeBasePath: 'docs/sdk',
-          label: 'SDK',
-          position: 'left',
+          type: 'doc',
+          docId: 'what-is-kilt',
+          label: 'What is KILT?',
         },
         {
-          to: 'docs/chain/introduction',
-          activeBasePath: 'docs/chain',
-          label: 'Chain',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Concepts',
+          items: [
+            {
+              type: 'doc',
+              docId: 'concepts/did',
+              label: 'DIDs',
+            },
+          ],
         },
         {
-          to: 'docs/apps/introduction',
-          activeBasePath: 'docs/apps',
-          label: 'Apps',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Participate',
+          items: [
+            {
+              type: 'doc',
+              docId: 'participate/collator',
+              label: 'Collating',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/delegator',
+              label: 'Delegating',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/Governance/vote',
+              label: 'Voting',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/apps/introduction',
+              label: 'Apps',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Develop',
+          items: [
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/sdk/introduction',
+              label: 'SDK Documentation',
+            },
+          ],
+        },
+        {
+          type: 'doc',
+          docId: 'glossary',
+          label: 'Glossary',
         },
         {
           href: 'https://github.com/KILTprotocol/docs',
@@ -112,7 +162,7 @@ module.exports = {
       {
         docs: {
           remarkPlugins: [
-            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
             require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),

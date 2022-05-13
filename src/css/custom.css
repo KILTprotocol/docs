@@ -76,7 +76,17 @@ html[data-theme='dark'] .header-github-link:before {
 
 #mermaid-svg-0,
 #mermaid-svg-1,
-#mermaid-svg-2 {
+#mermaid-svg-2,
+#mermaid-svg-3,
+#mermaid-svg-4,
+#mermaid-svg-5,
+#mermaid-svg-6,
+#mermaid-svg-7,
+#mermaid-svg-8,
+#mermaid-svg-9,
+#mermaid-svg-10,
+#mermaid-svg-11,
+#mermaid-svg-12 {
 	min-width: 100% !important;
 }
 
