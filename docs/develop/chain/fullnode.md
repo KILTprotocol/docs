@@ -121,7 +121,7 @@ values={[
   --pruning archive \
   --state-cache-size=1 \
   -- \
-  --chain=kusama \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
 ```
 </TabItem>
@@ -192,7 +192,7 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
-  --chain=kusama \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
 ```
 </TabItem>
