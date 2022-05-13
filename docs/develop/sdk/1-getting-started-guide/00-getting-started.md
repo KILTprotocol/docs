@@ -77,7 +77,7 @@ We will move onto connecting to the **KILT blockchain**.
 Connecting and disconnecting to the KILT is an important step requiring a setup of the configurations.
 The connection allows to **query**, **verify** and **interact** with the chain.
 
-**Lets get connected.**
+**Let's get connected.**
 
 Inside the `getting-started.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
 Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection to the KILT blockchain via an address.
@@ -116,7 +116,7 @@ The `Kilt.disconncet()` will close any established connections.
 **Congratulations!
 You have done connected, lets start querying and fetching data from the chain!**
 
-## Lets query the chain
+## Let's query the chain
 
 Now you have a connection to the chain to query a variety of information using the exposed KILT SDK functionality.
 We will be looking at the **web3names** (`john_doe`) and using them to fetch the corresponding **DID identifier**.
@@ -141,7 +141,7 @@ A DID can have service endpoints on the DID linking to public data.
 Therefore, you can take your credentials and display them for others to see!
 Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any public credentials for us to **query** and **verify**.
 
-Lets take the DID that was fetch and see if we can retreives the contents.
+Let's take the DID that was fetch and see if we can retreives the contents.
 We will add a new line under the `console.log` and lets resolve the DID with the **DID identifier** fetched with the **web3name**.
 
 <SnippetBlock
