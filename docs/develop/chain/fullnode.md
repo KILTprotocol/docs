@@ -115,11 +115,21 @@ docker pull kiltprotocol/kilt-node:latest
 Once you have the image, you can spin up the container.
 Make sure to choose whether you want to start a full node for peregrine or spiritnet by selected the correct runtime and chain.
 
+<Tabs
+groupId="runtime"
+defaultValue="Spiritnet"
+values={[
+{label: 'Spiritnet', value: 'Spiritnet'},
+{label: 'Peregrine', value: 'Peregrine'},
+]}>
+
+<TabItem value="Spiritnet">
+
 ```bash
 docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --base-path=/data/para \
-  --chain={spiritnet, peregrine} \
-  --runtime={spiritnet, peregrine} \
+  --chain=spiritnet \
+  --runtime=spiritnet \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
@@ -133,6 +143,30 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --chain=kusama \
   --execution=wasm
 ```
+</TabItem>
+<TabItem value="Peregrine">
+
+```bash
+docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
+  --base-path=/data/para \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
+  --runtime=peregrine \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-external \
+  --ws-external \
+  --name="name of full node" \
+  --execution=wasm \
+  --pruning archive \
+  --state-cache-size=1 \
+  -- \
+  --base-path=/data/relay \
+  --chain=kusama \
+  --execution=wasm
+```
+</TabItem>
+</Tabs>
+
 </TabItem>
 </Tabs>
 
