@@ -144,7 +144,7 @@ But for a local development chain it is not necessary since you will be the only
 
 ### Deployment Complexity
 
-Deploying a parachain is more complext than deploying a standalone chain.
+Deploying a parachain is more complex than deploying a standalone chain.
 For the standalone node, you simple execute a single docker command.
 The task of spinning up a parachain can be split up in three steps.
 
@@ -152,11 +152,11 @@ The task of spinning up a parachain can be split up in three steps.
 2. Start and connect your parachain node to the relaychain.
 3. Register your parachain using the runtime WASM and the genesis state.
 
-Since these steps are not trivial to execute and take quite some time to do by hand, we started a [docker based setup](https://github.com/KILTprotocol/local-parachain-setup) which automates these steps.
+Since these steps are not trivial to execute and take quite some time to do by hand, we provide a minimal [docker based setup](https://github.com/KILTprotocol/local-parachain-setup) which automates these steps.
 
 ### Transaction Encoding
 
-Before transactions are send to the chain, they are encoded and signed.
+Before transactions are sent to the chain, they are encoded and signed.
 The encoding depends on the runtime and can differ from chain to chain.
 Even the same call in the same pallet can have a different encoding for different chains.
 
