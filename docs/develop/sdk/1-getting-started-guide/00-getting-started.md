@@ -15,7 +15,7 @@ import Example8 from '!!raw-loader!@site/code-examples/core_features/getting_sta
 import Example9 from '!!raw-loader!@site/code-examples/core_features/getting_started/9_getting_started.ts';
 import Example10 from '!!raw-loader!@site/code-examples/core_features/getting_started/10_getting_started.ts';
 
-The following guide will give you a started point to begin with KILT.
+The following guide will give you a starting point to begin with KILT.
 What will you be able to do after this guide:
 
 1. Import the **KILT SDK** into a project
@@ -142,11 +142,11 @@ Therefore, you can take your credentials and display them for others to see!
 Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any public credentials for us to **query** and **verify**.
 
 Let's take the DID that was fetch and see if we can retreives the contents.
-We will add a new line under the `console.log` and lets resolve the DID with the **DID identifier** fetched with the **web3name**.
+We will add a new line under the `console.log` let's resolve and see the DID with the **DID identifier** fetched with the **web3name**.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[4,10]]'
+  snippets='[[4,14]]'
 >
   {Example5}
 </SnippetBlock>
