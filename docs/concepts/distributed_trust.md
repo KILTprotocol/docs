@@ -21,7 +21,7 @@ Virtual Credential Organizations will be more flexible than Delegation Hierarchi
 
 ## Delegation Hierarchy
 
-Delegation Hierarchies organize their members hierarchical.
+Delegation Hierarchies organize their members in a traditional hierarchical structure.
 Every one can create a new hierarchy and imminently become the only member of the organization.
 Not only is the creator the only member but also the root of the hierarchy.
 They have full control over the Delegation Hierarchy.
