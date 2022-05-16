@@ -5,5 +5,7 @@ export async function main() {
   
   console.log(`Hello world, my name is john_doe and this is my DID ${johnDoeDidId}`)
 
+  if (!johnDoeDidId) return console.log(`john_doe doesn't exist`)
+
   return johnDoeDidId
 }

@@ -13,7 +13,6 @@ import Example6 from '!!raw-loader!@site/code-examples/core_features/getting_sta
 import Example7 from '!!raw-loader!@site/code-examples/core_features/getting_started/7_getting_started.ts';
 import Example8 from '!!raw-loader!@site/code-examples/core_features/getting_started/8_getting_started.ts';
 import Example9 from '!!raw-loader!@site/code-examples/core_features/getting_started/9_getting_started.ts';
-import Example10 from '!!raw-loader!@site/code-examples/core_features/getting_started/10_getting_started.ts';
 
 The following guide will give you a starting point to begin with KILT.
 What will you be able to do after this guide:
@@ -108,7 +107,7 @@ Its best practice not to leave an connections open, add `Kilt.disconnect()` at t
   className="language-js"
   snippets='[[3,4]]'
 >
-  {Example10}
+  {Example9}
 </SnippetBlock>
 
 The `Kilt.disconncet()` will close any established connections.
@@ -124,7 +123,7 @@ Underneath the blockchain connection, add the following lines.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,6]]'
+  snippets='[[3,8]]'
 >
   {Example4}
 </SnippetBlock>
@@ -146,7 +145,7 @@ We will add a new line under the `console.log` let's resolve and see the DID wit
 
 <SnippetBlock
   className="language-js"
-  snippets='[[4,14]]'
+  snippets='[[3,12]]'
 >
   {Example5}
 </SnippetBlock>
@@ -170,22 +169,14 @@ Did you get a partial credential object?
 
 We will have to make sure the credential is **valid** and **structured** correctly.
 Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
-
-<SnippetBlock
-  className="language-js"
-  snippets='[[4,5]]'
->
-  {Example7}
-</SnippetBlock>
-
 The attestation assoicated with the `rootHash` is on-chain.
 Lets see if we can validate the data to reconstruct the Credential.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,9]]'
+  snippets='[[3,12]]'
 >
-  {Example8}
+  {Example7}
 </SnippetBlock>
 
 Excute the script and see if you get John Doe's Credential!
@@ -197,10 +188,10 @@ If the **verification** returns true it is **valid**!
   className="language-js"
   snippets='[[1,4]]'
 >
-  {Example9}
+  {Example8}
 </SnippetBlock>
 
 Last step is to excute the code and see what is returned at the end of it!
 
 Was it successful?
-Nice Job! Want to explore more of KILT's features, check out the DID guide!
+Nice Job! Want to explore more of KILT's features, check out the DID and Verification guide!

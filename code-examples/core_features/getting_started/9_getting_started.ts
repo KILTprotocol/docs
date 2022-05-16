@@ -1,5 +1,5 @@
-export async function main(credential) {
-  const verifiedCrdential = await credential.verify()
+import * as Kilt from '@kiltprotocol/sdk-js'
 
-  console.log(`Is John Doe's credential valid: ${verifiedCrdential}`)
+export async function main() {
+  await Kilt.disconnect()
 }

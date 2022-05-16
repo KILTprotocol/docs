@@ -1,5 +1,4 @@
 import { main as main1 } from './1_getting_started'
-import { main as main10 } from './10_getting_started'
 import { main as main2 } from './2_getting_started'
 import { main as main3 } from './3_getting_started'
 import { main as main4 } from './4_getting_started'
@@ -14,12 +13,12 @@ export async function runAll() {
   await main2()
   await main3()
   const johnDoeDidId = await main4()
+  if (!johnDoeDidId) throw new Error('Web3Name assoicated to the DID is not on the KILT spiritnet chain')
   const endpoints = await main5(johnDoeDidId)
   const request = await main6(endpoints)
-  const attestation = await main7(request)
-  const credential = await main8(request, attestation)
-  await main9(credential)
-  await main10()
+  const credential = await main7(request)
+  await main8(credential)
+  await main9()
 }
 
 runAll()

@@ -1,12 +1,5 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
+export async function main(credential) {
+  const verifiedCrdential = await credential.verify()
 
-export async function main(request, attestation) {
-  const credential = Kilt.Credential.fromRequestAndAttestation(
-    request,
-    attestation
-  )
-
-  console.log('John Doe:', credential)
-  
-  return credential
+  console.log(`Is John Doe's credential valid: ${verifiedCrdential}`)
 }
