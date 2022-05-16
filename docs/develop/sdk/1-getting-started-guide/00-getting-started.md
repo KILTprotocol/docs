@@ -13,6 +13,8 @@ import Example6 from '!!raw-loader!@site/code-examples/core_features/getting_sta
 import Example7 from '!!raw-loader!@site/code-examples/core_features/getting_started/7_getting_started.ts';
 import Example8 from '!!raw-loader!@site/code-examples/core_features/getting_started/8_getting_started.ts';
 import Example9 from '!!raw-loader!@site/code-examples/core_features/getting_started/9_getting_started.ts';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 The following guide will give you a starting point to begin with KILT.
 What will you be able to do after this guide:
@@ -50,9 +52,18 @@ Underneath the first line add the following:
 
 If the setup is correct you can excute the script by calling the name of the file using node.
 
-```bash npm2yarn
-npm node getting-started.js
-```
+<Tabs>
+  <TabItem value='npm' label='npm' default>
+    <CodeBlock className="language-bash">
+      npm node getting-started.js
+    </CodeBlock>
+  </TabItem>
+  <TabItem value='yarn' label='Yarn'>
+    <CodeBlock className="language-bash">
+      yarn node getting-started.js
+    </CodeBlock>
+  </TabItem>
+</Tabs>
 
 You can always excute this file with the command.
 It will refer to this command when requested to excute.
