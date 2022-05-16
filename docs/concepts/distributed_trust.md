@@ -17,19 +17,18 @@ There are two ways for attesters to group up and build an organization.
 The first one are Delegation Hierarchies, which provide a very basic hierarchical organisation.
 Delegation Hierarchies are available on our test network Peregrine.
 The second option are Virtual Credential Organizations which are not yet implemented and currently.
-Virtual Credential Organizations will be more flexible than Delegation Hierarchies and accommodate a wider range of use cases.
+Virtual Credential Organizations will be more flexible than Delegation Hierarchies and accommodate a more decentralized range of use cases.
 
 ## Delegation Hierarchy
 
-Delegation Hierarchies organizes it's members strictly hierarchical.
+Delegation Hierarchies organize their members hierarchical.
 Every one can create a new hierarchy and imminently become the only member of the organization.
 Not only is the creator the only member but also the root of the hierarchy.
 They have full control over the Delegation Hierarchy.
 
 When the root adds new attesters to the hierarchy, these new members become direct descendants of the root.
 The root is the parent of the new members while the members are the children of the root.
-When the new members add members by, the new members become the descendants of the member that added them.
-They become parents themselves.
+When the children add members themselves, the children become parents too.
 This creates a tree like structure similar to the one shown in the image below.
 
 <center>
