@@ -14,13 +14,13 @@ They act as a backend for Websites, verify new blocks and validate extrinsics (e
 
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT full node can be part of:
 
-- peregrine: the public test network whose runtime is as close to the official chain as possible. It can be used to try stuff out before executing them on the live chain, which involves spending tokens that have real monetary value.
-- spiritnet: the official public network, which contains only stable features.
+- Peregrine: the public test network whose runtime is as close to the official chain as possible. It can be used to try stuff out before executing them on the live chain, which involves spending tokens that have real monetary value.
+- Spiritnet: the official public network, which contains only stable features.
 
 :::info
-The remainder of the guide explaining how to run a full node is for the official spiritnet.
-Nevertheless, we recommend to try out the setup on our peregrine testnet first.
-Hence, at each step where it is applicable, we indicate what differs between the peregrine and spiritnet configuration for the full node to join either network.
+The remainder of the guide explaining how to run a full node is for the official Spiritnet.
+Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
+Hence, at each step where it is applicable, we indicate what differs between the Peregrine and Spiritnet configuration for the full node to join either network.
 :::
 
 ### WASM runtime execution
@@ -37,7 +37,7 @@ This parameter must be specified for both the parachain and the relaychain, sinc
 The KILT parachain accepts an additional parameter to select the environment to use for the WASM runtime execution.
 This can either be `peregrine` or `spiritnet`.
 
-Hence, to start a full node for the spiritnet network, the parameter would be `--chain=spiritnet`, while for peregrine would be `--chain=peregrine`.
+Hence, to start a full node for the Spiritnet network, the parameter would be `--chain=spiritnet`, while for Peregrine would be `--chain=peregrine`.
 
 ### Where are all the files stored?
 
@@ -79,10 +79,20 @@ We discourage to use the `develop` branch to build the executable. Instead, the 
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully. To run an Archive full node add the option `--pruning archive` to the command.
 
+<Tabs
+groupId="runtime"
+defaultValue="Spiritnet"
+values={[
+{label: 'Spiritnet', value: 'Spiritnet'},
+{label: 'Peregrine', value: 'Peregrine'},
+]}>
+
+<TabItem value="Spiritnet">
+
 ```bash
 ./target/release/kilt-parachain \
-  --chain={spiritnet, peregrine} \
-  --runtime={spiritnet, peregrine} \
+  --chain=spiritnet \
+  --runtime=spiritnet \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
@@ -95,6 +105,27 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
   --chain=kusama \
   --execution=wasm
 ```
+</TabItem>
+<TabItem value="Peregrine">
+
+```bash
+./target/release/kilt-parachain \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
+  --runtime=peregrine \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-external \
+  --ws-external \
+  --name="name of full node" \
+  --execution=wasm \
+  --pruning archive \
+  --state-cache-size=1 \
+  -- \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
+  --execution=wasm
+```
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value="Docker">
@@ -113,13 +144,23 @@ docker pull kiltprotocol/kilt-node:latest
 ```
 
 Once you have the image, you can spin up the container.
-Make sure to choose whether you want to start a full node for peregrine or spiritnet by selected the correct runtime and chain.
+Make sure to choose whether you want to start a full node for Peregrine or Spiritnet by selected the correct runtime and chain.
+
+<Tabs
+groupId="runtime"
+defaultValue="Spiritnet"
+values={[
+{label: 'Spiritnet', value: 'Spiritnet'},
+{label: 'Peregrine', value: 'Peregrine'},
+]}>
+
+<TabItem value="Spiritnet">
 
 ```bash
-docker run data:/data kiltprotocol/kilt-node:latest \
+docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --base-path=/data/para \
-  --chain={spiritnet, peregrine} \
-  --runtime={spiritnet, peregrine} \
+  --chain=spiritnet \
+  --runtime=spiritnet \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
@@ -133,6 +174,29 @@ docker run data:/data kiltprotocol/kilt-node:latest \
   --chain=kusama \
   --execution=wasm
 ```
+</TabItem>
+<TabItem value="Peregrine">
+
+```bash
+docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
+  --base-path=/data/para \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
+  --runtime=peregrine \
+  --rpc-port=9933 \
+  --rpc-cors=all \
+  --rpc-external \
+  --ws-external \
+  --name="name of full node" \
+  --execution=wasm \
+  --pruning archive \
+  --state-cache-size=1 \
+  -- \
+  --base-path=/data/relay \
+  --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
+  --execution=wasm
+```
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
