@@ -4,9 +4,10 @@ import { DemoKeystore } from '@kiltprotocol/did'
 
 import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
+import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
-import { runAll as runAllGettingStarted } from './getting-started'
+import { main as runDevSetup } from './dev_setup'
 
 async function main() {
   envConfig()
@@ -18,6 +19,7 @@ async function main() {
     await runAllWeb3(keystore, did)
     await runAllLinking(keystore, did)
     await runAllGettingStarted()
+    await runDevSetup()
   } catch (e) {
     console.error('Oh no! There was an error!!\n', e)
     process.exit(1)

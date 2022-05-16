@@ -8,7 +8,7 @@ Please follow the installation instructions for iOS and Android from the officia
 
 ## Configure Parity Signer to support KILT
 
-To add KILT Spiritnet to Parity Signer, visit the [PolkadotJS Apps page for KILT Spiritnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.kilt.io%2F#), then go to **KILT Spiritnet > Settings > Metadata** and scan the QRCode.
+To add KILT Spiritnet to Parity Signer, visit the [PolkadotJS Apps page for KILT Spiritnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com%2F#), then go to **KILT Spiritnet > Settings > Metadata** and scan the QRCode.
 This will result in a new network, KILT Spiritnet, being added to the list of networks for which Parity Signer can create accounts and sign transactions.
 
 ![](/img/polkadotjs.png)
