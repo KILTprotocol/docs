@@ -33,10 +33,10 @@ We will have recommended guides to other tutorials for further learnings.
 We will focus on creating a new project from stratch, which will require a little setup.
 First, we need to create a new project in a new directory. For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-From inside the `kilt-rocks` project directory, install the **SDK**, **node** and **node-fetch** with either of the following package managers:
+From inside the `kilt-rocks` project directory, install the **SDK**, **node** and **axios** with either of the following package managers:
 
 ```bash npm2yarn
-npm install @kiltprotocol/sdk-js node node-fetch
+npm install @kiltprotocol/sdk-js node axios
 ```
 
 After you have imported the SDK, you are now able to access the functionality of KILT.
@@ -72,11 +72,11 @@ It will refer to this command when requested to excute.
 
 ### Importing KILT's SDK into a project
 
-Lets begin by importing the **SDK** and **node-fetch** into the `getting-started.js`.
+Lets begin by importing the **SDK** and **axios** into the `getting-started.js`.
 
 ``` js
 import * as Kilt from '@kiltprotocol/sdk-js'
-import fetch from 'node-fetch'
+import axios from 'axios'
 ```
 
 Now you are able to access the SDK and all its functionality.
@@ -170,7 +170,7 @@ A new line after `endPoints` add the following:
 
 <SnippetBlock
   className="language-js"
-  snippets='[[1,4]]'
+  snippets='[[4,6]]'
 >
   {Example6}
 </SnippetBlock>
@@ -185,7 +185,7 @@ Lets see if we can validate the data to reconstruct the Credential.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,12]]'
+  snippets='[[3,14]]'
 >
   {Example7}
 </SnippetBlock>
@@ -197,7 +197,7 @@ If the **verification** returns true it is **valid**!
 
 <SnippetBlock
   className="language-js"
-  snippets='[[1,4]]'
+  snippets='[[3,6]]'
 >
   {Example8}
 </SnippetBlock>

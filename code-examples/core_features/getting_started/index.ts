@@ -15,8 +15,10 @@ export async function runAll() {
   const johnDoeDidId = await main4()
   if (!johnDoeDidId) throw new Error('Web3Name assoicated to the DID is not on the KILT spiritnet chain')
   const endpoints = await main5(johnDoeDidId)
+  if (!endpoints) throw new Error('DID doesnt include the service endpoints')
   const request = await main6(endpoints)
   const credential = await main7(request)
+  if (!credential) throw new Error('Credential not created')
   await main8(credential)
   await main9()
 }
