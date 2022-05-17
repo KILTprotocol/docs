@@ -34,7 +34,7 @@ module.exports = {
             },
             {
               type: 'doc',
-              label: 'Delegated Trust',
+              label: 'Distributed Trust',
               docId: 'concepts/distributed_trust',
             },
           ],
