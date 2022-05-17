@@ -1,6 +1,6 @@
 ---
 id: dev-setup
-title: Development Setup
+title: Project Setup
 ---
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.ts';
@@ -115,6 +115,17 @@ But you can also connect to the websocket endpoints using our little script abov
 Simple replace the Peregrine address `wss://peregrine.kilt.io/parachain-public-ws` with `ws://127.0.0.1:9944`.
 Note that we connect to the port `9944` as we are using the websocket protocol for our SDK and not bare http.
 
+## Production Setup
+
+For production setups it is important to run your own full node.
+Running your own full node has several advantages over relying on a public full node.
+The most important advantage is security.
+You rely on the full node to provide correct data.
+When using a public full node you therefore rely on a third party.
+There is no guarantee that the provider will provide truthful data.
+Availability is another important aspect when hosting a full node.
+Public full nodes never come with a service level agreement and might go down for maintenance or are slow because of too many concurrent users.
+With your own full node infrastructure you can ensure that there is always enough capacity to serve your customers.
 
 ## Standalone vs. Parachain (Peregrine/Spiritnet)
 
