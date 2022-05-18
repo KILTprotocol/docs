@@ -38,8 +38,8 @@ This creates a tree like structure similar to the one shown in the image below.
 <ThemedImage
   alt="Example hierarchy"
   sources={{
-    light: useBaseUrl('/img/concepts/distributed_trust/delegation-hierarchies.svg'),
-    dark: useBaseUrl('/img/concepts/distributed_trust/delegation-hierarchies-dark.svg'),
+    light: '/img/concepts/distributed_trust/delegation-hierarchies.svg',
+    dark: '/img/concepts/distributed_trust/delegation-hierarchies-dark.svg',
   }}
 />;
 

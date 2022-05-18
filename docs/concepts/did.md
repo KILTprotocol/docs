@@ -87,8 +87,8 @@ For DIDs that have also claimed a Web3 name, the linking feature opens up the wa
 <ThemedImage
   alt="DID lookup diagram"
   sources={{
-    light: useBaseUrl('/img/concepts/did/did-lookup-light.png'),
-    dark: useBaseUrl('/img/concepts/did/did-lookup-dark.png'),
+    light: '/img/concepts/did/did-lookup-light.png',
+    dark: '/img/concepts/did/did-lookup-dark.png',
   }}
 />;
 
