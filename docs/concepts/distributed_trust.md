@@ -33,8 +33,8 @@ This creates a tree like structure similar to the one shown in the image below.
 
 <center>
 
-![](/img/concepts/distributed_trust/delegation-hierarchies.svg#light-mode-only)
-![](/img/concepts/distributed_trust/delegation-hierarchies-dark.svg#dark-mode-only)
+![Example hierarchy](/img/concepts/distributed_trust/delegation-hierarchies.svg#light-mode-only)
+![Example hierarchy](/img/concepts/distributed_trust/delegation-hierarchies-dark.svg#dark-mode-only)
 
 </center>
 
@@ -53,7 +53,7 @@ E.g. Attester 2 cannot revoke/remove attestations issued by Attester 1, 3, 4 and
 
 <center>
 
-![](/img/concepts/distributed_trust/coming-soon.png)
+![Coming soon](/img/concepts/distributed_trust/coming-soon.png)
 
 [credit](https://freepngimg.com/png/11420-coming-soon-png-file)
 
