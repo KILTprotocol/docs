@@ -33,8 +33,8 @@ This creates a tree like structure similar to the one shown in the image below.
 
 <center>
 
-![](/img/concepts/distributed_trust/delegation-hierarchies.svg#gh-light-mode-only)
-![](/img/concepts/distributed_trust/delegation-hierarchies-dark.svg#gh-dark-mode-only)
+![](/img/concepts/distributed_trust/delegation-hierarchies.svg#light-mode-only)
+![](/img/concepts/distributed_trust/delegation-hierarchies-dark.svg#dark-mode-only)
 
 </center>
 
