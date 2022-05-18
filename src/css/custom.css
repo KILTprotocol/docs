@@ -93,13 +93,3 @@ html[data-theme='dark'] .header-github-link:before {
 .nested-tab {
   padding-left: 20px;
 }
-
-/*
- * Use like this:
- * ![Docusaurus themed image](/img/docusaurus_keytar.svg#gh-light-mode-only)
- * ![Docusaurus themed image](/img/docusaurus_speed.svg#gh-dark-mode-only)
- */
-[data-theme='light'] img[src$='#gh-dark-mode-only'],
-[data-theme='dark'] img[src$='#gh-light-mode-only'] {
-  display: none;
-}

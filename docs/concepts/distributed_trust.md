@@ -3,6 +3,8 @@ id: distributed_trust
 title: Distributed Trust
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 :::caution
 This feature is currently a preview on Peregrine and is therefore not available on Spiritnet.
 :::
@@ -33,8 +35,13 @@ This creates a tree like structure similar to the one shown in the image below.
 
 <center>
 
-![Example hierarchy](/img/concepts/distributed_trust/delegation-hierarchies.svg#gh-light-mode-only)
-![Example hierarchy](/img/concepts/distributed_trust/delegation-hierarchies-dark.svg#gh-dark-mode-only)
+<ThemedImage
+  alt="Example hierarchy"
+  sources={{
+    light: useBaseUrl('/img/concepts/distributed_trust/delegation-hierarchies.svg'),
+    dark: useBaseUrl('/img/concepts/distributed_trust/delegation-hierarchies-dark.svg'),
+  }}
+/>;
 
 </center>
 

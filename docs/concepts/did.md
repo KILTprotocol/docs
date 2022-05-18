@@ -3,6 +3,8 @@ id: did
 title: DIDs
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 A DID can be thought of as a container of different keys that are all under the control of the same DID subject.
 For the official W3C DID spec, please visit the [DID Core spec page](https://www.w3.org/TR/did-core/), while for the official KILT DID method specification, please visit the [KILT DID spec page](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).
@@ -82,8 +84,13 @@ Each account <-> DID link requires the payment of a small deposit, which is retu
 
 For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
 
-![DID lookup diagram](/img/concepts/did/did-lookup-light.png#gh-light-mode-only)
-![DID lookup diagram](/img/concepts/did/did-lookup-dark.png#gh-dark-mode-only)
+<ThemedImage
+  alt="DID lookup diagram"
+  sources={{
+    light: useBaseUrl('/img/concepts/did/did-lookup-light.png'),
+    dark: useBaseUrl('/img/concepts/did/did-lookup-dark.png'),
+  }}
+/>;
 
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
