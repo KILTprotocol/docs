@@ -49,7 +49,10 @@ Attester 1 is the root of the Delegation Hierarchy.
 As the root Attester 1 added two more attesters.
 Attester 2 was given the right to delegate and to issue attestations for the collective.
 Attester 3 can only add more attesters to the Delegation Hierarchy, but he cannot create, revoke or remove Attestations.
+This is useful in cases where someone should only have powers over the members, but is not authorized to create attestations themself.
+In a company this could be someone who manages a team of attesters.
 Attesters 4 and 5 where added by Attester 3 and can only create, revoke and remove attestations, but they cannot add more attesters to the Delegation Hierarchy.
+In a company those would be employees that do the attestation work, but have no authority to hire new staff.
 
 Delegation Hierarchies also limit who can revoke or remove attestations.
 Only parents of an attester can revoke or remove delegations from their children.
