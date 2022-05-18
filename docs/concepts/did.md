@@ -73,7 +73,7 @@ A regex that would match all and only the allowed Web3 names would be the follow
 ^[a-z0-9\_\-]{3,32}$
 ```
 
-In the global URI space, Web3 names are prefixed with the `w3n:` URI namespace. 
+In the global URI space, Web3 names are prefixed with the `w3n:` URI namespace.
 For example, the full URI for the Web3 name `example-web3name` is `w3n:example-web3name`.
 
 ### Linking accounts to a Web3 name
