@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.27.0",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
