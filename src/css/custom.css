@@ -96,10 +96,10 @@ html[data-theme='dark'] .header-github-link:before {
 
 /*
  * Use like this:
- * ![Docusaurus themed image](/img/docusaurus_keytar.svg#light-mode-only)
- * ![Docusaurus themed image](/img/docusaurus_speed.svg#dark-mode-only)
+ * ![Docusaurus themed image](/img/docusaurus_keytar.svg#gh-light-mode-only)
+ * ![Docusaurus themed image](/img/docusaurus_speed.svg#gh-dark-mode-only)
  */
-[data-theme='light'] img[src$='#dark-mode-only'],
-[data-theme='dark'] img[src$='#light-mode-only'] {
+[data-theme='light'] img[src$='#gh-dark-mode-only'],
+[data-theme='dark'] img[src$='#gh-light-mode-only'] {
   display: none;
 }

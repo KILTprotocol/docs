@@ -82,8 +82,8 @@ Each account <-> DID link requires the payment of a small deposit, which is retu
 
 For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
 
-![DID lookup diagram](/img/concepts/did/did-lookup-light.png#light-mode-only)
-![DID lookup diagram](/img/concepts/did/did-lookup-dark.png#dark-mode-only)
+![DID lookup diagram](/img/concepts/did/did-lookup-light.png#gh-light-mode-only)
+![DID lookup diagram](/img/concepts/did/did-lookup-dark.png#gh-dark-mode-only)
 
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
