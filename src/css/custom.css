@@ -24,6 +24,15 @@
 	--ifm-code-font-size: 95%;
 }
 
+.footer {
+	--ifm-footer-background-color: #51425b;
+	--ifm-footer-link-color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .footer {
+	--ifm-footer-background-color: black;
+}
+
 html[data-theme='dark'] .hero--primary {
 	--ifm-hero-text-color: white;
 }
@@ -72,6 +81,54 @@ html[data-theme='dark'] .header-github-link:before {
 
 .label-role.verifier {
 	background-color: #ff00bd38;
+}
+
+.nested-tab {
+	padding-left: 20px;
+}
+
+.nested-tab-magenta[data-theme='light'] {
+	color: var(--ifm-color-secondary);
+}
+
+.nested-tab-magenta[aria-selected='true'] {
+	border-bottom-color: var(--ifm-color-secondary);
+	background: var(--ifm-color-secondary);
+	color: white;
+}
+
+.nested-tab-magenta[data-theme='dark'] {
+	color: var(--ifm-color-secondary-lightest);
+}
+
+li[data-value='magenta'][data-theme='light'] {
+	color: var(--ifm-color-secondary);
+}
+
+li[data-value='magenta'][aria-selected='true'] {
+	border-bottom-color: var(--ifm-color-secondary);
+	background: var(--ifm-color-secondary);
+	color: white;
+}
+
+li[data-value='magenta'][aria-selected='false'] {
+	color: var(--ifm-tabs-color);
+}
+
+li[data-value='magenta'][data-theme='dark'] {
+	color: var(--ifm-color-secondary-lightest);
+}
+
+.kilt-mermaid svg {
+	min-width: 100%;
+}
+
+[data-theme='dark'] .kilt-mermaid span:not(.edgeLabel) {
+	color: black !important;
+}
+
+[data-theme='dark'] .kilt-mermaid span.edgeLabel {
+	color: white !important;
 }
 
 #mermaid-svg-0,
