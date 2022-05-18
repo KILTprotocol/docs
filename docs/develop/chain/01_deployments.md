@@ -1,6 +1,6 @@
 ---
 id: deployments
-title: Deployments
+title: Deployments and Services
 ---
 
 KILT has two public deployments: a production one, called **Spiritnet**, and a test/dev one, called **Peregrine**.
