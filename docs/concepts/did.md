@@ -90,7 +90,7 @@ For DIDs that have also claimed a Web3 name, the linking feature opens up the wa
     light: '/img/concepts/did/did-lookup-light.png',
     dark: '/img/concepts/did/did-lookup-dark.png',
   }}
-/>;
+/>
 
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.

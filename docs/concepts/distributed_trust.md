@@ -41,7 +41,7 @@ This creates a tree like structure similar to the one shown in the image below.
     light: '/img/concepts/distributed_trust/delegation-hierarchies.svg',
     dark: '/img/concepts/distributed_trust/delegation-hierarchies-dark.svg',
   }}
-/>;
+/>
 
 </center>
 
@@ -65,4 +65,3 @@ E.g. Attester 2 cannot revoke/remove attestations issued by Attester 1, 3, 4 and
 [credit](https://freepngimg.com/png/11420-coming-soon-png-file)
 
 </center>
-
