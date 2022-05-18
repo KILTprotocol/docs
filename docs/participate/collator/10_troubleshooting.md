@@ -1,4 +1,7 @@
-## Troubleshooting
+---
+id: collator-troubleshooting
+title: Troubleshooting
+---
 
 There are a few things that can be checked to make sure everything is set up correctly.
 

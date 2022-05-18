@@ -1,7 +1,10 @@
+---
+id: collator-session-keys
+title: Session keys
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-## Session Keys
 
 Once the chain has fully synced, the collator needs to set sessions keys to begin collating on the network.
 To check whether the account has already set some session keys, the RPC `hasKey(publicKey, keyType)` and `hasSessionKeys(sessionKeys)` in the `author` can be called.

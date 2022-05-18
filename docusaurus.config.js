@@ -40,7 +40,7 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/collator',
+              docId: 'participate/collator/welcome',
               label: 'Collating',
             },
             {

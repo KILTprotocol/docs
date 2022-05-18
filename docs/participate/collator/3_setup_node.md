@@ -1,9 +1,12 @@
+---
+id: collator-setup-node
+title: Setup a node
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import StartNodeBinary from './3a_start_node_binary.mdx';
-import StartNodeDocker from './3b_start_node_docker.mdx';
-
-## Setup a Node
+import StartNodeBinary from './_3a_start_node_binary.mdx';
+import StartNodeDocker from './_3b_start_node_docker.mdx';
 
 There are several ways to build and run a collator node.
 We show both how to use a Docker image and how to compile the source code directly from [our chain repository](https://github.com/KILTprotocol/mashnet-node).

@@ -1,4 +1,7 @@
-## Monitoring
+---
+id: collator-monitoring
+title: Monitoring
+---
 
 It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the collator process.
 However, in cases of limited resources, the two can also co-exist on the same host.

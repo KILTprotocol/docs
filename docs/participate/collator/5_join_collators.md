@@ -1,4 +1,7 @@
-## Join the collator candidates pool
+---
+id: collator-join
+title: Join the collator candidates pool
+---
 
 :::warning
 

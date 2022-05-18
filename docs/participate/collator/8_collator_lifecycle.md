@@ -1,4 +1,7 @@
-## Lifecycle of a Collator
+---
+id: collator-lifecycle
+title: Lifecycle of a Collator
+---
 
 When you intent to stop collating or just being a collator candidate, you have to go through three stages until your staked tokens are unlocked and your collator state is purged from the chain.
 
