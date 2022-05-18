@@ -28,9 +28,8 @@ Every one can create a new hierarchy and imminently become the only member of th
 Not only is the creator the only member but also the root of the hierarchy.
 They have full control over the Delegation Hierarchy.
 
-When the root adds new attesters to the hierarchy, these new members become direct descendants of the root.
-The root is the parent of the new members while the members are the children of the root.
-When the children add members themselves, the children become parents too.
+When the root adds new members to the hierarchy, they become direct children of the root.
+When the children add members themselves, they become parents to the children.
 This creates a tree like structure similar to the one shown in the image below.
 
 <center>
