@@ -62,6 +62,7 @@ Exposing the RPC endpoint can be done using the following parameters:
 --rpc-port=9933
 --rpc-cors=all
 --rpc-methods=unsafe
+--unsafe-rpc-external // ONLY for docker based setups
 ```
 
 Exposing the RPC endpoint of a collator does not imply that it becomes accessible via the PolkadotJS Apps interface, because this requires a Websocket to connect to the node.
@@ -209,7 +210,7 @@ It is recommended to change them throughout sessions.
 :::warning
 
 Make sure that no unauthorised party is able to access the RPC endpoint of the collator.
-Use SSH forwarding for the RPC port when needing to perform some RPC operations on the node with 
+Use SSH forwarding for the RPC port when needing to perform some RPC operations on the node with
 ```
 ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>
 ```
@@ -484,7 +485,7 @@ For **Peregrine**, the parachain bootnodes are:
 --bootnodes=/dns4/eyrie-1.kilt.io/tcp/30371/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M \
 --bootnodes=/dns4/eyrie-2.kilt.io/tcp/30372/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ
 ```
-  
+
 </TabItem>
 </Tabs>
 
@@ -608,7 +609,7 @@ Its address should be listed when querying `session > validators()`.
 ### Rewards have stopped
 
 If you have stopped to receive rewards, either
-1. You were kicked out of the top collator candidate list because your total stake is too low. 
+1. You were kicked out of the top collator candidate list because your total stake is too low.
 See [above](#how-to-check-your-position) for the necessary steps to retrieve the least staked candidate address in that list.
 You can query their stake by going to `Developer -> Chain State` calling `parachainStaking -> candidatePool(address) -> +`.
 2. You have connectivity issues, see [above](#troubleshooting) for resolution tips
