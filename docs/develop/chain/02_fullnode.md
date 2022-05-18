@@ -17,41 +17,6 @@ There are currently two different runtimes (i.e., two different parachain enviro
 - **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features.
 - **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to try stuff out before executing them on the production Spiritnet chain, which involves spending tokens that have real monetary value.
 
-<Tabs
-groupId="runtime-explanation"
-defaultValue="Spiritnet"
-values={[
-{label: 'Spiritnet', value: 'Spiritnet'},
-{label: 'Peregrine', value: 'Peregrine'},
-]}>
-
-<TabItem value="Spiritnet">
-The <b>Spiritnet</b> deployment has the following services associated with it:
-
-<ul>
-<li>A <a href="https://spiritnet.subscan.io/">Subscan explorer</a>, which can be used to inspect the blockchain state and get information about blocks, extrinsics, and events</li>
-<li>A <a href="https://kilt.polkassembly.network/">Polkassembly community space</a>, which can be used to interact with proposal, referenda, and anything else that would require a community discussion</li>
-</ul>
-</TabItem>
-
-<TabItem value="Peregrine">
-The <b>Peregrine</b> deployment has the following services associated with it:
-
-<ul>
-<li>A <a href="https://kilt-testnet.subscan.io/">Subscan explorer</a>, which can be used to inspect the blockchain state and get information about blocks, extrinsics, and events</li>
-</ul>
-
-As opposite to Spiritnet, Peregrine has no Polkassembly integration to interact with public referenda, but it has the following additional integrations:
-
-<ul>
-<li>A <a href="https://faucet.kilt.io/">Faucet service</a>, which can be used to obtain few tokens (once per IP address) to start building on the Peregrine network. <b>Peregrine tokens have no economic value, and are only used to build on top of KILT using the public test network.</b></li>
-</ul>
-</TabItem>
-
-</Tabs>
-
----
-
 :::info
 The remainder of the guide explaining how to run a full node is for the official Spiritnet.
 Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
