@@ -14,8 +14,8 @@ They act as a backend for Websites, verify new blocks and validate extrinsics (e
 
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT full node can be part of:
 
-- Peregrine: the public test network whose runtime is as close to the official chain as possible. It can be used to try stuff out before executing them on the live chain, which involves spending tokens that have real monetary value.
-- Spiritnet: the official public network, which contains only stable features.
+- **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features.
+- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to try stuff out before executing them on the production Spiritnet chain, which involves spending tokens that have real monetary value.
 
 :::info
 The remainder of the guide explaining how to run a full node is for the official Spiritnet.
@@ -65,7 +65,7 @@ The command must be run from the root directory of the repository after it has b
 ```bash
 # Set up the build environment by installing the Rust compiler.
 ./scripts/init.sh
-# Build the executable from source enabling all the optimisations with --release.
+# Build the executable from source enabling all the optimizations with --release.
 cargo build --release -p kilt-parachain
 ```
 
