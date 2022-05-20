@@ -13,7 +13,7 @@ import Example7 from '!!raw-loader!@site/code-examples/core_features/did/7_did.t
 import Example8 from '!!raw-loader!@site/code-examples/core_features/did/8_did.ts';
 import Example9 from '!!raw-loader!@site/code-examples/core_features/did/9_did.ts';
 
-For an explanation of KILT DIDs, please visit our [KILT DID page](../../../concepts/did.md).
+For an explanation of KILT DIDs, please visit our [KILT DID page](../../../concepts/2-did.md).
 
 ### Creating a light DID
 

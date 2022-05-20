@@ -64,7 +64,7 @@ On Stakeboard you can influence who is allowed to build blocks on Spiritnet by d
 
 
 w3n.id is a website that helps you resolve a web3name.
-Learn more [about our web3names](../concepts/did.md) in our concept section.
+Learn more [about our web3names](../concepts/2-did.md) in our concept section.
 
 ---
 
