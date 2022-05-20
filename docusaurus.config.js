@@ -50,13 +50,8 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/collator',
-              label: 'Collating',
-            },
-            {
-              type: 'doc',
-              docId: 'participate/delegator',
-              label: 'Delegating',
+              docId: 'participate/staking/collator',
+              label: 'Staking',
             },
             {
               type: 'doc',
