@@ -9,21 +9,27 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Get Started',
+      title: 'Quickstart',
       imageUrl: 'img/tools.svg',
       imageUrlDark: 'img/tools.svg',
-      link: 'docs/develop/sdk/introduction',
+      link: 'docs/develop/sdk/quickstart',
       description: (
-        <>Start building with the KILT Protocol. Verify your first credential, issue a credential or setup an app.</>
+        <>
+          Start building with the KILT Protocol. Verify your first credential,
+          issue a credential or setup an app.
+        </>
       ),
     },
     {
       title: 'What is KILT?',
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
-      link: 'docs/what-is-kilt',
+      link: 'docs/concepts/what-is-kilt',
       description: (
-        <>Learn about decentralized identifiers and why they matter. Get to know attestations and what they provide.</>
+        <>
+          Learn about decentralized identifiers and why they matter. Get to know
+          attestations and what they provide.
+        </>
       ),
     },
     {
@@ -31,7 +37,12 @@ const featureRows = [
       imageUrl: 'img/apps-light.svg',
       imageUrlDark: 'img/apps-dark.svg',
       link: 'docs/develop/showcase',
-      description: <>Explore the KILT ecosystem. Sign documents with DIDsign or receive attestations with SocialKYC.</>,
+      description: (
+        <>
+          Explore the KILT ecosystem. Sign documents with DIDsign or receive
+          attestations with SocialKYC.
+        </>
+      ),
     },
   ],
 ]
@@ -65,7 +76,10 @@ export default function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
   return (
-    <Layout title={siteConfig.title} description="Description will go into a meta tag in <head />">
+    <Layout
+      title={siteConfig.title}
+      description="Description will go into a meta tag in <head />"
+    >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
