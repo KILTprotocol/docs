@@ -1,8 +1,9 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'KILT Documentation',
-  tagline: 'Documentation for KILT Node and SDK',
-  url: 'https://dev.kilt.io',
+  title: 'KILT Protocol',
+  tagline:
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+  url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -41,6 +42,11 @@ module.exports = {
               type: 'doc',
               docId: 'develop/workshop/welcome',
               label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/showcase',
+              label: 'Showcase',
             },
           ],
         },
@@ -85,10 +91,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Element / Matrix',
-              href: 'https://matrix.to/#/#kilt-general:matrix.org',
-            },
-            {
               label: 'Discord',
               href: 'https://discord.gg/hX4pc8rdHS',
             },
@@ -99,10 +101,6 @@ module.exports = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
-            },
-            {
-              label: 'Clan KILT (Unofficial)',
-              href: 'https://clankilt.io',
             },
           ],
         },
