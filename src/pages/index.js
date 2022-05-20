@@ -31,12 +31,7 @@ const featureRows = [
       imageUrl: 'img/apps-light.svg',
       imageUrlDark: 'img/apps-dark.svg',
       link: 'docs/develop/chain/deployments',
-      description: (
-        <>
-          Read the original whitepaper. KILT evolved since then, but the ideas and values are still part of our identity
-          even though the technical details are outdated.
-        </>
-      ),
+      description: <>Explore the KILT ecosystem. Sign documents with DIDsign or receive attestations with SocialKYC.</>,
     },
   ],
 ]
