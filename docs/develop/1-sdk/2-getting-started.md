@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Kilt Getting Started Guide
+title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
