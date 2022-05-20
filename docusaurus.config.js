@@ -45,6 +45,11 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'develop/specifications/index',
+              label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
               docId: 'develop/showcase',
               label: 'Showcase',
             },
@@ -63,12 +68,7 @@ module.exports = {
               type: 'doc',
               docId: 'participate/Governance/vote',
               label: 'Voting',
-            },
-            {
-              type: 'doc',
-              docId: 'participate/apps/introduction',
-              label: 'Apps',
-            },
+            }
           ],
         },
         {
