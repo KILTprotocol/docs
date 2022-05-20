@@ -9,30 +9,29 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Become a Collator',
-      imageUrl: 'img/community_light.svg',
-      imageUrlDark: 'img/community_dark.svg',
-      link: 'docs/chain/collator',
-      description: <>Become a collator and help decentralizing the KILT Blockchain.</>,
+      title: 'Get Started',
+      imageUrl: 'img/tools.svg',
+      imageUrlDark: 'img/tools.svg',
+      link: 'docs/develop/sdk/introduction',
+      description: (
+        <>Start building with the KILT Protocol. Verify your first credential, issue a credential or setup an app.</>
+      ),
     },
     {
-      title: 'Workshop',
+      title: 'What is KILT?',
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
-      link: 'docs/sdk/workshop/welcome',
-      description: <>Claim, attest and verify in our SDK workshop.</>,
+      link: 'docs/what-is-kilt',
+      description: (
+        <>Learn about decentralized identifiers and why they matter. Get to know attestations and what they provide.</>
+      ),
     },
     {
-      title: 'Whitepaper 2020',
-      imageUrl: 'img/whitepaper_light.svg',
-      imageUrlDark: 'img/whitepaper_dark.svg',
-      link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
-      description: (
-        <>
-          Read the original whitepaper. KILT evolved since then, but the ideas and values are still part of our identity
-          even though the technical details are outdated.
-        </>
-      ),
+      title: 'KILT in Action',
+      imageUrl: 'img/apps-light.svg',
+      imageUrlDark: 'img/apps-dark.svg',
+      link: 'docs/develop/showcase',
+      description: <>Explore the KILT ecosystem. Sign documents with DIDsign or receive attestations with SocialKYC.</>,
     },
   ],
 ]
