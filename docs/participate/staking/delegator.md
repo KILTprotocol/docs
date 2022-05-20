@@ -1,6 +1,6 @@
 ---
 id: delegator
-title: About delegating
+title: Become a delegator
 ---
 
 import Tabs from '@theme/Tabs';
