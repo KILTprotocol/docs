@@ -1,6 +1,6 @@
 ---
 id: index
-title: Index
+title: Technical Specifications
 ---
 
 :::note
