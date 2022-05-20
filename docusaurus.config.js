@@ -1,7 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'KILT Protocol',
-  tagline: 'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+  tagline:
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -84,6 +85,11 @@ module.exports = {
               docId: 'develop/sdk/introduction',
               label: 'SDK Documentation',
             },
+            {
+              type: 'doc',
+              docId: 'develop/showcase',
+              label: 'Showcase',
+            },
           ],
         },
         {
@@ -116,7 +122,7 @@ module.exports = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
-            }
+            },
           ],
         },
         {

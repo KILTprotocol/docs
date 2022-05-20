@@ -30,7 +30,7 @@ const featureRows = [
       title: 'KILT in Action',
       imageUrl: 'img/apps-light.svg',
       imageUrlDark: 'img/apps-dark.svg',
-      link: 'docs/develop/chain/deployments',
+      link: 'docs/develop/showcase',
       description: <>Explore the KILT ecosystem. Sign documents with DIDsign or receive attestations with SocialKYC.</>,
     },
   ],
