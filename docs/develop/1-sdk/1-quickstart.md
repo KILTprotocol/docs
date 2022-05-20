@@ -1,5 +1,5 @@
 ---
-id: getting-started
+id: quickstart
 title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
@@ -24,7 +24,7 @@ What will you be able to do after this guide:
 3. Query a **web3name** to get a **DID**
 4. Verify a **credential**, fetched from **DID service endpoints**
 
-After completing the getting started, you should have learn a little about KILT and a guide to learn by doing.
+After completing the quickstart guide, you should have learn a little about KILT and a guide to learn by doing.
 The guide requires some experience with javascript and command-line tools.
 We will have recommended guides to other tutorials for further learnings.
 
@@ -40,7 +40,7 @@ npm install @kiltprotocol/sdk-js node axios
 ```
 
 After you have imported the SDK, you are now able to access the functionality of KILT.
-With all the required dependencies set, just create a new (empty) script file with `touch getting-started.js`.
+With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
 Inside the `package.json` add in the object `"type": "module"`.
 
 Lets first create an asynchronous function called `main` in order to excute the script.
@@ -55,12 +55,12 @@ If the setup is correct you can excute the script by calling the name of the fil
 <Tabs>
   <TabItem value='npm' label='npm' default>
     <CodeBlock className="language-bash">
-      npm node getting-started.js
+      npm node quickstart.js
     </CodeBlock>
   </TabItem>
   <TabItem value='yarn' label='Yarn'>
     <CodeBlock className="language-bash">
-      yarn node getting-started.js
+      yarn node quickstart.js
     </CodeBlock>
   </TabItem>
 </Tabs>
@@ -72,7 +72,7 @@ It will refer to this command when requested to excute.
 
 ### Importing KILT's SDK into a project
 
-Lets begin by importing the **SDK** and **axios** into the `getting-started.js`.
+Lets begin by importing the **SDK** and **axios** into the `quickstart.js`.
 
 ``` js
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -89,7 +89,7 @@ The connection allows to **query**, **verify** and **interact** with the chain.
 
 **Let's get connected.**
 
-Inside the `getting-started.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
+Inside the `quickstart.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
 Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection to the KILT blockchain via an address.
 
 We will initalise the **KILT blockchain** named the **Spiritnet**.  

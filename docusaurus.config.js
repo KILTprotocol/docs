@@ -55,8 +55,8 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'develop/workshop/welcome',
-              label: 'Workshop',
+              docId: 'develop/sdk/quickstart',
+              label: 'SDK Documentation',
             },
             {
               type: 'doc',
@@ -65,8 +65,8 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/sdk/introduction',
-              label: 'SDK Documentation',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
             },
           ],
         },
