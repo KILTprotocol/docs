@@ -45,6 +45,11 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'develop/specifications/index',
+              label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
               docId: 'develop/showcase',
               label: 'Showcase',
             },
