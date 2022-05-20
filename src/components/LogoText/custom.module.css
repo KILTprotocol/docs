@@ -1,0 +1,17 @@
+.sideImage {
+	display: flex;
+}
+
+.sideImage > .sideImageL {
+	margin: 10px;
+	padding: 20px;
+}
+
+.sideImage > .sideImageR {
+	margin: 10px;
+	padding: 20px;
+}
+
+.sideImageImg {
+	height: 150;
+}
