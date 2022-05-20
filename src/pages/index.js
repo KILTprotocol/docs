@@ -28,8 +28,8 @@ const featureRows = [
     },
     {
       title: 'KILT in Action',
-      imageUrl: 'img/whitepaper_light.svg',
-      imageUrlDark: 'img/whitepaper_dark.svg',
+      imageUrl: 'img/apps-light.svg',
+      imageUrlDark: 'img/apps-light.svg',
       link: 'docs/develop/chain/deployments',
       description: (
         <>
