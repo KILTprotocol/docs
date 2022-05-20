@@ -9,7 +9,6 @@ An incomplete list of apps, wallets and websites that built on KILT.
 If you are missing from the list and want to be added, you are welcome to open a PR.
 
 <br/>
-<br/>
 
 ## Wallets
 
@@ -32,7 +31,6 @@ Each time a website wants to know something about you, the wallet will ask for y
 Sporran is the first wallet with KILT support.
 It is maintained by _BOTLabs Trusted Entity B.T.E GmbH_ and the [source code is open source](https://github.com/BTE-Trusted-Entity/sporran-extension).
 
-<br/>
 <br/>
 
 ## Apps
