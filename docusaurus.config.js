@@ -25,6 +25,27 @@ module.exports = {
         },
         {
           type: 'dropdown',
+          label: 'Develop',
+          items: [
+            {
+              type: 'doc',
+              docId: 'develop/sdk/quickstart',
+              label: 'SDK Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
           label: 'Participate',
           items: [
             {
@@ -46,27 +67,6 @@ module.exports = {
               type: 'doc',
               docId: 'participate/apps/introduction',
               label: 'Apps',
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Develop',
-          items: [
-            {
-              type: 'doc',
-              docId: 'develop/sdk/quickstart',
-              label: 'SDK Documentation',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/chain/introduction',
-              label: 'Blockchain Documentation',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/workshop/welcome',
-              label: 'Workshop',
             },
           ],
         },
