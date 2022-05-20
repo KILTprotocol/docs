@@ -20,24 +20,8 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'what-is-kilt',
+          docId: 'concepts/what-is-kilt',
           label: 'What is KILT?',
-        },
-        {
-          type: 'dropdown',
-          label: 'Concepts',
-          items: [
-            {
-              type: 'doc',
-              docId: 'concepts/did',
-              label: 'DIDs',
-            },
-            {
-              type: 'doc',
-              label: 'Distributed Trust',
-              docId: 'concepts/distributed_trust',
-            },
-          ],
         },
         {
           type: 'dropdown',
@@ -166,7 +150,10 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }], require('mdx-mermaid')],
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+            require('mdx-mermaid'),
+          ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
         },
