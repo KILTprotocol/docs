@@ -8,7 +8,7 @@ import LogoText from '@site/src/components/LogoText';
 
 
 An incomplete list of apps, wallets and websites that built on KILT.
-If you are missing from the list and want to be added, you are welcome to open a PR.
+If you are missing from the list and want to be added, you are welcome to [open a PR](https://github.com/KILTprotocol/docs/compare).
 
 
 ## Wallets
@@ -28,6 +28,9 @@ Each time a website wants to know something about you, the wallet will ask for y
 </LogoText>
 
 ## Apps
+
+One does not have to use their swiss army knife explicitly on raw materials.
+Luckily, there are some applications built on KILT you can explore.
 
 <LogoText
     linkTo='https://stakeboard.kilt.io/'
