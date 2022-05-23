@@ -4,7 +4,7 @@ title: Deployments and Services
 ---
 
 KILT has two public deployments: a production one, called **Spiritnet**, and a test/dev one, called **Peregrine**.
-To learn more about how to set up a node for either environment, please check our [fullnode set up guide](02_fullnode.md).
+To learn more about how to set up a node for either environment, please check our [fullnode set up guide](./04_fullnode.md).
 
 **Spiritnet** is the production blockchain, which has been live since September 2021.
 

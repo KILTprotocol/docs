@@ -1,6 +1,6 @@
 ---
 id: dev-setup
-title: Project Setup
+title: Chain setup for development
 ---
 import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.ts';

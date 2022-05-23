@@ -9,26 +9,26 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Quickstart',
-      imageUrl: 'img/tools.svg',
-      imageUrlDark: 'img/tools.svg',
-      link: 'docs/develop/sdk/quickstart',
-      description: (
-        <>
-          Start building with the KILT Protocol. Verify your first credential,
-          issue a credential or setup an app.
-        </>
-      ),
-    },
-    {
       title: 'What is KILT?',
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
       link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Learn about decentralized identifiers and why they matter. Get to know
+          Learn about Decentralized Identifiers and why they matter. Get to know
           attestations and what they provide.
+        </>
+      ),
+    },
+    {
+      title: 'Quickstart',
+      imageUrl: 'img/tools.svg',
+      imageUrlDark: 'img/tools.svg',
+      link: 'docs/develop/sdk/quickstart',
+      description: (
+        <>
+          Start building with the KILT Protocol. Issue and verify your first credential
+          or setup an app.
         </>
       ),
     },

@@ -3,7 +3,7 @@ id: welcome
 title: 👋🏻 Welcome
 ---
 
-<!-- When updating this version also update 01-setup.md! -->
+<!-- When updating this version also update 02_setup.md! -->
 SDK version **0.27.0**.
 
 :::info What you can expect
@@ -32,4 +32,4 @@ In this tutorial, you will:
 
 Ready? Let's go!
 
-👉 [Step 0: Setup](./01-setup.md)
+👉 [Step 0: Setup](./02_setup.md)

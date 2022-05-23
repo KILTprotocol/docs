@@ -1,6 +1,7 @@
-# DID
-
-## What is a DID?
+---
+id: pallet-did
+title: DID pallet
+---
 
 In KILT a DID is a decentralized identifier that the user owns and controls.
 It consists of a unique set of keys that can be used for different operations on the blockchain.

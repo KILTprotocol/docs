@@ -19,7 +19,7 @@ You would store a public encryption key and a service endpoint on-chain, that ca
 Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
 
 There are light and full DIDs.
-Take a look at our [DID documentation](/docs/develop/sdk/core-feature/did) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](./../../../develop/01_sdk/02_Cookbook/01_Manage%20a%20KILT%20DID/01_did.md) if you want to learn more about DIDs and the difference between their light and full versions.
 
 :::info KILT DID
 
@@ -66,7 +66,7 @@ Create a file `attester/generateKeypairs.ts` and copy the code below.
 
 Once we have created all the necessary keys for a DID we can create the on-chain DID.
 To create a DID we first initialize everything.
-After that, we load the account that we created in the [last section](./01-account.md).
+After that, we load the account that we created in the [last section](./01_account.md).
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
