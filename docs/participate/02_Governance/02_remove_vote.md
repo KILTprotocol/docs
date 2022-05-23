@@ -25,4 +25,4 @@ Go to the [extrinsic tab in the Polkadot Apps](https://polkadot.js.org/apps/?rpc
 
 ## Unlock expired voting locks
 
-Please refer to the "[Unlock coins after lockup expires](2_unlock_coins.md)" guide.
+Please refer to the "[Unlock coins after lockup expires](./2_unlock_coins.md)" guide.

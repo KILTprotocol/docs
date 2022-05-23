@@ -66,7 +66,7 @@ Create a file `attester/generateKeypairs.ts` and copy the code below.
 
 Once we have created all the necessary keys for a DID we can create the on-chain DID.
 To create a DID we first initialize everything.
-After that, we load the account that we created in the [last section](./01-account.md).
+After that, we load the account that we created in the [last section](./01_account.md).
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
