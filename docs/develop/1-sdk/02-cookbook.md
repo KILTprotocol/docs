@@ -1,0 +1,4 @@
+---
+id: cookbook
+title: Cookbook
+---
