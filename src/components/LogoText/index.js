@@ -2,23 +2,24 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import styles from './custom.module.css'
 import ThemedImage from '@theme/ThemedImage'
+import ReactMarkdown from 'react-markdown'
 
-const LogoText = ({ children, link_to, logo_light, logo_dark }) => {
+const LogoText = ({ children, width, linkTo, alt, srcLight, srcDark }) => {
   return (
     <div className={clsx(styles.sideImage)}>
       <div className={clsx(styles.sideImageL)}>
-        <a href={link_to}>
+        <a href={linkTo}>
           <ThemedImage
-            width="150"
-            alt="Web3Name Logo"
+            width={width}
+            alt={alt}
             sources={{
-              light: logo_light,
-              dark: logo_dark,
+              light: srcLight,
+              dark: srcDark,
             }}
           />
         </a>
       </div>
-      <div className={clsx(styles.sideImageR)}>{children}</div>
+      <div className={clsx(styles.sideImageR)}><ReactMarkdown>{children}</ReactMarkdown></div>
     </div>
   )
 }
