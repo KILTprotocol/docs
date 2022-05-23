@@ -4,7 +4,8 @@
 
 .sideImage > .sideImageL {
 	margin: 10px;
-	padding: 20px;
+	min-width: 150px;
+	max-width: 150px;
 }
 
 .sideImage > .sideImageR {
@@ -13,5 +14,17 @@
 }
 
 .sideImageImg {
-	height: 150;
+	height: 150px;
+}
+
+@media screen and (max-width: 420px) {
+	.sideImage {
+		flex-direction: column;
+	}
+
+	.sideImage > .sideImageL {
+		margin: 10px auto;
+		min-width: 200px;
+		max-width: 200px;
+	}
 }
