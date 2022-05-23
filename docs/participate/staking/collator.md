@@ -5,8 +5,8 @@ title: Become a collator
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import StartNodeBinary from './collator/1a_start_node_binary.mdx';
-import StartNodeDocker from './collator/1b_start_node_docker.mdx';
+import StartNodeBinary from '@site/code-examples/collator/1a_start_node_binary.mdx';
+import StartNodeDocker from '@site/code-examples//collator/1b_start_node_docker.mdx';
 
 We will guide you through the steps to become a collator.
 First, we will discuss the hardware requirements and how you could test the performance of your node.

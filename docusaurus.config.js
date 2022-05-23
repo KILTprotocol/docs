@@ -21,22 +21,37 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'what-is-kilt',
+          docId: 'concepts/what-is-kilt',
           label: 'What is KILT?',
         },
         {
           type: 'dropdown',
-          label: 'Concepts',
+          label: 'Develop',
           items: [
             {
               type: 'doc',
-              docId: 'concepts/did',
-              label: 'DIDs',
+              docId: 'develop/sdk/quickstart',
+              label: 'SDK Documentation',
             },
             {
               type: 'doc',
-              label: 'Distributed Trust',
-              docId: 'concepts/distributed_trust',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/specifications/index',
+              label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/showcase',
+              label: 'Showcase',
             },
           ],
         },
@@ -46,50 +61,14 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/collator',
-              label: 'Collating',
-            },
-            {
-              type: 'doc',
-              docId: 'participate/delegator',
-              label: 'Delegating',
+              docId: 'participate/staking/collator',
+              label: 'Staking',
             },
             {
               type: 'doc',
               docId: 'participate/Governance/vote',
               label: 'Voting',
-            },
-            {
-              type: 'doc',
-              docId: 'participate/apps/introduction',
-              label: 'Apps',
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Develop',
-          items: [
-            {
-              type: 'doc',
-              docId: 'develop/workshop/welcome',
-              label: 'Workshop',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/chain/introduction',
-              label: 'Blockchain Documentation',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/sdk/introduction',
-              label: 'SDK Documentation',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/showcase',
-              label: 'Showcase',
-            },
+            }
           ],
         },
         {
@@ -164,7 +143,10 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }], require('mdx-mermaid')],
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+            require('mdx-mermaid'),
+          ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
         },
