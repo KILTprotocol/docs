@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## How to become a delegator
 
-In contrast to the rather difficult [path to become a collator candidate](./collator.md), joining the delegator pool is rather simple.
+In contrast to the rather difficult [path to become a collator candidate](./01_collator.md), joining the delegator pool is rather simple.
 You can either do this in Polkadot JS Apps or the KILT Stakeboard, which serves as an in-house developed Frontend for all KILT staking activity.
 Below, we explain how to do it for the former case.
 However, the latter option is explained in detail in the [BOTLabs Trusted Entity support hub](https://support.kilt.io/support/solutions/80000442174).
