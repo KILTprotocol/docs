@@ -49,7 +49,7 @@ Luckily, there are some applications built on KILT you can explore.
     srcLight='/img/showcase/w3n_light.svg'
     srcDark='/img/showcase/w3n_dark.svg'
     width='150'
-    alt='TODO'>
+    alt='bte-w3n-id-logo'>
     w3n.id is a website that helps you resolve a web3name.
     Learn more [about our web3names](../concepts/did.md) in our concept section.
 </LogoText>
