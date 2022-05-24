@@ -6,7 +6,7 @@ import {
   FullDidDetails,
   Web3Names
 } from '@kiltprotocol/did'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { BlockchainApiConnection, BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 
@@ -15,6 +15,7 @@ import { main as main2 } from './2_account_linking'
 import { main as main3 } from './3_account_linking'
 import { main as main4 } from './4_account_linking'
 import { main as main5 } from './5_account_linking'
+import { main as main6 } from './6_account_linking_no_sdk'
 
 const SEED_ENV = 'FAUCET_SEED'
 
@@ -87,4 +88,8 @@ export async function runAll(
   )
   await BlockchainUtils.signAndSubmitTx(signedTx, faucetAccount, { resolveOn })
   console.log('Web3 name released.')
+
+  console.log('main6 - retrieve Web3 name for faucet account')
+  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
+  await main6(api, faucetAccount.address)
 }
