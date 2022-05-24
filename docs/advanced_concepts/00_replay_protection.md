@@ -27,7 +27,7 @@ const submissions = new Map<string, number>()
 Check record for each incoming message and update if accepted:
 
 ```typescript
-// is hash fresh and createdAt recent ?
+// is messageId fresh and createdAt recent ?
 if (
   submissions.has(decrypted.messageId) ||
   decrypted.createdAt < Date.now() - MAX_ACCEPTED_AGE ||
@@ -44,9 +44,9 @@ Purge at regular intervals:
 
 ```typescript
 setInterval(() => {
-  const maxTime = Date.now() - MAX_ACCEPTED_AGE
+  const outdatedTimestamp = Date.now() - MAX_ACCEPTED_AGE
   submissions.forEach((timestamp, hash) => {
-    if (timestamp < maxTime) submissions.delete(hash)
+    if (timestamp < outdatedTimestamp) submissions.delete(hash)
   })
 }, 1000)
 ```
