@@ -2,6 +2,7 @@ import { AccountLinks } from '@kiltprotocol/did'
 import { KeyringPair } from '@kiltprotocol/types'
 
 export async function main(linkedAccount: KeyringPair['address']) {
+  // Only function to call to perform the lookup.
   const accountWeb3Name = await AccountLinks.queryWeb3Name(linkedAccount)
   if (accountWeb3Name) {
     console.log(
