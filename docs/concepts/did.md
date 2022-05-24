@@ -1,4 +1,0 @@
----
-id: did
-title: DIDs
----
