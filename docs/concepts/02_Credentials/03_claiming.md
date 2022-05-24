@@ -6,12 +6,6 @@ As KILT is an open system, any entity can make a claim about themselves. A claim
 
 In KILT, claims are based on claim types (CTypes). A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
 
-## CTypes
-
-CTypes are data types specific to KILT that define the structure of a claim (e.g., the data model for your claim). They are based on JSON Schema, a standard used to annotate and validate JSON documents. The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
-
-For more information, refer to our [CType section](./ctypes)
-
 ## Create your Claim from a CType
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.

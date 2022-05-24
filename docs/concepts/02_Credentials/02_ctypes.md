@@ -3,7 +3,7 @@ id: ctypes
 title: CTypes
 ---
 
-**CTypes are standardised structures for credentials: the JSON scheme which describes the fields in a claim type. These fields are filled out by the claimer, indicating the information that needs to be attested. A CType (and subsequently when attested, the credential) may contain several “attributes”, for example, full name, date of birth, access level and id number.**
+CTypes are data types specific to KILT that define the structure of a claim (e.g., the data model for your claim). They are based on JSON Schema, a standard used to annotate and validate JSON documents. The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
 
 ## JSON-Schema
 
