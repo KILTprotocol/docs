@@ -7,7 +7,7 @@ Complete these steps to create a well-formed Treasury proposal
 
 # Discuss
 
-The first step in applying for a Treasury grant is to join the community in the Element Direction Channel, Discord Treasury Channel or on Telegram to discuss and share your intended proposal. This will help you get valuable community feedback throughout the process. This also gives Council members an open and transparent way to measure community sentiment.  
+The first step in applying for a Treasury grant is to join the community in the [Element Direction Channel](https://matrix.to/#/#kilt-direction:matrix.org), [Discord Treasury Channel](https://discord.gg/nUpqDfQ6kJ) or on [Telegram](https://t.me/KILTProtocolChat) to discuss and share your intended proposal. This will help you get valuable community feedback throughout the process. This also gives Council members an open and transparent way to measure community sentiment.  
 
 # Deposit
 
@@ -15,13 +15,13 @@ A deposit of 5% of the amount requested is required in order to submit a proposa
 
 # Proposal Document
 
-To maximize your chances of success, create a full proposal document with as much information as possible to communicate the value of your work and what it will add to the network’s growth and success. Check out our Treasury proposal template or Polkassembly’s proposal document #6 as examples to help guide your process.
+To maximize your chances of success, create a full proposal document with as much information as possible to communicate the value of your work and what it will add to the network’s growth and success. Check out our Treasury proposal template or Polkassembly’s [proposal document #6](https://docs.google.com/document/d/1NilDtFljCc6boyHkz2o2kGyFNhR6hVQSGzz7J0Xhwco/edit) as examples to help guide your process.
 
 Once your proposal document is complete, upload it so that it’s accessible to the Council for review. Don’t forget to link it when completing the Polkassembly information! 
 
 # Submit Proposal
 
-When you have feedback from the community and are satisfied with your proposal, head to https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws#/treasury
+When you have feedback from the community and are satisfied with your proposal, head to [polkadot apps](https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws#/treasury)
 
 Scroll to  the “+ Submit Proposal” button and click.
 Complete the form:
@@ -37,17 +37,17 @@ Click the Polkassembly link to the right of the proposal on Polkadot-JS
 
 Enter the following information:
 
-Title: a title for your project
-Purpose: what’s your motivation behind the effort
-Description: a short summary about you, the project and the need for what you are proposing.
-Full Proposal: link to the full proposal
-Proposal Amount: the amount requested in USD
-KILT Rate: the current rate of exchange in USD
-Amount Requested: the total amount of KILT requested
-Beneficiary: the beneficiary address
-Period: intended date of delivery if applicable
-Contact: email or social handle (please specify social network)
-Engage
-Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter).
+* Title: a title for your project
+* Purpose: what’s your motivation behind the effort
+* Description: a short summary about you, the project and the need for what you are proposing.
+* Full Proposal: link to the full proposal
+* Proposal Amount: the amount requested in USD
+* KILT Rate: the current rate of exchange in USD
+* Amount Requested: the total amount of KILT requested
+* Beneficiary: the beneficiary address
+* Period: intended date of delivery if applicable
+* Contact: email or social handle (please specify social network)
+* Engage
+* Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter).
 
 Click [here](https://www.kilt.io/treasury/overview/) to get an overview about Treasury. Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
