@@ -5,7 +5,7 @@ title: Verification
 
 KILT allows a verifier to check if the information in an attested claim (credential) presented by a claimer is correct and valid as, in addition to the credential, the claimer also presents evidence to the validator that a third party (attester) ensured the correctness of the claimer’s attributes.
 
-The verifier trusts this third party (attester) either because they trust the reputation of the attester directly or they trust a delegation hierarchy that the attester is part of (e.g. State department issuing driving licences.)
+The verifier trusts this third party (attester) either because they trust the reputation of the attester directly or they trust a delegation hierarchy that the attester is part of (e.g. State department issuing driving licenses.)
 
 For the verification process:
 
@@ -18,9 +18,12 @@ During the verification process the claimer wants to prove three things to the v
 - The claim actually belongs to the claimer presenting it
 - The claim contains the information that the verifier is interested in
 
-## Presenting a Credential
+## Presenting a Credential with Selective Disclosure
 
-The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier. They can choose to hide attributes and thus only disclose a subset of the data. For example, if sending a driving licence to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details. This improves the privacy of the claimer since they only need to show attributes that are required in the specific context.
+The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier.
+They can choose to hide attributes and thus only disclose a subset of the data.
+For example, if sending a driving license to confirm their age, they may want to show only their name and date of birth, while withholding their address and any other details.
+This improves the privacy of the claimer since they only need to show attributes that are required in the specific context.
 
 ## Verifying a Credential
 
