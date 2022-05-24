@@ -4,8 +4,8 @@ title: Replay Protection
 ---
 
 A sophisticated attacker may intercept and copy encrypted messages sent to you or by you in an attempt to impersonate the sender of the message later on.
-This attack is limited, because the attacker cannot change or even read the data in the encrypted message, and will not be able to read or react on any data sent in response.
-But in certain cases, simply re-sending the message can still be quite effective.
+This attack is limited, because the attacker cannot change or even read the data in the encrypted message, and will not be able to read or react to any data sent in response.
+But in certain cases, simply resending the message can still be quite effective.
 
 This concerns, for example, credential submissions traveling from claimers to verifiers, where an attacker may attempt to convince the verifier to accept a stolen credential submission again.
 To give an example for illustration purposes, think of a paywall or a turnstile that allows passage only upon presentation of a valid access credential.
