@@ -6,7 +6,8 @@ import { DidUtils, Web3Names, resolveDoc } from '@kiltprotocol/did'
 import type { IRequestForAttestation } from '@kiltprotocol/types'
 
 // The type to filter the endpoints of the retrieved DID.
-const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE = 'KiltPublishedCredentialCollectionV1'
+const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
+  'KiltPublishedCredentialCollectionV1'
 
 const verifyCredential = async (
   publishedCredential: RequestForAttestation
@@ -45,15 +46,21 @@ export async function main(web3Name: Web3Names.Web3Name) {
   }
 
   // Filter the endpoints by their type.
-  const didEndpoints = didDetails.getEndpoints(PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE)
+  const didEndpoints = didDetails.getEndpoints(
+    PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE
+  )
 
-  console.log(`Endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}" for the retrieved DID:`)
+  console.log(
+    `Endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}" for the retrieved DID:`
+  )
   console.log(JSON.stringify(didEndpoints, null, 2))
 
   // For demonstration, only the first endpoint and its first URL are considered.
   const firstCredentialCollectionEndpointUrl = didEndpoints[0]?.urls[0]
   if (!firstCredentialCollectionEndpointUrl) {
-    console.log(`The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`)
+    console.log(
+      `The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`
+    )
   }
 
   // Retrieve the credentials pointed at by the endpoint. Being an IPFS endpoint, the fetching can take an arbitrarily long time or even fail if the timeout is reached.
@@ -67,8 +74,7 @@ export async function main(web3Name: Web3Names.Web3Name) {
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async (credential) => {
-      const credentialInstance =
-        RequestForAttestation.fromRequest(credential)
+      const credentialInstance = RequestForAttestation.fromRequest(credential)
       // Verify the credential integrity and signature, according to the KILT specification.
       const credentialStatus = await verifyCredential(credentialInstance)
       if (!credentialStatus) {
@@ -76,9 +82,7 @@ export async function main(web3Name: Web3Names.Web3Name) {
       }
 
       // Verify that the credential refers to the intended subject
-      if (
-        !DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)
-      ) {
+      if (!DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)) {
         throw 'One of the credentials refer to a different subject than expected.'
       }
     })

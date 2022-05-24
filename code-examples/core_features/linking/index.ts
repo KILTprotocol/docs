@@ -6,7 +6,10 @@ import {
   FullDidDetails,
   Web3Names
 } from '@kiltprotocol/did'
-import { BlockchainApiConnection, BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import {
+  BlockchainApiConnection,
+  BlockchainUtils
+} from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 

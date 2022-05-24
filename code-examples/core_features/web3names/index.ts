@@ -52,6 +52,8 @@ export async function runAll(
   console.log('main3 - reclaim the Web3 name by the deposit payer')
   await main3(faucetAccount, web3Name, resolveOn)
 
-  console.log('main5 - fetch the credentials for the well-known "john_doe" Web3 name')
+  console.log(
+    'main5 - fetch the credentials for the well-known "john_doe" Web3 name'
+  )
   await main5('john_doe')
 }
