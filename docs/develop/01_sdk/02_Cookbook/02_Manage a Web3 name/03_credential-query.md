@@ -1,6 +1,6 @@
 ---
 id: credential-query
-title: Query public credentials for Web3 names
+title: Query public credentials for a Web3 name
 ---
 
 import CodeBlock from '@theme/CodeBlock';
