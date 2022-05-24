@@ -3,6 +3,7 @@ import { config as envConfig } from 'dotenv'
 import { DemoKeystore } from '@kiltprotocol/did'
 import { init } from '@kiltprotocol/sdk-js'
 
+import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
@@ -14,6 +15,7 @@ async function main() {
   const keystore = new DemoKeystore()
   try {
     await init()
+    await runAllClaiming()
     // Runs all DID stuff and return the last upgraded light DID
     const did = await runAllDid(keystore)
     await runAllWeb3(keystore, did)
