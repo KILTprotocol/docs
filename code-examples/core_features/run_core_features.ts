@@ -29,3 +29,10 @@ async function main() {
 }
 
 main()
+  .catch((e) => {
+    console.log('Error in the core features test', e)
+    process.exit(1)
+  })
+  .then(() => {
+    process.exit()
+  })
