@@ -1,6 +1,6 @@
 ---
 id: did
-title: DIDs
+title: Decentralized Identifiers (DIDs)
 ---
 
 import ThemedImage from '@theme/ThemedImage';
