@@ -2,9 +2,7 @@
 id: claiming
 title: Claiming
 ---
-There are three actors in the KILT workflow: Claimers, Attesters and Verifiers.
-
-As KILT is an open system, any entity can make a claim about anything. Therefore, as in the real world, a claim only has value if the verifier trusts the attester.
+As KILT is an open system, any entity can make a claim about themselves. A claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) confirms this claim. A Verifier therefore trusts specific Attesters, who attest Claims from Claimers.
 
 In KILT, claims are based on claim types (CTypes). A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
 
@@ -13,27 +11,6 @@ In KILT, claims are based on claim types (CTypes). A claimer can either create a
 CTypes are data types specific to KILT that define the structure of a claim (e.g., the data model for your claim). They are based on JSON Schema, a standard used to annotate and validate JSON documents. The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
 
 For more information, refer to our [CType section](./ctypes)
-
-```js title="Example CType"
-{
-  schema: {
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: 'Drivers License',
-    properties: {
-      name: {
-        type: 'string',
-      },
-      age: {
-        type: 'integer',
-      },
-    },
-    type: 'object',
-    $id: 'kilt:ctype:0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',
-  },
-  owner: null,
-  hash: '0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',
-}
-```
 
 ## Create your Claim from a CType
 
