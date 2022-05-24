@@ -51,7 +51,8 @@ The CType schema is afterwards wrapped into the full CType object:
 
 ## Nested CTypes
 
-A Nested CType is a hierarchical composite schema that includes other simpler CTypes as substructures. The Nested CType references the included sub-CTypes. For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certs, etc of its current employees.
+A Nested CType is a hierarchical composite schema that includes and references other CTypes as substructures. 
+For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certs, etc of its current employees.
 When verifying a Nested CType, the sub-CTypes need to be available.
 
 ### Referencing
@@ -106,10 +107,10 @@ CType Metadata can be linked to a given CType to provide title and descriptions 
   ctypeHash: "0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010",
   metadata: {
     title: {
-      default: "Drivers License"
+      default: "Driver's License"
     },
     description: {
-      default: "A demo CType for Driver Licenses"
+      default: "A demo CType for driver's licenses"
     },
     properties: {
       name: {
@@ -121,7 +122,7 @@ CType Metadata can be linked to a given CType to provide title and descriptions 
       age: {
         title: { default: "Age" }
         description: {
-          default: "The age og the license holder"
+          default: "The age of the license holder"
         }
       }
     }

@@ -4,7 +4,7 @@ title: Claiming
 ---
 There are three actors in the KILT workflow: Claimers, Attesters and Verifiers.
 
-As KILT is an open system: any entity can make a claim about anything. Therefore, as in the real world, a claim only has value if the verifier trusts the attester.
+As KILT is an open system, any entity can make a claim about anything. Therefore, as in the real world, a claim only has value if the verifier trusts the attester.
 
 In KILT, claims are based on claim types (CTypes). A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
 
@@ -52,11 +52,11 @@ The resulting claim is referencing the ctype by its hash and includes the DID of
 
 After creating your claim, you can request an attestation by creating another object called `RequestForAttestation`, which you can send to the attester of your choice via any messaging system.
 
-We recommend encrypting this object before sending it by calling encrypt on the message object. Additionally, you can also compress the body of the message.
+We recommend encrypting this object before sending it, since it contains privacy concerning information.
 
 ```js title="Example RequestForAttestation"
 {
-  claim: Claim {
+  claim: {
     cTypeHash: '0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',
     contents: { name: 'Alice', age: 29 },
     owner: 'did:kilt:light:004rVETkZQcK9aBr6SHZXaHQSDyqFFMW2rN5HtEooWgdB92JMg'
@@ -77,7 +77,6 @@ We recommend encrypting this object before sending it by calling encrypt on the 
   claimerSignature: {
     signature: '0x44b8fe2210e1ca29bbdfaadc469c968369a35537a984f223f0806c2b27fb666641de4154649ed47732556d17862304ee9d27a74453d703097506d73c70d7dd8a',
     keyId: 'did:kilt:light:004rVETkZQcK9aBr6SHZXaHQSDyqFFMW2rN5HtEooWgdB92JMg#authentication',
-    challenge: undefined
   }
 }
 ```
