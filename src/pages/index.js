@@ -2,7 +2,6 @@ import React from 'react'
 import clsx from 'clsx'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
-import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import styles from './styles.module.css'
@@ -10,28 +9,38 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Become a Collator',
-      imageUrl: 'img/community_light.svg',
-      imageUrlDark: 'img/community_dark.svg',
-      link: 'docs/chain/collator',
-      description: <>Become a collator and help decentralizing the KILT Blockchain.</>,
-    },
-    {
-      title: 'Workshop',
+      title: 'What is KILT?',
       imageUrl: 'img/expert_light.svg',
       imageUrlDark: 'img/expert_dark.svg',
-      link: 'docs/sdk/workshop/welcome',
-      description: <>Claim, attest and verify in our SDK workshop.</>,
-    },
-    {
-      title: 'Whitepaper 2020',
-      imageUrl: 'img/whitepaper_light.svg',
-      imageUrlDark: 'img/whitepaper_dark.svg',
-      link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
+      link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Read the original whitepaper. KILT evolved since then, but the ideas and values are still part of our identity
-          even though the technical details are outdated.
+          Learn about Decentralized Identifiers and why they matter. Get to know
+          attestations and what they provide.
+        </>
+      ),
+    },
+    {
+      title: 'Quickstart',
+      imageUrl: 'img/tools.svg',
+      imageUrlDark: 'img/tools.svg',
+      link: 'docs/develop/sdk/quickstart',
+      description: (
+        <>
+          Start building with the KILT Protocol. Issue and verify your first credential
+          or setup an app.
+        </>
+      ),
+    },
+    {
+      title: 'KILT in Action',
+      imageUrl: 'img/apps-light.svg',
+      imageUrlDark: 'img/apps-dark.svg',
+      link: 'docs/develop/showcase',
+      description: (
+        <>
+          Explore the KILT ecosystem. Sign documents with DIDsign or receive
+          attestations with SocialKYC.
         </>
       ),
     },
@@ -67,7 +76,10 @@ export default function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
   return (
-    <Layout title={siteConfig.title} description="Description will go into a meta tag in <head />">
+    <Layout
+      title={siteConfig.title}
+      description="Description will go into a meta tag in <head />"
+    >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
