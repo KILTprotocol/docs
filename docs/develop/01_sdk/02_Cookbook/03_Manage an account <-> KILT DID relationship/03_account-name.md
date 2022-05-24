@@ -4,7 +4,7 @@ title: Query the Web3 name of a blockchain account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import QueryWithoutSDK from '!!raw-loader!@site/code-examples/core_features/linking/6_account_linking_no_sdk.ts';
+import QueryWithoutSDK from '!!raw-loader!@site/code-examples/core_features/linking/7_account_linking_no_sdk.ts';
 import QueryWithSDK from '!!raw-loader!@site/code-examples/core_features/linking/3_account_linking.ts';
 
 For accounts that have been linked to DIDs that have claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard][kilt-stakeboard].
