@@ -1,6 +1,6 @@
 ---
-id: collator-join
-title: Join the collator candidates pool
+id: join
+title: Join collator candidate pool
 ---
 
 After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
@@ -9,14 +9,18 @@ Below, we explain how to do it for the former case.
 However, the latter option is explained in detail in the [BOTLabs Trusted Entity support hub](https://support.kilt.io/support/solutions/80000442174).
 
 :::warning
-These steps should be followed only once a collator node has successfully linked a session key to its address and has synced the parachain and relaychain states by following the steps above.
+These steps should be followed only once a collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./05_sync_blockchain.md) by following the previous steps.
 :::
+
+### Requirements
 
 The maximum number of **active** collators is currently (2022-05-05) 16 on Peregrine and 30 on Spiritnet.
 
 In order to become a collator, you must stake
 - at least 10,000 KILT tokens and
 - at most 200,000 KILT tokens.
+
+### How to send the transaction
 
 The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` with the desired stake to join the candidate pool:
 
@@ -49,37 +53,3 @@ Otherwise, the last address in the list will be the least staked candidate.
 A time period of two sessions must pass before the collator will be authoring blocks, e.g.,  after the remainder of the current session and the entire next one.
 
 ![](/img/chain/session-validators.png)
-
-### Change a Collator's Stake
-
-A collator can increase or decrease their stake, always within the limits of the minimum and maximum allowed stake amounts.
-The corresponding extrinsics for these operations are `parachainStaking -> candidateStakeMore(more)` and `parachainStaking -> candidateStakeLess(less)`.
-
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Extrinsics -> Submission`.
-
-<Tabs
-  groupId="collator-adjust-stake"
-  defaultValue="Stake more"
->
-<TabItem value="Stake more" label="Stake more">
-
-![](/img/chain/parachainStaking-candidateStakeMore.png)
-
-1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Select the extrinsic: `parachainStaking -> collatorStakeMore`
-3. Choose the desired stake amount which you want to add or remove from your current stake.
-You can add up to the minimum of 200,000 KILT and your maximum available balance.
-
-</TabItem>
-<TabItem value="Stake less" label="Stake less">
-
-![](/img/chain/parachainStaking-candidateStakeLess.png)
-
-1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
-2. Select the extrinsic: `parachainStaking -> collatorStakeLess`
-3. Choose the desired stake amount which you want to remove from your current stake.
-You can reduce down to minimum collator amount (10,000 KILT), e.g., any value up to the difference of your current stake and the minimum will be accepted.
-4. Sign and submit the extrinsic
-
-</TabItem>
-</Tabs>

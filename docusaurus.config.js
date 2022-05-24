@@ -61,7 +61,7 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/Staking/Collator/collator',
+              docId: 'participate/Staking/Become a Collator/overview',
               label: 'Staking',
             },
             {

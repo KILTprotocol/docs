@@ -1,5 +1,5 @@
 ---
-id: collator-monitoring
+id: monitoring
 title: Monitoring
 ---
 
@@ -13,7 +13,7 @@ The monitoring infrastructure can either be run as a local grafana cluster or as
 For cloud-based solutions, the prometheus process must be publicly accessible, e.g., via a reverse proxy.
 :::
 
-### What will be installed
+## What will be installed
 
 The docker compose setup creates and deploys up to four containers, all of which are optional:
 
@@ -22,7 +22,7 @@ The docker compose setup creates and deploys up to four containers, all of which
 - **Grafana**: shows the collected metrics in a customisable dashboard and can be configured to send alerts when certain conditions are met
 - **Collator**: the collator node itself which runs one of the available KILT runtimes
 
-### Installation
+## Installation
 Install the latest version of docker-compose from the [official docker-compose installation guide](https://docs.docker.com/compose/install/), then:
 
 1. Clone the [entire KILT chain repo](https://github.com/KILTprotocol/docs) or download only the [monitoring template](https://github.com/KILTprotocol/docs/tree/master/collator).
@@ -46,10 +46,10 @@ Install the latest version of docker-compose from the [official docker-compose i
     ```
     6. Enable basic authentication by replacing the default password in `prometheus.yml` using  ``` htpasswd -nBC 10 "" | tr -d ':\n' ```
 
-### Testing the Configuration
+## Testing the Configuration
 The configuration can be checked by visiting `https://localhost:3000` and authenticating with the username and password set in `.env` at step 3.
 
-### Configuring Alert Notification Channel
+## Configuring Alert Notification Channel
 Choose any of the supported notification channels and follow the [grafana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) to receive alerts and notifications.
 
 Overall, for monitoring we recommend the following stack:

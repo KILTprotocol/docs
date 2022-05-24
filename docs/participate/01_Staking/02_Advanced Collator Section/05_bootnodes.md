@@ -1,5 +1,5 @@
 ---
-id: collator-bootnodes
+id: bootnodes
 title: Bootnodes
 ---
 

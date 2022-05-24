@@ -1,5 +1,5 @@
 ---
-id: collator-session-keys
+id: session-keys
 title: Session keys
 ---
 
@@ -10,7 +10,7 @@ Before a collator can author blocks, the node needs to fully sync up with both t
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
 More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
-## Session Keys
+# Session Keys
 
 Once the chain has fully synced, the collator needs to set sessions keys to begin collating on the network.
 To check whether the account has already set some session keys, the RPC `hasKey(publicKey, keyType)` and `hasSessionKeys(sessionKeys)` in the `author` can be called.
@@ -23,7 +23,7 @@ They are hot keys that must be kept online.
 It is recommended to change them throughout sessions.
 :::
 
-### Generate New Session Keys {#generating-session-keys}
+## Generate New Session Keys {#generating-session-keys}
 
 :::warning
 
@@ -49,7 +49,7 @@ Nevertheless, the session keys can also be rotated using the PolkadotJS Apps int
   ]}>
 <TabItem value="curl">
 
-#### Curl command
+### Curl command
 
 A collator can use the following command to rotate the session key.
 
@@ -129,5 +129,5 @@ Once the extrinsic is executed, the collator has linked the new session key to i
 However, the new session key does not become effective immediately but with the start of the next session.
 
 :::info
-A session takes 600 blocks or around 120~ minutes
+A session takes 600 blocks or around ~120 minutes
 :::

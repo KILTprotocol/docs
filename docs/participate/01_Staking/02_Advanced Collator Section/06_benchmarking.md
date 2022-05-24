@@ -1,17 +1,17 @@
 ---
-id: collator-benchmarking
+id: benchmarking
 title: Benchmarking
 ---
 
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
-:::caution
-Don't use this binary for running the collator!
-:::
 
+
+:::caution Don't use this binary for running the collator!
 ```bash=
 cargo build --release -p kilt-parachain --features=runtime-benchmarks
 ```
+:::
 
 The benchmarks can be run to compare the server's hardware capabilities against the referenced hardware.
 At the moment, we have benchmarked the Spiritnet and Peregrine runtimes on an AMD Ryzen 7 1700X with 64GB RAM and an NVMe SSD.
