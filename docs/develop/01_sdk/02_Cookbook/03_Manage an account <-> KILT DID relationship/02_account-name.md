@@ -1,6 +1,6 @@
 ---
 id: account-name
-title: Query the Web3 name of a blockchain account
+title: Query the Web3 name of an account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
