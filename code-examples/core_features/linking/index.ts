@@ -18,7 +18,7 @@ import { main as main2 } from './2_account_linking'
 import { main as main3 } from './3_account_linking'
 import { main as main4 } from './4_account_linking'
 import { main as main5 } from './5_account_linking'
-import { main as main6 } from './6_account_linking_no_sdk'
+import { main as main7 } from './7_account_linking_no_sdk'
 
 const SEED_ENV = 'FAUCET_SEED'
 
@@ -79,9 +79,9 @@ export async function runAll(
   console.log('main 3 - retrieving the account Web3 name')
   await main3(newAccount.address)
 
-  console.log('main6 - retrieve the account Web3 name with no SDK')
+  console.log('main7 - retrieve the account Web3 name with no SDK')
   const { api } = await BlockchainApiConnection.getConnectionOrConnect()
-  await main6(api, faucetAccount.address)
+  await main7(api, faucetAccount.address)
 
   console.log('main4 - remove account link by DID')
   await main4(keystore, did, faucetAccount, newAccount.address, resolveOn)
