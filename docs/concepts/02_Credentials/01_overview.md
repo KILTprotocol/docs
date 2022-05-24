@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Credentials - Overview
+title: Overview
 ---
 
 **Credentials** are attested claims which are owned by a **Claimer**, attested by an **Attester** and can be verified by a **Verifier**.
