@@ -79,6 +79,10 @@ export async function runAll(
   console.log('main 3 - retrieving the account Web3 name')
   await main3(newAccount.address)
 
+  console.log('main6 - retrieve the account Web3 name with no SDK')
+  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
+  await main6(api, faucetAccount.address)
+
   console.log('main4 - remove account link by DID')
   await main4(keystore, did, faucetAccount, newAccount.address, resolveOn)
 
@@ -91,8 +95,4 @@ export async function runAll(
   )
   await BlockchainUtils.signAndSubmitTx(signedTx, faucetAccount, { resolveOn })
   console.log('Web3 name released.')
-
-  console.log('main6 - retrieve Web3 name for faucet account')
-  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
-  await main6(api, faucetAccount.address)
 }
