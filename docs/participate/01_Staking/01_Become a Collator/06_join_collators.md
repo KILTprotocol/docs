@@ -4,9 +4,9 @@ title: Join collator candidate pool
 ---
 
 After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
-You can either do this in Polkadot JS Apps or the KILT Stakeboard, which serves as an in-house developed Frontend for all KILT staking activity.
+You can either do this in Polkadot JS Apps or the [KILT Stakeboard](../../../develop/05_showcase.md#Apps), which serves as an in-house developed Frontend for all KILT staking activity.
 Below, we explain how to do it for the former case.
-However, the latter option is explained in detail in the [BOTLabs Trusted Entity support hub](https://support.kilt.io/support/solutions/80000442174).
+However, the latter option is described in detail in the [BOTLabs Trusted Entity support hub](https://support.kilt.io/support/solutions/80000442174).
 
 :::warning
 These steps should be followed only once a collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./05_sync_blockchain.md) by following the previous steps.

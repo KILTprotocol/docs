@@ -20,6 +20,8 @@ A leaving candidate cannot be selected as an active collator for the sessions he
 Moreover, you cannot receive new Delegations and existing Delegations cannot be adjusted.
 However, Delegations can still be revoked.
 
+<!-- TODO: Add picture and extrinsic description -->
+
 ## Step 2: Execute
 
 Second, after waiting until the `leaveRound`-th session, you can call `executeLeaveCandidate` to remove all of your `Candidate` associated storage.
@@ -29,6 +31,8 @@ If you wish to become a Candidate at a later stage, you have to apply again and 
 However, you can still cancel your exit request by calling `cancelLeaveCandidates` if you have not exited yet and the CandidatePool is not full already.
 Upon cancelling your exit intent, your state switches back to `Active` and you still have all Delegations which were not revoked in the meantime.
 Moreover, if you are you are one of the top staked candidates, you will automatically become a Collator in two rounds (~4 hours).
+
+<!-- TODO: Add picture and extrinsic description -->
 
 ## Step 3: Unlock your stake
 
