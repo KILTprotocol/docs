@@ -1,6 +1,11 @@
-import { randomAsHex, encodeAddress } from '@polkadot/util-crypto'
+import { encodeAddress, randomAsHex } from '@polkadot/util-crypto'
 
-import { DemoKeystore, FullDidDetails, LightDidDetails, SigningAlgorithms } from '@kiltprotocol/did'
+import {
+  DemoKeystore,
+  FullDidDetails,
+  LightDidDetails,
+  SigningAlgorithms
+} from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/types'
@@ -74,8 +79,12 @@ export async function runAll(
   await main7(faucetAccount, did3.identifier, resolveOn)
 
   console.log('main8 - upgrade light DID')
-  const randomKeypair = await keystore.generateKeypair({ alg: SigningAlgorithms.Sr25519 })
-  const randomLightDid = LightDidDetails.fromIdentifier(encodeAddress(randomKeypair.publicKey, 38))
+  const randomKeypair = await keystore.generateKeypair({
+    alg: SigningAlgorithms.Sr25519
+  })
+  const randomLightDid = LightDidDetails.fromIdentifier(
+    encodeAddress(randomKeypair.publicKey, 38)
+  )
   const did8 = await main8(keystore, faucetAccount, randomLightDid)
 
   console.log('main7 - again, delete DID from main8')

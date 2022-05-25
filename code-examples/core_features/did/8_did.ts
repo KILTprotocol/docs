@@ -3,7 +3,7 @@ import { KeyringPair } from '@polkadot/keyring/types'
 import {
   DemoKeystore,
   FullDidDetails,
-  LightDidDetails,
+  LightDidDetails
 } from '@kiltprotocol/did'
 import {
   disconnect as kiltDisconnect,

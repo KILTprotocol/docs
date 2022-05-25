@@ -12,7 +12,7 @@ import {
 import {
   DemoKeystore,
   DidBatchBuilder,
-  FullDidDetails,
+  FullDidDetails
 } from '@kiltprotocol/did'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 import { UUID } from '@kiltprotocol/utils'
