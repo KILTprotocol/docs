@@ -24,7 +24,7 @@ export async function main(
     accountDidIdentifier
   )
   if (maybeDidName.isNone) {
-    throw `No DID for the KILT account "${linkedAccount}".`
+    throw `No Web3 name for the KILT account "${linkedAccount}".`
   }
   const web3Name = maybeDidName.unwrap()?.toHuman()
   console.log(
