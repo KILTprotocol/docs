@@ -59,6 +59,7 @@ export async function main(
     })
     .consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
       await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
+        reSign: true,
         resolveOn
       })
     })
