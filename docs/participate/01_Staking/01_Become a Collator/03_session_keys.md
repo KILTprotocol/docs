@@ -10,8 +10,6 @@ Before a collator can author blocks, the node needs to fully sync up with both t
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
 More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
-# Session Keys
-
 Once the chain has fully synced, the collator needs to set sessions keys to begin collating on the network.
 To check whether the account has already set some session keys, the RPC `hasKey(publicKey, keyType)` and `hasSessionKeys(sessionKeys)` in the `author` can be called.
 

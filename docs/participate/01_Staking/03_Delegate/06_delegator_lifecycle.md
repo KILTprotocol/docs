@@ -1,6 +1,6 @@
 ---
 id: lifecycle
-title: Lifecycle of Delegator
+title: Lifecycle of a delegator
 ---
 
 The following diagram depicts the full lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.

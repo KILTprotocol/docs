@@ -55,7 +55,7 @@ Connecting from a remote host to either the collator RPC endpoint or WS endpoint
 
 Be aware that it is highly discouraged to publicly expose an RPC endpoint, especially if it allows the execution of unsafe RPC calls!
 You should be the only one able to call the RPC endpoint.
-For a secure setup, follow the instructions in the section about [generating the session keys](#generating-session-keys).
+For a secure setup, follow the instructions in the previous section about [generating the session keys](./03_session_keys.md).
 :::
 
 ### WASM runtime execution

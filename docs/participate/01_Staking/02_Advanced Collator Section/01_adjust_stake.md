@@ -22,7 +22,7 @@ The corresponding extrinsics for these operations are `parachainStaking -> candi
 
 1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the extrinsic: `parachainStaking -> collatorStakeMore`
-3. Choose the desired stake amount which you want to add or remove from your current stake (the *less* field).
+3. Choose the desired stake amount which you want to add or remove from your current stake (the *more* field).
 You can add up to the minimum of 200,000 KILT and your maximum available balance.
 4. Sign and submit the extrinsic (the *Submit Transaction* button)
 
@@ -33,7 +33,7 @@ You can add up to the minimum of 200,000 KILT and your maximum available balance
 
 1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the extrinsic: `parachainStaking -> collatorStakeLess`
-3. Choose the desired stake amount which you want to remove from your current stake (the *more* field).
+3. Choose the desired stake amount which you want to remove from your current stake (the *less* field).
 You can reduce down to minimum collator amount (10,000 KILT), e.g., any value up to the difference of your current stake and the minimum will be accepted.
 4. Sign and submit the extrinsic (the *Submit Transaction* button)
 

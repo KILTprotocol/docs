@@ -11,7 +11,7 @@ After you have finished with the setup, you can finally tell the chain that you 
 These steps should be followed only once a collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./05_sync_blockchain.md) by following the previous steps.
 :::
 
-### Requirements
+## Economical Requirements
 
 The maximum number of **active** collators is currently (2022-05-05) 16 on Peregrine and 30 on Spiritnet.
 
@@ -19,7 +19,7 @@ In order to become a collator, you must stake
 - at least 10,000 KILT tokens and
 - at most 200,000 KILT tokens.
 
-### How to send the transaction
+## How to send the transaction
 
 The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` with the desired stake to join the candidate pool.
 
@@ -38,10 +38,9 @@ In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 
 So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
 :::
 
-### How to check your position
+## How to check your position
 
 A collator candidate can check the current top candidates to see their position and required staked amount to become an active collator, i.e., to start authoring new blocks.
-You can do this either directly using the Polkadot Js Apps or the [B.T.E KILT Stakeboard](../../develop/05_showcase.md#Apps).
 
 ![](/img/chain/parachainStaking-topCandidates1.png)
 
