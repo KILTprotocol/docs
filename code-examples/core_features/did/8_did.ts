@@ -4,36 +4,21 @@ import {
   DemoKeystore,
   FullDidDetails,
   LightDidDetails,
-  SigningAlgorithms
 } from '@kiltprotocol/did'
-import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 import {
   disconnect as kiltDisconnect,
   init as kiltInit
 } from '@kiltprotocol/core'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import { SubscriptionPromise } from '@kiltprotocol/types'
 
 export async function main(
   keystore: DemoKeystore,
   kiltAccount: KeyringPair,
-  authenticationSeed: string,
+  lightDidDetails: LightDidDetails,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<FullDidDetails> {
   await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-
-  // Ask the keystore to generate a new keypair to use for authentication.
-  const authenticationKeyPublicDetails = await keystore.generateKeypair({
-    seed: authenticationSeed,
-    alg: SigningAlgorithms.Ed25519
-  })
-
-  // create a light DID
-  const lightDidDetails = LightDidDetails.fromDetails({
-    authenticationKey: {
-      publicKey: authenticationKeyPublicDetails.publicKey,
-      type: VerificationKeyType.Ed25519
-    }
-  })
 
   // Generate the DID migration extrinsic.
   const migratedFullDid = await lightDidDetails.migrate(
