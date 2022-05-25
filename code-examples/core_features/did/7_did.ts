@@ -15,7 +15,9 @@ export async function main(
 ) {
   await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
 
-  // Generate the submittable extrinsic to claim the deposit back, by including the DID identifier for which the deposit needs to be returned and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
+  // Generate the submittable extrinsic to claim the deposit back.
+  // It includes the DID identifier for which the deposit needs to be returned
+  // and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
   const endpointsCountForDid = await DidChain.queryEndpointsCounts(
     didIdentifier
   )

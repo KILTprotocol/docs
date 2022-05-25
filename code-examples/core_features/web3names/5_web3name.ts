@@ -63,7 +63,8 @@ export async function main(web3Name: Web3Names.Web3Name) {
     )
   }
 
-  // Retrieve the credentials pointed at by the endpoint. Being an IPFS endpoint, the fetching can take an arbitrarily long time or even fail if the timeout is reached.
+  // Retrieve the credentials pointed at by the endpoint.
+  // Being an IPFS endpoint, the fetching can take an arbitrarily long time or even fail if the timeout is reached.
   // The case where the result is not a JSON should be properly handled in production settings.
   const credentialCollection: IRequestForAttestation[] = await fetch(
     firstCredentialCollectionEndpointUrl
