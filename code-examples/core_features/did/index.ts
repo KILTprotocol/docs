@@ -79,8 +79,11 @@ export async function runAll(
   console.log('main7 - again, delete DID from main8')
   await main7(faucetAccount, did8.identifier, resolveOn)
 
+  // FIXME: Find a better way to create all these DIDs
   console.log('main9 - batching extrinsics')
-  const returnDid = await main9(keystore, faucetAccount, resolveOn)
+  const randomMini9 = randomAsHex(32)
+  const did9 = await main3(keystore, faucetAccount, randomMini9, resolveOn)
+  await main9(keystore, faucetAccount, did9, resolveOn)
 
-  return returnDid
+  return did9
 }

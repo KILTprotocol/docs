@@ -1,5 +1,5 @@
 ---
-id: light-did
+id: light-did-creation
 title: Create a light DID
 ---
 
@@ -34,5 +34,5 @@ In KILT, light DIDs are meant to be used in one of two cases:
 As such, they do not support updates of some sort, but they are the same until either they are not unused anymore or they are upgraded to full DIDs.
 They are not supposed to be used in complex and/or high-security use cases.
 For those, a full DID should be used.
-You can visit the [next section](./02_full_did.md) to see how to create and manage full DIDs.
+You can visit the [next section](./02_full_did_creation.md) to see how to create and manage full DIDs.
 :::
