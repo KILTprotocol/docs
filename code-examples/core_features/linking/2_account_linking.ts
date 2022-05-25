@@ -16,7 +16,6 @@ export async function main(
   )
 
   await BlockchainUtils.signAndSubmitTx(accountLinkingTx, submitterAccount, {
-    reSign: true,
     resolveOn
   })
 }

@@ -6,6 +6,8 @@ import { SubscriptionPromise } from '@kiltprotocol/types'
 import { main as main1 } from './1_web3name'
 import { main as main2 } from './2_web3name'
 import { main as main3 } from './3_web3name'
+import { main as main4 } from './4_web3name'
+import { main as main5 } from './5_web3name'
 
 const SEED_ENV = 'FAUCET_SEED'
 
@@ -44,6 +46,14 @@ export async function runAll(
   console.log('main1 - again, claim the Web3 name again')
   await main1(keystore, did, faucetAccount, web3Name, resolveOn)
 
+  console.log('main4 - fetch Web3 name from DID and viceversa')
+  await main4(web3Name, did.did)
+
   console.log('main3 - reclaim the Web3 name by the deposit payer')
   await main3(faucetAccount, web3Name, resolveOn)
+
+  console.log(
+    'main5 - fetch the credentials for the well-known "john_doe" Web3 name'
+  )
+  await main5('john_doe')
 }

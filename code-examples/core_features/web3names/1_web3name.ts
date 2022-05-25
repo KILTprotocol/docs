@@ -15,7 +15,6 @@ export async function main(
     didOwner.authorizeExtrinsic(tx, keystore, kiltAccount.address)
   )
   await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, kiltAccount, {
-    reSign: true,
     resolveOn
   })
 }

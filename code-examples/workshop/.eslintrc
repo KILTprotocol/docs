@@ -6,6 +6,10 @@
   ],
   "rules": {
     "eol-last": "error",
+    "max-len": [
+      "error",
+      140
+    ],
     "sort-imports": [
       "error",
       {
