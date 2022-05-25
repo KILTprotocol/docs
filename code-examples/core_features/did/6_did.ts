@@ -40,7 +40,6 @@ export async function main(
     didSignedDeletionExtrinsic,
     kiltAccount,
     {
-      reSign: true,
       resolveOn
     }
   )

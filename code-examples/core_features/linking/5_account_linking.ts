@@ -11,7 +11,6 @@ export async function main(
   const accountUnlinkTx = await AccountLinks.getLinkRemovalByAccountTx()
 
   await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, kiltAccount, {
-    reSign: true,
     resolveOn
   })
 }

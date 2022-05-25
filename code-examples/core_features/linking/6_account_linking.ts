@@ -12,7 +12,6 @@ export async function main(
   const accountUnlinkTx = await AccountLinks.getReclaimDepositTx(linkedAccount)
 
   await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, kiltAccount, {
-    reSign: true,
     resolveOn
   })
 }

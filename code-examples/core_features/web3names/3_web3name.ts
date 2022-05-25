@@ -11,7 +11,6 @@ export async function main(
   // Release the Web3 name by the deposit payer.
   const web3NameReleaseTx = await Web3Names.getReclaimDepositTx(web3Name)
   await BlockchainUtils.signAndSubmitTx(web3NameReleaseTx, kiltAccount, {
-    reSign: true,
     resolveOn
   })
 }

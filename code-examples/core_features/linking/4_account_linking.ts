@@ -16,7 +16,6 @@ export async function main(
   ).then((tx) => did.authorizeExtrinsic(tx, keystore, submitterAccount.address))
 
   await BlockchainUtils.signAndSubmitTx(accountUnlinkTx, submitterAccount, {
-    reSign: true,
     resolveOn
   })
 }
