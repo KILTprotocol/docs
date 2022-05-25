@@ -22,7 +22,7 @@ Similarly to how a new account <-> DID link is created, removing a link can happ
   {Example5}
 </CodeBlock>
 
-3. The deposit payer submits a transaction indicating that they want to reclaim their deposit back, which in turn removes the existing link between the specified account and DID:
+3. The deposit payer submits a transaction indicating that they want to reclaim their deposit, which in turn removes the existing link between the specified account and DID:
 
 <CodeBlock className="language-js">
   {Example6}
