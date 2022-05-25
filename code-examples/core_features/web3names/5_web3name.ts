@@ -84,7 +84,7 @@ export async function main(web3Name: Web3Names.Web3Name) {
 
       // Verify that the credential refers to the intended subject
       if (!DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)) {
-        throw 'One of the credentials refer to a different subject than expected.'
+        throw 'One of the credentials refers to a different subject than expected.'
       }
     })
   )
