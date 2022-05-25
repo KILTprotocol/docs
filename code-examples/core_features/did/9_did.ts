@@ -12,10 +12,63 @@ import {
 import {
   DemoKeystore,
   DidBatchBuilder,
-  FullDidDetails
+  FullDidCreationBuilder,
+  FullDidDetails,
+  SigningAlgorithms
 } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import { SubscriptionPromise, VerificationKeyType } from '@kiltprotocol/types'
 import { UUID } from '@kiltprotocol/utils'
+
+export async function main(
+  keystore: DemoKeystore,
+  kiltAccount: KeyringPair,
+  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+): Promise<FullDidDetails> {
+  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
+
+  // Ask the keystore to generate a new keypair to use for authentication.
+  const authenticationKeyPublicDetails = await keystore.generateKeypair({
+    alg: SigningAlgorithms.EcdsaSecp256k1
+  })
+
+  const fullDid = await new FullDidCreationBuilder(api, {
+    publicKey: authenticationKeyPublicDetails.publicKey,
+    type: VerificationKeyType.Ecdsa
+  })
+    .setAttestationKey({
+      publicKey: authenticationKeyPublicDetails.publicKey,
+      type: VerificationKeyType.Ecdsa
+    })
+    .consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
+      await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
+        resolveOn
+      })
+    })
+
+  // Create two random demo CTypes
+  const ctype1 = getRandomCType()
+  const ctype1CreationTx = await ctype1.getStoreTx()
+  const ctype2 = getRandomCType()
+  const ctype2CreationTx = await ctype2.getStoreTx()
+
+  // Create the DID-signed batch
+  const batch = await new DidBatchBuilder(api, fullDid)
+    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
+    .consume(keystore, kiltAccount.address)
+
+  // The authorized user submits the batch to the chain
+  await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
+    resolveOn
+  })
+
+  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
+    throw 'One of the two CTypes has not been properly stored.'
+  }
+
+  await kiltDisconnect()
+  return fullDid
+}
 
 function getRandomCType(): CType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
@@ -33,36 +86,4 @@ function getRandomCType(): CType {
     },
     type: 'object'
   })
-}
-
-export async function main(
-  keystore: DemoKeystore,
-  kiltAccount: KeyringPair,
-  fullDidDetails: FullDidDetails,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-) {
-  await kiltInit({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
-  const { api } = await BlockchainApiConnection.getConnectionOrConnect()
-
-  // Create two random demo CTypes
-  const ctype1 = getRandomCType()
-  const ctype1CreationTx = await ctype1.getStoreTx()
-  const ctype2 = getRandomCType()
-  const ctype2CreationTx = await ctype2.getStoreTx()
-
-  // Create the DID-signed batch
-  const batch = await new DidBatchBuilder(api, fullDidDetails)
-    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .consume(keystore, kiltAccount.address)
-
-  // The authorized user submits the batch to the chain
-  await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
-    resolveOn
-  })
-
-  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
-    throw 'One of the two CTypes has not been properly stored.'
-  }
-
-  await kiltDisconnect()
 }
