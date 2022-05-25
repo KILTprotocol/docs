@@ -28,7 +28,7 @@ However, if you decreased your delegation amount, the reverse applies and you re
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount which you want to add to your current stake.
 You can add up to your maximum available balance.
-6. Sign and submit the extrinsic
+6. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 </TabItem>
 <TabItem value="Stake less" label="Stake less">
@@ -41,7 +41,7 @@ You can add up to your maximum available balance.
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount which you want to remove from your current stake.
 You can reduce down to the minimum delegation amount (20 KILT), e.g., any value up to the difference of your current stake and the minimum will be accepted.
-6. Sign and submit the extrinsic
+6. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 </TabItem>
 </Tabs>

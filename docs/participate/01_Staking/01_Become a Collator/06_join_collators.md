@@ -30,7 +30,7 @@ The collator must call an extrinsic `parachainStaking -> joinCandidates(stake)` 
 1. Select the collator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the following extrinsic: `parachainStaking -> joinCandidates(stake)`
 3. Insert the staked KILT amount for the collator (any value between `10000000000000000000` and `200000000000000000000`)
-4. Sign and submit the extrinsic
+4. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 :::info
 A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.

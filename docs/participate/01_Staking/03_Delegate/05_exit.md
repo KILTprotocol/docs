@@ -16,7 +16,7 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 
 1. Select the delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> leaveDelegators`.
-3. Sign and submit the extrinsic
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 :::info
 Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [**revoking a single delegation**](./03_revoke.md).

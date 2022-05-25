@@ -119,7 +119,7 @@ For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org
 2. Set up the following extrinsic: `session -> setKeys(keys, proof)`
     - `keys` -> the public session key (`0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010` in the example above)
     - `proof` -> the proof of ownership. It can be set to `0x00`
-3. Sign and submit the extrinsic
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 ![](/img/chain/session-setKeys.png)
 
