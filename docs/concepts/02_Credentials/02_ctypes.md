@@ -33,7 +33,7 @@ When making a new CType schema, the following properties are required:
   title: 'CtypeModel 2',
   properties: {
     name: { type: 'string' },
-    age: { $ref: `kilt:ctype:0x1`, },
+    age: { $ref: `kilt:ctype:0x01`, },
     },
   type: 'object',
 }
@@ -43,7 +43,7 @@ The CType schema is afterwards wrapped into the full CType object:
 
 ```js title="CType example"
 {
-  schema:  {...} // as defined in the example above>,
+  schema:  {...} // as defined in the example above,
   owner: null, // DID of the owner, or null
   hash: '0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010' // For looking up on-chain
 }
