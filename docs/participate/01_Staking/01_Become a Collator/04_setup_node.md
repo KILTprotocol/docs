@@ -13,13 +13,13 @@ We show both how to use a Docker image and how to compile the source code direct
 
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT collator can be part of:
 
-- `peregrine`: the public test network whose runtime is as close to the official chain as possible. It can be used to try stuff out before executing them on the live chain, which involves spending tokens that have real monetary value.
-- `spiritnet`: the official public network, which contains only stable features.
+- **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features.
+- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to try stuff out before executing them on the production Spiritnet chain, which involves spending tokens that have real monetary value.
 
 Each runtime has its own benchmark measurements.
 
 :::info
-The remainder of this guide explain how to set up and run a collator for the official **Spiritnet** parachain.
+The remainder of this guide explaining how to set up and run a collator is mainly for the official **Spiritnet** parachain.
 Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
 Hence, at each step where it is applicable, we indicate what differs between the Peregrine and Spiritnet configuration for the collator node to join either network.
 :::
@@ -72,7 +72,8 @@ This parameter must be specified for both the parachain and the relaychain, sinc
 The KILT parachain accepts an additional parameter to select the environment to use for the WASM runtime execution.
 This can either be `peregrine` or `spiritnet`.
 
-Hence, to start a collator for the Spiritnet network, the parameter would be `--chain=spiritnet`, while for Peregrine would be `--chain=peregrine`.
+Hence, to start a collator for the Spiritnet network, the parameter would be `--chain=spiritnet`.
+Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
 
 ### Where are all the files stored?
 
@@ -112,7 +113,7 @@ git clone git@github.com:KILTprotocol/kilt-node.git
 git checkout master
 # Set up the build environment by installing the Rust compiler.
 ./scripts/init.sh
-# Build the executable from source enabling all the optimisations with --release.
+# Build the executable from source enabling all the optimizations with --release.
 cargo build --release -p kilt-parachain
 ```
 
