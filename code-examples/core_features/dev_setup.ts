@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main() {
+export async function runAll() {
   // connect to the blockchain
   await Kilt.init({
     address: 'wss://peregrine.kilt.io/parachain-public-ws'
@@ -31,5 +31,3 @@ export async function main() {
     )
   })
 }
-
-main().finally(() => process.exit())

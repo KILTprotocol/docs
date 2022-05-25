@@ -41,7 +41,6 @@ export async function main(
     type: VerificationKeyType.Ed25519
   }).consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
     await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
-      reSign: true,
       resolveOn
     })
   })
