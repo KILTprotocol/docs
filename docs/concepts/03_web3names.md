@@ -8,7 +8,7 @@ They serve the same purpose that domain names do for IP addresses: who knows the
 There is a one-to-one relationship between DIDs and Web3 names.
 This means that a KILT DID can be linked to at most one Web3 name, and a Web3 name can be claimed only by one DID.
 
-Each Web3 name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the chances of "two Web3 names looking the same, despite being different".
+Each Web3 name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the chances of *two Web3 names looking the same, despite being different*.
 The character set include only:
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
