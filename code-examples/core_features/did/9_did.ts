@@ -42,7 +42,6 @@ export async function main(
     })
     .consumeWithHandler(keystore, kiltAccount.address, async (creationTx) => {
       await BlockchainUtils.signAndSubmitTx(creationTx, kiltAccount, {
-        reSign: true,
         resolveOn
       })
     })
@@ -60,7 +59,6 @@ export async function main(
 
   // The authorized user submits the batch to the chain
   await BlockchainUtils.signAndSubmitTx(batch, kiltAccount, {
-    reSign: true,
     resolveOn
   })
 

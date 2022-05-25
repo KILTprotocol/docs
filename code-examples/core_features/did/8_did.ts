@@ -42,7 +42,6 @@ export async function main(
     async (migrationTx) => {
       // The extrinsic can then be submitted by the authorized account as usual.
       await BlockchainUtils.signAndSubmitTx(migrationTx, kiltAccount, {
-        reSign: true,
         resolveOn
       })
     }

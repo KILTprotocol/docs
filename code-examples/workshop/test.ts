@@ -48,9 +48,7 @@ async function testWorkshop() {
 
   await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
     .then((tx) =>
-      Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
-        reSign: true,
-      })
+      Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount)
     )
     .then(() => console.log('Successfully transferred tokens'))
 

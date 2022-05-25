@@ -25,7 +25,6 @@ export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
     .setDelegationKey(keys.capabilityDelegation)
     .consumeWithHandler(keystore, account.address, async (creationTx) => {
       await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
-        reSign: true,
         resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
       })
     })
