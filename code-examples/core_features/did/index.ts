@@ -1,6 +1,6 @@
-import { randomAsHex, randomAsU8a } from '@polkadot/util-crypto'
+import { randomAsHex, encodeAddress } from '@polkadot/util-crypto'
 
-import { DemoKeystore, FullDidDetails, LightDidDetails } from '@kiltprotocol/did'
+import { DemoKeystore, FullDidDetails, LightDidDetails, SigningAlgorithms } from '@kiltprotocol/did'
 import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
 import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/types'
@@ -69,18 +69,18 @@ export async function runAll(
   console.log('main6 - delete DID')
   await main6(keystore, faucetAccount, did5, resolveOn)
 
+  // FIXME: Find a better way to create all these DIDs
   console.log('main7 - claim DID deposit')
   await main7(faucetAccount, did3.identifier, resolveOn)
 
   console.log('main8 - upgrade light DID')
-  const randomMini8 = randomAsU8a(32)
-  const randomKeypair = keyring.addFromSeed(randomMini8)
-  const rangomLightDid = LightDidDetails.fromIdentifier(randomKeypair.address)
-  const did8 = await main8(keystore, faucetAccount, rangomLightDid)
+  const randomKeypair = await keystore.generateKeypair({ alg: SigningAlgorithms.Sr25519 })
+  const randomLightDid = LightDidDetails.fromIdentifier(encodeAddress(randomKeypair.publicKey, 38))
+  const did8 = await main8(keystore, faucetAccount, randomLightDid)
+
   console.log('main7 - again, delete DID from main8')
   await main7(faucetAccount, did8.identifier, resolveOn)
 
-  // FIXME: Find a better way to create all these DIDs
   console.log('main9 - batching extrinsics')
   const randomMini9 = randomAsHex(32)
   const did9 = await main3(keystore, faucetAccount, randomMini9, resolveOn)
