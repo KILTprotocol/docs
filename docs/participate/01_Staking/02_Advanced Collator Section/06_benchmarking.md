@@ -30,11 +30,11 @@ Below is an example of benchmarking for the the `balances` pallet.
   --wasm-execution=Compiled \
   --heap-pages=4096 \
   --extrinsic=* \
-  --pallet=parachain_staking \
+  --pallet=pallet-balances \
   --steps=50 \
   --repeat=20 \
   --output \
-  ./runtimes/spiritnet/src/weights/parachain_staking.rs \
+  ./runtimes/spiritnet/src/weights/pallet_balances.rs \
   --template \
   ./.maintain/weight-template.hbs
 ```

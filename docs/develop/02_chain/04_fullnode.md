@@ -80,13 +80,13 @@ cargo build --release -p kilt-parachain
 ```
 
 :::info
-We discourage to use the default `develop` branch to build the executable.
-Instead, the latest commit from `master` should be used.
+You must not use the default `develop` branch to build the executable.
+Instead, the [latest release](https://github.com/KILTprotocol/kilt-node/releases) from `master` should be used.
 :::
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully.
 
-### Running an archive node
+### Running an Archive node
 
 To run an Archive full node, add the option `--pruning archive` to the command.
 
@@ -141,7 +141,7 @@ values={[
 </TabItem>
 <TabItem value="Docker">
 
-### An archive node from Docker
+### An Archive node from Docker
 
 The full node can also be started inside a container.
 To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.

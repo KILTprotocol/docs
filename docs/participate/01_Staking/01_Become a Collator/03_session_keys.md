@@ -1,6 +1,6 @@
 ---
 id: session-keys
-title: Session keys
+title: Set and rotate session
 ---
 
 import Tabs from '@theme/Tabs';
@@ -125,7 +125,3 @@ For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org
 
 Once the extrinsic is executed, the collator has linked the new session key to its account and can start receiving rewards for producing new blocks.
 However, the new session key does not become effective immediately but with the start of the next session.
-
-:::info
-A session takes 600 blocks or around ~120 minutes
-:::

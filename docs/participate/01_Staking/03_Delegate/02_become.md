@@ -24,7 +24,7 @@ Anyone can delegate to a collator candidate by staking at least 20 KILT and call
 :::info
 A recent change in the blockchain metadata resulted in a change in the UI regarding how balances are shown.
 In the current version of PolkadotJS Apps, specifying 1 KILT requires adding 15 trailing `0`s.
-So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10000000000000000000`.
+So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000 KILT would be written as `10,000,000,000,000,000,000`.
 :::
 
 

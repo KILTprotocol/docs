@@ -9,9 +9,10 @@ Collators are the most important members of the network as they do not only main
 Generally speaking, the latter finalize the proposed block if it is valid.
 It is important to note that elusive collators can never get invalid blocks finalized thanks to the design security umbrella provided by the relay chain.
 Thus, the most harm dishonest collators can do, is to slow down or halt the network.
-As long as there exists at least one honest collator, the parachain is secured and fully operative. 
+As long as there exists at least one honest collator, the parachain is secured and fully operative.
+However, the block time would be slower than with a full set of honest and functioning collator nodes.
 
-Whoever wants to join the KILT network as a collator, has to run a full node of the blockchain and set up their keys.
+If you want to join the KILT network as a collator, you have to run a full node of the blockchain and set up your session keys.
 You are also required to hold a minimum amount of tokens self-staked to qualify for a collator seat.
 Once you have finished the mandatory steps described throughout the following sections, you are added to the candidate pool.
 The candidate pool is sorted by the total staking amount (including delegations) with the ultimate decision criteria being whoever joined earlier.
@@ -40,6 +41,6 @@ We recommend to join the [KILT Community Discord server](https://discord.gg/wBrX
 There, you will receive announcements about future updates and potential mandatory client upgrades.
 Moreover, they serve as a discussion hub for collators and delegators.
 
-After having joined the Discord, feel free to send a DM to `Dudley | KILT protocol#6222` or `William | KILT Protocol#4433` to introduce yourself.
+After having joined the Discord, feel free to send a DM to [`Dudley | KILT protocol#6222`](https://discordapp.com/users/687952993156726784) or [`William | KILT Protocol#4433`](https://discordapp.com/users/w3n;williamfreude#4433) to introduce yourself.
 Of course, you can also directly announce yourself in one of the two channels mentioned above.
 This way, the community knows who to contact in case there are any issues with your node.
