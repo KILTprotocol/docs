@@ -31,7 +31,7 @@ In KILT, light DIDs are meant to be used in one of two cases:
 1. As *ephemeral, one-time identifiers* when establishing new communication channels with untrusted parties.
 2. As an *entrypoint into the KILT ecosystem*, i.e., to obtain the first credentials and getting acquainted with KILT.
 
-As such, they do not support updates of some sort, but they are the same until either they are not unused anymore or they are upgraded to full DIDs.
+As such, light DIDs do not support updates of any sort, but they retain the same identifier until they are upgraded to full DIDs.
 They are not supposed to be used in complex and/or high-security use cases.
 For those, a full DID should be used.
 You can visit the [next section](./02_full_did_creation.md) to see how to create and manage full DIDs.
