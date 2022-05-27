@@ -7,7 +7,8 @@ import CodeBlock from '@theme/CodeBlock';
 import Example1 from '!!raw-loader!@site/code-examples/core_features/did/1_did.ts';
 import Example2 from '!!raw-loader!@site/code-examples/core_features/did/2_did.ts';
 
-The creation of a light DID require a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts). For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
+The creation of a light DID require a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts).
+For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
 
 :::warning
 Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.

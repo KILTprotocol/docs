@@ -25,7 +25,8 @@ If additional keys or service endpoints are to be specified, then they can be ba
 Another way to obtain a full DID is by upgrading a previously-created light DID.
 KILT supports this operation in a way that does not invalidate any credentials that have been issued to the light DID before being upgraded.
 
-The following code shows how to migrate a light DID to a full DID. Credentials, presentations, and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
+The following code shows how to migrate a light DID to a full DID.
+Credentials, presentations, and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 
 <CodeBlock className="language-js">
   {Example8}

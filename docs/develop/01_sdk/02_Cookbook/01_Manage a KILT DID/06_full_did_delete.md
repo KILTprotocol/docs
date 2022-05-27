@@ -7,7 +7,8 @@ import CodeBlock from '@theme/CodeBlock';
 import Example6 from '!!raw-loader!@site/code-examples/core_features/did/6_did.ts';
 import Example7 from '!!raw-loader!@site/code-examples/core_features/did/7_did.ts';
 
-Once not needed anymore, it is recommended to remove the DID details from the KILT blockchain. The following snippet shows how to do it:
+Once not needed anymore, it is recommended to remove the DID details from the KILT blockchain.
+The following snippet shows how to do it:
 
 <CodeBlock className="language-js">
   {Example6}
