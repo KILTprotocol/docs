@@ -9,7 +9,7 @@ When you intent to stop collating or just being a collator candidate, you have t
 
 :::info
 Unfortunately, exiting is not a simple process for security reasons.
-Since a picture says more than a thousand words, you can find a visualization of this process in the following [**lifecycle section**](./03_collator_lifecycle.md)
+Since a picture says more than a thousand words, you can find a visualization of this process in the following [**lifecycle section**](./03_collator_lifecycle.md).
 :::
 
 ## Initiate exit request

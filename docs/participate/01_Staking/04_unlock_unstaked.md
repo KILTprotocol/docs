@@ -1,6 +1,6 @@
 ---
 id: unlock-unstaked
-title: How to unlock unstaked
+title: Unlock unstaked tokens
 ---
 
 import Tabs from '@theme/Tabs';

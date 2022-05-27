@@ -1,6 +1,6 @@
 ---
 id: exit
-title: How to exit
+title: Leave the set of delegators
 ---
 
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';

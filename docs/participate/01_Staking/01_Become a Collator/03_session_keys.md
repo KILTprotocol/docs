@@ -6,12 +6,12 @@ title: Session keys
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Before a collator can author blocks, the node needs to fully sync up with both the parachain and the relaychain.
+Before a collator can author blocks, the node needs to fully sync up with both the KILT parachain and the Kusama relaychain.
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
 More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
-Once the chain has fully synced, the collator needs to set sessions keys to begin collating on the network.
-To check whether the account has already set some session keys, the RPC `hasKey(publicKey, keyType)` and `hasSessionKeys(sessionKeys)` in the `author` can be called.
+Once the chains has fully synced, the collator needs to set sessions keys to begin collating on the network.
+To check whether the account has already set some session keys, the RPC functions `author > hasKey(publicKey, keyType)` and `author > hasSessionKeys(sessionKeys)` can be called.
 
 ![](/img/chain/author-hasKey.png)
 
@@ -25,7 +25,7 @@ It is recommended to change them throughout sessions.
 
 :::warning
 
-Make sure that no unauthorised party is able to access the RPC endpoint of the collator.
+Make sure that no unauthorized party is able to access the RPC endpoint of the collator.
 Use SSH forwarding for the RPC port when needing to perform some RPC operations on the node with
 ```
 ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>

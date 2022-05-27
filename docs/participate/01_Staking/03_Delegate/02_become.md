@@ -29,7 +29,7 @@ So, for instance, 1 KILT needs to be written as `1000000000000000`, while 10,000
 
 
 ## Happy path
-If your chosen collator candidate has at least one empty slot in their delegation pool (35 at the time of writing), your delegation is successful and you immediately receive rewards for each authored block of your collator.
+If your chosen collator candidate has at least one empty slot in their delegation pool (out of 35 maximum slots at the time of writing), your delegation is successful and you immediately start receiving rewards each time the collator you delegated will produce a block.
 
 <div className="kilt-mermaid">
 

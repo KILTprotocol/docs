@@ -12,7 +12,7 @@ Thus, the most harm dishonest collators can do, is to slow down or halt the netw
 As long as there exists at least one honest collator, the parachain is secured and fully operative. 
 
 Whoever wants to join the KILT network as a collator, has to run a full node of the blockchain and set up their keys.
-You also require a minimum amount of tokens self-staked to qualify for a collator seat.
+You are also required to hold a minimum amount of tokens self-staked to qualify for a collator seat.
 Once you have finished the mandatory steps described throughout the following sections, you are added to the candidate pool.
 The candidate pool is sorted by the total staking amount (including delegations) with the ultimate decision criteria being whoever joined earlier.
 Thus, only the collators with the highest total stake periodically selected to be eligible block authors.
@@ -34,7 +34,7 @@ There you will learn how to [**monitor**](../02_Advanced%20Collator%20Section/04
 
 ## Join the Community
 
-As a collator you are obliged to keep track of updates and changes to configuration.
+As a collator you are required to keep track of updates and changes to configuration.
 You should also be accessible in case there is any issue with your node as this does not only affect your and your delegator's rewards but also the entire network negatively.
 We recommend to join the [KILT Community Discord server](https://discord.gg/wBrXsB5G) and follow (at least) the **collators** and **staking** channels.
 There, you will receive announcements about future updates and potential mandatory client upgrades.
