@@ -70,7 +70,7 @@ After cloning the repository, you can build the executable by running the `build
 
 ```bash
 # Clone the repository
-git clone git@github.com:KILTprotocol/kilt-node.git
+git clone https://github.com/KILTprotocol/kilt-node.git
 # Check out master branch
 git checkout master
 # Set up the build environment by installing the Rust compiler.
