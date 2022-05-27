@@ -38,7 +38,6 @@ Thus, it is recommended to rather open multiple subsequent milestone-based propo
 
 In addition you should:
 
-
 - Explain any deliverables that have already been achieved
 - Outline what needs to be done for the proposal to be completed
 
@@ -47,6 +46,29 @@ If the community is not in agreement with the proposal, it is unlikely that it w
 See the [guide to creating a proposal](https://www.kilt.io/treasury/create-a-proposal/).
 
 Governance approval for a Treasury spend will also  includes list of the deliverables as outlined in the proposal.
+
+## Tips
+
+A more agile and lightweight process to receive rewards for contributing to the KILT Protocol are tips.
+Even though the funds also come from the Treasury, the procedure is more hands-down.
+The major difference compared to Treasury proposals is that for Tips, determining the bounty amount is part of the course of tipping, e.g, the group of pre-determined stakeholders (council) comes to consensus on how much should be paid.
+Eventually, the median of proposed tips will be awarded from the Treasury.
+
+Both operations are similar in the sense that there must be someone (called _Finder_) to open the tipping process by providing a reason in form of a URL or an explanation on [Polkassembly](https://kilt.polkassembly.network/).
+Albeit, tips do not require an extensive document for that, e.g., a URL to the pull request or the blog post suffices.
+In case the Finder is part of the group which decides about the bounty award, no deposit needs to be made.
+Moreover, the beneficiary will receive the entire tip without any reductions.
+Otherwise, a small deposit, which is dependant on the length of the provided reason, is required to be reserved.
+It will be made available after the tipping process has finished.
+Additionally, the Finder also receives a minor Finder's fee which is subtracted from the final tip amount.
+
+Therefore, even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward.
+Of course, you can also suggest contributions to the council which would then tip if it is deemed worthy.
+
+:::info
+The tips pallet is currently not part of the Spiritnet, yet.
+We have already added it to the codebase and are targeting an on-chain Spiritnet runtime upgrade, which would also add the tips functionality, for mid of June 2022.
+:::
 
 ## Bug Reports
 
