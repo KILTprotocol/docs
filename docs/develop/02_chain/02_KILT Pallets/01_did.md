@@ -49,7 +49,8 @@ Once the DID is successfully registered on chain, it can be used to perform cert
 This includes handling of attestations and ctypes, setting up trust hierarchies through delegations, managing web3 names and much more.
 
 Those actions need to be signed by the DID before they can be submitted to chain by any account that the DID owner specifies when signing.
-We are naming those actions "DID-Calls". To submit those there is a special extrinsic called `submit_did_call`. 
+We are naming those actions "DID-Calls".
+To submit those there is a special extrinsic called `submit_did_call`. 
 
 The process of doing any DID-Call is always the same:
 
