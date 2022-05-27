@@ -1,5 +1,4 @@
 import { DemoKeystore, DidDetails, DidUtils } from '@kiltprotocol/did'
-
 import { KeyRelationship } from '@kiltprotocol/types'
 
 export async function main(
