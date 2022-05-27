@@ -7,7 +7,7 @@ The KILT blockchain extrinsic weights were calculated using the following hardwa
 
 - **OS** - Ubuntu 20.04.2
 - **CPU** - AMD Ryzen 7 1700X
-- **Storage** - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 80GB - 160GB will be okay for the first six months of KILT parachain and Kusama relaychain but it will mostly likely grow after that and will have to be re-evaluated on a regular basis.
+- **Storage** - A NVMe solid-state drive. Should be reasonably sized to deal with blockchain growth. Starting around 250GB will be okay for the first year of the KILT parachain and Kusama relaychain but it will mostly likely grow after that and will have to be re-evaluated on a regular basis.
 - **Memory** - 16GB
 
 Although the aforementioned hardware is by no means the minimum spec required, the new node *should* be at least as capable as that in all the categories.
