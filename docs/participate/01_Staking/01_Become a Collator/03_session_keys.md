@@ -1,6 +1,6 @@
 ---
 id: session-keys
-title: Set and rotate session
+title: Set and rotate session keys
 ---
 
 import Tabs from '@theme/Tabs';
@@ -10,7 +10,7 @@ Before a collator can author blocks, the node needs to fully sync up with both t
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
 More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
-Once the chains has fully synced, the collator needs to set sessions keys to begin collating on the network.
+Once the chains have fully synced, the collator needs to set sessions keys to begin collating on the network.
 To check whether the account has already set some session keys, the RPC functions `author > hasKey(publicKey, keyType)` and `author > hasSessionKeys(sessionKeys)` can be called.
 
 ![](/img/chain/author-hasKey.png)
