@@ -6,6 +6,7 @@ import { Keyring } from '@kiltprotocol/utils'
 import { SubscriptionPromise } from '@kiltprotocol/types'
 
 import { main as main1 } from './1_did'
+import { main as main10 } from './10_did'
 import { main as main2 } from './2_did'
 import { main as main3 } from './3_did'
 import { main as main4 } from './4_did'
@@ -79,6 +80,13 @@ export async function runAll(
 
   console.log('main9 - batching extrinsics')
   const returnDid = await main9(keystore, faucetAccount, resolveOn)
+
+  console.log(`main10 - verify a DID signature`)
+  const payloadToSign = 'random-payload'
+  const isSignatureVerified = await main10(keystore, returnDid, payloadToSign)
+  if (!isSignatureVerified) {
+    throw 'Signature verification should not fail. Something is wrong.'
+  }
 
   return returnDid
 }
