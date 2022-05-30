@@ -56,6 +56,9 @@ async function main(): Promise<void> {
   } catch(e) {
     console.warn('Getting started flow has failed with the following error:')
     console.warn(e)
+  } finally {
+    // Needed in case the getting started flow does not reach the end.
+    await Kilt.disconnect()
   }
 
   await Kilt.init({ address: nodeAddress })
