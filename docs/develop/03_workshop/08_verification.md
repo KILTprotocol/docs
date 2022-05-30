@@ -4,8 +4,8 @@ title: 🤝 Verification
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Verify from '!!raw-loader!@site/code-examples/workshop/verify.ts';
-import CreatePresentation from '!!raw-loader!@site/code-examples/workshop/claimer/createPresentation.ts';
+import Verify from '!!raw-loader!@site/code_examples/workshop/verify.ts';
+import CreatePresentation from '!!raw-loader!@site/code_examples/workshop/claimer/createPresentation.ts';
 
 In this section, you'll play the role of a <span className="label-role verifier">Verifier</span>:
 

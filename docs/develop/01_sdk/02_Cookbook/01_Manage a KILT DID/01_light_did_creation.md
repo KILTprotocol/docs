@@ -4,8 +4,8 @@ title: Create a light DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!@site/code-examples/core_features/did/1_did.ts';
-import Example2 from '!!raw-loader!@site/code-examples/core_features/did/2_did.ts';
+import LightDidSimple from '!!raw-loader!@site/code_examples/core_features/did/01_light_did_simple.ts';
+import LightDidComplete from '!!raw-loader!@site/code_examples/core_features/did/02_light_did_complete.ts';
 
 The creation of a light DID require a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/types/src/Keystore.ts).
 For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
@@ -17,13 +17,13 @@ Using the demo keystore in production is highly discouraged as all the keys are 
 The following is an example of how to create a light DID after creating an instance of the demo keystore.
 
 <CodeBlock className="language-js">
-  {Example1}
+  {LightDidSimple}
 </CodeBlock>
 
 For cases in which also an encryption key and some service endpoints need to be added to a light DID:
 
 <CodeBlock className="language-js">
-  {Example2}
+  {LightDidComplete}
 </CodeBlock>
 
 :::info

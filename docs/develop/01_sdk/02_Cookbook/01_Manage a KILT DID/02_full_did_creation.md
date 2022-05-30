@@ -4,20 +4,20 @@ title: Create a full DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example3 from '!!raw-loader!@site/code-examples/core_features/did/3_did.ts';
-import Example4 from '!!raw-loader!@site/code-examples/core_features/did/4_did.ts';
-import Example8 from '!!raw-loader!@site/code-examples/core_features/did/8_did.ts';
+import FullDidSimple from '!!raw-loader!@site/code_examples/core_features/did/04_full_did_simple.ts';
+import FullDidComplete from '!!raw-loader!@site/code_examples/core_features/did/05_full_did_complete.ts';
+import LightDidMigrate from '!!raw-loader!@site/code_examples/core_features/did/03_light_did_migrate.ts';
 
 The following is an example of how to create and write on the blockchain a full DID that specifies only an authentication key, by using the FullDidCreationBuilder class.
 
 <CodeBlock className="language-js">
-  {Example3}
+  {FullDidSimple}
 </CodeBlock>
 
 If additional keys or service endpoints are to be specified, then they can be batched into the builder before building the creation transaction.
 
 <CodeBlock className="language-js">
-  {Example4}
+  {FullDidComplete}
 </CodeBlock>
 
 ## Upgrade a light DID to a full DID
@@ -29,5 +29,5 @@ The following code shows how to migrate a light DID to a full DID.
 Credentials, presentations, and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 
 <CodeBlock className="language-js">
-  {Example8}
+  {LightDidMigrate}
 </CodeBlock>

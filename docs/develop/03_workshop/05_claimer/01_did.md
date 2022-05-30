@@ -5,8 +5,8 @@ title: DID
 
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
-import GenerateKeypairs from '!!raw-loader!@site/code-examples/workshop/claimer/generateKeypairs.ts';
-import GenerateLightDid from '!!raw-loader!@site/code-examples/workshop/claimer/generateLightDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/claimer/generateKeypairs.ts';
+import GenerateLightDid from '!!raw-loader!@site/code_examples/workshop/claimer/generateLightDid.ts';
 
 Time to make a light DID using the previously created account for the <span className="label-role claimer">Claimer</span>.
 Since a light DID is not registered on the blockchain, you don't need funds for creating one.

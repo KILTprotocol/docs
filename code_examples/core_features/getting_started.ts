@@ -3,8 +3,6 @@ import axios from 'axios'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main() {
-  console.log('hello world')
-
   await Kilt.init({ address: 'wss://spiritnet.kilt.io/' })
   await Kilt.connect()
 

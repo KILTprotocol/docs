@@ -4,7 +4,7 @@ title: Generate and verify a DID signature
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Example10 from '!!raw-loader!@site/code-examples/core_features/did/10_did.ts';
+import DidSignature from '!!raw-loader!@site/code_examples/core_features/did/08_did_signature.ts';
 
 Beyond being used to authorize chain operations, both light and full DIDs have off-chain applications.
 
@@ -14,7 +14,7 @@ As a DID can have multiple keys, in addition to the signature data itself, a DID
 The snippet below shows how to generate and verify a DID signature using the KILT SDK.
 
 <CodeBlock className="language-js">
-  {Example10}
+  {DidSignature}
 </CodeBlock>
 
 :::note
