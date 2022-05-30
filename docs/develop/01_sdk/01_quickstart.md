@@ -4,17 +4,18 @@ title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
-import Example1 from '!!raw-loader!@site/code-examples/core_features/getting_started/1_getting_started.ts';
-import Example2 from '!!raw-loader!@site/code-examples/core_features/getting_started/2_getting_started.ts';
-import Example3 from '!!raw-loader!@site/code-examples/core_features/getting_started/3_getting_started.ts';
-import Example4 from '!!raw-loader!@site/code-examples/core_features/getting_started/4_getting_started.ts';
-import Example5 from '!!raw-loader!@site/code-examples/core_features/getting_started/5_getting_started.ts';
-import Example6 from '!!raw-loader!@site/code-examples/core_features/getting_started/6_getting_started.ts';
-import Example7 from '!!raw-loader!@site/code-examples/core_features/getting_started/7_getting_started.ts';
-import Example8 from '!!raw-loader!@site/code-examples/core_features/getting_started/8_getting_started.ts';
-import Example9 from '!!raw-loader!@site/code-examples/core_features/getting_started/9_getting_started.ts';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
+import InitSDK from '!!raw-loader!@site/code_examples/core_features/getting_started/02_init_sdk.ts';
+import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/03_connect.ts';
+import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
+import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
+import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
+import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_credential.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 What will you be able to do after this guide:
@@ -47,7 +48,7 @@ Lets first create an asynchronous function called `main` in order to excute the 
 Underneath the first line add the following:
 
 <CodeBlock className="language-js">
-  {Example1}
+  {PrintHelloWorld}
 </CodeBlock>
 
 If the setup is correct you can excute the script by calling the name of the file using node.
@@ -74,7 +75,7 @@ It will refer to this command when requested to excute.
 
 Lets begin by importing the **SDK** and **axios** into the `quickstart.js`.
 
-``` js
+```js
 import * as Kilt from '@kiltprotocol/sdk-js'
 import axios from 'axios'
 ```
@@ -96,19 +97,17 @@ We will initalise the **KILT blockchain** named the **Spiritnet**.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,4]]'
 >
-  {Example2}
+  {InitSDK}
 </SnippetBlock>
 
-Now you have initalised the connection, lets connect to the chain.
-Inside the `main` function, lets get the conncetion using an asynchronous call that creates a connection, or checks if an existing connection is available and connects directly.
+Now you have initialised the connection, lets connect to the chain.
+Inside the `main` function, lets get the connection using an asynchronous call that creates a connection, or checks if an existing connection is available and connects directly.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,4]]'
 >
-  {Example3}
+  {Connect}
 </SnippetBlock>
 
 Now you have connected you have access to the chain, but lets not forget to **close** any connections.
@@ -116,12 +115,11 @@ Its best practice not to leave an connections open, add `Kilt.disconnect()` at t
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,4]]'
 >
-  {Example9}
+  {Disconnect}
 </SnippetBlock>
 
-The `Kilt.disconncet()` will close any established connections.
+The `Kilt.disconnect()` will close any established connections.
 
 **Congratulations!
 You have done connected, lets start querying and fetching data from the chain!**
@@ -134,12 +132,12 @@ Underneath the blockchain connection, add the following lines.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,8]]'
+  funcEnd="return"
 >
-  {Example4}
+  {FetchDid}
 </SnippetBlock>
 
-Try excuting it and see what comes out.
+Try executing it and see what comes out.
 
 Did you get the DID? Nice work! You have `john_doe`'s DID.
 Now let's see if they have any credentials availale to verify!
@@ -156,50 +154,49 @@ We will add a new line under the `console.log` let's resolve and see the DID wit
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,12]]'
+  funcEnd="return"
 >
-  {Example5}
+  {FetchEndpoints}
 </SnippetBlock>
 
-Try excuting it and see what comes out.
+Try executing it and see what comes out.
 
 Now we have the **endpoints**! Lets see if we can find a credential among them.
 We can select one of the endpoints and query the url to see if it returns a credential!
 
-A new line after `endPoints` add the following:
+A new line after `endpoints` add the following:
 
 <SnippetBlock
   className="language-js"
-  snippets='[[4,6]]'
+  funcEnd="return"
 >
-  {Example6}
+  {FetchEndpointData}
 </SnippetBlock>
 
-Try excuting it and see what comes out.
+Try executing it and see what comes out.
 Did you get a partial credential object?
 
 We will have to make sure the credential is **valid** and **structured** correctly.
-Lets query with `rootHash` to see if an **attestation** has been writen on-chain.
-The attestation assoicated with the `rootHash` is on-chain.
+Lets query with `rootHash` to see if an **attestation** has been written on-chain.
+The attestation associated with the `rootHash` is on-chain.
 Lets see if we can validate the data to reconstruct the Credential.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,14]]'
+  funcEnd="return"
 >
-  {Example7}
+  {BuildCredential}
 </SnippetBlock>
 
-Excute the script and see if you get John Doe's Credential!
+Execute the script and see if you get John Doe's Credential!
 
 Time to verify the credential and make sure it is valid.
 If the **verification** returns true it is **valid**!
 
 <SnippetBlock
   className="language-js"
-  snippets='[[3,6]]'
 >
-  {Example8}
+  {VerifyCredential}
 </SnippetBlock>
 
 Last step is to excute the code and see what is returned at the end of it!

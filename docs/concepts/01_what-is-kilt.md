@@ -33,7 +33,7 @@ Of course this has major drawbacks:
 When people started to organise themselves in bigger groups, founding villages and cities, those drawbacks were amplified and needed to be addressed.
 Therefore mechanisms were introduced to create trust relationships between groups by giving out some form of attestation so certain properties about an individual could be verified by people who don't know the individual but trust the group that gave out the attestation. 
 Think about a carpenter's guild, a monastry or a scottish clan. 
-When the organisational structures grew further and big bureaucratic nations emerged, also the authorities that are issuing the credendials and the scope of the trust relationships grew.
+When the organisational structures grew further and big bureaucratic nations emerged, also the authorities that are issuing the credentials and the scope of the trust relationships grew.
 Though we can now see a more and more centralised way of organising trust, the actual information that make up an identity are still handed out directly to the individual and the individual is still responsible for their own data. 
 Take official personal documents like passports as an example. 
 They were issued by trusted entities and handed out to the holders. 

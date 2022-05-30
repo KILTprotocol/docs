@@ -3,7 +3,7 @@ id: dev-setup
 title: Chain setup for development
 ---
 import CodeBlock from '@theme/CodeBlock';
-import Example1 from '!!raw-loader!@site/code-examples/core_features/dev_setup.ts';
+import DevSetupFlow from '!!raw-loader!@site/code_examples/core_features/dev_setup.ts';
 
 If you want to develop a DApp, Wallet, web3 login or similar, you will need a running blockchain that doesn't require you to buy KILT just to develop and test the next big thing.
 For that you can use the Peregrine network.
@@ -42,7 +42,7 @@ yarn add -D ts-node \
 After all these dependencies are added, we will add a simple script that prints the balance of a couple of well known development accounts.
 
 <CodeBlock className="language-js">
-  {Example1}
+  {DevSetupFlow}
 </CodeBlock>
 
 Copy the above code into index.ts.
