@@ -4,7 +4,6 @@ title: Request an Attestation
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
 import CreateClaim from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
 import GenerateRequest from '!!raw-loader!@site/code_examples/workshop/claimer/generateRequest.ts';
 

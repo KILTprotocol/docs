@@ -4,7 +4,6 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
 import CtypeSchema from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
 import GenerateCtype from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
 

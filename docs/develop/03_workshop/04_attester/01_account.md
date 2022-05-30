@@ -4,7 +4,6 @@ title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
 import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.

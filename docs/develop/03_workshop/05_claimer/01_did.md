@@ -4,7 +4,6 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/claimer/generateKeypairs.ts';
 import GenerateLightDid from '!!raw-loader!@site/code_examples/workshop/claimer/generateLightDid.ts';
 
