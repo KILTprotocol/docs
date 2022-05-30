@@ -16,7 +16,8 @@ export async function runAll(): Promise<void> {
   const johnDoeDid = await fetchJohnDoeDid()
   if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
-  if (!endpoints || !endpoints.length) throw `DID doesn't include the service endpoints`
+  if (!endpoints || !endpoints.length)
+    throw `DID doesn't include the service endpoints`
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let request: any
   try {

@@ -7,9 +7,7 @@ export async function main(): Promise<string | null> {
     return null
   }
 
-  console.log(
-    `My name is john_doe and this is my DID: "${johnDoeDid}"`
-  )
-  
+  console.log(`My name is john_doe and this is my DID: "${johnDoeDid}"`)
+
   return johnDoeDid
 }
