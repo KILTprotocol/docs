@@ -44,6 +44,20 @@ async function main(): Promise<void> {
     throw `No faucet seed specified with the "FAUCET_SEED" env variable.`
   }
 
+  // Connects to (and at the end disconnects from) Spiritnet, so it must be called before we connect to Peregrine for the rest of the tests.
+  const gettingStartedFlow = async () => {
+    console.log('Running getting started flow...')
+    await runAllGettingStarted()
+    console.log('Getting started flow completed!')
+  }
+  // FIXME: Fix the timeout error for ipfs.io gateway in the getting started flow.
+  try {
+    await gettingStartedFlow()
+  } catch(e) {
+    console.warn('Getting started flow has failed with the following error:')
+    console.warn(e)
+  }
+
   await Kilt.init({ address: nodeAddress })
   const { api } = await Kilt.connect()
 
@@ -85,12 +99,6 @@ async function main(): Promise<void> {
     await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, resolveOn)
   }
 
-  // const gettingStartedFlow = async () => {
-  //   console.log('Running getting started flow...')
-  //   await runAllGettingStarted()
-  //   console.log('Getting started flow completed!')
-  // }
-
   const devSetupFlow = async () => {
     console.log('Running dev setup flow...')
     await runAllDevSetup(nodeAddress)
@@ -102,7 +110,6 @@ async function main(): Promise<void> {
     didFlow(),
     web3NameFlow(),
     accountLinkingFlow(),
-    // gettingStartedFlow(),
     devSetupFlow()
   ])
 }

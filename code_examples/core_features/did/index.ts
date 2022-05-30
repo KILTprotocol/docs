@@ -57,7 +57,9 @@ export async function runAll(
     createdCompleteFullDid,
     resolveOn
   )
-  console.log('7 did) Use the same full DID created at step 5 to sign the batch')
+  console.log(
+    '7 did) Use the same full DID created at step 5 to sign the batch'
+  )
   await batchCTypeCreationExtrinsics(
     keystore,
     api,

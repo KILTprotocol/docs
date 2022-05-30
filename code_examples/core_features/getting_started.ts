@@ -20,15 +20,15 @@ export async function main() {
   const johnDoeDidDocument = await Kilt.Did.DidResolver.resolveDoc(johnDoeDid)
   console.log('John Doe\'s DID Document:')
   console.log(JSON.stringify(johnDoeDidDocument, undefined, 2))
-  const endPoints = johnDoeDidDocument?.details?.getEndpoints()
-  if (!endPoints) {
+  const endpoints = johnDoeDidDocument?.details?.getEndpoints()
+  if (!endpoints) {
     return console.log('No endpoints for the DID.')
   }
 
   console.log('Endpoints:')
-  console.log(JSON.stringify(endPoints, undefined, 2))
+  console.log(JSON.stringify(endpoints, undefined, 2))
   const endpointRequestData = await axios
-    .get(endPoints[0].urls[0])
+    .get(endpoints[0].urls[0])
     .then((response) => response.data)
   const attestation = await Kilt.Attestation.query(endpointRequestData.rootHash)
   if (!attestation) {
