@@ -19,6 +19,8 @@ import { runAll as runAllDid } from './did'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
+const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_IN_BLOCK
+
 async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
   console.log(`Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(amount, { decimals: 0 })}`)
   await Kilt.Balance.getTransferTx(destinationAccount, Kilt.BalanceUtils.KILT_COIN.mul(amount), 0).
@@ -26,7 +28,7 @@ async function endowAccount(faucetAccount: KeyringPair, destinationAccount: Keyr
       Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(
         tx,
         faucetAccount,
-        { reSign: true, resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK }
+        { reSign: true, resolveOn }
       )
     )
 }
@@ -52,17 +54,17 @@ async function main(): Promise<void> {
   // Run all claiming
   await runAllClaiming(keystore)
   // Run all DID
-  await runAllDid(keystore, api, testAccount, Kilt.BlockchainUtils.IS_IN_BLOCK)
+  await runAllDid(keystore, api, testAccount, resolveOn)
   // Create a new DID to test Web3 names
-  const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, Kilt.BlockchainUtils.IS_IN_BLOCK)
+  const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
   // Run all Web3 name
   const randomWeb3Name = randomUUID().substring(0, 32)
   console.log(randomWeb3Name)
-  await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, Kilt.BlockchainUtils.IS_IN_BLOCK)
+  await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, resolveOn)
   // Re-claim the Web3 name to test account linking
-  await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, Kilt.BlockchainUtils.IS_IN_BLOCK)
+  await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, resolveOn)
   // Run all account linking
-  await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, Kilt.BlockchainUtils.IS_IN_BLOCK)
+  await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, resolveOn)
 }
 
 main()
