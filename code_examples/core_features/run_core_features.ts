@@ -21,7 +21,7 @@ import { main as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
-const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_IN_BLOCK
+const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_FINALIZED
 const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
 async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
