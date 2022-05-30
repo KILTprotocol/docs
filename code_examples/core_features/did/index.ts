@@ -86,5 +86,5 @@ export async function runAll(
     createdCompleteFullDid.identifier,
     resolveOn
   )
-  console.log('Claiming flow completed!')
+  console.log('DID flow completed!')
 }

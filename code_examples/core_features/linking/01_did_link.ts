@@ -15,8 +15,9 @@ export async function linkAccountToDid(
 ): Promise<void> {
   // The account to be linked has to sign a specifically-crafted payload to prove
   // willingness to be linked to the DID.
-  const linkingAccountSignatureGeneration = async (signaturePayload: string | Uint8Array) =>
-    u8aToHex(linkedAccount.sign(signaturePayload))
+  const linkingAccountSignatureGeneration = async (
+    signaturePayload: string | Uint8Array
+  ) => u8aToHex(linkedAccount.sign(signaturePayload))
 
   // Authorizing the extrinsic with the full DID and including a signature of the linked account
   // results in the provided account being linked to the DID authorizing the operation.

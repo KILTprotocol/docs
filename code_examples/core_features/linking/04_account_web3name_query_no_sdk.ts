@@ -2,6 +2,8 @@ import type { Option, Struct } from '@polkadot/types'
 import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
+import { hexToString } from '@polkadot/util'
+
 import { Web3Names } from '@kiltprotocol/did'
 
 export async function queryAccountWeb3Name(
@@ -27,7 +29,7 @@ export async function queryAccountWeb3Name(
   if (maybeDidName.isNone) {
     throw `No Web3 name for the KILT account "${lookupAccountAddress}".`
   }
-  const web3Name = maybeDidName.unwrap()?.toString()
+  const web3Name = hexToString(maybeDidName.unwrap()?.toHex())
   console.log(
     `The provided account is identifiable by the following Web3 name: "w3n:${web3Name}"`
   )

@@ -1,3 +1,6 @@
+import { randomUUID } from 'crypto'
+
+import { BN } from '@polkadot/util'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { Keyring } from '@polkadot/api'
@@ -16,9 +19,16 @@ import { runAll as runAllDid } from './did'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
-async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address']): Promise<void> {
-  await Kilt.Balance.getTransferTx(destinationAccount, Kilt.BalanceUtils.KILT_COIN.muln(10)).
-    then((tx) =>Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, { reSign: true }))
+async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
+  console.log(`Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(amount, { decimals: 0 })}`)
+  await Kilt.Balance.getTransferTx(destinationAccount, Kilt.BalanceUtils.KILT_COIN.mul(amount), 0).
+    then((tx) =>
+      Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(
+        tx,
+        faucetAccount,
+        { reSign: true, resolveOn: Kilt.BlockchainUtils.IS_IN_BLOCK }
+      )
+    )
 }
 
 async function main(): Promise<void> {
@@ -37,7 +47,7 @@ async function main(): Promise<void> {
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
   const testAccount = keyring.addFromSeed(randomAsU8a(32))
 
-  await endowAccount(faucetAccount, testAccount.address)
+  await endowAccount(faucetAccount, testAccount.address, new BN(20))
 
   // Run all claiming
   await runAllClaiming(keystore)
@@ -46,7 +56,8 @@ async function main(): Promise<void> {
   // Create a new DID to test Web3 names
   const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, Kilt.BlockchainUtils.IS_IN_BLOCK)
   // Run all Web3 name
-  const randomWeb3Name = Kilt.Utils.UUID.generate()
+  const randomWeb3Name = randomUUID().substring(0, 32)
+  console.log(randomWeb3Name)
   await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, Kilt.BlockchainUtils.IS_IN_BLOCK)
   // Re-claim the Web3 name to test account linking
   await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, Kilt.BlockchainUtils.IS_IN_BLOCK)
