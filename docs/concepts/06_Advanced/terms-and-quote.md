@@ -31,7 +31,7 @@ When creating a Terms object, at least one of the following must be set: Legitim
   - A breakdown of all the (net and gross) costs, the currency quoted, and any taxes associated with the attestation.
   - A link to the terms and conditions of the attestation.
 
-- **Delegations**: An Attester may include the right to attest to a specific claim from a top-down trust authority e.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester is delegating their attestation rights to another entity, this should be stated clearly at this point. See here for details on how to create a delegation.
+- **Delegations**: An Attester may include the right to attest to a specific claim from a top-down trust authority e.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester is delegating their attestation rights to another entity, this should be stated clearly at this point. See [here](/docs/concepts/distributed_trust) for details on how to create a delegation.
 
 ## How to create a Terms object using the KILT SDK
 

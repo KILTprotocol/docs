@@ -9,7 +9,7 @@ In KILT, claims are based on claim types (CTypes). A claimer can either create a
 ## Create your Claim from a CType
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
-The resulting claim is referencing the ctype by its hash and includes the DID of the owner of the claim.
+The resulting claim is referencing the ctype by its hash and includes the DID of the owner (i.e., the subject) of the claim.
 
 ```js title="Example Claim"
 {
