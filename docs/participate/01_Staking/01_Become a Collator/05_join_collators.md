@@ -8,7 +8,7 @@ import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
 
 :::warning
-These steps should be followed only once a collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./05_sync_blockchain.md) by following the previous steps.
+These steps should be followed only once a collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./04_setup_node.md#sync-the-blockchain-state) by following the previous steps.
 :::
 
 ## Minimum token requirement
