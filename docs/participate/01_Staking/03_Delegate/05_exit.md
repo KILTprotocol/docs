@@ -19,6 +19,6 @@ A delegator can revoke all of their delegations at once by calling `parachainSta
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 :::info
-Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [**revoking a single delegation**](./03_revoke.md).
+Since you can only delegate to a single collator candidate for now, exiting is exactly the same as [**revoking a single delegation**](./04_revoke.md).
 Of course, this will change if the community decides to enable multiple delegations per account.
 :::

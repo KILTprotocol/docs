@@ -22,7 +22,7 @@ As a result, you won't receive any rewards immediately after the transaction is 
 5. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 :::info
-Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [**exiting**](./04_exit.md).
+Since you can only delegate to a single collator candidate for now, revoking a single delegation is exactly the same as [**exiting**](./05_exit.md).
 Of course, this will change if the community decides to enable multiple delegations per account.
 :::
 
