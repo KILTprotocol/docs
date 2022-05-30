@@ -4,7 +4,15 @@ title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
-import GettingStartedFlow from '!!raw-loader!@site/code_examples/core_features/getting_started.ts';
+import Example1 from '!!raw-loader!@site/code_examples/core_features/getting_started/1_getting_started.ts';
+import Example2 from '!!raw-loader!@site/code_examples/core_features/getting_started/2_getting_started.ts';
+import Example3 from '!!raw-loader!@site/code_examples/core_features/getting_started/3_getting_started.ts';
+import Example4 from '!!raw-loader!@site/code_examples/core_features/getting_started/4_getting_started.ts';
+import Example5 from '!!raw-loader!@site/code_examples/core_features/getting_started/5_getting_started.ts';
+import Example6 from '!!raw-loader!@site/code_examples/core_features/getting_started/6_getting_started.ts';
+import Example7 from '!!raw-loader!@site/code_examples/core_features/getting_started/7_getting_started.ts';
+import Example8 from '!!raw-loader!@site/code_examples/core_features/getting_started/8_getting_started.ts';
+import Example9 from '!!raw-loader!@site/code_examples/core_features/getting_started/9_getting_started.ts';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -38,11 +46,9 @@ Inside the `package.json` add in the object `"type": "module"`.
 Lets first create an asynchronous function called `main` in order to excute the script.
 Underneath the first line add the following:
 
-```javascript
-async function main() {
-  console.log('Hello, world!')
-}
-```
+<CodeBlock className="language-js">
+  {Example1}
+</CodeBlock>
 
 If the setup is correct you can excute the script by calling the name of the file using node.
 
@@ -68,12 +74,10 @@ It will refer to this command when requested to excute.
 
 Lets begin by importing the **SDK** and **axios** into the `quickstart.js`.
 
-<SnippetBlock
-  className="language-js"
-  snippets='[[0, 3]]'
->
-  {GettingStartedFlow}
-</SnippetBlock>
+```js
+import * as Kilt from '@kiltprotocol/sdk-js'
+import axios from 'axios'
+```
 
 Now you are able to access the SDK and all its functionality.
 We will move onto connecting to the **KILT blockchain**.
@@ -92,9 +96,8 @@ We will initalise the **KILT blockchain** named the **Spiritnet**.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[5,6]]'
 >
-  {GettingStartedFlow}
+  {Example2}
 </SnippetBlock>
 
 Now you have initialised the connection, lets connect to the chain.
@@ -102,9 +105,8 @@ Inside the `main` function, lets get the connection using an asynchronous call t
 
 <SnippetBlock
   className="language-js"
-  snippets='[[6,7]]'
 >
-  {GettingStartedFlow}
+  {Example3}
 </SnippetBlock>
 
 Now you have connected you have access to the chain, but lets not forget to **close** any connections.
@@ -112,9 +114,8 @@ Its best practice not to leave an connections open, add `Kilt.disconnect()` at t
 
 <SnippetBlock
   className="language-js"
-  snippets='[[44,45]]'
 >
-  {GettingStartedFlow}
+  {Example9}
 </SnippetBlock>
 
 The `Kilt.disconnect()` will close any established connections.
@@ -130,9 +131,9 @@ Underneath the blockchain connection, add the following lines.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[8,17]]'
+  funcEnd="return"
 >
-  {GettingStartedFlow}
+  {Example4}
 </SnippetBlock>
 
 Try executing it and see what comes out.
@@ -152,9 +153,9 @@ We will add a new line under the `console.log` let's resolve and see the DID wit
 
 <SnippetBlock
   className="language-js"
-  snippets='[[17,27]]'
+  funcEnd="return"
 >
-  {GettingStartedFlow}
+  {Example5}
 </SnippetBlock>
 
 Try executing it and see what comes out.
@@ -162,13 +163,13 @@ Try executing it and see what comes out.
 Now we have the **endpoints**! Lets see if we can find a credential among them.
 We can select one of the endpoints and query the url to see if it returns a credential!
 
-A new line after `endPoints` add the following:
+A new line after `endpoints` add the following:
 
 <SnippetBlock
   className="language-js"
-  snippets='[[27,30]]'
+  funcEnd="return"
 >
-  {GettingStartedFlow}
+  {Example6}
 </SnippetBlock>
 
 Try executing it and see what comes out.
@@ -181,32 +182,23 @@ Lets see if we can validate the data to reconstruct the Credential.
 
 <SnippetBlock
   className="language-js"
-  snippets='[[30,41]]'
+  funcEnd="return"
 >
-  {GettingStartedFlow}
+  {Example7}
 </SnippetBlock>
 
-Excute the script and see if you get John Doe's Credential!
+Execute the script and see if you get John Doe's Credential!
 
 Time to verify the credential and make sure it is valid.
 If the **verification** returns true it is **valid**!
 
 <SnippetBlock
   className="language-js"
-  snippets='[[41,43]]'
 >
-  {GettingStartedFlow}
+  {Example8}
 </SnippetBlock>
 
 Last step is to excute the code and see what is returned at the end of it!
 
 Was it successful?
 Nice Job! Want to explore more of KILT's features, check out the DID and Verification guide!
-
-## Complete script
-
-Here's the complete code that you were just able to execute!
-
-<CodeBlock className="language-js">
-  {GettingStartedFlow}
-</CodeBlock>

@@ -17,7 +17,7 @@ import { createSimpleFullDid } from './did/04_full_did_simple'
 import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDevSetup} from './dev_setup'
 import { runAll as runAllDid } from './did'
-import { main as runAllGettingStarted } from './getting_started'
+import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
@@ -51,6 +51,7 @@ async function main(): Promise<void> {
     console.log('Getting started flow completed!')
   }
   // FIXME: Fix the timeout error for ipfs.io gateway in the getting started flow.
+  // After fixing that, the gettingStarted flow should also throw on error.
   try {
     await gettingStartedFlow()
   } catch(e) {
