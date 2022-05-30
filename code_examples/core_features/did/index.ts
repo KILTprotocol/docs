@@ -19,12 +19,13 @@ import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
 import { updateFullDid } from './06_full_did_update'
 
 export async function runAll(
-  keystore: DemoKeystore,
   api: ApiPromise,
   submitterAccount: KeyringPair,
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<void> {
   console.log('Running DID flow...')
+  const keystore = new DemoKeystore()
+
   console.log('1 did) Create simple light DID')
   let randomSeed = randomAsHex(32)
   const simpleLightDid = await createSimpleLightDid(keystore, randomSeed)

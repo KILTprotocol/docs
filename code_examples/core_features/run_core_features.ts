@@ -1,18 +1,13 @@
-import { randomUUID } from 'crypto'
-
-import { BN } from '@polkadot/util'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
+import { config as envConfig } from 'dotenv'
+
+import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
 import { hexToU8a } from '@polkadot/util'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
-import { config as envConfig } from 'dotenv'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
-
-import { claimWeb3Name } from './web3names/01_claim'
-import { createSimpleFullDid } from './did/04_full_did_simple'
 
 import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDevSetup} from './dev_setup'
@@ -55,42 +50,33 @@ async function main(): Promise<void> {
   await Kilt.init({ address: nodeAddress })
   const { api } = await Kilt.connect()
 
-  const keystore = new Kilt.Did.DemoKeystore()
   const keyring = new Keyring({ ss58Format: 38, type: 'sr25519' })
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
 
   const claimingFlow = async () => {
+    const testAccount = keyring.addFromSeed(randomAsU8a(32))
+    await endowAccount(faucetAccount, testAccount.address, new BN(10))
     // Run all claiming
-    await runAllClaiming(keystore)
+    await runAllClaiming(api, testAccount, resolveOn)
   }
 
   const didFlow = async () => {
     const testAccount = keyring.addFromSeed(randomAsU8a(32))
     await endowAccount(faucetAccount, testAccount.address, new BN(10))
     // Run all DID
-    await runAllDid(keystore, api, testAccount, resolveOn)
+    await runAllDid(api, testAccount, resolveOn)
   }
 
   const web3NameFlow = async () => {
     const testAccount = keyring.addFromSeed(randomAsU8a(32))
     await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    // Create a new DID to test Web3 names
-    const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
-    // Run all Web3 name
-    const randomWeb3Name = randomUUID().substring(0, 32)
-    await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, resolveOn)
+    await runAllWeb3(api, testAccount, resolveOn)
   }
 
   const accountLinkingFlow = async () => {
     const testAccount = keyring.addFromSeed(randomAsU8a(32))
     await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    // Create a new DID to test account linking
-    const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
-    // Link new DID to a random Web3 name
-    const randomWeb3Name = randomUUID().substring(0, 32)
-    await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, resolveOn)
-    // Run all account linking
-    await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, resolveOn)
+    await runAllLinking(api, testAccount, faucetAccount, resolveOn)
   }
 
   const devSetupFlow = async () => {
