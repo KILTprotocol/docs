@@ -19,7 +19,7 @@ You would store a public encryption key and a service endpoint on-chain, that ca
 Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
 
 There are light and full DIDs.
-Take a look at our [DID documentation](./../../../develop/01_sdk/02_Cookbook/01_Manage%20a%20KILT%20DID/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](./../../../develop/01_sdk/02_Cookbook/01_KILT%20DIDs/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
 
 :::info KILT DID
 
