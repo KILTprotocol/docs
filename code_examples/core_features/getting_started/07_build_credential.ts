@@ -1,11 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(endpointRequestData: Kilt.IRequestForAttestation) {
+export async function main(endpointRequestData: Kilt.IRequestForAttestation): Promise<Kilt.Credential | null> {
   const attestation = await Kilt.Attestation.query(endpointRequestData.rootHash)
   if (!attestation) {
-    return console.log(`The credential doesn't have an attestation`)
+    console.log(`The credential doesn't have an attestation`)
+    return null
   }
-    
 
   const credential = Kilt.Credential.fromRequestAndAttestation(
     endpointRequestData,

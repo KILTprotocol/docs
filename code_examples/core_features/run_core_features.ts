@@ -21,7 +21,7 @@ import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
-const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_FINALIZED
+const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_IN_BLOCK
 const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
 async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
@@ -50,17 +50,7 @@ async function main(): Promise<void> {
     await runAllGettingStarted()
     console.log('Getting started flow completed!')
   }
-  // FIXME: Fix the timeout error for ipfs.io gateway in the getting started flow.
-  // After fixing that, the gettingStarted flow should also throw on error.
-  try {
-    await gettingStartedFlow()
-  } catch(e) {
-    console.warn('Getting started flow has failed with the following error:')
-    console.warn(e)
-  } finally {
-    // Needed in case the getting started flow does not reach the end.
-    await Kilt.disconnect()
-  }
+  await gettingStartedFlow()
 
   await Kilt.init({ address: nodeAddress })
   const { api } = await Kilt.connect()

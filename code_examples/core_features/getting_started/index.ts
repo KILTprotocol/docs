@@ -1,27 +1,34 @@
-import { main as main1 } from './1_getting_started'
-import { main as main2 } from './2_getting_started'
-import { main as main3 } from './3_getting_started'
-import { main as main4 } from './4_getting_started'
-import { main as main5 } from './5_getting_started'
-import { main as main6 } from './6_getting_started'
-import { main as main7 } from './7_getting_started'
-import { main as main8 } from './8_getting_started'
-import { main as main9 } from './9_getting_started'
+import { main as buildCredential } from './07_build_credential'
+import { main as connect } from './03_connect'
+import { main as disconnect } from './09_disconnect'
+import { main as fetchEndpointData } from './06_fetch_endpoint_data'
+import { main as fetchJohnDoeDid } from './04_fetch_did'
+import { main as fetchJohnDoeEndpoints } from './05_fetch_endpoints'
+import { main as initSDKWithSpiritnet } from './02_init_sdk'
+import { main as printHelloWorld } from './01_print_hello_world'
+import { main as verifyCredential } from './08_verify_credential'
 
-export async function runAll() {
-  main1()
-  await main2()
-  await main3()
-  const johnDoeDidId = await main4()
-  if (!johnDoeDidId)
-    throw new Error(
-      'Web3Name associated to the DID is not on the KILT spiritnet chain'
-    )
-  const endpoints = await main5(johnDoeDidId)
-  if (!endpoints) throw new Error("DID doesn't include the service endpoints")
-  const request = await main6(endpoints)
-  const credential = await main7(request)
-  if (!credential) throw new Error('Credential not created')
-  await main8(credential)
-  await main9()
+export async function runAll(): Promise<void> {
+  printHelloWorld()
+  await initSDKWithSpiritnet()
+  // Connect to Spiritnet
+  await connect()
+  const johnDoeDid = await fetchJohnDoeDid()
+  if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'
+  const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
+  if (!endpoints || !endpoints.length) throw `DID doesn't include the service endpoints`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let request: any
+  try {
+    request = await fetchEndpointData(endpoints)
+  } catch {
+    // Case in which the fetching fails. Simply disconnect and return (i.e., ignore this error).
+    await disconnect()
+    return
+  }
+  const credential = await buildCredential(request)
+  if (!credential) throw 'Credential not created'
+  const credentialValidity = await verifyCredential(credential)
+  if (!credentialValidity) throw 'Credential not valid.'
+  await disconnect()
 }
