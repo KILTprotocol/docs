@@ -131,6 +131,10 @@ li[data-value='magenta'][data-theme='dark'] {
 	color: white !important;
 }
 
+.kilt-mermaid svg {
+	min-width: 100% !important;
+}
+
 #mermaid-svg-0,
 #mermaid-svg-1,
 #mermaid-svg-2,

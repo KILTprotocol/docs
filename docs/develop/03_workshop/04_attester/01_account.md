@@ -4,8 +4,7 @@ title: Account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
-import GenerateAccount from '!!raw-loader!@site/code-examples/workshop/attester/generateAccount.ts';
+import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.

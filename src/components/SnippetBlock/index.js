@@ -1,24 +1,57 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CodeBlock from '@theme/CodeBlock'
 
-const SnippetBlock = ({ children, snippets, ...props }) => {
+const SnippetBlock = ({
+  children,
+  funcName = 'main',
+  funcEnd = '}',
+  snippets,
+  leadingSpaces = 2,
+  ...props
+}) => {
   const raw = children.split(/\r?\n/)
-  const code = 
-    !snippets ? raw.join('\n') :
-    JSON.parse(snippets)
-    .map(snip => {
-      if(Array.isArray(snip)) {
-        return raw.slice(snip[0], snip[1]).join('\n')
-      } else {
-        return snip
+
+  let code = ''
+
+  if (snippets) {
+    code = JSON.parse(snippets)
+      .map((snip) => {
+        if (Array.isArray(snip)) {
+          return raw
+            .slice(snip[0], snip[1])
+            .map((line) => line.slice(leadingSpaces))
+            .join('\n')
+        } else {
+          return snip
+        }
+      })
+      .join('\n')
+  } else if (funcName) {
+    let start, end
+
+    for (let i = 0; i < raw.length; i++) {
+      if (raw[i].includes(funcName)) {
+        start = i
+        break
       }
-    }).join('\n')
-  
-  return (
-    <CodeBlock {...props}>
-      {code}
-    </CodeBlock>
-  )
+    }
+
+    for (let i = raw.length - 1; i > 0; i--) {
+      if (raw[i].includes(funcEnd)) {
+        end = i
+        break
+      }
+    }
+
+    code = raw
+      // Exclude start index. End index is already excluded by `slice`
+      .slice(start + 1, end)
+      // Remove leading spaces
+      .map((line) => line.slice(leadingSpaces))
+      .join('\n')
+  }
+
+  return <CodeBlock {...props}>{code}</CodeBlock>
 }
 
 export default SnippetBlock
