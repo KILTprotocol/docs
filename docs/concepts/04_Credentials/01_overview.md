@@ -2,8 +2,17 @@
 id: overview
 title: Overview
 ---
+import ThemedImage from '@theme/ThemedImage';
 
 **Credentials** are attested claims which are owned by a **Claimer**, attested by an **Attester** and can be verified by a **Verifier**.
+
+<ThemedImage
+  alt="Credential Overview Diagram"
+  sources={{
+    light: '/img/concepts/credentials/overview.png',
+    dark: '/img/concepts/credentials/overview_dark.png'
+  }}
+/>
 
 To get a Credential a Claimer needs to go through following process:
 1. Find a **CType**, a Claim should be based on (Can be advertised by the potential Attester and Verifier)
