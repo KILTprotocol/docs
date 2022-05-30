@@ -24,7 +24,7 @@ export async function runAll(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<void> {
   console.log('Running linking flow...')
-  console.log('1) Link link account to DID')
+  console.log('1 linking) Link link account to DID')
   await linkAccountToDid(
     keystore,
     did,
@@ -32,19 +32,19 @@ export async function runAll(
     linkAccount,
     resolveOn
   )
-  console.log('2) Link DID to submitter account')
+  console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(keystore, did, submitterAccount, resolveOn)
-  console.log('3) Query Web3 name for link account with SDK')
+  console.log('3 linking) Query Web3 name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
   if (!web3Name) {
     throw `The DID "${did.did}" is assumed to have a linked Web3 name, which it does not.`
   }
-  console.log('4) Query Web3 name for submitter account without SDK')
+  console.log('4 linking) Query Web3 name for submitter account without SDK')
   web3Name = await queryAccountWithoutSdk(api, submitterAccount.address)
   if (!web3Name) {
     throw 'The retrieved Web3 name should have been the same as the one of the link account, which is not.'
   }
-  console.log('5) Unlink link account from DID')
+  console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(
     keystore,
     did,
@@ -52,9 +52,9 @@ export async function runAll(
     linkAccount.address,
     resolveOn
   )
-  console.log('6) Unlink submitter account from DID')
+  console.log('6 linking) Unlink submitter account from DID')
   await unlinkDidFromAccount(submitterAccount, resolveOn)
-  console.log('7) Re-add submitter account and claim deposit back')
+  console.log('7 linking) Re-add submitter account and claim deposit back')
   await linkDidToAccount(keystore, did, submitterAccount, resolveOn)
   await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')

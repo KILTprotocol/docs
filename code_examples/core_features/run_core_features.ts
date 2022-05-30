@@ -15,11 +15,14 @@ import { claimWeb3Name } from './web3names/01_claim'
 import { createSimpleFullDid } from './did/04_full_did_simple'
 
 import { runAll as runAllClaiming } from './claiming'
+import { runAll as runAllDevSetup} from './dev_setup'
 import { runAll as runAllDid } from './did'
+import { main as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
 const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_IN_BLOCK
+const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
 async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
   console.log(`Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(amount, { decimals: 0 })}`)
@@ -41,30 +44,67 @@ async function main(): Promise<void> {
     throw `No faucet seed specified with the "FAUCET_SEED" env variable.`
   }
 
-  await Kilt.init({ address: 'wss://peregrine.kilt.io/parachain-public-ws' })
+  await Kilt.init({ address: nodeAddress })
   const { api } = await Kilt.connect()
 
   const keystore = new Kilt.Did.DemoKeystore()
   const keyring = new Keyring({ ss58Format: 38, type: 'sr25519' })
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
-  const testAccount = keyring.addFromSeed(randomAsU8a(32))
 
-  await endowAccount(faucetAccount, testAccount.address, new BN(20))
+  const claimingFlow = async () => {
+    // Run all claiming
+    await runAllClaiming(keystore)
+  }
 
-  // Run all claiming
-  await runAllClaiming(keystore)
-  // Run all DID
-  await runAllDid(keystore, api, testAccount, resolveOn)
-  // Create a new DID to test Web3 names
-  const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
-  // Run all Web3 name
-  const randomWeb3Name = randomUUID().substring(0, 32)
-  console.log(randomWeb3Name)
-  await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, resolveOn)
-  // Re-claim the Web3 name to test account linking
-  await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, resolveOn)
-  // Run all account linking
-  await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, resolveOn)
+  const didFlow = async () => {
+    const testAccount = keyring.addFromSeed(randomAsU8a(32))
+    await endowAccount(faucetAccount, testAccount.address, new BN(10))
+    // Run all DID
+    await runAllDid(keystore, api, testAccount, resolveOn)
+  }
+
+  const web3NameFlow = async () => {
+    const testAccount = keyring.addFromSeed(randomAsU8a(32))
+    await endowAccount(faucetAccount, testAccount.address, new BN(10))
+    // Create a new DID to test Web3 names
+    const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
+    // Run all Web3 name
+    const randomWeb3Name = randomUUID().substring(0, 32)
+    await runAllWeb3(keystore, testAccount, testFullDid, randomWeb3Name, resolveOn)
+  }
+
+  const accountLinkingFlow = async () => {
+    const testAccount = keyring.addFromSeed(randomAsU8a(32))
+    await endowAccount(faucetAccount, testAccount.address, new BN(10))
+    // Create a new DID to test account linking
+    const testFullDid = await createSimpleFullDid(keystore, api, testAccount, undefined, resolveOn)
+    // Link new DID to a random Web3 name
+    const randomWeb3Name = randomUUID().substring(0, 32)
+    await claimWeb3Name(keystore, testFullDid, testAccount, randomWeb3Name, resolveOn)
+    // Run all account linking
+    await runAllLinking(keystore, api, testAccount, testFullDid, faucetAccount, resolveOn)
+  }
+
+  // const gettingStartedFlow = async () => {
+  //   console.log('Running getting started flow...')
+  //   await runAllGettingStarted()
+  //   console.log('Getting started flow completed!')
+  // }
+
+  const devSetupFlow = async () => {
+    console.log('Running dev setup flow...')
+    await runAllDevSetup(nodeAddress)
+    console.log('Dev setup flow completed!')
+  }
+
+  await Promise.all([
+    claimingFlow(),
+    didFlow(),
+    web3NameFlow(),
+    accountLinkingFlow(),
+    // gettingStartedFlow(),
+    devSetupFlow()
+  ])
 }
 
 main()

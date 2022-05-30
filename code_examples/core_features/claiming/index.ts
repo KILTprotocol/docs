@@ -10,11 +10,11 @@ export async function runAll(keystore: DemoKeystore): Promise<void> {
   console.log('Running claiming flow...')
   const claimerLightDid = await createSimpleLightDid(keystore)
 
-  console.log('1) Create CType')
+  console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType()
-  console.log('2) Create claim')
+  console.log('2 claiming) Create claim')
   const claim = await createClaim(ctype, claimerLightDid.did)
-  console.log('3) Create request for attestation')
+  console.log('3 claiming) Create request for attestation')
   await createRequestForAttestation(keystore, claim, claimerLightDid)
   console.log('Claiming flow completed!')
 }

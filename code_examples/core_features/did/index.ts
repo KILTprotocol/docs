@@ -25,15 +25,15 @@ export async function runAll(
   resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
 ): Promise<void> {
   console.log('Running DID flow...')
-  console.log('1) Create simple light DID')
+  console.log('1 did) Create simple light DID')
   let randomSeed = randomAsHex(32)
   const simpleLightDid = await createSimpleLightDid(keystore, randomSeed)
   randomSeed = randomAsHex(32)
-  console.log('2) Create complete light DID')
+  console.log('2 did) Create complete light DID')
   await createCompleteLightDid(keystore, randomSeed)
-  console.log('3) Migrate first light DID to full DID')
+  console.log('3 did) Migrate first light DID to full DID')
   await migrateLightDid(keystore, submitterAccount, simpleLightDid, resolveOn)
-  console.log('4) Create simple full DID')
+  console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
     keystore,
     api,
@@ -41,7 +41,7 @@ export async function runAll(
     undefined,
     resolveOn
   )
-  console.log('5) Create complete full DID')
+  console.log('5 did) Create complete full DID')
   const createdCompleteFullDid = await createCompleteFullDid(
     keystore,
     api,
@@ -49,7 +49,7 @@ export async function runAll(
     undefined,
     resolveOn
   )
-  console.log('6) Update full DID created at step 5')
+  console.log('6 did) Update full DID created at step 5')
   const updatedFullDid = await updateFullDid(
     keystore,
     api,
@@ -57,7 +57,7 @@ export async function runAll(
     createdCompleteFullDid,
     resolveOn
   )
-  console.log('7) Use the same full DID created at step 5 to sign the batch')
+  console.log('7 did) Use the same full DID created at step 5 to sign the batch')
   await batchCTypeCreationExtrinsics(
     keystore,
     api,
@@ -66,21 +66,21 @@ export async function runAll(
     resolveOn
   )
   console.log(
-    '8) Use the same full DID created at step 5 to generate the signature'
+    '8 did) Use the same full DID created at step 5 to generate the signature'
   )
   await generateAndVerifyDidAuthenticationSignature(
     keystore,
     updatedFullDid,
     'test-payload'
   )
-  console.log('9) Delete full DID created at step 4')
+  console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
     keystore,
     submitterAccount,
     createdSimpleFullDid,
     resolveOn
   )
-  console.log('10) Delete full DID created at step 5')
+  console.log('10 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(
     submitterAccount,
     createdCompleteFullDid.identifier,
