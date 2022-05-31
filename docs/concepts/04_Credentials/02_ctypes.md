@@ -93,9 +93,10 @@ The `hash` is made from the following fields in the schema object:
 
 - `$schema`
 - `properties`
-  - `$id`
+  - `key`
   - `$ref`
   - `type`
+  - `format`
 - `title`
 - `type`
 
