@@ -120,25 +120,24 @@ jobs:
             *yarn.lock
             *.md
   create_issue:
-     runs-on: ubuntu-latest
-     needs: [workshop]
-     if: success()
-     steps:
-       - name: Checkout
-         uses: actions/checkout@v2
-       - name: Generate version bump issue
-         run: |
-           cd .github/ISSUE_TEMPLATE
-           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk  ${{ github.event.inputs.tag }} on docs examples has failed." >> sdk-incompatible-with-docs.md
-       - name: Create version bump issue
-         uses: peter-evans/create-issue-from-file@v3
-         with:
-           title: new sdk ${{ github.event.inputs.tag }} is incompatible with docs examples
-           repository: ggera/ticket
-           token: ${{ secrets.PAT }}
-           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
-           labels: |
-             :memo:  documentation
-             📚+release
-             🧰 sdk
-             
+    runs-on: ubuntu-latest
+    needs: [ workshop ]
+    if: success()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate issue
+        run: |
+          echo "[Either workshop or core_features test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk ${{ github.event.client_payload.latestTag }} on docs has failed.Please fix!" >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+      - name: Create issue
+        uses: peter-evans/create-issue-from-file@v3
+        with:
+          title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
+          repository: ggera/ticket
+          token: ${{ secrets.PAT }}
+          content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+          labels: |
+            :memo:  documentation
+            📚+release
+            🧰 sdk
+            
