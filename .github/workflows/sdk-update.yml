@@ -7,9 +7,6 @@ on:
         description: "Current stable staging tag"
         required: true
 
-env:
-  DAY_OF_WEEK: Monday
-
 jobs:
   workshop:
     runs-on: ubuntu-latest
@@ -143,7 +140,7 @@ jobs:
          with:
            title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
            repository: ticket
-           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+           token: ${{ secrets.PAT }}
            content-filepath: ../ISSUE_TEMPLATEsdk-incompatible-with-docs.md
            labels: |
              :memo:  documentation
