@@ -22,8 +22,8 @@ There are several steps to creating the attestation. The attester:
 
 Once this is done, the attester:
 
-- creates a `Credential` object from the `RequestForAttestation` and the attestation objects
-- encrypts the `Credential` object
-- sends the encrypted `Credential` object back to the claimer.
+- creates an `AttestedClaim` object from the `RequestForAttestation` and the attestation objects
+- encrypts the `AttestedClaim` object
+- sends the encrypted `AttestedClaim` object back to the claimer.
 
 The claimer then stores the attestation in their own wallet and can use it as they wish.

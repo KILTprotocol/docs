@@ -16,7 +16,7 @@ KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to valida
 
 ### Properties
 
-When making a new CType schema, the following properties are required:
+When making a claim for a CType, all the following properties are required:
 
 - One of the following fields: `type` or `$ref`
 - A type of 'string', 'integer', 'number' and 'boolean' to define the attribute
@@ -26,7 +26,7 @@ When making a new CType schema, the following properties are required:
   - Time format e.g. T18:25:43.511Z
   - URI format e.g. https://www.example.com
 
-```js title="CType schema example"
+```js
 {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
   $schema: 'http://kilt-protocol.org/draft-01/ctype#',
@@ -39,21 +39,6 @@ When making a new CType schema, the following properties are required:
 }
 ```
 
-The CType schema is afterwards wrapped into the full CType object:
-
-```js title="CType example"
-{
-  schema:  {...} // as defined in the example above>,
-  owner: null, // DID of the owner, or null
-  hash: '0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010' // For looking up on-chain
-}
-```
-
-## Nested CTypes
-
-A Nested CType is a hierarchical composite schema that includes other simpler CTypes as substructures. The Nested CType references the included sub-CTypes. For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certs, etc of its current employees.
-When verifying a Nested CType, the sub-CTypes need to be available.
-
 ### Referencing
 
 JSON-schema provides a referencing keyword `$ref` that can be used as a pointer from other JSON schemas. This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
@@ -62,8 +47,8 @@ This facility requires all JSON objects to build the schema and allows the reuse
 
 A claim from a nested CType requires the given CType, a list of comprised schemas, the claim content and the address of the owner.
 
-```js title="Nested CType example"
-{
+```js
+nested = {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c20f9f126e5053fas503e459af4255cf8011d51010',
   $schema: 'http://kilt-protocol.org/draft-01/ctype#',
   title: 'KYC and Passport',
@@ -84,7 +69,7 @@ A claim from a nested CType requires the given CType, a list of comprised schema
     state: {
       $ref: `${passport.schema.$id}#/properties/state`,
     },
-    id: {
+    ID: {
       $ref: `${kyc.schema.$id}#/properties/ID`,
     },
     number: {
@@ -99,35 +84,13 @@ A claim from a nested CType requires the given CType, a list of comprised schema
 
 ## CType Metadata
 
-CType Metadata can be linked to a given CType to provide title and descriptions in different languages for the whole CType and its properties.
+CType Metadata can be linked to a given CType to give the context of its intended use-case: These include the:
 
-```js
-{
-  ctypeHash: "0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010",
-  metadata: {
-    title: {
-      default: "Drivers License"
-    },
-    description: {
-      default: "A demo CType for Driver Licenses"
-    },
-    properties: {
-      name: {
-        title: { default: "Full Name" },
-        description: {
-          default: "The full name of the license holder"
-        }
-      },
-      age: {
-        title: { default: "Age" }
-        description: {
-          default: "The age og the license holder"
-        }
-      }
-    }
-  }
-}
-```
+- Title
+- Description
+- Properties
+  - Title
+  - Description
 
 ## Hashing
 
@@ -135,9 +98,9 @@ The hash of the CType is used to identify and anchor it to the chain. This `hash
 
 ### Constructing the `hash` for the `$id`
 
-KILT uses the hashing algorithm blake2b, hashing the CType contents. The object is sorted by a canonicalization algorithm before hashing to ensure that semantically equivalent CTypes with different order of their properties would produce the same output hash.
+KILT uses the hashing algorithm blake2b as a hex string. The object is sorted by a canonicalization algorithm before hashing to ensure that semantically equivalent CTypes with different order of their properties would produce the same output hash.
 
-The `hash` is made from the following fields in the schema object:
+The `hash` is made from the schema object from the following values:
 
 - `$schema`
 - `properties`
@@ -149,18 +112,29 @@ The `hash` is made from the following fields in the schema object:
 
 The `$id` property, if present, is excluded from the hashing process since it represents the result of such a process.
 
-The `$id` is generated, by prepending the hash (in hex form) with `kilt:ctype`. A typical CType id would look like this: `kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84`
+```js
+hashVal = {
+  $schema: schema.$schema,
+  properties: schema.properties,
+  title: schema.title,
+  type: schema.type,
+}
+```
 
-## Storing / Querying CTypes
+The hash has a prefix of `kilt:ctype` followed by the hex string. A typical `CTypeHash` value would look like: `kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84`
 
-CTypes can be stored on the blockchain. After creating a CType, the `store` transaction will include the full CType as a remark and will anchor the hash of it on the chain. Querying is not trivial, since the transaction would have to be found in the blockchain history, but it can be retrieved from indexing services.
+## Storing CTypes
+
+CTypes are not stored in a centralised storage database. When a credential is created, the schema `$id`/`cTypeHash` is stored on-chain. The hash can then be verified and referenced at any time by making a call to the KILT blockchain to check if the corresponding CType matches the stored `$id`.
+
+A Nested CType is a hierarchical composite schema that includes other simpler CTypes as substructures. The Nested CType needs to list all the included sub-CTypes. This allows verification of the owners of the included CTypes on-chain using the CType hash. For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certs, etc of its current employees.
 
 ## Exchange of CTypes with different actors
 
 There are three actors in the KILT workflow: Claimers (the holder of the credential), Attesters (who do the work and approve or reject the credential) and Verifiers (who require a credential from a Claimer).
 
-A Claimer can apply for a new credential by requesting a CType from the Attester. The Claimer then creates a Claim, based on the CType and sends the information to be attested to the Attester. The Attester confirms the information and returns a credential.
+A Claimer can apply for a new credential by requesting a CType from the Attester. The Claimer then completes the CType and sends the information to be attested to the Attester. The Attester confirms the information and returns a credential.
 
-A Verifier can request a credential from a Claimer that follows a given CType. For example, a gaming company may request a specific credential to verify the gamer's ranking. Depending on how this credential was created initially, this can be done with the software development kit (SDK) messaging, or in other ways independent of the protocol (e.g., via browser extensions, email, QR code, etc.)
+A Verifier can request a credential from a Claimer that follows a given CType/schema. For example, a gaming company may request a specific credential to verify the gamer's ranking. Depending on how this credential was created initially, this can be done with the software development kit (SDK) messaging, or in other ways independent of the protocol (e.g., via email, QR code, etc.)
 
 Each actor in the system can verify the ownership and validity of the given CType at any time.
