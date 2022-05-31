@@ -8,6 +8,14 @@ To help with that, KILT provides a **transport-agnostic messaging layer** that h
 
 This messaging layer provides **authenticated end-to-end encryption** – the gold standard in secure communication – so that you do not need to worry about the security of the technologies you use for transporting the message over the internet – be it sending the encrypted message via email, or posting them to and fetching them from a centralized or decentralized messaging service.
 
+:::info
+The messaging layer enables secure communication between two digital identities – DIDs.
+A necessary condition for secure communication with a given person or organisation is that you are sure that the DID you are exchanging messages with is really controlled by them.
+
+<!--TODO: point to a resource on how to solve that bootstrapping problem; could include well-known DID publishing, credentials by a third party that's already trusted, and potentially web3names-->
+
+:::
+
 To be able to communicate, the two DIDs need to expose **key agreement public keys** for that purpose (a.k.a. an **encryption key**).
 In order to send a message to the other party, a DID owner (let's call her **Alice**) looks up her peer's encryption public key, which can be part of either a [Full](./02_did.md#full-dids) or a [Light DID](./02_did.md#light-dids).
 Using this key in combination with her secret encryption key, **Alice** can now encrypt the message such that only she and the owner of the secret key matching the peer's public key can decrypt it.
