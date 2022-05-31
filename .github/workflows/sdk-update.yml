@@ -92,8 +92,8 @@ jobs:
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
-          find: '@kiltprotocol/sdk-js@${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
-          replace: '@kiltprotocol/sdk-js@${{ github.event.inputs.tag }}'
+          find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
+          replace: '${{ github.event.inputs.tag }}'
           include: "docs/develop/03_workshop/**"
           regex: true
       - uses: jacobtomlinson/gha-find-replace@v2
