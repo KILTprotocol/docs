@@ -131,26 +131,22 @@ jobs:
             *yarn.lock
             *.md
   create_issue:
-    runs-on: ubuntu-latest
-    needs: [workshop, core_features]
-    if: failure()
-    steps:
-      - name: issue-bot
-        uses: imjohnbo/issue-bot@v3
-        with:
-          labels: |
-            :memo:  documentation
-            \U0001F4DA release
-            🧰 sdk
-          pinned: false
-          close-previous: true
-          linked-comments: true
-          title: 'new sdk ${{ github.event.inputs.tag }} is incompatible with docs examples'
-          repository: KILTProtocol/ticket
-          body: |-
-            ## Incompatibilities detected
-            A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk against docs examples has failed.
-            Introduce fixes to recover compatibility.
-            Detail error log can be seen from the above link
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     runs-on: ubuntu-latest
+     needs: [workshop, core_features]
+     if: failure()
+     steps:
+       - name: Generate version bump issue
+         run: |
+           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk on docs examples has failed." >> ../ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+       - name: Create version bump issue
+         uses: peter-evans/create-issue-from-file@v3
+         with:
+           title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
+           repository: ticket
+           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+           labels: |
+             :memo:  documentation
+             \U0001F4DA release
+             🧰 sdk
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
