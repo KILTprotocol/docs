@@ -7,7 +7,7 @@ The Claimer may request and / or the Attester may send the Terms of the attestat
 
 These Terms are defined and agreed upon before the attestation is created. This part of the process requires interaction and communication between both parties. This communication can be done independently, e.g. in person, via messaging, on social media etc., or via the KILT software development kit (SDK).
 
-## Sending Terms using the KILT SDK
+## Sending Terms
 
 Both “request terms” and “submit terms” are part of the messaging system: the message is sent as “request terms” and received as “submit terms”.
 
@@ -19,11 +19,18 @@ The interaction is as follows:
 
 ## How to create a Terms object
 
-When creating a Terms object, at least one of the following must be set: Legitimations, Quote or Delegations.
+The Terms object consists of following items:
 
-- **Legitimations**: Legitimations are Credentials, issued to the Attester the Claimer wants to interact with, showing that the Attester has the authority or legitimacy to attest the claim requested. This is a way of establishing trust between the participants.
+- **Claim**: A partial claim with information the attester already has about the claimer. This helps the claimer to pre-fill their claims with information only known to the attester.
+  - The partial claim has to at least contain the ctype hash the attestation will be based on.
 
-- **Quote**: Details on how to create a Quote are outlined here. In brief, the Quote could include any or all of the following:
+- **CTypes**: An optional list of full ctypes, in case the claimer doesn't know about the correct ctype for the credential, yet.
+
+- **Legitimations**: Legitimations are Credentials, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested. This is a way of establishing trust between the participants.
+
+- **Delegation Id**: An Attester may be part of a top-down trust authority, given them the right to attest in the name of an institution, or similar. E.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point. See [here](/docs/concepts/distributed_trust) for details on how to create a delegation.
+
+- **Quote**: A Quote could include any or all of the following:
 
   - The time frame the claim will be completed in
   - The public address of the Attester completing the attestation
@@ -31,92 +38,56 @@ When creating a Terms object, at least one of the following must be set: Legitim
   - A breakdown of all the (net and gross) costs, the currency quoted, and any taxes associated with the attestation.
   - A link to the terms and conditions of the attestation.
 
-- **Delegations**: An Attester may include the right to attest to a specific claim from a top-down trust authority e.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester is delegating their attestation rights to another entity, this should be stated clearly at this point. See [here](/docs/concepts/distributed_trust) for details on how to create a delegation.
-
-## How to create a Terms object using the KILT SDK
-
-A CType hash is required to create a “request for terms”, along with at least one of the following: a Quote, a delegation, or a legitimation.
-
-Claims, PrerequisiteClaims and delegation IDs are optional (as an Attester might submit Terms from a Claimer and will not have all the necessary information to create the claim. They can just send the required CType for the Claimer to build the claim).
-
-```js
-const termsMessageBody = {
-  content: {
-    claim: {
-      cTypeHash:
-        "0xf53f460a9e96cf7ea3321ac001a89674850493e12fad28cbc868e026935436d2",
-      contents: {},
-      owner: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy",
-    },
-    legitimations: [[AttestedClaim]],
-    quote: {
-      attesterAddress: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb",
-      cTypeHash:
-        "0xf87dd9c5979e92ae7281279f60ee1925d4fc8904cd4700b966764f179e877891",
-      cost: [Object],
-      currency: "Euro",
-      termsAndConditions: "https://coolcompany.io/terms.pdf",
-      timeframe: "2019-12-09T23:00:00.000Z",
-      attesterSignature: {
-        keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xc56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183",
-        signature: "0x01a4d9c3395113ce76d2830a4fb436bdd04c7ca9442a152cd18eca1ba029c9a07c56f8c8bc70d4d772eee184ce252b603a2122fa29b15f900e7d614cf8deb5c183"
-      },
-    },
-    prerequisiteClaims: undefined,
-    cTypes: undefined,
-  },
-  type: "submit-terms",
-};
-```
-
-The Terms object is sent via the messaging in the SDK using the interface “ISubmitTerms”.
+Only the ctype hash in the partial claim is required, everything else is optional.
 
 ## How to create a Quote
 
-A Quote consists of costs, a timeframe and the terms and conditions of the work to be performed. It may be sent to the Claimer by the Attester. In cases where multiple Attesters provide the same attestation (for example, a car inspection) the Claimer may request a Quote from several Attesters to choose the Attester with the best conditions.
+A Quote consists of costs, a time frame until the attestation will be delivered and the terms and conditions of the work to be performed. It may be sent to the Claimer by the Attester as part of the Terms. In cases where multiple Attesters provide the same attestation (for example, a car inspection) the Claimer may request a Quote from several Attesters to choose the Attester with the best conditions.
 
 To come to an agreement on the Quote, the participants may message back and forth, signing the object.
 
 If the Attester wishes to add a Quote to their Terms, the Attester signs the `Quote` object before sending it as part of the "submit terms" message to the Claimer.
 
-```js title="Quote object, signed by the Attester"
-{
-  attesterAddress: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb",
-  cTypeHash:
-    "0xf53f460a9e96cf7ea3321ac001a89674850493e12fad28cbc868e026935436d2",
-  cost: { gross: 233, net: 23.3, tax: { vat: 3.3 } },
-  currency: "Euro",
-  timeframe: "2020-12-03T23:00:00.000Z",
-  termsAndConditions: "www.example.de/helpful-terms-&-conditions",
-  attesterSignature: {
-    keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    signature: "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
-  },
-}
-```
+After the Claimer has received the signed Quote and accepts it, the Claimer will sign it on their side, too and attaches the credential hash of the `Request for Attestation` object for referencing the Credential, the Quote should be applied to.
 
-After the Claimer has received the signed Quote and accepts it, the Claimer will sign it on their side, too.
-
-```js title="Quote, signed by Attester and Claimer"
-{
-  attesterAddress: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb",
-  cTypeHash:
-    "0xf53f460a9e96cf7ea3321ac001a89674850493e12fad28cbc868e026935436d2",
-  cost: { gross: 233, net: 23.3, tax: { vat: 3.3 } },
-  currency: "Euro",
-  timeframe: "2020-12-03T23:00:00.000Z",
-  termsAndConditions: "www.example.de/helpful-terms-&-conditions",
-  attesterSignature: {
-    keyId: "did:kilt:4r99cXtVR72nEr9d6o8NZGXmPKcpZ9NQ84LfgHuVssy91nKb#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    signature: "0x002e57ac55f23112a9d837c23874441fc8eb0e708a02c1bb26e631c6661741f482da663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04"
-  },
-  rootHash:
-    "0x43c756b5a92413e7d804fcfaa76eb27dcd58fc61f18dd1baac185a86ee0ea89f",
-  claimerSignature: {
-    keyId: "did:kilt:4siJtc4dYq2gPre8Xj6KJcSjVAdi1gmjctUzjf3AwrtNnhvy#0xda663c7e282f98565e4dbf8072267e9b1165779159f83842dbf090d14dcd0f04",
-    signature: "0x018c0c21d5545648f4a8d3604991710718b9fc02956c5d98b13b9e4d029ed8505dc2b1bbd62f9af52cc3b1a28e9ce78e8f311baa118f389ee05f92f0512fd9f382"
+```mermaid
+classDiagram
+  class Quote {
+    String attesterDid
+    String cTypeHash
+    Cost cost
+    String currency
+    String timeframe
+    String termsAndConditions
   }
-};
+
+  class Cost {
+    Number gross
+    Number net
+    Object tax
+  }
+
+  Quote *-- Cost
+
+  class Signature {
+    String keyId
+    String signature
+  }
+
+  class QuoteAttesterSigned {
+    Signature attesterSignature
+  }
+
+  QuoteAttesterSigned *-- Signature
+  QuoteAttesterSigned --|> Quote
+
+  class QuoteAgreement {
+    String rootHash
+    Signature claimerSignature
+  }
+
+  QuoteAgreement *-- Signature
+  QuoteAgreement --|> QuoteAttesterSigned
 ```
 
 ## Agreeing to Terms and Quote
