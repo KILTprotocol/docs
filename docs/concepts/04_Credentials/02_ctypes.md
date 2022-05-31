@@ -53,34 +53,6 @@ The CType schema is afterwards wrapped into the full CType object:
 
 CType Metadata can be linked to a given CType to provide title and descriptions in different languages for the whole CType and its properties.
 
-```js
-{
-  ctypeHash: "0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010",
-  metadata: {
-    title: {
-      default: "Driver's License"
-    },
-    description: {
-      default: "A demo CType for driver's licenses"
-    },
-    properties: {
-      name: {
-        title: { default: "Full Name" },
-        description: {
-          default: "The full name of the license holder"
-        }
-      },
-      age: {
-        title: { default: "Age" }
-        description: {
-          default: "The age of the license holder"
-        }
-      }
-    }
-  }
-}
-```
-
 ## Hashing
 
 The hash of the CType is used to identify and anchor it to the chain. This `hash` is stored on-chain via the store method.
