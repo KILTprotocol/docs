@@ -5,7 +5,7 @@ title: Attestation
 
 To create an attestation, the attester first receives a message with a `RequestForAttestation` object from the claimer.
 
-The attester then decrypts the message and checks the validity of the content, ensuring that:
+The attester then decrypts the message (if needed) and checks the validity of the content, ensuring that:
 
 - the structure of the `RequestForAttestation` object is correct
 - the owner of the `RequestForAttestation` is the sender of the message
@@ -16,7 +16,7 @@ To create the attestation, the attester:
 - creates an attestation object from the root hash of the RequestForAttestation and the attester’s address.
 - stores the attestation hash on the chain by submitting a new transaction with the attester’s signature.
 
-Once this is done, the attester can optionally create a `Credential` object from the `RequestForAttestation` and the attestation objects and send it back to the claimer.
+Once this is done, the attester can optionally create a `Credential` object from the `RequestForAttestation` and the `Attestation` objects and send it back to the claimer.
 This is a way to inform the claimer, that the attestation was done.  
 Otherwise the claimer can also just listen to changes on the blockchain, since they already know the attestation hash to listen to.
 
