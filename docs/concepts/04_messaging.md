@@ -31,5 +31,5 @@ Because we do not simply reference the DIDs of sender and recipient, but the uni
 
 :::caution
 While no one can read nor change what is inside an encrypted message even if they intercept it while traveling on the network, a sophisticated attacker may try to guess what is inside and trick you or others by resubmitting a copy of that message later.
-You can learn how to protect against these _replay attacks_ in our [Advanced Concepts section](./05_Advanced%20Concepts/01_replay_protection.md).
+You can learn how to protect against these _replay attacks_ in our [Advanced Concepts section](./05_Advanced%20Concepts/02_replay_protection.md).
 :::
