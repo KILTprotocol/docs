@@ -12,37 +12,3 @@ This facility requires all JSON objects to build the schema and allows the reuse
 
 A claim from a nested CType requires the given CType, a list of comprised schemas, the claim content and the address of the owner.
 
-```js title="Nested CType example"
-{
-  $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c20f9f126e5053fas503e459af4255cf8011d51010',
-  $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-  title: 'KYC and Passport',
-  type: 'object',
-  properties: {
-    fullName: {
-      $ref: `${passport.schema.$id}#/properties/fullName`,
-    },
-    passportIdentifer: {
-      $ref: `${passport.schema.$id}#/properties/passportIdentifer`,
-    },
-    streetAddress: {
-      $ref: `${passport.schema.$id}#/properties/streetAddress`,
-    },
-    city: {
-      $ref: `${passport.schema.$id}#/properties/city`,
-    },
-    state: {
-      $ref: `${passport.schema.$id}#/properties/state`,
-    },
-    id: {
-      $ref: `${kyc.schema.$id}#/properties/ID`,
-    },
-    number: {
-      $ref: `${kyc.schema.$id}#/properties/number`,
-    },
-    name: {
-      $ref: `${kyc.schema.$id}#/properties/name`,
-    },
-  },
-}
-```
