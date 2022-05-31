@@ -144,7 +144,7 @@ jobs:
            title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
            repository: ticket
            token: ${{ secrets.PAT }}
-           content-filepath: ../ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
            labels: |
              :memo:  documentation
              \U0001F4DA release
