@@ -136,17 +136,15 @@ jobs:
      if: failure()
      steps:
        - name: Generate version bump issue
-         working-directory: .github/workflows/ISSUE_TEMPLATE
          run: |
-           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk on docs examples has failed." >> sdk-incompatible-with-docs.md
+           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk on docs examples has failed." >> ../ISSUE_TEMPLATEsdk-incompatible-with-docs.md
        - name: Create version bump issue
          uses: peter-evans/create-issue-from-file@v3
-         working-directory: .github/workflows/ISSUE_TEMPLATE
          with:
            title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
            repository: ticket
            token: ${{ secrets.REPO_ACCESS_TOKEN }}
-           content-filepath: sdk-incompatible-with-docs.md
+           content-filepath: ../ISSUE_TEMPLATEsdk-incompatible-with-docs.md
            labels: |
              :memo:  documentation
              \U0001F4DA release
