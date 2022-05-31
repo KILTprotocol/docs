@@ -18,6 +18,13 @@ During the verification process the claimer wants to prove three things to the v
 - The claim actually belongs to the claimer presenting it
 - The claim contains the information that the verifier is interested in
 
+## Requesting a Credential from a Claimer
+The verifier may request a credential from a claimer, providing following data:
+- **CTypes**: Here the verifier can define which ctypes they can work with for their use-case. They can provide multiple options, which have to be regarded as alternatives.
+- **TrustedAttesters**: Per ctype, the verifier can define which attesters they would automatically trust.
+- **RequiredProperties**: Per ctype, the verifier can define which properties they would at least need to see, to fulfill the verification. More on "Selective Disclosure" later.
+- **Challenge**: The verifier can provide a nonce, which the claimer would have to sign to prove ownership of the presented credential. More on that later.
+
 ## Presenting a Credential with Selective Disclosure
 
 The claimer can decide how much of the information in their credential they wish to reveal before they send it to the verifier.
@@ -37,7 +44,7 @@ The verifier receives the credential from the claimer, calculates the attestatio
 
 If the claimer tampered with the credential, the hash won’t match any attestation on the chain. On the other hand, if the attestation hash is on the chain and has not been revoked, the credential is valid.
 
-However, this does not verify that the claimer is the rightful/legitimate owner of the credential presented.
+However, this does not verify that the claimer is the rightful/legitimate owner of the credential presented. So please read on for how to check that.
 
 ## Verifying the Owner of the Credential
 
