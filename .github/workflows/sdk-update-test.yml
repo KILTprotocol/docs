@@ -99,21 +99,19 @@ jobs:
         working-directory: code_examples/core_features
         run: |
           yarn install
-          yarn lint
       - name: Regenerate yarn lock
         working-directory: code_examples/workshop
         run: |
           yarn install
-          yarn lint
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           base: develop
           delete-branch: true
-          title: '[Chore] Latest sdk is compatible with docs'
+          title: '[Chore] Update SDK version to latest'
           body: |
-            Update sdk in the docs with the latest version ${{ github.event.client_payload.latestTag }}
+            Update sdk  version in the docs to the latest version ${{ github.event.client_payload.latestTag }} since it passes compatibility test
             - Beware ~ CI-generated PR
           labels: |
             sdk
@@ -132,8 +130,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate issue
         run: |
-          cd .github/ISSUE_TEMPLATE
-          echo "[Either workshop or core_features test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk ${{ github.event.client_payload.latestTag }} on docs has failed.Please fix!" >> sdk-incompatible-with-docs.md
+          echo "[Either workshop or core_features test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk ${{ github.event.client_payload.latestTag }} on docs has failed.Please fix!" >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
       - name: Create issue
         uses: peter-evans/create-issue-from-file@v3
         with:
@@ -145,3 +142,4 @@ jobs:
             :memo:  documentation
             📚+release
             🧰 sdk
+            
