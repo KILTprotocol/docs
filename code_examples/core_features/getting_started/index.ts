@@ -1,3 +1,4 @@
+import * as Kilt from '@kiltprotocol/sdk-js'
 import { main as buildCredential } from './07_build_credential'
 import { main as connect } from './03_connect'
 import { main as disconnect } from './09_disconnect'
@@ -18,15 +19,18 @@ export async function runAll(): Promise<void> {
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
     throw `DID doesn't include the service endpoints`
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let request: any
+
+  let request: Kilt.IRequestForAttestation
   try {
     request = await fetchEndpointData(endpoints)
   } catch {
-    // Case in which the fetching fails. Simply disconnect and return (i.e., ignore this error).
+    // FIXME: Occasionally there is a timeout error, because the endpoint uses the official ipfs gateway.
+    // Fix it by using a reliable endpoint.
+    // For now simply disconnect and return (i.e., ignore this error).
     await disconnect()
     return
   }
+
   const credential = await buildCredential(request)
   if (!credential) throw 'Credential not created'
   const credentialValidity = await verifyCredential(credential)
