@@ -22,7 +22,7 @@ The resulting claim is referencing the ctype by its hash and includes the DID of
 ## Request an Attestation
 
 After creating your claim, you can request an attestation by creating another object called `RequestForAttestation`, which you can send to the attester of your choice via any messaging system.
-The object contains the original claim, data needed for selective disclosure of the claim contents, the legitmations and / or delegation id of the attester and the root hash, with which this object can be identified.
+The object contains the original claim, data needed for selective disclosure (more on that in the [verification section](/docs/concepts/Credentials/verification)) of the claim contents, the legitimations and / or delegation id of the attester and the root hash, with which this object can be identified.
 
 We recommend encrypting this object before sending it, since it contains privacy concerning information.
 
