@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 16.x
       - name: Get current package version
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
       - uses: jacobtomlinson/gha-find-replace@v2
@@ -33,14 +33,14 @@ jobs:
           exclude: "**/*.lock"
           regex: true
       - name: Test style conventions
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         run: |
           yarn install
           yarn lint
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Get current package version
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
       - uses: jacobtomlinson/gha-find-replace@v2
@@ -65,14 +65,14 @@ jobs:
           exclude: "**/*.lock"
           regex: true
       - name: Test style conventions
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         run: |
           yarn install
           yarn lint
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
@@ -87,7 +87,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Get current package version
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
       - uses: jacobtomlinson/gha-find-replace@v2
@@ -104,12 +104,12 @@ jobs:
           exclude: "**/*.lock"
           regex: true
       - name: Regenerate yarn lock
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         run: |
           yarn install
           yarn lint
       - name: Regenerate yarn lock
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         run: |
           yarn install
           yarn lint
