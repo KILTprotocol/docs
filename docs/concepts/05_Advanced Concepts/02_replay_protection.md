@@ -13,7 +13,7 @@ Copying a message that grants the sender access to the requested resource could 
 
 To prevent these types of attacks, KILT offers two separate mechanisms.
 
-Malicious actors can be prevented from stealing and reusing credential presentation submissions if verifiers require claimers to include a random and unqique piece of data in their presentation, which the verifier has produced and added to their credential request.
+Malicious actors can be prevented from stealing and reusing credential presentation submissions if verifiers require claimers to include a random and unique piece of data in their presentation, which the verifier has produced and added to their credential request.
 More information on how this challenge-response mechanism is implemented in KILT can be found [here](<!--TODO: link to verification section-->).
 
 In case you are using the KILT messaging for communication, you can also take effective measures against replay protection [based on the unique identifier and timestamp](../../develop/01_sdk/02_Cookbook/05_Messaging/04_replay_protection.md) that are part of every message.
