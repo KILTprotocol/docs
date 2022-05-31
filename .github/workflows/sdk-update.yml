@@ -147,5 +147,5 @@ jobs:
            content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
            labels: |
              :memo:  documentation
-             \U0001F4DA release
+             📚+release
              🧰 sdk
