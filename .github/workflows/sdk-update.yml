@@ -33,8 +33,6 @@ jobs:
         working-directory: code_examples/workshop
         run: |
           yarn install
-          yarn lint
-
       - name: Run tests
         timeout-minutes: 60
         working-directory: code_examples/workshop
@@ -42,7 +40,6 @@ jobs:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          yarn install
           yarn run ts-node test.ts
 
   core_features:
@@ -65,8 +62,6 @@ jobs:
         working-directory: code_examples/core_features
         run: |
           yarn install
-          yarn lint
-
       - name: Run tests
         timeout-minutes: 60
         working-directory: code_examples/core_features
@@ -74,7 +69,6 @@ jobs:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          yarn install
           yarn run ts-node run_core_features.ts
 
   create_pull_request:
@@ -104,22 +98,20 @@ jobs:
         working-directory: code_examples/core_features
         run: |
           yarn install
-          yarn lint
       - name: Regenerate yarn lock
         working-directory: code_examples/workshop
         run: |
           yarn install
-          yarn lint
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.PAT }}
           base: develop
           delete-branch: true
-          title: '[Chore] Latest sdk is compatible with docs'
+          title: '[Chore] Update SDK version to latest'
           body: |
-            Update docs
-            - Auto-generated PR
+            Update SDK  version in the docs to the latest version ${{ github.event.client_payload.latestTag }} since it passes compatibility test
+            - Beware ~ CI-generated PR
           labels: |
             sdk
           draft: false
@@ -149,3 +141,4 @@ jobs:
              :memo:  documentation
              📚+release
              🧰 sdk
+             
