@@ -132,8 +132,8 @@ jobs:
             *.md
   create_issue:
      runs-on: ubuntu-latest
-     needs: [workshop, core_features]
-     if: failure()
+     needs: [workshop]
+     if: sucess()
      steps:
        - name: Generate version bump issue
          run: |
