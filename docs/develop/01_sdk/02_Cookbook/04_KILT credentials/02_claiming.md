@@ -6,6 +6,7 @@ import CodeBlock from '@theme/CodeBlock';
 import CreateCType from '!!raw-loader!@site/code_examples/core_features/claiming/01_create_ctype.ts';
 import CreateClaim from '!!raw-loader!@site/code_examples/core_features/claiming/02_create_claim.ts';
 import CreateRequestForAttestation from '!!raw-loader!@site/code_examples/core_features/claiming/03_create_request_for_attestation.ts';
+import { jsonExamples } from '@site/src/utilities/jsonExamples';
 
 There are three actors in the KILT workflow: Claimers, Attesters and Verifiers.
 
@@ -42,3 +43,9 @@ We recommend encrypting this object before sending it by calling encrypt. Additi
 <CodeBlock className="language-js">
   {CreateRequestForAttestation}
 </CodeBlock>
+
+<CodeBlock className="language-json">
+  {jsonExamples().requestForAttestation}
+</CodeBlock>
+
+
