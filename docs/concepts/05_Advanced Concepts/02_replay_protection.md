@@ -11,42 +11,9 @@ This concerns, for example, credential submissions traveling from claimers to ve
 To give an example for illustration purposes, think of a paywall or a turnstile that allows passage only upon presentation of a valid access credential.
 Copying a message that grants the sender access to the requested resource could help an attacker gain access without possessing access rights themselves.
 
-To prevent these types of attacks, KILT messages are timestamped and expose a unique identifier as part of their encrypted content, which therefore cannot be tampered with.
-Verifiers should impose limits on an acceptable age or range for these timestamps and keep a record of the ids of previous submissions, which can be purged after their acceptance range has run out.
+To prevent these types of attacks, KILT offers two separate mechanisms.
 
-### Example Code
+Malicious actors can be prevented from stealing and reusing credential presentation submissions if verifiers require claimers to include a random and unqique piece of data in their presentation, which the verifier has produced and added to their credential request.
+More information on how this challenge-response mechanism is implemented in KILT can be found [here](<!--TODO: link to verification section-->).
 
-Define acceptance range and set up a record of past submissions:
-
-```typescript
-const MAX_ACCEPTED_AGE = 60_000 // ms -> 1 minute
-const MIN_ACCEPTED_AGE = -1_000 // allow for some imprecision in system time
-const submissions = new Map<string, number>()
-```
-
-Check record for each incoming message and update if accepted:
-
-```typescript
-// is messageId fresh and createdAt recent ?
-if (
-  submissions.has(decrypted.messageId) ||
-  decrypted.createdAt < Date.now() - MAX_ACCEPTED_AGE ||
-  decrypted.createdAt > Date.now() - MIN_ACCEPTED_AGE
-) {
-  // no -> reject message
-} else {
-  submissions.set(decrypted.messageId, decrypted.createdAt)
-  // yes -> accept & process message
-}
-```
-
-Purge at regular intervals:
-
-```typescript
-setInterval(() => {
-  const outdatedTimestamp = Date.now() - MAX_ACCEPTED_AGE
-  submissions.forEach((timestamp, hash) => {
-    if (timestamp < outdatedTimestamp) submissions.delete(hash)
-  })
-}, 1000)
-```
+In case you are using the KILT messaging for communication, you can also take effective measures against replay protection [based on the unique identifier and timestamp](../../develop/01_sdk/02_Cookbook/05_Messaging/04_replay_protection.md) that are part of every message.
