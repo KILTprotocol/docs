@@ -30,7 +30,6 @@ jobs:
         working-directory: code_examples/workshop
         run: |
           yarn install
-
       - name: Run tests
         timeout-minutes: 60
         working-directory: code_examples/workshop
@@ -38,7 +37,6 @@ jobs:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          yarn install
           yarn run ts-node test.ts
 
   core_features:
@@ -70,7 +68,7 @@ jobs:
         run: |
           yarn run ts-node run_core_features.ts
 
- create_pull_request:
+  create_pull_request:
     runs-on: ubuntu-latest
     needs: [ workshop, core_features ]
     if: success()
@@ -109,7 +107,7 @@ jobs:
           delete-branch: true
           title: '[Chore] Update SDK version to latest'
           body: |
-            Update sdk  version in the docs to the latest version ${{ github.event.client_payload.latestTag }} since it passes compatibility test
+            Update SDK  version in the docs to the latest version ${{ github.event.client_payload.latestTag }} since it passes compatibility test
             - Beware ~ CI-generated PR
           labels: |
             sdk
@@ -118,7 +116,7 @@ jobs:
             *package.json
             *yarn.lock
             *.md
- create_issue:
+  create_issue:
     runs-on: ubuntu-latest
     needs: [ workshop, core_features ]
     if: failure()
