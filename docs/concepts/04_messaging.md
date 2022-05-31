@@ -16,7 +16,7 @@ The receiving party to whom this message is addressed (say, **Bob**) can decrypt
 An additional _message authentication code_ (MAC) added during encryption and verified on decryption protects against manipulation of the encrypted data.
 As long as both parties keep their secret keys well protected, the combination of these measures allows **Bob** to be confident that if the message decrypts successfully, it could have only been encrypted by **Alice** and has not been read or tampered with by some malicious third party while in transport.
 
-While encrypted, the message travels in a compact and maximally opaque envelope format that only exposes data that the recipient requires to be able to decrypt.
+While encrypted, the message travels in a compact and privacy-preserving envelope format that only exposes data that the recipient requires to be able to decrypt.
 
 ```ts
 {

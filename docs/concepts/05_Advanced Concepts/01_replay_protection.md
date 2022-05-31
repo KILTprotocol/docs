@@ -12,7 +12,7 @@ To give an example for illustration purposes, think of a paywall or a turnstile 
 Copying a message that grants the sender access to the requested resource could help an attacker gain access without possessing access rights themselves.
 
 To prevent these types of attacks, KILT messages are timestamped and expose a unique identifier as part of their encrypted content, which therefore cannot be tampered with.
-Verifiers should impose limits on an acceptable age or range for these timestamps and keep a record of previous submissions, which can be purged after their acceptance range has run out.
+Verifiers should impose limits on an acceptable age or range for these timestamps and keep a record of the ids of previous submissions, which can be purged after their acceptance range has run out.
 
 ### Example Code
 
