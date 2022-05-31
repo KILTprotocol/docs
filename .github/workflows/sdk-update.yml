@@ -137,7 +137,7 @@ jobs:
      steps:
        - name: Generate version bump issue
          run: |
-           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk on docs examples has failed." >> ../ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+           echo "A [webhook test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk on docs examples has failed." >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
        - name: Create version bump issue
          uses: peter-evans/create-issue-from-file@v3
          with:
