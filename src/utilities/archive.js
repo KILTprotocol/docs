@@ -13,7 +13,7 @@ const folders = args.folders.split(',');
 function archive(folders) {
   const directory = folders.pop();
   if (!directory) process.exit();
-  const folder = `${__dirname}/../../code-examples/${directory}`;
+  const folder = `${__dirname}/../../code_examples/${directory}`;
   if (!fs.existsSync(folder)) throw Error(`no such folder ${folder}`);
   const output = fs.createWriteStream(`${__dirname}/../../static/${directory}.zip`);
   const archive = archiver('zip', { zlib: { level: 9 } });
