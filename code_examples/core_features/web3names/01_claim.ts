@@ -1,20 +1,23 @@
-import type { KeyringPair } from '@kiltprotocol/types'
+import type { KeyringPair } from '@polkadot/keyring/types'
 
-import { DemoKeystore, FullDidDetails, Web3Names } from '@kiltprotocol/did'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function claimWeb3Name(
-  keystore: DemoKeystore,
-  did: FullDidDetails,
+  keystore: Kilt.Did.DemoKeystore,
+  did: Kilt.Did.FullDidDetails,
   submitterAccount: KeyringPair,
-  name: Web3Names.Web3Name,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  name: Kilt.Did.Web3Names.Web3Name,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
-  const web3NameClaimTx = await Web3Names.getClaimTx(name).then((tx) =>
+  const web3NameClaimTx = await Kilt.Did.Web3Names.getClaimTx(name).then((tx) =>
     did.authorizeExtrinsic(tx, keystore, submitterAccount.address)
   )
-  await BlockchainUtils.signAndSubmitTx(web3NameClaimTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.BlockchainUtils.signAndSubmitTx(
+    web3NameClaimTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 }

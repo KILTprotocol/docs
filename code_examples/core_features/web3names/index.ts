@@ -4,13 +4,10 @@ import { randomUUID } from 'crypto'
 
 import { ApiPromise } from '@polkadot/api'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
-
-import { createSimpleFullDid } from '../did/04_full_did_simple'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from './01_claim'
+import { createSimpleFullDid } from '../did/04_full_did_simple'
 import { queryPublishedCredentials } from './03_query_name_credentials'
 import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
@@ -19,10 +16,11 @@ import { verifyNameAndDidEquality } from './02_query_did_name'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running Web3name flow...')
-  const keystore = new DemoKeystore()
+  const keystore = new Kilt.Did.DemoKeystore()
   const fullDid = await createSimpleFullDid(
     keystore,
     api,

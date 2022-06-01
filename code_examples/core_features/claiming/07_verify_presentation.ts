@@ -1,7 +1,7 @@
-import { Credential } from '@kiltprotocol/core'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function verifyPresentation(
-  presentation: Credential,
+  presentation: Kilt.Credential,
   challenge: string | undefined = undefined
 ): Promise<boolean> {
   // Verify the presentation with the provided challenge.

@@ -1,15 +1,13 @@
-import type { IClaim, IDidDetails } from '@kiltprotocol/types'
-
-import { CType, Claim } from '@kiltprotocol/core'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createClaim(
-  ctype: CType,
-  claimerDid: IDidDetails['did']
-): Promise<IClaim> {
+  ctype: Kilt.CType,
+  claimerDid: Kilt.IDidDetails['did']
+): Promise<Kilt.IClaim> {
   const rawClaim = {
     name: 'Alice',
     age: 29
   }
 
-  return Claim.fromCTypeAndClaimContents(ctype, rawClaim, claimerDid)
+  return Kilt.Claim.fromCTypeAndClaimContents(ctype, rawClaim, claimerDid)
 }

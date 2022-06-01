@@ -1,4 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+
 import { main as buildCredential } from './07_build_credential'
 import { main as connect } from './03_connect'
 import { main as disconnect } from './09_disconnect'

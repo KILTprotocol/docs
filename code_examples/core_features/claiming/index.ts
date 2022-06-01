@@ -2,9 +2,7 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { ApiPromise } from '@polkadot/api'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createCompleteFullDid } from '../did/05_full_did_complete'
 import { createSimpleLightDid } from '../did/01_light_did_simple'
@@ -20,10 +18,11 @@ import { verifyPresentation } from './07_verify_presentation'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running claiming flow...')
-  const keystore = new DemoKeystore()
+  const keystore = new Kilt.Did.DemoKeystore()
   const claimerLightDid = await createSimpleLightDid(keystore)
   const attesterFullDid = await createCompleteFullDid(
     keystore,
@@ -34,7 +33,12 @@ export async function runAll(
   )
 
   console.log('1 claming) Create CType')
-  const ctype = await createDriversLicenseCType()
+  const ctype = await createDriversLicenseCType(
+    keystore,
+    attesterFullDid,
+    submitterAccount,
+    resolveOn
+  )
   console.log('2 claiming) Create claim')
   const claim = await createClaim(ctype, claimerLightDid.did)
   console.log('3 claiming) Create request for attestation')

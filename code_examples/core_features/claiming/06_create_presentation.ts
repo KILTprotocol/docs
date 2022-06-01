@@ -1,15 +1,12 @@
-import type { KeystoreSigner } from '@kiltprotocol/types'
-
-import { Credential } from '@kiltprotocol/core'
-import { DidDetails } from '@kiltprotocol/did'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createPresentation(
-  keystore: KeystoreSigner,
-  claimerDid: DidDetails,
-  credential: Credential,
+  keystore: Kilt.KeystoreSigner,
+  claimerDid: Kilt.Did.DidDetails,
+  credential: Kilt.Credential,
   selectedAttributed: string[],
   challenge: string | undefined = undefined
-): Promise<Credential> {
+): Promise<Kilt.Credential> {
   // Create a presentation with only the specified fields revealed.
   return credential.createPresentation({
     claimerDid,

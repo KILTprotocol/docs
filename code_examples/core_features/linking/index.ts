@@ -4,9 +4,7 @@ import { randomUUID } from 'crypto'
 
 import { ApiPromise } from '@polkadot/api'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from '../web3names/01_claim'
 import { createSimpleFullDid } from '../did/04_full_did_simple'
@@ -24,10 +22,11 @@ export async function runAll(
   api: ApiPromise,
   submitterAccount: KeyringPair,
   linkAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running linking flow...')
-  const keystore = new DemoKeystore()
+  const keystore = new Kilt.Did.DemoKeystore()
   const fullDid = await createSimpleFullDid(
     keystore,
     api,

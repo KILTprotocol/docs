@@ -1,18 +1,11 @@
-import type {
-  IClaim,
-  IRequestForAttestation,
-  KeystoreSigner
-} from '@kiltprotocol/types'
-
-import { DidDetails } from '@kiltprotocol/did'
-import { RequestForAttestation } from '@kiltprotocol/core'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createRequestForAttestation(
-  keystore: KeystoreSigner,
-  claim: IClaim,
-  claimer: DidDetails
-): Promise<IRequestForAttestation> {
-  const requestForAttestation = RequestForAttestation.fromClaim(claim)
+  keystore: Kilt.KeystoreSigner,
+  claim: Kilt.IClaim,
+  claimer: Kilt.Did.DidDetails
+): Promise<Kilt.IRequestForAttestation> {
+  const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
   return requestForAttestation.signWithDidKey(
     keystore,
     claimer,

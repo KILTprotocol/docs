@@ -1,21 +1,20 @@
 import type { KeyringPair } from '@polkadot/keyring/types'
 
-import { DemoKeystore, DidChain, FullDidDetails } from '@kiltprotocol/did'
-import { KeystoreSigner, SubscriptionPromise } from '@kiltprotocol/types'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function deleteFullDid(
-  keystore: DemoKeystore,
+  keystore: Kilt.Did.DemoKeystore,
   submitterAccount: KeyringPair,
-  fullDid: FullDidDetails,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  fullDid: Kilt.Did.FullDidDetails,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
-  const endpointsCountForDid = await DidChain.queryEndpointsCounts(
+  const endpointsCountForDid = await Kilt.Did.DidChain.queryEndpointsCounts(
     fullDid.identifier
   )
-  const didDeletionExtrinsic = await DidChain.getDeleteDidExtrinsic(
+  const didDeletionExtrinsic = await Kilt.Did.DidChain.getDeleteDidExtrinsic(
     endpointsCountForDid
   )
 
@@ -24,11 +23,11 @@ export async function deleteFullDid(
   // authorized in this operation, Alice in this case.
   const didSignedDeletionExtrinsic = await fullDid.authorizeExtrinsic(
     didDeletionExtrinsic,
-    keystore as KeystoreSigner<string>,
+    keystore,
     submitterAccount.address
   )
 
-  await BlockchainUtils.signAndSubmitTx(
+  await Kilt.BlockchainUtils.signAndSubmitTx(
     didSignedDeletionExtrinsic,
     submitterAccount,
     {

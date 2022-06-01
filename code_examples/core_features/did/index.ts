@@ -3,9 +3,7 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 import { ApiPromise } from '@polkadot/api'
 import { randomAsHex } from '@polkadot/util-crypto'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { DemoKeystore } from '@kiltprotocol/did'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { batchCTypeCreationExtrinsics } from './07_full_did_batch'
 import { createCompleteFullDid } from './05_full_did_complete'
@@ -21,10 +19,11 @@ import { updateFullDid } from './06_full_did_update'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: KeyringPair,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running DID flow...')
-  const keystore = new DemoKeystore()
+  const keystore = new Kilt.Did.DemoKeystore()
 
   console.log('1 did) Create simple light DID')
   let randomSeed = randomAsHex(32)

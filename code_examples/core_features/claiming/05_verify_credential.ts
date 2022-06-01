@@ -1,7 +1,7 @@
-import { Credential } from '@kiltprotocol/core'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function verifyCredential(
-  credential: Credential
+  credential: Kilt.Credential
 ): Promise<boolean> {
   return credential.verify()
 }
