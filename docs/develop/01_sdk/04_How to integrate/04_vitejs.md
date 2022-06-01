@@ -64,7 +64,7 @@ function App() {
       let did = await Kilt.Did.Web3Names.queryDidForWeb3Name('john_doe');
       setDid(did);  
     };
-    initKilt();
+    resolveWeb3Name();
   });   
   
   
