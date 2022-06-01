@@ -5,10 +5,10 @@ title: ViteJS
 
 ViteJS is a great tool to bootstrap your project. 
 As for all browser based projects, you have to make sure that nodejs polyfills are in place to make the SDK work.
+If you start from any ViteJS template, you only have to make sure to install and enable the polyfills.
 
-If you start from any ViteJS template, you have to make sure to install and enable the polyfills.
+Bootstrap using the template of your choice and install KILT + NodeJS polyfills:
 
-Bootstrap template of your choice and install KILT + NodeJS polyfills:
 ```
 yarn create vite my-app --template react-ts
 cd my-app
@@ -18,6 +18,7 @@ yarn add --dev @esbuild-plugins/node-modules-polyfill
 ```
 
 Adjust the `vite.config.ts` file to activate the polyfills:
+
 ```js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
