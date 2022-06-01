@@ -22,7 +22,7 @@ jobs:
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
-          replace: '@kiltprotocol/sdk-js": "${{ github.event.inputs.client_payload.latestTag }}'
+          replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**"
           exclude: "**/*.lock"
           regex: true
@@ -51,7 +51,7 @@ jobs:
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
-          replace: '@kiltprotocol/sdk-js": "${{ github.event.inputs.client_payload.latestTag }}'
+          replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**"
           exclude: "**/*.lock"
           regex: true
@@ -137,4 +137,6 @@ jobs:
             :memo:  documentation
             📚+release
             🧰 sdk
+            🚚+high
+            
             
