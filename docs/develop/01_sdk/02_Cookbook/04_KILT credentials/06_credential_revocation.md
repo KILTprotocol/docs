@@ -1,6 +1,6 @@
 ---
 id: attestation-removal
-title: Revoking and removing an attestation
+title: Revoke and remove an attestation
 ---
 import CodeBlock from '@theme/CodeBlock';
 import RevokeAttestation from '!!raw-loader!@site/code_examples/core_features/claiming/06_revoke_attestation.ts';
