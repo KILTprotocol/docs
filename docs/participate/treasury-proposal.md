@@ -35,7 +35,7 @@ Complete the form:
 * Submit with Account: this is the account that will make the 5% deposit 
 * Beneficiary: this is the account that will receive Treasury funding if successful 
 * Value: this is the full amount of KILT being requested
-* Click submit to complete the proposal.
+* Click submit to complete the proposal
 
 # Polkassembly Details
 
