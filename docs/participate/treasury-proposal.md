@@ -45,7 +45,7 @@ Enter the following information:
 
 * Title: a title for your project
 * Purpose: what’s your motivation behind the effort
-* Description: a short summary about you, the project and the need for what you are proposing.
+* Description: a short summary about you, the project and the need for what you are proposing
 * Full Proposal: link to the full proposal
 * Proposal Amount: the amount requested in USD
 * KILT Rate: the current rate of exchange in USD
@@ -54,7 +54,7 @@ Enter the following information:
 * Period: intended date of delivery if applicable
 * Contact: email or social handle (please specify social network)
 * Engage
-* Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter).
+* Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter)
 
 Click [here](https://www.kilt.io/treasury/overview/) to get an overview about Treasury.
 Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
