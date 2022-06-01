@@ -27,13 +27,14 @@ export async function createDriversLicenseCType(
     type: 'object'
   })
 
-  // Generate a creation extrinsic and sign it with the attester's DID.
+  // Generate a creation extrinsic and sign it with the attester's attestation key.
   const ctypeCreationTx = await ctype
     .getStoreTx()
     .then((tx) =>
       creatorDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
     )
-  // Submit the creation extrinsic to the KILT blockchain.
+  // Submit the creation extrinsic to the KILT blockchain
+  // using the KILT account specified in the creation operation.
   await Kilt.BlockchainUtils.signAndSubmitTx(
     ctypeCreationTx,
     submitterAccount,

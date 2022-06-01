@@ -11,27 +11,24 @@ export async function revokeCredential(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
     .IS_FINALIZED
 ): Promise<void> {
-  // Create the revocation tx and sign it with the attester's attestation key.
-  const revocationTx = await credential.attestation
-    .getRevokeTx(0)
-    .then((tx) =>
-      attesterDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
-    )
-  // Submit the revocation tx to the KILT blockchain.
-  await Kilt.BlockchainUtils.signAndSubmitTx(revocationTx, submitterAccount, {
+  const tx = shouldRemove
+    ? // If the attestation is to be removed, create a `remove` tx,
+      // which revokes and removes the attestation in one go.
+      await credential.attestation
+        .getRemoveTx(0)
+        .then((tx) =>
+          attesterDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
+        )
+    : // Otherwise, simply revoke the attestation but leave it on chain.
+      // Hence, the storage is not cleared and the deposit not returned.
+      await credential.attestation
+        .getRevokeTx(0)
+        .then((tx) =>
+          attesterDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
+        )
+
+  // Submit the right tx to the KILT blockchain.
+  await Kilt.BlockchainUtils.signAndSubmitTx(tx, submitterAccount, {
     resolveOn
   })
-
-  // Optionally, the attestation info can be removed from the blockchain, with or without revoking it first.
-  if (shouldRemove) {
-    const removalTx = await credential.attestation
-      .getRemoveTx(0)
-      .then((tx) =>
-        attesterDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
-      )
-    // Submit the removal tx to the KILT blockchain.
-    await Kilt.BlockchainUtils.signAndSubmitTx(removalTx, submitterAccount, {
-      resolveOn
-    })
-  }
 }

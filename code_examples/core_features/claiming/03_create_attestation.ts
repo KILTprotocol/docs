@@ -10,7 +10,8 @@ export async function createAttestation(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
     .IS_FINALIZED
 ): Promise<Kilt.Credential> {
-  // Create an attestation object and write its root hash on the chain using the provided attester's full DID.
+  // Create an attestation object and write its root hash on the chain
+  // using the provided attester's full DID.
   const attestation = await Kilt.Attestation.fromRequestAndDid(
     requestForAttestation,
     attester.did
@@ -24,7 +25,8 @@ export async function createAttestation(
     resolveOn
   })
 
-  // Return the credential, which is the combination of the original request for attestation plus the on-chain attestation info
+  // Return the credential, which is the combination of the original request for attestation
+  // plus the on-chain attestation info.
   return Kilt.Credential.fromRequestAndAttestation(
     requestForAttestation,
     attestation

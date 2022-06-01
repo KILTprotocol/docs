@@ -13,7 +13,7 @@ To verify the revocation status of the presented credential(s), a verifier must 
 
 :::info
 KILT supports selective disclosure of claims when creating presentations.
-This means that given a credential, it is possible for the claimer to reveal only a subset of its claims, depending on the requirements set by the verified.
+This means that given a credential, it is possible for the claimer to reveal only a subset of its claims, depending on the requirements set by the verifier.
 Check the snippet below to see how that is done using the KILT SDK.
 :::
 

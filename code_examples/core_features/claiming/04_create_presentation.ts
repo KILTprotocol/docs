@@ -4,14 +4,14 @@ export async function createPresentation(
   keystore: Kilt.KeystoreSigner,
   claimerDid: Kilt.Did.DidDetails,
   credential: Kilt.Credential,
-  selectedAttributed: string[],
+  selectedAttributes: string[] | undefined = undefined,
   challenge: string | undefined = undefined
 ): Promise<Kilt.Credential> {
-  // Create a presentation with only the specified fields revealed.
+  // Create a presentation with only the specified fields revealed, if specified.
   return credential.createPresentation({
     claimerDid,
     signer: keystore,
-    selectedAttributes: selectedAttributed,
+    selectedAttributes,
     challenge
   })
 }

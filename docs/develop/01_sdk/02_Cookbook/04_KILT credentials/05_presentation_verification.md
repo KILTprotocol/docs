@@ -6,8 +6,8 @@ import CodeBlock from '@theme/CodeBlock';
 import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/claiming/05_verify_presentation.ts';
 
 Whether a presentation includes a selective disclosure or a whole credential is irrelevant for verifiers.
-This is because in KILT terms a presentation **is** a credential.
-This means that the logic for verifiers does not change depending on the case, and is as easy as the following code snippet:
+This is because in KILT a presentation **is** a credential.
+This means that the logic for verifiers does not change depending on the case, thus verifying a presentation is as easy as calling one SDK function like in the following code snippet:
 
 <CodeBlock className="language-js">
   {VerifyPresentation}
