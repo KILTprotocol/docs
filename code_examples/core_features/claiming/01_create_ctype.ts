@@ -9,6 +9,7 @@ export async function createDriversLicenseCType(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
     .IS_FINALIZED
 ): Promise<Kilt.CType> {
+  // Create a new CType definition.
   const ctype = Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
     title: `Drivers License by ${creatorDid.did}`,
@@ -18,16 +19,21 @@ export async function createDriversLicenseCType(
       },
       age: {
         type: 'integer'
+      },
+      id: {
+        type: 'string'
       }
     },
     type: 'object'
   })
 
+  // Generate a creation extrinsic and sign it with the attester's DID.
   const ctypeCreationTx = await ctype
     .getStoreTx()
     .then((tx) =>
       creatorDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
     )
+  // Submit the creation extrinsic to the KILT blockchain.
   await Kilt.BlockchainUtils.signAndSubmitTx(
     ctypeCreationTx,
     submitterAccount,

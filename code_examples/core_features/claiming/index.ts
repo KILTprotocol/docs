@@ -7,13 +7,13 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { createCompleteFullDid } from '../did/05_full_did_complete'
 import { createSimpleLightDid } from '../did/01_light_did_simple'
 
-import { createAttestation } from './04_create_attestation'
-import { createClaim } from './02_create_claim'
+import { createAttestation } from './03_create_attestation'
 import { createDriversLicenseCType } from './01_create_ctype'
-import { createPresentation } from './06_create_presentation'
-import { createRequestForAttestation } from './03_create_request_for_attestation'
-import { verifyCredential } from './05_verify_credential'
-import { verifyPresentation } from './07_verify_presentation'
+import { createPresentation } from './04_create_presentation'
+import { reclaimAttestationDeposit } from './07_reclaim_attestation_deposit'
+import { requestAttestation } from './02_request_attestation'
+import { revokeCredential } from './06_revoke_attestation'
+import { verifyPresentation } from './05_verify_presentation'
 
 export async function runAll(
   api: ApiPromise,
@@ -39,15 +39,13 @@ export async function runAll(
     submitterAccount,
     resolveOn
   )
-  console.log('2 claiming) Create claim')
-  const claim = await createClaim(ctype, claimerLightDid.did)
-  console.log('3 claiming) Create request for attestation')
-  const requestForAttestation = await createRequestForAttestation(
+  console.log('2 claiming) Create request for attestation')
+  const requestForAttestation = await requestAttestation(
     keystore,
-    claim,
-    claimerLightDid
+    claimerLightDid,
+    ctype
   )
-  console.log('4 claiming) Create attestation and credential')
+  console.log('3 claiming) Create attestation and credential')
   const credential = await createAttestation(
     keystore,
     requestForAttestation,
@@ -55,24 +53,22 @@ export async function runAll(
     submitterAccount,
     resolveOn
   )
-  console.log('5 claiming) Verify credential')
-  const isCredentialVerified = await verifyCredential(credential)
-  if (!isCredentialVerified) {
-    throw 'Credential could not be verified.'
-  }
-
-  console.log('6 claiming) Create selective disclosure presentation')
+  console.log('4 claiming) Create selective disclosure presentation')
   const presentation = await createPresentation(
     keystore,
     claimerLightDid,
     credential,
     ['name', 'id']
   )
-  console.log('7 claiming) Verify selective disclosure presentation')
+  console.log('5 claiming) Verify selective disclosure presentation')
   const isPresentationVerified = await verifyPresentation(presentation)
   if (!isPresentationVerified) {
     throw 'Presentation could not be verified.'
   }
+  console.log('6 claiming) Revoke attestation')
+  await revokeCredential(keystore, attesterFullDid, submitterAccount, credential, false, resolveOn)
+  console.log('7 claiming) Reclaim attestation deposit')
+  await reclaimAttestationDeposit(submitterAccount, credential, resolveOn)
 
   console.log('Claiming flow completed!')
 }
