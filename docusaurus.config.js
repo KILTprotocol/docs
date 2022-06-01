@@ -68,7 +68,7 @@ module.exports = {
               type: 'doc',
               docId: 'participate/Governance/vote',
               label: 'Voting',
-            }
+            },
           ],
         },
         {
