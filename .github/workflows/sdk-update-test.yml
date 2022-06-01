@@ -71,7 +71,7 @@ jobs:
   create_pull_request:
     runs-on: ubuntu-latest
     needs: [ workshop, core_features ]
-    if: success() && !contains('${{ github.event.client_payload.latestTag }}', 'rc') && !contains('${{ github.event.client_payload.latestTag }}', 'beta')
+    if: success() && !contains(github.event.client_payload.latestTag, 'rc') && !contains(github.event.client_payload.latestTag, 'beta')
     steps:
       - uses: actions/checkout@v1
       - name: Get current package version
