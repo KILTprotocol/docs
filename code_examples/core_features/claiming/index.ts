@@ -66,7 +66,14 @@ export async function runAll(
     throw 'Presentation could not be verified.'
   }
   console.log('6 claiming) Revoke attestation')
-  await revokeCredential(keystore, attesterFullDid, submitterAccount, credential, false, resolveOn)
+  await revokeCredential(
+    keystore,
+    attesterFullDid,
+    submitterAccount,
+    credential,
+    false,
+    resolveOn
+  )
   console.log('7 claiming) Reclaim attestation deposit')
   await reclaimAttestationDeposit(submitterAccount, credential, resolveOn)
 

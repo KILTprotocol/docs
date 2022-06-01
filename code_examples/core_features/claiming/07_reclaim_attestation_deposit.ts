@@ -9,9 +9,10 @@ export async function reclaimAttestationDeposit(
     .IS_FINALIZED
 ): Promise<void> {
   // Generate the submittable extrinsic to claim the deposit back.
-  const depositReclaimTx =
-    await credential.attestation.getReclaimDepositTx()
-  
+  const depositReclaimTx = await credential.attestation.getReclaimDepositTx()
+
   // Submit the revocation tx to the KILT blockchain.
-  await Kilt.BlockchainUtils.signAndSubmitTx(depositReclaimTx, depositPayer, { resolveOn })
+  await Kilt.BlockchainUtils.signAndSubmitTx(depositReclaimTx, depositPayer, {
+    resolveOn
+  })
 }
