@@ -3,7 +3,7 @@ id: howto-integrate-vitejs
 title: ViteJS
 ---
 
-ViteJS is a great tool to bootstrap your project. 
+[ViteJS](https://vitejs.dev/guide/) is a great tool to bootstrap your project.
 As for all browser based projects, you have to make sure that nodejs polyfills are in place to make the SDK work.
 If you start from any ViteJS template, you only have to make sure to install and enable the polyfills.
 
