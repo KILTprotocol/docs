@@ -1,9 +1,6 @@
 import fetch from 'node-fetch'
 
-import { Attestation, RequestForAttestation } from '@kiltprotocol/core'
-import { DidUtils, Web3Names, resolveDoc } from '@kiltprotocol/did'
-
-import type { IRequestForAttestation } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 // The type to filter the endpoints of the retrieved DID.
 const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
@@ -16,15 +13,15 @@ type CredentialMetadata = {
 }
 
 type CredentialEntry = {
-  credential: IRequestForAttestation
+  credential: Kilt.IRequestForAttestation
   metadata?: CredentialMetadata
 }
 
 const verifyCredential = async (
-  publishedCredential: RequestForAttestation
+  publishedCredential: Kilt.RequestForAttestation
 ): Promise<boolean> => {
   // Retrieve the on-chain attestation information about the credential.
-  const onChainAttestation = await Attestation.query(
+  const onChainAttestation = await Kilt.Attestation.query(
     publishedCredential.rootHash
   )
   if (!onChainAttestation || onChainAttestation.revoked) {
@@ -37,16 +34,16 @@ const verifyCredential = async (
 }
 
 export async function queryPublishedCredentials(
-  web3Name: Web3Names.Web3Name
+  web3Name: Kilt.Did.Web3Names.Web3Name
 ): Promise<CredentialEntry[]> {
-  const didForWeb3Name = await Web3Names.queryDidForWeb3Name(web3Name)
+  const didForWeb3Name = await Kilt.Did.Web3Names.queryDidForWeb3Name(web3Name)
   if (!didForWeb3Name) {
     throw `No DID found for "${didForWeb3Name}"`
   }
 
   console.log(`DID for "${web3Name}": ${didForWeb3Name}`)
 
-  const resolutionResult = await resolveDoc(didForWeb3Name)
+  const resolutionResult = await Kilt.Did.resolveDoc(didForWeb3Name)
   if (!resolutionResult) {
     throw 'The DID does not exist on the KILT blockchain.'
   }
@@ -88,7 +85,8 @@ export async function queryPublishedCredentials(
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      const credentialInstance = RequestForAttestation.fromRequest(credential)
+      const credentialInstance =
+        Kilt.RequestForAttestation.fromRequest(credential)
       // Verify the credential integrity and signature, according to the KILT specification.
       const credentialStatus = await verifyCredential(credentialInstance)
       if (!credentialStatus) {
@@ -96,7 +94,9 @@ export async function queryPublishedCredentials(
       }
 
       // Verify that the credential refers to the intended subject
-      if (!DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)) {
+      if (
+        !Kilt.Did.DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)
+      ) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
     })

@@ -13,7 +13,7 @@ The attester then decrypts the message (if needed) and checks the validity of th
 To create the attestation, the attester:
 
 - manually verifies the data inside the claim by checking that all the data fields match the requirements of the attestation
-- creates an attestation object from the root hash of the RequestForAttestation and the attester’s address.
+- creates an attestation object from the root hash of the `RequestForAttestation` and the attester’s address.
 - stores the attestation hash on the chain by submitting a new transaction with the attester’s signature.
 
 Once this is done, the attester can optionally create a `Credential` object from the `RequestForAttestation` and the `Attestation` objects and send it back to the claimer.

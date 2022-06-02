@@ -1,17 +1,18 @@
-import type { KeyringPair } from '@kiltprotocol/types'
+import type { KeyringPair } from '@polkadot/keyring/types'
 
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { SubscriptionPromise } from '@kiltprotocol/types'
-import { Web3Names } from '@kiltprotocol/did'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimWeb3NameDeposit(
   depositPayerAccount: KeyringPair,
-  web3Name: Web3Names.Web3Name,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  web3Name: Kilt.Did.Web3Names.Web3Name,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   // Release the Web3 name by the deposit payer.
-  const web3NameReleaseTx = await Web3Names.getReclaimDepositTx(web3Name)
-  await BlockchainUtils.signAndSubmitTx(
+  const web3NameReleaseTx = await Kilt.Did.Web3Names.getReclaimDepositTx(
+    web3Name
+  )
+  await Kilt.BlockchainUtils.signAndSubmitTx(
     web3NameReleaseTx,
     depositPayerAccount,
     {

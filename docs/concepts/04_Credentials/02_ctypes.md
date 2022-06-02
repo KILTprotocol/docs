@@ -3,15 +3,19 @@ id: ctypes
 title: CTypes
 ---
 
-CTypes are data types specific to KILT that define the structure of a claim (i.e. the data model for your claim). They are based on JSON Schema, a standard used to annotate and validate JSON documents. The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
+CTypes are data types specific to KILT that define the structure of a claim (i.e. the data model for your claim).
+They are based on JSON Schema, a standard used to annotate and validate JSON documents.
+The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
 
 ## JSON-Schema
 
-KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format. This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with the definition of its characteristics. The following are all required properties of the schema, with no additional properties allowed:
+KILT uses [JSON-Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
+This data format for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts) forms a CType with the definition of its characteristics.
+The following are all required properties of the schema, with no additional properties allowed:
 
 - Identifier: `$id` in the format `kilt:ctype:0x{cTypeHash}`
 - KILT specific JSON-Schema: '[http://kilt-protocol.org/draft-01/ctype-input#](http://kilt-protocol.org/draft-01/ctype-input#)'
-- Title: defines a user-friendly name for the CType that makes it easier for users to contextualise
+- Title: Defines a user-friendly name for the CType that makes it easier for users to contextualise
 - Properties: Each property is the attribute the claimer wishes to have attested by the attester.
 
 ### Properties
@@ -55,11 +59,13 @@ CType Metadata can be linked to a given CType to provide title and descriptions 
 
 ## Hashing
 
-The hash of the CType is used to identify and anchor it to the chain. This `hash` is stored on-chain via the store method.
+The hash of the CType is used to identify and anchor it to the chain.
+This `hash` is stored on-chain via the store method.
 
 ### Constructing the `hash` for the `$id`
 
-KILT uses the hashing algorithm blake2b, hashing the CType contents. The object is sorted by a canonicalization algorithm before hashing to ensure that semantically equivalent CTypes with different order of their properties would produce the same output hash.
+KILT uses the hashing algorithm blake2b, hashing the CType contents.
+The object is sorted by a canonicalization algorithm before hashing to ensure that semantically equivalent CTypes with different order of their properties would produce the same output hash.
 
 The `hash` is made from the following fields in the schema object:
 
@@ -74,18 +80,25 @@ The `hash` is made from the following fields in the schema object:
 
 The `$id` property, if present, is excluded from the hashing process since it represents the result of such a process.
 
-The `$id` is generated, by prepending the hash (in hex form) with `kilt:ctype`. A typical CType id would look like this: `kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84`
+The `$id` is generated, by prepending the hash (in hex form) with `kilt:ctype`.
+A typical CType id would look like this: `kilt:ctype:0xba15bf4960766b0a6ad7613aa3338edce95df6b22ed29dd72f6e72d740829b84`
 
 ## Storing / Querying CTypes
 
-CTypes can be stored on the blockchain. After creating a CType, the `store` transaction will include the full CType as a remark and will anchor the hash of it on the chain. Querying is not trivial, since the transaction would have to be found in the blockchain history, but it can be retrieved from indexing services.
+CTypes can be stored on the blockchain.
+After creating a CType, the `store` transaction will include the full CType as a remark and will anchor the hash of it on the chain.
+Querying is not trivial, since the transaction would have to be found in the blockchain history, but it can be retrieved from indexing services.
 
 ## Exchange of CTypes with different actors
 
 There are three actors in the KILT workflow: Claimers (the holder of the credential), Attesters (who do the work and approve or reject the credential) and Verifiers (who require a credential from a Claimer).
 
-A Claimer can apply for a new credential by requesting a CType from the Attester. The Claimer then creates a Claim, based on the CType and sends the information to be attested to the Attester. The Attester confirms the information and returns a credential.
+A Claimer can apply for a new credential by requesting a CType from the Attester.
+The Claimer then creates a Claim, based on the CType and sends the information to be attested to the Attester.
+The Attester confirms the information and returns a credential.
 
-A Verifier can request a credential from a Claimer that follows a given CType. For example, a gaming company may request a specific credential to verify the gamer's ranking. Depending on how this credential was created initially, this can be done with the software development kit (SDK) messaging, or in other ways independent of the protocol (e.g., via browser extensions, email, QR code, etc.)
+A Verifier can request a credential from a Claimer that follows a given CType.
+For example, a gaming company may request a specific credential to verify the gamer's ranking.
+Depending on how this credential was created initially, this can be done with the software development kit (SDK) messaging, or in other ways independent of the protocol (e.g., via browser extensions, email, QR code, etc.)
 
 Each actor in the system can verify the ownership and validity of the given CType at any time.
