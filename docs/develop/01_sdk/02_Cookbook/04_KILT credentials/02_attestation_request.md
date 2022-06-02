@@ -4,6 +4,7 @@ title: Request an attestation
 ---
 import CodeBlock from '@theme/CodeBlock';
 import RequestAttestation from '!!raw-loader!@site/code_examples/core_features/claiming/02_request_attestation.ts';
+import JsonExamples from '@site/src/components/JsonExamples';
 
 To obtain credentials, claimers have to request an attestation for a set of claims from an attester.
 The resulting object is a `RequestForAttestation`, which can be created following the snippet below.
@@ -19,3 +20,9 @@ This process does not involve any interaction with the KILT blockchain, but simp
 The structure of the claims must respect the schema defined in the specified CType.
 Attesters (and verifiers) will reject claims that fail to verify correctly.
 :::
+
+An example Claim:
+<JsonExamples type="claim" />
+
+An example `RequestForAttestation` object:
+<JsonExamples type="requestForAttestation" />

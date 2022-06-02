@@ -2,7 +2,13 @@ import { CType, Claim, RequestForAttestation } from '@kiltprotocol/core'
 
 const stringify = (object) => JSON.stringify(object, undefined, 2)
 
-export function jsonExamples() {
+export type jsonExampleTypes =
+  | 'ctype'
+  | 'rawClaim'
+  | 'claim'
+  | 'requestForAttestation'
+
+export function jsonExamples(type: jsonExampleTypes) {
   const ctype = CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
     title: 'Drivers License',
@@ -16,22 +22,21 @@ export function jsonExamples() {
     },
     type: 'object',
   })
+  if (type === 'ctype') return stringify(ctype)
 
   const rawClaim = {
     name: 'Alice',
     age: 29,
   }
+  if (type === 'rawClaim') return stringify(rawClaim)
+
   const claim = Claim.fromCTypeAndClaimContents(
     ctype,
     rawClaim,
     'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
   )
-  const requestForAttestation = RequestForAttestation.fromClaim(claim)
+  if (type === 'claim') return stringify(claim)
 
-  return {
-    ctype: stringify(ctype),
-    rawClaim: stringify(rawClaim),
-    claim: stringify(claim),
-    requestForAttestation: stringify(requestForAttestation),
-  }
+  const requestForAttestation = RequestForAttestation.fromClaim(claim)
+  if (type === 'requestForAttestation') return stringify(requestForAttestation)
 }
