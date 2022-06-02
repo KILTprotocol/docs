@@ -6,7 +6,8 @@ When verifying a Nested CType, the sub-CTypes need to be available.
 
 ## Referencing
 
-JSON-schema provides a referencing keyword `$ref` that can be used as a pointer from other JSON schemas. This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
+JSON-schema provides a referencing keyword `$ref` that can be used as a pointer from other JSON schemas.
+This allows CTypes to either reference fields in other CTypes or nest entire CTypes within one another, providing flexibility for several different use cases.
 
 This facility requires all JSON objects to build the schema and allows the reuse of previous schemas, reducing the need for copy-and-paste.
 

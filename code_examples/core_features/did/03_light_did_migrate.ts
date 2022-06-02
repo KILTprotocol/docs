@@ -1,28 +1,27 @@
 import type { KeyringPair } from '@polkadot/keyring/types'
 
-import {
-  DemoKeystore,
-  FullDidDetails,
-  LightDidDetails
-} from '@kiltprotocol/did'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { SubscriptionPromise } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function migrateLightDid(
-  keystore: DemoKeystore,
+  keystore: Kilt.Did.DemoKeystore,
   submitterAccount: KeyringPair,
-  lightDid: LightDidDetails,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-): Promise<FullDidDetails> {
+  lightDid: Kilt.Did.LightDidDetails,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
+): Promise<Kilt.Did.FullDidDetails> {
   // Generate the DID migration extrinsic.
   const migratedFullDid = await lightDid.migrate(
     submitterAccount.address,
     keystore,
     async (migrationTx) => {
       // The extrinsic can then be submitted by the authorized account as usual.
-      await BlockchainUtils.signAndSubmitTx(migrationTx, submitterAccount, {
-        resolveOn
-      })
+      await Kilt.BlockchainUtils.signAndSubmitTx(
+        migrationTx,
+        submitterAccount,
+        {
+          resolveOn
+        }
+      )
     }
   )
 
