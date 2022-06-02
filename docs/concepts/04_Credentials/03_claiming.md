@@ -2,14 +2,17 @@
 id: claiming
 title: Claiming
 ---
-As KILT is an open system, any entity can make a claim about themselves. A claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) confirms this claim. A Verifier therefore trusts specific Attesters, who attest Claims from Claimers.
+As KILT is an open system, any entity can make a claim about themselves.
+A claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) confirms this claim.
+A Verifier therefore trusts specific Attesters, who attest Claims from Claimers.
 
-In KILT, claims are based on claim types (CTypes). A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
+In KILT, claims are based on claim types (CTypes).
+A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
 
 ## Create your Claim from a CType
 
 Once you have a CType, you only need to fill it with content to create your claim, i.e. supply the values for all fields of the CType.
-The resulting claim is referencing the ctype by its hash and includes the DID of the owner (i.e., the subject) of the claim.
+The resulting claim is referencing the CType by its hash and includes the DID of the owner (i.e., the subject) of the claim.
 
 ```js title="Example Claim"
 {

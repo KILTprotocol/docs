@@ -32,7 +32,8 @@ We will have recommended guides to other tutorials for further learnings.
 ## Setup
 
 We will focus on creating a new project from stratch, which will require a little setup.
-First, we need to create a new project in a new directory. For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
+First, we need to create a new project in a new directory.
+For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
 From inside the `kilt-rocks` project directory, install the **SDK**, **node** and **axios** with either of the following package managers:
 

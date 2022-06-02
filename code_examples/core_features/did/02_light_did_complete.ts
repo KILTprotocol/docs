@@ -1,18 +1,11 @@
-import {
-  DemoKeystore,
-  EncryptionAlgorithms,
-  LightDidDetails,
-  SigningAlgorithms
-} from '@kiltprotocol/did'
-import { EncryptionKeyType, VerificationKeyType } from '@kiltprotocol/types'
-import type { DidServiceEndpoint } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createCompleteLightDid(
-  keystore: DemoKeystore,
+  keystore: Kilt.Did.DemoKeystore,
   authenticationSeed: string | undefined = undefined
-): Promise<LightDidDetails> {
+): Promise<Kilt.Did.LightDidDetails> {
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
-    alg: SigningAlgorithms.Ed25519,
+    alg: Kilt.Did.SigningAlgorithms.Ed25519,
     seed: authenticationSeed
   })
 
@@ -21,11 +14,11 @@ export async function createCompleteLightDid(
 
   // Use the keystore to generate a new keypair to use for encryption.
   const encryptionKeyPublicDetails = await keystore.generateKeypair({
-    alg: EncryptionAlgorithms.NaclBox,
+    alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
     seed: encryptionSeed
   })
 
-  const serviceEndpoints: DidServiceEndpoint[] = [
+  const serviceEndpoints: Kilt.DidServiceEndpoint[] = [
     {
       id: 'my-service',
       types: ['KiltPublishedCredentialCollectionV1'],
@@ -34,14 +27,14 @@ export async function createCompleteLightDid(
   ]
 
   // Create the KILT light DID with the information generated.
-  const lightDID = LightDidDetails.fromDetails({
+  const lightDID = Kilt.Did.LightDidDetails.fromDetails({
     authenticationKey: {
       publicKey: authenticationKeyPublicDetails.publicKey,
-      type: VerificationKeyType.Ed25519
+      type: Kilt.VerificationKeyType.Ed25519
     },
     encryptionKey: {
       publicKey: encryptionKeyPublicDetails.publicKey,
-      type: EncryptionKeyType.X25519
+      type: Kilt.EncryptionKeyType.X25519
     },
     serviceEndpoints
   })
