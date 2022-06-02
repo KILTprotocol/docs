@@ -3,27 +3,16 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 import { blake2AsHex, randomAsHex } from '@polkadot/util-crypto'
 import { ApiPromise } from '@polkadot/api'
 
-import {
-  DemoKeystore,
-  EncryptionAlgorithms,
-  FullDidCreationBuilder,
-  FullDidDetails,
-  SigningAlgorithms
-} from '@kiltprotocol/did'
-import {
-  EncryptionKeyType,
-  SubscriptionPromise,
-  VerificationKeyType
-} from '@kiltprotocol/types'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createCompleteFullDid(
-  keystore: DemoKeystore,
+  keystore: Kilt.Did.DemoKeystore,
   api: ApiPromise,
   submitterAccount: KeyringPair,
   authenticationSeed: string | undefined = undefined,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
-): Promise<FullDidDetails> {
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
+): Promise<Kilt.Did.FullDidDetails> {
   authenticationSeed = authenticationSeed || randomAsHex(32)
   // Create the attestation key seed by hasing the provided authentication seed.
   const attestationSeed = blake2AsHex(authenticationSeed)
@@ -33,41 +22,41 @@ export async function createCompleteFullDid(
   // Ask the keystore to generate a new keypair to use for authentication.
   const authenticationKeyPublicDetails = await keystore.generateKeypair({
     seed: authenticationSeed,
-    alg: SigningAlgorithms.Ed25519
+    alg: Kilt.Did.SigningAlgorithms.Ed25519
   })
 
   const encryptionSeed = randomAsHex(32)
   // Ask the keystore to generate a new keypar to use for encryption.
   const encryptionKeyPublicDetails = await keystore.generateKeypair({
     seed: encryptionSeed,
-    alg: EncryptionAlgorithms.NaclBox
+    alg: Kilt.Did.EncryptionAlgorithms.NaclBox
   })
 
   const attestationKeyPublicDetails = await keystore.generateKeypair({
     seed: attestationSeed,
-    alg: SigningAlgorithms.Sr25519
+    alg: Kilt.Did.SigningAlgorithms.Sr25519
   })
 
   const delegationKeyPublicDetails = await keystore.generateKeypair({
     seed: delegationSeed,
-    alg: SigningAlgorithms.EcdsaSecp256k1
+    alg: Kilt.Did.SigningAlgorithms.EcdsaSecp256k1
   })
 
-  const fullDid = await new FullDidCreationBuilder(api, {
+  const fullDid = await new Kilt.Did.FullDidCreationBuilder(api, {
     publicKey: authenticationKeyPublicDetails.publicKey,
-    type: VerificationKeyType.Ed25519
+    type: Kilt.VerificationKeyType.Ed25519
   })
     .addEncryptionKey({
       publicKey: encryptionKeyPublicDetails.publicKey,
-      type: EncryptionKeyType.X25519
+      type: Kilt.EncryptionKeyType.X25519
     })
     .setAttestationKey({
       publicKey: attestationKeyPublicDetails.publicKey,
-      type: VerificationKeyType.Sr25519
+      type: Kilt.VerificationKeyType.Sr25519
     })
     .setDelegationKey({
       publicKey: delegationKeyPublicDetails.publicKey,
-      type: VerificationKeyType.Ecdsa
+      type: Kilt.VerificationKeyType.Ecdsa
     })
     .addServiceEndpoint({
       id: 'my-service',
@@ -78,9 +67,13 @@ export async function createCompleteFullDid(
       keystore,
       submitterAccount.address,
       async (creationTx) => {
-        await BlockchainUtils.signAndSubmitTx(creationTx, submitterAccount, {
-          resolveOn
-        })
+        await Kilt.BlockchainUtils.signAndSubmitTx(
+          creationTx,
+          submitterAccount,
+          {
+            resolveOn
+          }
+        )
       }
     )
 

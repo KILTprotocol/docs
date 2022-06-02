@@ -4,12 +4,12 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { hexToString } from '@polkadot/util'
 
-import { Web3Names } from '@kiltprotocol/did'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function queryAccountWeb3Name(
   api: ApiPromise,
   lookupAccountAddress: KeyringPair['address']
-): Promise<Web3Names.Web3Name | null> {
+): Promise<Kilt.Did.Web3Names.Web3Name | null> {
   // First RPC call to `api.query.didLookup.connectedDids` for account -> DID lookup.
   const maybeAccountDid = await api.query.didLookup.connectedDids<
     Option<Struct>

@@ -1,9 +1,8 @@
-import { DemoKeystore, DidDetails, DidUtils } from '@kiltprotocol/did'
-import { KeyRelationship } from '@kiltprotocol/types'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateAndVerifyDidAuthenticationSignature(
-  keystore: DemoKeystore,
-  did: DidDetails,
+  keystore: Kilt.Did.DemoKeystore,
+  did: Kilt.Did.DidDetails,
   payload: string | Uint8Array
 ): Promise<void> {
   // Generate a signature using the provided DID's authentication key.
@@ -18,11 +17,12 @@ export async function generateAndVerifyDidAuthenticationSignature(
   console.log(JSON.stringify(signature, null, 2))
 
   // Verify the validity of the signature using the DID's authentication public key.
-  const signatureVerificationResult = await DidUtils.verifyDidSignature({
-    message: payload,
-    signature,
-    expectedVerificationMethod: KeyRelationship.authentication
-  })
+  const signatureVerificationResult =
+    await Kilt.Did.DidUtils.verifyDidSignature({
+      message: payload,
+      signature,
+      expectedVerificationMethod: Kilt.KeyRelationship.authentication
+    })
 
   if (!signatureVerificationResult.verified) {
     throw `Signature failed to verify. Reason: ${signatureVerificationResult.reason}`

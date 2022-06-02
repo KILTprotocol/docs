@@ -2,20 +2,12 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { ApiPromise } from '@polkadot/api'
 
-import {
-  DemoKeystore,
-  DidBatchBuilder,
-  FullDidDetails
-} from '@kiltprotocol/did'
-import { BlockchainUtils } from '@kiltprotocol/chain-helpers'
-import { CType } from '@kiltprotocol/core'
-import { SubscriptionPromise } from '@kiltprotocol/types'
-import { UUID } from '@kiltprotocol/utils'
+import * as Kilt from '@kiltprotocol/sdk-js'
 
-function getRandomCType(): CType {
+function getRandomCType(): Kilt.CType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
-  const randomFactor = UUID.generate()
-  return CType.fromSchema({
+  const randomFactor = Kilt.Utils.UUID.generate()
+  return Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
     title: `CType ${randomFactor}`,
     properties: {
@@ -31,11 +23,12 @@ function getRandomCType(): CType {
 }
 
 export async function batchCTypeCreationExtrinsics(
-  keystore: DemoKeystore,
+  keystore: Kilt.Did.DemoKeystore,
   api: ApiPromise,
   submitterAccount: KeyringPair,
-  fullDid: FullDidDetails,
-  resolveOn: SubscriptionPromise.ResultEvaluator = BlockchainUtils.IS_FINALIZED
+  fullDid: Kilt.Did.FullDidDetails,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+    .IS_FINALIZED
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
@@ -44,12 +37,12 @@ export async function batchCTypeCreationExtrinsics(
   const ctype2CreationTx = await ctype2.getStoreTx()
 
   // Create the DID-signed batch
-  const batch = await new DidBatchBuilder(api, fullDid)
+  const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
     .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
     .consume(keystore, submitterAccount.address)
 
   // The authorized account submits the batch to the chain
-  await BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
+  await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
     resolveOn
   })
 
