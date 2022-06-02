@@ -25,9 +25,9 @@ The Terms object consists of following items:
 
 - **Claim**: A partial claim with information the attester already has about the claimer.
 - This helps the claimer to pre-fill their claims with information only known to the attester.
-  - The partial claim has to at least contain the ctype hash the attestation will be based on.
+  - The partial claim has to at least contain the CType hash the attestation will be based on.
 
-- **CTypes**: An optional list of full ctypes, in case the claimer doesn't know about the correct ctype for the credential, yet.
+- **CTypes**: An optional list of full CTypes, in case the claimer doesn't know about the correct CType for the credential, yet.
 
 - **Legitimations**: Legitimations are Credentials, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested.
 - This is a way of establishing trust between the participants.
@@ -43,7 +43,7 @@ The Terms object consists of following items:
   - A breakdown of all the (net and gross) costs, the currency quoted, and any taxes associated with the attestation.
   - A link to the terms and conditions of the attestation.
 
-Only the ctype hash in the partial claim is required, everything else is optional.
+Only the CType hash in the partial claim is required, everything else is optional.
 
 ## How to create a Quote
 
