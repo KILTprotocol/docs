@@ -69,6 +69,11 @@ module.exports = {
               docId: 'participate/Governance/vote',
               label: 'Voting',
             },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-proposal',
+              label: 'Treasury Proposal',
+            }
           ],
         },
         {
