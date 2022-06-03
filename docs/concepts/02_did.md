@@ -54,8 +54,8 @@ Note that the identifier of the two DIDs, apart from the initial `01` sequence o
 Once a light DID is migrated, all the credentials collected by the light DID can only be presented using the migrated on-chain DID.
 This is by design, as it is assumed that the user had valid reasons to migrate the DID on the chain, and as on-chain DIDs offer greater security guarantees, KILT will reject light DID signatures even in case the original claim in the attestation was generated with that off-chain DID.
 
-## DIDs and Web3 names
+## DIDs and web3names
 
 Since KILT DIDs are very machine-friendly, they are not very human-friendly.
-For this reason, KILT allows DIDs to be linked to human-friendly Web3 names that can be used in many places where a DID would be required.
-For more information about Web3 names, please refer to the [next paragraph](./03_web3names.md).
+For this reason, KILT allows DIDs to be linked to human-friendly web3names that can be used in many places where a DID would be required.
+For more information about web3names, please refer to the [next paragraph](./03_web3names.md).

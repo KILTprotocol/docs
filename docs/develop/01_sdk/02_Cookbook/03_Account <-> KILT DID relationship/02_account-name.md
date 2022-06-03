@@ -1,19 +1,19 @@
 ---
 id: account-name
-title: Query the Web3 name of an account
+title: Query the web3name of an account
 ---
 
 import CodeBlock from '@theme/CodeBlock';
 import AccountWeb3NameQuery from '!!raw-loader!@site/code_examples/core_features/linking/03_account_web3name_query.ts';
 import AccountWeb3NameQueryNoSDK from '!!raw-loader!@site/code_examples/core_features/linking/04_account_web3name_query_no_sdk.ts';
 
-For accounts that have been linked to DIDs that have claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard][kilt-stakeboard].
+For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT stakeboard][kilt-stakeboard].
 
-This section shows how to perform the account -> Web3 name querying both with and without the support of the KILT SDK.
+This section shows how to perform the account -> web3name querying both with and without the support of the KILT SDK.
 
 ## Querying without the KILT SDK
 
-Querying the Web3 name for a given account without the SDK involves performing two different RPC calls to a KILT full node, as shown below.
+Querying the web3name for a given account without the SDK involves performing two different RPC calls to a KILT full node, as shown below.
 
 <CodeBlock className="language-js">
   {AccountWeb3NameQuery}

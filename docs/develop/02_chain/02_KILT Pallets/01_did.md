@@ -46,7 +46,7 @@ Once the `did::create` extrinsic is submitted and executed, the DID is written t
 ## Using a DID
 
 Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account. 
-This includes handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3 names and much more.
+This includes handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3names and much more.
 
 Those actions need to be signed by the DID before they can be submitted to chain by any account that the DID owner specifies when signing.
 We are naming those actions "DID-Calls".

@@ -11,11 +11,11 @@ export async function queryAccountWeb3Name(
   )
   if (accountWeb3Name) {
     console.log(
-      `Web3 name for account "${lookupAccountAddress}" -> "${accountWeb3Name}"`
+      `web3name for account "${lookupAccountAddress}" -> "${accountWeb3Name}"`
     )
   } else {
     console.log(
-      `Account "${lookupAccountAddress}" does not have a linked Web3 name.`
+      `Account "${lookupAccountAddress}" does not have a linked web3name.`
     )
   }
 
