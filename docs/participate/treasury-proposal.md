@@ -39,7 +39,7 @@ Complete the form:
 
 # Polkassembly Details
 
-Click the [Polkassembly](https://kilt.polkassembly.network/discussions) link to the right of the proposal on Polkadot-JS
+Click the [Polkassembly](https://kilt.polkassembly.network/discussions) link to the right of the proposal on Polkadot-JS and connect with the account that you used to submit the proposal in order to be able to edit the proposal details.
 
 Enter the following information:
 
