@@ -1,6 +1,6 @@
 ---
 id: did
-title: Decentralized Identifiers (DIDs)
+title: KILT Decentralized Identifiers (DIDs)
 ---
 
 import ThemedImage from '@theme/ThemedImage';

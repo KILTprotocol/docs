@@ -1,6 +1,6 @@
 ---
 id: attestation
-title: Attestation
+title: Attestations
 ---
 
 To create an attestation, the attester first receives a message with a `RequestForAttestation` object from the claimer.

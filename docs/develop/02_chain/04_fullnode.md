@@ -1,6 +1,6 @@
 ---
-id: fullnode
-title: How to set up a full node
+id: fullnode-setup
+title: How to Set Up a Full Node
 ---
 
 import Tabs from '@theme/Tabs';

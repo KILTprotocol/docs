@@ -1,6 +1,6 @@
 ---
 id: join
-title: Become a delegator
+title: Become a Delegator
 ---
 
 import Tabs from '@theme/Tabs';

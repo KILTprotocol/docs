@@ -1,6 +1,6 @@
 ---
 id: remove_vote
-title: Remove a vote
+title: Remove a Vote
 ---
 
 If you happen to change your mind and want to remove a vote from an open referendum, you have to find the index of the referendum you voted on, remove your vote from that index and unlock your coins that are no longer locked up by this vote.

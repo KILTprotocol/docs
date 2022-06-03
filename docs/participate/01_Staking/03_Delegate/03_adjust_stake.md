@@ -1,6 +1,6 @@
 ---
 id: adjust-stake
-title: Adjust your delegation stake
+title: Adjust your Delegation Stake
 ---
 
 import Tabs from '@theme/Tabs';

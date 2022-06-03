@@ -1,6 +1,6 @@
 ---
 id: unlock_coins
-title: Remove expired voting locks
+title: Remove Expired Voting Locks
 ---
 
 After the lockup time has been reached, a transaction is needed to clear the lock. Of note: this will also require a transaction fee.

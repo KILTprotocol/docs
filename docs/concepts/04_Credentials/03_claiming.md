@@ -1,6 +1,6 @@
 ---
 id: claiming
-title: Claiming
+title: Claims
 ---
 As KILT is an open system, any entity can make a claim about themselves.
 A claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) confirms this claim.
