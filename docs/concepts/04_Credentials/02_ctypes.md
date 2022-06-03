@@ -3,7 +3,7 @@ id: ctypes
 title: CTypes
 ---
 
-CTypes are data types specific to KILT that define the structure of a claim (i.e. the data model for your claim).
+CTypes are data types specific to KILT that define the structure of a claim (i.e., the data model for your claim).
 They are based on JSON Schema, a standard used to annotate and validate JSON documents.
 The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
 
@@ -26,9 +26,9 @@ When making a new CType schema, the following properties are required:
 - A type of 'string', 'integer', 'number' and 'boolean' to define the attribute
 - Nested JSON schemas can be referenced by a `uri` using `$ref`(giving the advantage of being able to reference other CTypes)
 - The format field is optionally:
-  - Date format e.g. 2012-04-23T18:25:43.511Z
-  - Time format e.g. T18:25:43.511Z
-  - URI format e.g. https://www.example.com
+  - Date format e.g., 2012-04-23T18:25:43.511Z
+  - Time format e.g., T18:25:43.511Z
+  - URI format e.g., https://www.example.com
 
 ```js title="CType schema example"
 {

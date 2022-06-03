@@ -17,7 +17,7 @@ To create the attestation, the attester:
 - stores the attestation hash on the chain by submitting a new transaction with the attester’s signature.
 
 Once this is done, the attester can optionally create a `Credential` object from the `RequestForAttestation` and the `Attestation` objects and send it back to the claimer.
-This is a way to inform the claimer, that the attestation was done.  
+This is a way to inform the claimer, that the attestation was done.
 Otherwise the claimer can also just listen to changes on the blockchain, since they already know the attestation hash to listen to.
 
 If the attester opts to send a message, we also recommend encrypting it, since it contains privacy concerning information.

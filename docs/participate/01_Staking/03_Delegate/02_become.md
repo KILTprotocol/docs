@@ -76,7 +76,7 @@ Please note that it can take longer in real time as the block times assumes a co
 flowchart TD
    A["Hold at least 20 KILT"] --> |"decide on candidate"| B("Collator Candidate chosen");
    B --> |"call extrinsic joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
-   C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
+   C --> |no| C2{"Balance locked?\n e.g., previously delegated \n without unlocking?"}
    C2 --> |no| A
 
     %% Styles
@@ -95,5 +95,5 @@ flowchart TD
 <!-- TODO: Link round to Glossary -->
 :::info
 For now, an account can only delegate to one collator at any time!
-Moreover, you can only (re-) delegate once per staking round, e.g. call `parachainStaking -> {joinDelegators, delegateAnotherCandidate}`.
+Moreover, you can only (re-) delegate once per staking round, e.g., call `parachainStaking -> {joinDelegators, delegateAnotherCandidate}`.
 :::

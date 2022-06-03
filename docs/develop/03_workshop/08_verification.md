@@ -11,7 +11,7 @@ In this section, you'll play the role of a <span className="label-role verifier"
 
 - You'll take an `Presentation` object given to you by a <span className="label-role claimer">Claimer</span>;
 - You'll verify that its data is correct;
-- You'll verify that the attestation is valid, i.e. its hash exists on-chain and the attestation has not been revoked.
+- You'll verify that the attestation is valid, i.e., its hash exists on-chain and the attestation has not been revoked.
 - You'll verify that the `Credential` is owned by the <span className="label-role claimer">Claimer</span> sending it
 
 :::info Credential
@@ -41,7 +41,8 @@ Create `claimer/createPresentation.ts` helper and copy the following code.
 
 ## Verify
 
-Let's create our `verify.ts`. Here we'll expose `getChallenge` which returns a random and unique
+Let's create our `verify.ts`.
+Here we'll expose `getChallenge` which returns a random and unique
 challenge for the <span className="label-role claimer">Claimer</span> to sign, this is used to prove ownership.
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!

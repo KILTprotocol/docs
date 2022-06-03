@@ -15,7 +15,7 @@ flowchart TD
    A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen");
    B --> |"call \n joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
    C --> |yes| D("Delegating to a Collator Candidate")
-   C --> |no| C2{"Balance locked?\n E.g. previously delegated \n without unlocking?"}
+   C --> |no| C2{"Balance locked?\n e.g., previously delegated \n without unlocking?"}
    C2 --> |no| A
    C2 --> |yes| G 
    D --> |"leave \n delegators"| E("Not delegating")

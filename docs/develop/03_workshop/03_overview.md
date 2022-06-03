@@ -6,7 +6,8 @@ title: 👓 Overview
 In this tutorial, we'll run through the full story of a claim.
 
 To do so, three actors will be involved: a <span className="label-role claimer">Claimer</span>, an <span className="label-role attester">Attester</span> and a <span className="label-role verifier">Verifier</span>.
-You'll be playing all three roles. In the real world, these actors would be running different services, so we set up different folders to mimic this separation.
+You'll be playing all three roles.
+In the real world, these actors would be running different services, so we set up different folders to mimic this separation.
 
 Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
 But only the <span className="label-role attester">Attester</span> is required to own KILTs since they have to pay for storing attestation on chain.

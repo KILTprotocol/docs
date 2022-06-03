@@ -5,7 +5,8 @@ title: 🚀 Done
 
 ## Congrats!
 
-Well done. You know understand the main actors in KILT, the `Claimers`, `Attesters` and `Verifiers`.
+Well done!
+You know understand the main actors in KILT, the `Claimers`, `Attesters` and `Verifiers`.
 
 You also learned how to:
 - create accounts

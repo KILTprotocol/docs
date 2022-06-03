@@ -7,7 +7,7 @@ The Claimer may request and / or the Attester may send the Terms of the attestat
 
 These Terms are defined and agreed upon before the attestation is created.
 This part of the process requires interaction and communication between both parties.
-This communication can be done independently, e.g. in person, via messaging, on social media etc., or via the KILT software development kit (SDK).
+This communication can be done independently, e.g., in person, via messaging, on social media etc., or via the KILT software development kit (SDK).
 
 ## Sending Terms
 
@@ -32,7 +32,7 @@ The Terms object consists of following items:
 - **Legitimations**: A legitimation is a Credential, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested.
 - This is a way of establishing trust between the participants.
 
-- **Delegation Id**: An Attester may be part of a top-down trust authority, given them the right to attest in the name of an institution, or similar. E.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.
+- **Delegation Id**: An Attester may be part of a top-down trust authority, given them the right to attest in the name of an institution, or similar, e.g., a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.
 - See [here](/docs/concepts/distributed_trust) for details on how to create a delegation.
 
 - **Quote**: A Quote could include any or all of the following:

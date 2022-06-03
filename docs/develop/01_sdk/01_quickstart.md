@@ -94,7 +94,7 @@ The connection allows to **query**, **verify** and **interact** with the chain.
 Inside the `quickstart.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
 Using the imported SDK, it exposes **`Kilt.init()`** to initialize the connection to the KILT blockchain via an address.
 
-We will initialize the **KILT blockchain** named the **Spiritnet**.  
+We will initialize the **KILT blockchain** named the **Spiritnet**.
 
 <SnippetBlock
   className="language-js"

@@ -7,15 +7,15 @@ Complete these steps to create a well-formed Treasury proposal
 
 # Discuss
 
-The first step in applying for a Treasury grant is either to join the community in the [Discord Treasury Channel](https://discord.gg/nUpqDfQ6kJ) to brainstorm the scope of your proposal intention or immediately open a discussion on [Polkassembly](https://kilt.polkassembly.network/discussions). 
+The first step in applying for a Treasury grant is either to join the community in the [Discord Treasury Channel](https://discord.gg/nUpqDfQ6kJ) to brainstorm the scope of your proposal intention or immediately open a discussion on [Polkassembly](https://kilt.polkassembly.network/discussions).
 This will help you get valuable community feedback throughout the process.
-It also gives Council members an open and transparent way to measure community sentiment.  
+It also gives Council members an open and transparent way to measure community sentiment.
 
 # Deposit
 
 A deposit of 5% of the amount requested is required in order to submit a proposal.
 If the proposal is denied, you will lose this amount and it will go to the Treasury to fund other projects.
-This is why it is essential to engage with the community and show how the proposed work adds value to the network. 
+This is why it is essential to engage with the community and show how the proposed work adds value to the network.
 
 # Proposal Document
 

@@ -14,7 +14,8 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 :::info
 
  KILT is an open system.
- Anyone/anything can make a claim about themselves and attest this claim. But a claim only has value if the verifier _trusts_ the attester.
+ Anyone/anything can make a claim about themselves and attest this claim.
+ But a claim only has value if the verifier _trusts_ the attester.
 
 :::
 
@@ -47,8 +48,12 @@ Create a file `claimer/generateRequest.ts` and copy the code below.
   {GenerateRequest}
 </CodeBlock>
 
-When `Attestations` are given by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit. Each new `RequestForAttestation` is unique. While we're testing, we can store and reuse requests to avoid
-multiple attestations. To do this store the output into `./claimer/_request.json`. You can also share this
+When `Attestations` are given by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
+Each new `RequestForAttestation` is unique.
+While we're testing, we can store and reuse requests to avoid
+multiple attestations.
+To do this store the output into `./claimer/_request.json`.
+You can also share this
 request with others in the workshop to see how they get denied from fraudulent senders.
 
 ## Run
@@ -60,4 +65,5 @@ yarn ts-node claimer/generateRequest.ts
 ```
 
 OK, you've made a claim as a <span className="label-role claimer">Claimer</span> and
-created a request for attestation. Let's finish up our <span className="label-role attester">Attester</span> and get a credential!
+created a request for attestation.
+Let's finish up our <span className="label-role attester">Attester</span> and get a credential!

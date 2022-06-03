@@ -56,7 +56,7 @@ In a company those would be employees that do the attestation work, but have no 
 
 Delegation Hierarchies also limit who can revoke or remove attestations.
 Only parents of an attester can revoke or remove delegations from their children.
-E.g. Attester 2 cannot revoke/remove attestations issued by Attester 1, 3, 4 and 5, while Attester 1 can revoke and remove attestations issued by any attester since Attester 1 is, directly or indirectly, the parent of every other node.
+E.g., Attester 2 cannot revoke/remove attestations issued by Attester 1, 3, 4 and 5, while Attester 1 can revoke and remove attestations issued by any attester since Attester 1 is, directly or indirectly, the parent of every other node.
 
 ## Virtual Credential Organizations
 

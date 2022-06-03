@@ -20,10 +20,11 @@ But in this workshop, we create our own CType.
 :::info CType
 
 A CType ensures that a claim contains all required attributes.
-E.g. a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
-The CType is especially important since a verifier would request attestations for a specific CType (e.g. the traffic police wants to see your driver's license and not your gym membership).
+e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
+The CType is especially important since a verifier would request attestations for a specific CType (e.g., the traffic police wants to see your driver's license and not your gym membership).
 
-If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/concepts/credentials/ctypes). You can also [read through existing ctypes in our ctype-index](https://github.com/KILTprotocol/ctype-index).
+If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/concepts/credentials/ctypes).
+You can also [read through existing ctypes in our ctype-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
 Creating CTypes requires an account and a full DID.
@@ -71,7 +72,8 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-Now we have our entry ready, create a new file `attester/ctypeSchema.ts`. Copy the following to create a `CType` from a schema:
+Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
+Copy the following to create a `CType` from a schema:
 
 <CodeBlock title="attester/ctypeSchema.ts" className="language-js">
   {CtypeSchema}
@@ -79,8 +81,11 @@ Now we have our entry ready, create a new file `attester/ctypeSchema.ts`. Copy t
 
 ## Get CType
 
-Create a new file `attester/generateCtype.ts`. We'll use this to check if the `CType` is on-chain already. If yes we'll
-return it, otherwise we'll store it on-chain. Remember, an account must have the required amount to pay the Angel's fee and deposit.
+Create a new file `attester/generateCtype.ts`.
+We'll use this to check if the `CType` is on-chain already.
+If yes we'll
+return it, otherwise we'll store it on-chain.
+Remember, an account must have the required amount to pay the Angel's fee and deposit.
 
 <CodeBlock title="attester/generateCtype.ts" className="language-js">
   {GenerateCtype}

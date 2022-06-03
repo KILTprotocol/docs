@@ -3,11 +3,11 @@ id: what-is-kilt
 title: What is KILT?
 ---
 
-KILT is a protocol for self-sovereign data and interoperability built on top of the permissionless KILT blockchain. 
-It's a simple protocol for creating, claiming, issuing, presenting and verifying digital credentials attached to a decentralized identifier. 
+KILT is a protocol for self-sovereign data and interoperability built on top of the permissionless KILT blockchain.
+It's a simple protocol for creating, claiming, issuing, presenting and verifying digital credentials attached to a decentralized identifier.
 In contrast to other centralized or peer-to-peer solutions for this, KILT features self-sovereign data as well as revocable credentials using blockchain technology.
 KILT was built to be a business enabler, not only for the software industry but also for any entity.
-The entity can establish a business model based on trust through KILT. 
+The entity can establish a business model based on trust through KILT.
 We believe trust and truth will be essential building blocks of Web 3.0.
 Therefore, KILT and similar credential-based protocols will play an important part in the decentralization of the current Web 2.
 
@@ -31,13 +31,13 @@ Of course this has major drawbacks:
 * It's hard to prove the own identity to outsiders
 
 When people started to organise themselves in bigger groups, founding villages and cities, those drawbacks were amplified and needed to be addressed.
-Therefore mechanisms were introduced to create trust relationships between groups by giving out some form of attestation so certain properties about an individual could be verified by people who don't know the individual but trust the group that gave out the attestation. 
-Think about a carpenter's guild, a monastry or a scottish clan. 
+Therefore mechanisms were introduced to create trust relationships between groups by giving out some form of attestation so certain properties about an individual could be verified by people who don't know the individual but trust the group that gave out the attestation.
+Think about a carpenter's guild, a monastry or a scottish clan.
 When the organizational structures grew further and big bureaucratic nations emerged, also the authorities that are issuing the credentials and the scope of the trust relationships grew.
-Though we can now see a more and more centralized way of organising trust, the actual information that make up an identity are still handed out directly to the individual and the individual is still responsible for their own data. 
-Take official personal documents like passports as an example. 
-They were issued by trusted entities and handed out to the holders. 
-Those holders were then under full control of their credentials and could use them where ever they wanted. 
+Though we can now see a more and more centralized way of organising trust, the actual information that make up an identity are still handed out directly to the individual and the individual is still responsible for their own data.
+Take official personal documents like passports as an example.
+They were issued by trusted entities and handed out to the holders.
+Those holders were then under full control of their credentials and could use them where ever they wanted.
 This was a simple and secure way to get information about a person and the person itself always had full control over it.
 
 However, with the invention of the internet and especially the Web 2.0, services evolved and merged into totally centralized solutions like Google, Meta, Twitter among others.
@@ -50,8 +50,8 @@ KILT Protocol aims to change that and give users back the control over their dat
 
 ## The solution
 
-We provide a protocol for managing your identity on the blockchain and to attach digital credentials to it which are attested by trusted entities. 
-Those credentials are not stored on the chain, but stay with the user, so they can be used for any purpose and always stay under their control. 
+We provide a protocol for managing your identity on the blockchain and to attach digital credentials to it which are attested by trusted entities.
+Those credentials are not stored on the chain, but stay with the user, so they can be used for any purpose and always stay under their control.
 This is somehow very similar to the approach used for centuries before our data was being monetized by big corporations.
 
 The core ideas are:

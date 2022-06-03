@@ -17,7 +17,7 @@ async function verifyPresentation(presentation: Kilt.ICredential, challenge: str
   const isRevoked = credential.attestation.revoked
 
   // Custom logic
-  // e.g. only allow access if age >= 18
+  // e.g., only allow access if age >= 18
 
   return isValid && !isRevoked
 }
