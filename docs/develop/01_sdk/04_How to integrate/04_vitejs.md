@@ -56,13 +56,13 @@ import { useState, useEffect } from 'react'
 
 import * as Kilt from '@kiltprotocol/sdk-js';
 
-function App() {
+export function App() {
   const [did, setDid] = useState('');
   useEffect(() => {
     const resolveWeb3Name = async () => {
       await Kilt.init({ address: "wss://spiritnet.kilt.io:443" });
       let did = await Kilt.Did.Web3Names.queryDidForWeb3Name('john_doe');
-      setDid(did);  
+      setDid(did || 'unknown');  
     };
     resolveWeb3Name();
   });   
