@@ -10,7 +10,7 @@ The creation of a CType in KILT involves two steps: the definition of a CType an
 
 :::info
 The creator of a CType is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_KILT%20DIDs/03_full_did_update.md).
+To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
 :::
 
 The following snippets shows how:

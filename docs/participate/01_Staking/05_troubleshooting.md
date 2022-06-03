@@ -37,7 +37,7 @@ Its address should be listed when querying `session > validators()`.
 
 If you have stopped to receive rewards, either of the following is true:
 1. You were kicked out of the top collator candidate list because your total stake is too low.
-    See the [section about joining](./01_Become%20a%20Collator/05_join_collators.md#check-your-position-in-the-collators-queue) for the necessary steps to retrieve the least staked candidate address in that list.
+    See the [section about joining](./01_become_a_collator/05_join_collators.md#check-your-position-in-the-collators-queue) for the necessary steps to retrieve the least staked candidate address in that list.
     You can query their stake by going to `Developer -> Chain State` calling `parachainStaking -> candidatePool(address) -> +`.
 2. You have connectivity issues, see above for resolution tips.
 
@@ -54,7 +54,7 @@ If you have stopped to receive rewards, either
    3. Are offline.
 
 In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](./04_unlock_unstaked.md).
-Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](./03_Delegate/05_exit.md/) if you don't want to or cannot delegate to another collator candidate.
+Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](./03_delegate/05_exit.md/) if you don't want to or cannot delegate to another collator candidate.
 </TabItem>
 </Tabs>
 

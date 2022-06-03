@@ -14,10 +14,10 @@ Even though the Peregrine network is convenient, there are a scenarios where a p
 If you need more funds than the faucet can provide, or if you need to reset the state of the blockchain, you will need to setup your own little KILT blockchain.
 
 In this section, we will guide you through the process of 
-1. [Running your own KILT blockchain locally](./01_standalone-setup.md),
-2. [Connecting to the Peregrine test network](./02_peregrine-setup.md) and
-3. [Connecting to the Spiritnet production network](./03_prod-chain-setup.md).
-4. Moreover, we will explain the [differences between our _Standalone_ and _Parachain_ runtimes](./02_peregrine-setup.md#standalone-vs-parachain-peregrinespiritnet).
+1. [Running your own KILT blockchain locally](./01_standalone_setup.md),
+2. [Connecting to the Peregrine test network](./02_peregrine_setup.md) and
+3. [Connecting to the Spiritnet production network](./03_prod_chain_setup.md).
+4. Moreover, we will explain the [differences between our _Standalone_ and _Parachain_ runtimes](./02_peregrine_setup.md#standalone-vs-parachain-peregrinespiritnet).
 
 ## Set up your project
 

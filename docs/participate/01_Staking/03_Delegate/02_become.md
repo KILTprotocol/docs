@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 
-In contrast to the rather difficult [path to become a collator candidate](../01_Become%20a%20Collator/01_overview.md), joining the delegator pool is rather simple.
+In contrast to the rather difficult [path to become a collator candidate](../01_become_a_collator/01_overview.md), joining the delegator pool is rather simple.
 Anyone can delegate to a collator candidate by staking at least 20 KILT and calling `parachainStaking -> joinDelegators`.
 
 <StakingTxDisclaimer />

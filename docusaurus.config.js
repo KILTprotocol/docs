@@ -61,12 +61,12 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/Staking/Become a Collator/overview',
+              docId: 'participate/staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
               type: 'doc',
-              docId: 'participate/Governance/vote',
+              docId: 'participate/governance/vote',
               label: 'Voting',
             },
             {

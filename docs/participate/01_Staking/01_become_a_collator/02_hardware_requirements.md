@@ -13,4 +13,4 @@ The KILT blockchain extrinsic weights were calculated using the following hardwa
 Although the aforementioned hardware is by no means the minimum spec required, the new node *should* be at least as capable as that in all the categories.
 Having more performant hardware reduces the probability that the node will not be able to produce and propose a valid block on time during the allocated block production slot, missing out on the collating rewards.
 
-You can measure the performance of the new hardware by benchmarking it using [the steps described in the benchmarking section](../02_Advanced%20Collator%20Section/06_benchmarking.md).
+You can measure the performance of the new hardware by benchmarking it using [the steps described in the benchmarking section](../02_advanced_collator_section/06_benchmarking.md).

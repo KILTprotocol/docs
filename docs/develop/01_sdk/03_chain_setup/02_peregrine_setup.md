@@ -4,7 +4,7 @@ title: Connect with Peregrine
 ---
 
 Before connecting to the production Spiritnet, you should test your application with its canary network _Peregrine_.
-In contrast to [running your own blockchain](./01_standalone-setup.md), you will neither have control over the blockchain, nor have any initial funds.
+In contrast to [running your own blockchain](./01_standalone_setup.md), you will neither have control over the blockchain, nor have any initial funds.
 
 In this guide we will guide you through the processing of receiving funds on Peregrine and connecting to the network.
 Additionally, we explain the difference between the Standalone and Parachain runtimes.
