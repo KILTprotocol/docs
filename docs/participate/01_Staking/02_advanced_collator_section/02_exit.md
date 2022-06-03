@@ -1,6 +1,6 @@
 ---
 id: exit
-title: Leave the Collator Set
+title: Leave the Collator Candidate Pool
 ---
 
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';

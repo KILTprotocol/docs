@@ -1,6 +1,6 @@
 ---
 id: setup-node
-title: Setup a Node
+title: Set Up a Node
 ---
 
 import Tabs from '@theme/Tabs';

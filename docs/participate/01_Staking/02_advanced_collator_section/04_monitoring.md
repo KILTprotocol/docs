@@ -1,6 +1,6 @@
 ---
 id: monitoring
-title: Monitoring
+title: Set Up Node Monitoring
 ---
 
 It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the collator process.

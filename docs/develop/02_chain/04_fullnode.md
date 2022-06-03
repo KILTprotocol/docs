@@ -1,6 +1,6 @@
 ---
 id: fullnode-setup
-title: How to Set Up a Full Node
+title: Set Up a KILT Full Node
 ---
 
 import Tabs from '@theme/Tabs';

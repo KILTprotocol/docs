@@ -72,14 +72,9 @@ module.exports = {
             {
               type: 'doc',
               docId: 'participate/treasury-proposal',
-              label: 'Treasury Proposal',
+              label: 'Treasury Proposals',
             }
           ],
-        },
-        {
-          type: 'doc',
-          docId: 'glossary',
-          label: 'Glossary',
         },
         {
           href: 'https://github.com/KILTprotocol/docs',

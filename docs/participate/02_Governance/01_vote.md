@@ -1,6 +1,6 @@
 ---
 id: vote
-title: Casting a Vote
+title: Cast a Vote
 ---
 
 1. Go to KILT Spiritnet on [Polkadot.JS](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fspiritnet.api.onfinality.io%2Fpublic-ws#/democracy)

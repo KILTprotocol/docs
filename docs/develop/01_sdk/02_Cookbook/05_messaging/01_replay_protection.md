@@ -1,6 +1,6 @@
 ---
 id: replay_protection
-title: Replay Protection
+title: Protect Against Replay Attacks
 ---
 
 Whenever data travels on a public network, even when encrypted or signed, the communicating parties need to make sure they never accept and process a message more than once to protect against exploits by malicious third parties (so-called replay attacks).

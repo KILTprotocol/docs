@@ -1,6 +1,6 @@
 ---
 id: treasury-proposal
-title: Create a Treasury Proposal
+title: Open a Treasury Proposal
 ---
 
 Complete these steps to create a well-formed Treasury proposal

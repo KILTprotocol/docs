@@ -1,6 +1,6 @@
 ---
 id: benchmarking
-title: Benchmarking
+title: Benchmark your Collator
 ---
 
 To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
