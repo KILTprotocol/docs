@@ -64,6 +64,6 @@ E.g., Attester 2 cannot revoke/remove attestations issued by Attester 1, 3, 4 an
 
 ![Coming soon](/img/concepts/distributed_trust/coming-soon.png)
 
-[credit](https://freepngimg.com/png/11420-coming-soon-png-file)
+[Credits to freepngimg.com.](https://freepngimg.com/png/11420-coming-soon-png-file)
 
 </center>
