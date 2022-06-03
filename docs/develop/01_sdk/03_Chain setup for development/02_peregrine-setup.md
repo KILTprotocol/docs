@@ -3,7 +3,7 @@ id: peregrine-chain-setup
 title: Connect with Peregrine
 ---
 
-Before connecting to the production Spiritnet, you should test your application with its unincentivized canary network _Peregrine_.
+Before connecting to the production Spiritnet, you should test your application with its canary network _Peregrine_.
 In contrast to [running your own blockchain](./01_standalone-setup.md), you will neither have control over the blockchain, nor have any initial funds.
 
 In this guide we will guide you through the processing of receiving funds on Peregrine and connecting to the network.

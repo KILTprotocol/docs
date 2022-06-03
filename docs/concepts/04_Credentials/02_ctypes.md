@@ -15,7 +15,7 @@ The following are all required properties of the schema, with no additional prop
 
 - Identifier: `$id` in the format `kilt:ctype:0x{cTypeHash}`
 - KILT specific JSON-Schema: '[http://kilt-protocol.org/draft-01/ctype-input#](http://kilt-protocol.org/draft-01/ctype-input#)'
-- Title: Defines a user-friendly name for the CType that makes it easier for users to contextualise
+- Title: Defines a user-friendly name for the CType that makes it easier for users to contextualize
 - Properties: Each property is the attribute the claimer wishes to have attested by the attester.
 
 ### Properties

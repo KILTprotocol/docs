@@ -3,14 +3,14 @@ id: delegations
 title: Delegation Hierarchies and Delegated Attestations
 ---
 
-KILT allows attesters to delegate their attestation rights to others, giving them permission to attest in their name, relying on their reputation. For example, an organisation – the attester – can delegate members of staff to attest in the name of the company. Attesters can also build complex delegation hierarchies by allowing delegates to delegate further.
+KILT allows attesters to delegate their attestation rights to others, giving them permission to attest in their name, relying on their reputation. For example, an organization – the attester – can delegate members of staff to attest in the name of the company. Attesters can also build complex delegation hierarchies by allowing delegates to delegate further.
 
 Attesters retain full authority over the delegations and attestations issued by a (sub-)delegate, which allows them to revoke any delegation or attestation issued to a branch in the delegation hierarchy that originates from them. In this way, any employee who leaves the company can have their rights withdrawn.
 
 To enable this functionality, KILT represents these permissions with interlinked delegation nodes stored on the blockchain:
 
 - **A DelegationRootNode** establishes a new delegation hierarchy or tree. This is created and owned by the delegating Attester. Because a delegation tree is always specific to one claim type (CType), it also stores a CType hash. A DelegationRootNode cannot be used in an attestation.
-- **A DelegationNode** is owned by the delegate and stores what the delegate is authorised to do in the name of the delegating attester: either attest, delegate further, or do both. Links to a parent DelegationRootNode or DelegationNode establish which delegation tree this node is part of. A DelegationNode can be used in an attestation by its owner.
+- **A DelegationNode** is owned by the delegate and stores what the delegate is authorized to do in the name of the delegating attester: either attest, delegate further, or do both. Links to a parent DelegationRootNode or DelegationNode establish which delegation tree this node is part of. A DelegationNode can be used in an attestation by its owner.
 
 ## Creating a DelegationRootNode
 
@@ -61,7 +61,7 @@ Again, this method call returns a SubmittableExtrinsic.
 
 If the `Permission.delegate` flag is set on the new DelegationNode, the delegate can now repeat this process and delegate permissions further. To do so, their DelegationNode id is added as parentId to the new DelegationNode.
 
-If the `Permisson.delegate` flag is not set on the parent, or if it is no longer active (i.e. has been revoked in the meantime), the blockchain will reject new delegations.
+If the `Permission.delegate` flag is not set on the parent, or if it is no longer active (i.e. has been revoked in the meantime), the blockchain will reject new delegations.
 
 ## Making a Delegated Attestation
 

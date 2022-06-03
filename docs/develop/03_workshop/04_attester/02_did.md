@@ -11,7 +11,7 @@ Time to make a DID using the previously created account for the <span className=
 
 A DID may represent any entity, may it be a person, an organization or a machine.
 
-A KILT Decentralised Identifier (DID) is a string uniquely identifying each KILT user.
+A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.

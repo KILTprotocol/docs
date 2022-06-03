@@ -31,7 +31,7 @@ We will have recommended guides to other tutorials for further learnings.
 
 ## Setup
 
-We will focus on creating a new project from stratch, which will require a little setup.
+We will focus on creating a new project from scratch, which will require a little setup.
 First, we need to create a new project in a new directory.
 For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
@@ -92,9 +92,9 @@ The connection allows to **query**, **verify** and **interact** with the chain.
 **Let's get connected.**
 
 Inside the `quickstart.js` inside the `main` function, you will need to begin by connecting to a **KILT node**.
-Using the imported SDK, it exposes **`Kilt.init()`** to initalise the connection to the KILT blockchain via an address.
+Using the imported SDK, it exposes **`Kilt.init()`** to initialize the connection to the KILT blockchain via an address.
 
-We will initalise the **KILT blockchain** named the **Spiritnet**.  
+We will initialize the **KILT blockchain** named the **Spiritnet**.  
 
 <SnippetBlock
   className="language-js"
@@ -102,7 +102,7 @@ We will initalise the **KILT blockchain** named the **Spiritnet**.
   {InitSDK}
 </SnippetBlock>
 
-Now you have initialised the connection, lets connect to the chain.
+Now you have initialized the connection, lets connect to the chain.
 Inside the `main` function, lets get the connection using an asynchronous call that creates a connection, or checks if an existing connection is available and connects directly.
 
 <SnippetBlock
@@ -150,7 +150,7 @@ A DID can have service endpoints on the DID linking to public data.
 Therefore, you can take your credentials and display them for others to see!
 Lets see how we can check a **DIDs endpoints** and see if `john_doe` has any public credentials for us to **query** and **verify**.
 
-Let's take the DID that was fetch and see if we can retreives the contents.
+Let's take the DID that was fetch and see if we can retrieves the contents.
 We will add a new line under the `console.log` let's resolve and see the DID with the **DID identifier** fetched with the **web3name**.
 
 <SnippetBlock

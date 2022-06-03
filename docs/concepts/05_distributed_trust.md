@@ -16,7 +16,7 @@ Such a brand can be organized in many different ways.
 The KILT protocol provides mechanisms to form such brands on the blockchain.
 
 There are two ways for attesters to group up and build an organization.
-The first one are Delegation Hierarchies, which provide a very basic hierarchical organisation.
+The first one are Delegation Hierarchies, which provide a very basic hierarchical organization.
 Delegation Hierarchies are available on our test network Peregrine.
 The second option are Virtual Credential Organizations which are not yet implemented and currently.
 Virtual Credential Organizations will be more flexible than Delegation Hierarchies and accommodate a more decentralized range of use cases.

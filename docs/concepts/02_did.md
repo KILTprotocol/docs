@@ -21,7 +21,7 @@ An example of a light KILT DID is the following:
 did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS
 ```
 
-Beyond the standard prefix `did:kilt:`, the `light:` component indicates that this DID is a light DID, hence it can be resolved and utilised offline.
+Beyond the standard prefix `did:kilt:`, the `light:` component indicates that this DID is a light DID, hence it can be resolved and utilized offline.
 
 Light DIDs optionally support the specification of an **encryption key** (of one of the supported key types) and some service endpoints, which are both serialized, encoded and added at the end of the DID, like the following:
 

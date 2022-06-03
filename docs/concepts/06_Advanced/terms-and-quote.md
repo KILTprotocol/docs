@@ -29,7 +29,7 @@ The Terms object consists of following items:
 
 - **CTypes**: An optional list of full CTypes, in case the claimer doesn't know about the correct CType for the credential, yet.
 
-- **Legitimations**: Legitimations are Credentials, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested.
+- **Legitimations**: A legitimation is a Credential, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested.
 - This is a way of establishing trust between the participants.
 
 - **Delegation Id**: An Attester may be part of a top-down trust authority, given them the right to attest in the name of an institution, or similar. E.g. a business giving the right to their employee to attest the claim on their behalf. This is a delegation. If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.

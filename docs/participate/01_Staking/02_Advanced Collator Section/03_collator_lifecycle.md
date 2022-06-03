@@ -23,7 +23,7 @@ flowchart TD
     K -->|no|J
     L -->|unlock_unstaked|A
 
-    %% style assignement
+    %% style assignment
     A:::unstakedFreeKilt
     B:::activeCollator
     I:::leavingLocked

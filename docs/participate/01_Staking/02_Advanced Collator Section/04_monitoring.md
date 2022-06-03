@@ -19,7 +19,7 @@ The docker compose setup creates and deploys up to four containers, all of which
 
 - **Node Exporter**: collects metrics from the host machine including CPU, memory, and storage usage, and network traffic statistics
 - **Prometheus**: stores the metrics collected by Node Exporter and collects additional metrics from the blockchain node
-- **Grafana**: shows the collected metrics in a customisable dashboard and can be configured to send alerts when certain conditions are met
+- **Grafana**: shows the collected metrics in a customizable dashboard and can be configured to send alerts when certain conditions are met
 - **Collator**: the collator node itself which runs one of the available KILT runtimes
 
 ## Installation
