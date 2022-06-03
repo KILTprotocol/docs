@@ -1,5 +1,6 @@
 import type { KeyringPair } from '@polkadot/keyring/types'
 
+import { FetchError } from 'node-fetch'
 import { randomUUID } from 'crypto'
 
 import { ApiPromise } from '@polkadot/api'
@@ -41,7 +42,18 @@ export async function runAll(
   console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(randomWeb3Name, fullDid.did)
   console.log('3 w3n) Query credentials for "john_doe" web3name')
-  await queryPublishedCredentials('john_doe')
+  try {
+    await queryPublishedCredentials('john_doe')
+  } catch (e) {
+    if (e instanceof FetchError) {
+      console.log(
+        'Query credentials for "john_doe" web3name failed because of bad IPFS gateway. Ignoring this.'
+      )
+    } else {
+      // This one should not have happened.
+      throw e
+    }
+  }
   console.log('4 w3n) Release web3name')
   await releaseWeb3Name(keystore, fullDid, submitterAccount, resolveOn)
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
