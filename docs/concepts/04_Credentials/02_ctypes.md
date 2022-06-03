@@ -30,6 +30,7 @@ When making a new CType schema, the following properties are required:
   - Time format e.g., T18:25:43.511Z
   - URI format e.g., https://www.example.com
 
+<!-- TODO: Replace with dynamically-generated JSON -->
 ```js title="CType schema example"
 {
   $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010',
@@ -45,6 +46,7 @@ When making a new CType schema, the following properties are required:
 
 The CType schema is afterwards wrapped into the full CType object:
 
+<!-- TODO: Replace with dynamically-generated JSON -->
 ```js title="CType example"
 {
   schema:  {...} // as defined in the example above,

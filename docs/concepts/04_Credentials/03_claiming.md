@@ -14,6 +14,7 @@ A claimer can either create a new CType or, when KILT is established and standar
 Once you have a CType, you only need to fill it with content to create your claim, i.e., supply the values for all fields of the CType.
 The resulting claim is referencing the CType by its hash and includes the DID of the owner (i.e., the subject) of the claim.
 
+<!-- TODO: Replace with dynamically-generated JSON -->
 ```js title="Example Claim"
 {
   cTypeHash: '0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',

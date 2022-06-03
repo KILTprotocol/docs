@@ -26,6 +26,7 @@ As long as both parties keep their secret keys well protected, the combination o
 
 While encrypted, the message travels in a compact and privacy-preserving envelope format that only exposes data that the recipient requires to be able to decrypt.
 
+<!-- TODO: Replace with dynamically-generated JSON -->
 ```ts
 {
   receiverKeyUri: 'did:kilt:4qMx…66m4#0x4af3…cdcb' // indicates the key to be used when decrypting

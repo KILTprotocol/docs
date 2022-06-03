@@ -3,6 +3,11 @@ id: replay_protection
 title: Protect Against Replay Attacks
 ---
 
+import SnippetBlock from '@site/src/components/SnippetBlock';
+import DefineRange from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_01.ts';
+import EvaluateMessageTime from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_02.ts';
+import PurgeTimeout from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_03.ts';
+
 Whenever data travels on a public network, even when encrypted or signed, the communicating parties need to make sure they never accept and process a message more than once to protect against exploits by malicious third parties (so-called replay attacks).
 When requesting and submitting credential presentations, vulnerabilities for replay attacks can be prevented by requesting that the claimer sign a unique piece of data as part of the presentation.
 
@@ -16,35 +21,24 @@ Below you can find example code of how this could be implemented.
 
 1. Define acceptance range and set up a record of past submissions:
 
-```typescript
-const MAX_ACCEPTED_AGE = 60_000 // ms -> 1 minute
-const MIN_ACCEPTED_AGE = -1_000 // allow for some imprecision in system time
-const submissions = new Map<string, number>()
-```
+<SnippetBlock
+  className="language-js"
+>
+  {DefineRange}
+</SnippetBlock>
 
 2. Check record for each incoming message and update if accepted:
 
-```typescript
-// is messageId fresh and createdAt recent ?
-if (
-  submissions.has(decrypted.messageId) ||
-  decrypted.createdAt < Date.now() - MAX_ACCEPTED_AGE ||
-  decrypted.createdAt > Date.now() - MIN_ACCEPTED_AGE
-) {
-  // no -> reject message
-} else {
-  submissions.set(decrypted.messageId, decrypted.createdAt)
-  // yes -> accept & process message
-}
-```
+<SnippetBlock
+  className="language-js"
+>
+  {EvaluateMessageTime}
+</SnippetBlock>
 
 3. Purge at regular intervals:
 
-```typescript
-setInterval(() => {
-  const outdatedTimestamp = Date.now() - MAX_ACCEPTED_AGE
-  submissions.forEach((timestamp, hash) => {
-    if (timestamp < outdatedTimestamp) submissions.delete(hash)
-  })
-}, 1000)
-```
+<SnippetBlock
+  className="language-js"
+>
+  {PurgeTimeout}
+</SnippetBlock>

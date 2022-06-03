@@ -2,11 +2,11 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+    'A blockchain identity protocol for Decentralized Identifiers and self-sovereign Verifiable Credentials.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
