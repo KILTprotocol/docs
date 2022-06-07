@@ -4,7 +4,7 @@ title: Overview
 ---
 import ThemedImage from '@theme/ThemedImage';
 
-**Credentials** are attested claims which are owned by a **Claimer**, attested by an **Attester** and can be verified by a **Verifier**.
+**Credentials** consist of a set of claims which are belong to a **Claimer**, are attested by an **Attester** and can be verified by **Verifiers**.
 
 <center>
 <ThemedImage
@@ -17,19 +17,19 @@ import ThemedImage from '@theme/ThemedImage';
 </center>
 
 To get a Credential, a Claimer needs to go through following process:
-1. Find a **CType**, a Claim should be based on (can be advertised by the potential Attester and Verifier)
-2. Make a **Claim**
-3. Potentially request and receive **Terms** and agree on a **Quote** with an Attester
-4. **Request an Attestation**
-5. Wait for the Claim to be **attested** by the Attester
 
-To verify the Credential, a Claimer can send a presentation of it to a Verifier
+1. Find a **CType** a Claim should be based on. Potential Attesters and Verifiers might advertise this information themselves.
+2. Make a **Claim** containing a set of properties about themselves.
+3. Potentially request and receive **Terms** and agree on a **Quote** with the potential Attester.
+4. **Request a (Credential) Attestation** from the Attester.
+5. Wait for the Claim to be **attested** by the Attester.
 
-1. The Verifier may request a **Credential** as the first step
-2. The Claimer selects properties they want to **disclose** and signs the Presentation of the Credential
-3. The Claimer sends the **Presentation** to the Verifier
-4. The Verifier **checks** its structure, content and signature and decides, if they trust the Attester
+To verify a Credential, a Claimer can generate a Presentation of it to a Verifier, with the following process:
 
-The next sections explain these steps in detail.
+1. The Verifier may request a **Credential** as the first step, along with with properties to reveal from such Credential.
+2. The Claimer selectively **disclose** the requested properties and signs the generated Presentation.
+3. The Verifier **checks** the Presentation structure, content and signature, and decides whether they trust the Attester of the presented Credential.
 
-If you want to learn about how it would work with a browser extension, refer to the [Credential API](https://github.com/KILTprotocol/credential-api/blob/master/readme.md)
+Each step is described in more detail in the next sections.
+
+If you want to learn about how implement the above flow in a Dapp that interacts with a browser extension, please refer to the [Credential API specification](https://github.com/KILTprotocol/credential-api/blob/master/readme.md).

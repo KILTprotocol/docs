@@ -23,7 +23,7 @@ A regex that would match all and only the allowed web3names would be the followi
 In the global URI space, web3names are prefixed with the `w3n:` URI namespace.
 For example, the full URI for the web3name `example-web3name` is `w3n:example-web3name`.
 
-### Linking accounts to a web3name
+### Linking Multiple Accounts to a web3name
 
 Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a single DID.
 These accounts are not specific to the KILT blockchain but can reference any chain within the Dotsama ecosystem.
@@ -38,6 +38,8 @@ For DIDs that have also claimed a web3name, the linking feature opens up the way
     dark: '/img/concepts/did/did-lookup-dark.png',
   }}
 />
+
+For a detailed developer-oriented guide to web3names and account linking, please refer to our [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and our [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md).
 
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.

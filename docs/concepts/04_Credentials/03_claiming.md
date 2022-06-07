@@ -2,20 +2,19 @@
 id: claiming
 title: Claims
 ---
-As KILT is an open system, any entity can make a claim about themselves.
-A claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) confirms this claim.
-A Verifier therefore trusts specific Attesters, who attest Claims from Claimers.
 
-In KILT, claims are based on claim types (CTypes).
-A claimer can either create a new CType or, when KILT is established and standard CTypes are available, may use an existing CType when creating their claim.
+As KILT is an open system, entities can make claims about any other entities, including themselves.
+A Claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) "certifies" this Claim.
+Therefore, Verifiers might therefore trust different Attesters for different scenarios.
 
-## Create your Claim from a CType
+## Creating a Claim
 
-Once you have a CType, you only need to fill it with content to create your claim, i.e., supply the values for all fields of the CType.
-The resulting claim is referencing the CType by its hash and includes the DID of the owner (i.e., the subject) of the claim.
+In KILT, Claims are based on claim types (CTypes).
+Hence, given a CType, a Claimer only needs to create a Claim with the properties specified in the CType schema.
+The resulting Claim contains a reference to the CType by its hash and includes the identity of the Claim subject (identified by the `owner` property).
 
 <!-- TODO: Replace with dynamically-generated JSON -->
-```js title="Example Claim"
+```js title="Claim example"
 {
   cTypeHash: '0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',
   contents: { name: 'Alice', age: 29 },
@@ -23,10 +22,11 @@ The resulting claim is referencing the CType by its hash and includes the DID of
 }
 ```
 
-## Request an Attestation
+## Requesting a Credential
 
-After creating your claim, you can request an attestation by creating another object called `RequestForAttestation`, which you can send to the attester of your choice via any messaging system.
-The object contains the original claim, data needed for selective disclosure (more on that in the [verification section](/docs/concepts/Credentials/verification)) of the claim contents, the legitimation and / or delegation id of the attester and the root hash, with which this object can be identified.
+Once the Claimer has created a Claim, they need to get it "certified", i.e., attested, by an Attester.
+The resulting `RequestForAttestation` must then be sent to the chosen Attester using any messaging system.
 
-We recommend encrypting this object before sending it, since it contains privacy concerning information.
+The `RequestForAttestation` contains the original Claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the Claim root hash, which is used to identify to the request for attestation and to store it on the KILT blockchain.
 
+For a detailed developer-oriented guide to KILT Claims, please refer to our [Claim Cookbook section](../develop/01_sdk/02_cookbook/../../../04_Credentials/03_claiming.md).
