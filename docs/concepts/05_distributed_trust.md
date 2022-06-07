@@ -44,15 +44,21 @@ Similarly, when someone different than root adds new members itself, it becomes 
 The graph above provides an example Delegation Hierarchy containing five Attesters.
 **Attester 1** is the root (i.e., the creator) of the Delegation Hierarchy.
 At some point, Attester 1 has added two more Attesters, Attester 2 and Attester 3.
-Attester 2 was given the right to both further delegate to other entities and to issue Credentials on behalf of the organization.
-Attester 3, on the other hand, was only given the right to add more Attesters to the Delegation Hierarchy, so they cannot issue or revoke any Credentials.
+**Attester 2** was given the right to both further delegate to other entities and to issue Credentials on behalf of the organization.
+**Attester 3**, on the other hand, was only given the right to add more Attesters to the Delegation Hierarchy, so they cannot issue any Credentials.
 This is useful in cases where someone should only have powers over the members, but is not authorized to do any work themselves.
 For example, in companies this could be someone who manages a team of Attesters.
-Attesters 4 and 5 where added by Attester 3 and can only issue and revoke Credentials, but they cannot add more Attesters to the Delegation Hierarchy.
-In a company those would be employees that do the attestation work, but have no authority to hire new staff.
+**Attesters 4** and **Attester 5** where added by Attester 3 and were only given attestation permissions, meaning that they can issue new Credentials, but cannot delegate any work to other Attesters.
+In the company example, these would be employees that do the attestation work, but have no authority to hire new staff.
 
-Delegation Hierarchies also limit who can revoke Credentials.
-Only parents of an Attester can revoke or remove delegations from their children.
+### Revocation
+
+Delegation Hierarchies also limit who can change or remove permissions.
+
+For delegations, only the parents of a given Attester can change or remove the Attester's delegation itself or any of its children.
+E.g., Attester 2 cannot change the delegation information for Attester 4, but Attester 1 and Attester 3 can both remove Attester 4 from the organization, or give it permission to also hire new people, which is not able to right now.
+
+Credential revocation works similarly, with the difference that a credential can revoked by any parent (as with delegations), or by the original Attester.
 E.g., Attester 2 cannot revoke Credentials issued by Attester 1, 3, 4 and 5, while Attester 1 can revoke Credentials issued by any Attester since Attester 1 is, directly or indirectly, the parent of every other node.
 
 ## Virtual Credential Organizations
