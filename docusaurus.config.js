@@ -30,22 +30,22 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'develop/sdk/quickstart',
+              docId: 'develop/SDK/quickstart',
               label: 'SDK Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/chain/introduction',
+              docId: 'develop/Chain/introduction',
               label: 'Blockchain Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/workshop/welcome',
+              docId: 'develop/Workshop/welcome',
               label: 'Workshop',
             },
             {
               type: 'doc',
-              docId: 'develop/specifications/index',
+              docId: 'develop/Specifications/index',
               label: 'Technical Specifications',
             },
             {
@@ -61,12 +61,12 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/staking/become_a_collator/overview',
+              docId: 'participate/Staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
               type: 'doc',
-              docId: 'participate/governance/vote',
+              docId: 'participate/Governance/vote',
               label: 'Voting',
             },
             {
