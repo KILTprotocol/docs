@@ -64,5 +64,3 @@ If the Claimer can sign both the nonce and the Presentation with the private key
 After the Verifier has checked that the Credential is valid and belongs to the presenting Claimer, they still need to verify that they have received all the required information as the Presentation received could contain the right values, but not the right semantics.
 For example, the _age_ property could have different meanings depending on whether it is defined for a passport CType or a Whisky Certificate CType.
 Therefore, the Verifier has to check if the CType matches one of the requested CTypes, and that the properties disclosed in the Presentation include at least all of the properties requested for that CType Presentation.
-
-<!-- For a detailed developer-oriented guide to KILT Credential verification, please refer to our [Verification Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/05_presentation_verification.md). -->
