@@ -51,7 +51,7 @@ You can choose to lock all or some of your coins for any range between 0.1x and 
 For example: You have a wallet with 1,001 KILT Coins.
 This could include staked or vested coins.
 
-### Example 1 - minimum
+### Example 1 - Minimum
 
 * You want to vote but don’t want to lock any coins.
 * You enter 1,000 into the “vote value”
@@ -59,7 +59,7 @@ This could include staked or vested coins.
 * This gives you a voting power of 100 KILT Coins.
 * Note that all your 1,000 coins are locked for the time of the voting period (7 days).
 
-### Example 2 - maximum
+### Example 2 - Maximum
 
 * You strongly believe in the referendum and want to vote with your full balance and maximum conviction.
 * Choose “6 x voting balance, locked for 32x enactment (224 days)”

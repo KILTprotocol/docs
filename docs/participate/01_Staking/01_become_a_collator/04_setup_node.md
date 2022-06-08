@@ -58,7 +58,7 @@ You should be the only one able to call the RPC endpoint.
 For a secure setup, follow the instructions in the previous section about [generating the session keys](./03_session_keys.md).
 :::
 
-### WASM runtime execution
+### WASM Runtime Execution
 
 A KILT Collator node should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
 The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
@@ -92,7 +92,7 @@ This leads to a longer block time and a loss of rewards for the Collator.
 
 Throughout this guide, the option `--state-cache-size=1` was added to reduce the cache size to 1 Byte.
 
-## Obtain the node executable
+## Obtain the Node Executable
 
 <Tabs
   groupId="exec-strategy"
@@ -168,7 +168,7 @@ If that is the case, run `sudo chown -R 1000:1000 $HOME/data` to give the contai
 </TabItem>
 </Tabs>
 
-## Sync the blockchain state
+## Sync the Blockchain State
 
 Before a Collator can author blocks, the node needs to fully sync up with both the parachain and the relaychain.
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.

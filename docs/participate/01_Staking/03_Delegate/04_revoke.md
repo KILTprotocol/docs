@@ -1,6 +1,6 @@
 ---
 id: revoke
-title: Revoke your Delegation
+title: Revoke Your Delegation
 ---
 
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';

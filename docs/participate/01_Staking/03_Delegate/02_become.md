@@ -28,7 +28,8 @@ So, for instance, 1 KILT needs to be written as `1,000,000,000,000,000`, while 1
 :::
 
 
-## Happy path
+## Happy Path
+
 If your chosen Collator candidate has at least one empty slot in their delegation pool (out of 35 maximum slots at the time of writing), your delegation is successful and you immediately start receiving rewards each time the Collator you delegated will produce a block.
 
 <div className="kilt-mermaid">
@@ -60,7 +61,7 @@ If your chosen Collator fails to produce blocks, neither the Collator itself nor
 This can happen if they have connectivity issues or are not building blocks fast enough. 
 :::
 
-## Unhappy path 
+## Unhappy Path 
 
 If your Collator candidate has a maxed out delegation pool, an upcoming Delegator candidate must stake more than the current lowest Delegator of that pool.
 When that happens,

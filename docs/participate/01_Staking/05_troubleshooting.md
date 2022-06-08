@@ -33,7 +33,7 @@ Its address should included in the list returned by querying `parachainStaking >
 5. Check that the `parachainStaking` pallet has registered the Collator's address among the authorized authors in the `session`.
 Its address should be listed when querying `session > validators()`.
 
-## Collator rewards have stopped
+## Collator Rewards Have Stopped
 
 If you have stopped to receive rewards, either of the following is true:
 1. You were kicked out of the top Collator candidate list because your total stake is too low.
@@ -44,7 +44,7 @@ If you have stopped to receive rewards, either of the following is true:
 </TabItem>
 <TabItem value="Delegator" label="Delegator">
 
-## Delegator rewards have stopped
+## Delegator Rewards Have Stopped
 
 If you have stopped to receive rewards, either
 1. You were kicked out of your collator candidate's delegation pool because all current Delegators have a higher stake or
@@ -58,7 +58,7 @@ Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocki
 </TabItem>
 </Tabs>
 
-### Why can't I transfer unstaked tokens?
+### Why can't I Transfer Unstaked Tokens?
 
 Staking puts a lock on your tokens which blocks them from being transferred.
 You can still use them for participating in Governance.

@@ -12,7 +12,7 @@ Unfortunately, exiting is not a simple process for security reasons.
 Since a picture says more than a thousand words, you can find a visualization of this process in the following [**lifecycle section**](./03_collator_lifecycle.md).
 :::
 
-## Initiate exit request
+## Initiate the Exit Request
 
 First, you signal your intent by calling `parachainStaking -> initLeaveCandidates`.
 You will both be removed from the `CandidatePool` and your state switches from `Active` to `Leaving(leaveRound)`, where `leaveRound` reflects the number of sessions in which you can actually leave.
@@ -30,7 +30,7 @@ However, Delegations can still be revoked.
 2. Select the appropriate extrinsic: `parachainStaking -> initLeaveCandidates`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
-## Execute exit request
+## Execute the Exit Request
 
 Second, after waiting until the `leaveRound`-th session, you can call `executeLeaveCandidate` to remove all of your `Candidate` associated storage.
 You should be certain as there is no turning back afterwards.
@@ -45,7 +45,8 @@ _NOTE: Of course, you can chose your Collator account._
 4. Select the Collator account (the *Id: AccountId* field)
 5. Sign and submit the extrinsic (the *Submit Transaction* button)
 
-## Cancel exit request
+## Cancel the Exit Request
+
 However, you can still cancel your exit request by calling `cancelLeaveCandidates` if you have not exited yet and the CandidatePool is not full already.
 Upon cancelling your exit intent, your state switches back to `Active` and you still have all Delegations which were not revoked in the meantime.
 Moreover, if you are you are one of the top staked candidates, you will automatically become a Collator in two rounds (~4 hours).
@@ -56,7 +57,7 @@ Moreover, if you are you are one of the top staked candidates, you will automati
 2. Select the appropriate extrinsic: `parachainStaking -> cancelLeaveCandidates`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
-## Unlock your stake
+## Unlock Your Stake
 
 In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
 There is a delay of 7 days in block time before you can free them by calling `unlockUnstaked`.

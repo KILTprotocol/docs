@@ -13,7 +13,7 @@ The monitoring infrastructure can either be run as a local grafana cluster or as
 For cloud-based solutions, the prometheus process must be publicly accessible, e.g., via a reverse proxy.
 :::
 
-## What will be installed
+## What Will Be Installed
 
 The Docker compose setup creates and deploys up to four containers, all of which are optional:
 
