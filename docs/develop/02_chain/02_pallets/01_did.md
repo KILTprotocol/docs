@@ -18,7 +18,7 @@ A full DID can then be used to perform certain on-chain actions which include:
 * Setting delegations
 * Doing key rotations on the DID keys
 
-## Registering a DID
+## Register a Full DID
 
 A full DID is needed if the user wants to become an attester or wants to setup delegations.
 A full DID also allows the user to embed a list of URLs, known as service endpoints, into the DID document so that they can be retrieved from the chain as part of the DID document.
@@ -43,7 +43,7 @@ This allows the creation of a DID without having to pay any fees or deposits.
 Beware that this also means that the DID creator gives up some power over the DID: The submitter who pays the deposit will be able to delete the DID from the blockchain and claim back its deposit.
 Once the `did::create` extrinsic is submitted and executed, the DID is written to the chain.
 
-## Using a DID
+## Use a Full DID
 
 Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account.
 This includes handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3names and much more.
@@ -79,8 +79,7 @@ The process of doing any DID-Call is always the same:
 * After that the actual call gets dispatched with a special `DidOrigin`
     * This allows the executer of the actual call to get the DID and the account of the submitter
 
-
-## Updating a DID
+## Update a Full DID
 
 There is a set of extrinsics available to update a full DID.
 These are:
@@ -95,7 +94,6 @@ These are:
 * `add_service_endpoint`
 * `remove_service_endpoint`
 * `delete`
-
 
 All of them have to be authenticated using the DID that is updated following the process described above.
 
@@ -112,4 +110,3 @@ Consequently there are also two ways of reclaiming the deposit:
 2) The deposit owner can decide to claim their deposit back using the `did::reclaim_deposit` extrinsic.
    This will also cause the DID to be fully deleted but it doesn't require a signature from the DID.
    Only the signature of the account that created the DID is needed for this.
-

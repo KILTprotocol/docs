@@ -4,7 +4,7 @@ title: Technical Specifications
 ---
 
 :::note
-This section is WIP and the end goal is for it to host all of KILT specifications.
+This section is WIP. The end goal is for it to host all of KILT specifications.
 :::
 
 List of all the specifications KILT has defined in an effort to standardize APIs and data structures across applications.
