@@ -14,7 +14,7 @@ Remember light DIDs can:
 - Sign claims and attestations with the authentication keys
 - Encrypting messages with the encryption keys
 
-Take a look at our [DID documentation](./../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
 
 ## Generate Keys
 
