@@ -35,7 +35,7 @@ If supported by the Verifier, they can choose to hide attributes and thus only d
 For example, if verifying a driving license only involves the verification of the driver's age and picture, a Claimer can decide to hide additional information such as name and place of residence.
 This improves the privacy of the Claimer since they only need to show attributes that are required in the specific context.
 
-<!-- For a detailed developer-oriented guide to KILT Presentation creation, please refer to our [Presentation Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/04_presentation_creation.md). -->
+For a detailed developer-oriented guide to KILT Presentation creation, please refer to our [Presentation Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/04_presentation_creation.md).
 
 :::caution
 The Presentations can still be correlated, since the hash of the Credential always stays the same, even when creating new Presentations and selecting different attributes to show.
@@ -67,4 +67,4 @@ After the Verifier has checked that the Credential is valid and belongs to the p
 For example, the _age_ property could have different meanings depending on whether it is defined for a passport CType or a Whisky Certificate CType.
 Therefore, the Verifier has to check if the CType matches one of the requested CTypes, and that the properties disclosed in the Presentation include at least all of the properties requested for that CType Presentation.
 
-<!-- For a detailed developer-oriented guide to KILT Credential verification, please refer to our [Verification Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/05_presentation_verification.md). -->
+For a detailed developer-oriented guide to KILT Credential verification, please refer to our [Verification Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/05_presentation_verification.md).
