@@ -64,6 +64,5 @@ Run it from command line:
 yarn ts-node claimer/generateRequest.ts
 ```
 
-OK, you've made a claim as a <span className="label-role claimer">Claimer</span> and
-created a request for attestation.
+OK, you've made a claim as a <span className="label-role claimer">Claimer</span> and created a request for attestation.
 Let's finish up our <span className="label-role attester">Attester</span> and get a credential!

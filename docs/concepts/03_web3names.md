@@ -3,7 +3,7 @@ id: web3names
 title: web3names
 ---
 
-web3names are user-friendly aliases for KILT DIDs.
+In short, web3names are user-friendly aliases for KILT DIDs.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
 There is a one-to-one relationship between DIDs and web3names.
 This means that a KILT DID can be linked to at most one web3name, and a web3name can be claimed only by one DID.

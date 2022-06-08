@@ -4,8 +4,8 @@ title: Claims
 ---
 
 As KILT is an open system, entities can make claims about any other entities, including themselves.
-A Claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) "certifies" this Claim.
-Therefore, Verifiers might therefore trust different Attesters for different scenarios.
+A Claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) *certifies* this Claim.
+Therefore, Verifiers might trust different Attesters for distinct scenarios.
 
 ## Creating a Claim
 
@@ -24,7 +24,7 @@ The resulting Claim contains a reference to the CType by its hash and includes t
 
 ## Requesting a Credential
 
-Once the Claimer has created a Claim, they need to get it "certified", i.e., attested, by an Attester.
+Once the Claimer has created a Claim, they need to get it *certified*, i.e., attested, by an Attester.
 The resulting `RequestForAttestation` must then be sent to the chosen Attester using any messaging system.
 
 The `RequestForAttestation` contains the original Claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the Claim root hash, which is used to identify to the request for attestation and to store it on the KILT blockchain.

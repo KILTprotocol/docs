@@ -6,11 +6,11 @@ title: Verification
 KILT allows a Verifier to check if the information in a credential presented by a claimer is correct and valid.
 With the presentation of the Credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the claimer’s attributes.
 
-The Verifier trusts this third party either because they trust its reputation directly or they trust a delegation structure that it is part of (e.g., State department issuing driving licenses).
+The Verifier trusts this third party either because they trust its reputation directly or they trust a delegation structure that it is part of (e.g., a State department issuing driving licenses).
 
 For the verification process:
 
-- The Claimer needs their credential and the private key associated with their identifier.
+- The Claimer needs their credential and the private key associated with their identifier
 - The Verifier needs the identifier of the trusted attester
 
 During the verification process the Claimer wants to prove three things to the Verifier:
@@ -21,7 +21,7 @@ During the verification process the Claimer wants to prove three things to the V
 
 ## Requesting a Credential from a Claimer
 
-The verifier may request a credential from a claimer, providing the following data:
+The verifier may request a Credential from a Claimer, providing the following data:
 - **CTypes**: which CTypes the Verifier can work with for the use case. They can provide multiple options, which have to be regarded as alternatives.
 - **TrustedAttesters**: which Attesters are considered trusted for each specified CType.
 - **RequiredProperties**: which properties for each specified CType must at least be revealed, for the Presentation to be considered sufficient. More on "Selective Disclosure" later.

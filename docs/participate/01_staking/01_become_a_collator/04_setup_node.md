@@ -62,7 +62,7 @@ For a secure setup, follow the instructions in the previous section about [gener
 
 A KILT Collator node should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
 The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
-When this happens, the Collator node will crash and will stop synchronizing with the network.
+When this happens, the Collator node will crash and will stop synchronizing with the network as well as producing blocks.
 Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all nodes should execute the WASM version of the runtime logic.
 
 ### Specify the Right Chainspec
