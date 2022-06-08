@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import AccountWeb3NameQuery from '!!raw-loader!@site/code_examples/core_features/linking/03_account_web3name_query.ts';
 import AccountWeb3NameQueryNoSDK from '!!raw-loader!@site/code_examples/core_features/linking/04_account_web3name_query_no_sdk.ts';
 
-For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT stakeboard][kilt-stakeboard].
+For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a Collator's account on the [KILT stakeboard][kilt-stakeboard].
 
 This section shows how to perform the account -> web3name querying both with and without the support of the KILT SDK.
 

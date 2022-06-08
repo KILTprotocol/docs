@@ -3,7 +3,7 @@ id: lifecycle
 title: Lifecycle of a Delegator
 ---
 
-The following diagram depicts the full lifecycle of a delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
+The following diagram depicts the full lifecycle of a Delegator from owning free KILT to delegating, losing a delegation seat, re-delegating and finally unlocking their stake.
 
 It summarizes all previous sections.
 Thus, in case you are looking for more detailed information, please head back.
@@ -13,14 +13,14 @@ Thus, in case you are looking for more detailed information, please head back.
 ```mermaid
 flowchart TD
    A["Hold at least 20 KILT"] --> |chose candidate| B("Collator Candidate chosen");
-   B --> |"call \n joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
+   B --> |"call \n joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another Delegator"};
    C --> |yes| D("Delegating to a Collator Candidate")
    C --> |no| C2{"Balance locked?\n e.g., previously delegated \n without unlocking?"}
    C2 --> |no| A
    C2 --> |yes| G 
-   D --> |"leave \n delegators"| E("Not delegating")
+   D --> |"leave \n Delegators"| E("Not delegating")
    D --> |"revoke \n delegation"| E
-   D --> |"your collator \n candidate leaves"| E
+   D --> |"your Collator \n candidate leaves"| E
    E --> F{"Delegate to \n another candidate?"}
    F --> |yes| B
    F --> |no| G("Locked tokens")

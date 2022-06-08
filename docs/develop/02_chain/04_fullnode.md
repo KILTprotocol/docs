@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 We will guide you through the process of setting up and connecting to a KILT full node.
-In contrast [to a collator](../../participate/01_staking/01_become_a_collator/04_setup_node.md), full nodes do not author blocks.
+In contrast [to a Collator](../../participate/01_staking/01_become_a_collator/04_setup_node.md), full nodes do not author blocks.
 They act as a backend for websites and help to verify new blocks or validate extrinsics (e.g., coin transfers and other transactions) directly on the network without relying on a centralized infrastructure provider.
 
 ## Setup
@@ -49,7 +49,7 @@ The `--base-path` parameter specifies where all the persistent files must be sto
 By default, the session keys will also be stored in the *base path*, but we recommend to separate them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is either backed up or restored.
 You can configure where to store the session keys using the `--keystore-path` option.
-Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
+Since the Collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
 ## Join the Network
 

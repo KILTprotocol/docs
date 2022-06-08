@@ -3,7 +3,7 @@ id: monitoring
 title: Set Up Node Monitoring
 ---
 
-It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the collator process.
+It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the Collator process.
 However, in cases of limited resources, the two can also co-exist on the same host.
 
 The monitoring process collects two types of metrics: **Node Exporter metrics** and **blockchain metrics**.
@@ -20,7 +20,7 @@ The Docker compose setup creates and deploys up to four containers, all of which
 - **Node Exporter**: collects metrics from the host machine including CPU, memory, and storage usage, and network traffic statistics
 - **Prometheus**: stores the metrics collected by Node Exporter and collects additional metrics from the blockchain node
 - **Grafana**: shows the collected metrics in a customizable dashboard and can be configured to send alerts when certain conditions are met
-- **Collator**: the collator node itself which runs one of the available KILT runtimes
+- **Collator**: the Collator node itself which runs one of the available KILT runtimes
 
 ## Installation
 Install the latest version of docker-compose from the [official docker-compose installation guide](https://docs.docker.com/compose/install/), then:
@@ -31,7 +31,7 @@ Install the latest version of docker-compose from the [official docker-compose i
 4. Depending on the installation type either:
   - run `docker-compose up -d` to install only Node Exporter and prometheus or
   - run `docker-compose up --profile grafana -d` to install Node Exporter, prometheus and grafana or
-  - run `docker-compose --profile collator --profile grafana up -d` to install Node Exporter, prometheus, grafana **and** a collator node
+  - run `docker-compose --profile collator --profile grafana up -d` to install Node Exporter, prometheus, grafana **and** a Collator node
 
 5. Secure the endpoints:
     1. Install nginx with certbot ```sudo apt install nginx certbot python3-certbot-nginx```

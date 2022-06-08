@@ -5,7 +5,7 @@ title: Leave the Collator Candidate Pool
 
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 
-When you intent to stop collating or just being a collator candidate, you have to go through three stages until your staked tokens are unlocked and your collator state is purged from the chain.
+When you intent to stop collating or just being a Collator candidate, you have to go through three stages until your staked tokens are unlocked and your Collator state is purged from the chain.
 
 :::info
 Unfortunately, exiting is not a simple process for security reasons.
@@ -18,7 +18,7 @@ First, you signal your intent by calling `parachainStaking -> initLeaveCandidate
 You will both be removed from the `CandidatePool` and your state switches from `Active` to `Leaving(leaveRound)`, where `leaveRound` reflects the number of sessions in which you can actually leave.
 You still need to stay online and build blocks for the current and next sessions.
 Of course, you will continue to receive rewards for your authored blocks.
-A leaving candidate cannot be selected as an active collator for the sessions hereinafter.
+A leaving candidate cannot be selected as an active Collator for the sessions hereinafter.
 Moreover, you cannot receive new Delegations and existing Delegations cannot be adjusted.
 However, Delegations can still be revoked.
 
@@ -26,7 +26,7 @@ However, Delegations can still be revoked.
 
 ![](/img/chain/parachainStaking-initLeaveCandidates.png)
 
-1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
+1. Select the Collators's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> initLeaveCandidates`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
@@ -39,10 +39,10 @@ If you wish to become a Candidate at a later stage, you have to apply again and 
 ![](/img/chain/parachainStaking-executeLeaveCandidates.png)
 
 1. Select the any KILT address with sufficient funds to pay for the transaction fee (~5 milli KILT) as the extrinsic submitter (the *using the selected account* field)
-_NOTE: Of course, you can chose your collator account._
+_NOTE: Of course, you can chose your Collator account._
 2. Select the appropriate extrinsic: `parachainStaking -> executeLeaveCandidates`
 3. Select the `Id` option (the *MultiAddress (LookupSource) field*)
-4. Select the collator account (the *Id: AccountId* field)
+4. Select the Collator account (the *Id: AccountId* field)
 5. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 ## Cancel exit request
@@ -52,7 +52,7 @@ Moreover, if you are you are one of the top staked candidates, you will automati
 
 ![](/img/chain/parachainStaking-cancelLeaveCandidates.png)
 
-1. Select the collators's KILT address as the extrinsic submitter (the *using the selected account* field)
+1. Select the Collators's KILT address as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> cancelLeaveCandidates`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 

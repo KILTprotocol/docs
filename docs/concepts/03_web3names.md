@@ -29,7 +29,7 @@ Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a
 These accounts are not specific to the KILT blockchain but can reference any chain within the Dotsama ecosystem.
 Each account <-> DID link requires the payment of a small deposit, which is returned whenever the link is removed.
 
-For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
+For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a Collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
 
 <ThemedImage
   alt="DID lookup diagram"

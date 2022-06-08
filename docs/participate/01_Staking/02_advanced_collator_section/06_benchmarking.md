@@ -3,11 +3,11 @@ id: benchmarking
 title: Benchmark your Collator
 ---
 
-To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
+To enable benchmarking, the Collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
 
 
-:::caution Don't use this binary for running the collator!
+:::caution Don't use this binary for running the Collator!
 ```bash=
 cargo build --release -p kilt-parachain --features=runtime-benchmarks
 ```

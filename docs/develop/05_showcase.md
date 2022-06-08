@@ -37,7 +37,7 @@ Luckily, some applications have also built on KILT.
     width='180'
     alt='bte-stakeboard-logo'>
     Help securing the KILT Spiritnet!
-    On Stakeboard you can influence who is allowed to build blocks on Spiritnet by delegating KILT tokens to your collator of trust.
+    On Stakeboard you can influence who is allowed to build blocks on Spiritnet by delegating KILT tokens to your Collator of trust.
 </LogoText>
 
 ---
