@@ -53,3 +53,5 @@ Note that the identifier of the two DIDs, apart from the initial `01` sequence o
 
 Once a light DID is migrated, all the credentials collected by the light DID can only be presented using the migrated on-chain DID.
 This is by design, as it is assumed that the user had valid reasons to migrate the DID on the chain, and as on-chain DIDs offer greater security guarantees, KILT will reject light DID signatures even in case the original claim in the credential was generated with that off-chain DID.
+
+<!-- For a detailed developer-oriented guide to KILT DIDs, please refer to our [DID Cookbook section](../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md). -->
