@@ -40,7 +40,7 @@ The KILT parachain accepts an additional parameter to select the environment to 
 This can either be `peregrine` or `spiritnet`.
 
 Hence, to start a full node for the Spiritnet network, the parameter would be `--chain=spiritnet`.
-Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
+Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
 
 ### Where are all the files stored?
 

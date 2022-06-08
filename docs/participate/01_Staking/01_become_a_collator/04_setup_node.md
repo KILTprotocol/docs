@@ -42,7 +42,7 @@ Exposing the RPC endpoint can be done using the following parameters:
 --rpc-port=9933
 --rpc-cors=all
 --rpc-methods=unsafe
---unsafe-rpc-external // ONLY for docker based setups
+--unsafe-rpc-external // ONLY for Docker-based setups
 ```
 
 Exposing the RPC endpoint of a collator does not imply that it becomes accessible via the PolkadotJS Apps interface, because this requires a Websocket to connect to the node.
@@ -73,7 +73,7 @@ The KILT parachain accepts an additional parameter to select the environment to 
 This can either be `peregrine` or `spiritnet`.
 
 Hence, to start a collator for the Spiritnet network, the parameter would be `--chain=spiritnet`.
-Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
+Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
 
 ### Where are all the files stored?
 
@@ -127,7 +127,7 @@ The compiled executable can be found in `./target/release/kilt-parachain` after 
 </TabItem>
 <TabItem value="Docker">
 
-Simply pull the [latest docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags):
+Simply pull the [latest Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags):
 
 ```bash
 docker pull kiltprotocol/kilt-node:latest
@@ -156,10 +156,10 @@ In either case, if the node needs to be reachable via PolkadotJS Apps, the `--ws
 
 In either case, if the node needs to be reachable via PolkadotJS Apps, the `--ws-external` flag must be added to the collator options, before the `--` divider, and the WS port must be exposed from the container with an additional `-p 9944:9944` parameter.
 
-The docker command will map the database files for the relay and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
+The Docker command will map the database files for the relay and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
 That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back on next containers.
 
-The docker container runs as an user with id 1000 and will try to access the mapped volume and the files it contains.
+The Docker container runs as an user with id 1000 and will try to access the mapped volume and the files it contains.
 If the files are not owned by a user with id 1000, this will result in an error.
 If that is the case, run `sudo chown -R 1000:1000 $HOME/data` to give the container access.
 

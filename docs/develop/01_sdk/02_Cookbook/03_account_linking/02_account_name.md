@@ -11,7 +11,7 @@ For accounts that have been linked to DIDs that have claimed a web3name, the lin
 
 This section shows how to perform the account -> web3name querying both with and without the support of the KILT SDK.
 
-## Querying without the KILT SDK
+## Query an Account's web3name without the KILT SDK
 
 Querying the web3name for a given account without the SDK involves performing two different RPC calls to a KILT full node, as shown below.
 
@@ -19,7 +19,7 @@ Querying the web3name for a given account without the SDK involves performing tw
   {AccountWeb3NameQuery}
 </CodeBlock>
 
-## Querying with the KILT SDK
+## Query an Account's web3name with the KILT SDK
 
 Although the SDK still performs the same two RPC queries shown in the code snippets above, it hides the complexity from the user, who only needs to call a single function, as shown below.
 

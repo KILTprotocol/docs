@@ -15,7 +15,7 @@ For cloud-based solutions, the prometheus process must be publicly accessible, e
 
 ## What will be installed
 
-The docker compose setup creates and deploys up to four containers, all of which are optional:
+The Docker compose setup creates and deploys up to four containers, all of which are optional:
 
 - **Node Exporter**: collects metrics from the host machine including CPU, memory, and storage usage, and network traffic statistics
 - **Prometheus**: stores the metrics collected by Node Exporter and collects additional metrics from the blockchain node

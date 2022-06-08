@@ -3,15 +3,15 @@ id: standalone-chain-setup
 title: BYOB - Bring Your Own Blockchain
 ---
 
-In case you want to have control over your blockchain, e.g., if you want to reset the state repeatedly or need more funds than a faucet can provide for a single account, you will need to run your own blockchain.
-For this purpose, we provide a docker image which runs in standalone mode.
+In case you want to have full control over your blockchain deployment, e.g., if you want to reset the state repeatedly or need more funds than a faucet can provide for a single account, you will need to run your own blockchain.
+For this purpose, we provide a Docker image which runs in standalone mode.
 This means that the blockchain doesn't act as a parachain but as an independent chain.
 There is no need to run a relaychain and register the KILT chain as a parachain.
 This greatly simplifies the setup.
 
-You only need to start the docker image:
+You only need to start the Docker image:
 
-```
+```bash
 docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/mashnet-node:latest --dev --ws-external --rpc-external
 ```
 
@@ -41,17 +41,17 @@ You should see output similar to the following:
 ```
 
 Congratulations!
-You are running your own blockchain. 🎉
+You are running your own KILT blockchain. 🎉
 
 The blockchain exposes a websocket endpoint on port `9944` and an RPC endpoint on port `9933`.
-You can test that by first calling an RPC endpoint using curl.
+You can test that by calling an RPC endpoint using curl.
 
-```
+```bash
 curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_name", "params":[]}' http://127.0.0.1:9933/
 ```
 
 This should give you `{"jsonrpc":"2.0","result":"KILT Node","id":1}` as a response.
 
-But you can also connect to the WebSocket endpoints using [your script](./index.md#set-up-your-project).
+In addition, you can also connect to the exposed WebSocket endpoints using [your script](./index.md#set-up-your-project).
 Simply replace the WebSocket address with `ws://127.0.0.1:9944`.
-Please note that we connect to the port `9944` as we are using the WebSocket protocol for our SDK and not bare http.
+Please note that we connect to the port `9944` as we are using the WebSocket protocol for our SDK and not bare HTTP.
