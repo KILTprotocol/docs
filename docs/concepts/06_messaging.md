@@ -40,5 +40,4 @@ Because the encrypted message does not simply reference the DIDs of sender and r
 
 :::caution
 While no one can read nor change what is inside an encrypted message even if they intercept it while traveling on the network, a sophisticated attacker may try to guess what is inside and trick either side of the channel by resubmitting a copy of that message later.
-<!-- For a detailed developer-oriented guide about how to protect from *replay attacks*, please refer to our [Replay Protection Cookbook section](../develop/01_sdk/02_cookbook/05_messaging/01_replay_protection.md). -->
 :::

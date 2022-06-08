@@ -39,8 +39,6 @@ For DIDs that have also claimed a web3name, the linking feature opens up the way
   }}
 />
 
-<!-- For a detailed developer-oriented guide to web3names and account linking, please refer to our [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and our [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md). -->
-
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
 
