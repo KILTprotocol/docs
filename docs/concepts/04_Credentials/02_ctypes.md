@@ -91,3 +91,4 @@ After creating a CType, its full content can be included in the blockchain block
 
 Querying the full content of a CType is not trivial, since the transaction would have to be found in the blockchain history. This functionality can be and is offered by indexing services, such as [Subscan](https://spiritnet.subscan.io/).
 
+<!-- For a detailed developer-oriented guide to KILT CTypes, please refer to our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md). -->

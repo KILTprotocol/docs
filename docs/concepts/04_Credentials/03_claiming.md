@@ -29,3 +29,4 @@ The resulting `RequestForAttestation` must then be sent to the chosen Attester u
 
 The `RequestForAttestation` contains the original Claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the Claim root hash, which is used to identify to the request for attestation and to store it on the KILT blockchain.
 
+<!-- For a detailed developer-oriented guide to KILT Claims, please refer to our [Claim Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/02_attestation_request.md). -->

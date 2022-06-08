@@ -191,3 +191,4 @@ Now, the last step is to excute the complete script and wait to see whether we c
 Was it successful? Nice Job!
 
 If you want to explore more about KILT's features, please check out our [Concepts section](../../concepts/01_what_is_kilt.md).
+If you want to dive deeper into the SDK, please advance to the next section: [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).

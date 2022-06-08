@@ -54,7 +54,7 @@ If you have stopped to receive rewards, either
    3. Are offline.
 
 In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](./04_unlock_unstaked.md).
-Otherwise, in case of 2ii. and 2iii., you need to manually initiate the unlocking period if you don't want to or cannot delegate to another Collator candidate.
+Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](./03_delegate/05_exit.md/) if you don't want to or cannot delegate to another Collator candidate.
 </TabItem>
 </Tabs>
 
