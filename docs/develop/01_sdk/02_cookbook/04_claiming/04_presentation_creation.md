@@ -5,7 +5,7 @@ title: Present a Credential
 import CodeBlock from '@theme/CodeBlock';
 import CreatePresentation from '!!raw-loader!@site/code_examples/core_features/claiming/04_create_presentation.ts';
 
-With a valid Credential, Claimers can now go to verifiers to request some service upon providing proof of validity for a certain Credential.
+With a valid Credential, Claimers can now go to Verifiers to request some service upon providing proof of validity for a certain Credential.
 The process of presenting one or more Credentials to a Verifier is called `Presentation`.
 
 This step, similarly to the [Attestation request](./02_attestation_request.md), requires that a communication channel exist between the Claimer and the Verifier so that information about the Presentation can be shared.

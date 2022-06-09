@@ -21,7 +21,7 @@ During the verification process the Claimer wants to prove three things to the V
 
 ## Requesting a Credential from a Claimer
 
-The verifier may request a Credential from a Claimer, providing the following data:
+The Verifier may request a Credential from a Claimer, providing the following data:
 - **CTypes**: which CTypes the Verifier can work with for the use case. They can provide multiple options, which have to be regarded as alternatives.
 - **TrustedAttesters**: which Attesters are considered trusted for each specified CType.
 - **RequiredProperties**: which properties for each specified CType must at least be revealed, for the Presentation to be considered sufficient. More on "Selective Disclosure" later.
