@@ -3,8 +3,8 @@ id: verification
 title: Verification
 ---
 
-KILT allows a Verifier to check if the information in a Credential presented by a claimer is correct and valid.
-With the presentation of the Credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the claimer’s attributes.
+KILT allows a Verifier to check if the information in a Credential presented by a Claimer is correct and valid.
+With the presentation of the Credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the Claimer’s attributes.
 
 The Verifier trusts this third party either because they trust its reputation directly or they trust a delegation structure that it is part of (e.g., a State department issuing driving licenses).
 
@@ -15,7 +15,7 @@ For the verification process:
 
 During the verification process the Claimer wants to prove three things to the Verifier:
 
-- The Credential is valid (i.e., not revoked by its Attester)
+- The Credential is valid (i.e., not revoked by its Atte ster)
 - The Claim in the Credential actually refers to the Claimer 
 - The Claim contains information that is relevant for the Verifier in this use case
 

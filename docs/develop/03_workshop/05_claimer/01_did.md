@@ -18,14 +18,14 @@ Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_di
 
 ## Generate Keys
 
-Similar to the attester, the claimer must set up the DID keys.
+Similar to the attester, the Claimer must set up the DID keys.
 Create a file `claimer/generateKeypairs.ts` and copy the code below.
 
 <CodeBlock className="language-js" title="claimer/generateKeypairs.ts">
   {GenerateKeypairs}
 </CodeBlock>
 
-The claimer only needs an authentication key and an encryption key.
+The Claimer only needs an authentication key and an encryption key.
 Here the keys are both derived from the same seed, but they could also have two different seeds.
 
 ## Generate Light DID
@@ -39,8 +39,8 @@ But we'll still accept `didUri` and prompt to save it in `.env` for our referenc
 </CodeBlock>
 
 After everything is initialized, we create a mnemonic that will be used to create the light DID.
-As you may have noticed the claimer doesn't have an `account`.
-The claimer doesn't need to hold funds and also doesn't need a blockchain account.
+As you may have noticed the Claimer doesn't have an `account`.
+The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
 
 ## Run
 

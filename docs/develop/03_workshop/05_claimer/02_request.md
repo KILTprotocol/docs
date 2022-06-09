@@ -31,7 +31,7 @@ Create a file `claimer/createClaim.ts` and copy the code below.
 The magic is happening in the `createRequest` function.
 There we create a request for attestation from a claim.
 Attestations can only be created for attributes that the <span className="label-role claimer">Claimer</span> wants to publish.
-To ensure that the claimer also approves of the attributes in the claim, he has to digitally sign the request for attestation.
+To ensure that the Claimer also approves of the attributes in the claim, he has to digitally sign the request for attestation.
 The signature makes sure that the attester doesn't change the attributes and the attestation is created for the agreed values.
 
 The `main` function puts it all together.
