@@ -15,7 +15,7 @@ For the verification process:
 
 During the verification process the Claimer wants to prove three things to the Verifier:
 
-- The Credential is valid (i.e., not revoked by its Atte ster)
+- The Credential is valid (i.e., not revoked by its Attester)
 - The Claim in the Credential actually refers to the Claimer 
 - The Claim contains information that is relevant for the Verifier in this use case
 

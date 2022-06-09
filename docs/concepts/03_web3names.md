@@ -9,7 +9,7 @@ There is a one-to-one relationship between DIDs and web3names.
 This means that a KILT DID can be linked to at most one web3name, and a web3name can be claimed only by one DID.
 
 Each web3name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the chances of *two web3names looking the same, despite being different*.
-The character set include only:
+The character set includes only:
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
 - the symbols `-` and `_`
@@ -17,7 +17,7 @@ The character set include only:
 A regex that would match all and only the allowed web3names would be the following:
 
 ```
-^[a-z0-9\_\-]{3,32}$
+^[a-z0-9_-]{3,32}$
 ```
 
 In the global URI space, web3names are prefixed with the `w3n:` URI namespace.

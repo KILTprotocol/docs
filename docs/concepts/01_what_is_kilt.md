@@ -53,7 +53,7 @@ This is somehow very similar to the approach used for centuries before our data 
 
 The core ideas are:
 
-* Managing user's identities in the form of [Decentralized Identifiers (DID)](https://w3c-ccg.github.io/did-spec/), with the support of the KILT blockchain.
-* Obtaining digital Verifiable Credentials about user-specified claims.
-* Supporting revocation of Verifiable Credentials by their Attesters.
-* Presenting and verifying Verifiable Credentials in a privacy-preserving and user-controlled way.
+* Managing user's identities in the form of [Decentralized Identifiers (DID)](https://w3c-ccg.github.io/did-spec/), with the support of the KILT blockchain
+* Obtaining digital Verifiable Credentials about user-specified Claims
+* Supporting revocation of Verifiable Credentials by their Attesters
+* Presenting and verifying Verifiable Credentials in a privacy-preserving and user-controlled way
