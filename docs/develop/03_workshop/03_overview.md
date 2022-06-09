@@ -12,7 +12,7 @@ In the real world, these actors would be running different services, so we set u
 Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
 But only the <span className="label-role attester">Attester</span> is required to own KILTs since they have to pay for storing attestation on chain.
 The <span className="label-role verifier">Verifier</span> only needs to query the KILT blockchain to ensure that the attestation is still valid and was not revoked.
-The <span className="label-role claimer">Claimer</span> is not required to query the blockchain, but they might do so to check whether their Credential is still valid or the attester has revoked it in the meantime.
+The <span className="label-role claimer">Claimer</span> is not required to query the blockchain, but they might do so to check whether their Credential is still valid or the Attester has revoked it in the meantime.
 
 ## Request an Attestation
 

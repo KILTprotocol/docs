@@ -18,7 +18,7 @@ Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_di
 
 ## Generate Keys
 
-Similar to the attester, the Claimer must set up the DID keys.
+Similar to the Attester, the Claimer must set up the DID keys.
 Create a file `claimer/generateKeypairs.ts` and copy the code below.
 
 <CodeBlock className="language-js" title="claimer/generateKeypairs.ts">

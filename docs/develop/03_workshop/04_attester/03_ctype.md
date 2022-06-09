@@ -14,7 +14,7 @@ You can think of it as the data model for your claim.
 
 Before the <span className="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
 A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
-Since CTypes enable interoperability between attesters, it is highly recommended to use existing CTypes instead of creating new ones.
+Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes instead of creating new ones.
 But in this workshop, we create our own CType.
 
 :::info CType

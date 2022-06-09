@@ -21,6 +21,6 @@ The following snippets shows how:
 
 :::note
 The creation of a new CType requires the CType hash to be unique.
-Before writing a new CType, attesters should check whether there is already an existing CType which matches their requirements.
+Before writing a new CType, Attesters should check whether there is already an existing CType which matches their requirements.
 Visit our [CType index repository](https://github.com/KILTprotocol/ctype-index) for a non-exhaustive list of existing CTypes.
 :::
