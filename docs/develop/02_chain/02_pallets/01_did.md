@@ -14,20 +14,20 @@ By upgrading this to a full DID registered on the blockchain, all the keys assoc
 A full DID can then be used to perform certain on-chain actions which include:
 
 * Writing CTypes to the chain
-* Writing attestations to the chain
-* Setting delegations
+* Writing Attestations to the chain
+* Setting Delegations
 * Doing key rotations on the DID keys
 
 ## Register a Full DID
 
-A full DID is needed if the user wants to become an attester or wants to setup delegations.
+A full DID is needed if the user wants to become an attester or wants to setup Delegations.
 A full DID also allows the user to embed a list of URLs, known as service endpoints, into the DID document so that they can be retrieved from the chain as part of the DID document.
 To create a full DID the user first has to create a set of keys and service endpoints:
 
 * one authentication key for signing extrinsics from your DID
 * zero or more key agreement keys for encrypting messages that are sent to you
-* one attestation key for signing attestations (optional)
-* one delegation key for authorizing delegations (optional)
+* one attestation key for signing Attestations (optional)
+* one delegation key for authorizing Delegations (optional)
 * service endpoints that point to external hostings for others to find (optional)
 
 With those keys prepared and the service endpoints set up, they are ready to write the DID to the KILT blockchain.
@@ -46,7 +46,7 @@ Once the `did::create` extrinsic is submitted and executed, the DID is written t
 ## Use a Full DID
 
 Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account.
-This includes handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3names and much more.
+This includes handling of Attestations and CTypes, setting up trust hierarchies through Delegations, managing web3names and much more.
 
 Those actions need to be signed by the DID before they can be submitted to chain by any account that the DID owner specifies when signing.
 We are naming those actions "DID-Calls".
@@ -62,8 +62,8 @@ The process of doing any DID-Call is always the same:
     * Account of the submitter to allow the DID owner to specify who is allowed to submit
 * Create a signature over the `DidAuthorizedCallOperation` by scale-encoding it and signing it using the appropriate key
     * Most operations require the authentication key of the DID to be used
-    * Managing attestations requires the attestation key
-    * Managing delegations requires the delegation key
+    * Managing Attestations requires the attestation key
+    * Managing Delegations requires the delegation key
 * Construct the `submit_did_call` extrinsic consisting of
     * The `DidAuthorizedCallOperation`
     * The DID signature

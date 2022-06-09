@@ -47,7 +47,7 @@ If you have stopped to receive rewards, either of the following is true:
 ## Delegator Rewards Have Stopped
 
 If you have stopped to receive rewards, either
-1. You were kicked out of your collator candidate's delegation pool because all current Delegators have a higher stake or
+1. You were kicked out of your Collator candidate's delegation pool because all current Delegators have a higher stake or
 2. Your Collator candidate stopped producing blocks, because they...
    1. Left the Collator candidate pool intentionally such that they don't have an associated Collator state on-chain henceforth; or
    2. Are not among the top staked candidates (of which are 30 at the time of writing 2022-05-05); or

@@ -17,7 +17,7 @@ A necessary condition for secure communication with a given person or organizati
 :::
 
 To be able to communicate, the two DIDs need to expose **key agreement public keys** for that purpose (a.k.a., an **encryption key**).
-In order to send a message to the other party, a DID owner (let's call her **Alice**) looks up her peer's (let's call it **Bob**) encryption public key, which can be part of either a [Full DID](./02_did.md#full-dids) or a [Light DID](./02_did.md#light-dids).
+In order to send a message to the other party, a DID owner (let's call her **Alice**) looks up her peer's (let's call it **Bob**) encryption public key, which can be part of either a [full DID](./02_did.md#full-dids) or a [light DID](./02_did.md#light-dids).
 Using this key in combination with her secret encryption key, **Alice** can now encrypt the message such that only she and the **Bob** can decrypt it.
 
 **Bob** can decrypt this message after looking up **Alice's** encryption key.

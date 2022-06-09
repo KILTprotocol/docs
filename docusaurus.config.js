@@ -2,7 +2,7 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A Self-Sovereign Identity Protocol for Decentralized Identifiers and Verifiable Credentials.',
+    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',

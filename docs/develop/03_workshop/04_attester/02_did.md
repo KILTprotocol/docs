@@ -28,7 +28,7 @@ There are currently four different key types that a DID supports:
 - An _authentication keypair_, used to sign claims and presented them when requested
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
-- A _capability-delegation keypair_, used to write delegations on chain
+- A _capability-delegation keypair_, used to write Delegations on chain
 
 Keys can be replaced over time, e.g., if a key is compromised.
 
