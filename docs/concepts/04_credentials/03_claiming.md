@@ -4,7 +4,7 @@ title: Claims
 ---
 
 As KILT is an open system, entities can make claims about any other entities, including themselves.
-A Claim (as in the real world) can only be trusted, if another trusted entity (we call them Attesters) *certifies* this Claim.
+A Claim (as in the real world) can only be trusted if another trusted entity (we call them Attesters) *certifies* this Claim.
 Therefore, Verifiers might trust different Attesters for distinct scenarios.
 
 ## Creating a Claim

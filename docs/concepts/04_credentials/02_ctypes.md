@@ -87,7 +87,7 @@ Hence, a typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca
 ## Storing and Querying CTypes
 
 CTypes can be stored on the blockchain.
-After creating a CType, its full content can be included in the blockchain block history, while its hash is anchored to the blockchain state.
+After creating a CType, its full content is included only in the blockchain block history, while its hash is anchored to the blockchain state.
 
 Querying the full content of a CType is not trivial, since the transaction would have to be found in the blockchain history. This functionality can be and is offered by indexing services, such as [Subscan](https://spiritnet.subscan.io/).
 

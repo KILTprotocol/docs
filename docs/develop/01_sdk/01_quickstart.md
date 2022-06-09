@@ -25,7 +25,7 @@ What you will have achieved at the end of this is the following:
 3. Query a **web3name** to get its **DID**
 4. Verify a **Credential**, published via a **DID service endpoint**
 
-After completing the quickstart guide, you should have learn a little about KILT by actually using it.
+After completing the quickstart guide, you should have learned a little about KILT by actually using it.
 The guide requires some experience with javascript and command-line tools.
 We will have recommended guides to other tutorials to dive deeper into some of the topics.
 
@@ -106,7 +106,7 @@ Again, the SDK makes this process very easy to follow, by exposing a `Kilt.conne
   {Connect}
 </SnippetBlock>
 
-Now you have connected you have access to the chain, but let's not forget to **close** any connections when we are done!
+After establishing a connection, you have access to the chain, but let's not forget to **close** any connections when we are done!
 Connections to blockchain nodes should be dropped when not needed anymore, and to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
 
 <SnippetBlock
@@ -142,7 +142,7 @@ One type of external resources is represented by, you guessed it, **KILT Credent
 Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if it links to any public Credentials for us to **query** and **verify**.
 
 We will keep adding code below what we just added.
-The code snippet retrieved the service endpoints exposed by the DID we found for `john_doe`:
+The code snippet retrieves the service endpoints exposed by the DID we found for `john_doe`:
 
 <SnippetBlock
   className="language-js"
