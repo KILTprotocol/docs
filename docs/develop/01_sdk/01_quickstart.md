@@ -13,8 +13,8 @@ import Connect from '!!raw-loader!@site/code_examples/core_features/getting_star
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
-import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_Credential.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_Credential.ts';
+import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_credential.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
