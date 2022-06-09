@@ -12,7 +12,7 @@ In the real world, these actors would be running different services, so we set u
 Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
 But only the <span className="label-role attester">Attester</span> is required to own KILTs since they have to pay for storing attestation on chain.
 The <span className="label-role verifier">Verifier</span> only needs to query the KILT blockchain to ensure that the attestation is still valid and was not revoked.
-The <span className="label-role claimer">Claimer</span> is not required to query the blockchain, but they might do so to check whether their credential is still valid or the attester has revoked it in the meantime.
+The <span className="label-role claimer">Claimer</span> is not required to query the blockchain, but they might do so to check whether their Credential is still valid or the attester has revoked it in the meantime.
 
 ## Request an Attestation
 
@@ -41,7 +41,7 @@ The <span className="label-role verifier">Verifier</span> requests a presentatio
 Without a specific CType, the presentation is meaningless.
 Thus, it is important to require this.
 We will [explain CTypes in more detail](attester/ctype) in a later chapter.
-A presentation is derived from a credential and does not need to contain all attributes.
+A presentation is derived from a Credential and does not need to contain all attributes.
 A <span className="label-role claimer">Claimer</span> could choose to hide their address from their passport if the <span className="label-role verifier">Verifier</span> is only interested in their age.
 
 ```mermaid
@@ -50,7 +50,7 @@ actor C as Claimer
 actor V as Verifier
 participant B as KILT Blockchain
     V->>+C: Request presentation for CType
-    C->>C: Derive a presentation from a credential
+    C->>C: Derive a presentation from a Credential
     C-->>-V: submit presentation
     V->>B: check validity of presentation
 ```

@@ -12,7 +12,7 @@ This messaging layer provides **authenticated end-to-end encryption** – the go
 The messaging layer enables secure communication between two digital identities – DIDs.
 A necessary condition for secure communication with a given person or organization is to make sure that the DID on the other side of the communication channel is really controlled by other party, in order to avoid attacks such as *Man in the Middle* (MitM) attacks.
 
-<!--TODO: point to a resource on how to solve that bootstrapping problem; could include well-known DID publishing, credentials by a third party that's already trusted, and potentially web3names-->
+<!--TODO: point to a resource on how to solve that bootstrapping problem; could include well-known DID publishing, Credentials by a third party that's already trusted, and potentially web3names-->
 
 :::
 

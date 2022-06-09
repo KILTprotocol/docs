@@ -13,8 +13,8 @@ import Connect from '!!raw-loader!@site/code_examples/core_features/getting_star
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
-import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_credential.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
+import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_Credential.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_Credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
@@ -139,7 +139,7 @@ Now let's see if John Doe has any public KILT Credentials that we could retrieve
 
 A **KILT DID** can expose service endpoints, which allow to link external resources to the DID.
 One type of external resources is represented by, you guessed it, **KILT Credentials**!
-Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if it links to any public credentials for us to **query** and **verify**.
+Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if it links to any public Credentials for us to **query** and **verify**.
 
 We will keep adding code below what we just added.
 The code snippet retrieved the service endpoints exposed by the DID we found for `john_doe`:
@@ -152,9 +152,9 @@ The code snippet retrieved the service endpoints exposed by the DID we found for
 </SnippetBlock>
 
 If the snippet printed some endpoints, congratulations!
-Let's see if we can find a credential among them.
+Let's see if we can find a Credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a credential:
+We can select one of the endpoints and query the URL to see if it returns a Credential:
 
 <SnippetBlock
   className="language-js"

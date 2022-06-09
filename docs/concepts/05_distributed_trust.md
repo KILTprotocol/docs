@@ -58,7 +58,7 @@ Delegation Hierarchies also limit who can change or remove permissions.
 For Delegations, only the parents of a given Attester can change or remove the Attester's Delegation itself or any of its children.
 E.g., Attester 2 cannot change the Delegation information for Attester 4, but Attester 1 and Attester 3 can both remove Attester 4 from the organization, or give it permission to also hire new people, which is not able to right now.
 
-Credential revocation works similarly, with the difference that a credential can revoked by any parent (as with Delegations), or by the original Attester.
+Credential revocation works similarly, with the difference that a Credential can revoked by any parent (as with Delegations), or by the original Attester.
 E.g., Attester 2 cannot revoke Credentials issued by Attester 1, 3, 4 and 5, while Attester 1 can revoke Credentials issued by any Attester since Attester 1 is, directly or indirectly, the parent of every other node.
 
 ## Virtual Credential Organizations

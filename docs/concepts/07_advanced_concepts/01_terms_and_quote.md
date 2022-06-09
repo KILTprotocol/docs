@@ -16,7 +16,7 @@ The `Terms` object consists of following items:
 - **Claim**: A partial Claim with information the Attester already has about the Claimer.
   - This helps the Claimer to pre-fill their Claims with information only known to the Attester.
   - The partial Claim has to at least contain the CType hash the Attestation will be based on.
-- **CTypes**: An optional list of full CTypes, in case the Claimer does not know about the correct CType for the credential, yet.
+- **CTypes**: An optional list of full CTypes, in case the Claimer does not know about the correct CType for the Credential, yet.
 - **Legitimations**: A legitimation is a Credential, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the Claim requested.
   - This is a way of establishing trust between the participants.
 - **Delegation Id**: An Attester may be part of a top-down trust authority, given them the right to attest in the name of an institution, or similar, as explained in the [Distributed Trust section](../05_distributed_trust.md). If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.
@@ -43,7 +43,7 @@ In cases where multiple Attesters provide the same Attestation (for example, a c
 
 To come to an agreement on the Quote, the participants may message back and forth, signing the object.
 If the Attester wishes to add a Quote to their Terms, the Attester signs the `Quote` object before sending it as part of the "submit terms" message to the Claimer.
-After the Claimer has received the signed Quote and accepts it, the Claimer counter-signs it and attaches the credential credential hash for linking the Quote the Credential that it refers to.
+After the Claimer has received the signed Quote and accepts it, the Claimer counter-signs it and attaches the Credential hash for linking the Quote the Credential that it refers to.
 After the final exchange, the Attester checks all the information and issues the Credential.
 
 ```mermaid

@@ -4,7 +4,7 @@ title: Nested CTypes
 ---
 
 A Nested CType is a hierarchical composite schema that includes other CTypes as substructures by referencing them.
-For example, a company could use a Nested CType that includes the required credentials, qualifications, health and safety certificates, etc. of its current employees.
+For example, a company could use a Nested CType that includes the required Credentials, qualifications, health and safety certificates, etc. of its current employees.
 When verifying a Nested CType, the sub-CTypes need to be available.
 
 ## Referencing

@@ -22,15 +22,15 @@ A `Credential` object is also called an Attested Claim: It is what <span classNa
 
 :::info Presentation
 
-A credential is used to create the `Presentation` object by the <span className="label-role claimer">claimer</span>.
-Unlike the credential, a `Presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span>.
-A `Presentation` also contains a prove that the <span className="label-role claimer">claimer</span> owns the credential.
+A Credential is used to create the `Presentation` object by the <span className="label-role claimer">claimer</span>.
+Unlike the Credential, a `Presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span>.
+A `Presentation` also contains a prove that the <span className="label-role claimer">claimer</span> owns the Credential.
 
 :::
 
 ## Create Presentation
 
-It's not enough to just send our credential as a <span className="label-role claimer">Claimer</span> as we also need to prove our ownership.
+It's not enough to just send our Credential as a <span className="label-role claimer">Claimer</span> as we also need to prove our ownership.
 This is done by creating a presentation by signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
 Create `claimer/createPresentation.ts` helper and copy the following code.

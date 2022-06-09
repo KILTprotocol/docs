@@ -97,4 +97,4 @@ To run it, just execute the `attester/generateCtype.ts` file.
 yarn ts-node attester/generateCtype.ts
 ```
 
-OK, now before we can issue credentials, we need a <span className="label-role claimer">Claimer</span> to request one! Let's move on!
+OK, now before we can issue Credentials, we need a <span className="label-role claimer">Claimer</span> to request one! Let's move on!

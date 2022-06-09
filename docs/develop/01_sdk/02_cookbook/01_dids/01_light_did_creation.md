@@ -30,7 +30,7 @@ For cases in which also an encryption key and some service endpoints need to be 
 In KILT, light DIDs are meant to be used in one of two cases:
 
 1. As *ephemeral, one-time identifiers* when establishing new communication channels with untrusted parties.
-2. As an *entrypoint into the KILT ecosystem*, i.e., to obtain the first credentials and getting acquainted with KILT.
+2. As an *entrypoint into the KILT ecosystem*, i.e., to obtain the first Credentials and getting acquainted with KILT.
 
 As such, light DIDs do not support updates of any sort, but they retain the same identifier until they are upgraded to full DIDs.
 They are not supposed to be used in complex and/or high-security use cases.

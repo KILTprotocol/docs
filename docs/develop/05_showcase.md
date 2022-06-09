@@ -12,7 +12,7 @@ If you are missing from the list and want to be added, you are welcome to [open 
 ## Wallets
 
 Wallets are the swiss army knife of the Web3.
-They store private information like secret keys for KILT DIDs and credentials.
+They store private information like secret keys for KILT DIDs and Credentials.
 Each time a website needs to access some information about the visitor, wallets ask for user's permission to share the requested information.
 
 <LogoText
@@ -73,7 +73,7 @@ Luckily, some applications have also built on KILT.
     srcDark='/img/showcase/skyc_dark.svg'
     width='110'
     alt='bte-socialkyc-logo'>
-    Get your first KILT credential today!
-    SocialKYC issues credentials that prove ownership of several social profiles, including email addresses, Telegram accounts, GitHub profiles and many more.
-    It's free to use and credentials expire after a year.
+    Get your first KILT Credential today!
+    SocialKYC issues Credentials that prove ownership of several social profiles, including email addresses, Telegram accounts, GitHub profiles and many more.
+    It's free to use and Credentials expire after a year.
 </LogoText>

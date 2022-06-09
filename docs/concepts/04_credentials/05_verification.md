@@ -3,14 +3,14 @@ id: verification
 title: Verification
 ---
 
-KILT allows a Verifier to check if the information in a credential presented by a claimer is correct and valid.
+KILT allows a Verifier to check if the information in a Credential presented by a claimer is correct and valid.
 With the presentation of the Credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the claimer’s attributes.
 
 The Verifier trusts this third party either because they trust its reputation directly or they trust a delegation structure that it is part of (e.g., a State department issuing driving licenses).
 
 For the verification process:
 
-- The Claimer needs their credential and the private key associated with their identifier
+- The Claimer needs their Credential and the private key associated with their identifier
 - The Verifier needs the identifier of the trusted attester
 
 During the verification process the Claimer wants to prove three things to the Verifier:
@@ -56,7 +56,7 @@ That problem is addressed in the next section.
 When issued, a Credential is linked to the KILT Decentralized Identifier (DID) of the original Claimer.
 The DID can be resolved to the public key of the Claimer according to the [KILT DID specification](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).
 
-The Verifier assumes that the private key for the DID public key is only known to the owner of the credential, and is not shared across users.
+The Verifier assumes that the private key for the DID public key is only known to the owner of the Credential, and is not shared across users.
 Therefore, when requesting the Claimer to generate a Presentation, the Verifier challenges the Claimer to sign a nonce (a random number that is used once) that the Verifier sends together with their request.
 
 If the Claimer can sign both the nonce and the Presentation with the private key that only the Credential's owner should have knowledge of, the Verifier can be sure that the Claimer is indeed the legitimate owner of the Credential.

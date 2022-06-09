@@ -26,7 +26,7 @@ The attestation becomes valid once it is submitted to the chain.
 The function `attestingFlow` shows the process from the beginning to the end.
 First the <span className="label-role claimer">Claimer</span> generates the request and sends it to the <span className="label-role attester">Attester</span>.
 After that the <span className="label-role attester">Attester</span> checks the attributes and either issues an attestation or denies the attestation because the attributes are invalid.
-Once the attestation is written on the chain and sent back to the <span className="label-role claimer">Claimer</span>, they can build a credential from the request they send and the attestation they received.
+Once the attestation is written on the chain and sent back to the <span className="label-role claimer">Claimer</span>, they can build a Credential from the request they send and the attestation they received.
 
 ## Run
 
