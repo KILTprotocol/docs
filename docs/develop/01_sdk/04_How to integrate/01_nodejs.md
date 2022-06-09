@@ -5,8 +5,6 @@ title: NodeJS
 
 NodeJS is natively supported and doesn't require any additional setup.
 
-The only thing to keep in mind is that the SDK exports es6 modules so you have to take care of that in your code.
-
 Have a look at these example `package.json` and `index.js` files for reference:
 
 ```json
