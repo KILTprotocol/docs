@@ -73,7 +73,7 @@ module.exports = {
               type: 'doc',
               docId: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
-            }
+            },
           ],
         },
         {
@@ -127,6 +127,10 @@ module.exports = {
             {
               label: 'Imprint',
               href: 'https://www.kilt.io/imprint/',
+            },
+            {
+              label: 'Disclaimer',
+              href: 'https://www.kilt.io/disclaimer/',
             },
             {
               label: 'Privacy Policy',
