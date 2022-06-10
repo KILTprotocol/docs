@@ -11,7 +11,7 @@ module.exports = {
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
   themeConfig: {
-    image: 'img/logo_light.svg',
+    image: 'img/expert_light.png',
     navbar: {
       title: '', // no title since the Name is already in the logo
       logo: {
