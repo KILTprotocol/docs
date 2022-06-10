@@ -1,11 +1,12 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'KILT Documentation',
-  tagline: 'Documentation for KILT Node and SDK',
-  url: 'https://dev.kilt.io',
+  title: 'KILT Protocol',
+  tagline:
+    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
+  url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
@@ -19,22 +20,66 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/sdk/introduction',
-          activeBasePath: 'docs/sdk',
-          label: 'SDK',
-          position: 'left',
+          type: 'doc',
+          docId: 'concepts/what-is-kilt',
+          label: 'What is KILT?',
         },
         {
-          to: 'docs/chain/introduction',
-          activeBasePath: 'docs/chain',
-          label: 'Chain',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Develop',
+          items: [
+            {
+              type: 'doc',
+              docId: 'develop/sdk/quickstart',
+              label: 'SDK Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/contribute',
+              label: 'Contribute',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/specifications/index',
+              label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/builtonkilt',
+              label: 'Built on KILT',
+            },
+          ],
         },
         {
-          to: 'docs/apps/introduction',
-          activeBasePath: 'docs/apps',
-          label: 'Apps',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Participate',
+          items: [
+            {
+              type: 'doc',
+              docId: 'participate/staking/become_a_collator/overview',
+              label: 'Staking',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/governance/vote',
+              label: 'Voting',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-proposal',
+              label: 'Treasury Proposals',
+            },
+          ],
         },
         {
           href: 'https://github.com/KILTprotocol/docs',
@@ -51,10 +96,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Element / Matrix',
-              href: 'https://matrix.to/#/#kilt-general:matrix.org',
-            },
-            {
               label: 'Discord',
               href: 'https://discord.gg/hX4pc8rdHS',
             },
@@ -65,10 +106,6 @@ module.exports = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
-            },
-            {
-              label: 'Clan KILT (Unofficial)',
-              href: 'https://clankilt.io',
             },
           ],
         },
@@ -97,6 +134,10 @@ module.exports = {
               href: 'https://www.kilt.io/imprint/',
             },
             {
+              label: 'Disclaimer',
+              href: 'https://www.kilt.io/disclaimer/',
+            },
+            {
               label: 'Privacy Policy',
               href: 'https://www.kilt.io/privacy-policy-for-kilt-protocol/',
             },
@@ -112,7 +153,7 @@ module.exports = {
       {
         docs: {
           remarkPlugins: [
-            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
             require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),
