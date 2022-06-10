@@ -15,8 +15,8 @@ const featureRows = [
       link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Learn about KILT identity components and why they matter.
-          Read on KILT credentials and what they provide.
+          Learn about KILT identity components and why they matter. Read on KILT
+          credentials and what they provide.
         </>
       ),
     },
@@ -27,16 +27,16 @@ const featureRows = [
       link: 'docs/develop/sdk/quickstart',
       description: (
         <>
-          Start building with KILT. Issue and verify your first credential
-          or set up an app.
+          Start building with KILT. Issue and verify your first credential or
+          set up an app.
         </>
       ),
     },
     {
-      title: 'KILT in Action',
+      title: 'Built on KILT',
       imageUrl: 'img/apps-light.svg',
       imageUrlDark: 'img/apps-dark.svg',
-      link: 'docs/develop/showcase',
+      link: 'docs/develop/builtonkilt',
       description: (
         <>
           Explore the KILT ecosystem. Sign documents with DIDsign or receive

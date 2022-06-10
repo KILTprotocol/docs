@@ -1,13 +1,13 @@
 ---
-id: showcase
-title: Showcase
+id: builtonkilt
+title: Built on KILT
 ---
 
 import ThemedImage from '@theme/ThemedImage';
 import LogoText from '@site/src/components/LogoText';
 
-This section contains a non-exhaustive list of apps, wallets and websites that integrate KILT.
-If you are missing from the list and want to be added, you are welcome to [open a PR](https://github.com/KILTprotocol/docs/edit/develop/docs/develop/showcase.md).
+This section contains a non-exhaustive list of apps, wallets and websites that are built on KILT.
+If you are missing from the list and want to be added, you are welcome to [open a PR](https://github.com/KILTprotocol/docs/edit/develop/docs/develop/05_builtonkilt.md).
 
 ## Wallets
 
@@ -25,7 +25,7 @@ Each time a website needs to access some information about the visitor, wallets 
     It is maintained by _BOTLabs Trusted Entity B.T.E GmbH_ and it is [open source](https://github.com/BTE-Trusted-Entity/sporran-extension).
 </LogoText>
 
-## Apps
+## Web Apps
 
 One does not have to use their swiss army knife exclusively on raw materials.
 Luckily, some applications have also built on KILT.
