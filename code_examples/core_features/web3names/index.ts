@@ -1,5 +1,6 @@
 import type { KeyringPair } from '@polkadot/keyring/types'
 
+import { FetchError } from 'node-fetch'
 import { randomUUID } from 'crypto'
 
 import { ApiPromise } from '@polkadot/api'
@@ -19,7 +20,7 @@ export async function runAll(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
     .IS_FINALIZED
 ): Promise<void> {
-  console.log('Running Web3name flow...')
+  console.log('Running web3name flow...')
   const keystore = new Kilt.Did.DemoKeystore()
   const fullDid = await createSimpleFullDid(
     keystore,
@@ -30,7 +31,7 @@ export async function runAll(
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
 
-  console.log('1 w3n) Claim Web3 name')
+  console.log('1 w3n) Claim web3name')
   await claimWeb3Name(
     keystore,
     fullDid,
@@ -38,13 +39,24 @@ export async function runAll(
     randomWeb3Name,
     resolveOn
   )
-  console.log('2 w3n) Verify Web3 name owner and DID Web3 name')
+  console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(randomWeb3Name, fullDid.did)
-  console.log('3 w3n) Query credentials for "john_doe" Web3 name')
-  await queryPublishedCredentials('john_doe')
-  console.log('4 w3n) Release Web3 name')
+  console.log('3 w3n) Query credentials for "john_doe" web3name')
+  try {
+    await queryPublishedCredentials('john_doe')
+  } catch (e) {
+    if (e instanceof FetchError) {
+      console.log(
+        'Query credentials for "john_doe" web3name failed because of bad IPFS gateway. Ignoring this.'
+      )
+    } else {
+      // This one should not have happened.
+      throw e
+    }
+  }
+  console.log('4 w3n) Release web3name')
   await releaseWeb3Name(keystore, fullDid, submitterAccount, resolveOn)
-  console.log('5 w3n) Re-claim Web3 name and reclaim deposit')
+  console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
     keystore,
     fullDid,
@@ -53,5 +65,5 @@ export async function runAll(
     resolveOn
   )
   await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name, resolveOn)
-  console.log('Web3name flow completed!')
+  console.log('web3name flow completed!')
 }

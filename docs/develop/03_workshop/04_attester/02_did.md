@@ -11,7 +11,7 @@ Time to make a DID using the previously created account for the <span className=
 
 A DID may represent any entity, may it be a person, an organization or a machine.
 
-A KILT Decentralised Identifier (DID) is a string uniquely identifying each KILT user.
+A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.
@@ -19,7 +19,7 @@ You would store a public encryption key and a service endpoint on-chain, that ca
 Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
 
 There are light and full DIDs.
-Take a look at our [DID documentation](./../../../develop/01_sdk/02_Cookbook/01_KILT%20DIDs/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
 
 :::info KILT DID
 
@@ -28,7 +28,7 @@ There are currently four different key types that a DID supports:
 - An _authentication keypair_, used to sign claims and create authenticated credential presentations
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
-- A _capability-delegation keypair_, used to write delegations on chain
+- A _capability-delegation keypair_, used to write Delegations on chain
 
 Keys can be replaced over time, e.g., if a key is compromised.
 
@@ -66,7 +66,7 @@ Since three of the key types are used for signatures, we can use the same key fo
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="attester/generateKeypairs.ts">
+<CodeBlock className="language-ts" title="attester/generateKeypairs.ts">
   {GenerateKeypairs}
 </CodeBlock>
 
@@ -76,7 +76,7 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<CodeBlock className="language-js" title="attester/generateDid.ts">
+<CodeBlock className="language-ts" title="attester/generateDid.ts">
   {generateDid}
 </CodeBlock>
 

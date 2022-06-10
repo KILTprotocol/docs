@@ -29,8 +29,14 @@ const SnippetBlock = ({
   } else if (funcName) {
     let start, end
 
+    // FIXME: Very very very fragile implementation.
     for (let i = 0; i < raw.length; i++) {
       if (raw[i].includes(funcName)) {
+        start = i
+        // Start and end of function signature on same line
+        if (raw[i].includes(' {')) break
+      } else if (raw[i].includes(' {')) {
+        // End of function signature on different line
         start = i
         break
       }
