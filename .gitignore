@@ -1,5 +1,6 @@
 # Dependencies
 **/node_modules
+.env
 
 # Production
 /build
@@ -15,6 +16,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.vscode
 
 npm-debug.log*
 yarn-debug.log*

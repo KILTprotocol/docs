@@ -2,7 +2,6 @@ import React from 'react'
 import clsx from 'clsx'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
-import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import styles from './styles.module.css'
@@ -10,33 +9,39 @@ import styles from './styles.module.css'
 const featureRows = [
   [
     {
-      title: 'Become a Collator',
-      imageUrl: 'img/community_light.svg',
-      imageUrlDark: 'img/community_dark.svg',
-      link: 'docs/chain/collator',
+      title: 'What is KILT?',
+      imageUrl: 'img/expert_light.svg',
+      imageUrlDark: 'img/expert_dark.svg',
+      link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Become a collator in for our Peregrine Testnet and later help
-          decentralizing the KILT Blockchain.
+          Learn about Decentralized Identifiers and why they matter. Get to know
+          attestations and what they provide.
         </>
       ),
     },
     {
-      title: 'Workshop',
-      imageUrl: 'img/expert_light.svg',
-      imageUrlDark: 'img/expert_dark.svg',
-      link: 'docs/sdk/workshop/welcome',
+      title: 'Quickstart',
+      imageUrl: 'img/tools.svg',
+      imageUrlDark: 'img/tools.svg',
+      link: 'docs/develop/sdk/quickstart',
       description: (
-        <>Explore the most fundamental features of the KILTprotocol.</>
+        <>
+          Start building with the KILT Protocol. Issue and verify your first credential
+          or setup an app.
+        </>
       ),
     },
     {
-      title: 'Whitepaper',
-      imageUrl: 'img/whitepaper_light.svg',
-      imageUrlDark: 'img/whitepaper_dark.svg',
-      link: 'https://www.kilt.io/wp-content/uploads/2020/01/KILT-White-Paper-v2020-Jan-15.pdf',
+      title: 'KILT in Action',
+      imageUrl: 'img/apps-light.svg',
+      imageUrlDark: 'img/apps-dark.svg',
+      link: 'docs/develop/showcase',
       description: (
-        <>Read up on the theoretical concepts behind KILT Protocol.</>
+        <>
+          Explore the KILT ecosystem. Sign documents with DIDsign or receive
+          attestations with SocialKYC.
+        </>
       ),
     },
   ],

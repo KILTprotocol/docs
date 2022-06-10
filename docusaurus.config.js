@@ -1,8 +1,9 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'KILT Documentation',
-  tagline: 'Documentation for KILT Node and SDK',
-  url: 'https://dev.kilt.io',
+  title: 'KILT Protocol',
+  tagline:
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+  url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -19,22 +20,66 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/sdk/introduction',
-          activeBasePath: 'docs/sdk',
-          label: 'SDK',
-          position: 'left',
+          type: 'doc',
+          docId: 'concepts/what-is-kilt',
+          label: 'What is KILT?',
         },
         {
-          to: 'docs/chain/introduction',
-          activeBasePath: 'docs/chain',
-          label: 'Chain',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Develop',
+          items: [
+            {
+              type: 'doc',
+              docId: 'develop/sdk/quickstart',
+              label: 'SDK Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/chain/introduction',
+              label: 'Blockchain Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/workshop/welcome',
+              label: 'Workshop',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/specifications/index',
+              label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/showcase',
+              label: 'Showcase',
+            },
+          ],
         },
         {
-          to: 'docs/apps/introduction',
-          activeBasePath: 'docs/apps',
-          label: 'Apps',
-          position: 'left',
+          type: 'dropdown',
+          label: 'Participate',
+          items: [
+            {
+              type: 'doc',
+              docId: 'participate/Staking/Become a Collator/overview',
+              label: 'Staking',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/Governance/vote',
+              label: 'Voting',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-proposal',
+              label: 'Treasury Proposal',
+            }
+          ],
+        },
+        {
+          type: 'doc',
+          docId: 'glossary',
+          label: 'Glossary',
         },
         {
           to: 'docs/development/introduction',
@@ -57,10 +102,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Element / Matrix',
-              href: 'https://matrix.to/#/#kilt-general:matrix.org',
-            },
-            {
               label: 'Discord',
               href: 'https://discord.gg/hX4pc8rdHS',
             },
@@ -71,10 +112,6 @@ module.exports = {
             {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
-            },
-            {
-              label: 'Clan KILT (Unofficial)',
-              href: 'https://clankilt.io',
             },
           ],
         },
@@ -118,7 +155,8 @@ module.exports = {
       {
         docs: {
           remarkPlugins: [
-            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+            require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
