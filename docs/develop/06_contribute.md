@@ -1,6 +1,6 @@
 ---
 id: contribute
-title: Contribution guidelines
+title: Contribution Guidelines
 ---
 
 As a decentralized network, KILT depends on the support of its community.
@@ -99,7 +99,7 @@ Pull Requests (PR) are an integral part of contributions to evolve KILT.
 GitHub itself has some [excellent documentation](https://help.github.com/articles/about-pull-requests/) on using the Pull Request feature.
 KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model, where contributors push changes to their personal fork and create Pull Requests to bring those changes into the original source repository.
 
-Before starting a PR, it’s best to contact other active developers and discuss the proposed changes.
+Before starting a PR, it’s best to contact other core developers and discuss the proposed changes.
 Open an issue or directly contact some of the developers on [Discord](https://discord.gg/7uyfMXh6AT) to kick off the discussion and present the proposal.
 Once approved, contributors can open a PR for review.
 The PR will be reviewed and, if accepted, merged into the corresponding repository.
