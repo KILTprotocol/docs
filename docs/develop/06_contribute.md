@@ -1,10 +1,11 @@
 ---
-id: contribution
+id: contribute
 title: Contribution guidelines
 ---
 
 As a decentralized network, KILT depends on the support of its community.
 There are many ways to contribute to KILT Protocol and the products and services built on it. 
+The following guide is to **help builders and contributors** find the resources needed to take action and work within the guidance of the active developers.
 
 If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.gg/7uyfMXh6AT) channel.
 The developers active there, which include the team that originally developed KILT, and the wider KILT community can:
@@ -12,16 +13,17 @@ The developers active there, which include the team that originally developed KI
 - Provide feedback on proposals or ideas
 - Discuss possible use-cases or feature requests
 - Make suggestions for non-technical contributions, including events, writing, or business models
-- Answer questions about the protocol, services and products.
+- Answer questions about the protocol, services and products
 
 
 ## Feature Requests 
 
-A feature request may be used to change KILT and its services by adding, removing or altering features within the scope of KILT Protocol.
+A feature request may be used to change the KILT Protocol and its services by adding, removing or altering features within the scope the protocol.
+
 
 A feature request is a meaningful way to contribute from anyone following the guidelines below:
 
- - Begin a discussion with the community to ensure that they agree that it adds to the KILT Protocol in a meaningful way, supporting its goals. 
+ - Begin a discussion with the community to ensure that they agree that it adds to the KILT Protocol in a meaningful way, supporting its goals 
  - Open an issue on the corresponding repository
  - Give your request a clear title
  - Provide a written outline of the feature request for discussion
@@ -43,9 +45,7 @@ In addition you should:
 
 The proposal should then be discussed with  the community (including, for example, the KILT Technical Committee, governance, or relevant project team) using community channels such as [Discord](https://discord.gg/7uyfMXh6AT) or [Polkassembly](https://kilt.polkassembly.network/discussions).
 If the community is not in agreement with the proposal, it is unlikely that it would be approved by governance.
-See the [guide to creating a proposal](https://www.kilt.io/treasury/create-a-proposal/).
-
-Governance approval for a Treasury spend will also  includes list of the deliverables as outlined in the proposal.
+See the [guide to creating a proposal](../participate/03_treasury_proposal.md). 
 
 ## Tips
 

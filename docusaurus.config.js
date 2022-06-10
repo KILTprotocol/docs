@@ -53,6 +53,11 @@ module.exports = {
               docId: 'develop/showcase',
               label: 'Showcase',
             },
+            {
+              type: 'doc',
+              docId: 'develop/contribute',
+              label: 'Contribute',
+            },
           ],
         },
         {
