@@ -33,7 +33,7 @@ const featureRows = [
       ),
     },
     {
-      title: 'KILT in Action',
+      title: 'Built on KILT',
       imageUrl: 'img/apps-light.svg',
       imageUrlDark: 'img/apps-dark.svg',
       link: 'docs/develop/showcase',
