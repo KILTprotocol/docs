@@ -45,6 +45,11 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'develop/contribute',
+              label: 'Contribute',
+            },
+            {
+              type: 'doc',
               docId: 'develop/specifications/index',
               label: 'Technical Specifications',
             },
