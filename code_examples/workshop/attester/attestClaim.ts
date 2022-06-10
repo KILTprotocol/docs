@@ -27,7 +27,7 @@ export async function attestClaim(
   const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.did)
 
   // check the request content and deny based on your business logic.
-  // e.g. verify age with other credentials (birth certificate, passport, ...)
+  // e.g., verify age with other credentials (birth certificate, passport, ...)
 
   // form tx and authorized extrinsic
   const tx = await attestation.getStoreTx()

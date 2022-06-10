@@ -15,8 +15,8 @@ const featureRows = [
       link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Learn about Decentralized Identifiers and why they matter. Get to know
-          attestations and what they provide.
+          Learn about KILT identity components and why they matter.
+          Read on KILT credentials and what they provide.
         </>
       ),
     },
@@ -27,8 +27,8 @@ const featureRows = [
       link: 'docs/develop/sdk/quickstart',
       description: (
         <>
-          Start building with the KILT Protocol. Issue and verify your first credential
-          or setup an app.
+          Start building with KILT. Issue and verify your first credential
+          or set up an app.
         </>
       ),
     },
@@ -40,7 +40,7 @@ const featureRows = [
       description: (
         <>
           Explore the KILT ecosystem. Sign documents with DIDsign or receive
-          attestations with SocialKYC.
+          credentials with SocialKYC.
         </>
       ),
     },
