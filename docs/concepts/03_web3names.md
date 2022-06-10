@@ -1,35 +1,35 @@
 ---
 id: web3names
-title: Web3 names
+title: web3names
 ---
 
-Web3 names are user-friendly aliases for KILT DIDs.
+In short, web3names are user-friendly aliases for KILT DIDs.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
-There is a one-to-one relationship between DIDs and Web3 names.
-This means that a KILT DID can be linked to at most one Web3 name, and a Web3 name can be claimed only by one DID.
+There is a one-to-one relationship between DIDs and web3names.
+This means that a KILT DID can be linked to at most one web3name, and a web3name can be claimed only by one DID.
 
-Each Web3 name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the chances of *two Web3 names looking the same, despite being different*.
-The character set include only:
+Each web3name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human redability and reduce the chances of *two web3names looking the same, despite being different*.
+The character set includes only:
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
 - the symbols `-` and `_`
 
-A regex that would match all and only the allowed Web3 names would be the following:
+A regex that would match all and only the allowed web3names would be the following:
 
 ```
-^[a-z0-9\_\-]{3,32}$
+^[a-z0-9_-]{3,32}$
 ```
 
-In the global URI space, Web3 names are prefixed with the `w3n:` URI namespace.
-For example, the full URI for the Web3 name `example-web3name` is `w3n:example-web3name`.
+In the global URI space, web3names are prefixed with the `w3n:` URI namespace.
+For example, the full URI for the web3name `example-web3name` is `w3n:example-web3name`.
 
-### Linking accounts to a Web3 name
+### Linking Multiple Accounts to a web3name
 
-Beyond linking a Web3 name, KILT allows DID owners to link multiple accounts to a single DID.
+Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a single DID.
 These accounts are not specific to the KILT blockchain but can reference any chain within the Dotsama ecosystem.
 Each account <-> DID link requires the payment of a small deposit, which is returned whenever the link is removed.
 
-For DIDs that have also claimed a Web3 name, the linking feature opens up the way to a host of possibilities, e.g., showing the Web3 name of a collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
+For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a Collator's account on the [KILT stakeboard](https://stakeboard.kilt.io/).
 
 <ThemedImage
   alt="DID lookup diagram"
@@ -38,6 +38,8 @@ For DIDs that have also claimed a Web3 name, the linking feature opens up the wa
     dark: '/img/concepts/did/did-lookup-dark.png',
   }}
 />
+
+For a detailed developer-oriented guide to web3names and account linking, please refer to our [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and our [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md).
 
 :::caution
 While multiple accounts can be linked to a DID, it is important to notice the difference between the two.

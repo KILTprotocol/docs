@@ -8,7 +8,7 @@ export async function reclaimWeb3NameDeposit(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
     .IS_FINALIZED
 ): Promise<void> {
-  // Release the Web3 name by the deposit payer.
+  // Release the web3name by the deposit payer.
   const web3NameReleaseTx = await Kilt.Did.Web3Names.getReclaimDepositTx(
     web3Name
   )

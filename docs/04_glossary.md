@@ -1,4 +1,0 @@
----
-id: glossary
-title: Glossary
----
