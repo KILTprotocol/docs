@@ -50,8 +50,8 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/showcase',
-              label: 'Showcase',
+              docId: 'develop/builtonkilt',
+              label: 'Built on KILT',
             },
           ],
         },
