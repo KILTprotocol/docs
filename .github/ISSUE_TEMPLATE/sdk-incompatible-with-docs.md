@@ -1,3 +1,4 @@
+---
 ## Incompatible SDK detected
 
 ---
