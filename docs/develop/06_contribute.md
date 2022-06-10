@@ -35,9 +35,12 @@ The guidelines of how to do that are presented in the next section.
 
 A Treasury proposal is a request to receive funds from the Treasury pool. 
 The proposal should begin with a clear title, a written outline of the idea, and a discussion about implementation or deliverables as outlined above for feature requests. 
-The proposal should be for something that changes or adds value to KILT in a meaningful way. 
+The proposal should be for something that changes or adds value to KILT in a meaningful way.
+
+:::info
 In general, a Treasury proposal spent occurs after completing all outlined deliverables and not before.
 Thus, it is recommended to rather open multiple subsequent milestone-based proposals instead of a large one to fund contributions.
+:::
 
 In addition you should:
 
@@ -52,7 +55,7 @@ See the [guide to creating a proposal](../participate/03_treasury_proposal.md) f
 
 A more agile and lightweight process to receive rewards for contributing to the KILT Protocol are tips.
 Even though the funds also come from the Treasury, the procedure is more hands-down.
-The major difference compared to Treasury proposals is that for Tips, determining the bounty amount is part of the course of tipping.
+The major difference compared to Treasury proposals is that for tips, determining the bounty amount is part of the course of tipping.
 In other words, the final tip amount is not clear beforehand and the group of pre-determined stakeholders comes to consensus on how much should be paid.
 Eventually, the median of proposed tips will be awarded from the Treasury.
 Currently, the tippers include all Council members and other core code contributors.
@@ -65,9 +68,10 @@ Otherwise, a small deposit, which depends on the length of the message explainin
 It will be made available after the tipping process has finished.
 Additionally, the Finder also receives a minor Finder's fee of 20% which is subtracted from the final tip amount.
 
-Therefore, even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward.
+Therefore, **even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward**.
 Of course, you can also suggest contributions to the council which would then tip if it is deemed worthy.
 
+<!-- TODO: Remove after Spiritnet 10700 is live -->
 :::info
 The tips pallet is currently not part of the Spiritnet, yet.
 We have already added it to the codebase and are targeting an on-chain Spiritnet runtime upgrade, which would also add the tips functionality, for mid of June 2022.
@@ -79,7 +83,7 @@ We try our best, but bugs are an everyday reality with all software and are boun
 We can't fix bugs we don't notice, so your potential findings give us the best possibility to keep the project running smoothly and securely.
 
 If you are unsure that a bug is a bug, it is best to open an issue and report it anyway.
-The active developers will evaluate it and help to figure out the issue.
+The core developers will evaluate it and help to figure out the issue.
 
 It is helpful to check if a report has already been filed in the related project.
 Search the issues board for possible phrases that match the description of the bug.
