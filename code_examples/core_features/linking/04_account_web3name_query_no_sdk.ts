@@ -22,16 +22,16 @@ export async function queryAccountWeb3Name(
     `The provided account has been linked to the following DID: "did:kilt:${accountDidIdentifier}"`
   )
 
-  // Second RPC call to `api.query.web3Names.names` for DID -> Web3 name lookup.
+  // Second RPC call to `api.query.web3Names.names` for DID -> web3name lookup.
   const maybeDidName = await api.query.web3Names.names<Option<Struct>>(
     accountDidIdentifier
   )
   if (maybeDidName.isNone) {
-    throw `No Web3 name for the KILT account "${lookupAccountAddress}".`
+    throw `No web3name for the KILT account "${lookupAccountAddress}".`
   }
   const web3Name = hexToString(maybeDidName.unwrap()?.toHex())
   console.log(
-    `The provided account is identifiable by the following Web3 name: "w3n:${web3Name}"`
+    `The provided account is identifiable by the following web3name: "w3n:${web3Name}"`
   )
 
   return web3Name

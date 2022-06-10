@@ -2,11 +2,11 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
@@ -61,31 +61,20 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/Staking/Become a Collator/overview',
+              docId: 'participate/staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
               type: 'doc',
-              docId: 'participate/Governance/vote',
+              docId: 'participate/governance/vote',
               label: 'Voting',
             },
             {
               type: 'doc',
               docId: 'participate/treasury-proposal',
-              label: 'Treasury Proposal',
+              label: 'Treasury Proposals',
             }
           ],
-        },
-        {
-          type: 'doc',
-          docId: 'glossary',
-          label: 'Glossary',
-        },
-        {
-          to: 'docs/development/introduction',
-          activeBasePath: 'docs/development',
-          label: 'Development',
-          position: 'left',
         },
         {
           href: 'https://github.com/KILTprotocol/docs',
