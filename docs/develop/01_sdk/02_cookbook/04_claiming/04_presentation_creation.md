@@ -19,6 +19,6 @@ Check the snippet below to see how that is done using the KILT SDK.
 
 The Claimer can generate a Presentation starting from a Credential, optionally specifying the fields to reveal and a Presentation challenge, which is useful to proof freshness of the generated Presentation.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {CreatePresentation}
 </CodeBlock>

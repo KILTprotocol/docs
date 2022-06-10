@@ -13,6 +13,6 @@ For more information, refer to the [official Substrate documentation](https://pa
 
 An example of a batched creation of two CTypes using a `DidBatchBuilder` is provided below.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidBatch}
 </CodeBlock>

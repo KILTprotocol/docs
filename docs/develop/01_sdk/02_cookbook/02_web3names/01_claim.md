@@ -8,7 +8,7 @@ import Claim from '!!raw-loader!@site/code_examples/core_features/web3names/01_c
 
 A web3name can be claimed if it has currently no owner, using the following snippet as reference.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {Claim}
 </CodeBlock>
 

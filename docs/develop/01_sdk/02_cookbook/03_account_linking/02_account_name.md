@@ -15,7 +15,7 @@ This section shows how to perform the `account -> web3name` querying both with a
 
 Querying the web3name for a given account without the SDK involves performing two different RPC calls to a KILT full node, as shown below.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {AccountWeb3NameQuery}
 </CodeBlock>
 
@@ -23,7 +23,7 @@ Querying the web3name for a given account without the SDK involves performing tw
 
 Although the SDK still performs the same two RPC queries shown in the code snippets above, it hides the complexity from the user, who only needs to call a single function, as shown below.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {AccountWeb3NameQueryNoSDK}
 </CodeBlock>
 

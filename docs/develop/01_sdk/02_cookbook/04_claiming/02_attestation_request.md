@@ -10,7 +10,7 @@ The resulting object is a `RequestForAttestation`, which can be created followin
 
 This process does not involve any interaction with the KILT blockchain, but simply a communication channel where the Claimer and the Attester can communicate.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {RequestAttestation}
 </CodeBlock>
 

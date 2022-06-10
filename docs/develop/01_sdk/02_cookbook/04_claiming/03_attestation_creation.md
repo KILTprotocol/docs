@@ -16,6 +16,6 @@ An Attester is required to have a full DID with an attestation key.
 To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
 :::
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {CreateAttestation}
 </CodeBlock>

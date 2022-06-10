@@ -11,7 +11,7 @@ This does not automatically delete the Credential from the Claimer's wallet, of 
 
 Since the Attestation creation reserved some KILT tokens from the submitter's balance, removing an Attestation would return those funds into the payer's pockets.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {RevokeAttestation}
 </CodeBlock>
 
@@ -19,6 +19,6 @@ Since the Attestation creation reserved some KILT tokens from the submitter's ba
 
 Claiming back the deposit of an Attestation is semantically equivalent to revoking and removing the Attestation, with the difference that the extrinsic to claim the deposit can only be called by the deposit owner and does not require the Attester's signature:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {ReclaimDeposit}
 </CodeBlock>

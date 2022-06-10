@@ -3,10 +3,18 @@ id: howto-integrate-nodejs
 title: NodeJS
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+import QueryAccountName from '!!raw-loader!@site/code_examples/core_features/linking/03_account_web3name_query.ts';
+
+
 NodeJS is natively supported and doesn't require any additional setup.
 
 Have a look at these example `package.json` and `index.js` files for reference:
 
+<!--
+  TODO: Make this JSON dynamically generated (and tested),
+  or at least the SDK version automatically updated as part of the CI PR on SDK releases
+-->
 ```json
 {
   "name": "kilt-sdk-node-test",
@@ -20,16 +28,6 @@ Have a look at these example `package.json` and `index.js` files for reference:
 }
 ```
 
-```js
-import * as Kilt from '@kiltprotocol/sdk-js';
-
-async function main() {
-    await Kilt.init({address: 'wss://spiritnet.kilt.io:443'});
-    const name = 'john_doe';
-    let did = await Kilt.Did.Web3Names.queryDidForWeb3Name(name);        
-    console.log(`${name} is ${did}`);
-    process.exit(0);
-}
-
-main();
-```
+<CodeBlock className="language-ts">
+  {QueryAccountName}
+</CodeBlock>

@@ -11,12 +11,12 @@ Whenever the web3name is not needed anymore, either the DID owner or the deposit
 
 In the case of the DID owner willing to release the web3name, the following snippet provides a reference implementation on how to achieve that.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {Release}
 </CodeBlock>
 
 On the other hand, releasing the web3name by the deposit payer does not require the signature of the DID owner, meaning that a regular signed extrinsic can be submitted to the KILT blockchain, as shown below.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {ReclaimDeposit}
 </CodeBlock>

@@ -19,7 +19,7 @@ After that we can load the account and DID of the <span className="label-role at
 When everything is prepared, we can create an attestation using the request we received from the <span className="label-role claimer">Claimer</span>.
 The attestation becomes valid once it is submitted to the chain.
 
-<CodeBlock className="language-js" title="attester/attestClaim.ts">
+<CodeBlock className="language-ts" title="attester/attestClaim.ts">
   {AttestClaim}
 </CodeBlock>
 

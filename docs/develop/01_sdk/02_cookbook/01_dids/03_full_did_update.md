@@ -9,6 +9,6 @@ import FullDidUpdate from '!!raw-loader!@site/code_examples/core_features/did/06
 Once anchored to the KILT blockchain, a full DID can be updated.
 For instance, the following snippet shows how to use the `FullDidUpdateBuilder` to update the authentication key to a new `ed25519` key and remove a service endpoint for a full DID.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidUpdate}
 </CodeBlock>

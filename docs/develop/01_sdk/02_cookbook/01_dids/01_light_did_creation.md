@@ -16,13 +16,13 @@ Using the demo keystore in production is highly discouraged as all the keys are 
 
 The following is an example of how to create a light DID after creating an instance of the demo keystore.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {LightDidSimple}
 </CodeBlock>
 
 For cases in which also an encryption key and some service endpoints need to be added to a light DID:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {LightDidComplete}
 </CodeBlock>
 

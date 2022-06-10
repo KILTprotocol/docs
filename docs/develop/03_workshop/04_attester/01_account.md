@@ -40,7 +40,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 
 Open `attester/generateAccount.ts` and paste the following code:
 
-<CodeBlock className="language-js" title="attester/generateAccount.ts">
+<CodeBlock className="language-ts" title="attester/generateAccount.ts">
   {GenerateAccount}
 </CodeBlock>
 

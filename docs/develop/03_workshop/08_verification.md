@@ -35,7 +35,7 @@ This is done by creating a presentation by signing the <span className="label-ro
 
 Create `claimer/createPresentation.ts` helper and copy the following code.
 
-<CodeBlock className="language-js" title="claimer/createPresentation.ts">
+<CodeBlock className="language-ts" title="claimer/createPresentation.ts">
   {CreatePresentation}
 </CodeBlock>
 
@@ -47,7 +47,7 @@ challenge for the <span className="label-role claimer">Claimer</span> to sign, t
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
-<CodeBlock className="language-js" title="verify.ts">
+<CodeBlock className="language-ts" title="verify.ts">
   {Verify}
 </CodeBlock>
 

@@ -26,7 +26,7 @@ jobs:
         working-directory: code_examples/workshop
         run: |
           yarn install --frozen
-          yarn lint
+          yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
@@ -48,7 +48,7 @@ jobs:
         working-directory: code_examples/core_features
         run: |
           yarn install --frozen
-          yarn lint
+          yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
@@ -59,3 +59,16 @@ jobs:
         run: |
           yarn install --frozen
           yarn run ts-node run_core_features.ts
+
+  # Only test the style conventions for the snippets, nothing is run here
+  vitejs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Test style conventions
+        working-directory: code_examples/vitejs
+        run: |
+          yarn install --frozen
+          yarn lint && yarn style

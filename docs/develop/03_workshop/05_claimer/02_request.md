@@ -24,7 +24,7 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 We'll use provided `light DID`, `ctype` and <span className="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
 Create a file `claimer/createClaim.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="claimer/createClaim.ts">
+<CodeBlock className="language-ts" title="claimer/createClaim.ts">
   {CreateClaim}
 </CodeBlock>
 
@@ -44,7 +44,7 @@ Since we want to receive an attestation for that claim, we build a `RequestForAt
 The request contains all necessary information, so that the <span className="label-role attester">Attester</span> can create an attestation for us.
 Create a file `claimer/generateRequest.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="claimer/generateRequest.ts">
+<CodeBlock className="language-ts" title="claimer/generateRequest.ts">
   {GenerateRequest}
 </CodeBlock>
 

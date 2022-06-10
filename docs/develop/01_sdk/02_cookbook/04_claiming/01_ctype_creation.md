@@ -15,7 +15,7 @@ To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_
 
 The following snippets shows how:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {CreateCType}
 </CodeBlock>
 

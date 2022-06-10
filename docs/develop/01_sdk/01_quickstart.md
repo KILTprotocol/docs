@@ -47,7 +47,7 @@ Inside the `package.json` add in the value `"type": "module"`.
 
 Let's first declare our `main` function that will execute our script:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {PrintHelloWorld}
 </CodeBlock>
 
@@ -92,7 +92,7 @@ For this, the SDK exposes **`Kilt.init()`** to configure the address of the node
 We will use the official **Spiritnet** address:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {InitSDK}
 </SnippetBlock>
@@ -101,7 +101,7 @@ Once the node address has been configured, we can establish a connection with th
 Again, the SDK makes this process very easy to follow, by exposing a `Kilt.connect()` function:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {Connect}
 </SnippetBlock>
@@ -110,7 +110,7 @@ After establishing a connection, you have access to the chain, but let's not for
 Connections to blockchain nodes should be dropped when not needed anymore, and to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {Disconnect}
 </SnippetBlock>
@@ -124,7 +124,7 @@ We will be querying information related to **web3names** (`john_doe`), and we wi
 In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
   funcEnd="return"
 >
   {FetchDid}
@@ -145,7 +145,7 @@ We will keep adding code below what we just added.
 The code snippet retrieves the service endpoints exposed by the DID we found for `john_doe`:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
   funcEnd="return"
 >
   {FetchEndpoints}
@@ -157,7 +157,7 @@ Let's see if we can find a Credential among them.
 We can select one of the endpoints and query the URL to see if it returns a Credential:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
   funcEnd="return"
 >
   {FetchEndpointData}
@@ -169,7 +169,7 @@ We will now have to make sure the Credential is **valid** and has a valid **stru
 To do that, we need to query the Credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
   funcEnd="return"
 >
   {BuildCredential}
@@ -181,7 +181,7 @@ If so, it is then time to verify the Credential.
 This will be indicated by the result of the **verification** process as shown in the snippet below:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {VerifyCredential}
 </SnippetBlock>

@@ -11,12 +11,12 @@ An account can be linked to a DID in one of two ways:
 
 1. The account to be linked generates a signature over the payload `<Bytes>(SubmitterDid, BlockNumberExpiration)</Bytes>`, which is the default encoding of the PolkadotJS extension:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {DidLink}
 </CodeBlock>
 
 2. The account submitting the linking transaction is linked to the DID authorizing such transaction:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {AccountLink}
 </CodeBlock>

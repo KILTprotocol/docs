@@ -74,7 +74,7 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
 Copy the following to create a `CType` from a schema:
 
-<CodeBlock title="attester/ctypeSchema.ts" className="language-js">
+<CodeBlock title="attester/ctypeSchema.ts" className="language-ts">
   {CtypeSchema}
 </CodeBlock>
 
@@ -85,7 +85,7 @@ We'll use this to check if the `CType` is on-chain already.
 If yes we'll return it, otherwise we'll store it on-chain.
 Remember, an account must have the required amount to pay the Angel's fee and deposit.
 
-<CodeBlock title="attester/generateCtype.ts" className="language-js">
+<CodeBlock title="attester/generateCtype.ts" className="language-ts">
   {GenerateCtype}
 </CodeBlock>
 

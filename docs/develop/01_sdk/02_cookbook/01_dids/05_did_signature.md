@@ -13,7 +13,7 @@ As a DID can have multiple keys, in addition to the signature data itself, a DID
 
 The snippet below shows how to generate and verify a DID signature using the KILT SDK.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {DidSignature}
 </CodeBlock>
 

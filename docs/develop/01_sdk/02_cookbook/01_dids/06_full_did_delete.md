@@ -10,7 +10,7 @@ import FullDidDepositReclaim from '!!raw-loader!@site/code_examples/core_feature
 Once not needed anymore, it is recommended to remove the DID details from the KILT blockchain.
 The following snippet shows how to do it:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidDelete}
 </CodeBlock>
 
@@ -22,6 +22,6 @@ Please note that once deleted, a full DID becomes unusable and cannot be created
 
 Claiming back the deposit of a DID is semantically equivalent to deleting the DID, with the difference that the extrinsic to claim the deposit can only be called by the deposit owner and does not require any interaction with the DID subject:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidDepositReclaim}
 </CodeBlock>

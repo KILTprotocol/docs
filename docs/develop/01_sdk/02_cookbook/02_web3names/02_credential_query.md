@@ -13,7 +13,7 @@ The type defines the structure to make KILT Credentials public and accessible to
 Because of the relationship between web3names and DIDs, it is possible, given a certain web3name, to retrieve all public credentials that the DID subject identified by that web3name has made available.
 Below is a code snippet showing how to do that using the KILT SDK, and how to perform the needed security checks/validation as recommended by the [specification][kilt-published-credential-collection-v1-type].
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {QueryNameCredentials}
 </CodeBlock>
 

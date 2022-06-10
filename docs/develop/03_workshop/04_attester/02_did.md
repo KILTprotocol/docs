@@ -60,7 +60,7 @@ Since three of the key types use are used for signatures, we can use the same ke
 We'll use a demo keystore to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.
 
-<CodeBlock className="language-js" title="attester/generateKeypairs.ts">
+<CodeBlock className="language-ts" title="attester/generateKeypairs.ts">
   {GenerateKeypairs}
 </CodeBlock>
 
@@ -70,7 +70,7 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<CodeBlock className="language-js" title="attester/generateDid.ts">
+<CodeBlock className="language-ts" title="attester/generateDid.ts">
   {generateDid}
 </CodeBlock>
 

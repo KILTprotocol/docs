@@ -20,7 +20,7 @@ Below you can find example code of how this could be implemented.
 1. Define acceptance range and set up a record of past submissions:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {DefineRange}
 </SnippetBlock>
@@ -28,7 +28,7 @@ Below you can find example code of how this could be implemented.
 2. Check record for each incoming message and update if accepted:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {EvaluateMessageTime}
 </SnippetBlock>
@@ -36,7 +36,7 @@ Below you can find example code of how this could be implemented.
 3. Purge at regular intervals:
 
 <SnippetBlock
-  className="language-js"
+  className="language-ts"
 >
   {PurgeTimeout}
 </SnippetBlock>

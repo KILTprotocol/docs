@@ -9,7 +9,7 @@ Whether a Presentation involves selective disclosure or a whole Credential is no
 This is because in KILT a Presentation **is** a Credential.
 This means that the logic for Verifiers does not change depending on the case, thus verifying a Presentation is as easy as calling one SDK function like in the following code snippet:
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {VerifyPresentation}
 </CodeBlock>
 

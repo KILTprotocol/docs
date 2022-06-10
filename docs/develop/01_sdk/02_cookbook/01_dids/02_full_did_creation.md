@@ -10,13 +10,13 @@ import LightDidMigrate from '!!raw-loader!@site/code_examples/core_features/did/
 
 The following is an example of how to create and write on the blockchain a full DID that specifies only an authentication key, by using the FullDidCreationBuilder class.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidSimple}
 </CodeBlock>
 
 If additional keys or service endpoints are to be specified, then they can be batched into the builder before building the creation transaction.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {FullDidComplete}
 </CodeBlock>
 
@@ -28,6 +28,6 @@ KILT supports this operation in a way that does not invalidate any Credentials t
 The following code shows how to migrate a light DID to a full DID.
 Credentials, Presentations, and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 
-<CodeBlock className="language-js">
+<CodeBlock className="language-ts">
   {LightDidMigrate}
 </CodeBlock>
