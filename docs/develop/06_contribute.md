@@ -83,7 +83,7 @@ We try our best, but bugs are an everyday reality with all software and are boun
 We can't fix bugs we don't notice, so your potential findings give us the best possibility to keep the project running smoothly and securely.
 
 If you are unsure that a bug is a bug, it is best to open an issue and report it anyway.
-The core developers will evaluate it and help to figure out the issue.
+The active developers will evaluate it and help to figure out the issue.
 
 It is helpful to check if a report has already been filed in the related project.
 Search the issues board for possible phrases that match the description of the bug.
@@ -99,7 +99,7 @@ Pull Requests (PR) are an integral part of contributions to evolve KILT.
 GitHub itself has some [excellent documentation](https://help.github.com/articles/about-pull-requests/) on using the Pull Request feature.
 KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model, where contributors push changes to their personal fork and create Pull Requests to bring those changes into the original source repository.
 
-Before starting a PR, it’s best to contact other core developers and discuss the proposed changes.
+Before starting a PR, it’s best to contact other active developers and discuss the proposed changes.
 Open an issue or directly contact some of the developers on [Discord](https://discord.gg/7uyfMXh6AT) to kick off the discussion and present the proposal.
 Once approved, contributors can open a PR for review.
 The PR will be reviewed and, if accepted, merged into the corresponding repository.
