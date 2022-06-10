@@ -12,6 +12,7 @@ on:
 
 jobs:
   workshop:
+    name: Test Workshop snippets
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +24,14 @@ jobs:
           node-version: 16.x
 
       - name: Test style conventions
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         run: |
           yarn install --frozen
-          yarn lint
+          yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code-examples/workshop
+        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
@@ -39,23 +40,38 @@ jobs:
           yarn run ts-node test.ts
 
   core_features:
+    name: Test core features snippets
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
 
       - name: Test style conventions
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         run: |
           yarn install --frozen
-          yarn lint
+          yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code-examples/core_features
+        working-directory: code_examples/core_features
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen
           yarn run ts-node run_core_features.ts
+
+  # Only test the style conventions for the snippets, nothing is run here
+  vitejs:
+    name: Test ViteJS snippets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Test style conventions
+        working-directory: code_examples/vitejs
+        run: |
+          yarn install --frozen
+          yarn lint && yarn style
