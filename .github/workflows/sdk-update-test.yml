@@ -143,7 +143,7 @@ jobs:
       - name: Create or Update Project Card on weekly-board
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          project-name: "Weekly Board 2.0"
+          project-name: "Weekly Board 📅"
           column-name: "To Do"
           issue-number: ${{ steps.issue.outputs.issue-number }}
 
