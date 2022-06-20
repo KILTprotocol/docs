@@ -56,7 +56,7 @@ export async function runAll(
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
   if (!web3Name) {
-    throw `The DID "${fullDid.did}" is assumed to have a linked web3name, which it does not.`
+    throw `The DID "${fullDid.uri}" is assumed to have a linked web3name, which it does not.`
   }
   console.log('4 linking) Query web3name for submitter account without SDK')
   web3Name = await queryAccountWithoutSdk(api, submitterAccount.address)
