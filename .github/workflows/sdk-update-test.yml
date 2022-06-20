@@ -118,7 +118,7 @@ jobs:
             *.md
   create_issue:
     runs-on: ubuntu-latest
-    needs: [ workshop, core_features ]git stat
+    needs: [ workshop, core_features ]
     if: failure()
     steps:
       - name: Checkout
