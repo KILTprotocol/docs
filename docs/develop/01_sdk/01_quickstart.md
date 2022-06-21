@@ -107,7 +107,7 @@ Again, the SDK makes this process very easy to follow, by exposing a `Kilt.conne
 </SnippetBlock>
 
 After establishing a connection, you have access to the chain, but let's not forget to **close** any connections when we are done!
-Connections to blockchain nodes should be dropped when not needed anymore, and to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
+Connections to blockchain nodes should be dropped when not needed anymore, and to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function. Use async keyword instead of export in `export function main()` to make await operator work.
 
 <SnippetBlock
   className="language-ts"
