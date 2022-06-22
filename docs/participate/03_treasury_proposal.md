@@ -3,7 +3,7 @@ id: treasury-proposal
 title: Open a Treasury Proposal
 ---
 
-Complete these steps to create a well-formed Treasury proposal
+Complete these steps to create a well-formed Treasury proposal.
 
 ## Discuss
 
@@ -58,3 +58,50 @@ Enter the following information:
 
 Click [here](https://www.kilt.io/treasury/overview/) to get an overview about Treasury.
 Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
+
+## Illustration
+
+The following diagram depicts the flow of a Treasury proposal from having an idea to receiving the funds in the beneficiary address.
+While all nodes with yellow background represent <span style={{backgroundColor: "#FFF4BD", color: "black"}}>off-chain processes</span>, the remaining ones involve <span style={{backgroundColor: "#85D2D0", color: "black"}}>on-chain activity</span>.
+
+<div class="kilt-mermaid">
+
+```mermaid
+flowchart TD
+    %% nodes
+    Proposer --> |"share contribution idea"|Discuss("Polkassembly: \n kilt.polkassembly.network")
+    Discuss --> |"gather feedback"|Community
+    Discuss --> |"come to agreement about \n scope and financial objective"|Council
+    Community --> |"supports Proposal"|Propose("Propose to chain")
+    Council --> |"approves Pre-Proposal"|Propose
+    Propose --> |"reserve 5% of \n demanded amount \n"|Deposit
+    Propose --> |"on Polkassembly, \n provide details in"|Document("Proposal document")
+    Propose ----> |"select address"|Beneficiary
+    Document --> |"start work"|Deliverables
+    Deliverables --> |"complete work"|Council_Review{"Council review"}
+    Council_Review ----> Council_Approval("Council approval")
+    Council_Review -...-> Council_Rejection("Council rejection")
+    Council_Approval ----> |"receive requested \n funds from Treasury"|Beneficiary
+    Council_Approval ----> |unreserve Deposit|Deposit
+    Council_Rejection -.-> |"slash Deposit \n to Treasury"|Deposit
+
+    %% class mapping
+    Proposer:::ofchain
+    Discuss:::ofchain
+    Community:::ofchain
+    Council:::ofchain
+    Propose:::onchain
+    Document:::ofchain
+    Deliverables:::ofchain
+    Council_Review:::ofchain
+    Council_Approval:::onchain
+    Deposit:::onchain
+    Council_Rejection:::onchain
+    Beneficiary:::onchain
+
+    %% styling classes
+    classDef ofchain fill:#FFF4BD,stroke:black, stroke-width:1px;
+    classDef onchain fill:#85D2D0,stroke:black, stroke-width:1px;
+```
+
+</div>
