@@ -20,7 +20,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 <!-- When updating this version also update 00-welcome.md! -->
 ```bash npm2yarn
 npm init -y
-npm install @kiltprotocol/sdk-js@0.27.0 dotenv ts-node typescript
+npm install @kiltprotocol/sdk-js@0.28.0 dotenv ts-node typescript
 ```
 
 ## Project Folder
