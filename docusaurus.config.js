@@ -80,6 +80,11 @@ module.exports = {
               docId: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
             },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-tip',
+              label: 'Treasury Tips',
+            },
           ],
         },
         {
