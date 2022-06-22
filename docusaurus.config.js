@@ -81,8 +81,8 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'participate/propose-tip',
-              label: 'Propose a tip',
+              docId: 'participate/treasury-tip',
+              label: 'Treasury Tips',
             },
           ],
         },

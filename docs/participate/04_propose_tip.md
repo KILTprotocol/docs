@@ -1,6 +1,6 @@
 ---
-id: propose-tip
-title: Propose a tip
+id: treasury-tip
+title: Treasury Tips
 ---
 
 Similar to [opening a Treasury proposal](./03_treasury_proposal.md), anyone can start a tipping process.

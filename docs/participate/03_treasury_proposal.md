@@ -3,7 +3,7 @@ id: treasury-proposal
 title: Open a Treasury Proposal
 ---
 
-Complete these steps to create a well-formed Treasury proposal
+Complete these steps to create a well-formed Treasury proposal.
 
 ## Discuss
 
