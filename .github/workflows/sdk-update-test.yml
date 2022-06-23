@@ -137,9 +137,9 @@ jobs:
           assignees: ntn-x2
           labels: |
             :memo:  documentation
-            📚+release
+            📚 release
             🧰 sdk
-            🚚+high
+            🚚 high
       - name: Create or Update Project Card on weekly-board
         uses: peter-evans/create-or-update-project-card@v2
         with:

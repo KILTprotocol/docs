@@ -3,4 +3,4 @@
 
 ---
 
-- [ ] Click on link below to investigate logs of failing tests
+- [ ] Check if any docs needs to be updated, and if needed do so
