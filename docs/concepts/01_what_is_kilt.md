@@ -41,7 +41,7 @@ Those holders were then under full control of their Credentials and could use th
 However, with the invention of the Internet and later of the Web 2.0, services evolved and merged into totally centralized solutions including Google, Meta, and Twitter among others.
 They do not only simply attest someone's email account anymore, but due to their business model, our personal data (i.e., our identity), is stored and controlled by those same service providers.
 For instance, they could stop allowing us to log into a certain website if they decide so.
-Most often than noe, those companies do not only store the data out of necessity but also for their own business purpose: every time users log into any service, they generate new data points which are then aggregated and sold for advertising purposes.
+Most often than not, those companies do not only store the data out of necessity but also for their own business purpose: every time users log into any service, they generate new data points which are then aggregated and sold for advertising purposes.
 
 KILT Protocol aims to change that and give users back the control over their data.
 
