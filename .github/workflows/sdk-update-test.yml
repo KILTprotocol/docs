@@ -134,17 +134,21 @@ jobs:
           repository: KILTProtocol/ticket
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
-          assignees: ntn-x2
+          assignees: ntn-x2,tjwelde,rflechtner
           labels: |
             :memo:  documentation
-            📚+release
+            📚 release
             🧰 sdk
-            🚚+high
+            🚚 high
       - name: Create or Update Project Card on weekly-board
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          project-name: "Weekly Board 📅"
-          column-name: "To Do"
+          project-name: Weekly Board 📅
+          project-number: 10
+          project-location: KILTProtocol
+          repository: KILTProtocol/ticket
+          column-name: To Do
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
           issue-number: ${{ steps.issue.outputs.issue-number }}
 
             
