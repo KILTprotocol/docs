@@ -125,12 +125,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate issue
         run: |
-          echo "[Either workshop or core_features test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk ${{ github.event.client_payload.latestTag }} on docs has failed.Please fix!" >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+          echo "[At least on of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
       - name: Create issue
         id: issue
         uses: peter-evans/create-issue-from-file@v3
         with:
-          title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
+          title: New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
           repository: KILTProtocol/ticket
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
@@ -150,5 +150,3 @@ jobs:
           column-name: To Do
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           issue-number: ${{ steps.issue.outputs.issue-number }}
-
-            
