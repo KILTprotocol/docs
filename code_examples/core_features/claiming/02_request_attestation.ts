@@ -13,7 +13,7 @@ export async function requestAttestation(
       age: 29,
       id: '123456789987654321'
     },
-    claimer.did
+    claimer.uri
   )
   // The attestation request must be signed by the claimer to provide non-repudiation.
   const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)

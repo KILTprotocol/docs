@@ -14,7 +14,7 @@ export async function createAttestation(
   // using the provided attester's full DID.
   const attestation = await Kilt.Attestation.fromRequestAndDid(
     requestForAttestation,
-    attester.did
+    attester.uri
   )
   const attestationTx = await attestation
     .getStoreTx()
