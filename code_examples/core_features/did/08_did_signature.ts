@@ -17,12 +17,11 @@ export async function generateAndVerifyDidAuthenticationSignature(
   console.log(JSON.stringify(signature, null, 2))
 
   // Verify the validity of the signature using the DID's authentication public key.
-  const signatureVerificationResult =
-    await Kilt.Did.DidUtils.verifyDidSignature({
-      message: payload,
-      signature,
-      expectedVerificationMethod: Kilt.KeyRelationship.authentication
-    })
+  const signatureVerificationResult = await Kilt.Did.verifyDidSignature({
+    message: payload,
+    signature,
+    expectedVerificationMethod: Kilt.KeyRelationship.authentication
+  })
 
   if (!signatureVerificationResult.verified) {
     throw `Signature failed to verify. Reason: ${signatureVerificationResult.reason}`

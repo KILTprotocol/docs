@@ -63,19 +63,11 @@ export async function createCompleteFullDid(
       types: ['service-type'],
       urls: ['https://www.example.com']
     })
-    .consumeWithHandler(
-      keystore,
-      submitterAccount.address,
-      async (creationTx) => {
-        await Kilt.BlockchainUtils.signAndSubmitTx(
-          creationTx,
-          submitterAccount,
-          {
-            resolveOn
-          }
-        )
-      }
-    )
+    .buildAndSubmit(keystore, submitterAccount.address, async (creationTx) => {
+      await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, submitterAccount, {
+        resolveOn
+      })
+    })
 
   if (!fullDid) {
     throw 'Could not find the DID just created.'

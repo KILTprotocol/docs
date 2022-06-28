@@ -38,7 +38,7 @@ export async function createCompleteLightDid(
     },
     serviceEndpoints
   })
-  console.log(lightDID.did)
+  console.log(lightDID.uri)
 
   return lightDID
 }
