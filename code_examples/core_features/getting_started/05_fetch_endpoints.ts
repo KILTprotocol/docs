@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
-  johnDoeDid: Kilt.IDidDetails['did']
+  johnDoeDid: Kilt.IDidDetails['uri']
 ): Promise<Kilt.DidServiceEndpoint[]> {
   const johnDoeDidDocument = await Kilt.Did.DidResolver.resolveDoc(johnDoeDid)
   console.log(`John Doe's DID Document:`)

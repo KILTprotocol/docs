@@ -44,6 +44,6 @@ if (require.main === module) {
     .then(({ lightDid, mnemonic }) => {
       console.log('\nsave following to .env to continue\n')
       console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
-      console.log(`CLAIMER_DID_URI="${lightDid.did}"`)
+      console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)
     })
 }

@@ -12,7 +12,7 @@ export async function createDriversLicenseCType(
   // Create a new CType definition.
   const ctype = Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${creatorDid.did}`,
+    title: `Drivers License by ${creatorDid.uri}`,
     properties: {
       name: {
         type: 'string'

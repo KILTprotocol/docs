@@ -40,7 +40,7 @@ export async function runAll(
     resolveOn
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
-  await verifyNameAndDidEquality(randomWeb3Name, fullDid.did)
+  await verifyNameAndDidEquality(randomWeb3Name, fullDid.uri)
   console.log('3 w3n) Query credentials for "john_doe" web3name')
   try {
     await queryPublishedCredentials('john_doe')
