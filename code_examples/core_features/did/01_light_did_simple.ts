@@ -18,7 +18,7 @@ export async function createSimpleLightDid(
       type: Kilt.VerificationKeyType.Ed25519
     }
   })
-  console.log(lightDID.did)
+  console.log(lightDID.uri)
 
   return lightDID
 }

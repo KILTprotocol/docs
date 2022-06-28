@@ -22,7 +22,7 @@ async function testWorkshop() {
 
   // setup claimer & create attestation request
   const { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
-  process.env.CLAIMER_DID_URI = claimerDid.did
+  process.env.CLAIMER_DID_URI = claimerDid.uri
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
   await generateRequest({
@@ -54,7 +54,7 @@ async function testWorkshop() {
 
   // create attester did & ensure ctype
   const attesterDid = await createFullDid()
-  process.env.ATTESTER_DID_URI = attesterDid.did
+  process.env.ATTESTER_DID_URI = attesterDid.uri
 
   await ensureStoredCtype()
 

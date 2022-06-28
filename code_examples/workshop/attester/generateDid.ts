@@ -23,7 +23,7 @@ export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
     .addEncryptionKey(keys.keyAgreement)
     .setAttestationKey(keys.assertionMethod)
     .setDelegationKey(keys.capabilityDelegation)
-    .consumeWithHandler(keystore, account.address, async (creationTx) => {
+    .buildAndSubmit(keystore, account.address, async (creationTx) => {
       await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
         resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
       })
@@ -31,12 +31,11 @@ export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
 }
 
 export async function getFullDid(
-  didIdentifier: Kilt.IDidIdentifier
+  didUri: Kilt.DidUri
 ): Promise<Kilt.Did.FullDidDetails> {
   // make sure the did is already on chain
-  const onChain = await Kilt.Did.FullDidDetails.fromChainInfo(didIdentifier)
-  if (!onChain)
-    throw Error(`failed to find on chain did: did:kilt:${didIdentifier}`)
+  const onChain = await Kilt.Did.FullDidDetails.fromChainInfo(didUri)
+  if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
   return onChain
 }
 
@@ -50,7 +49,7 @@ if (require.main === module) {
     })
     .then((did) => {
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_URI=${did.did}\n`)
+      console.error(`ATTESTER_DID_URI=${did.uri}\n`)
       process.exit()
     })
 }

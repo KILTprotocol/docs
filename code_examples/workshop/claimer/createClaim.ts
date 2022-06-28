@@ -9,7 +9,7 @@ export function createClaim(
   const claim = Kilt.Claim.fromCTypeAndClaimContents(
     ctype,
     content,
-    lightDid.did
+    lightDid.uri
   )
 
   return claim

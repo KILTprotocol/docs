@@ -20,11 +20,14 @@ export async function linkAccountToDid(
 
   // Authorizing the extrinsic with the full DID and including a signature of the linked account
   // results in the provided account being linked to the DID authorizing the operation.
-  const accountLinkingTx = await Kilt.Did.AccountLinks.authorizeLinkWithAccount(
-    linkedAccount.address,
-    did.identifier,
-    linkingAccountSignatureGeneration
-  ).then((tx) => did.authorizeExtrinsic(tx, keystore, submitterAccount.address))
+  const accountLinkingTx =
+    await Kilt.Did.AccountLinks.getAuthorizeLinkWithAccountExtrinsic(
+      linkedAccount.address,
+      did.identifier,
+      linkingAccountSignatureGeneration
+    ).then((tx) =>
+      did.authorizeExtrinsic(tx, keystore, submitterAccount.address)
+    )
 
   await Kilt.BlockchainUtils.signAndSubmitTx(
     accountLinkingTx,

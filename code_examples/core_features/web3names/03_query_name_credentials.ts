@@ -95,7 +95,7 @@ export async function queryPublishedCredentials(
 
       // Verify that the credential refers to the intended subject
       if (
-        !Kilt.Did.DidUtils.isSameSubject(credential.claim.owner, didForWeb3Name)
+        !Kilt.Did.Utils.isSameSubject(credential.claim.owner, didForWeb3Name)
       ) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
