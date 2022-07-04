@@ -5,8 +5,8 @@ title: Set Up a Node
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import StartNodeBinary from './_04_start_node_binary.mdx';
-import StartNodeDocker from './_04_start_node_docker.mdx';
+import StartNodeDocker from './_03_start_node_docker.mdx';
+import StartNodeBinary from './_03_start_node_binary.mdx';
 
 There are several ways to build and run a Collator node.
 We show both how to use a Docker image and how to compile the source code directly from [our chain repository](https://github.com/KILTprotocol/kilt-node).
@@ -55,7 +55,7 @@ Connecting from a remote host to either the Collator RPC endpoint or WS endpoint
 
 Be aware that it is highly discouraged to publicly expose an RPC endpoint, especially if it allows the execution of unsafe RPC calls!
 You should be the only one able to call the RPC endpoint.
-For a secure setup, follow the instructions in the previous section about [generating the session keys](./03_session_keys.md).
+For a secure setup, follow the instructions in the previous section about [generating the session keys](./04_session_keys.md).
 :::
 
 ### WASM Runtime Execution
