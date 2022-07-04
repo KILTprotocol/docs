@@ -5,10 +5,14 @@ title: Join the Collator Candidate Pool
 
 import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 
+Before a Collator can author blocks, the node needs to fully sync up with both the KILT parachain and the Kusama relaychain.
+Depending on the size of the blockchain states, it may take from a number of hours to few days for the node to fully synchronize.
+More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
+
 After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
 
 :::warning
-These steps should be followed only once a Collator node has successfully [**linked a session key to its address**](./03_session_keys.md) and [**synced the parachain and relaychain states**](./04_setup_node.md#sync-the-blockchain-state) by following the previous steps.
+These steps should be followed only once a Collator node has successfully [**linked a session key to its address**](./04_session_keys.md) and synced the parachain and relaychain states by following the previous steps.
 :::
 
 ## Minimum Token Requirement
@@ -44,7 +48,7 @@ A Collator candidate can check the current top candidates to see their position 
 
 ![](/img/chain/parachainStaking-topCandidates1.png)
 
- In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Chain state -> Storage`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Chain state -> Storage`
 
 1. Selected state query: `parachainStaking -> topCandidates(): ParachainStakingSetOrderedSet`
 2. Execute the query by pressing the "+" button on the right side
