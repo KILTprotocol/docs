@@ -6,11 +6,9 @@ title: Set and Rotate Session Keys
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Before a Collator can author blocks, the node needs to fully sync up with both the KILT parachain and the Kusama relaychain.
-Depending on the size of the blockchain states, it may take from a number of hours to few days for the node to fully synchronize.
-More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
-
-Once both chains have fully synced, the Collator needs to set sessions keys to begin collating on the network.
+The Collator needs to link session keys to his collator account.
+The session keys are identifying your node.
+Your collator address will receive the permit to build blocks, but the session keys pass this permit to your node.
 To check whether the account has already some session keys set, the RPC functions `author > hasKey(publicKey, keyType)` and `author > hasSessionKeys(sessionKeys)` can be called.
 
 ![](/img/chain/author-hasKey.png)
