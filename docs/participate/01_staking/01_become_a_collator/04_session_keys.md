@@ -6,8 +6,8 @@ title: Set and Rotate Session Keys
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Collator needs to link session keys to his collator account.
-The session keys are identifying your node.
+The Collator needs to link session keys to their collator account.
+With the keys linked, they are used to identify a collator's node.
 Your collator address will receive the permit to build blocks, but the session keys pass this permit to your node.
 To check whether the account has already some session keys set, the RPC functions `author > hasKey(publicKey, keyType)` and `author > hasSessionKeys(sessionKeys)` can be called.
 
