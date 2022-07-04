@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 We will guide you through the process of setting up and connecting to a KILT full node.
-In contrast [to a Collator](setup-node), full nodes do not author blocks.
+In contrast [to a Collator](../../participate/01_staking/01_become_a_collator/03_setup_node.md), full nodes do not author blocks.
 They act as a backend for websites and help to verify new blocks or validate extrinsics (e.g., coin transfers and other transactions) directly on the network without relying on a centralized infrastructure provider.
 
 ## Setup
