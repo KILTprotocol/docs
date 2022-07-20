@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function runAll(address: string): Promise<void> {
   // Connect to the blockchain
   await Kilt.init({ address })
-  
+
   const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
     ss58Format: 38
