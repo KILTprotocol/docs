@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
-    "style": "prettier --check --config .prettierrc **/*.ts",
+    "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
     "test": "ts-node test.ts"
   },
