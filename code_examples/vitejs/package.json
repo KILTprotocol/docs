@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts --ext .tsx --format=codeframe",
     "lint:fix": "yarn lint --fix",
-    "style": "prettier --check --config .prettierrc **/*.ts{,x}",
+    "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
     "style:fix": "yarn style --write"
   },
   "dependencies": {
