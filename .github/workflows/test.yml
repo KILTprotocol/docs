@@ -26,7 +26,7 @@ jobs:
       - name: Test style conventions
         working-directory: code_examples/workshop
         run: |
-          yarn install --frozen
+          yarn install --frozen-lockfile
           yarn lint && yarn style
 
       - name: Run tests
@@ -36,7 +36,7 @@ jobs:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          yarn install --frozen
+          yarn install --frozen-lockfile
           yarn run ts-node test.ts
 
   core_features:
@@ -49,7 +49,7 @@ jobs:
       - name: Test style conventions
         working-directory: code_examples/core_features
         run: |
-          yarn install --frozen
+          yarn install --frozen-lockfile
           yarn lint && yarn style
 
       - name: Run tests
@@ -59,7 +59,7 @@ jobs:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
-          yarn install --frozen
+          yarn install --frozen-lockfile
           yarn run ts-node run_core_features.ts
 
   # Only test the style conventions for the snippets, nothing is run here
@@ -73,5 +73,5 @@ jobs:
       - name: Test style conventions
         working-directory: code_examples/vitejs
         run: |
-          yarn install --frozen
+          yarn install --frozen-lockfile
           yarn lint && yarn style
