@@ -1,10 +1,15 @@
 
-import { DidResourceUri } from '@kiltprotocol/types';
+import { DidResourceUri,IEncryptedMessage } from '@kiltprotocol/types';
 
 interface PubSubSession {
-    encryptionKeyId: DidResourceUri;
-    encryptedChallenge: string;
-    nonce: string;
+  listen: (
+    callback: (message: IEncryptedMessage) => Promise<void>,
+  ) => Promise<void>;
+  close: () => Promise<void>;
+  send: (message: IEncryptedMessage) => Promise<void>;
+  encryptionKeyId: DidResourceUri;
+  encryptedChallenge: string;
+  nonce: string;
   }
   
   interface InjectedWindowProvider {
@@ -37,7 +42,7 @@ interface PubSubSession {
     if (!provider) {
       throw new Error('No provider');
     }
-    try {
+
       window.sessionStorage.setItem('wallet', wallet);
   
       // get dAppEncryptionKeyUri, challenge, challenge from backend
@@ -50,16 +55,16 @@ interface PubSubSession {
         challenge, // from backend
       );
   
-      async function send(message: CompatibleMessage): Promise<void> {
+      async function send(message:  IEncryptedMessage): Promise<void> {
         message.receiverKeyId = message.receiverKeyUri;
         message.senderKeyId = message.senderKeyUri;
         return session.send(message);
       }
   
       async function listen(
-        callback: (message: CompatibleMessage) => Promise<void>,
+        callback: (message:  IEncryptedMessage) => Promise<void>,
       ) {
-        return session.listen(async (message: CompatibleMessage) => {
+        return session.listen(async (message:  IEncryptedMessage) => {
           message.senderKeyUri = message.senderKeyUri || message.senderKeyId;
           message.receiverKeyUri =
             message.receiverKeyUri || message.receiverKeyId;
@@ -70,8 +75,5 @@ interface PubSubSession {
       
       const { name } = provider;
   
-      return { ...session,sessionId, name, wallet };
-    } catch (exception) {
-      throw exception;
-    }
+      return { ...session,listen,send,sessionId, name, wallet };
   }

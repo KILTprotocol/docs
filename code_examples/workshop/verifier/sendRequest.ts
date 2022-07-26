@@ -12,7 +12,7 @@ await session.listen(async (message) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    })
     
 // asking for requested credential from extension      
 const message = await requestCredential(

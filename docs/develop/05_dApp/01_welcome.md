@@ -1,4 +1,0 @@
----
-id: welcome
-title: 👋🏻 Welcome
----
