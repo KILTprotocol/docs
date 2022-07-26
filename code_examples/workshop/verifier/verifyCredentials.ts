@@ -19,4 +19,3 @@ const content = await decryptMessageContent<ICredential[]>(
   const isAttested = await credential.verify({ challenge });
 
   return { credential, isAttested }
-}
