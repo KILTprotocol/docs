@@ -37,6 +37,7 @@ Then construct the `REQUEST_CREDENTIAL` message using the message body, sender D
 ```ts
 import { MessageBodyType } from '@kiltprotocol/types'
 import { Message } from '@kiltprotocol/messaging'
+import { Utils } from '@kiltprotocol/did'
 
 const messageBody = {
   content: {
