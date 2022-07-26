@@ -1,6 +1,6 @@
 
 import { ICredential, MessageBodyType } from '@kiltprotocol/types';
-import { Credential } from '@kiltprotocol/core';#
+import { Credential } from '@kiltprotocol/core';
 
 async function verifyCredentials() {
 const content = await decryptMessageContent<ICredential[]>(
