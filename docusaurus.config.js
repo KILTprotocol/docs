@@ -61,7 +61,7 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/dApp/verifier/session',
+              docId: 'develop/dApp/welcome',
               label: 'DApp Docs',
             },
           ],
