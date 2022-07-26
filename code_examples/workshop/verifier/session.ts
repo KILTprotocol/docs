@@ -40,7 +40,6 @@ export async function getSession(
     throw new Error('No provider')
   }
 
-
   // get dAppEncryptionKeyUri, challenge, challenge from backend
 
   const dAppName = 'Your dApp Name '
