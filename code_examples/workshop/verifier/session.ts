@@ -40,7 +40,6 @@ export async function getSession(
     throw new Error('No provider')
   }
 
-  window.sessionStorage.setItem('wallet', wallet)
 
   // get dAppEncryptionKeyUri, challenge, challenge from backend
 
@@ -53,8 +52,6 @@ export async function getSession(
   )
 
   async function send(message: IEncryptedMessage): Promise<void> {
-    message.receiverKeyId = message.receiverKeyUri
-    message.senderKeyId = message.senderKeyUri
     return session.send(message)
   }
 
@@ -62,8 +59,6 @@ export async function getSession(
     callback: (message: IEncryptedMessage) => Promise<void>
   ) {
     return session.listen(async (message: IEncryptedMessage) => {
-      message.senderKeyUri = message.senderKeyUri || message.senderKeyId
-      message.receiverKeyUri = message.receiverKeyUri || message.receiverKeyId
       return callback(message)
     })
   }
