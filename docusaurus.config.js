@@ -62,7 +62,7 @@ module.exports = {
             {
               type: 'doc',
               docId: 'develop/dApp/welcome',
-              label: 'DApp Docs',
+              label: 'DApp Documentation',
             },
           ],
         },

@@ -7,7 +7,7 @@ The Well Known DID Configuration is implemented as a security measure when setti
 
 The implementation is based on the [Well Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/) specified by the Decentralized Identity Foundation:
 
-## dApp Steps
+## DApp Steps
 
 Add the following URI to your dApp's root. The extension will make an HTTP GET request to this URI, and your dApp will respond with the domain configuration resource.
 
