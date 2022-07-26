@@ -30,7 +30,7 @@ export async function updateFullDid(
       type: Kilt.VerificationKeyType.Ed25519
     })
     .removeServiceEndpoint('my-service')
-    .consume(keystore, submitterAccount.address)
+    .build(keystore, submitterAccount.address)
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
   await Kilt.BlockchainUtils.signAndSubmitTx(
@@ -43,11 +43,11 @@ export async function updateFullDid(
 
   // Get the updated DID Doc
   const updatedDidDetails = await Kilt.Did.FullDidDetails.fromChainInfo(
-    fullDid.identifier
+    fullDid.uri
   )
 
   if (!updatedDidDetails) {
-    throw `Could not find the updated DID ${fullDid.did}`
+    throw `Could not find the updated DID ${fullDid.uri}`
   }
   return updatedDidDetails
 }

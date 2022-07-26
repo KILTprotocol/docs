@@ -15,19 +15,17 @@ export async function attestClaim(
 
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
-  const attesterDid = process.env.ATTESTER_DID_URI as string
+  const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
   const account = await getAccount(mnemonic)
   const keystore = new Kilt.Did.DemoKeystore()
   await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(
-    Kilt.Did.DidUtils.getIdentifierFromKiltDid(attesterDid)
-  )
+  const fullDid = await getFullDid(attesterDid)
 
   // build the attestation object
-  const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.did)
+  const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.uri)
 
   // check the request content and deny based on your business logic.
-  // e.g. verify age with other credentials (birth certificate, passport, ...)
+  // e.g., verify age with other credentials (birth certificate, passport, ...)
 
   // form tx and authorized extrinsic
   const tx = await attestation.getStoreTx()

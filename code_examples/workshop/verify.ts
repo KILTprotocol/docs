@@ -10,14 +10,17 @@ function getChallenge(): string {
 }
 
 // verifies validity, ownership & attestation
-async function verifyPresentation(presentation: Kilt.ICredential, challenge: string): Promise<boolean> {
+async function verifyPresentation(
+  presentation: Kilt.ICredential,
+  challenge: string
+): Promise<boolean> {
   const credential = new Kilt.Credential(presentation)
 
   const isValid = await credential.verify({ challenge })
   const isRevoked = credential.attestation.revoked
 
   // Custom logic
-  // e.g. only allow access if age >= 18
+  // e.g., only allow access if age >= 18
 
   return isValid && !isRevoked
 }
@@ -34,14 +37,19 @@ export async function verificationFlow() {
     authenticationKey: {
       publicKey: keys.authenticationKey.publicKey,
       type: Kilt.VerificationKeyType.Sr25519
-    },
+    }
   })
 
   // Verifier sends a unique challenge to the claimer 🕊
   const challenge = getChallenge()
 
   // create a presentation and send it to the verifier 🕊
-  const presentation = await createPresentation(credential, lightDid, keystore, challenge)
+  const presentation = await createPresentation(
+    credential,
+    lightDid,
+    keystore,
+    challenge
+  )
 
   // The verifier checks the presentation
   const isValid = await verifyPresentation(presentation, challenge)

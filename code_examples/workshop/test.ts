@@ -16,24 +16,26 @@ async function testWorkshop() {
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
 
   // setup attester account
-  const { account: attesterAccount, mnemonic: attesterMnemonic } = await generateAccount()
+  const { account: attesterAccount, mnemonic: attesterMnemonic } =
+    await generateAccount()
   process.env.ATTESTER_MNEMONIC = attesterMnemonic
   process.env.ATTESTER_ADDRESS = attesterAccount.address
 
   // setup claimer & create attestation request
-  const { lightDid: claimerDid, mnemonic: claimerMnemonic } = await generateLightDid()
-  process.env.CLAIMER_DID_URI = claimerDid.did
+  const { lightDid: claimerDid, mnemonic: claimerMnemonic } =
+    await generateLightDid()
+  process.env.CLAIMER_DID_URI = claimerDid.uri
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
   await generateRequest({
     age: 27,
-    name: 'Karl',
+    name: 'Karl'
   })
 
   // send tokens to attester...
   const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
-    ss58Format: 38,
+    ss58Format: 38
   })
 
   const faucetSeed = process.env[SEED_ENV]
@@ -47,14 +49,12 @@ async function testWorkshop() {
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
   await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
-    .then((tx) =>
-      Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount)
-    )
+    .then((tx) => Kilt.BlockchainUtils.signAndSubmitTx(tx, faucetAccount))
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
   const attesterDid = await createFullDid()
-  process.env.ATTESTER_DID_URI = attesterDid.did
+  process.env.ATTESTER_DID_URI = attesterDid.uri
 
   await ensureStoredCtype()
 

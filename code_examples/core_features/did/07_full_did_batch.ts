@@ -39,7 +39,7 @@ export async function batchCTypeCreationExtrinsics(
   // Create the DID-signed batch
   const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
     .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .consume(keystore, submitterAccount.address)
+    .build(keystore, submitterAccount.address)
 
   // The authorized account submits the batch to the chain
   await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {

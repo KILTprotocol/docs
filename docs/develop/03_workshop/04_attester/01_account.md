@@ -17,7 +17,7 @@ All we need to create an account is a mnemonic.
 A KILT account is a set of cryptographic elements:
 
 - The address, which is generated from the public key
-- A signing keypair write transactions on-chain
+- A signing keypair to write transactions on-chain
 
 :::
 
@@ -40,7 +40,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 
 Open `attester/generateAccount.ts` and paste the following code:
 
-<CodeBlock className="language-js" title="attester/generateAccount.ts">
+<CodeBlock className="language-ts" title="attester/generateAccount.ts">
   {GenerateAccount}
 </CodeBlock>
 
@@ -51,6 +51,7 @@ We will use `getAccount` later to load the account that we will create and store
 ## Execute
 
 Now run it to get your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
+
 ```bash
 yarn ts-node ./attester/generateAccount.ts
 ```
@@ -68,6 +69,6 @@ ATTESTER_ADDRESS="4ohMvUHsyeDhMVZF..."
 :::warning Get PILT coins!
 
 You now have a blockchain account, which will be used to pay fees and deposits.
-If you haven't already requested PILT, go to the [faucet](https://faucet.peregrine.kilt.io). and request tokens for your `<address>`.
+If you haven't already requested PILT, go to the [faucet](https://faucet.peregrine.kilt.io) and request tokens for your `<address>`.
 
 :::

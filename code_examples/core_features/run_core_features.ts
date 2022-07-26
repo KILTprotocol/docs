@@ -10,25 +10,37 @@ import { randomAsU8a } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { runAll as runAllClaiming } from './claiming'
-import { runAll as runAllDevSetup} from './dev_setup'
+import { runAll as runAllDevSetup } from './dev_setup'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
-const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils.IS_IN_BLOCK
+const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
+  Kilt.BlockchainUtils.IS_IN_BLOCK
 const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
-async function endowAccount(faucetAccount: KeyringPair, destinationAccount: KeyringPair['address'], amount: BN): Promise<void> {
-  console.log(`Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(amount, { decimals: 0 })}`)
-  await Kilt.Balance.getTransferTx(destinationAccount, Kilt.BalanceUtils.KILT_COIN.mul(amount), 0).
-    then((tx) =>
-      Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(
-        tx,
-        faucetAccount,
-        { reSign: true, resolveOn }
-      )
-    )
+async function endowAccount(
+  faucetAccount: KeyringPair,
+  destinationAccount: KeyringPair['address'],
+  amount: BN
+): Promise<void> {
+  console.log(
+    `Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(
+      amount,
+      { decimals: 0 }
+    )}`
+  )
+  await Kilt.Balance.getTransferTx(
+    destinationAccount,
+    Kilt.BalanceUtils.KILT_COIN.mul(amount),
+    0
+  ).then((tx) =>
+    Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
+      reSign: true,
+      resolveOn
+    })
+  )
 }
 
 async function main(): Promise<void> {

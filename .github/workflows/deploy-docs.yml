@@ -1,32 +1,21 @@
 name: deploy
 
 on:
-  pull_request:
-    branches: [master]
-  push:
-    branches: [master]
+  workflow_run:
+    workflows: [ "test-code-examples" ]
+    branches: [ master ]
+    types:
+      - completed
 
 jobs:
-  checks:
-    if: github.event_name != 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-      - name: Test Build
-        run: |
-          yarn install --frozen-lockfile
-          yarn run build
   gh-release:
-    if: github.event_name != 'pull_request'
+    if: (github.event_name != 'pull_request' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '16.x'
       - uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}

@@ -17,7 +17,7 @@ import { reclaimLinkDeposit } from './07_reclaim_deposit'
 import { unlinkAccountFromDid } from './05_did_unlink'
 import { unlinkDidFromAccount } from './06_account_unlink'
 
-// The provided DID is assumed to have an associated Web3 name.
+// The provided DID is assumed to have an associated web3name.
 export async function runAll(
   api: ApiPromise,
   submitterAccount: KeyringPair,
@@ -53,15 +53,15 @@ export async function runAll(
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(keystore, fullDid, submitterAccount, resolveOn)
-  console.log('3 linking) Query Web3 name for link account with SDK')
+  console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
   if (!web3Name) {
-    throw `The DID "${fullDid.did}" is assumed to have a linked Web3 name, which it does not.`
+    throw `The DID "${fullDid.uri}" is assumed to have a linked web3name, which it does not.`
   }
-  console.log('4 linking) Query Web3 name for submitter account without SDK')
+  console.log('4 linking) Query web3name for submitter account without SDK')
   web3Name = await queryAccountWithoutSdk(api, submitterAccount.address)
   if (!web3Name) {
-    throw 'The retrieved Web3 name should have been the same as the one of the link account, which is not.'
+    throw 'The retrieved web3name should have been the same as the one of the link account, which is not.'
   }
   console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(

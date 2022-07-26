@@ -1,13 +1,13 @@
 ---
-id: fullnode
-title: How to set up a full node
+id: fullnode-setup
+title: Set Up a KILT Full Node
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-We will guide you through the process of setting up and connecting to a full node.
-In contrast [to a collator](../../participate/01_Staking/01_Become%20a%20Collator/04_setup_node.md), full nodes do not author blocks.
+We will guide you through the process of setting up and connecting to a KILT full node.
+In contrast [to a Collator](../../participate/01_staking/01_become_a_collator/03_setup_node.md), full nodes do not author blocks.
 They act as a backend for websites and help to verify new blocks or validate extrinsics (e.g., coin transfers and other transactions) directly on the network without relying on a centralized infrastructure provider.
 
 ## Setup
@@ -15,7 +15,7 @@ They act as a backend for websites and help to verify new blocks or validate ext
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT full node can be part of:
 
 - **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features.
-- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to try stuff out before executing them on the production Spiritnet chain, which involves spending tokens that have real monetary value.
+- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to test applications that use KILT before connecting them to the production Spiritnet chain, which requires tokens that have real monetary value.
 
 Each runtime has its own benchmark measurements.
 
@@ -25,32 +25,33 @@ Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
 Hence, at each step where it is applicable, we indicate what differs between the Peregrine and Spiritnet configuration for the full node to join either network.
 :::
 
-### WASM runtime execution
+### WASM Runtime Execution
 
 A KILT full node should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
 The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
 When this happens, the full node will crash and will stop synchronizing with the network.
 Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all nodes should execute the WASM version of the runtime logic.
 
-### Specify the right chain spec
+### Specify the Right Chainspec
 
-The `--chain` parameter decides which blockchain the KILT full node will join.
-This parameter must be specified for both the parachain and the relaychain, since both chains are, as a matter of fact, separate blockchains.
+The `--chain` parameter indicates which blockchain the KILT full node will join.
+This parameter must be specified for both the parachain **and** the relaychain, since both chains are, as a matter of fact, separate blockchains.
 The KILT parachain accepts an additional parameter to select the environment to use for the WASM runtime execution.
 This can either be `peregrine` or `spiritnet`.
 
 Hence, to start a full node for the Spiritnet network, the parameter would be `--chain=spiritnet`.
-Unfortunately, there is no hardcoded chain spec for the Peregrine network such that you have to provide the full path to the chainspec which exists in the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) and [docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
+Unfortunately, there is no hardcoded chain spec for the Peregrine network, so the full path of the chainspec file must be provided `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
+Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) or the [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) for more information.
 
-### Where are all the files stored?
+### Specify the Blockchain Storage Path
 
 The `--base-path` parameter specifies where all the persistent files must be stored.
 By default, the session keys will also be stored in the *base path*, but we recommend to separate them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is either backed up or restored.
 You can configure where to store the session keys using the `--keystore-path` option.
-Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
+Since the Collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
-## Running a full node
+## Join the Network
 
 <Tabs
 groupId="exec-strategy"
@@ -62,7 +63,7 @@ values={[
 
 <TabItem value="Binary">
 
-### Building the full node
+### Build the Full Node
 
 In order to build the KILT full node executable, you need to have a [nightly version of Rust](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
 We recommend to align your nightly version with the one used in the [KILT node repository](https://github.com/KILTprotocol/kilt-node) by executing the [init script](https://github.com/KILTprotocol/kilt-node/blob/develop/scripts/init.sh).
@@ -86,7 +87,7 @@ Instead, the [latest release](https://github.com/KILTprotocol/kilt-node/releases
 
 The compiled executable can be found in `./target/release/kilt-parachain` after the build process completes successfully.
 
-### Running an Archive node
+### Run an Archive Node
 
 To run an Archive full node, add the option `--pruning archive` to the command.
 
@@ -141,10 +142,10 @@ values={[
 </TabItem>
 <TabItem value="Docker">
 
-### An Archive node from Docker
+### Run an Archive Node
 
-The full node can also be started inside a container.
-To expose the websockets please ensure to enable the following options `--rpc-external` and `--ws-external`.
+The full node can also be started as a Docker container.
+To expose the websockets ensure that the `--rpc-external` and `--ws-external` flags are set.
 
 To run an Archive full node add the option `--pruning archive` to the command.
 
@@ -155,7 +156,7 @@ docker pull kiltprotocol/kilt-node:latest
 ```
 
 Once you have the image, you can spin up the container.
-Make sure to choose whether you want to start a full node for Peregrine or Spiritnet by selected the correct runtime and chain.
+Make sure to choose whether you want to start a full node for Peregrine or Spiritnet by selecting the correct runtime and chain.
 
 <Tabs
 groupId="runtime"
@@ -212,13 +213,13 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
 </TabItem>
 </Tabs>
 
-## Sync the blockchain state
+## Sync the Blockchain State
 
-The node needs to fully sync up with both the parachain and the relaychain.
-Depending on the size of the blockchain state and your hardware, it may take a number of hours to few days for the node to catch up.
+Once started, the full node needs to fully sync up with both the parachain and the relaychain states.
+Depending on the size of both blockchain states and the node hardware specs, it may take from a number of hours to few days for the node to fully synchronize.
 More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
-:::note Example of node sync:
+:::note Example of node sync
 ```Example of node sync
 2021-06-17 02:34:34 🔍 Discovered new external address for our node: /ip4/100.102.231.64/tcp/30333/ws/p2p/12D3KooWLE7ivpuXJQpFVP4fuuutAqEsk8nrNEpuR3tddqnXgLPB
 2021-06-17 02:34:36 ⚙️  Syncing 409.2 bps, target=#8062689 (5 peers), best: #3477 (0x63ad…e046), finalized #3072 (0x0e4c…f587), ⬇ 153.2kiB/s ⬆ 12.9kiB/s

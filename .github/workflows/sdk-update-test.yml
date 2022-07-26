@@ -82,7 +82,7 @@ jobs:
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
-          include: "docs/develop/03_workshop/**"
+          include: "docs/develop/**.md"
           regex: true
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
@@ -125,18 +125,28 @@ jobs:
         uses: actions/checkout@v2
       - name: Generate issue
         run: |
-          echo "[Either workshop or core_features test workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest sdk ${{ github.event.client_payload.latestTag }} on docs has failed.Please fix!" >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+          echo "[At least on of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
       - name: Create issue
+        id: issue
         uses: peter-evans/create-issue-from-file@v3
         with:
-          title: new sdk ${{ github.event.client_payload.latestTag }} is incompatible with docs examples
+          title: New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
           repository: KILTProtocol/ticket
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+          assignees: ntn-x2,tjwelde,rflechtner
           labels: |
             :memo:  documentation
-            📚+release
+            📚 release
             🧰 sdk
-            🚚+high
-            
-            
+            🚚 high
+      - name: Create or Update Project Card on weekly-board
+        uses: peter-evans/create-or-update-project-card@v2
+        with:
+          project-name: Weekly Board 📅
+          project-number: 10
+          project-location: KILTProtocol
+          repository: KILTProtocol/ticket
+          column-name: To Do
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          issue-number: ${{ steps.issue.outputs.issue-number }}

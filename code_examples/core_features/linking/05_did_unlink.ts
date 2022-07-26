@@ -11,9 +11,12 @@ export async function unlinkAccountFromDid(
     .IS_FINALIZED
 ): Promise<void> {
   // The DID owner removes the link between itself and the specified account.
-  const accountUnlinkTx = await Kilt.Did.AccountLinks.getLinkRemovalByDidTx(
-    linkedAccountAddress
-  ).then((tx) => did.authorizeExtrinsic(tx, keystore, submitterAccount.address))
+  const accountUnlinkTx =
+    await Kilt.Did.AccountLinks.getLinkRemovalByDidExtrinsic(
+      linkedAccountAddress
+    ).then((tx) =>
+      did.authorizeExtrinsic(tx, keystore, submitterAccount.address)
+    )
 
   await Kilt.BlockchainUtils.signAndSubmitTx(
     accountUnlinkTx,

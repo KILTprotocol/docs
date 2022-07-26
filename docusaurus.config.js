@@ -2,15 +2,16 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
+    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
   themeConfig: {
+    image: 'img/expert_dark_preview.png',
     navbar: {
       title: '', // no title since the Name is already in the logo
       logo: {
@@ -45,13 +46,18 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'develop/contribute',
+              label: 'Contribute',
+            },
+            {
+              type: 'doc',
               docId: 'develop/specifications/index',
               label: 'Technical Specifications',
             },
             {
               type: 'doc',
-              docId: 'develop/showcase',
-              label: 'Showcase',
+              docId: 'develop/builtonkilt',
+              label: 'Built on KILT',
             },
           ],
         },
@@ -61,20 +67,25 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'participate/Staking/Become a Collator/overview',
+              docId: 'participate/staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
               type: 'doc',
-              docId: 'participate/Governance/vote',
+              docId: 'participate/governance/vote',
               label: 'Voting',
             },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-proposal',
+              label: 'Treasury Proposals',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/treasury-tip',
+              label: 'Treasury Tips',
+            },
           ],
-        },
-        {
-          type: 'doc',
-          docId: 'glossary',
-          label: 'Glossary',
         },
         {
           href: 'https://github.com/KILTprotocol/docs',
@@ -127,6 +138,10 @@ module.exports = {
             {
               label: 'Imprint',
               href: 'https://www.kilt.io/imprint/',
+            },
+            {
+              label: 'Disclaimer',
+              href: 'https://www.kilt.io/disclaimer/',
             },
             {
               label: 'Privacy Policy',
