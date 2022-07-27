@@ -170,6 +170,5 @@ module.exports = {
         },
       },
     ],
-  ],
-  plugins: ['./docusaurs-polyfill-plugin.js'],
+  ]
 }

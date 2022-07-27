@@ -1,0 +1,21 @@
+{
+  "schema": {
+    "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+    "title": "Drivers License by did:kilt:4rPmLZ4iukvdX9oS5i3L8q6R7Eg3Nf9q2czkgSZXRDSE8o97",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "string"
+      }
+    },
+    "type": "object",
+    "$id": "kilt:ctype:0x067980413610e6262ae750791eb219596adb27bf72b23a4f02563fdfe10bb872"
+  },
+  "owner": "did:kilt:4rPmLZ4iukvdX9oS5i3L8q6R7Eg3Nf9q2czkgSZXRDSE8o97",
+  "hash": "0x067980413610e6262ae750791eb219596adb27bf72b23a4f02563fdfe10bb872"
+}

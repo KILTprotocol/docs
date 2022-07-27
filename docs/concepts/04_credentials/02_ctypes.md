@@ -2,10 +2,11 @@
 id: ctypes
 title: CTypes
 ---
+import CodeBlock from '@theme/CodeBlock';
 
-import JsonSnippet from '@site/src/components/JsonSnippet';
-
-<!-- import { getCtypeSchema } from '@site/code_examples/workshop/out/attester/ctypeSchema.js'; -->
+<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
+import Schema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
+import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
 CTypes are data types specific to KILT that define the structure of a claim (i.e., its data model).
 CTypes are based on JSON Schema, a standard used to annotate and validate JSON documents.
@@ -34,18 +35,15 @@ When creating a new CType schema, the following properties are required:
   - *Time* format e.g., T18:25:43.511Z
   - *URI* format e.g., https://www.example.com
 
-<!-- <JsonSnippet obj={getCtypeSchema()} title="CType schema example" stringify={false} /> */} -->
+<CodeBlock className="language-json" title="CType schema example">
+  {Schema}
+</CodeBlock>
 
 The CType schema is afterwards wrapped into the full CType object:
 
-<!-- TODO: Replace with dynamically-generated JSON -->
-```js title="Full CType example"
-{
-  schema:  {...} // as defined in the example above,
-  owner: null, // DID of the owner, or null
-  hash: '0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101' // For looking up on-chain. It matches the `$id` property defined above
-}
-```
+<CodeBlock className="language-json" title="Full CType example">
+  {Ctype}
+</CodeBlock>
 
 ## CType Metadata
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+  "title": "Drivers License by did:kilt:4rPmLZ4iukvdX9oS5i3L8q6R7Eg3Nf9q2czkgSZXRDSE8o97",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "id": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
