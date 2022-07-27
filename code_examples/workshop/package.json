@@ -2,10 +2,7 @@
   "author": "KILT Protocol",
   "name": "kilt-workshop",
   "license": "MIT",
-  "type": "module",
   "scripts": {
-    "compile": "tsc *.ts --outDir out --target esnext --moduleResolution node --allowSyntheticDefaultImports",
-    "clean": "rm -rf out",
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",
