@@ -2,6 +2,7 @@
   "author": "KILT Protocol",
   "name": "kilt-core-features",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "compile": "tsc *.ts --outDir out --target esnext --moduleResolution node --allowSyntheticDefaultImports",
     "clean": "rm -rf out",
