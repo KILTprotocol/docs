@@ -96,7 +96,7 @@ The more details you provide, the easier it is to fix the issue.
 ## Pull Requests
 
 Pull Requests (PR) are an integral part of contributions to evolve KILT.
-GitHub itself has some [excellent documentation](https://help.github.com/articles/about-pull-requests/) on using the Pull Request feature.
+GitHub itself has some [excellent documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests) on using the Pull Request feature.
 KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model, where contributors push changes to their personal fork and create Pull Requests to bring those changes into the original source repository.
 
 Before starting a PR, it’s best to contact other active developers and discuss the proposed changes.
