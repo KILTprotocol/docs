@@ -2,8 +2,7 @@
 id: ctypes
 title: CTypes
 ---
-
-import JsonSnippet from '@site/src/components/JsonSnippet';
+import CodeBlock from '@theme/CodeBlock';
 
 import ctypeSchema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
 import ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';

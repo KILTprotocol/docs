@@ -2,6 +2,9 @@
 id: messaging
 title: KILT Messaging
 ---
+import CodeBlock from '@theme/CodeBlock';
+
+import encryptedMessage from '@site/scripts/out/encrypted-message.json.raw!=!raw-loader!@site/scripts/out/encrypted-message.json';
 
 Distributed trust on the Internet only works if Credentials and other information can be exchanged securely, and communicating parties can be confident that they are not being fooled or eavesdropped on by bad actors.
 To help with that, KILT provides a **transport-agnostic messaging layer** that helps with securely exchanging data between the respective owners of two DIDs.
@@ -26,15 +29,9 @@ As long as both parties keep their secret keys well protected, the combination o
 
 While encrypted, the message travels in a compact and privacy-preserving envelope format that only exposes data that the recipient requires to be able to decrypt.
 
-<!-- TODO: Replace with dynamically-generated JSON -->
-```ts
-{
-  receiverKeyUri: 'did:kilt:4qMx…66m4#0x4af3…cdcb' // indicates the key to be used when decrypting
-  senderKeyUri: 'did:kilt:4qtP…m507#0x65ac…a282' // indicates the key used to encrypt
-  ciphertext: '0xdeadbeef…' // message contents in unreadable, encrypted form
-  nonce: '0x1234…' // random data required for decryption
-}
-```
+<CodeBlock className="language-json">
+  {encryptedMessage}
+</CodeBlock>
 
 Because the encrypted message does not simply reference the DIDs of sender and recipient, but the unique identifier of the keys that were used in encryption, this scheme still works if a DID should expose multiple encryption keys from which a message sender may choose.
 
