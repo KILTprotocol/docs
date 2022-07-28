@@ -4,6 +4,7 @@ title: KILT Messaging
 ---
 import CodeBlock from '@theme/CodeBlock';
 
+<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
 import encryptedMessage from '@site/scripts/out/encrypted-message.json.raw!=!raw-loader!@site/scripts/out/encrypted-message.json';
 
 Distributed trust on the Internet only works if Credentials and other information can be exchanged securely, and communicating parties can be confident that they are not being fooled or eavesdropped on by bad actors.
