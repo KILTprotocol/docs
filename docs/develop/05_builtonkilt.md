@@ -7,7 +7,7 @@ import ThemedImage from '@theme/ThemedImage';
 import LogoText from '@site/src/components/LogoText';
 
 This section contains a non-exhaustive list of apps, wallets and websites that are built on KILT.
-If you are missing from the list and want to be added, you are welcome to [open a PR](https://github.com/KILTprotocol/docs/edit/develop/docs/develop/05_builtonkilt.md).
+If you are not on the list and want to be added, you are welcome to [open a PR](https://github.com/KILTprotocol/docs/edit/develop/docs/develop/05_builtonkilt.md).
 
 ## Wallets
 
