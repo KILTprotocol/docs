@@ -7,7 +7,7 @@ As a decentralized network, KILT depends on the support of its community.
 There are many ways to contribute to KILT Protocol and the products and services built on it. 
 The following guide is to **help builders and contributors** find the resources needed to take action and work under the guidance of the core developers.
 
-If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.com/invite/7uyfMXh6AT) channel.
+If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.gg/7uyfMXh6AT) channel.
 The developers active there, which include the team that originally developed KILT, and the wider KILT community can:
 
 - Provide feedback on proposals or ideas
@@ -47,7 +47,7 @@ In addition you should:
 - Explain any milestones that have already been achieved
 - Outline what needs to be done for the proposal to be completed
 
-The proposal should then be discussed with the community (including, for example, the KILT Technical Committee, governance, or relevant project team) using community channels such as [Discord](https://discord.com/invite/7uyfMXh6AT) or [Polkassembly](https://kilt.polkassembly.network/discussions).
+The proposal should then be discussed with the community (including, for example, the KILT Technical Committee, governance, or relevant project team) using community channels such as [Discord](https://discord.gg/7uyfMXh6AT) or [Polkassembly](https://kilt.polkassembly.network/discussions).
 If the community is not in agreement with the proposal, it is unlikely that it would be approved by governance.
 See the [guide to creating a proposal](../participate/03_treasury_proposal.md) for additional details.
 
@@ -100,7 +100,7 @@ GitHub itself has some [excellent documentation](https://docs.github.com/en/pull
 KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model, where contributors push changes to their personal fork and create Pull Requests to bring those changes into the original source repository.
 
 Before starting a PR, it’s best to contact other active developers and discuss the proposed changes.
-Open an issue or directly contact some of the developers on [Discord](https://discord.com/invite/7uyfMXh6AT) to kick off the discussion and present the proposal.
+Open an issue or directly contact some of the developers on [Discord](https://discord.gg/7uyfMXh6AT) to kick off the discussion and present the proposal.
 Once approved, contributors can open a PR for review.
 The PR will be reviewed and, if accepted, merged into the corresponding repository.
 

@@ -7,7 +7,7 @@ Complete these steps to create a well-formed Treasury proposal.
 
 ## Discuss
 
-The first step in applying for a Treasury grant is either to join the community in the [Discord Treasury Channel](https://discord.com/invite/nUpqDfQ6kJ) to brainstorm the scope of your proposal intention or immediately open a discussion on [Polkassembly](https://kilt.polkassembly.network/discussions).
+The first step in applying for a Treasury grant is either to join the community in the [Discord Treasury Channel](https://discord.gg/nUpqDfQ6kJ) to brainstorm the scope of your proposal intention or immediately open a discussion on [Polkassembly](https://kilt.polkassembly.network/discussions).
 This will help you get valuable community feedback throughout the process.
 It also gives Council members an open and transparent way to measure community sentiment.
 
