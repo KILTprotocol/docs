@@ -83,19 +83,21 @@ async function main() {
   console.log(`Creating output directory at ${outDir}...`)
   await mkdir(outDir, { recursive: true })
 
-  await writeFile(
-    `${outDir}/ctype-schema.json`,
-    JSON.stringify(drivingLicenseCtypeSchema, null, 2)
-  )
-  await writeFile(
-    `${outDir}/ctype.json`,
-    JSON.stringify(ctypeDrivingsLicense, null, 2)
-  )
-  await writeFile(`${outDir}/claim.json`, JSON.stringify(claimExample, null, 2))
-  await writeFile(
-    `${outDir}/encrypted-message.json`,
-    JSON.stringify(encrypted, null, 2)
-  )
+  await Promise.all([
+    writeFile(
+      `${outDir}/ctype-schema.json`,
+      JSON.stringify(drivingLicenseCtypeSchema, null, 2)
+    ),
+    writeFile(
+      `${outDir}/ctype.json`,
+      JSON.stringify(ctypeDrivingsLicense, null, 2)
+    ),
+    writeFile(`${outDir}/claim.json`, JSON.stringify(claimExample, null, 2)),
+    writeFile(
+      `${outDir}/encrypted-message.json`,
+      JSON.stringify(encrypted, null, 2)
+    )
+  ])
 
   console.log('Generation completed successfully!')
 }
