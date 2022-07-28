@@ -2,11 +2,11 @@
 id: ctypes
 title: CTypes
 ---
-import CodeBlock from '@theme/CodeBlock';
 
-<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
-import Schema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
-import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
+import JsonSnippet from '@site/src/components/JsonSnippet';
+
+import ctypeSchema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
+import ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
 CTypes are data types specific to KILT that define the structure of a claim (i.e., its data model).
 CTypes are based on JSON Schema, a standard used to annotate and validate JSON documents.
@@ -36,13 +36,13 @@ When creating a new CType schema, the following properties are required:
   - *URI* format e.g., https://www.example.com
 
 <CodeBlock className="language-json" title="CType schema example">
-  {Schema}
+  {ctypeSchema}
 </CodeBlock>
 
 The CType schema is afterwards wrapped into the full CType object:
 
 <CodeBlock className="language-json" title="Full CType example">
-  {Ctype}
+  {ctype}
 </CodeBlock>
 
 ## CType Metadata
