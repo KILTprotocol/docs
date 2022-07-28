@@ -1,7 +1,7 @@
 {
   "schema": {
     "$schema": "http://kilt-protocol.org/draft-01/ctype#",
-    "title": "Drivers License by did:kilt:4t2rRRe3zAmWozu2HhH8CRjz9oXZWtg2NVRWi5XZkd2XmJjr",
+    "title": "Drivers License by did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
     "properties": {
       "name": {
         "type": "string"
@@ -14,8 +14,8 @@
       }
     },
     "type": "object",
-    "$id": "kilt:ctype:0x2b7ba59f0d9f49fc4ba63943f9acd02685ea9fc537e177be4844475fc37173b2"
+    "$id": "kilt:ctype:0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111"
   },
-  "owner": "did:kilt:4t2rRRe3zAmWozu2HhH8CRjz9oXZWtg2NVRWi5XZkd2XmJjr",
-  "hash": "0x2b7ba59f0d9f49fc4ba63943f9acd02685ea9fc537e177be4844475fc37173b2"
+  "owner": "did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
+  "hash": "0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111"
 }

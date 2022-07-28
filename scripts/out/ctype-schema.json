@@ -1,6 +1,6 @@
 {
   "$schema": "http://kilt-protocol.org/draft-01/ctype#",
-  "title": "Drivers License by did:kilt:4t2rRRe3zAmWozu2HhH8CRjz9oXZWtg2NVRWi5XZkd2XmJjr",
+  "title": "Drivers License by did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
   "properties": {
     "name": {
       "type": "string"

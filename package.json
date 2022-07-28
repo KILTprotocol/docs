@@ -5,10 +5,11 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "yarn run package-code && docusaurus build",
+    "build": "yarn generate-examples && yarn package-code && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "yarn run package-code && docusaurus deploy",
     "clear": "docusaurus clear",
+    "generate-examples": "cd scripts && yarn generate",
     "serve": "docusaurus serve",
     "package-code": "node ./src/utilities/archive.js --folders workshop",
     "write-translations": "docusaurus write-translations",

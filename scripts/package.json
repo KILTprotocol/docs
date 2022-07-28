@@ -10,8 +10,7 @@
     "generate": "ts-node src/main.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.28.0",
-    "dotenv": "^16.0.0"
+    "@kiltprotocol/sdk-js": "0.28.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
