@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import styles from './custom.module.css'
 import ThemedImage from '@theme/ThemedImage'

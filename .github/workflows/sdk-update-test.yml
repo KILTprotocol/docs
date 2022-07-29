@@ -103,7 +103,7 @@ jobs:
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
-          include: "docs/develop/**.md"
+          include: "docs/**.md"
           regex: true
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
@@ -112,16 +112,27 @@ jobs:
           include: "code_examples/**"
           exclude: "**/*.lock"
           regex: true
-      - name: Regenerate yarn lock
+      - uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
+          replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
+          include: "scripts/**"
+          exclude: "**/*.lock"
+          regex: true    
+      - name: Regenerate yarn lock for core_features
         working-directory: code_examples/core_features
         run: |
           yarn install
-      - name: Regenerate yarn lock
+      - name: Regenerate yarn lock for workshop
         working-directory: code_examples/workshop
         run: |
           yarn install
-      - name: Regenerate yarn lock
+      - name: Regenerate yarn lock for vitejs
         working-directory: code_examples/vitejs
+        run: |
+          yarn install
+      - name: Regenerate yarn lock for scripts
+        working-directory: scripts
         run: |
           yarn install
       - name: Create Pull Request
