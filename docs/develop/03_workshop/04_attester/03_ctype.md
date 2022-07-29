@@ -7,6 +7,9 @@ import CodeBlock from '@theme/CodeBlock';
 import CtypeSchema from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
 import GenerateCtype from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
 
+<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
+import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
+
 A claim type (CType for short) is a KILT-specific term, but the concept is simple:
 A CType defines the structure of a claim.
 You can think of it as the data model for your claim.
@@ -31,26 +34,9 @@ Make sure your account holds tokes so that you can pay the fees for creating a C
 
 For example, a very basic CType for a driver's license could look like this:
 
-```json
-{
-  "schema": {
-    "$id": "kilt:ctype:0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5",
-    "$schema": "http://kilt-protocol.org/draft-01/ctype#",
-    "title": "Drivers License",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "age": {
-        "type": "integer"
-      }
-    },
-    "type": "object"
-  },
-  "owner": "did:kilt:4rDtLxs1PKzeKvxoMUv8NwhugYiSqTvKBwaPfv8xCLsghKaf",
-  "hash": "0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5"
-}
-```
+<CodeBlock className="language-json">
+  {Ctype}
+</CodeBlock>
 
 Let's have a look at these attributes.
 
