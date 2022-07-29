@@ -78,7 +78,7 @@ export async function queryPublishedCredentials(
   // The case where the result is not a JSON should be properly handled in production settings.
   const credentialCollection: CredentialEntry[] = await fetch(
     firstCredentialCollectionEndpointUrl
-  ).then((response) => response.json().then((r) => r as CredentialEntry[]))
+  ).then((response) => response.json() as Promise<CredentialEntry[]>)
   console.log(`Credential collection behind the endpoint:`)
   console.log(JSON.stringify(credentialCollection, null, 2))
 
