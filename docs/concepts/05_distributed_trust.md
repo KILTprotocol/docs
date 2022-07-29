@@ -65,7 +65,7 @@ E.g., Attester 2 cannot revoke Credentials issued by Attester 1, 3, 4 and 5, whi
 
 <center>
 
-![Coming soon](/img/concepts/distributed_trust/coming-soon.png)
+![Coming soon](@site/static/img/concepts/distributed_trust/coming-soon.png)
 
 [Credits to freepngimg.com.](https://freepngimg.com/png/11420-coming-soon-png-file)
 

@@ -15,7 +15,7 @@ The schema defines which properties exist and what their type should be, e.g., a
 ## JSON Schema
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
-This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts).
+This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CTypeSchema.ts).
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
