@@ -71,12 +71,6 @@ Additionally, the Finder also receives a minor Finder's fee of 20% which is subt
 Therefore, **even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward**.
 Of course, you can also suggest contributions to the council which would then tip if it is deemed worthy.
 
-<!-- TODO: Remove after Spiritnet 10700 is live -->
-:::info
-The tips pallet is currently not part of the Spiritnet, yet.
-We have already added it to the codebase and are targeting an on-chain Spiritnet runtime upgrade, which would also add the tips functionality, for mid of June 2022.
-:::
-
 ## Bug Reports
 
 We try our best, but bugs are an everyday reality with all software and are bound to happen.
