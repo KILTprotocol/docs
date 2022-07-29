@@ -12,10 +12,12 @@ List of all the specifications KILT has defined in an effort to standardize APIs
 
 - [KILT DID Method (GitHub repo)][kilt-did-method]
 - [KiltPublishedCredentialCollectionV1 Service Type (GitHub repo)][kilt-published-credential-collection-v1]
+- [Asset DID Method (GitHub repo)][asset-did-method]
 - [KILT Wallet Credential API (GitHub repo)][kilt-wallet-credential-api]
 - [KILT Wallet DIDSign API (GitHub repo)][kilt-wallet-didsign-api]
 
 [kilt-did-method]: https://github.com/KILTprotocol/specifications/blob/main/docs/did/did-spec.md
 [kilt-published-credential-collection-v1]: https://github.com/KILTprotocol/specifications/blob/main/docs/did/kilt-published-credential-collection-v1.md
+[asset-did-method]: https://github.com/KILTprotocol/specifications/blob/main/docs/did/asset-did-spec.md
 [kilt-wallet-credential-api]: https://github.com/KILTprotocol/credential-api
 [kilt-wallet-didsign-api]: https://github.com/KILTprotocol/didsign-api/blob/main/did-sign-spec.md
