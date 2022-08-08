@@ -18,16 +18,16 @@ import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/get
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
-What you will have achieved at the end of this is the following:
+You will learn how to:
 
 1. Import the **KILT SDK** into a project
 2. Connect to the **KILT blockchain**
 3. Query a **web3name** to get its **DID**
-4. Verify a **Credential**, published via a **DID service endpoint**
+4. Verify a **credential**, published via a **DID service endpoint**
 
-After completing the quickstart guide, you should have learned a little about KILT by actually using it.
+After completing the quickstart guide, you should have gained a better understanding of KILT through hands-on experience.
 The guide requires some experience with javascript and command-line tools.
-We will have recommended guides to other tutorials to dive deeper into some of the topics.
+We will recommend guides to other tutorials to dive deeper into some of the topics.
 
 ## Setup
 
@@ -41,7 +41,7 @@ From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node
 npm install @kiltprotocol/sdk-js node axios
 ```
 
-After you have imported the SDK, you are now able to access the functionalities that KILT provides.
+After you have imported the SDK you will be able to access the functionalities that KILT provides.
 With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
 Inside the `package.json` add in the value `"type": "module"`.
 
@@ -51,7 +51,7 @@ Let's first declare our `main` function that will execute our script:
   {PrintHelloWorld}
 </CodeBlock>
 
-If the setup is correct you can excute the script by calling the name of the file using Node.
+If the setup is correct you can execute the script by calling the name of the file using Node.
 
 <Tabs>
   <TabItem value='npm' label='npm' default>
@@ -84,7 +84,7 @@ We will move onto connecting to the **KILT blockchain**.
 
 ### Connect to the KILT Blockchain
 
-Connecting and disconnecting to the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a Credential**.
+Connecting to and disconnecting from the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a credential**.
 
 Still within the same `main` function, you need to configure the SDK to connect to a **KILT node**.
 For this, the SDK exposes **`Kilt.init()`** to configure the address of the node to connect to.
@@ -107,7 +107,7 @@ Again, the SDK makes this process very easy to follow, by exposing a `Kilt.conne
 </SnippetBlock>
 
 After establishing a connection, you have access to the chain, but let's not forget to **close** any connections when we are done!
-Connections to blockchain nodes should be dropped when not needed anymore, and to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
+Connections to blockchain nodes should be dropped when no longer needed: to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
 
 <SnippetBlock
   className="language-ts"
@@ -116,11 +116,11 @@ Connections to blockchain nodes should be dropped when not needed anymore, and t
 </SnippetBlock>
 
 **Congratulations!
-You have connected to a Spiritnet node, let's now start querying some data from the chain!**
+You have connected to a Spiritnet node. Let's now start querying some data from the chain!**
 
 ## Query the KILT Blockchain
 
-We will be querying information related to **web3names** (`john_doe`), and we will be using them to retrieve the **KILT DID** linked to it.
+We will be querying information related to a **web3name** (`john_doe`), and we will be using them to retrieve the **KILT DID** linked to it.
 In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
 
 <SnippetBlock
@@ -133,13 +133,13 @@ In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following
 Try executing it and check the result.
 
 Did you get the DID? Nice work! You now have `john_doe`'s DID.
-Now let's see if John Doe has any public KILT Credentials that we could retrieve and verify!
+Now let's see if John Doe has any public KILT credentials that we could retrieve and verify!
 
 ## Retrieve and Verify a Credential
 
-A **KILT DID** can expose service endpoints, which allow to link external resources to the DID.
-One type of external resources is represented by, you guessed it, **KILT Credentials**!
-Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if it links to any public Credentials for us to **query** and **verify**.
+A **KILT DID** can expose service endpoints, which allow external resources to be linked to the DID.
+One type of external resource is represented by, you guessed it, **KILT credentials**!
+Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if they link to any public credentials for us to **query** and **verify**.
 
 We will keep adding code below what we just added.
 The code snippet retrieves the service endpoints exposed by the DID we found for `john_doe`:
@@ -152,9 +152,9 @@ The code snippet retrieves the service endpoints exposed by the DID we found for
 </SnippetBlock>
 
 If the snippet printed some endpoints, congratulations!
-Let's see if we can find a Credential among them.
+Let's see if we can find a credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a Credential:
+We can select one of the endpoints and query the URL to see if it returns a credential:
 
 <SnippetBlock
   className="language-ts"
@@ -163,10 +163,10 @@ We can select one of the endpoints and query the URL to see if it returns a Cred
   {FetchEndpointData}
 </SnippetBlock>
 
-If the script completes with no errors, it means that we were able to retrieve a Credential using the URL specified in the service endpoint.
+If the script completes with no errors, it means that we were able to retrieve a credential using the URL specified in the service endpoint.
 
-We will now have to make sure the Credential is **valid** and has a valid **structure**.
-To do that, we need to query the Credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
+We will now have to make sure the credential is **valid** and has a valid **structure**.
+To do that, we need to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
 <SnippetBlock
   className="language-ts"
@@ -175,9 +175,9 @@ To do that, we need to query the Credential's `rootHash` from the blockchain to 
   {BuildCredential}
 </SnippetBlock>
 
-Execute the script and see if you get a valid attestation for John Doe's Credential!
+Execute the script and see if you get a valid attestation for John Doe's credential!
 
-If so, it is then time to verify the Credential.
+If so, it is then time to verify the credential.
 This will be indicated by the result of the **verification** process as shown in the snippet below:
 
 <SnippetBlock
@@ -186,9 +186,9 @@ This will be indicated by the result of the **verification** process as shown in
   {VerifyCredential}
 </SnippetBlock>
 
-Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's Credentials!
+Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
 
 Was it successful? Nice Job!
 
-If you want to explore more about KILT's features, please check out our [Concepts section](../../concepts/01_what_is_kilt.md).
+If you want to explore more of KILT's features, check out our [Concepts section](../../concepts/01_what_is_kilt.md).
 If you want to dive deeper into the SDK, please advance to the next section: [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).

@@ -13,21 +13,21 @@ You can think of it as the data model for your claim.
 
 
 Before the <span className="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
-A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
-Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes instead of creating new ones.
-But in this workshop, we create our own CType.
+For example, a traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
+Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes rather than creating new ones.
+However, for this workshop we will create our own CType.
 
 :::info CType
 
 A CType ensures that a claim contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
-The CType is especially important since a verifier would request attestations for a specific CType (e.g., the traffic police wants to see your driver's license and not your gym membership).
+The CType is especially important since a Verifier would request attestations for a specific CType (e.g., the traffic police want to see your driver's license and not your gym membership).
 
 If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/concepts/credentials/ctypes).
-You can also [read through existing ctypes in our ctype-index](https://github.com/KILTprotocol/ctype-index).
+You can also [read through existing CTypes in our CType-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
 Creating CTypes requires an account and a full DID.
-Make sure your account holds tokes so that you can pay the fees for creating a CType.
+Make sure your account holds tokens so that you can pay the fees for creating a CType.
 
 For example, a very basic CType for a driver's license could look like this:
 
@@ -83,7 +83,7 @@ Copy the following to create a `CType` from a schema:
 Create a new file `attester/generateCtype.ts`.
 We'll use this to check if the `CType` is on-chain already.
 If yes we'll return it, otherwise we'll store it on-chain.
-Remember, an account must have the required amount to pay the Angel's fee and deposit.
+Remember, an account must have the required amount of tokens to pay the transaction fee and deposit.
 
 <CodeBlock title="attester/generateCtype.ts" className="language-ts">
   {GenerateCtype}

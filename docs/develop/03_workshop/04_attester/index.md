@@ -6,10 +6,10 @@ title: 🏢 Attester
 In this section you will walk though all processes done by the <span className="label-role attester">Attester</span>.
 
 1. You will [create an account](./account) that is used to pay for all transactions and the storage deposits.
-2. Next step is to [create a DID](./did) which is the identity that is used to create attestations.
-   While you always can switch the KILT account and pay deposits and fees with any account you like, your DID is the way Claimers will identify you and put trust in you.
+2. The next step is to [create a DID](./did), which is the identity that is used to create attestations.
+   While you can always switch the KILT account and pay deposits and fees with any account you like, your DID stays the same and is the way Claimers will identify you and put trust in you.
 3. Before we can attest claims, [we need a CType](./ctype) which describes and gives context to what we attest.
-4. After we can pay fees and deposits, have an identity and a CType [we can create attestations](../attestation).
+4. Once we have a way to pay fees and deposits, have an identity and a CType [we can create attestations](../attestation).
 
 ## Folder Structure
 

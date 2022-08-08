@@ -13,7 +13,7 @@ The creator of a CType is required to have a full DID with an attestation key.
 To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
 :::
 
-The following snippets shows how:
+The following snippets show how:
 
 <CodeBlock className="language-ts">
   {CreateCType}

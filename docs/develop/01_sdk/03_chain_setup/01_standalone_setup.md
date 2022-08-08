@@ -3,10 +3,10 @@ id: standalone-chain-setup
 title: BYOB - Bring Your Own Blockchain
 ---
 
-In case you want to have full control over your blockchain deployment, e.g., if you want to reset the state repeatedly or need more funds than a faucet can provide for a single account, you will need to run your own blockchain.
+If you want to have full control over your blockchain deployment, e.g., if you want to reset the state repeatedly or need more funds than a faucet can provide for a single account, you will need to run your own blockchain.
 For this purpose, we provide a Docker image which runs in standalone mode.
 This means that the blockchain doesn't act as a parachain but as an independent chain.
-There is no need to run a relaychain and register the KILT chain as a parachain.
+There is no need to run a Relay Chain and register the KILT chain as a parachain.
 This greatly simplifies the setup.
 
 You only need to start the Docker image:
@@ -43,7 +43,7 @@ You should see output similar to the following:
 Congratulations!
 You are running your own KILT blockchain. 🎉
 
-The blockchain exposes a websocket endpoint on port `9944` and an RPC endpoint on port `9933`.
+The blockchain exposes a WebSocket endpoint on port `9944` and an RPC endpoint on port `9933`.
 You can test that by calling an RPC endpoint using curl.
 
 ```bash

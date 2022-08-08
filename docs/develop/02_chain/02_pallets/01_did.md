@@ -14,20 +14,20 @@ By upgrading this to a full DID registered on the blockchain, all the keys assoc
 A full DID can then be used to perform certain on-chain actions which include:
 
 * Writing CTypes to the chain
-* Writing Attestations to the chain
-* Setting Delegations
+* Writing attestations to the chain
+* Setting delegations
 * Doing key rotations on the DID keys
 
 ## Register a Full DID
 
-A full DID is needed if the user wants to become an Attester or wants to setup Delegations.
+A full DID is needed if the user wants to become an Attester or wants to setup delegations.
 A full DID also allows the user to embed a list of URLs, known as service endpoints, into the DID document so that they can be retrieved from the chain as part of the DID document.
 To create a full DID the user first has to create a set of keys and service endpoints:
 
 * one authentication key for signing extrinsics from your DID
 * zero or more key agreement keys for encrypting messages that are sent to you
-* one attestation key for signing Attestations (optional)
-* one delegation key for authorizing Delegations (optional)
+* one attestation key for signing attestations (optional)
+* one delegation key for authorizing delegations (optional)
 * service endpoints that point to external hostings for others to find (optional)
 
 With those keys prepared and the service endpoints set up, they are ready to write the DID to the KILT blockchain.
@@ -46,7 +46,7 @@ Once the `did::create` extrinsic is submitted and executed, the DID is written t
 ## Use a Full DID
 
 Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account.
-This includes handling of Attestations and CTypes, setting up trust hierarchies through Delegations, managing web3names and much more.
+This includes the handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3names and much more.
 
 Those actions need to be signed by the DID before they can be submitted to chain by any account that the DID owner specifies when signing.
 We are naming those actions "DID-Calls".
@@ -55,10 +55,10 @@ To submit those there is a special extrinsic called `submit_did_call`.
 The process of doing any DID-Call is always the same:
 
 * Construct the actual call you want to execute including all arguments of that extrinsic.
-* Wrap the call in a `DidAuthorizedCallOperation` together with
+* Wrap the call in a `DidAuthorizedCallOperation` together with the
     * Senders DID to indicate who wants this operation to happen
     * Senders DID tx_counter + 1 to prevent replay attacks
-    * Current block number to prevent the operation to be submitted too far in the future
+    * Current block number to prevent the operation being submitted too far in the future
     * Account of the submitter to allow the DID owner to specify who is allowed to submit
 * Create a signature over the `DidAuthorizedCallOperation` by scale-encoding it and signing it using the appropriate key
     * Most operations require the authentication key of the DID to be used
@@ -69,9 +69,9 @@ The process of doing any DID-Call is always the same:
     * The DID signature
 * Pass the call over to the submitter who can now sign and submit it to the chain
     * The submitter will have to pay for all fees and deposits that result from the operation
-    * In general the submitter will have the power to delete all on-chain objects to reclaim its deposit
+    * In general the submitter will have the power to delete all on-chain objects to reclaim their deposit
 * The chain now checks that
-    * The submitters signature is correct
+    * The submitter's signature is correct
     * The submitter is the one specified in the `DidAuthorizedCallOperation`
     * The DID signature is correct
     * The tx_counter is valid (current tx_counter + 1)
@@ -97,7 +97,7 @@ These are:
 
 All of them have to be authenticated using the DID that is updated following the process described above.
 
-## What about the deposit?
+## What About the Deposit?
 
 When writing a DID to the chain the submitter of the extrinsic has to pay a deposit, currently 2 KILT.
 This is to incentivize deleting unused DIDs to save storage on the chain.
