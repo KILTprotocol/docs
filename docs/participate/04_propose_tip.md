@@ -10,23 +10,23 @@ There, you will also find a high level description of tips and the differences t
 
 In the following, we will lead you through the necessary steps from requesting a tip to finally receiving it.
 
-## Lifecycle of a tipping process
+## Lifecycle of a Tipping Process
 
-Since anyone propose as tip, you can certainly do that for someone else, the **<span style={{background: '#7cd27c', color: 'black'}}>Beneficiary</span>**, as well.
-In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will receive a **share of 20% of the final tip** if it is successful.
-However, you also need to make a **minor deposit** which is dependent of the number of characters you provide for the reason.
-Overall, you should expect between 0.05 to 0.2 KILT as deposit.
-E.g., if you provide a URL which includes 60 characters, the deposit is expected to be around 0.07 KILT.
+Since anyone can propose a tip, you can certainly do that for someone else, the **<span style={{background: '#7cd27c', color: 'black'}}>Beneficiary</span>**.
+In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will receive a **share of 20% of their final tip** if your proposal is successful.
+However, you also need to make a **minor deposit**, which is dependent on the number of characters you provide for the reason for the tip.
+Overall, you should expect to provide between 0.05 to 0.2 KILT as a deposit.
+For example, if you provide a URL that includes 60 characters, the deposit would be around 0.07 KILT.
 
-After proposing a tip, the KILT Council and a few other core contributors come to consensus on how much should be paid.
+After a tip proposal is made, the KILT Council and a few other core contributors come to consensus on how much should be paid.
 Every member of this stakeholder group, the <span style={{background: '#c7fff9', color: 'black'}}>**Tippers**</span>, can submit an appropriate amount.
 Eventually, the median of all tips is taken as the final amount.
 
 Once at least half of the Tippers have declared their tip, the ending phase starts.
 After 24 hours in blocktime have passed, the tip is automatically closed and paid from the Treasury.
 However, other Tippers can still submit their suitable amount and thus influence the final amount of the tip.
-During payout, 20% of the tip is given to the Finder, as well as returning the deposit.
-Albeit if the Finder is a member of the Tippers, the entire tip goes to the Beneficiary.
+During payout, 20% of the tip is given to the Finder, and their deposit is returned.
+If the Finder is a member of the Tippers, the entire tip goes to the Beneficiary.
 
 <div className="kilt-mermaid">
 
@@ -34,33 +34,33 @@ Albeit if the Finder is a member of the Tippers, the entire tip goes to the Bene
 flowchart TD
     %% Alice
     Alice(("Alice \n (Finder or Tipper)")):::Finder --> Alice_Finder{Is Finder?}:::Finder 
-    Alice_Finder -.-> |yes| Alice_Finder_Deposit(reserve deposit):::Finder
-    Alice ----> |"provide tipping reason  (URL/Polkassembly) and set target"|Beneficiary(("Bob \n (Beneficiary)")):::Beneficiary
+    Alice_Finder -.-> |Yes| Alice_Finder_Deposit(reserve deposit):::Finder
+    Alice ----> |"Provide tipping reason  (URL/Polkassembly) and set target"|Beneficiary(("Bob \n (Beneficiary)")):::Beneficiary
 
     %% Tipping Start
     Beneficiary --> Tip_1_Start("Wait for tips"):::process
     Tip_1_Start --> Tip_2_Threshold{"More than 50% \n of Tippers tipped?"}:::process
-    Tip_2_Threshold:::process  --> |no| Tip_1_Start
+    Tip_2_Threshold:::process  --> |No| Tip_1_Start
 
     %% Tipping End
-    Tip_2_Threshold --> |yes| Tip_3_End{{Start of Ending phase}}
+    Tip_2_Threshold --> |Yes| Tip_3_End{{Start of Ending phase}}
     Tip_3_End:::processEnd --> Tip_4_Wait(Wait for blocks to pass)
     Tip_4_Wait:::processEnd --> Tip_5_Blocks{"TipCountdown: \n Sufficient number \n of blocks passed?"}
-    Tip_5_Blocks:::processEnd --> |no| Tip_4_Wait
+    Tip_5_Blocks:::processEnd --> |No| Tip_4_Wait
 
     %% Tipping close
-    Tip_5_Blocks --> |yes| Tip_6_Close(Trigger closing of tipping process):::Payment
-    Tip_6_Close -.-> |"unreserve Deposit \n (only if Finder)"| Alice_Finder_Deposit
+    Tip_5_Blocks --> |Yes| Tip_6_Close(Trigger closing of tipping process):::Payment
+    Tip_6_Close -.-> |"Unreserve Deposit \n (only if Finder)"| Alice_Finder_Deposit
     Tip_6_Close --> Payout_1("Final tip amount = median of received tips"):::Payment
 
     %% Treasury
     Payout_1 --> Payout_2{Is there a Finder's fee?}:::Payment
-    Payout_2 --> |yes| Payout_3(Reduce final tip amount by Finder's fee):::Payment
-    Payout_2 --> |no| Payout_4[("💰 Treasury")]:::Payment
+    Payout_2 --> |Yes| Payout_3(Reduce final tip amount by Finder's fee):::Payment
+    Payout_2 --> |No| Payout_4[("💰 Treasury")]:::Payment
     Payout_3 --> Payout_4{{"Ready to pay out"}}
     Payout_4 --> Treasury[("💰 Wait for Spending Period \n of Treasury to end")]:::Payment
-    Treasury ==> |"receive tip"| Beneficiary
-    Treasury -.-> |"pay out Finder's fee"| Alice
+    Treasury ==> |"Receive tip"| Beneficiary
+    Treasury -.-> |"Pay out Finder's fee"| Alice
 
     %% classes
     classDef Finder fill:#fff4bd,stroke:none;
@@ -72,7 +72,7 @@ flowchart TD
 
 </div>
 
-## Report awesome
+## Report Awesome
 
 Proposing a tip much is simpler than opening a Treasury proposal.
 
@@ -86,7 +86,7 @@ All you need to do is navigate to `Governance > Treasury > Tips` and hit the `+ 
 
 1. Select your corresponding account as the extrinsic submitter (the *submit with account* field)
 2. Provide the address you consider worthy of receiving a tip: (the *beneficiary* field)
-3. Provide a reason (the *tip reason* field). This can either be some **descriptive words or a URL**. The latter should point to the contribution(s), e.g., the github pull request, blog posts, translations or videos among other things. Please note that the tipping process is expected to fail if the reason is not recognizable.
+3. Provide a reason (the *tip reason* field). This can either be some **descriptive words or a URL**. The latter should point to the contribution(s), e.g., the GitHub pull request, blog posts, translations or videos among other things. Please note that the tipping process is expected to fail if the reason is not recognizable.
 4. Sign and submit the extrinsic (the *Propose tip* button)
 
 ## Example

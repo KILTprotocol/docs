@@ -3,7 +3,7 @@ id: lifecycle
 title: Lifecycle of a Collator
 ---
 
-The following diagram visualizes the full lifecycle of a Collator from owning free KILT to joining the Collator candidate pool, initiating the exit, waiting for the stake to be unlockable and eventually unlocking their bond.
+The following diagram visualizes the full lifecycle of a collator from owning free KILT to joining the collator candidate pool, initiating the exit, waiting for the stake to be unlockable and eventually unlocking their bond.
 It summarizes the previous [exit](./02_exit.md) section.
 
 <div className="kilt-mermaid">

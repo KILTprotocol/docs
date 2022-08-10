@@ -16,7 +16,7 @@ import ThemedImage from '@theme/ThemedImage';
 />
 </center>
 
-To get a credential, a Claimer needs to go through the following process:
+To get a credential, a Claimer needs to go through following process:
 
 1. Find a **CType** a claim should be based on. Potential Attesters and Verifiers might advertise this information themselves.
 2. Make a **claim** containing a set of properties about themselves.
@@ -26,7 +26,7 @@ To get a credential, a Claimer needs to go through the following process:
 
 To verify a credential, a Claimer can generate a presentation of it to a Verifier, with the following process:
 
-1. The Verifier may request a **credential** as the first step, along with with properties to reveal from such credential.
+1. The Verifier may request a **credential** as the first step, along with with properties to reveal from such Credential.
 2. The Claimer selectively **discloses** the requested properties and signs the generated presentation.
 3. The Verifier **checks** the presentation structure, content and signature, and decides whether they trust the Attester of the presented credential.
 
