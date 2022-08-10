@@ -78,11 +78,11 @@ Proposing a tip much is simpler than opening a Treasury proposal.
 
 <!-- TODO: Replace with images from Spiritnet, once it is live -->
 
-![](/img/chain/tipping-navigation.png)
+![](@site/static/img/chain/tipping-navigation.png)
 
 All you need to do is navigate to `Governance > Treasury > Tips` and hit the `+ Propose tip` button.
 
-![](/img/chain/tipping-extrinsic.png)
+![](@site/static/img/chain/tipping-extrinsic.png)
 
 1. Select your corresponding account as the extrinsic submitter (the *submit with account* field)
 2. Provide the address you consider worthy of receiving a tip: (the *beneficiary* field)

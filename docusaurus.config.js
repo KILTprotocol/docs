@@ -59,6 +59,11 @@ module.exports = {
               docId: 'develop/builtonkilt',
               label: 'Built on KILT',
             },
+            {
+              type: 'doc',
+              docId: 'develop/dApp/welcome',
+              label: 'DApp Documentation',
+            },
           ],
         },
         {
@@ -170,5 +175,5 @@ module.exports = {
         },
       },
     ],
-  ],
+  ]
 }

@@ -71,12 +71,6 @@ Additionally, the Finder also receives a minor Finder's fee of 20% which is subt
 Therefore, **even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward**.
 Of course, you can also suggest contributions to the Council, which would then tip if it is deemed worthy.
 
-<!-- TODO: Remove after Spiritnet 10700 is live -->
-:::info
-The tips pallet is currently not part of the Spiritnet, yet.
-We have already added it to the codebase and are targeting an on-chain Spiritnet runtime upgrade, which would also add the tips functionality, for mid of June 2022.
-:::
-
 ## Bug Reports
 
 We try our best, but bugs are an everyday reality with all software and are bound to happen.
@@ -96,7 +90,7 @@ The more details you provide, the easier it is to fix the issue.
 ## Pull Requests
 
 Pull Requests (PR) are an integral part of contributions to evolve KILT.
-GitHub itself has some [excellent documentation](https://help.github.com/articles/about-pull-requests/) on using the Pull Request feature.
+GitHub itself has some [excellent documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests) on using the Pull Request feature.
 KILT uses the "[fork and pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models)" model, where contributors push changes to their personal fork and create Pull Requests to bring those changes into the original source repository.
 
 Before starting a PR, it’s best to contact other active developers and discuss the proposed changes.

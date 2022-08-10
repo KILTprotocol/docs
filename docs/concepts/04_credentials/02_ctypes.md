@@ -2,6 +2,11 @@
 id: ctypes
 title: CTypes
 ---
+import CodeBlock from '@theme/CodeBlock';
+
+<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
+import ctypeSchema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
+import ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
 CTypes are data types specific to KILT that define the structure of a claim (i.e., its data model).
 CTypes are based on JSON Schema, a standard used to annotate and validate JSON documents.
@@ -10,7 +15,7 @@ The schema defines which properties exist and what their type should be, e.g., a
 ## JSON Schema
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
-This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/core/src/ctype/CTypeSchema.ts).
+This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CTypeSchema.ts).
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
@@ -30,30 +35,15 @@ When creating a new CType schema, the following properties are required:
   - *Time* format e.g., T18:25:43.511Z
   - *URI* format e.g., https://www.example.com
 
-<!-- TODO: Replace with dynamically-generated JSON -->
-```js title="CType schema example"
-{
-  $id: 'kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101',
-  $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-  title: 'CtypeModel 2',
-  properties: {
-    name: { type: 'string' },
-    age: { $ref: `kilt:ctype:0x0147d10ef72a1b0c4a8e0147d10ef72a1b0c4a8e0147d10ef72a1b0c4a8e82af` },
-    },
-  type: 'object'
-}
-```
+<CodeBlock className="language-json" title="CType schema example">
+  {ctypeSchema}
+</CodeBlock>
 
 The CType schema is afterwards wrapped into the full CType object:
 
-<!-- TODO: Replace with dynamically-generated JSON -->
-```js title="Full CType example"
-{
-  schema:  {...} // as defined in the example above,
-  owner: null, // DID of the owner, or null
-  hash: '0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101' // For looking up on-chain. It matches the `$id` property defined above
-}
-```
+<CodeBlock className="language-json" title="Full CType example">
+  {ctype}
+</CodeBlock>
 
 ## CType Metadata
 

@@ -3,6 +3,11 @@ id: claiming
 title: Claims
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
+<!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
+import Claim from '@site/scripts/out/claim.json.raw!=!raw-loader!@site/scripts/out/claim.json';
+
 As KILT is an open system, entities can make claims about any other entities, including themselves.
 A claim (as in the real world) can only be trusted if another trusted entity (we call them Attesters) *certifies* this claim.
 Therefore, Verifiers might trust different Attesters for distinct scenarios.
@@ -13,14 +18,9 @@ In KILT, claims are based on claim types (CTypes).
 Hence, given a CType, a Claimer only needs to create a claim with the properties specified in the CType schema.
 The resulting claim contains a reference to the CType by its hash and includes the identity of the claim subject (identified by the `owner` property).
 
-<!-- TODO: Replace with dynamically-generated JSON -->
-```js title="Claim example"
-{
-  cTypeHash: '0xd8ad043d91d8fdbc382ee0ce33dc96af4ee62ab2d20f7980c49d3e577d80e5f5',
-  contents: { name: 'Alice', age: 29 },
-  owner: 'did:kilt:light:004rVETkZQcK9aBr6SHZXaHQSDyqFFMW2rN5HtEooWgdB92JMg'
-}
-```
+<CodeBlock className="language-json" title="Claim example">
+  {Claim}
+</CodeBlock>
 
 ## Requesting a Credential
 
