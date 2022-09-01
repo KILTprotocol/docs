@@ -22,19 +22,19 @@ Please select your target network:
     --rpc-methods=unsafe \
     --name="name of collator" \
     --execution=wasm \
-    --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
     --collator \
     -- \
     --chain=kusama \
-    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+    --listen-addr=/ip4/0.0.0.0/tcp/30334 \
     --base-path=$HOME/data/relay \
     --execution=wasm
-  ``` 
+  ```
   </TabItem>
 
-  <TabItem value="Peregrine" label="Peregrine" attributes={{'data-value': 'magenta'}}>                           
+  <TabItem value="Peregrine" label="Peregrine" attributes={{'data-value': 'magenta'}}>
   To join the <strong>Peregrine</strong>network, run:
 
   ```bash=
@@ -47,16 +47,16 @@ Please select your target network:
     --rpc-methods=unsafe \
     --name="name of collator" \
     --execution=wasm \
-    --listen-addr=/ip4/0.0.0.0/tcp/30336 \
+    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
     --collator \
     -- \
     --chain=./dev-specs/kilt-parachain/peregrine-relay.json \
-    --listen-addr=/ip4/0.0.0.0/tcp/30333 \
+    --listen-addr=/ip4/0.0.0.0/tcp/30334 \
     --base-path=$HOME/data/relay \
     --execution=wasm
-  ``` 
+  ```
 
   </TabItem>
   </Tabs>
