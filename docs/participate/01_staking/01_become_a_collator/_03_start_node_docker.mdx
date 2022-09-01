@@ -13,7 +13,8 @@ Please select your target network:
 
   To start the **Spiritnet** collator container, run:
   ```bash=
-  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 -v ~/data:/data kiltprotocol/kilt-node:latest \
+  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
+    -v ~/data:/data kiltprotocol/kilt-node:latest \
     --state-cache-size=1 \
     --chain=spiritnet \
     --runtime=spiritnet \
@@ -39,7 +40,8 @@ Please select your target network:
 
   To start the **Peregrine** Collator container, run:
   ```bash=
-  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 -v ~/data:/data kiltprotocol/kilt-node:latest \
+  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
+    -v ~/data:/data kiltprotocol/kilt-node:latest \
     --state-cache-size=1 \
     --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
     --runtime=peregrine \
