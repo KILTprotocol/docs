@@ -5,11 +5,11 @@ title: Troubleshoot
 
 Solutions and workarounds for common or unresolved issues.
 
-## webpack < 5 used to include polyfills
+## Webpack < 5 used to include polyfills
 
 ```
 ERROR in ./node_modules/cbor/lib/commented.js 3:15-32
-Module not found: Error: Can't resolve 'stream' in '/home/weich/Projects/kilt-workbench/node_modules/cbor/lib'
+Module not found: Error: Can't resolve 'stream' in 'node_modules/cbor/lib'
 
 BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
 This is no longer the case. Verify if you need this module and configure a polyfill for it.
@@ -17,7 +17,7 @@ This is no longer the case. Verify if you need this module and configure a polyf
 
 ### Solution
 
-The problem occurs because a few crypto libraries inside the SDK require polifills for node.js functions.
+The problem occurs because a few crypto libraries inside the SDK require polyfills for node.js functions.
 You might see the above error, when using the KILT SDK inside a `create-react-app`.
 There are two options to solve this.
 
