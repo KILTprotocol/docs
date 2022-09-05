@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "_js",
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "ES6"
+  },
+  "exclude": [
+    "test.ts"
+  ]
+}

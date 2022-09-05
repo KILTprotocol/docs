@@ -6,8 +6,11 @@
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",
+    "style:js": "prettier --check --config .prettierrc '**/*.js'",
     "style:fix": "yarn style --write",
     "fix": "yarn lint:fix && yarn style:fix",
+    "style:js:fix": "yarn style:js --write",
+    "translate": "yarn tsc -p tsconfig.json && yarn style:js:fix",
     "test": "ts-node run_core_features.ts"
   },
   "dependencies": {
