@@ -9,7 +9,7 @@
     "style:js": "prettier --check --config .prettierrc '**/*.js'",
     "style:fix": "yarn style --write",
     "fix": "yarn lint:fix && yarn style:fix",
-    "style:js:fix": "yarn style:js --write",
+    "style:js:fix": "yarn style:js --write --loglevel silent",
     "translate": "yarn tsc -p tsconfig.json && yarn style:js:fix",
     "test": "ts-node run_core_features.ts"
   },
