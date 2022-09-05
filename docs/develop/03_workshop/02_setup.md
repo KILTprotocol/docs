@@ -3,8 +3,6 @@ id: setup
 title: 🎒 Setup
 ---
 
-import Tabs from '@theme/Tabs';
-
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed.
@@ -15,12 +13,20 @@ Any stable (LTS >= 14.0) version is sufficient.
 Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.<br/>
 - [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
 - [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
-- [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
+- (Only in case you are using Typescript and not Javascript) [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
 
-<!-- When updating this version also update 00-welcome.md! -->
+### With Javascript
+
 ```bash npm2yarn
-npm init -y
-npm install @kiltprotocol/sdk-js@0.28.2 dotenv ts-node typescript
+    npm init -y
+    npm install @kiltprotocol/sdk-js@0.28.2 dotenv
+```
+
+### With Typescript
+
+```bash npm2yarn
+    npm init -y
+    npm install @kiltprotocol/sdk-js@0.28.2 dotenv ts-node typescript
 ```
 
 ## Project Folder
