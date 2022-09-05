@@ -4,14 +4,14 @@ title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
 import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
 import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
+import FetchEndpointDataTs from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
+import FetchEndpointDataJs from '!!raw-loader!@site/code_examples/core_features/_js/getting_started/06_fetch_endpoint_data.js';
 import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
@@ -146,12 +146,7 @@ Let's see if we can find a Credential among them.
 
 We can select one of the endpoints and query the URL to see if it returns a Credential:
 
-<SnippetBlock
-  className="language-ts"
-  funcEnd="return"
->
-  {FetchEndpointData}
-</SnippetBlock>
+<TsJsSnippet tsSnippet={FetchEndpointDataTs} jsSnippet={FetchEndpointDataJs} funcEnd="return" />
 
 If the script completes with no errors, it means that we were able to retrieve a Credential using the URL specified in the service endpoint.
 
