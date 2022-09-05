@@ -3,8 +3,10 @@ id: ctype-creation
 title: Create a CType
 ---
 
-import CodeBlock from '@theme/CodeBlock';
-import CreateCType from '!!raw-loader!@site/code_examples/core_features/claiming/01_create_ctype.ts';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
+import CreateCTypeTs from '!!raw-loader!@site/code_examples/core_features/claiming/01_create_ctype.ts';
+import CreateCTypeJs from '!!raw-loader!@site/code_examples/core_features/_js/claiming/01_create_ctype.js';
 
 The creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
@@ -15,9 +17,7 @@ To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_
 
 The following snippets shows how:
 
-<CodeBlock className="language-ts">
-  {CreateCType}
-</CodeBlock>
+<TsJsBlock tsSnippet={CreateCTypeTs} jsSnippet={CreateCTypeJs} />
 
 :::note
 The creation of a new CType requires the CType hash to be unique.

@@ -2,6 +2,7 @@
 id: full-did-update
 title: Update a Full DID
 ---
+
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
 import FullDidUpdateTs from '!!raw-loader!@site/code_examples/core_features/did/06_full_did_update.ts';

@@ -3,14 +3,14 @@ id: web3name-claim
 title: Claim a web3name
 ---
 
-import CodeBlock from '@theme/CodeBlock';
-import Claim from '!!raw-loader!@site/code_examples/core_features/web3names/01_claim.ts';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
+import ClaimTs from '!!raw-loader!@site/code_examples/core_features/web3names/01_claim.ts';
+import ClaimJs from '!!raw-loader!@site/code_examples/core_features/_js/web3names/01_claim.js';
 
 A web3name can be claimed if it has currently no owner, using the following snippet as reference.
 
-<CodeBlock className="language-ts">
-  {Claim}
-</CodeBlock>
+<TsJsBlock tsSnippet={ClaimTs} jsSnippet={ClaimJs} />
 
 The claiming process requires the reservation of a deposit that is freed upon web3name release.
 
