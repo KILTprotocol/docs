@@ -15,19 +15,28 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 - [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
 - (Only in case you are using Typescript and not Javascript) [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
 
-### With Javascript
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-```bash npm2yarn
-    npm init -y
-    npm install @kiltprotocol/sdk-js@0.28.2 dotenv
-```
+  Install the needed packages:
+  
+  ```bash npm2yarn
+  npm init -y
+  npm install @kiltprotocol/sdk-js@0.28.2 dotenv ts-node typescript
+  ```
 
-### With Typescript
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
 
-```bash npm2yarn
-    npm init -y
-    npm install @kiltprotocol/sdk-js@0.28.2 dotenv ts-node typescript
-```
+  Install the needed packages:
+  
+  ```bash npm2yarn
+  npm init -y
+  npm install @kiltprotocol/sdk-js@0.28.2 dotenv
+  ```
+  
+  </TabItem>
+</Tabs>
 
 ## Project Folder
 

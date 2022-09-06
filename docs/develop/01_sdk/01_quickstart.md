@@ -34,14 +34,33 @@ We will focus on creating a new project from scratch, which will require a littl
 First, we need to create a new project in a new directory.
 For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
 
-```bash npm2yarn
-npm install @kiltprotocol/sdk-js node axios
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
+
+  ```bash npm2yarn
+  npm install @kiltprotocol/sdk-js axios node
+  ```
+
+  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
+
+  ```bash npm2yarn
+  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  ```
+
+  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
+
+  </TabItem>
+</Tabs>
 
 After you have imported the SDK, you are now able to access the functionalities that KILT provides.
-With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
 Inside the `package.json` add in the value `"type": "module"`.
 
 Let's first declare our `main` function that will execute our script:
@@ -52,16 +71,20 @@ Let's first declare our `main` function that will execute our script:
 
 If the setup is correct you can excute the script by calling the name of the file using Node.
 
-<Tabs>
-  <TabItem value='npm' label='npm' default>
-    <CodeBlock className="language-bash">
-      npm node quickstart.js
-    </CodeBlock>
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node quickstart.ts
+  ```
+
   </TabItem>
-  <TabItem value='yarn' label='Yarn'>
-    <CodeBlock className="language-bash">
-      yarn node quickstart.js
-    </CodeBlock>
+  <TabItem value='js' label='Javascript'>
+
+  ```bash
+  node quickstart.js
+  ```
+
   </TabItem>
 </Tabs>
 
