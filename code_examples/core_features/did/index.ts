@@ -1,7 +1,5 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
-import { ApiPromise } from '@polkadot/api'
-import { randomAsHex } from '@polkadot/util-crypto'
+import { ApiPromise, Keyring } from '@polkadot/api'
+import { blake2AsU8a, randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -18,74 +16,80 @@ import { updateFullDid } from './06_full_did_update'
 
 export async function runAll(
   api: ApiPromise,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
 ): Promise<void> {
   console.log('Running DID flow...')
-  const keystore = new Kilt.Did.DemoKeystore()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({ data, alg, publicKey }) => {
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+    const key = keyring.getPair(address)
+
+    return { data: key.sign(data), alg }
+  }
 
   console.log('1 did) Create simple light DID')
-  let randomSeed = randomAsHex(32)
-  const simpleLightDid = await createSimpleLightDid(keystore, randomSeed)
-  randomSeed = randomAsHex(32)
+  let randomSeed = randomAsU8a(32)
+  const simpleLightDid = await createSimpleLightDid(keyring, randomSeed)
+  randomSeed = randomAsU8a(32)
   console.log('2 did) Create complete light DID')
-  await createCompleteLightDid(keystore, randomSeed)
+  await createCompleteLightDid(keyring, randomSeed)
   console.log('3 did) Migrate first light DID to full DID')
-  await migrateLightDid(keystore, submitterAccount, simpleLightDid, resolveOn)
+  await migrateLightDid(simpleLightDid, submitterAccount, signCallback, resolveOn)
   console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
-    keystore,
-    api,
+    keyring,
     submitterAccount,
     undefined,
+    signCallback,
     resolveOn
   )
   console.log('5 did) Create complete full DID')
   const createdCompleteFullDid = await createCompleteFullDid(
-    keystore,
-    api,
+    keyring,
     submitterAccount,
     undefined,
+    signCallback,
     resolveOn
   )
   console.log('6 did) Update full DID created at step 5')
   const updatedFullDid = await updateFullDid(
-    keystore,
-    api,
-    submitterAccount,
+    keyring,
     createdCompleteFullDid,
+    submitterAccount,
+    signCallback,
     resolveOn
   )
   console.log(
     '7 did) Use the same full DID created at step 5 to sign the batch'
   )
   await batchCTypeCreationExtrinsics(
-    keystore,
     api,
     submitterAccount,
     updatedFullDid,
+    signCallback,
     resolveOn
   )
   console.log(
     '8 did) Use the same full DID created at step 5 to generate the signature'
   )
   await generateAndVerifyDidAuthenticationSignature(
-    keystore,
     updatedFullDid,
-    'test-payload'
+    'test-payload',
+    signCallback
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
-    keystore,
     submitterAccount,
     createdSimpleFullDid,
+    signCallback,
     resolveOn
   )
   console.log('10 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(
     submitterAccount,
-    createdCompleteFullDid.identifier,
+    createdCompleteFullDid.uri,
     resolveOn
   )
   console.log('DID flow completed!')

@@ -16,8 +16,7 @@ import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllWeb3 } from './web3names'
 
-const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
-  Kilt.BlockchainUtils.IS_IN_BLOCK
+const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_IN_BLOCK
 const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
 async function endowAccount(
@@ -36,8 +35,7 @@ async function endowAccount(
     Kilt.BalanceUtils.KILT_COIN.mul(amount),
     0
   ).then((tx) =>
-    Kilt.ChainHelpers.BlockchainUtils.signAndSubmitTx(tx, faucetAccount, {
-      reSign: true,
+    Kilt.ChainHelpers.Blockchain.signAndSubmitTx(tx, faucetAccount, {
       resolveOn
     })
   )
@@ -60,7 +58,7 @@ async function main(): Promise<void> {
   await gettingStartedFlow()
 
   await Kilt.init({ address: nodeAddress })
-  const { api } = await Kilt.connect()
+  const api = await Kilt.connect()
 
   const keyring = new Keyring({ ss58Format: 38, type: 'sr25519' })
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))

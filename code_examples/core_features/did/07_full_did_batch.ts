@@ -1,10 +1,8 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-function getRandomCType(): Kilt.CType {
+function getRandomCType(): Kilt.ICType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
   const randomFactor = Kilt.Utils.UUID.generate()
   return Kilt.CType.fromSchema({
@@ -23,30 +21,36 @@ function getRandomCType(): Kilt.CType {
 }
 
 export async function batchCTypeCreationExtrinsics(
-  keystore: Kilt.Did.DemoKeystore,
   api: ApiPromise,
-  submitterAccount: KeyringPair,
-  fullDid: Kilt.Did.FullDidDetails,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair,
+  fullDid: Kilt.DidDetails,
+  signCallback: Kilt.SignCallback,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
-  const ctype1CreationTx = await ctype1.getStoreTx()
+  const ctype1CreationTx = await Kilt.CType.getStoreTx(ctype1)
   const ctype2 = getRandomCType()
-  const ctype2CreationTx = await ctype2.getStoreTx()
+  const ctype2CreationTx = await Kilt.CType.getStoreTx(ctype2)
 
   // Create the DID-signed batch
-  const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
-    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .build(keystore, submitterAccount.address)
+  const authorisedBatch = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batch,
+    did: fullDid,
+    extrinsics: [
+      ctype1CreationTx,
+      ctype2CreationTx
+    ],
+    sign: signCallback,
+    submitter: submitterAccount.address
+  })
 
   // The authorized account submits the batch to the chain
-  await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
+  await Kilt.Blockchain.signAndSubmitTx(authorisedBatch, submitterAccount, {
     resolveOn
   })
 
-  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
+  if (!(await Kilt.CType.verifyStored(ctype1) || !(await Kilt.CType.verifyStored(ctype2)))) {
     throw 'One of the two CTypes has not been properly stored.'
   }
 }
