@@ -19,7 +19,7 @@ In this section you will walk though all processes done by the <span className="
 Create the following files in the <span className="label-role attester">Attester</span> folder.
 This folders serves to mimic an <span className="label-role attester">Attester</span> service.
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   ```bash

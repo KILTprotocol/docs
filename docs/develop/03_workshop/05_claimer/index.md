@@ -16,7 +16,7 @@ In this section you will walk though all processes done by the <span className="
 Create the following files in the <span className="label-role claimer">Claimer</span> folder.
 This folders serves to mimic a <span className="label-role claimer">Claimer</span>'s perspective.
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   ```bash

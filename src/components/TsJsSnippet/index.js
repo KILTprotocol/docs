@@ -10,7 +10,7 @@ const TsJsSnippet = ({
   jsSnippet,
   ...props
 }) => {
-  return <Tabs>
+  return <Tabs groupId="ts-js-choice">
     <TabItem value='ts' label='Typescript' default>
       <SnippetBlock {...props} className="language-ts">
         {tsSnippet}

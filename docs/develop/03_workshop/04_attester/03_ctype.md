@@ -60,10 +60,10 @@ In a real-life setup, a user would simply retrieve an existing CType from the ch
 
 In this tutorial, we'll have the <span className="label-role attester">Attester</span> create and attempt to store a CType on the KILT test blockchain.
 
-<Tabs>
-  <TabItem value='ts' label='Typescript' default>
+## Create CType
 
-  ## Create CType
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
   Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
   Copy the following to create a `CType` from a schema:
@@ -72,7 +72,23 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
     {CtypeSchemaTs}
   </CodeBlock>
 
-  ## Get CType
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  Now we have our entry ready, create a new file `attester/ctypeSchema.js`.
+  Copy the following to create a `CType` from a schema:
+
+  <CodeBlock title="attester/ctypeSchema.js" className="language-js">
+    {CtypeSchemaJs}
+  </CodeBlock>
+
+  </TabItem>
+</Tabs>
+
+## Get CType
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
   Create a new file `attester/generateCtype.ts`.
   We'll use this to check if the `CType` is on-chain already.
@@ -83,27 +99,8 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
     {GenerateCtypeTs}
   </CodeBlock>
 
-  ## Run
-
-  To run it, just execute the `attester/generateCtype.ts` file.
-
-  ```bash
-  yarn ts-node attester/generateCtype.ts
-  ```
-
   </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  ## Create CType
-
-  Now we have our entry ready, create a new file `attester/ctypeSchema.js`.
-  Copy the following to create a `CType` from a schema:
-
-  <CodeBlock title="attester/ctypeSchema.js" className="language-js">
-    {CtypeSchemaJs}
-  </CodeBlock>
-
-  ## Get CType
+  <TabItem value='js' label='Javascript'>
 
   Create a new file `attester/generateCtype.js`.
   We'll use this to check if the `CType` is on-chain already.
@@ -114,7 +111,22 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
     {GenerateCtypeJs}
   </CodeBlock>
 
-  ## Run
+  </TabItem>
+</Tabs>
+
+## Run
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  To run it, just execute the `attester/generateCtype.ts` file.
+
+  ```bash
+  yarn ts-node attester/generateCtype.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
 
   To run it, just execute the `attester/generateCtype.js` file.
 

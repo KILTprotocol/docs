@@ -42,7 +42,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   Open `attester/generateAccount.ts` and paste the following code:
@@ -51,37 +51,37 @@ To generate an account, one method from the KILT SDK is needed and one method fr
     {GenerateAccountTs}
   </CodeBlock>
 
-  The code contains two methods.
-  `generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
-  We will use `getAccount` later to load the account that we will create and store in the next step.
-
-  ## Execute
-
-  Now run it to get your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
-
-  ```bash
-  yarn ts-node ./attester/generateAccount.ts
-  ```
-  
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-  Open `attester/generateAccount.js` and paste the following code:
+   Open `attester/generateAccount.js` and paste the following code:
 
   <CodeBlock className="language-js" title="attester/generateAccount.js">
     {GenerateAccountJs}
   </CodeBlock>
+  </TabItem>
+</Tabs>
 
-  The code contains two methods.
-  `generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
-  We will use `getAccount` later to load the account that we will create and store in the next step.
+The code contains two methods.
+`generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
+We will use `getAccount` later to load the account that we will create and store in the next step.
 
-  ## Execute
+## Execute
 
-  Now run it to get your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
+Now run it to get your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
   ```bash
-  node ./attester/generateAccount.js
+  yarn ts-node ./attester/generateAccount.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  ```bash
+  node ./attester/generateAccount.ts
   ```
 
   </TabItem>

@@ -33,7 +33,7 @@ Once the attestation is written on the chain, the <span className="label-role cl
 
 Run it from command line:
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   ```bash

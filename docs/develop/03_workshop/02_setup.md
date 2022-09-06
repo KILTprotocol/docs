@@ -33,15 +33,30 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 
 The project structure looks like the following:
 
-```bash
-└─ kilt-rocks/ # project
-    ├─ attester/ # all attester code
-    ├─ claimer/ # all claimer code
-    ├─ verify.ts # all verifier code
-    ├─ .env # environment variables
-    ├─ package.json # the project file
-    └─ yarn.lock # dependency lock file
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+    └─ kilt-rocks/ # project
+        ├─ attester/ # all attester code
+        ├─ claimer/ # all claimer code
+        ├─ verify.ts # all verifier code
+        ├─ .env # environment variables
+        ├─ package.json # the project file
+        └─ yarn.lock # dependency lock file
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+    └─ kilt-rocks/ # project
+        ├─ attester/ # all attester code
+        ├─ claimer/ # all claimer code
+        ├─ verify.js # all verifier code
+        ├─ .env # environment variables
+        ├─ package.json # the project file
+        └─ yarn.lock # dependency lock file
+
+  </TabItem>
+</Tabs>
 
 You can set up the directories now or later when we need them.
 

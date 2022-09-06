@@ -4,6 +4,7 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -25,7 +26,7 @@ Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_di
 
 Similar to the Attester, the Claimer must set up the DID keys.
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   Create a file `claimer/generateKeypairs.ts` and copy the code below.
@@ -34,31 +35,8 @@ Similar to the Attester, the Claimer must set up the DID keys.
     {GenerateKeypairsTs}
   </CodeBlock>
 
-  The Claimer only needs an authentication key and an encryption key.
-  Here the keys are both derived from the same seed, but they could also have two different seeds.
-
-  ## Generate Light DID
-
-  Once our `keypairs` are generated we can create our light DID.
-  Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
-  But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
-
-  <CodeBlock className="language-ts" title="claimer/generateLightDid.ts">
-    {GenerateLightDidTs}
-  </CodeBlock>
-
-  After everything is initialized, we create a mnemonic that will be used to create the light DID.
-  As you may have noticed the Claimer doesn't have an `account`.
-  The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
-
-  ## Run
-
-  ```bash
-  yarn ts-node ./claimer/generateLightDid.ts
-  ```
-
   </TabItem>
-  <TabItem value='js' label='Javascript' default>
+  <TabItem value='js' label='Javascript'>
 
   Create a file `claimer/generateKeypairs.js` and copy the code below.
 
@@ -66,24 +44,35 @@ Similar to the Attester, the Claimer must set up the DID keys.
     {GenerateKeypairsJs}
   </CodeBlock>
 
-  The Claimer only needs an authentication key and an encryption key.
-  Here the keys are both derived from the same seed, but they could also have two different seeds.
+  </TabItem>
+</Tabs>
 
-  ## Generate Light DID
+The Claimer only needs an authentication key and an encryption key.
+Here the keys are both derived from the same seed, but they could also have two different seeds.
 
-  Once our `keypairs` are generated we can create our light DID.
-  Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
-  But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
+## Generate Light DID
 
-  <CodeBlock className="language-js" title="claimer/generateLightDid.js">
-    {GenerateLightDidJs}
-  </CodeBlock>
+Once our `keypairs` are generated we can create our light DID.
+Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
+But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
 
-  After everything is initialized, we create a mnemonic that will be used to create the light DID.
-  As you may have noticed the Claimer doesn't have an `account`.
-  The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+<TsJsBlock tsSnippet={GenerateLightDidTs} jsSnippet={GenerateLightDidJs} />
 
-  ## Run
+After everything is initialized, we create a mnemonic that will be used to create the light DID.
+As you may have noticed the Claimer doesn't have an `account`.
+The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+
+## Run
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node ./claimer/generateLightDid.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
 
   ```bash
   node ./claimer/generateLightDid.js

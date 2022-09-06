@@ -4,6 +4,7 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -53,7 +54,7 @@ For our <span className="label-role attester">Attester</span> we'll need all fou
 Since three of the key types are used for signatures, we can use the same key for these.
 We'll use a demo keyring to generate them.
 
-<Tabs>
+<Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   Create a file `attester/generateKeypairs.ts` and copy the code below.
@@ -62,19 +63,32 @@ We'll use a demo keyring to generate them.
     {GenerateKeypairsTs}
   </CodeBlock>
 
-  Once we have created all the necessary keys for a DID we can create the on-chain DID.
-  To create a DID we first initialize everything.
-  After that, we load the account that we created in the [last section](./01_account.md).
-  The account will be used to pay for the DID registration.
-  Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
 
-  <CodeBlock className="language-ts" title="attester/generateDid.ts">
-    {GenerateDidTs}
-  </CodeBlock>
+  Create a file `attester/generateKeypairs.js` and copy the code below.
 
-  ## Execute
+  <CodeBlock className="language-js" title="attester/generateKeypairs.js">
+    {GenerateKeypairsJs}
+  </CodeBlock>  
 
-  You can now execute the script with:
+  </TabItem>
+</Tabs>
+
+Once we have created all the necessary keys for a DID we can create the on-chain DID.
+To create a DID we first initialize everything.
+After that, we load the account that we created in the [last section](./01_account.md).
+The account will be used to pay for the DID registration.
+Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
+
+<TsJsBlock tsSnippet={GenerateDidTs} jsSnippet={GenerateDidJs} />
+
+## Execute
+
+You can now execute the script with:
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
   ```bash
   yarn ts-node ./attester/generateDid.ts
@@ -83,28 +97,8 @@ We'll use a demo keyring to generate them.
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-  Create a file `attester/generateKeypairs.js` and copy the code below.
-
-  <CodeBlock className="language-js" title="attester/generateKeypairs.js">
-    {GenerateKeypairsJs}
-  </CodeBlock>
-
-  Once we have created all the necessary keys for a DID we can create the on-chain DID.
-  To create a DID we first initialize everything.
-  After that, we load the account that we created in the [last section](./01_account.md).
-  The account will be used to pay for the DID registration.
-  Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
-
-  <CodeBlock className="language-js" title="attester/generateDid.js">
-    {GenerateDidJs}
-  </CodeBlock>
-
-  ## Execute
-
-  You can now execute the script with:
-
   ```bash
-  node ./attester/generateDid.js
+  node ./attester/generateAccount.js
   ```
 
   </TabItem>
