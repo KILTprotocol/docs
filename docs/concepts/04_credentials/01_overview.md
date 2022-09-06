@@ -2,6 +2,7 @@
 id: overview
 title: Overview
 ---
+
 import ThemedImage from '@theme/ThemedImage';
 
 **Credentials** consist of a set of claims which belong to a **Claimer**, are attested by an **Attester** and can be verified by **Verifiers**.

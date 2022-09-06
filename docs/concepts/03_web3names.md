@@ -3,6 +3,8 @@ id: web3names
 title: web3names
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+
 In short, web3names are user-friendly aliases for KILT DIDs.
 They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
 There is a one-to-one relationship between DIDs and web3names.

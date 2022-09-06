@@ -4,8 +4,13 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/claimer/generateKeypairs.ts';
-import GenerateLightDid from '!!raw-loader!@site/code_examples/workshop/claimer/generateLightDid.ts';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import GenerateKeypairsTs from '!!raw-loader!@site/code_examples/workshop/claimer/generateKeypairs.ts';
+import GenerateKeypairsJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/generateKeypairs.js';
+import GenerateLightDidTs from '!!raw-loader!@site/code_examples/workshop/claimer/generateLightDid.ts';
+import GenerateLightDidJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/generateLightDid.js';
 
 Time to make a light DID using the previously created account for the <span className="label-role claimer">Claimer</span>.
 Since a light DID is not registered on the blockchain, you don't need funds for creating one.
@@ -19,34 +24,73 @@ Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_di
 ## Generate Keys
 
 Similar to the Attester, the Claimer must set up the DID keys.
-Create a file `claimer/generateKeypairs.ts` and copy the code below.
 
-<CodeBlock className="language-ts" title="claimer/generateKeypairs.ts">
-  {GenerateKeypairs}
-</CodeBlock>
+<Tabs>
+  <TabItem value='ts' label='Typescript' default>
 
-The Claimer only needs an authentication key and an encryption key.
-Here the keys are both derived from the same seed, but they could also have two different seeds.
+  Create a file `claimer/generateKeypairs.ts` and copy the code below.
 
-## Generate Light DID
+  <CodeBlock className="language-ts" title="claimer/generateKeypairs.ts">
+    {GenerateKeypairsTs}
+  </CodeBlock>
 
-Once our `keypairs` are generated we can create our light DID.
-Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
-But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
+  The Claimer only needs an authentication key and an encryption key.
+  Here the keys are both derived from the same seed, but they could also have two different seeds.
 
-<CodeBlock className="language-ts" title="claimer/generateLightDid.ts">
-  {GenerateLightDid}
-</CodeBlock>
+  ## Generate Light DID
 
-After everything is initialized, we create a mnemonic that will be used to create the light DID.
-As you may have noticed the Claimer doesn't have an `account`.
-The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+  Once our `keypairs` are generated we can create our light DID.
+  Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
+  But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
 
-## Run
+  <CodeBlock className="language-ts" title="claimer/generateLightDid.ts">
+    {GenerateLightDidTs}
+  </CodeBlock>
 
-```bash
-yarn ts-node ./claimer/generateLightDid.ts
-```
+  After everything is initialized, we create a mnemonic that will be used to create the light DID.
+  As you may have noticed the Claimer doesn't have an `account`.
+  The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+
+  ## Run
+
+  ```bash
+  yarn ts-node ./claimer/generateLightDid.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  Create a file `claimer/generateKeypairs.js` and copy the code below.
+
+  <CodeBlock className="language-js" title="claimer/generateKeypairs.js">
+    {GenerateKeypairsJs}
+  </CodeBlock>
+
+  The Claimer only needs an authentication key and an encryption key.
+  Here the keys are both derived from the same seed, but they could also have two different seeds.
+
+  ## Generate Light DID
+
+  Once our `keypairs` are generated we can create our light DID.
+  Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
+  But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
+
+  <CodeBlock className="language-js" title="claimer/generateLightDid.js">
+    {GenerateLightDidJs}
+  </CodeBlock>
+
+  After everything is initialized, we create a mnemonic that will be used to create the light DID.
+  As you may have noticed the Claimer doesn't have an `account`.
+  The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+
+  ## Run
+
+  ```bash
+  node ./claimer/generateLightDid.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 Your output will provide you with `CLAIMER_MNEMONIC` and `CLAIMER_DID_URI`.
 Be sure to save it in your `.env` file, it should now look similar to this.

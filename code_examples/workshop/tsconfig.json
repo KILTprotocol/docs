@@ -3,8 +3,7 @@
     "moduleResolution": "node",
     "outDir": "_js",
     "skipLibCheck": true,
-    "strict": false,
-    "target": "ES6"
+    "target": "ES2020"
   },
   "exclude": [
     "test.ts"

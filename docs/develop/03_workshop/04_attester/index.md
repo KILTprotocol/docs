@@ -3,6 +3,9 @@ id: attester
 title: 🏢 Attester
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 In this section you will walk though all processes done by the <span className="label-role attester">Attester</span>.
 
 1. You will [create an account](./account) that is used to pay for all transactions and the storage deposits.
@@ -16,13 +19,33 @@ In this section you will walk though all processes done by the <span className="
 Create the following files in the <span className="label-role attester">Attester</span> folder.
 This folders serves to mimic an <span className="label-role attester">Attester</span> service.
 
-```bash
-└─ kilt-rocks/ # project
-  └─ attester/ # all attester code
-    ├─ attestCredential.ts # issues attestations
-    ├─ ctypeSchema.ts # create a local CType definition
-    ├─ generateAccount.ts # functions for setting up and loading the attester's account
-    ├─ generateCtype.ts # register the CType on chain
-    ├─ generateDid.ts # registers the attester's on-chain DID
-    └─ generateKeypairs.ts # setup the keys for the attester's DID
-```
+<Tabs>
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  └─ kilt-rocks/ # project
+    └─ attester/ # all attester code
+       ├─ attestCredential.ts # issues attestations
+       ├─ ctypeSchema.ts # create a local CType definition
+       ├─ generateAccount.ts # functions for setting up and loading the attester's account
+       ├─ generateCtype.ts # register the CType on chain
+       ├─ generateDid.ts # registers the attester's on-chain DID
+       └─ generateKeypairs.ts # setup the keys for the attester's DID
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```bash
+  └─ kilt-rocks/ # project
+    └─ attester/ # all attester code
+       ├─ attestCredential.js # issues attestations
+       ├─ ctypeSchema.js # create a local CType definition
+       ├─ generateAccount.js # functions for setting up and loading the attester's account
+       ├─ generateCtype.js # register the CType on chain
+       ├─ generateDid.js # registers the attester's on-chain DID
+       └─ generateKeypairs.js # setup the keys for the attester's DID
+  ```
+
+  </TabItem>
+</Tabs>
