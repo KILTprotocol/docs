@@ -1,3 +1,4 @@
+import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { config as envConfig } from 'dotenv'
@@ -20,25 +21,34 @@ const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
   Kilt.Blockchain.IS_IN_BLOCK
 const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
-async function endowAccount(
+async function endowAccounts(
+  api: ApiPromise,
   faucetAccount: KeyringPair,
-  destinationAccount: KeyringPair['address'],
+  destinationAccounts: Kilt.KiltKeyringPair['address'][],
   amount: BN
 ): Promise<void> {
-  console.log(
-    `Endowing test account "${destinationAccount}" with ${Kilt.BalanceUtils.formatKiltBalance(
-      amount,
-      { decimals: 0 }
-    )}`
+  const transferBatch = await Promise.all(
+    destinationAccounts.map(
+      async (acc) =>
+        await Kilt.Balance.getTransferTx(
+          acc,
+          Kilt.BalanceUtils.KILT_COIN.mul(amount),
+          0
+        )
+    )
   )
-  await Kilt.Balance.getTransferTx(
-    destinationAccount,
-    Kilt.BalanceUtils.KILT_COIN.mul(amount),
-    0
-  ).then((tx) =>
-    Kilt.ChainHelpers.Blockchain.signAndSubmitTx(tx, faucetAccount, {
-      resolveOn
-    })
+
+  console.log(
+    `Endowing test accounts "${destinationAccounts}"
+    from faucet "${faucetAccount.address}"
+    with ${Kilt.BalanceUtils.formatKiltBalance(amount, {
+      decimals: 0
+    })} each...`
+  )
+  await Kilt.Blockchain.signAndSubmitTx(
+    api.tx.utility.batchAll(transferBatch),
+    faucetAccount,
+    { resolveOn }
   )
 }
 
@@ -66,52 +76,35 @@ async function main(): Promise<void> {
   const keyring = new Keyring({ ss58Format: 38, type: 'sr25519' })
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
 
-  const claimingFlow = async () => {
-    const testAccount = keyring.addFromSeed(
-      randomAsU8a(32)
-    ) as Kilt.KiltKeyringPair
-    await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    // Run all claiming
-    await runAllClaiming(api, testAccount, resolveOn)
-  }
+  const [
+    claimingTestAccount,
+    didTestAccount,
+    web3TestAccount,
+    accountLinkingTestAccount
+  ] = Array(4)
+    .fill(0)
+    .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
-  const didFlow = async () => {
-    const testAccount = keyring.addFromSeed(
-      randomAsU8a(32)
-    ) as Kilt.KiltKeyringPair
-    await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    // Run all DID
-    await runAllDid(api, testAccount, resolveOn)
-  }
+  // Endow all the needed accounts in one batch transfer, to avoid tx collisions
+  await endowAccounts(
+    api,
+    faucetAccount,
+    [
+      claimingTestAccount.address,
+      didTestAccount.address,
+      web3TestAccount.address,
+      accountLinkingTestAccount.address
+    ],
+    new BN(10)
+  )
 
-  const web3NameFlow = async () => {
-    const testAccount = keyring.addFromSeed(
-      randomAsU8a(32)
-    ) as Kilt.KiltKeyringPair
-    await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    await runAllWeb3(testAccount, resolveOn)
-  }
-
-  const accountLinkingFlow = async () => {
-    const testAccount = keyring.addFromSeed(
-      randomAsU8a(32)
-    ) as Kilt.KiltKeyringPair
-    await endowAccount(faucetAccount, testAccount.address, new BN(10))
-    await runAllLinking(api, testAccount, faucetAccount, resolveOn)
-  }
-
-  const devSetupFlow = async () => {
-    console.log('Running dev setup flow...')
-    await runAllDevSetup(nodeAddress)
-    console.log('Dev setup flow completed!')
-  }
-
+  // These should not conflict anymore since all accounts are different
   await Promise.all([
-    claimingFlow(),
-    didFlow(),
-    web3NameFlow(),
-    accountLinkingFlow(),
-    devSetupFlow()
+    runAllClaiming(claimingTestAccount, resolveOn),
+    runAllDid(api, didTestAccount, resolveOn),
+    runAllWeb3(web3TestAccount, resolveOn),
+    runAllLinking(api, accountLinkingTestAccount, faucetAccount, resolveOn),
+    runAllDevSetup(nodeAddress)
   ])
 }
 

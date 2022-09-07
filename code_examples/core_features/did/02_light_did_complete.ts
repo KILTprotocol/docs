@@ -1,6 +1,5 @@
 import type { Keyring } from '@polkadot/api'
 
-import { hexToU8a } from '@polkadot/util'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -15,9 +14,8 @@ export async function createCompleteLightDid(
     'ed25519'
   )
 
-  // Generate the seed for the encryption key.
-  const encryptionSeed = hexToU8a('0x987654321')
-  const { publicKey: encPublicKey } = keyring.addFromSeed(encryptionSeed)
+  // Generate the encryption key.
+  const { publicKey: encPublicKey } = keyring.addFromSeed(randomAsU8a(32))
 
   const service: Kilt.DidServiceEndpoint[] = [
     {

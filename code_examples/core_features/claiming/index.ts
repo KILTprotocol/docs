@@ -1,4 +1,3 @@
-import { ApiPromise } from '@polkadot/api'
 import { Keyring } from '@polkadot/api'
 import { blake2AsU8a } from '@polkadot/util-crypto'
 
@@ -16,7 +15,6 @@ import { revokeCredential } from './06_revoke_attestation'
 import { verifyPresentation } from './05_verify_presentation'
 
 export async function runAll(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
