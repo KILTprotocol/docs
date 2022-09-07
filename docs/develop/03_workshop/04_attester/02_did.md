@@ -43,22 +43,10 @@ Because the DID and the account are not connected, DIDs do not hold any coins.
 
 ## Create a DID
 
-:::info Keystore
-
-A keystore has multiple purposes:
-
-The keystore ...
-
-- stores private keys that belong to a DID
-- creates new keys
-- encrypts and decrypts arbitrary data
-
-:::
-
-To create a DID we need a keystore.
+To create a DID we can use the same keyrings that are used to generate accounts.
 For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types are used for signatures, we can use the same key for these.
-We'll use a demo keystore to generate them.
+We'll use a demo keyring to generate them.
 Create a file `attester/generateKeypairs.ts` and copy the code below.
 
 <CodeBlock className="language-ts" title="attester/generateKeypairs.ts">

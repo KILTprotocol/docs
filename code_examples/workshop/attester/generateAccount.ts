@@ -13,7 +13,7 @@ export async function generateAccount(keyring: Keyring): Promise<{
   const mnemonic = mnemonicGenerate()
   const account = keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
 
-  // save the mnemonic and address in .env to we keep the same account
+  // save the mnemonic and address in .env so we keep the same account
   return { account, mnemonic }
 }
 

@@ -15,8 +15,6 @@ export async function ensureStoredCtype(
   keyring: Keyring,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICType> {
-  // Init
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
   const did = process.env.ATTESTER_DID_URI as Kilt.DidUri
 

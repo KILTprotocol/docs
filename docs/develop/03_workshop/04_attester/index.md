@@ -19,7 +19,7 @@ This folders serves to mimic an <span className="label-role attester">Attester</
 ```bash
 └─ kilt-rocks/ # project
   └─ attester/ # all attester code
-    ├─ attestClaim.ts # issues attestations
+    ├─ attestCredential.ts # issues attestations
     ├─ ctypeSchema.ts # create a local CType definition
     ├─ generateAccount.ts # functions for setting up and loading the attester's account
     ├─ generateCtype.ts # register the CType on chain

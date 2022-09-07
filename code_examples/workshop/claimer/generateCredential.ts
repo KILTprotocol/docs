@@ -83,7 +83,7 @@ if (require.main === module) {
     })
     .then((request) => {
       console.log(
-        '⚠️  save this to ./claimer/_request.json for testing  ⚠️\n\n'
+        '⚠️  save this to ./claimer/_credential.json for testing  ⚠️\n\n'
       )
       console.log(JSON.stringify(request, null, 2))
       process.exit()

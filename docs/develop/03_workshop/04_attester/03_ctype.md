@@ -15,22 +15,22 @@ A CType defines the structure of a claim.
 You can think of it as the data model for your claim.
 
 
-Before the <span className="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
+Before the <span className="label-role attester">Attester</span> can attest a credential, they need to decide which CType they support.
 A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
 Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes instead of creating new ones.
 But in this workshop, we create our own CType.
 
 :::info CType
 
-A CType ensures that a claim contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
-The CType is especially important since a verifier would request attestations for a specific CType (e.g., the traffic police wants to see your driver's license and not your gym membership).
+A CType ensures that a credential contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
+The CType is especially important since a verifier would request credentials for a specific CType (e.g., the traffic police wants to see your driver's license and not your gym membership).
 
 If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/concepts/credentials/ctypes).
 You can also [read through existing ctypes in our ctype-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
 Creating CTypes requires an account and a full DID.
-Make sure your account holds tokes so that you can pay the fees for creating a CType.
+Make sure your account holds KILT tokes so that you can pay the fees for creating a CType.
 
 For example, a very basic CType for a driver's license could look like this:
 
@@ -83,4 +83,4 @@ To run it, just execute the `attester/generateCtype.ts` file.
 yarn ts-node attester/generateCtype.ts
 ```
 
-OK, now before we can issue Credentials, we need a <span className="label-role claimer">Claimer</span> to request one! Let's move on!
+OK, now before we can attest Credentials, we need a <span className="label-role claimer">Claimer</span> to request it! Let's move on!
