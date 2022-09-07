@@ -25,7 +25,8 @@ export async function batchCTypeCreationExtrinsics(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidDetails,
   signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
@@ -37,10 +38,7 @@ export async function batchCTypeCreationExtrinsics(
   const authorisedBatch = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batch,
     did: fullDid,
-    extrinsics: [
-      ctype1CreationTx,
-      ctype2CreationTx
-    ],
+    extrinsics: [ctype1CreationTx, ctype2CreationTx],
     sign: signCallback,
     submitter: submitterAccount.address
   })
@@ -50,7 +48,12 @@ export async function batchCTypeCreationExtrinsics(
     resolveOn
   })
 
-  if (!(await Kilt.CType.verifyStored(ctype1) || !(await Kilt.CType.verifyStored(ctype2)))) {
+  if (
+    !(
+      (await Kilt.CType.verifyStored(ctype1)) ||
+      !(await Kilt.CType.verifyStored(ctype2))
+    )
+  ) {
     throw 'One of the two CTypes has not been properly stored.'
   }
 }

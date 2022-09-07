@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function verifyNameAndDidEquality(
   web3Name: Kilt.Did.Web3Names.Web3Name,
-  did: Kilt.IDidDetails['uri']
+  did: Kilt.DidUri
 ): Promise<void> {
   console.log(
     `Querying the blockchain for the web3name "${web3Name}" and the DID "${did}"...`

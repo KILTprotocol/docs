@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function generateAndVerifyDidAuthenticationSignature(
   did: Kilt.DidDetails,
   payload: string | Uint8Array,
-  signCallback: Kilt.SignCallback,
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Generate a signature using the provided DID's authentication key.
   const signature = await Kilt.Did.signPayload(

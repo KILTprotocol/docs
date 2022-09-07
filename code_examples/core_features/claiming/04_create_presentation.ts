@@ -13,6 +13,6 @@ export async function createPresentation(
     credential,
     signCallback,
     selectedAttributes,
-    challenge,
+    challenge
   })
 }

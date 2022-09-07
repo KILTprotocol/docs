@@ -9,7 +9,8 @@ export async function createSimpleFullDid(
   submitterAccount: Kilt.KiltKeyringPair,
   authenticationSeed: Uint8Array = randomAsU8a(32),
   signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<Kilt.DidDetails> {
   // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
   const { publicKey } = keyring.addFromSeed(authenticationSeed, {}, 'ed25519')
@@ -17,17 +18,27 @@ export async function createSimpleFullDid(
   // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
   // The submitter account parameter, ensures that only an entity authorized by the DID subject
   // can submit the extrinsic to the KILT blockchain.
-  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx({
-    authentication: [{
-      publicKey,
-      type: 'ed25519'
-    }]
-  }, submitterAccount.address, signCallback)
+  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
+    {
+      authentication: [
+        {
+          publicKey,
+          type: 'ed25519'
+        }
+      ]
+    },
+    submitterAccount.address,
+    signCallback
+  )
 
-  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount, { resolveOn })
+  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount, {
+    resolveOn
+  })
 
   // The new information is fetched from the blockchain and returned.
-  const fullDid = await Kilt.Did.query(Kilt.Did.Utils.getFullDidUriFromKey({ publicKey, type: 'ed25519' }))
+  const fullDid = await Kilt.Did.query(
+    Kilt.Did.Utils.getFullDidUriFromKey({ publicKey, type: 'ed25519' })
+  )
 
   if (!fullDid) {
     throw 'Could not find the DID just created.'

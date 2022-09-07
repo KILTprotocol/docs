@@ -9,7 +9,8 @@ export async function updateFullDid(
   fullDid: Kilt.DidDetails,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<Kilt.DidDetails> {
   // Ask the keyring to generate a new keypair to use for authentication.
   const { publicKey } = keyring.addFromSeed(randomAsU8a(32), {}, 'sr25519')
@@ -17,19 +18,25 @@ export async function updateFullDid(
   // Create and sign the DID operation to replace the authentication key with the new one generated.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
-  const didUpdateTx = await Kilt.Did.Chain.getSetKeyExtrinsic('authentication', {
-    publicKey,
-    type: 'sr25519'
-  }).then((tx) => Kilt.Did.authorizeExtrinsic(fullDid, tx, signCallback, submitterAccount.address))
+  const didUpdateTx = await Kilt.Did.Chain.getSetKeyExtrinsic(
+    'authentication',
+    {
+      publicKey,
+      type: 'sr25519'
+    }
+  ).then((tx) =>
+    Kilt.Did.authorizeExtrinsic(
+      fullDid,
+      tx,
+      signCallback,
+      submitterAccount.address
+    )
+  )
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.Blockchain.signAndSubmitTx(
-    didUpdateTx,
-    submitterAccount,
-    {
-      resolveOn
-    }
-  )
+  await Kilt.Blockchain.signAndSubmitTx(didUpdateTx, submitterAccount, {
+    resolveOn
+  })
 
   // Get the updated DID Document
   const updatedDidDetails = await Kilt.Did.query(fullDid.uri)

@@ -13,10 +13,12 @@ export async function createSimpleLightDid(
 
   // Create a light DID from the generated authentication key.
   const lightDID = Kilt.Did.createLightDidDetails({
-    authentication: [{
-      publicKey,
-      type: 'ed25519'
-    }]
+    authentication: [
+      {
+        publicKey,
+        type: 'ed25519'
+      }
+    ]
   })
   console.log(lightDID.uri)
 

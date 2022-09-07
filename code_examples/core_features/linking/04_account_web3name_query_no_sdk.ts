@@ -24,7 +24,7 @@ export async function queryAccountWeb3Name(
 
   // Second RPC call to `api.query.web3Names.names` for DID -> web3name lookup.
   const maybeDidName = await api.query.web3Names.names<Option<Struct>>(
-    accountDidIdentifier
+    accountDidIdentifier as string
   )
   if (maybeDidName.isNone) {
     throw `No web3name for the KILT account "${lookupAccountAddress}".`
