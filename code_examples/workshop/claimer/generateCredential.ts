@@ -13,7 +13,7 @@ import { signCallbackForKeyring } from '../utils'
 async function credentialFromClaim(
   lightDid: Kilt.DidDetails,
   claim: Kilt.IClaim,
-  signCallback: Kilt.SignCallback,
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICredential> {
   const credential = Kilt.Credential.fromClaim(claim)
   await Kilt.Credential.sign(
@@ -29,23 +29,30 @@ async function credentialFromClaim(
 export async function generateCredential(
   keyring: Keyring,
   claimAttributes: Kilt.IClaim['contents'],
-  signCallback: Kilt.SignCallback,
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICredential> {
   // init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
-  const { authenticationKey, encryptionKey } = await generateKeypairs(keyring, process.env.CLAIMER_MNEMONIC)
+  const { authenticationKey, encryptionKey } = await generateKeypairs(
+    keyring,
+    process.env.CLAIMER_MNEMONIC
+  )
 
   // create the DID
   const lightDid = Kilt.Did.createLightDidDetails({
-    authentication: [{
-      publicKey: authenticationKey.publicKey,
-      type: 'sr25519'
-    }],
-    keyAgreement: [{
-      publicKey: encryptionKey.publicKey,
-      type: 'x25519'
-    }]
+    authentication: [
+      {
+        publicKey: authenticationKey.publicKey,
+        type: 'sr25519'
+      }
+    ],
+    keyAgreement: [
+      {
+        publicKey: encryptionKey.publicKey,
+        type: 'x25519'
+      }
+    ]
   })
 
   // create claim
@@ -62,10 +69,14 @@ if (require.main === module) {
   envConfig()
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
 
-  generateCredential(keyring, {
-    age: 28,
-    name: 'Max Mustermann'
-  }, signCallbackForKeyring(keyring))
+  generateCredential(
+    keyring,
+    {
+      age: 28,
+      name: 'Max Mustermann'
+    },
+    signCallbackForKeyring(keyring)
+  )
     .catch((e) => {
       console.log('Error while building credential', e)
       process.exit(1)

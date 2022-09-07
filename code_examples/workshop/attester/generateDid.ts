@@ -9,7 +9,10 @@ import { getAccount } from './generateAccount'
 
 import { signCallbackForKeyring } from '../utils'
 
-export async function createFullDid(keyring: Keyring, signCallback: Kilt.SignCallback): Promise<Kilt.DidDetails> {
+export async function createFullDid(
+  keyring: Keyring,
+  signCallback: Kilt.SignCallback
+): Promise<Kilt.DidDetails> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
@@ -18,19 +21,30 @@ export async function createFullDid(keyring: Keyring, signCallback: Kilt.SignCal
 
   // generate the keypairs
   // we are using the same mnemonic as for the attester account, but we could also use a new secret
-  const { authentication, keyAgreement, assertionMethod, capabilityDelegation } = await generateKeypairs(keyring, mnemonic)
+  const {
+    authentication,
+    keyAgreement,
+    assertionMethod,
+    capabilityDelegation
+  } = await generateKeypairs(keyring, mnemonic)
 
   // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
-  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx({
-    authentication: [authentication],
-    keyAgreement: [keyAgreement],
-    assertionMethod: [assertionMethod],
-    capabilityDelegation: [capabilityDelegation]
-  }, account.address, signCallback)
+  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
+    {
+      authentication: [authentication],
+      keyAgreement: [keyAgreement],
+      assertionMethod: [assertionMethod],
+      capabilityDelegation: [capabilityDelegation]
+    },
+    account.address,
+    signCallback
+  )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
 
-  const fullDid = await Kilt.Did.query(Kilt.Did.Utils.getFullDidUriFromKey(authentication))
+  const fullDid = await Kilt.Did.query(
+    Kilt.Did.Utils.getFullDidUriFromKey(authentication)
+  )
 
   if (!fullDid) {
     throw 'Full DID was not successfully created.'

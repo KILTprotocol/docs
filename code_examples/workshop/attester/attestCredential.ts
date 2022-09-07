@@ -23,7 +23,10 @@ export async function attestCredential(
   const fullDid = await getFullDid(attesterDid)
 
   // build the attestation object
-  const attestation = Kilt.Attestation.fromCredentialAndDid(request, fullDid.uri)
+  const attestation = Kilt.Attestation.fromCredentialAndDid(
+    request,
+    fullDid.uri
+  )
 
   // check the request content and deny based on your business logic.
   // e.g., verify age with other credentials (birth certificate, passport, ...)
@@ -45,14 +48,21 @@ export async function attestCredential(
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
+  const keyring = new Keyring({
+    ss58Format: Kilt.Utils.ss58Format,
+    type: 'sr25519'
+  })
   const signCallback = signCallbackForKeyring(keyring)
 
   // first the claimer
-  const credential = await generateCredential(keyring, {
-    age: 27,
-    name: 'Mia Musterfrau'
-  }, signCallback)
+  const credential = await generateCredential(
+    keyring,
+    {
+      age: 27,
+      name: 'Mia Musterfrau'
+    },
+    signCallback
+  )
 
   // send the request to the attester 🕊
 

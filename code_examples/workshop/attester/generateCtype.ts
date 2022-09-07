@@ -11,7 +11,10 @@ import { getFullDid } from './generateDid'
 
 import { signCallbackForKeyring } from '../utils'
 
-export async function ensureStoredCtype(keyring: Keyring, signCallback: Kilt.SignCallback): Promise<Kilt.ICType> {
+export async function ensureStoredCtype(
+  keyring: Keyring,
+  signCallback: Kilt.SignCallback
+): Promise<Kilt.ICType> {
   // Init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
@@ -35,7 +38,12 @@ export async function ensureStoredCtype(keyring: Keyring, signCallback: Kilt.Sig
 
   // authorize the extrinsic
   const tx = await Kilt.CType.getStoreTx(ctype)
-  const extrinsic = await Kilt.Did.authorizeExtrinsic(fullDid, tx, signCallback, account.address)
+  const extrinsic = await Kilt.Did.authorizeExtrinsic(
+    fullDid,
+    tx,
+    signCallback,
+    account.address
+  )
 
   // write to chain then return ctype
   await Kilt.Blockchain.signAndSubmitTx(extrinsic, account)

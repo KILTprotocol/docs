@@ -13,7 +13,11 @@ export function generateKeypairs(
   capabilityDelegation: Kilt.NewDidVerificationKey
 } {
   // signing keypair
-  const { publicKey: signingPk } = keyring.addFromMnemonic(mnemonic, {}, 'sr25519')
+  const { publicKey: signingPk } = keyring.addFromMnemonic(
+    mnemonic,
+    {},
+    'sr25519'
+  )
 
   // encryption keypair
   const { publicKey: encryptionPk } = keyring.addFromMnemonic(mnemonic, {})
@@ -35,6 +39,6 @@ export function generateKeypairs(
     capabilityDelegation: {
       publicKey: signingPk,
       type: 'sr25519'
-    },
+    }
   }
 }
