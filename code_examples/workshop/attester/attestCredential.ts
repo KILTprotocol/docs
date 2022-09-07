@@ -1,7 +1,7 @@
 import { config as envConfig } from 'dotenv'
 
+import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
-import { blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -48,11 +48,15 @@ export async function attestCredential(
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
+  const keyring = new Keyring({
+    ss58Format: Kilt.Utils.ss58Format,
+    type: 'sr25519'
+  })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
-      const address =
+      const address = encodeAddress(
         alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      )
       const key = keyring.getPair(address)
 
       return { data: key.sign(data), alg }
@@ -69,12 +73,12 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
     signCallbackForKeyring(keyring)
   )
 
-  // send the request to the attester 
+  // send the request to the attester
 
   // the attester checks the attributes and issues an attestation
   await attestCredential(keyring, credential, signCallbackForKeyring(keyring))
 
-  // send the attestation back to the claimer 
+  // send the attestation back to the claimer
 
   return credential
 }

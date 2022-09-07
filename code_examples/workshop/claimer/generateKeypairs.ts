@@ -1,4 +1,5 @@
 import type { Keyring } from '@polkadot/api'
+
 import { randomAsHex } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
