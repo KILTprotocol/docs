@@ -13,7 +13,6 @@ export async function createFullDid(
   keyring: Keyring,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDetails> {
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
   // Load attester account
