@@ -48,7 +48,7 @@ export async function attestCredential(
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
       const address =

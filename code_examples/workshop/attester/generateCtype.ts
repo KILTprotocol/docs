@@ -52,7 +52,7 @@ export async function ensureStoredCtype(
 if (require.main === module) {
   envConfig()
   Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
-    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
     const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
       return async ({ data, alg, publicKey }) => {
         const address =
