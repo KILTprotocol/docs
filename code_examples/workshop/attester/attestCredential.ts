@@ -15,9 +15,6 @@ export async function attestCredential(
   request: Kilt.ICredential,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
-  // Init
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
   const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
@@ -48,7 +45,7 @@ export async function attestCredential(
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
   const signCallback = signCallbackForKeyring(keyring)
 
   // first the claimer
