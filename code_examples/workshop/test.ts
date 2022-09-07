@@ -1,6 +1,10 @@
 import { config as envConfig } from 'dotenv'
 
-import { blake2AsU8a, cryptoWaitReady } from '@polkadot/util-crypto'
+import {
+  blake2AsU8a,
+  cryptoWaitReady,
+  encodeAddress
+} from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
 
@@ -20,7 +24,8 @@ async function testWorkshop() {
   envConfig()
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
   await Kilt.init({ address: process.env.WSS_ADDRESS })
-  // Although cryptoWaitReady() is called from within Kilt.init, it is not properly awaited
+  // Kilt.init calls cryptoWaitReady() internally, but if a different version of polkadot is used, then manual waiting must be called
+  // FIXME: remove this once the same version of @polkadot/wasm-crypto is used in @polkadot/api and in the SDK
   await cryptoWaitReady()
 
   const keyring = new Keyring({
@@ -29,8 +34,9 @@ async function testWorkshop() {
   })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
-      const address =
+      const address = encodeAddress(
         alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      )
       const key = keyring.getPair(address)
 
       return { data: key.sign(data), alg }
@@ -68,9 +74,11 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
-  await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
-    .then((tx) => Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount))
-    .then(() => console.log('Successfully transferred tokens'))
+  await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0).then(
+    (tx) => Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+  )
+
+  console.log('Successfully transferred tokens')
 
   // create attester did & ensure ctype
   const attesterDid = await createFullDid(

@@ -1,7 +1,7 @@
-import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
 
-import { mnemonicGenerate, cryptoWaitReady } from '@polkadot/util-crypto'
+import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
+import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -28,7 +28,10 @@ export async function getAccount(
 if (require.main === module) {
   envConfig()
   cryptoWaitReady().then(() => {
-    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
+    const keyring = new Keyring({
+      ss58Format: Kilt.Utils.ss58Format,
+      type: 'sr25519'
+    })
 
     generateAccount(keyring)
       .catch((e) => {
