@@ -1,5 +1,4 @@
 import { ApiPromise, Keyring } from '@polkadot/api'
-import { blake2AsU8a, randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -14,6 +13,8 @@ import { migrateLightDid } from './03_light_did_migrate'
 import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
 import { updateFullDid } from './06_full_did_update'
 
+import { signCallbackForKeyring } from '../utils'
+
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
@@ -22,30 +23,16 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running DID flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({
-    data,
-    alg,
-    publicKey
-  }) => {
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address =
-      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
-    const key = keyring.getPair(address)
-
-    return { data: key.sign(data), alg }
-  }
 
   console.log('1 did) Create simple light DID')
-  let randomSeed = randomAsU8a(32)
-  const simpleLightDid = await createSimpleLightDid(keyring, randomSeed)
-  randomSeed = randomAsU8a(32)
+  const simpleLightDid = await createSimpleLightDid(keyring)
   console.log('2 did) Create complete light DID')
-  await createCompleteLightDid(keyring, randomSeed)
+  await createCompleteLightDid(keyring)
   console.log('3 did) Migrate first light DID to full DID')
   await migrateLightDid(
     simpleLightDid,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log('4 did) Create simple full DID')
@@ -53,7 +40,7 @@ export async function runAll(
     keyring,
     submitterAccount,
     undefined,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log('5 did) Create complete full DID')
@@ -61,7 +48,7 @@ export async function runAll(
     keyring,
     submitterAccount,
     undefined,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log('6 did) Update full DID created at step 5')
@@ -69,7 +56,7 @@ export async function runAll(
     keyring,
     createdCompleteFullDid,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log(
@@ -79,7 +66,7 @@ export async function runAll(
     api,
     submitterAccount,
     updatedFullDid,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log(
@@ -88,13 +75,13 @@ export async function runAll(
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
     'test-payload',
-    signCallback
+    signCallbackForKeyring(keyring)
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
     submitterAccount,
     createdSimpleFullDid,
-    signCallback,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log('10 did) Delete full DID created at step 5')
