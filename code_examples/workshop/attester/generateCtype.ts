@@ -1,5 +1,6 @@
 import { config as envConfig } from 'dotenv'
 
+import { blake2AsU8a, cryptoWaitReady } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -8,8 +9,6 @@ import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 import { getCtypeSchema } from './ctypeSchema'
 import { getFullDid } from './generateDid'
-
-import { signCallbackForKeyring } from '../utils'
 
 export async function ensureStoredCtype(
   keyring: Keyring,
@@ -52,13 +51,23 @@ export async function ensureStoredCtype(
 // don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const signCallback = signCallbackForKeyring(keyring)
+  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
+    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+    const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+      return async ({ data, alg, publicKey }) => {
+        const address =
+          alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+        const key = keyring.getPair(address)
 
-  ensureStoredCtype(keyring, signCallback)
-    .catch((e) => {
-      console.log('Error while checking on chain ctype', e)
-      process.exit(1)
-    })
-    .then(() => process.exit())
+        return { data: key.sign(data), alg }
+      }
+    }
+
+    ensureStoredCtype(keyring, signCallbackForKeyring(keyring))
+      .catch((e) => {
+        console.log('Error while checking on chain ctype', e)
+        process.exit(1)
+      })
+      .then(() => process.exit())
+  })
 }
