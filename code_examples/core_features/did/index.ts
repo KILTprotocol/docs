@@ -17,13 +17,19 @@ import { updateFullDid } from './06_full_did_update'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running DID flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({ data, alg, publicKey }) => {
+  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({
+    data,
+    alg,
+    publicKey
+  }) => {
     // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+    const address =
+      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
     const key = keyring.getPair(address)
 
     return { data: key.sign(data), alg }
@@ -36,7 +42,12 @@ export async function runAll(
   console.log('2 did) Create complete light DID')
   await createCompleteLightDid(keyring, randomSeed)
   console.log('3 did) Migrate first light DID to full DID')
-  await migrateLightDid(simpleLightDid, submitterAccount, signCallback, resolveOn)
+  await migrateLightDid(
+    simpleLightDid,
+    submitterAccount,
+    signCallback,
+    resolveOn
+  )
   console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
     keyring,

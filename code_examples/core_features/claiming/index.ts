@@ -18,13 +18,19 @@ import { verifyPresentation } from './05_verify_presentation'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<void> {
   console.log('Running claiming flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({ data, alg, publicKey }) => {
+  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({
+    data,
+    alg,
+    publicKey
+  }) => {
     // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+    const address =
+      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
     const key = keyring.getPair(address)
 
     return { data: key.sign(data), alg }

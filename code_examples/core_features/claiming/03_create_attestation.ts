@@ -5,7 +5,8 @@ export async function createAttestation(
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain.IS_FINALIZED
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
+    .IS_FINALIZED
 ): Promise<void> {
   // Create an attestation object and write its root hash on the chain
   // using the provided attester's full DID.
@@ -15,10 +16,15 @@ export async function createAttestation(
   )
 
   // Write the attestation info on the chain.
-  const attestationTx = await Kilt.Attestation.getStoreTx(attestation)
-    .then((tx) =>
-      Kilt.Did.authorizeExtrinsic(attester, tx, signCallback, submitterAccount.address)
-    )
+  const attestationTx = await Kilt.Attestation.getStoreTx(attestation).then(
+    (tx) =>
+      Kilt.Did.authorizeExtrinsic(
+        attester,
+        tx,
+        signCallback,
+        submitterAccount.address
+      )
+  )
   await Kilt.Blockchain.signAndSubmitTx(attestationTx, submitterAccount, {
     resolveOn
   })
