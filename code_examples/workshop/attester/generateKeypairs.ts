@@ -1,45 +1,40 @@
+import { Keyring } from '@polkadot/api'
+import { randomAsHex } from '@polkadot/util-crypto'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function generateKeypairs(
-  keystore: Kilt.Did.DemoKeystore,
-  mnemonic?: string
-): Promise<{
+export function generateKeypairs(
+  keyring: Keyring,
+  mnemonic: string = randomAsHex(32)
+): {
   authentication: Kilt.NewDidVerificationKey
   keyAgreement: Kilt.NewDidEncryptionKey
   assertionMethod: Kilt.NewDidVerificationKey
   capabilityDelegation: Kilt.NewDidVerificationKey
-}> {
+} {
   // signing keypair
-  const signing = await keystore.generateKeypair({
-    alg: Kilt.Did.SigningAlgorithms.Sr25519,
-    seed: mnemonic
-  })
+  const { publicKey: signingPk } = keyring.addFromMnemonic(mnemonic, {}, 'sr25519')
 
   // encryption keypair
-  const encryption = await keystore.generateKeypair({
-    alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
-    seed: mnemonic
-  })
+  const { publicKey: encryptionPk } = keyring.addFromMnemonic(mnemonic, {})
 
   // build the Attester keys object
-  const keys = {
+  return {
     authentication: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
+      publicKey: signingPk,
+      type: 'sr25519'
     },
     keyAgreement: {
-      publicKey: encryption.publicKey,
-      type: Kilt.EncryptionKeyType.X25519
-    },
-    capabilityDelegation: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
+      publicKey: encryptionPk,
+      type: 'x25519'
     },
     assertionMethod: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
-    }
+      publicKey: signingPk,
+      type: 'sr25519'
+    },
+    capabilityDelegation: {
+      publicKey: signingPk,
+      type: 'sr25519'
+    },
   }
-
-  return keys
 }

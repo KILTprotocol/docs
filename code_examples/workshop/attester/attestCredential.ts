@@ -1,68 +1,68 @@
+import { Keyring } from '@polkadot/api'
+
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateCredential } from '../claimer/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
-import { generateRequest } from '../claimer/generateRequest'
 import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
+import { signCallbackForKeyring } from '../utils'
 
-export async function attestClaim(
-  request: Kilt.IRequestForAttestation
-): Promise<Kilt.IAttestation> {
+export async function attestCredential(
+  keyring: Keyring,
+  request: Kilt.ICredential,
+  signCallback: Kilt.SignCallback
+): Promise<void> {
   // Init
   await Kilt.init({ address: process.env.WSS_ADDRESS })
 
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
   const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
-  const account = await getAccount(mnemonic)
-  const keystore = new Kilt.Did.DemoKeystore()
-  await generateKeypairs(keystore, mnemonic)
+  const account = await getAccount(keyring, mnemonic)
+  await generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(attesterDid)
 
   // build the attestation object
-  const attestation = Kilt.Attestation.fromRequestAndDid(request, fullDid.uri)
+  const attestation = Kilt.Attestation.fromCredentialAndDid(request, fullDid.uri)
 
   // check the request content and deny based on your business logic.
   // e.g., verify age with other credentials (birth certificate, passport, ...)
 
   // form tx and authorized extrinsic
-  const tx = await attestation.getStoreTx()
-  const extrinsic = await fullDid.authorizeExtrinsic(
+  const tx = await Kilt.Attestation.getStoreTx(attestation)
+  const extrinsic = await Kilt.Did.authorizeExtrinsic(
+    fullDid,
     tx,
-    keystore,
+    signCallback,
     account.address
   )
 
   // write to chain
-  console.log('Attester -> submit attestation...')
-  await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
-    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
+  console.log('Attester -> create attestation...')
+  await Kilt.Blockchain.signAndSubmitTx(extrinsic, account, {
+    resolveOn: Kilt.Blockchain.IS_FINALIZED
   })
-
-  return attestation
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const signCallback = signCallbackForKeyring(keyring)
+
   // first the claimer
-  const request = await generateRequest({
+  const credential = await generateCredential(keyring, {
     age: 27,
     name: 'Mia Musterfrau'
-  })
+  }, signCallback)
 
   // send the request to the attester 🕊
 
   // the attester checks the attributes and issues an attestation
-  const attestation = await attestClaim(request)
+  await attestCredential(keyring, credential, signCallback)
 
   // send the attestation back to the claimer 🕊
-
-  // build the credential and return it
-  const credential = Kilt.Credential.fromRequestAndAttestation(
-    request,
-    attestation
-  )
 
   return credential
 }

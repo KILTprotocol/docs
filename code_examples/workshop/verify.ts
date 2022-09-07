@@ -1,5 +1,8 @@
 import { config as envConfig } from 'dotenv'
 
+import { Keyring } from '@polkadot/api'
+import { blake2AsU8a } from '@polkadot/util-crypto'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createPresentation } from './claimer/createPresentation'
@@ -14,15 +17,12 @@ async function verifyPresentation(
   presentation: Kilt.ICredential,
   challenge: string
 ): Promise<boolean> {
-  const credential = new Kilt.Credential(presentation)
-
-  const isValid = await credential.verify({ challenge })
-  const isRevoked = credential.attestation.revoked
-
-  // Custom logic
-  // e.g., only allow access if age >= 18
-
-  return isValid && !isRevoked
+  try {
+    await Kilt.Credential.verify(presentation, { challenge })
+  } catch {
+    return false
+  }
+  return Kilt.Attestation.checkValidity(presentation.rootHash)
 }
 
 export async function verificationFlow() {
@@ -30,14 +30,25 @@ export async function verificationFlow() {
 
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
-  const keystore = new Kilt.Did.DemoKeystore()
-  const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
-  const lightDid = Kilt.Did.LightDidDetails.fromDetails({
-    ...keys,
-    authenticationKey: {
-      publicKey: keys.authenticationKey.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'ed25519' })
+  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+    return async ({ data, alg, publicKey }) => {
+      const address = alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      const key = keyring.getPair(address)
+
+      return { data: key.sign(data), alg }
     }
+  }
+  const { authenticationKey, encryptionKey } = await generateKeypairs(keyring, process.env.CLAIMER_MNEMONIC)
+  const lightDid = Kilt.Did.createLightDidDetails({
+    authentication: [{
+      publicKey: authenticationKey.publicKey,
+      type: 'ed25519'
+    }],
+    keyAgreement: [{
+      publicKey: encryptionKey.publicKey,
+      type: 'x25519'
+    }]
   })
 
   // Verifier sends a unique challenge to the claimer 🕊
@@ -47,7 +58,7 @@ export async function verificationFlow() {
   const presentation = await createPresentation(
     credential,
     lightDid,
-    keystore,
+    signCallbackForKeyring(keyring),
     challenge
   )
 

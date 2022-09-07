@@ -1,40 +1,49 @@
 import { config as envConfig } from 'dotenv'
 
+import { Keyring } from '@polkadot/api'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 
-export async function createFullDid(): Promise<Kilt.Did.FullDidDetails> {
+import { signCallbackForKeyring } from '../utils'
+
+export async function createFullDid(keyring: Keyring, signCallback: Kilt.SignCallback): Promise<Kilt.DidDetails> {
   await Kilt.init({ address: process.env.WSS_ADDRESS })
-  const { api } = await Kilt.connect()
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
-  // Init keystore and load attester account
-  const account = await getAccount(mnemonic)
-  const keystore = new Kilt.Did.DemoKeystore()
+  // Load attester account
+  const account = await getAccount(keyring, mnemonic)
 
   // generate the keypairs
   // we are using the same mnemonic as for the attester account, but we could also use a new secret
-  const keys = await generateKeypairs(keystore, mnemonic)
+  const { authentication, keyAgreement, assertionMethod, capabilityDelegation } = await generateKeypairs(keyring, mnemonic)
 
   // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
-  return new Kilt.Did.FullDidCreationBuilder(api, keys.authentication)
-    .addEncryptionKey(keys.keyAgreement)
-    .setAttestationKey(keys.assertionMethod)
-    .setDelegationKey(keys.capabilityDelegation)
-    .buildAndSubmit(keystore, account.address, async (creationTx) => {
-      await Kilt.BlockchainUtils.signAndSubmitTx(creationTx, account, {
-        resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
-      })
-    })
+  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx({
+    authentication: [authentication],
+    keyAgreement: [keyAgreement],
+    assertionMethod: [assertionMethod],
+    capabilityDelegation: [capabilityDelegation]
+  }, account.address, signCallback)
+
+  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
+
+  const fullDid = await Kilt.Did.query(Kilt.Did.Utils.getFullDidUriFromKey(authentication))
+
+  if (!fullDid) {
+    throw 'Full DID was not successfully created.'
+  }
+
+  return fullDid
 }
 
 export async function getFullDid(
   didUri: Kilt.DidUri
-): Promise<Kilt.Did.FullDidDetails> {
+): Promise<Kilt.DidDetails> {
   // make sure the did is already on chain
-  const onChain = await Kilt.Did.FullDidDetails.fromChainInfo(didUri)
+  const onChain = await Kilt.Did.query(didUri)
   if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
   return onChain
 }
@@ -42,7 +51,9 @@ export async function getFullDid(
 // don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
-  createFullDid()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+
+  createFullDid(keyring, signCallbackForKeyring(keyring))
     .catch((e) => {
       console.log('Error while creating attester DID', e)
       process.exit(1)
