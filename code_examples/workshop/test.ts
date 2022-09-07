@@ -1,8 +1,8 @@
 import { config as envConfig } from 'dotenv'
 
+import { blake2AsU8a, cryptoWaitReady } from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
-import { cryptoWaitReady } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -13,8 +13,6 @@ import { generateAccount } from './attester/generateAccount'
 import { generateCredential } from './claimer/generateCredential'
 import { generateLightDid } from './claimer/generateLightDid'
 import { verificationFlow } from './verify'
-
-import { signCallbackForKeyring } from './utils'
 
 const SEED_ENV = 'FAUCET_SEED'
 
@@ -29,6 +27,15 @@ async function testWorkshop() {
     ss58Format: Kilt.Utils.ss58Format,
     type: 'sr25519'
   })
+  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+    return async ({ data, alg, publicKey }) => {
+      const address =
+        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      const key = keyring.getPair(address)
+
+      return { data: key.sign(data), alg }
+    }
+  }
 
   // setup attester account
   const { account: attesterAccount, mnemonic: attesterMnemonic } =
