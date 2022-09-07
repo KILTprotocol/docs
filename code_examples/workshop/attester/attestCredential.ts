@@ -1,6 +1,7 @@
-import { Keyring } from '@polkadot/api'
-
 import { config as envConfig } from 'dotenv'
+
+import { Keyring } from '@polkadot/api'
+import { blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -8,7 +9,6 @@ import { generateCredential } from '../claimer/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
-import { signCallbackForKeyring } from '../utils'
 
 export async function attestCredential(
   keyring: Keyring,
@@ -48,11 +48,16 @@ export async function attestCredential(
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
-  const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
-  })
-  const signCallback = signCallbackForKeyring(keyring)
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+    return async ({ data, alg, publicKey }) => {
+      const address =
+        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      const key = keyring.getPair(address)
+
+      return { data: key.sign(data), alg }
+    }
+  }
 
   // first the claimer
   const credential = await generateCredential(
@@ -61,15 +66,15 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
       age: 27,
       name: 'Mia Musterfrau'
     },
-    signCallback
+    signCallbackForKeyring(keyring)
   )
 
-  // send the request to the attester 🕊
+  // send the request to the attester 
 
   // the attester checks the attributes and issues an attestation
-  await attestCredential(keyring, credential, signCallback)
+  await attestCredential(keyring, credential, signCallbackForKeyring(keyring))
 
-  // send the attestation back to the claimer 🕊
+  // send the attestation back to the claimer 
 
   return credential
 }
@@ -84,7 +89,7 @@ if (require.main === module) {
     })
     .then((c) => {
       console.log('The claimer build their credential and now has to store it.')
-      console.log('⚠️  add the following to your .env file. ⚠️')
+      console.log('  add the following to your .env file. ')
       console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
       process.exit()
     })
