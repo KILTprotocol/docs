@@ -1,30 +1,30 @@
 import { config as envConfig } from 'dotenv'
 
+import { Keyring } from '@polkadot/api'
 import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 
-export async function generateLightDid(): Promise<{
-  lightDid: Kilt.Did.LightDidDetails
+export async function generateLightDid(keyring: Keyring): Promise<{
+  lightDid: Kilt.DidDetails
   mnemonic: string
 }> {
-  // init
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-
   // create secret and DID public keys
-  const keystore = new Kilt.Did.DemoKeystore()
   const mnemonic = mnemonicGenerate()
-  const keys = await generateKeypairs(keystore, mnemonic)
+  const { authenticationKey, encryptionKey } = await generateKeypairs(keyring, mnemonic)
 
   // create the DID
-  const lightDid = Kilt.Did.LightDidDetails.fromDetails({
-    ...keys,
-    authenticationKey: {
-      publicKey: keys.authenticationKey.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
-    }
+  const lightDid = Kilt.Did.createLightDidDetails({
+    authentication: [{
+      publicKey: authenticationKey.publicKey,
+      type: 'sr25519'
+    }],
+    keyAgreement: [{
+      publicKey: encryptionKey.publicKey,
+      type: 'x25519'
+    }]
   })
 
   return {
@@ -36,7 +36,9 @@ export async function generateLightDid(): Promise<{
 // don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
-  generateLightDid()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+
+  generateLightDid(keyring)
     .catch((e) => {
       console.log('Error while setting up claimer DID', e)
       process.exit(1)
