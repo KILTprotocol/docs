@@ -38,7 +38,7 @@ export function generateKeypairs(
     },
     capabilityDelegation: {
       publicKey: signingPk,
-      type: 'ecdsa'
+      type: 'sr25519'
     }
   }
 }

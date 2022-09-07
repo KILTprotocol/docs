@@ -1,7 +1,7 @@
 import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
 
-import { mnemonicGenerate } from '@polkadot/util-crypto'
+import { mnemonicGenerate, cryptoWaitReady } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -27,16 +27,18 @@ export async function getAccount(
 // don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  cryptoWaitReady().then(() => {
+    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
 
-  generateAccount(keyring)
-    .catch((e) => {
-      console.log('Error while setting up attester account', e)
-      process.exit(1)
-    })
-    .then(({ mnemonic, account }) => {
-      console.log('save to mnemonic and address to .env to continue!\n\n')
-      console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
-      console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
-    })
+    generateAccount(keyring)
+      .catch((e) => {
+        console.log('Error while setting up attester account', e)
+        process.exit(1)
+      })
+      .then(({ mnemonic, account }) => {
+        console.log('save to mnemonic and address to .env to continue!\n\n')
+        console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
+        console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
+      })
+  })
 }

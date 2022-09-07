@@ -1,13 +1,12 @@
 import { config as envConfig } from 'dotenv'
 
 import { Keyring } from '@polkadot/api'
+import { blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
-
-import { signCallbackForKeyring } from '../utils'
 
 export async function createFullDid(
   keyring: Keyring,
@@ -64,16 +63,27 @@ export async function getFullDid(
 // don't execute if this is imported by another file
 if (require.main === module) {
   envConfig()
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
+    const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+    const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+      return async ({ data, alg, publicKey }) => {
+        const address =
+          alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+        const key = keyring.getPair(address)
 
-  createFullDid(keyring, signCallbackForKeyring(keyring))
-    .catch((e) => {
-      console.log('Error while creating attester DID', e)
-      process.exit(1)
-    })
-    .then((did) => {
-      console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_URI=${did.uri}\n`)
-      process.exit()
-    })
+        return { data: key.sign(data), alg }
+      }
+    }
+
+    createFullDid(keyring, signCallbackForKeyring(keyring))
+      .catch((e) => {
+        console.log('Error while creating attester DID', e)
+        process.exit(1)
+      })
+      .then((did) => {
+        console.log('\nsave following to .env to continue\n')
+        console.error(`ATTESTER_DID_URI=${did.uri}\n`)
+        process.exit()
+      })
+  })
 }

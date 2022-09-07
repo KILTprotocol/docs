@@ -1,13 +1,13 @@
-import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
+
+import { Keyring } from '@polkadot/api'
+import { blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createClaim } from './createClaim'
 import { generateKeypairs } from './generateKeypairs'
 import { getCtypeSchema } from '../attester/ctypeSchema'
-
-import { signCallbackForKeyring } from '../utils'
 
 // create and return a RequestForAttestation from claim
 async function credentialFromClaim(
@@ -68,6 +68,15 @@ export async function generateCredential(
 if (require.main === module) {
   envConfig()
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
+    return async ({ data, alg, publicKey }) => {
+      const address =
+        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      const key = keyring.getPair(address)
+
+      return { data: key.sign(data), alg }
+    }
+  }
 
   generateCredential(
     keyring,
