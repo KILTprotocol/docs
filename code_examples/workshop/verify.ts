@@ -30,25 +30,36 @@ export async function verificationFlow() {
 
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'ed25519' })
+  const keyring = new Keyring({
+    ss58Format: Kilt.Utils.ss58Format,
+    type: 'ed25519'
+  })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
-      const address = alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+      const address =
+        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
       const key = keyring.getPair(address)
 
       return { data: key.sign(data), alg }
     }
   }
-  const { authenticationKey, encryptionKey } = await generateKeypairs(keyring, process.env.CLAIMER_MNEMONIC)
+  const { authenticationKey, encryptionKey } = await generateKeypairs(
+    keyring,
+    process.env.CLAIMER_MNEMONIC
+  )
   const lightDid = Kilt.Did.createLightDidDetails({
-    authentication: [{
-      publicKey: authenticationKey.publicKey,
-      type: 'ed25519'
-    }],
-    keyAgreement: [{
-      publicKey: encryptionKey.publicKey,
-      type: 'x25519'
-    }]
+    authentication: [
+      {
+        publicKey: authenticationKey.publicKey,
+        type: 'ed25519'
+      }
+    ],
+    keyAgreement: [
+      {
+        publicKey: encryptionKey.publicKey,
+        type: 'x25519'
+      }
+    ]
   })
 
   // Verifier sends a unique challenge to the claimer 🕊

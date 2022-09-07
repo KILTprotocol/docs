@@ -17,7 +17,10 @@ export async function generateAccount(keyring: Keyring): Promise<{
   return { account, mnemonic }
 }
 
-export async function getAccount(keyring: Keyring, mnemonic: string): Promise<Kilt.KiltKeyringPair> {
+export async function getAccount(
+  keyring: Keyring,
+  mnemonic: string
+): Promise<Kilt.KiltKeyringPair> {
   return keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
 }
 

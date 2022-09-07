@@ -13,18 +13,25 @@ export async function generateLightDid(keyring: Keyring): Promise<{
 }> {
   // create secret and DID public keys
   const mnemonic = mnemonicGenerate()
-  const { authenticationKey, encryptionKey } = await generateKeypairs(keyring, mnemonic)
+  const { authenticationKey, encryptionKey } = await generateKeypairs(
+    keyring,
+    mnemonic
+  )
 
   // create the DID
   const lightDid = Kilt.Did.createLightDidDetails({
-    authentication: [{
-      publicKey: authenticationKey.publicKey,
-      type: 'sr25519'
-    }],
-    keyAgreement: [{
-      publicKey: encryptionKey.publicKey,
-      type: 'x25519'
-    }]
+    authentication: [
+      {
+        publicKey: authenticationKey.publicKey,
+        type: 'sr25519'
+      }
+    ],
+    keyAgreement: [
+      {
+        publicKey: encryptionKey.publicKey,
+        type: 'x25519'
+      }
+    ]
   })
 
   return {

@@ -25,7 +25,10 @@ async function testWorkshop() {
   // Although cryptoWaitReady() is called from within Kilt.init, it is not properly awaited
   await cryptoWaitReady()
 
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format, type: 'sr25519' })
+  const keyring = new Keyring({
+    ss58Format: Kilt.Utils.ss58Format,
+    type: 'sr25519'
+  })
 
   // setup attester account
   const { account: attesterAccount, mnemonic: attesterMnemonic } =
@@ -39,10 +42,14 @@ async function testWorkshop() {
   process.env.CLAIMER_DID_URI = claimerDid.uri
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
-  await generateCredential(keyring, {
-    age: 27,
-    name: 'Karl'
-  }, signCallbackForKeyring(keyring))
+  await generateCredential(
+    keyring,
+    {
+      age: 27,
+      name: 'Karl'
+    },
+    signCallbackForKeyring(keyring)
+  )
 
   const faucetSeed = process.env[SEED_ENV]
   if (!faucetSeed) {
@@ -59,7 +66,10 @@ async function testWorkshop() {
     .then(() => console.log('Successfully transferred tokens'))
 
   // create attester did & ensure ctype
-  const attesterDid = await createFullDid(keyring, signCallbackForKeyring(keyring))
+  const attesterDid = await createFullDid(
+    keyring,
+    signCallbackForKeyring(keyring)
+  )
   process.env.ATTESTER_DID_URI = attesterDid.uri
 
   await ensureStoredCtype(keyring, signCallbackForKeyring(keyring))

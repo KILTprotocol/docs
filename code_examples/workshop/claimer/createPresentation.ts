@@ -7,5 +7,10 @@ export async function createPresentation(
   challenge?: string
 ): Promise<Kilt.ICredential> {
   // creates the presentation from credential, did and challenge
-  return Kilt.Credential.createPresentation({ credential, claimerDid: lightDid, signCallback, challenge })
+  return Kilt.Credential.createPresentation({
+    credential,
+    claimerDid: lightDid,
+    signCallback,
+    challenge
+  })
 }
