@@ -9,8 +9,6 @@ export async function generateAccount(keyring: Keyring): Promise<{
   account: Kilt.KiltKeyringPair
   mnemonic: string
 }> {
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-
   // use the mnemonic from .env or make a new one
   const mnemonic = mnemonicGenerate()
   const account = keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
@@ -20,7 +18,6 @@ export async function generateAccount(keyring: Keyring): Promise<{
 }
 
 export async function getAccount(keyring: Keyring, mnemonic: string): Promise<Kilt.KiltKeyringPair> {
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
   return keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
 }
 
