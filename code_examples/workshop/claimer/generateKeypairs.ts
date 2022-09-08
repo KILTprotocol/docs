@@ -12,21 +12,16 @@ export async function generateKeypairs(
   encryptionKey: Kilt.NewDidEncryptionKey
 }> {
   // signing keypair
-  const { publicKey: signingPk } = await keyring.addFromMnemonic(
+  const authKey = await keyring.addFromMnemonic(
     mnemonic,
-    {},
-    'sr25519'
-  )
+  ) as Kilt.KiltKeyringPair
 
   // encryption keypair
   const { publicKey: encryptionPk } = await keyring.addFromMnemonic(mnemonic)
 
   // build the keys object
   return {
-    authenticationKey: {
-      publicKey: signingPk,
-      type: 'sr25519'
-    },
+    authenticationKey: authKey,
     encryptionKey: {
       publicKey: encryptionPk,
       type: 'x25519'

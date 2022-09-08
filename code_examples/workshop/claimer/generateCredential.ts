@@ -38,18 +38,8 @@ export async function generateCredential(
 
   // create the DID
   const lightDid = Kilt.Did.createLightDidDetails({
-    authentication: [
-      {
-        publicKey: authenticationKey.publicKey,
-        type: 'sr25519'
-      }
-    ],
-    keyAgreement: [
-      {
-        publicKey: encryptionKey.publicKey,
-        type: 'x25519'
-      }
-    ]
+    authentication: [authenticationKey as Kilt.NewLightDidVerificationKey],
+    keyAgreement: [encryptionKey]
   })
 
   // create claim
@@ -67,7 +57,6 @@ if (require.main === module) {
   Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format,
-      type: 'sr25519'
     })
     const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
       return async ({ data, alg, publicKey }) => {

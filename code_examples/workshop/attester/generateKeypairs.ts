@@ -13,32 +13,21 @@ export function generateKeypairs(
   capabilityDelegation: Kilt.NewDidVerificationKey
 } {
   // signing keypair
-  const { publicKey: signingPk } = keyring.addFromMnemonic(
+  const authKey = keyring.addFromMnemonic(
     mnemonic,
-    {},
-    'sr25519'
-  )
+  ) as Kilt.KiltKeyringPair
 
   // encryption keypair
-  const { publicKey: encryptionPk } = keyring.addFromMnemonic(mnemonic, {})
+  const { publicKey: encryptionPk } = keyring.addFromMnemonic(mnemonic)
 
   // build the Attester keys object
   return {
-    authentication: {
-      publicKey: signingPk,
-      type: 'sr25519'
-    },
+    authentication: authKey,
     keyAgreement: {
       publicKey: encryptionPk,
       type: 'x25519'
     },
-    assertionMethod: {
-      publicKey: signingPk,
-      type: 'sr25519'
-    },
-    capabilityDelegation: {
-      publicKey: signingPk,
-      type: 'sr25519'
-    }
+    assertionMethod: authKey,
+    capabilityDelegation: authKey
   }
 }

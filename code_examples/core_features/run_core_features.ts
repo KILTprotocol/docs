@@ -75,7 +75,6 @@ async function main(): Promise<void> {
 
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
   })
   const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
 
@@ -110,6 +109,11 @@ async function main(): Promise<void> {
     runAllDevSetup()
   ])
 }
+
+// Solution 1
+(() => {
+  main()
+})()
 
 main()
   .catch((e) => {

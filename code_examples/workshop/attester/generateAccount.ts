@@ -30,7 +30,6 @@ if (require.main === module) {
   cryptoWaitReady().then(() => {
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format,
-      type: 'sr25519'
     })
 
     generateAccount(keyring)

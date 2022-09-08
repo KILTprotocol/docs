@@ -51,7 +51,7 @@ export async function queryPublishedCredentials(
 
   // For demonstration, only the first endpoint and its first URL are considered.
   const firstCredentialCollectionEndpointUrl =
-    didEndpoints?.at(0)?.serviceEndpoint[0]
+    didEndpoints?.[0]?.serviceEndpoint[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
       `The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`

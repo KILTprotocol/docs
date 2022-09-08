@@ -9,16 +9,11 @@ export async function createSimpleLightDid(
   authenticationSeed: Uint8Array = randomAsU8a(32)
 ): Promise<Kilt.DidDetails> {
   // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
-  const { publicKey } = keyring.addFromSeed(authenticationSeed, {}, 'ed25519')
+  const authKey = keyring.addFromSeed(authenticationSeed) as Kilt.NewLightDidVerificationKey
 
   // Create a light DID from the generated authentication key.
   const lightDID = Kilt.Did.createLightDidDetails({
-    authentication: [
-      {
-        publicKey,
-        type: 'ed25519'
-      }
-    ]
+    authentication: [authKey]
   })
   console.log(lightDID.uri)
 

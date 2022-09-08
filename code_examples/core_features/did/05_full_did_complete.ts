@@ -20,49 +20,28 @@ export async function createCompleteFullDid(
   const delegationSeed = blake2AsU8a(attestationSeed)
 
   // Ask the keyring to generate the new keypairs.
-  const { publicKey: authPublicKey } = keyring.addFromSeed(
+  const authKet = keyring.addFromSeed(
     authenticationSeed,
-    {},
-    'ed25519'
-  )
+  ) as Kilt.KiltKeyringPair
   const { publicKey: encPublicKey } = keyring.addFromSeed(encryptionSeed)
-  const { publicKey: attPublicKey } = keyring.addFromSeed(
+  const attKey = keyring.addFromSeed(
     attestationSeed,
-    {},
-    'sr25519'
-  )
-  const { publicKey: delPublicKey } = keyring.addFromSeed(
+  ) as Kilt.KiltKeyringPair
+  const delKey = keyring.addFromSeed(
     delegationSeed,
-    {},
-    'ecdsa'
-  )
+  ) as Kilt.KiltKeyringPair
 
   const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
     {
-      authentication: [
-        {
-          publicKey: authPublicKey,
-          type: 'ed25519'
-        }
-      ],
+      authentication: [authKet],
       keyAgreement: [
         {
           publicKey: encPublicKey,
           type: 'x25519'
         }
       ],
-      assertionMethod: [
-        {
-          publicKey: attPublicKey,
-          type: 'sr25519'
-        }
-      ],
-      capabilityDelegation: [
-        {
-          publicKey: delPublicKey,
-          type: 'ecdsa'
-        }
-      ],
+      assertionMethod: [attKey],
+      capabilityDelegation: [delKey],
       service: [
         {
           id: '#my-service',
@@ -81,10 +60,7 @@ export async function createCompleteFullDid(
 
   // The new information is fetched from the blockchain and returned.
   const fullDid = await Kilt.Did.query(
-    Kilt.Did.Utils.getFullDidUriFromKey({
-      publicKey: authPublicKey,
-      type: 'ed25519'
-    })
+    Kilt.Did.Utils.getFullDidUriFromKey(authKet)
   )
 
   if (!fullDid) {

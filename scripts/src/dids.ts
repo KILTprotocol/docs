@@ -18,11 +18,9 @@ export async function generateAttesterDid(
 ): Promise<TestDidDetails> {
   const authSeed = Kilt.Utils.Crypto.hashStr('attester-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('attester-enc')
-  const { publicKey: authPk } = keyring.addFromSeed(
+  const authKey = keyring.addFromSeed(
     hexToU8a(authSeed),
-    {},
-    'sr25519'
-  )
+  ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
     hexToU8a(encSeed)
   )
@@ -30,9 +28,8 @@ export async function generateAttesterDid(
   const details: TestDidDetails = {
     authentication: [
       {
-        publicKey: authPk,
-        type: 'sr25519',
-        id: `#${blake2AsHex(authPk)}`
+        ...authKey,
+        id: `#${blake2AsHex(authKey.publicKey)}`
       }
     ],
     keyAgreement: [
@@ -43,10 +40,7 @@ export async function generateAttesterDid(
         secretKey: encSk
       }
     ],
-    uri: Kilt.Did.Utils.getFullDidUriFromKey({
-      publicKey: authPk,
-      type: 'sr25519'
-    })
+    uri: Kilt.Did.Utils.getFullDidUriFromKey(authKey)
   }
 
   attesterDid = details
@@ -59,11 +53,9 @@ export async function generateClaimerDid(
 ): Promise<TestDidDetails> {
   const authSeed = Kilt.Utils.Crypto.hashStr('claimer-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('claimer-enc')
-  const { publicKey: authPk } = keyring.addFromSeed(
+  const authKey = keyring.addFromSeed(
     hexToU8a(authSeed),
-    {},
-    'sr25519'
-  )
+  ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
     hexToU8a(encSeed)
   )
@@ -71,9 +63,8 @@ export async function generateClaimerDid(
   const details: TestDidDetails = {
     authentication: [
       {
-        publicKey: authPk,
-        type: 'sr25519',
-        id: `#${blake2AsHex(authPk)}`
+        ...authKey,
+        id: `#${blake2AsHex(authKey.publicKey)}`
       }
     ],
     keyAgreement: [
@@ -84,10 +75,7 @@ export async function generateClaimerDid(
         secretKey: encSk
       }
     ],
-    uri: Kilt.Did.Utils.getFullDidUriFromKey({
-      publicKey: authPk,
-      type: 'sr25519'
-    })
+    uri: Kilt.Did.Utils.getFullDidUriFromKey(authKey)
   }
 
   claimerDid = details

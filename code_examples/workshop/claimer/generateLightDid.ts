@@ -20,18 +20,8 @@ export async function generateLightDid(keyring: Keyring): Promise<{
 
   // create the DID
   const lightDid = Kilt.Did.createLightDidDetails({
-    authentication: [
-      {
-        publicKey: authenticationKey.publicKey,
-        type: 'sr25519'
-      }
-    ],
-    keyAgreement: [
-      {
-        publicKey: encryptionKey.publicKey,
-        type: 'x25519'
-      }
-    ]
+    authentication: [authenticationKey as Kilt.NewLightDidVerificationKey],
+    keyAgreement: [encryptionKey]
   })
 
   return {
@@ -46,7 +36,6 @@ if (require.main === module) {
   cryptoWaitReady().then(() => {
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format,
-      type: 'sr25519'
     })
 
     generateLightDid(keyring)
