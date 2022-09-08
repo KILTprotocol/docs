@@ -94,7 +94,7 @@ async function testWorkshop() {
   await verificationFlow()
 }
 
-; (async () => {
+;(async () => {
   try {
     await testWorkshop()
     process.exit(0)
