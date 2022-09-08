@@ -1,6 +1,10 @@
 import type { Keyring } from '@polkadot/api'
 
-import { blake2AsHex, blake2AsU8a, naclBoxPairFromSecret } from '@polkadot/util-crypto'
+import {
+  blake2AsHex,
+  blake2AsU8a,
+  naclBoxPairFromSecret
+} from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
