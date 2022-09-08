@@ -1,102 +1,86 @@
-import { encodeAddress } from '@polkadot/util-crypto'
+import type { Keyring } from '@polkadot/api'
+
+import { blake2AsHex, naclBoxPairFromSecret } from '@polkadot/util-crypto'
+import { hexToU8a } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let attesterDid: Kilt.Did.FullDidDetails | undefined
-let claimerDid: Kilt.Did.FullDidDetails | undefined
+let attesterDid: TestDidDetails | undefined
+let claimerDid: TestDidDetails | undefined
+
+// Add the secret encryption key as a property to the elements of the keyAgreement set. Just for testing.
+export type TestDidDetails = Omit<Kilt.DidDetails, 'keyAgreement'> & {
+  keyAgreement: Array<Kilt.DidEncryptionKey & { secretKey: Uint8Array }>
+}
 
 export async function generateAttesterDid(
-  keystore: Kilt.Did.DemoKeystore
-): Promise<Kilt.Did.FullDidDetails> {
-  const kiltAttesterAuthKey: Kilt.DidVerificationKey = await keystore
-    .generateKeypair({
-      alg: Kilt.Did.SigningAlgorithms.Sr25519,
-      seed: Kilt.Utils.Crypto.hashStr('attester-auth')
-    })
-    .then((k) => {
-      return {
-        publicKey: k.publicKey,
-        type: Kilt.VerificationKeyType.Sr25519,
-        id: Kilt.Utils.Crypto.hashStr(k.publicKey)
-      }
-    })
-  const kiltAttesterEncKey: Kilt.DidEncryptionKey = await keystore
-    .generateKeypair({
-      alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
-      seed: Kilt.Utils.Crypto.hashStr('attester-enc')
-    })
-    .then((k) => {
-      return {
-        publicKey: k.publicKey,
-        type: Kilt.EncryptionKeyType.X25519,
-        id: Kilt.Utils.Crypto.hashStr(k.publicKey)
-      }
-    })
-  const kiltAttesterIdentifier: Kilt.IIdentity['address'] = encodeAddress(
-    kiltAttesterAuthKey.publicKey,
-    38
-  )
-  attesterDid = new Kilt.Did.FullDidDetails({
-    identifier: kiltAttesterIdentifier,
-    keys: {
-      [kiltAttesterAuthKey.id]: kiltAttesterAuthKey,
-      [kiltAttesterEncKey.id]: kiltAttesterEncKey
-    },
-    keyRelationships: {
-      authentication: new Set([kiltAttesterAuthKey.id]),
-      keyAgreement: new Set([kiltAttesterEncKey.id])
-    },
-    uri: Kilt.Did.Utils.getKiltDidFromIdentifier(kiltAttesterIdentifier, 'full')
-  })
+  keyring: Keyring
+): Promise<TestDidDetails> {
+  const authSeed = Kilt.Utils.Crypto.hashStr('attester-auth')
+  const encSeed = Kilt.Utils.Crypto.hashStr('attester-enc')
+  const { publicKey: authPk } = keyring.addFromSeed(hexToU8a(authSeed), {}, 'sr25519')
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(hexToU8a(encSeed))
 
-  return attesterDid
+  const details: TestDidDetails = {
+    authentication: [
+      {
+        publicKey: authPk,
+        type: 'sr25519',
+        id: `#${blake2AsHex(authPk)}`
+      }
+    ],
+    keyAgreement: [
+      {
+        publicKey: encPk,
+        type: 'x25519',
+        id: `#${blake2AsHex(encPk)}`,
+        secretKey: encSk
+      }
+    ],
+    uri: Kilt.Did.Utils.getFullDidUriFromKey({
+      publicKey: authPk,
+      type: 'sr25519'
+    })
+  }
+
+  attesterDid = details
+
+  return details
 }
 
 export async function generateClaimerDid(
-  keystore: Kilt.Did.DemoKeystore
-): Promise<Kilt.Did.FullDidDetails> {
-  const kiltClaimerAuthKey: Kilt.DidVerificationKey = await keystore
-    .generateKeypair({
-      alg: Kilt.Did.SigningAlgorithms.Sr25519,
-      seed: Kilt.Utils.Crypto.hashStr('claimer-auth')
-    })
-    .then((k) => {
-      return {
-        publicKey: k.publicKey,
-        type: Kilt.VerificationKeyType.Sr25519,
-        id: Kilt.Utils.Crypto.hashStr(k.publicKey)
-      }
-    })
-  const kiltClaimerEncKey: Kilt.DidEncryptionKey = await keystore
-    .generateKeypair({
-      alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
-      seed: Kilt.Utils.Crypto.hashStr('claimer-enc')
-    })
-    .then((k) => {
-      return {
-        publicKey: k.publicKey,
-        type: Kilt.EncryptionKeyType.X25519,
-        id: Kilt.Utils.Crypto.hashStr(k.publicKey)
-      }
-    })
-  const kiltClaimerIdentifier: Kilt.IIdentity['address'] = encodeAddress(
-    kiltClaimerAuthKey.publicKey,
-    38
-  )
-  claimerDid = new Kilt.Did.FullDidDetails({
-    identifier: kiltClaimerIdentifier,
-    keys: {
-      [kiltClaimerAuthKey.id]: kiltClaimerAuthKey,
-      [kiltClaimerEncKey.id]: kiltClaimerEncKey
-    },
-    keyRelationships: {
-      authentication: new Set([kiltClaimerAuthKey.id]),
-      keyAgreement: new Set([kiltClaimerEncKey.id])
-    },
-    uri: Kilt.Did.Utils.getKiltDidFromIdentifier(kiltClaimerIdentifier, 'full')
-  })
+  keyring: Keyring
+): Promise<TestDidDetails> {
+  const authSeed = Kilt.Utils.Crypto.hashStr('claimer-auth')
+  const encSeed = Kilt.Utils.Crypto.hashStr('claimer-enc')
+  const { publicKey: authPk } = keyring.addFromSeed(hexToU8a(authSeed), {}, 'sr25519')
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(hexToU8a(encSeed))
 
-  return claimerDid
+  const details: TestDidDetails = {
+    authentication: [
+      {
+        publicKey: authPk,
+        type: 'sr25519',
+        id: `#${blake2AsHex(authPk)}`
+      }
+    ],
+    keyAgreement: [
+      {
+        publicKey: encPk,
+        type: 'x25519',
+        id: `#${blake2AsHex(encPk)}`,
+        secretKey: encSk
+      }
+    ],
+    uri: Kilt.Did.Utils.getFullDidUriFromKey({
+      publicKey: authPk,
+      type: 'sr25519'
+    })
+  }
+
+  claimerDid = details
+
+  return details
 }
 
 const resolve = async (
@@ -118,22 +102,33 @@ const resolve = async (
   }
 }
 
-// TODO: This could be improved, not sure if it's worth it.
-export const resolver: Kilt.IDidResolver = {
-  resolve,
-  resolveDoc: resolve,
-  resolveKey: async (didUri: Kilt.DidPublicKey['uri']) => {
-    const { did, fragment } = Kilt.Did.Utils.parseDidUri(didUri)
-    const doc = await resolve(didUri)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const key = doc!.details!.getKey(fragment!)
-    if (!key) return null
-    return {
-      controller: did,
-      uri: didUri,
-      publicKey: key.publicKey,
-      type: key.type
-    }
-  },
-  resolveServiceEndpoint: async () => null
+export const resolveKey: Kilt.DidResolveKey = async (
+  keyUri: Kilt.DidResourceUri
+) => {
+  const { did, fragment: keyId } = Kilt.Did.Utils.parseDidUri(keyUri)
+  if (!keyId) {
+    throw 'keyId must be present when resolving a key'
+  }
+
+  const resolved = await resolve(keyUri)
+  if (!resolved) {
+    return null
+  }
+
+  const { details } = resolved
+  if (!details) {
+    return null
+  }
+
+  const key = Kilt.Did.getKey(details, keyId)
+  if (!key) {
+    return null
+  }
+
+  return {
+    controller: did,
+    id: `${did}${keyId}`,
+    publicKey: key.publicKey,
+    type: key.type
+  }
 }
