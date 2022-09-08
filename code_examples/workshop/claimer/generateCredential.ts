@@ -9,7 +9,7 @@ import { createClaim } from './createClaim'
 import { generateKeypairs } from './generateKeypairs'
 import { getCtypeSchema } from '../attester/ctypeSchema'
 
-// create and return a RequestForAttestation from claim
+// create and return a Credential from claim
 async function credentialFromClaim(
   lightDid: Kilt.DidDocument,
   claim: Kilt.IClaim,
