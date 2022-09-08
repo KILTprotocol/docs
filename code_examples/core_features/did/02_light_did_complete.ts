@@ -8,7 +8,9 @@ export async function createCompleteLightDid(
   keyring: Keyring,
   authenticationSeed: Uint8Array = randomAsU8a(32)
 ): Promise<Kilt.DidDetails> {
-  const authKey = keyring.addFromSeed(authenticationSeed) as Kilt.NewLightDidVerificationKey
+  const authKey = keyring.addFromSeed(
+    authenticationSeed
+  ) as Kilt.NewLightDidVerificationKey
 
   // Generate the encryption key.
   const { publicKey: encPublicKey } = keyring.addFromSeed(randomAsU8a(32))

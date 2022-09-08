@@ -47,7 +47,7 @@ export async function attestCredential(
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
+    ss58Format: Kilt.Utils.ss58Format
   })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
@@ -82,16 +82,19 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  attestingFlow()
-    .catch((e) => {
-      console.log('Error while going throw attesting workflow', e)
-      process.exit(1)
-    })
-    .then((c) => {
+  ;(async () => {
+    envConfig()
+    await Kilt.init({ address: process.env.WSS_ADDRESS })
+
+    try {
+      const c = await attestingFlow()
       console.log('The claimer build their credential and now has to store it.')
       console.log('  add the following to your .env file. ')
       console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)
-      process.exit()
-    })
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while going throw attesting workflow', e)
+      process.exit(1)
+    }
+  })()
 }

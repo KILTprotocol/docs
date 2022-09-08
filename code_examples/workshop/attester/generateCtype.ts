@@ -50,10 +50,11 @@ export async function ensureStoredCtype(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
+  ;(async () => {
+    envConfig()
+    await Kilt.init({ address: process.env.WSS_ADDRESS })
     const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format,
+      ss58Format: Kilt.Utils.ss58Format
     })
     const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
       return async ({ data, alg, publicKey }) => {
@@ -66,11 +67,12 @@ if (require.main === module) {
       }
     }
 
-    ensureStoredCtype(keyring, signCallbackForKeyring(keyring))
-      .catch((e) => {
-        console.log('Error while checking on chain ctype', e)
-        process.exit(1)
-      })
-      .then(() => process.exit())
-  })
+    try {
+      await ensureStoredCtype(keyring, signCallbackForKeyring(keyring))
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while checking on chain ctype', e)
+      process.exit(1)
+    }
+  })()
 }

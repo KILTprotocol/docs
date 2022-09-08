@@ -119,9 +119,12 @@ async function main() {
   console.log('Generation completed successfully!')
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((e) => {
+;(async () => {
+  try {
+    await main()
+    process.exit(0)
+  } catch (e) {
     console.error(e)
     process.exit(1)
-  })
+  }
+})()

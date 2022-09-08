@@ -13,7 +13,9 @@ export async function updateFullDid(
     .IS_FINALIZED
 ): Promise<Kilt.DidDetails> {
   // Ask the keyring to generate a new keypair to use for authentication.
-  const newAuthKey = keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair
+  const newAuthKey = keyring.addFromSeed(
+    randomAsU8a(32)
+  ) as Kilt.KiltKeyringPair
 
   // Create and sign the DID operation to replace the authentication key with the new one generated.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account

@@ -13,7 +13,9 @@ export async function createSimpleFullDid(
     .IS_FINALIZED
 ): Promise<Kilt.DidDetails> {
   // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
-  const authKey = keyring.addFromSeed(authenticationSeed) as Kilt.KiltKeyringPair
+  const authKey = keyring.addFromSeed(
+    authenticationSeed
+  ) as Kilt.KiltKeyringPair
 
   // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
   // The submitter account parameter, ensures that only an entity authorized by the DID subject

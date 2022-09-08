@@ -32,21 +32,22 @@ export async function generateLightDid(keyring: Keyring): Promise<{
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  cryptoWaitReady().then(() => {
+  ;(async () => {
+    envConfig()
+    await cryptoWaitReady()
     const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format,
+      ss58Format: Kilt.Utils.ss58Format
     })
 
-    generateLightDid(keyring)
-      .catch((e) => {
-        console.log('Error while setting up claimer DID', e)
-        process.exit(1)
-      })
-      .then(({ lightDid, mnemonic }) => {
-        console.log('\nsave following to .env to continue\n')
-        console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
-        console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)
-      })
-  })
+    try {
+      const { lightDid, mnemonic } = await generateLightDid(keyring)
+      console.log('\nsave following to .env to continue\n')
+      console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
+      console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while setting up claimer DID', e)
+      process.exit(1)
+    }
+  })()
 }

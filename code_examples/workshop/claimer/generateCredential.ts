@@ -53,10 +53,11 @@ export async function generateCredential(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
+  ;(async () => {
+    envConfig()
+    await Kilt.init({ address: process.env.WSS_ADDRESS })
     const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format,
+      ss58Format: Kilt.Utils.ss58Format
     })
     const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
       return async ({ data, alg, publicKey }) => {
@@ -69,24 +70,23 @@ if (require.main === module) {
       }
     }
 
-    generateCredential(
-      keyring,
-      {
-        age: 28,
-        name: 'Max Mustermann'
-      },
-      signCallbackForKeyring(keyring)
-    )
-      .catch((e) => {
-        console.log('Error while building credential', e)
-        process.exit(1)
-      })
-      .then((request) => {
-        console.log(
-          '⚠️  save this to ./claimer/_credential.json for testing  ⚠️\n\n'
-        )
-        console.log(JSON.stringify(request, null, 2))
-        process.exit()
-      })
-  })
+    try {
+      const request = await generateCredential(
+        keyring,
+        {
+          age: 28,
+          name: 'Max Mustermann'
+        },
+        signCallbackForKeyring(keyring)
+      )
+      console.log(
+        '⚠️  save this to ./claimer/_credential.json for testing  ⚠️\n\n'
+      )
+      console.log(JSON.stringify(request, null, 2))
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while building credential', e)
+      process.exit(1)
+    }
+  })()
 }

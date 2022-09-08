@@ -21,15 +21,11 @@ export async function createCompleteFullDid(
 
   // Ask the keyring to generate the new keypairs.
   const authKet = keyring.addFromSeed(
-    authenticationSeed,
+    authenticationSeed
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPublicKey } = keyring.addFromSeed(encryptionSeed)
-  const attKey = keyring.addFromSeed(
-    attestationSeed,
-  ) as Kilt.KiltKeyringPair
-  const delKey = keyring.addFromSeed(
-    delegationSeed,
-  ) as Kilt.KiltKeyringPair
+  const attKey = keyring.addFromSeed(attestationSeed) as Kilt.KiltKeyringPair
+  const delKey = keyring.addFromSeed(delegationSeed) as Kilt.KiltKeyringPair
 
   const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
     {

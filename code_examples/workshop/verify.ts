@@ -29,7 +29,7 @@ export async function verificationFlow() {
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
+    ss58Format: Kilt.Utils.ss58Format
   })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
@@ -73,15 +73,16 @@ export async function verificationFlow() {
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
-    verificationFlow()
-      .catch((e) => {
-        console.log('Error in the verification flow', e)
-        process.exit(1)
-      })
-      .then(() => {
-        process.exit()
-      })
-  })
+  ;(async () => {
+    envConfig()
+    await Kilt.init({ address: process.env.WSS_ADDRESS })
+
+    try {
+      await verificationFlow()
+      process.exit(0)
+    } catch (e) {
+      console.log('Error in the verification flow', e)
+      process.exit(1)
+    }
+  })()
 }

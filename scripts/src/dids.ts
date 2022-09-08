@@ -19,7 +19,7 @@ export async function generateAttesterDid(
   const authSeed = Kilt.Utils.Crypto.hashStr('attester-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('attester-enc')
   const authKey = keyring.addFromSeed(
-    hexToU8a(authSeed),
+    hexToU8a(authSeed)
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
     hexToU8a(encSeed)
@@ -54,7 +54,7 @@ export async function generateClaimerDid(
   const authSeed = Kilt.Utils.Crypto.hashStr('claimer-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('claimer-enc')
   const authKey = keyring.addFromSeed(
-    hexToU8a(authSeed),
+    hexToU8a(authSeed)
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
     hexToU8a(encSeed)

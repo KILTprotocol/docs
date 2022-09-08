@@ -29,7 +29,7 @@ async function testWorkshop() {
   await cryptoWaitReady()
 
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
+    ss58Format: Kilt.Utils.ss58Format
   })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
@@ -93,11 +93,12 @@ async function testWorkshop() {
   await verificationFlow()
 }
 
-testWorkshop()
-  .catch((e) => {
+;(async () => {
+  try {
+    await testWorkshop()
+    process.exit(0)
+  } catch (e) {
     console.log('Error in the workshop', e)
     process.exit(1)
-  })
-  .then(() => {
-    process.exit()
-  })
+  }
+})()

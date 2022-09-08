@@ -62,10 +62,11 @@ export async function getFullDid(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  Kilt.init({ address: process.env.WSS_ADDRESS }).then(() => {
+  ;(async () => {
+    envConfig()
+    await Kilt.init({ address: process.env.WSS_ADDRESS })
     const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format,
+      ss58Format: Kilt.Utils.ss58Format
     })
     const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
       return async ({ data, alg, publicKey }) => {
@@ -78,15 +79,14 @@ if (require.main === module) {
       }
     }
 
-    createFullDid(keyring, signCallbackForKeyring(keyring))
-      .catch((e) => {
-        console.log('Error while creating attester DID', e)
-        process.exit(1)
-      })
-      .then((did) => {
-        console.log('\nsave following to .env to continue\n')
-        console.error(`ATTESTER_DID_URI=${did.uri}\n`)
-        process.exit()
-      })
-  })
+    try {
+      const did = await createFullDid(keyring, signCallbackForKeyring(keyring))
+      console.log('\nsave following to .env to continue\n')
+      console.error(`ATTESTER_DID_URI=${did.uri}\n`)
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while creating attester DID', e)
+      process.exit(1)
+    }
+  })()
 }
