@@ -8,10 +8,18 @@ export async function claimWeb3Name(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
 ): Promise<void> {
-  const web3NameClaimTx = await Kilt.Did.Web3Names.getClaimTx(name).then((tx) =>
-    Kilt.Did.authorizeExtrinsic(did, tx, signCallback, submitterAccount.address)
+  const web3NameClaimTx = await Kilt.Did.Web3Names.getClaimTx(name)
+  const authorisedWeb3NameClaimTx = await Kilt.Did.authorizeExtrinsic(
+    did,
+    web3NameClaimTx,
+    signCallback,
+    submitterAccount.address
   )
-  await Kilt.Blockchain.signAndSubmitTx(web3NameClaimTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedWeb3NameClaimTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 }

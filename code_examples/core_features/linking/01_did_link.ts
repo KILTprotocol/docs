@@ -23,16 +23,19 @@ export async function linkAccountToDid(
       linkedAccount.address,
       did.uri,
       linkingAccountSignatureGeneration
-    ).then((tx) =>
-      Kilt.Did.authorizeExtrinsic(
-        did,
-        tx,
-        signCallback,
-        submitterAccount.address
-      )
     )
+  const authorisedAccountLinkingTx = await Kilt.Did.authorizeExtrinsic(
+    did,
+    accountLinkingTx,
+    signCallback,
+    submitterAccount.address
+  )
 
-  await Kilt.Blockchain.signAndSubmitTx(accountLinkingTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedAccountLinkingTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 }

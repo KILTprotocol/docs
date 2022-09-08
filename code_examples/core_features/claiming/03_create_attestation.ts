@@ -16,16 +16,18 @@ export async function createAttestation(
   )
 
   // Write the attestation info on the chain.
-  const attestationTx = await Kilt.Attestation.getStoreTx(attestation).then(
-    (tx) =>
-      Kilt.Did.authorizeExtrinsic(
-        attester,
-        tx,
-        signCallback,
-        submitterAccount.address
-      )
+  const attestationTx = await Kilt.Attestation.getStoreTx(attestation)
+  const authorisedAttestationTx = await Kilt.Did.authorizeExtrinsic(
+    attester,
+    attestationTx,
+    signCallback,
+    submitterAccount.address
   )
-  await Kilt.Blockchain.signAndSubmitTx(attestationTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedAttestationTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 }

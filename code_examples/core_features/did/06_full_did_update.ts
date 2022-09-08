@@ -24,19 +24,22 @@ export async function updateFullDid(
       publicKey,
       type: 'sr25519'
     }
-  ).then((tx) =>
-    Kilt.Did.authorizeExtrinsic(
-      fullDid,
-      tx,
-      signCallback,
-      submitterAccount.address
-    )
+  )
+  const authorisedDidUpdateTx = await Kilt.Did.authorizeExtrinsic(
+    fullDid,
+    didUpdateTx,
+    signCallback,
+    submitterAccount.address
   )
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.Blockchain.signAndSubmitTx(didUpdateTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedDidUpdateTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 
   // Get the updated DID Document
   const updatedDidDetails = await Kilt.Did.query(fullDid.uri)

@@ -7,16 +7,18 @@ export async function releaseWeb3Name(
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
 ): Promise<void> {
-  const web3NameReleaseTx = await Kilt.Did.Web3Names.getReleaseByOwnerTx().then(
-    (tx) =>
-      Kilt.Did.authorizeExtrinsic(
-        did,
-        tx,
-        signCallback,
-        submitterAccount.address
-      )
+  const web3NameReleaseTx = await Kilt.Did.Web3Names.getReleaseByOwnerTx()
+  const authorisedWeb3NameReleaseTx = await Kilt.Did.authorizeExtrinsic(
+    did,
+    web3NameReleaseTx,
+    signCallback,
+    submitterAccount.address
   )
-  await Kilt.Blockchain.signAndSubmitTx(web3NameReleaseTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedWeb3NameReleaseTx,
+    submitterAccount,
+    {
+      resolveOn
+    }
+  )
 }
