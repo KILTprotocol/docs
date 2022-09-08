@@ -7,7 +7,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createCompleteLightDid(
   keyring: Keyring,
   authenticationSeed: Uint8Array = randomAsU8a(32)
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   const authKey = keyring.addFromSeed(
     authenticationSeed
   ) as Kilt.NewLightDidVerificationKey
@@ -24,7 +24,7 @@ export async function createCompleteLightDid(
   ]
 
   // Create the KILT light DID with the information generated.
-  const lightDID = Kilt.Did.createLightDidDetails({
+  const lightDID = Kilt.Did.createLightDidDocument({
     authentication: [authKey],
     keyAgreement: [
       {

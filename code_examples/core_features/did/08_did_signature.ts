@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateAndVerifyDidAuthenticationSignature(
-  did: Kilt.DidDetails,
+  did: Kilt.DidDocument,
   payload: string | Uint8Array,
   signCallback: Kilt.SignCallback
 ): Promise<void> {

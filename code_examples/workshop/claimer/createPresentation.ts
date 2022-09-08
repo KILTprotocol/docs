@@ -2,7 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createPresentation(
   credential: Kilt.ICredential,
-  lightDid: Kilt.DidDetails,
+  lightDid: Kilt.DidDocument,
   signCallback: Kilt.SignCallback,
   challenge?: string
 ): Promise<Kilt.ICredential> {

@@ -11,7 +11,7 @@ import { getAccount } from './generateAccount'
 export async function createFullDid(
   keyring: Keyring,
   signCallback: Kilt.SignCallback
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
   // Load attester account
@@ -53,7 +53,7 @@ export async function createFullDid(
 
 export async function getFullDid(
   didUri: Kilt.DidUri
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   // make sure the did is already on chain
   const onChain = await Kilt.Did.query(didUri)
   if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
@@ -62,9 +62,9 @@ export async function getFullDid(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  ;(async () => {
+  ; (async () => {
     envConfig()
-    await Kilt.init({ address: process.env.WSS_ADDRESS })
+    await Kilt.connect(process.env.WSS_ADDRESS as string)
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format
     })

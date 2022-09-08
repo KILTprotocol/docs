@@ -23,7 +23,7 @@ function getRandomCType(): Kilt.ICType {
 export async function batchCTypeCreationExtrinsics(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  fullDid: Kilt.DidDetails,
+  fullDid: Kilt.DidDocument,
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED

@@ -11,7 +11,7 @@ export async function createCompleteFullDid(
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   // Create the encryption key seed by hasing the provided authentication seed.
   const encryptionSeed = blake2AsU8a(authenticationSeed)
   // Create the attestation key seed by hasing the generated encryption key seed.

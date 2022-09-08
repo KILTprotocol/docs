@@ -1,12 +1,12 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function migrateLightDid(
-  lightDid: Kilt.DidDetails,
+  lightDid: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   // Generate the DID migration extrinsic.
   const migrationTx = await Kilt.Did.Chain.getStoreTx(
     lightDid,

@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function releaseWeb3Name(
-  did: Kilt.DidDetails,
+  did: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain

@@ -11,7 +11,7 @@
     "test": "ts-node test.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.29.0-48",
+    "@kiltprotocol/sdk-js": "0.29.0-52",
     "dotenv": "^16.0.0"
   },
   "devDependencies": {

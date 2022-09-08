@@ -47,7 +47,7 @@ export async function verificationFlow() {
     keyring,
     process.env.CLAIMER_MNEMONIC
   )
-  const lightDid = Kilt.Did.createLightDidDetails({
+  const lightDid = Kilt.Did.createLightDidDocument({
     authentication: [authenticationKey as Kilt.NewLightDidVerificationKey],
     keyAgreement: [encryptionKey]
   })
@@ -75,9 +75,9 @@ export async function verificationFlow() {
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  ;(async () => {
+  ; (async () => {
     envConfig()
-    await Kilt.init({ address: process.env.WSS_ADDRESS })
+    await Kilt.connect(process.env.WSS_ADDRESS as string)
 
     try {
       await verificationFlow()

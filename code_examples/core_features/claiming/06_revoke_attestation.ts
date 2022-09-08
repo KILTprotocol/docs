@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function revokeCredential(
-  attester: Kilt.DidDetails,
+  attester: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential,

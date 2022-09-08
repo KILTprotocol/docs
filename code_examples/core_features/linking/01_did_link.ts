@@ -3,7 +3,7 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function linkAccountToDid(
-  did: Kilt.DidDetails,
+  did: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccount: KeyringPair,
   signCallback: Kilt.SignCallback,

@@ -50,9 +50,9 @@ export async function ensureStoredCtype(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  ;(async () => {
+  ; (async () => {
     envConfig()
-    await Kilt.init({ address: process.env.WSS_ADDRESS })
+    await Kilt.connect(process.env.WSS_ADDRESS as string)
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format
     })

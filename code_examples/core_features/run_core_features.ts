@@ -68,10 +68,9 @@ async function main(): Promise<void> {
   }
   await gettingStartedFlow()
 
-  await Kilt.init({ address: nodeAddress })
+  const api = await Kilt.connect(nodeAddress)
   // FIXME: Remove when used versions match
   await cryptoWaitReady()
-  const api = await Kilt.connect()
 
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format,
