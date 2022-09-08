@@ -51,7 +51,8 @@ The **migration** of a DID means that a light, off-chain DID is anchored to the 
 In the current version (v1) of the KILT DID protocol, a light DID of the form `did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS` would become a full DID of the form `did:kilt:4nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS`.
 Note that the identifier of the two DIDs, apart from the initial `01` sequence of the light DID, are equal since both DIDs are derived from the same KILT account.
 
-Once a light DID is migrated, all the Credentials collected by the light DID can only be presented using the migrated on-chain DID.
-This is by design, as it is assumed that the user had valid reasons to migrate the DID on the chain, and as on-chain DIDs offer greater security guarantees, KILT will reject light DID signatures even in case the original claim in the Credential was generated with that off-chain DID.
+**Once a light DID is migrated, all the Credentials collected by the light DID can only be presented using the migrated on-chain DID.**
+This is by design, as it is assumed that the user had valid reasons to migrate the DID on the chain, and as on-chain DIDs offer greater security guarantees.
+KILT will thus reject light DID signatures even in case the original claim in the Credential was generated with that off-chain DID.
 
 For a detailed developer-oriented guide to KILT DIDs, please refer to our [DID Cookbook section](../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md).

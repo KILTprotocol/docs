@@ -22,11 +22,11 @@ The resulting Claim contains a reference to the CType by its hash and includes t
   {Claim}
 </CodeBlock>
 
-## Requesting a Credential
+## Attesting the Claims
 
 Once the Claimer has created a Claim, they need to get it *certified*, i.e., attested, by an Attester.
-The resulting `RequestForAttestation` must then be sent to the chosen Attester using any messaging system.
+The resulting `Credential` must then be sent to the chosen Attester using any messaging system.
 
-The `RequestForAttestation` contains the original Claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the Claim root hash, which is used to identify the request for attestation and to store it on the KILT blockchain.
+The to-be-attested `Credential` contains the original Claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the Claim root hash, which is used to identify both the credential and its on-chain attestation.
 
 For a detailed developer-oriented guide to KILT Claims, please refer to our [Claim Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/02_attestation_request.md).
