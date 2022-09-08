@@ -104,7 +104,7 @@ async function main(): Promise<void> {
     runAllDid(api, didTestAccount, resolveOn),
     runAllWeb3(web3TestAccount, resolveOn),
     runAllLinking(api, accountLinkingTestAccount, faucetAccount, resolveOn),
-    runAllDevSetup(nodeAddress)
+    runAllDevSetup()
   ])
 }
 

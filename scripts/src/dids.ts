@@ -18,8 +18,14 @@ export async function generateAttesterDid(
 ): Promise<TestDidDetails> {
   const authSeed = Kilt.Utils.Crypto.hashStr('attester-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('attester-enc')
-  const { publicKey: authPk } = keyring.addFromSeed(hexToU8a(authSeed), {}, 'sr25519')
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(hexToU8a(encSeed))
+  const { publicKey: authPk } = keyring.addFromSeed(
+    hexToU8a(authSeed),
+    {},
+    'sr25519'
+  )
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
+    hexToU8a(encSeed)
+  )
 
   const details: TestDidDetails = {
     authentication: [
@@ -53,8 +59,14 @@ export async function generateClaimerDid(
 ): Promise<TestDidDetails> {
   const authSeed = Kilt.Utils.Crypto.hashStr('claimer-auth')
   const encSeed = Kilt.Utils.Crypto.hashStr('claimer-enc')
-  const { publicKey: authPk } = keyring.addFromSeed(hexToU8a(authSeed), {}, 'sr25519')
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(hexToU8a(encSeed))
+  const { publicKey: authPk } = keyring.addFromSeed(
+    hexToU8a(authSeed),
+    {},
+    'sr25519'
+  )
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
+    hexToU8a(encSeed)
+  )
 
   const details: TestDidDetails = {
     authentication: [
