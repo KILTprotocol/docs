@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function runAll(): Promise<void> {
   const keyring = new Kilt.Utils.Keyring({
     type: 'sr25519',
-    ss58Format: 38
+    ss58Format: Kilt.Utils.ss58Format
   })
 
   // Get a list of development accounts

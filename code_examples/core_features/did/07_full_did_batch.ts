@@ -35,8 +35,8 @@ export async function batchCTypeCreationExtrinsics(
   const ctype2CreationTx = await Kilt.CType.getStoreTx(ctype2)
 
   // Create the DID-signed batch
-  const authorisedBatch = await Kilt.Did.authorizeBatch({
-    batchFunction: api.tx.utility.batch,
+  const authorizedBatch = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batchAll,
     did: fullDid,
     extrinsics: [ctype1CreationTx, ctype2CreationTx],
     sign: signCallback,
@@ -44,16 +44,7 @@ export async function batchCTypeCreationExtrinsics(
   })
 
   // The authorized account submits the batch to the chain
-  await Kilt.Blockchain.signAndSubmitTx(authorisedBatch, submitterAccount, {
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount, {
     resolveOn
   })
-
-  if (
-    !(
-      (await Kilt.CType.verifyStored(ctype1)) ||
-      !(await Kilt.CType.verifyStored(ctype2))
-    )
-  ) {
-    throw 'One of the two CTypes has not been properly stored.'
-  }
 }
