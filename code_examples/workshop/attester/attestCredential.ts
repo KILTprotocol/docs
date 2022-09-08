@@ -42,9 +42,7 @@ export async function attestCredential(
 
   // write to chain
   console.log('Attester -> create attestation...')
-  await Kilt.Blockchain.signAndSubmitTx(extrinsic, account, {
-    resolveOn: Kilt.Blockchain.IS_FINALIZED
-  })
+  await Kilt.Blockchain.signAndSubmitTx(extrinsic, account)
 }
 
 export async function attestingFlow(): Promise<Kilt.ICredential> {
