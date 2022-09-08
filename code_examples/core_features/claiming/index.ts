@@ -1,5 +1,5 @@
+import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
-import { blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -27,8 +27,10 @@ export async function runAll(
     publicKey
   }) => {
     // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address =
-      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
+    const address = encodeAddress(
+      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
     const key = keyring.getPair(address)
 
     return { data: key.sign(data), alg }
