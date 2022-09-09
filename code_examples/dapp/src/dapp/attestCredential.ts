@@ -5,7 +5,10 @@ let did: Kilt.DidUri
 let dappAccount: Kilt.KiltKeyringPair
 
 export async function main() {
-  const attestation = await Kilt.Attestation.fromCredentialAndDid(selfSignedCredential, did)
+  const attestation = await Kilt.Attestation.fromCredentialAndDid(
+    selfSignedCredential,
+    did
+  )
   const submitTx = await Kilt.Attestation.getStoreTx(attestation)
   await Kilt.Blockchain.signAndSubmitTx(submitTx, dappAccount)
 }

@@ -3,7 +3,10 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 let did: Kilt.DidUri
 let message: Kilt.IMessage
-let session: { encryptionKeyUri: Kilt.DidResourceUri, send: (message: Kilt.IEncryptedMessage) => Promise<void> }
+let session: {
+  encryptionKeyUri: Kilt.DidResourceUri
+  send: (message: Kilt.IEncryptedMessage) => Promise<void>
+}
 
 export async function main() {
   const fullDid = await Kilt.Did.query(did)
@@ -17,8 +20,17 @@ export async function main() {
   }
 
   // Create a callback that uses the DID encryption key to encrypt the message
-  const encryptCallback: Kilt.EncryptCallback = async ({ alg, data, peerPublicKey, publicKey }) => {
-    const { box, nonce } = await Kilt.Utils.Crypto.encryptAsymmetric(data, peerPublicKey, publicKey)
+  const encryptCallback: Kilt.EncryptCallback = async ({
+    alg,
+    data,
+    peerPublicKey,
+    publicKey
+  }) => {
+    const { box, nonce } = await Kilt.Utils.Crypto.encryptAsymmetric(
+      data,
+      peerPublicKey,
+      publicKey
+    )
     return {
       alg,
       data: box,

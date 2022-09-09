@@ -8,7 +8,7 @@ export async function main() {
 
   const claimContents: Kilt.IClaimContents = {
     id: did,
-    origin: 'https://example-dApp.com',
+    origin: 'https://example-dApp.com'
   }
 
   const claim = Kilt.Claim.fromCTypeAndClaimContents(

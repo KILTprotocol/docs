@@ -8,16 +8,16 @@ export async function main() {
       title: 'Domain Linkage Credential',
       properties: {
         id: {
-          type: 'string',
+          type: 'string'
         },
         origin: {
-          type: 'string',
-        },
+          type: 'string'
+        }
       },
       type: 'object',
-      $id: 'kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643',
+      $id: 'kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643'
     },
     owner: null,
-    hash: '0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643',
+    hash: '0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643'
   }
 }

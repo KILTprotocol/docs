@@ -5,10 +5,12 @@ let domainLinkageCredential: Kilt.ICredential
 export async function main() {
   const credentialSubject = {
     ...domainLinkageCredential.claim.contents,
-    rootHash: domainLinkageCredential.rootHash,
+    rootHash: domainLinkageCredential.rootHash
   }
 
-  const issuer = await Kilt.Attestation.query(domainLinkageCredential.rootHash).then((att) => att?.owner)
+  const issuer = await Kilt.Attestation.query(
+    domainLinkageCredential.rootHash
+  ).then((att) => att?.owner)
 
   const issuanceDate = new Date().toISOString()
   const expirationDate = new Date(
@@ -25,13 +27,13 @@ export async function main() {
     proofPurpose: 'assertionMethod',
     verificationMethod: claimerSignature.keyUri,
     signature: claimerSignature.signature,
-    challenge: claimerSignature.challenge,
+    challenge: claimerSignature.challenge
   }
 
   return {
     '@context': [
       'https://www.w3.org/2018/credentials/v1',
-      'https://identity.foundation/.well-known/did-configuration/v1',
+      'https://identity.foundation/.well-known/did-configuration/v1'
     ],
     issuer,
     issuanceDate,
@@ -39,9 +41,9 @@ export async function main() {
     type: [
       'VerifiableCredential',
       'DomainLinkageCredential',
-      'KiltCredential2020',
+      'KiltCredential2020'
     ],
     credentialSubject,
-    proof,
+    proof
   }
 }
