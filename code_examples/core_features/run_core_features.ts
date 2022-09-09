@@ -45,11 +45,11 @@ async function endowAccounts(
       decimals: 0
     })} each...`
   )
-  await Kilt.Blockchain.signAndSubmitTx(
-    api.tx.utility.batchAll(transferBatch),
-    faucetAccount,
-    { resolveOn }
-  )
+  // -1 nonce makes sure that the right nonce is fetched via RPC
+  const signedBatch = await api.tx.utility
+    .batchAll(transferBatch)
+    .signAsync(faucetAccount, { nonce: -1 })
+  await Kilt.Blockchain.submitSignedTx(signedBatch, { resolveOn })
 }
 
 async function main(): Promise<void> {
