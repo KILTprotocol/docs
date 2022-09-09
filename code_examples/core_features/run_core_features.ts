@@ -46,26 +46,24 @@ async function endowAccounts(
       decimals: 0
     })} each...`
   )
+  const batchTx = api.tx.utility.batchAll(transferBatch)
   try {
-    await Kilt.Blockchain.signAndSubmitTx(
-      api.tx.utility.batchAll(transferBatch),
-      faucetAccount,
-      {
-        resolveOn
-      }
-    )
+    await Kilt.Blockchain.signAndSubmitTx(batchTx, faucetAccount, {
+      resolveOn
+    })
   } catch {
-    // Try a second time after a timeout if the first time failed.
-    const waitingTime = 12_000
-    console.log(`First submission failed. Waiting ${waitingTime} ms`)
-    await setTimeout(waitingTime)
-    await Kilt.Blockchain.signAndSubmitTx(
-      api.tx.utility.batchAll(transferBatch),
-      faucetAccount,
-      {
-        resolveOn
-      }
+    // Try a second time after a small delay and fetching the right nonce.
+    const waitingTime = 2_000 // 2 seconds
+    console.log(
+      `First submission failed. Waiting ${waitingTime} ms before retrying.`
     )
+    await setTimeout(waitingTime)
+    console.log('Retrying...')
+    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool
+    const resignedBatchTx = await batchTx.signAsync(faucetAccount, {
+      nonce: -1
+    })
+    await Kilt.Blockchain.submitSignedTx(resignedBatchTx, { resolveOn })
   }
 }
 
@@ -129,7 +127,7 @@ async function main(): Promise<void> {
 
 ;(async () => {
   try {
-    await main()
+    await Promise.all([main(), main()])
     process.exit(0)
   } catch (e) {
     console.log('Error in the core features test', e)
