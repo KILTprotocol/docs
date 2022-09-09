@@ -21,12 +21,8 @@ export async function generateAttesterDid(
 ): Promise<TestDidDocument> {
   const authSeed = blake2AsU8a('attester-auth')
   const encSeed = blake2AsU8a('attester-enc')
-  const authKey = keyring.addFromSeed(
-    authSeed
-  ) as Kilt.KiltKeyringPair
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
-    encSeed
-  )
+  const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(encSeed)
 
   const details: TestDidDocument = {
     authentication: [
@@ -56,12 +52,8 @@ export async function generateClaimerDid(
 ): Promise<TestDidDocument> {
   const authSeed = blake2AsU8a('claimer-auth')
   const encSeed = blake2AsU8a('claimer-enc')
-  const authKey = keyring.addFromSeed(
-    authSeed
-  ) as Kilt.KiltKeyringPair
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
-    encSeed
-  )
+  const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair
+  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(encSeed)
 
   const details: TestDidDocument = {
     authentication: [
