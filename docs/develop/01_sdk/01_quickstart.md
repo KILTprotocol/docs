@@ -11,7 +11,7 @@ import Connect from '!!raw-loader!@site/code_examples/core_features/getting_star
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointDataTs from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
-import FetchEndpointDataJs from '!!raw-loader!@site/code_examples/core_features/_js/getting_started/06_fetch_endpoint_data.js';
+import FetchEndpointDataJs from '!!raw-loader!@site/code_examples/core_features/_js/getting_started/05_fetch_endpoint_data.js';
 import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';

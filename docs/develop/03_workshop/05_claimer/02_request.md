@@ -7,6 +7,11 @@ import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import CreateClaimTs from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
+import CreateClaimJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/createClaim.js';
+import GenerateCredentialTs from '!!raw-loader!@site/code_examples/workshop/claimer/generateCredential.ts';
+import GenerateCredentialJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/generateCredential.js';
+
 In this section, we'll create a `Claim` and a `Credential`.
 But a credential in itself has no value.
 To become valid in the eyes of <span className="label-role verifier">Verifiers</span>, it needs to be attested by an entity they can trust: an <span className="label-role attester">Attester</span>.
@@ -68,37 +73,23 @@ The credential contains all necessary information, so that the <span className="
     {GenerateCredentialTs}
   </CodeBlock>
 
-When `Attestations` are issued by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
-Each new `Credential` is unique.
-While we're testing, we can store and reuse credentials to avoid multiple attestations.
-To do this store the output into `./claimer/_credential.json`.
-You can also share this credential with others in the workshop to see how they get denied from fraudulent senders.
-
-  ## Run
-
-  Run it from command line:
-
-  ```bash
-  yarn ts-node claimer/generateCredential.ts
-  ```
-  
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   Create a file `claimer/generateCredential.js` and copy the code below.
 
-  <CodeBlock className="language-js" title="claimer/generateRequest.js">
+  <CodeBlock className="language-js" title="claimer/generateCredential.js">
     {GenerateCredentialJs}
   </CodeBlock>
 
   </TabItem>
 </Tabs>
 
-When `Attestations` are given by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
+When `Attestations` are issued by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
 Each new `Credential` is unique.
-While we're testing, we can store and reuse requests to avoid multiple attestations.
-To do this store the output into `./claimer/_request.json`.
-You can also share this request with others in the workshop to see how they get denied from fraudulent senders.
+While we're testing, we can store and reuse credentials to avoid multiple attestations.
+To do this store the output into `./claimer/_credential.json`.
+You can also share this credential with others in the workshop to see how they get denied from fraudulent senders.
 
 ## Run
 
@@ -108,11 +99,11 @@ Run it from command line:
   <TabItem value='ts' label='Typescript' default>
 
   ```bash
-  yarn ts-node claimer/generateCredential.js
+  yarn ts-node claimer/generateCredential.ts
   ```
 
   </TabItem>
-  <TabItem value='js' label='Javascript' default>
+  <TabItem value='js' label='Javascript'>
 
   ```bash
   node claimer/generateCredential.js
