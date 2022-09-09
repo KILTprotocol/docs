@@ -1,31 +1,34 @@
 import type { Keyring } from '@polkadot/api'
 
-import { blake2AsHex, naclBoxPairFromSecret } from '@polkadot/util-crypto'
-import { hexToU8a } from '@polkadot/util'
+import {
+  blake2AsHex,
+  blake2AsU8a,
+  naclBoxPairFromSecret
+} from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let attesterDid: TestDidDetails | undefined
-let claimerDid: TestDidDetails | undefined
+let attesterDid: TestDidDocument | undefined
+let claimerDid: TestDidDocument | undefined
 
 // Add the secret encryption key as a property to the elements of the keyAgreement set. Just for testing.
-export type TestDidDetails = Omit<Kilt.DidDetails, 'keyAgreement'> & {
+export type TestDidDocument = Omit<Kilt.DidDocument, 'keyAgreement'> & {
   keyAgreement: Array<Kilt.DidEncryptionKey & { secretKey: Uint8Array }>
 }
 
 export async function generateAttesterDid(
   keyring: Keyring
-): Promise<TestDidDetails> {
-  const authSeed = Kilt.Utils.Crypto.hashStr('attester-auth')
-  const encSeed = Kilt.Utils.Crypto.hashStr('attester-enc')
+): Promise<TestDidDocument> {
+  const authSeed = blake2AsU8a('attester-auth')
+  const encSeed = blake2AsU8a('attester-enc')
   const authKey = keyring.addFromSeed(
-    hexToU8a(authSeed)
+    authSeed
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
-    hexToU8a(encSeed)
+    encSeed
   )
 
-  const details: TestDidDetails = {
+  const details: TestDidDocument = {
     authentication: [
       {
         ...authKey,
@@ -50,17 +53,17 @@ export async function generateAttesterDid(
 
 export async function generateClaimerDid(
   keyring: Keyring
-): Promise<TestDidDetails> {
-  const authSeed = Kilt.Utils.Crypto.hashStr('claimer-auth')
-  const encSeed = Kilt.Utils.Crypto.hashStr('claimer-enc')
+): Promise<TestDidDocument> {
+  const authSeed = blake2AsU8a('claimer-auth')
+  const encSeed = blake2AsU8a('claimer-enc')
   const authKey = keyring.addFromSeed(
-    hexToU8a(authSeed)
+    authSeed
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
-    hexToU8a(encSeed)
+    encSeed
   )
 
-  const details: TestDidDetails = {
+  const details: TestDidDocument = {
     authentication: [
       {
         ...authKey,
@@ -85,17 +88,17 @@ export async function generateClaimerDid(
 
 const resolve = async (
   didUri: Kilt.DidUri
-): Promise<Kilt.DidResolvedDetails | null> => {
+): Promise<Kilt.DidResolutionResult | null> => {
   const { did: uriWithNoFragment } = Kilt.Did.Utils.parseDidUri(didUri)
   if (uriWithNoFragment === claimerDid?.uri) {
     return {
       metadata: { deactivated: false },
-      details: claimerDid
+      document: claimerDid
     }
   } else if (uriWithNoFragment === attesterDid?.uri) {
     return {
       metadata: { deactivated: false },
-      details: attesterDid
+      document: attesterDid
     }
   } else {
     return null
@@ -115,12 +118,12 @@ export const resolveKey: Kilt.DidResolveKey = async (
     return null
   }
 
-  const { details } = resolved
-  if (!details) {
+  const { document } = resolved
+  if (!document) {
     return null
   }
 
-  const key = Kilt.Did.getKey(details, keyId)
+  const key = Kilt.Did.getKey(document, keyId)
   if (!key) {
     return null
   }

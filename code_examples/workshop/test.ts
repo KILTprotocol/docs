@@ -23,8 +23,8 @@ const SEED_ENV = 'FAUCET_SEED'
 async function testWorkshop() {
   envConfig()
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-  // Kilt.init calls cryptoWaitReady() internally, but if a different version of polkadot is used, then manual waiting must be called
+  await Kilt.connect(process.env.WSS_ADDRESS)
+  // Kilt.connect calls cryptoWaitReady() internally, but if a different version of polkadot is used, then manual waiting must be called
   // FIXME: remove this once the same version of @polkadot/wasm-crypto is used in @polkadot/api and in the SDK
   await cryptoWaitReady()
 

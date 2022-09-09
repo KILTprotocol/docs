@@ -11,7 +11,7 @@ export async function createSimpleFullDid(
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
   const authKey = keyring.addFromSeed(
     authenticationSeed

@@ -2,7 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function deleteFullDid(
   submitterAccount: Kilt.KiltKeyringPair,
-  fullDid: Kilt.DidDetails,
+  fullDid: Kilt.DidDocument,
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED

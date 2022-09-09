@@ -7,7 +7,7 @@ export async function main(
   console.log(`John Doe's DID Document:`)
   console.log(JSON.stringify(johnDoeDidDocument, undefined, 2))
 
-  const endpoints = johnDoeDidDocument?.details?.service
+  const endpoints = johnDoeDidDocument?.document?.service
   if (!endpoints) {
     console.log('No endpoints for the DID.')
     return []

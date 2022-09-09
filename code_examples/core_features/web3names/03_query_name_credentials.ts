@@ -32,7 +32,7 @@ export async function queryPublishedCredentials(
     throw 'The DID does not exist on the KILT blockchain.'
   }
 
-  const didDetails = resolutionResult.details
+  const didDetails = resolutionResult.document
   // If no details are returned but resolutionResult is not null, the DID has been deleted.
   // This information is present in `resolutionResult.metadata.deactivated`.
   if (!didDetails) {

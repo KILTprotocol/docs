@@ -6,6 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "yarn generate-examples && yarn check-links && yarn package-code && docusaurus build",
+    "build:no-examples": "yarn check-links && yarn package-code && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q docs/**/*.md",
     "swizzle": "docusaurus swizzle",
     "deploy": "yarn run package-code && docusaurus deploy",

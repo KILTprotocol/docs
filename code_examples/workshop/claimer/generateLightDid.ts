@@ -8,7 +8,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateKeypairs } from './generateKeypairs'
 
 export async function generateLightDid(keyring: Keyring): Promise<{
-  lightDid: Kilt.DidDetails
+  lightDid: Kilt.DidDocument
   mnemonic: string
 }> {
   // create secret and DID public keys
@@ -19,7 +19,7 @@ export async function generateLightDid(keyring: Keyring): Promise<{
   )
 
   // create the DID
-  const lightDid = Kilt.Did.createLightDidDetails({
+  const lightDid = Kilt.Did.createLightDidDocument({
     authentication: [authenticationKey as Kilt.NewLightDidVerificationKey],
     keyAgreement: [encryptionKey]
   })

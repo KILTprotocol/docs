@@ -6,12 +6,12 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function updateFullDid(
   keyring: Keyring,
-  fullDid: Kilt.DidDetails,
+  fullDid: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
-): Promise<Kilt.DidDetails> {
+): Promise<Kilt.DidDocument> {
   // Ask the keyring to generate a new keypair to use for authentication.
   const newAuthKey = keyring.addFromSeed(
     randomAsU8a(32)

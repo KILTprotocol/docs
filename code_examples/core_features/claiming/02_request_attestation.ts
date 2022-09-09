@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function requestAttestation(
-  claimer: Kilt.DidDetails,
+  claimer: Kilt.DidDocument,
   signCallback: Kilt.SignCallback,
   ctype: Kilt.ICType
 ): Promise<Kilt.ICredential> {

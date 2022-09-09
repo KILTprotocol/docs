@@ -45,11 +45,11 @@ async function endowAccounts(
       decimals: 0
     })} each...`
   )
-  await Kilt.Blockchain.signAndSubmitTx(
-    api.tx.utility.batchAll(transferBatch),
-    faucetAccount,
-    { resolveOn }
-  )
+  // -1 nonce makes sure that the right nonce is fetched via RPC
+  const signedBatch = await api.tx.utility
+    .batchAll(transferBatch)
+    .signAsync(faucetAccount, { nonce: -1 })
+  await Kilt.Blockchain.submitSignedTx(signedBatch, { resolveOn })
 }
 
 async function main(): Promise<void> {
@@ -68,10 +68,9 @@ async function main(): Promise<void> {
   }
   await gettingStartedFlow()
 
-  await Kilt.init({ address: nodeAddress })
+  const api = await Kilt.connect(nodeAddress)
   // FIXME: Remove when used versions match
   await cryptoWaitReady()
-  const api = await Kilt.connect()
 
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format,
