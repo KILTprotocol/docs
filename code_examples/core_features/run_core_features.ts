@@ -127,7 +127,7 @@ async function main(): Promise<void> {
 
 ;(async () => {
   try {
-    await Promise.all([main(), main()])
+    await main()
     process.exit(0)
   } catch (e) {
     console.log('Error in the core features test', e)
