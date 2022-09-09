@@ -22,7 +22,7 @@ export async function generateAttesterDid(
   const authSeed = blake2AsU8a('attester-auth')
   const encSeed = blake2AsU8a('attester-enc')
   const authKey = keyring.addFromSeed(
-    authSeed
+    authSeed,
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(
     encSeed
