@@ -86,7 +86,7 @@ We will move onto connecting to the **KILT blockchain**.
 Connecting and disconnecting to the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a Credential**.
 
 Still within the same `main` function, you need to configure the SDK to connect to a **KILT node**.
-For this, the SDK exposes **`Kilt.init()`** to configure the address of the node to connect to.
+For this, the SDK exposes **`Kilt.connect()`** to configure the address of the node to connect to.
 
 We will use the official **Spiritnet** address:
 

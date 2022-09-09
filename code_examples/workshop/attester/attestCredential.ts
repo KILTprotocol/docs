@@ -86,7 +86,7 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await Kilt.init({ address: process.env.WSS_ADDRESS })
+    await Kilt.connect(process.env.WSS_ADDRESS as string)
 
     try {
       const c = await attestingFlow()
