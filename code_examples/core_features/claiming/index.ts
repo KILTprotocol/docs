@@ -11,7 +11,7 @@ import { createDriversLicenseCType } from './01_create_ctype'
 import { createPresentation } from './04_create_presentation'
 import { reclaimAttestationDeposit } from './07_reclaim_attestation_deposit'
 import { requestAttestation } from './02_request_attestation'
-import { revokeCredential } from './06_revoke_attestation'
+import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
 export async function runAll(

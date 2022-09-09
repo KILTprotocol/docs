@@ -1,4 +1,5 @@
 import { config as envConfig } from 'dotenv'
+import { setTimeout } from 'timers/promises'
 
 import {
   blake2AsU8a,
@@ -76,7 +77,17 @@ async function testWorkshop() {
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
   await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0).then(
-    (tx) => Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+    async (tx) => {
+      try {
+        await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+      } catch {
+        // Try a second time after a timeout if the first time failed.
+        const waitingTime = 12_000
+        console.log(`First submission failed. Waiting ${waitingTime} ms`)
+        await setTimeout(waitingTime)
+        await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+      }
+    }
   )
 
   console.log('Successfully transferred tokens')

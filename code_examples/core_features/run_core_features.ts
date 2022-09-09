@@ -2,6 +2,7 @@ import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { config as envConfig } from 'dotenv'
+import { setTimeout } from 'timers/promises'
 
 import { cryptoWaitReady, randomAsU8a } from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
@@ -45,11 +46,27 @@ async function endowAccounts(
       decimals: 0
     })} each...`
   )
-  // -1 nonce makes sure that the right nonce is fetched via RPC
-  const signedBatch = await api.tx.utility
-    .batchAll(transferBatch)
-    .signAsync(faucetAccount, { nonce: -1 })
-  await Kilt.Blockchain.submitSignedTx(signedBatch, { resolveOn })
+  try {
+    await Kilt.Blockchain.signAndSubmitTx(
+      api.tx.utility.batchAll(transferBatch),
+      faucetAccount,
+      {
+        resolveOn
+      }
+    )
+  } catch {
+    // Try a second time after a timeout if the first time failed.
+    const waitingTime = 12_000
+    console.log(`First submission failed. Waiting ${waitingTime} ms`)
+    await setTimeout(waitingTime)
+    await Kilt.Blockchain.signAndSubmitTx(
+      api.tx.utility.batchAll(transferBatch),
+      faucetAccount,
+      {
+        resolveOn
+      }
+    )
+  }
 }
 
 async function main(): Promise<void> {

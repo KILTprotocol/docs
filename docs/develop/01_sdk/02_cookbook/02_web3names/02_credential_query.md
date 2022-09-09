@@ -17,4 +17,4 @@ Below is a code snippet showing how to do that using the KILT SDK, and how to pe
   {QueryNameCredentials}
 </CodeBlock>
 
-[kilt-published-credential-collection-v1-type]: https://github.com/KILTprotocol/specifications/blob/dee9ac26e381f6e0cbcd184b0892327db0f8b312/docs/did/kilt-published-credential-collection-v1.md
+[kilt-published-credential-collection-v1-type]: https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1/blob/main/README.md

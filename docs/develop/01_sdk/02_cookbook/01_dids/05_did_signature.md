@@ -18,9 +18,7 @@ The snippet below shows how to generate and verify a DID signature using the KIL
 </CodeBlock>
 
 :::note
-Notice that the snippet above takes a `DidDetails` instance to generate the signature.
-The `DidDetails` class is an abstract class that both `LightDidDetails` and `FullDidDetails` implement (more info [here][sdk-did-details-module]).
+Notice that the snippet above takes a `DidDocument` instance to generate the signature.
+A `DidDocument` can represent either a light or a full DID.
 This means that both light and full DIDs can generate signatures, and the KILT SDK implements the right verification logic depending on whether the signer is a light or a full DID.
 :::
-
-[sdk-did-details-module]: https://github.com/KILTprotocol/sdk-js/tree/master/packages/did/src/DidDetails

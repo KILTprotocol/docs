@@ -1,18 +1,16 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as connect } from './03_connect'
-import { main as disconnect } from './09_disconnect'
-import { main as fetchEndpointData } from './06_fetch_endpoint_data'
-import { main as fetchJohnDoeDid } from './04_fetch_did'
-import { main as fetchJohnDoeEndpoints } from './05_fetch_endpoints'
-import { main as initSDKWithSpiritnet } from './02_init_sdk'
+import { main as connect } from './02_connect'
+import { main as disconnect } from './08_disconnect'
+import { main as fetchEndpointData } from './05_fetch_endpoint_data'
+import { main as fetchJohnDoeDid } from './03_fetch_did'
+import { main as fetchJohnDoeEndpoints } from './04_fetch_endpoints'
 import { main as printHelloWorld } from './01_print_hello_world'
-import { main as verifyAttestation } from './07_verify_attestation'
-import { main as verifyCredential } from './08_verify_credential'
+import { main as verifyAttestation } from './06_verify_attestation'
+import { main as verifyCredential } from './07_verify_credential'
 
 export async function runAll(): Promise<void> {
   printHelloWorld()
-  await initSDKWithSpiritnet()
   // Connect to Spiritnet
   await connect()
   const johnDoeDid = await fetchJohnDoeDid()

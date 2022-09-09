@@ -8,14 +8,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
-import InitSDK from '!!raw-loader!@site/code_examples/core_features/getting_started/02_init_sdk.ts';
-import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/03_connect.ts';
-import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
-import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
-import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_attestation.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
+import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';
+import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
+import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
+import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
+import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 What you will have achieved at the end of this is the following:
@@ -87,18 +86,9 @@ We will move onto connecting to the **KILT blockchain**.
 Connecting and disconnecting to the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a Credential**.
 
 Still within the same `main` function, you need to configure the SDK to connect to a **KILT node**.
-For this, the SDK exposes **`Kilt.init()`** to configure the address of the node to connect to.
+For this, the SDK exposes **`Kilt.connect()`** to configure the address of the node to connect to.
 
 We will use the official **Spiritnet** address:
-
-<SnippetBlock
-  className="language-ts"
->
-  {InitSDK}
-</SnippetBlock>
-
-Once the node address has been configured, we can establish a connection with the Spiritnet node.
-Again, the SDK makes this process very easy to follow, by exposing a `Kilt.connect()` function:
 
 <SnippetBlock
   className="language-ts"

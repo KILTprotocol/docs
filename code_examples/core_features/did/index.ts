@@ -53,6 +53,7 @@ export async function runAll(
   )
   console.log('6 did) Update full DID created at step 5')
   const updatedFullDid = await updateFullDid(
+    api,
     keyring,
     createdCompleteFullDid,
     submitterAccount,
