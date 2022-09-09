@@ -2,6 +2,7 @@ import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { config as envConfig } from 'dotenv'
+import { setTimeout } from 'timers/promises'
 
 import { cryptoWaitReady, randomAsU8a } from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
@@ -54,7 +55,10 @@ async function endowAccounts(
       }
     )
   } catch {
-    // Try a second time if the first time failed.
+    // Try a second time after a timeout if the first time failed.
+    const waitingTime = 5_000
+    console.log(`First submission failed. Waiting ${waitingTime} ms`)
+    await setTimeout(waitingTime)
     await Kilt.Blockchain.signAndSubmitTx(
       api.tx.utility.batchAll(transferBatch),
       faucetAccount,
