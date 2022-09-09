@@ -6,7 +6,6 @@
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
     "style:fix": "yarn style --write",
-    "check": "yarn lint && yarn style",
     "fix": "yarn lint:fix && yarn style:fix"
   },
   "dependencies": {
