@@ -1,4 +1,5 @@
 import { config as envConfig } from 'dotenv'
+import { setTimeout } from 'timers/promises'
 
 import {
   blake2AsU8a,
@@ -80,7 +81,10 @@ async function testWorkshop() {
       try {
         await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
       } catch {
-        // Try a second time if the first time failed.
+        // Try a second time after a timeout if the first time failed.
+        const waitingTime = 12_000
+        console.log(`First submission failed. Waiting ${waitingTime} ms`)
+        await setTimeout(waitingTime)
         await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
       }
     }
