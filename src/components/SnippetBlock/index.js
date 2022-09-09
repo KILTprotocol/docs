@@ -35,7 +35,7 @@ const SnippetBlock = ({
         start = i
         // Start and end of function signature on same line
         if (raw[i].includes(' {')) break
-      } else if (raw[i].includes(' {')) {
+      } else if (raw[i].includes(' {') && start !== undefined) {
         // End of function signature on different line
         start = i
         break
