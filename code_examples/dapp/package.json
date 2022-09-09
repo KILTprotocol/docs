@@ -5,8 +5,11 @@
     "lint": "eslint . --ext .ts --ext .tsx --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
+    "style:js": "prettier --check --config .prettierrc '**/*.js'",
     "style:fix": "yarn style --write",
-    "fix": "yarn lint:fix && yarn style:fix"
+    "fix": "yarn lint:fix && yarn style:fix",
+    "style:js:fix": "yarn style:js --write --loglevel silent",
+    "translate": "yarn tsc -p tsconfig.json && yarn style:js:fix"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.29.0-54"
@@ -25,6 +28,6 @@
     "node-fetch": "^2.6.7",
     "prettier": "^2.5.1",
     "ts-node": "^10.6.0",
-    "typescript": "~4.5.0"
+    "typescript": "^4.7.0"
   }
 }
