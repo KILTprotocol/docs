@@ -56,7 +56,7 @@ async function endowAccounts(
     )
   } catch {
     // Try a second time after a timeout if the first time failed.
-    const waitingTime = 5_000
+    const waitingTime = 12_000
     console.log(`First submission failed. Waiting ${waitingTime} ms`)
     await setTimeout(waitingTime)
     await Kilt.Blockchain.signAndSubmitTx(
