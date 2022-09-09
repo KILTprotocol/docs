@@ -22,7 +22,8 @@ async function verifyPresentation(
   } catch {
     return false
   }
-  return Kilt.Attestation.checkValidity(presentation.rootHash)
+  const attestationInfo = await Kilt.Attestation.query(presentation.rootHash)
+  return !attestationInfo?.revoked
 }
 
 export async function verificationFlow() {
