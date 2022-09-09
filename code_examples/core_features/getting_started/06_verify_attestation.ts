@@ -6,5 +6,8 @@ export async function main(credential: Kilt.ICredential): Promise<boolean> {
     return false
   }
   // Return false if attestation.revoked is true, or true otherwise.
+  if (!attestationInfo.revoked) {
+    return false
+  }
   return !attestationInfo.revoked
 }

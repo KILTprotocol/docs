@@ -160,7 +160,6 @@ To do that, we need to query the Credential's `rootHash` from the blockchain to 
 
 <SnippetBlock
   className="language-ts"
-  funcEnd="return"
 >
   {VerifyAttestation}
 </SnippetBlock>
