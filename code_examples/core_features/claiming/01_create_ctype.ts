@@ -1,18 +1,16 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createDriversLicenseCType(
-  keystore: Kilt.Did.DemoKeystore,
-  creatorDid: Kilt.Did.FullDidDetails,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+  creator: Kilt.DidDetails,
+  submitterAccount: Kilt.KiltKeyringPair,
+  signCallback: Kilt.SignCallback,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
-): Promise<Kilt.CType> {
+): Promise<Kilt.ICType> {
   // Create a new CType definition.
   const ctype = Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${creatorDid.uri}`,
+    title: `Drivers License by ${creator.uri}`,
     properties: {
       name: {
         type: 'string'
@@ -27,18 +25,23 @@ export async function createDriversLicenseCType(
     type: 'object'
   })
 
-  // Generate a creation extrinsic and sign it with the attester's attestation key.
-  const ctypeCreationTx = await ctype
-    .getStoreTx()
-    .then((tx) =>
-      creatorDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
-    )
+  // Generate a creation extrinsic
+  const ctypeCreationTx = await Kilt.CType.getStoreTx(ctype)
+  // Sign it with the right DID key
+  const authorisedCtypeCreationTx = await Kilt.Did.authorizeExtrinsic(
+    creator,
+    ctypeCreationTx,
+    signCallback,
+    submitterAccount.address
+  )
   // Submit the creation extrinsic to the KILT blockchain
   // using the KILT account specified in the creation operation.
-  await Kilt.BlockchainUtils.signAndSubmitTx(
-    ctypeCreationTx,
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedCtypeCreationTx,
     submitterAccount,
-    { resolveOn }
+    {
+      resolveOn
+    }
   )
 
   return ctype

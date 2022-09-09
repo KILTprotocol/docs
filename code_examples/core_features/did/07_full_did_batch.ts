@@ -1,10 +1,8 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-function getRandomCType(): Kilt.CType {
+function getRandomCType(): Kilt.ICType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
   const randomFactor = Kilt.Utils.UUID.generate()
   return Kilt.CType.fromSchema({
@@ -23,30 +21,30 @@ function getRandomCType(): Kilt.CType {
 }
 
 export async function batchCTypeCreationExtrinsics(
-  keystore: Kilt.Did.DemoKeystore,
   api: ApiPromise,
-  submitterAccount: KeyringPair,
-  fullDid: Kilt.Did.FullDidDetails,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
+  submitterAccount: Kilt.KiltKeyringPair,
+  fullDid: Kilt.DidDetails,
+  signCallback: Kilt.SignCallback,
+  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
     .IS_FINALIZED
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
-  const ctype1CreationTx = await ctype1.getStoreTx()
+  const ctype1CreationTx = await Kilt.CType.getStoreTx(ctype1)
   const ctype2 = getRandomCType()
-  const ctype2CreationTx = await ctype2.getStoreTx()
+  const ctype2CreationTx = await Kilt.CType.getStoreTx(ctype2)
 
   // Create the DID-signed batch
-  const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
-    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .build(keystore, submitterAccount.address)
-
-  // The authorized account submits the batch to the chain
-  await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
-    resolveOn
+  const authorizedBatch = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batchAll,
+    did: fullDid,
+    extrinsics: [ctype1CreationTx, ctype2CreationTx],
+    sign: signCallback,
+    submitter: submitterAccount.address
   })
 
-  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
-    throw 'One of the two CTypes has not been properly stored.'
-  }
+  // The authorized account submits the batch to the chain
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount, {
+    resolveOn
+  })
 }

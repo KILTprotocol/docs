@@ -1,19 +1,36 @@
 import { mkdir, writeFile } from 'fs/promises'
 import { normalize } from 'path'
 
+import { Keyring } from '@polkadot/api'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { generateAttesterDid, generateClaimerDid, resolver } from './dids'
+import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
+
+function encryptCallbackForKey({
+  secretKey
+}: {
+  secretKey: Uint8Array
+  type: 'x25519'
+}): Kilt.EncryptCallback {
+  return async function encryptCallback({ data, peerPublicKey, alg }) {
+    const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
+      data,
+      peerPublicKey,
+      secretKey
+    )
+    return { alg, nonce, data: box }
+  }
+}
 
 async function main() {
   console.log('Generating JSON files for documentation')
-  await cryptoWaitReady
-  const keystore = new Kilt.Did.DemoKeystore()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  await cryptoWaitReady()
 
-  const kiltAttesterDid = await generateAttesterDid(keystore)
-  const kiltClaimerDid = await generateClaimerDid(keystore)
+  const kiltAttesterDid = await generateAttesterDid(keyring)
+  const kiltClaimerDid = await generateClaimerDid(keyring)
 
   // CType schema
   const drivingLicenseCtypeSchema: Kilt.CTypeSchemaWithoutId = {
@@ -34,7 +51,7 @@ async function main() {
   }
 
   // CType
-  const ctypeDrivingsLicense: Kilt.CType = Kilt.CType.fromSchema(
+  const ctypeDrivingsLicense: Kilt.ICType = Kilt.CType.fromSchema(
     drivingLicenseCtypeSchema,
     kiltAttesterDid.uri
   )
@@ -51,9 +68,9 @@ async function main() {
   )
 
   // Encrypted message
-  const message = new Kilt.Message(
+  const message = Kilt.Message.fromBody(
     {
-      type: Kilt.MessageBodyType.REQUEST_CREDENTIAL,
+      type: 'request-credential',
       content: {
         cTypes: [
           {
@@ -65,17 +82,17 @@ async function main() {
     kiltClaimerDid.uri,
     kiltAttesterDid.uri
   )
-  const encrypted = await message.encrypt(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    kiltClaimerDid.encryptionKey!.id,
+
+  const encrypted = await Kilt.Message.encrypt(
+    message,
+    kiltClaimerDid.keyAgreement[0]?.id,
     kiltClaimerDid,
-    keystore,
-    Kilt.Did.Utils.assembleKeyUri(
-      kiltAttesterDid.uri,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      kiltAttesterDid.encryptionKey!.id
-    ),
-    { resolver }
+    encryptCallbackForKey({
+      secretKey: kiltClaimerDid.keyAgreement[0].secretKey,
+      type: 'x25519'
+    }),
+    `${kiltAttesterDid.uri}${kiltAttesterDid.keyAgreement[0].id}`,
+    { resolveKey }
   )
 
   const outDir = normalize(`${__dirname}/../out`)
@@ -102,9 +119,12 @@ async function main() {
   console.log('Generation completed successfully!')
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((e) => {
+;(async () => {
+  try {
+    await main()
+    process.exit(0)
+  } catch (e) {
     console.error(e)
     process.exit(1)
-  })
+  }
+})()

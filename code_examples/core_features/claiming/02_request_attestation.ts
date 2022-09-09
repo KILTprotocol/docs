@@ -1,10 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function requestAttestation(
-  keystore: Kilt.KeystoreSigner,
-  claimer: Kilt.Did.DidDetails,
-  ctype: Kilt.CType
-): Promise<Kilt.RequestForAttestation> {
+  claimer: Kilt.DidDetails,
+  signCallback: Kilt.SignCallback,
+  ctype: Kilt.ICType
+): Promise<Kilt.ICredential> {
   // The claimer generates the claim they would like to get attested.
   const claim = Kilt.Claim.fromCTypeAndClaimContents(
     ctype,
@@ -15,12 +15,15 @@ export async function requestAttestation(
     },
     claimer.uri
   )
-  // The attestation request must be signed by the claimer to provide non-repudiation.
-  const requestForAttestation = Kilt.RequestForAttestation.fromClaim(claim)
-  return requestForAttestation.signWithDidKey(
-    keystore,
+  // The credential must be signed by the claimer to provide non-repudiation.
+  const credential = Kilt.Credential.fromClaim(claim)
+  await Kilt.Credential.sign(
+    credential,
+    signCallback,
     claimer,
     // The authentication key of the claimer is used to generate the signature.
-    claimer.authenticationKey.id
+    claimer.authentication[0].id
   )
+
+  return credential
 }

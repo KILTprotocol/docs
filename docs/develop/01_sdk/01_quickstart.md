@@ -13,7 +13,7 @@ import Connect from '!!raw-loader!@site/code_examples/core_features/getting_star
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
-import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_credential.ts';
+import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_attestation.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
 
@@ -172,7 +172,7 @@ To do that, we need to query the Credential's `rootHash` from the blockchain to 
   className="language-ts"
   funcEnd="return"
 >
-  {BuildCredential}
+  {VerifyAttestation}
 </SnippetBlock>
 
 Execute the script and see if you get a valid attestation for John Doe's Credential!

@@ -1,4 +1,6 @@
 {
+  "hash": "0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111",
+  "owner": "did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
   "schema": {
     "$schema": "http://kilt-protocol.org/draft-01/ctype#",
     "title": "Drivers License by did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
@@ -15,7 +17,5 @@
     },
     "type": "object",
     "$id": "kilt:ctype:0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111"
-  },
-  "owner": "did:kilt:4tKLFGEH5KT7xDqkA4QcdCFSeH8Vd3ovYHFmFJLTuhG1GcHx",
-  "hash": "0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111"
+  }
 }

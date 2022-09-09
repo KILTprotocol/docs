@@ -1,15 +1,16 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateAndVerifyDidAuthenticationSignature(
-  keystore: Kilt.Did.DemoKeystore,
-  did: Kilt.Did.DidDetails,
-  payload: string | Uint8Array
+  did: Kilt.DidDetails,
+  payload: string | Uint8Array,
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Generate a signature using the provided DID's authentication key.
-  const signature = await did.signPayload(
+  const signature = await Kilt.Did.signPayload(
+    did,
     payload,
-    keystore,
-    did.authenticationKey.id
+    signCallback,
+    did.authentication[0].id
   )
 
   // Print the generated signature object.
@@ -20,7 +21,7 @@ export async function generateAndVerifyDidAuthenticationSignature(
   const signatureVerificationResult = await Kilt.Did.verifyDidSignature({
     message: payload,
     signature,
-    expectedVerificationMethod: Kilt.KeyRelationship.authentication
+    expectedVerificationMethod: 'authentication'
   })
 
   if (!signatureVerificationResult.verified) {

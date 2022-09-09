@@ -18,7 +18,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
   └─ claimer/ # all claimer code
     ├─ createClaim.ts # creates a claim
     ├─ createPresentation.ts # creates a presentation for verifiers
+    └─ generateCredential.ts # create the credential object that is sent to the attester for attestation
     ├─ generateKeypairs.ts # create keypairs for the light DID
     ├─ generateLightDid.ts # create the light DID for the claimer
-    └─ generateRequest.ts # create the request for attestation that is sent to the attester
 ```

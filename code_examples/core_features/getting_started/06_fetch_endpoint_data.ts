@@ -2,13 +2,12 @@ import axios from 'axios'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function main(
   endpoints: Kilt.DidServiceEndpoint[]
-): Promise<Kilt.IRequestForAttestation> {
-  const endpointRequestData = await axios
-    .get<Kilt.IRequestForAttestation>(endpoints[0].urls[0])
-    .then((response) => response.data)
+): Promise<Kilt.ICredential> {
+  const { data: endpointRequestData } = await axios.get<Kilt.ICredential>(
+    endpoints[0].serviceEndpoint[0]
+  )
 
   return endpointRequestData
 }
