@@ -32,7 +32,7 @@ export async function generateLightDid(keyring: Keyring): Promise<{
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  ; (async () => {
+  ;(async () => {
     envConfig()
     await cryptoWaitReady()
     const keyring = new Keyring({

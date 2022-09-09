@@ -62,7 +62,7 @@ export async function getFullDid(
 
 // don't execute if this is imported by another file
 if (require.main === module) {
-  ; (async () => {
+  ;(async () => {
     envConfig()
     await Kilt.connect(process.env.WSS_ADDRESS as string)
     const keyring = new Keyring({
