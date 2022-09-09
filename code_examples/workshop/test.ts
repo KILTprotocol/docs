@@ -76,7 +76,14 @@ async function testWorkshop() {
   const faucetAccount = keyring.createFromUri(faucetSeed)
 
   await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0).then(
-    (tx) => Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+    async (tx) => {
+      try {
+        await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+      } catch {
+        // Try a second time if the first time failed.
+        await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
+      }
+    }
   )
 
   console.log('Successfully transferred tokens')
