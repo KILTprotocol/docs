@@ -123,7 +123,7 @@ async function main(): Promise<void> {
   ])
 }
 
-; (async () => {
+;(async () => {
   try {
     await main()
     process.exit(0)
