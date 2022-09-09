@@ -1,21 +1,19 @@
 import { config as envConfig } from 'dotenv'
-import { mnemonicGenerate } from '@polkadot/util-crypto'
+import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
+import { Keyring } from '@polkadot/api'
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateKeypairs } from './generateKeypairs'
-export async function generateLightDid() {
-  // init
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
+export async function generateLightDid(keyring) {
   // create secret and DID public keys
-  const keystore = new Kilt.Did.DemoKeystore()
   const mnemonic = mnemonicGenerate()
-  const keys = await generateKeypairs(keystore, mnemonic)
+  const { authenticationKey, encryptionKey } = await generateKeypairs(
+    keyring,
+    mnemonic
+  )
   // create the DID
-  const lightDid = Kilt.Did.LightDidDetails.fromDetails({
-    ...keys,
-    authenticationKey: {
-      publicKey: keys.authenticationKey.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
-    }
+  const lightDid = Kilt.Did.createLightDidDocument({
+    authentication: [authenticationKey],
+    keyAgreement: [encryptionKey]
   })
   return {
     lightDid,
@@ -24,15 +22,21 @@ export async function generateLightDid() {
 }
 // don't execute if this is imported by another file
 if (require.main === module) {
-  envConfig()
-  generateLightDid()
-    .catch((e) => {
-      console.log('Error while setting up claimer DID', e)
-      process.exit(1)
+  ;(async () => {
+    envConfig()
+    await cryptoWaitReady()
+    const keyring = new Keyring({
+      ss58Format: Kilt.Utils.ss58Format
     })
-    .then(({ lightDid, mnemonic }) => {
+    try {
+      const { lightDid, mnemonic } = await generateLightDid(keyring)
       console.log('\nsave following to .env to continue\n')
       console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
       console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)
-    })
+      process.exit(0)
+    } catch (e) {
+      console.log('Error while setting up claimer DID', e)
+      process.exit(1)
+    }
+  })()
 }

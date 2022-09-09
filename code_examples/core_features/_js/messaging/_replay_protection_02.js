@@ -1,3 +1,4 @@
+import { blake2AsHex } from '@polkadot/util-crypto'
 export async function main(
   submissions,
   decrypted,
@@ -5,14 +6,16 @@ export async function main(
   MAX_ACCEPTED_AGE
 ) {
   // is messageId fresh and createdAt recent ?
+  const messageId =
+    decrypted.messageId || blake2AsHex(JSON.stringify(decrypted))
   if (
-    submissions.has(decrypted.messageId) ||
+    submissions.has(messageId) ||
     decrypted.createdAt < Date.now() - MAX_ACCEPTED_AGE ||
     decrypted.createdAt > Date.now() - MIN_ACCEPTED_AGE
   ) {
     // no -> reject message
   } else {
-    submissions.set(decrypted.messageId, decrypted.createdAt)
+    submissions.set(messageId, decrypted.createdAt)
     // yes -> accept & process message
   }
 }

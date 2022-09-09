@@ -1,24 +1,15 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
-export async function generateKeypairs(keystore, mnemonic) {
+import { randomAsHex } from '@polkadot/util-crypto'
+export async function generateKeypairs(keyring, mnemonic = randomAsHex(32)) {
   // signing keypair
-  const signing = await keystore.generateKeypair({
-    alg: Kilt.Did.SigningAlgorithms.Sr25519,
-    seed: mnemonic
-  })
+  const authKey = await keyring.addFromMnemonic(mnemonic)
   // encryption keypair
-  const encryption = await keystore.generateKeypair({
-    alg: Kilt.Did.EncryptionAlgorithms.NaclBox,
-    seed: mnemonic
-  })
+  const { publicKey: encryptionPk } = await keyring.addFromMnemonic(mnemonic)
   // build the keys object
   return {
-    authenticationKey: {
-      publicKey: signing.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
-    },
+    authenticationKey: authKey,
     encryptionKey: {
-      publicKey: encryption.publicKey,
-      type: Kilt.EncryptionKeyType.X25519
+      publicKey: encryptionPk,
+      type: 'x25519'
     }
   }
 }

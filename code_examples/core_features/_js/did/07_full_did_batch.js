@@ -17,26 +17,27 @@ function getRandomCType() {
   })
 }
 export async function batchCTypeCreationExtrinsics(
-  keystore,
   api,
   submitterAccount,
   fullDid,
-  resolveOn = Kilt.BlockchainUtils.IS_FINALIZED
+  signCallback,
+  resolveOn = Kilt.Blockchain.IS_FINALIZED
 ) {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
-  const ctype1CreationTx = await ctype1.getStoreTx()
+  const ctype1CreationTx = await Kilt.CType.getStoreTx(ctype1)
   const ctype2 = getRandomCType()
-  const ctype2CreationTx = await ctype2.getStoreTx()
+  const ctype2CreationTx = await Kilt.CType.getStoreTx(ctype2)
   // Create the DID-signed batch
-  const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
-    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .build(keystore, submitterAccount.address)
+  const authorizedBatch = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batchAll,
+    did: fullDid,
+    extrinsics: [ctype1CreationTx, ctype2CreationTx],
+    sign: signCallback,
+    submitter: submitterAccount.address
+  })
   // The authorized account submits the batch to the chain
-  await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount, {
     resolveOn
   })
-  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
-    throw 'One of the two CTypes has not been properly stored.'
-  }
 }

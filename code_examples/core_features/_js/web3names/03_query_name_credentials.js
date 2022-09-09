@@ -3,45 +3,33 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 // The type to filter the endpoints of the retrieved DID.
 const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
   'KiltPublishedCredentialCollectionV1'
-const verifyCredential = async (publishedCredential) => {
-  // Retrieve the on-chain attestation information about the credential.
-  const onChainAttestation = await Kilt.Attestation.query(
-    publishedCredential.rootHash
-  )
-  if (!onChainAttestation || onChainAttestation.revoked) {
-    return false
-  }
-  // Verify the credential integrity and the subject's signature.
-  return (
-    publishedCredential.verifyData() && publishedCredential.verifySignature()
-  )
-}
 export async function queryPublishedCredentials(web3Name) {
   const didForWeb3Name = await Kilt.Did.Web3Names.queryDidForWeb3Name(web3Name)
   if (!didForWeb3Name) {
     throw `No DID found for "${didForWeb3Name}"`
   }
   console.log(`DID for "${web3Name}": ${didForWeb3Name}`)
-  const resolutionResult = await Kilt.Did.resolveDoc(didForWeb3Name)
+  const resolutionResult = await Kilt.Did.resolve(didForWeb3Name)
   if (!resolutionResult) {
     throw 'The DID does not exist on the KILT blockchain.'
   }
-  const didDetails = resolutionResult.details
+  const didDetails = resolutionResult.document
   // If no details are returned but resolutionResult is not null, the DID has been deleted.
   // This information is present in `resolutionResult.metadata.deactivated`.
   if (!didDetails) {
     throw 'The DID has already been deleted.'
   }
   // Filter the endpoints by their type.
-  const didEndpoints = didDetails.getEndpoints(
-    PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE
+  const didEndpoints = didDetails.service?.filter((service) =>
+    service.type.includes(PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE)
   )
   console.log(
     `Endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}" for the retrieved DID:`
   )
   console.log(JSON.stringify(didEndpoints, null, 2))
   // For demonstration, only the first endpoint and its first URL are considered.
-  const firstCredentialCollectionEndpointUrl = didEndpoints[0]?.urls[0]
+  const firstCredentialCollectionEndpointUrl =
+    didEndpoints?.[0]?.serviceEndpoint[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
       `The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`
@@ -58,13 +46,7 @@ export async function queryPublishedCredentials(web3Name) {
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      const credentialInstance =
-        Kilt.RequestForAttestation.fromRequest(credential)
-      // Verify the credential integrity and signature, according to the KILT specification.
-      const credentialStatus = await verifyCredential(credentialInstance)
-      if (!credentialStatus) {
-        throw 'Integrity and signature checks have failed for one of the credentials.'
-      }
+      await Kilt.Credential.verify(credential)
       // Verify that the credential refers to the intended subject
       if (
         !Kilt.Did.Utils.isSameSubject(credential.claim.owner, didForWeb3Name)

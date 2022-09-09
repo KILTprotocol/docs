@@ -1,3 +1,4 @@
+import { Keyring } from '@polkadot/api'
 import { FetchError } from 'node-fetch'
 import { randomUUID } from 'crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -7,27 +8,27 @@ import { queryPublishedCredentials } from './03_query_name_credentials'
 import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
 import { verifyNameAndDidEquality } from './02_query_did_name'
+import { signCallbackForKeyring } from '../utils'
 export async function runAll(
-  api,
   submitterAccount,
-  resolveOn = Kilt.BlockchainUtils.IS_FINALIZED
+  resolveOn = Kilt.Blockchain.IS_FINALIZED
 ) {
   console.log('Running web3name flow...')
-  const keystore = new Kilt.Did.DemoKeystore()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
   const fullDid = await createSimpleFullDid(
-    keystore,
-    api,
+    keyring,
     submitterAccount,
     undefined,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
   console.log('1 w3n) Claim web3name')
   await claimWeb3Name(
-    keystore,
     fullDid,
     submitterAccount,
     randomWeb3Name,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
@@ -46,13 +47,18 @@ export async function runAll(
     }
   }
   console.log('4 w3n) Release web3name')
-  await releaseWeb3Name(keystore, fullDid, submitterAccount, resolveOn)
+  await releaseWeb3Name(
+    fullDid,
+    submitterAccount,
+    signCallbackForKeyring(keyring),
+    resolveOn
+  )
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
-    keystore,
     fullDid,
     submitterAccount,
     randomWeb3Name,
+    signCallbackForKeyring(keyring),
     resolveOn
   )
   await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name, resolveOn)

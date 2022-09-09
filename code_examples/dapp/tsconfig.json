@@ -4,8 +4,5 @@
     "outDir": "_js",
     "skipLibCheck": true,
     "target": "ES2020"
-  },
-  "exclude": [
-    "run_core_features.ts"
-  ]
+  }
 }

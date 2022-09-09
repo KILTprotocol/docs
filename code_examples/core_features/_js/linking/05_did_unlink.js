@@ -1,20 +1,24 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 export async function unlinkAccountFromDid(
-  keystore,
   did,
   submitterAccount,
   linkedAccountAddress,
-  resolveOn = Kilt.BlockchainUtils.IS_FINALIZED
+  signCallback,
+  resolveOn = Kilt.Blockchain.IS_FINALIZED
 ) {
   // The DID owner removes the link between itself and the specified account.
   const accountUnlinkTx =
     await Kilt.Did.AccountLinks.getLinkRemovalByDidExtrinsic(
       linkedAccountAddress
-    ).then((tx) =>
-      did.authorizeExtrinsic(tx, keystore, submitterAccount.address)
     )
-  await Kilt.BlockchainUtils.signAndSubmitTx(
+  const authorisedAccountUnlinkTx = await Kilt.Did.authorizeExtrinsic(
+    did,
     accountUnlinkTx,
+    signCallback,
+    submitterAccount.address
+  )
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorisedAccountUnlinkTx,
     submitterAccount,
     {
       resolveOn

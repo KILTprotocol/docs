@@ -1,10 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-export async function runAll(address) {
-  // Connect to the blockchain
-  await Kilt.init({ address })
+export async function runAll() {
   const keyring = new Kilt.Utils.Keyring({
-    type: 'sr25519',
-    ss58Format: 38
+    ss58Format: Kilt.Utils.ss58Format
   })
   // Get a list of development accounts
   const accounts_seeds = ['//Alice', '//Bob']
