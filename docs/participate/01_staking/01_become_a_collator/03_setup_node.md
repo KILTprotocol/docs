@@ -156,6 +156,11 @@ In either case, if the node needs to be reachable via PolkadotJS Apps, the `--ws
 <StartNodeDocker />
 
 In either case, if the node needs to be reachable via PolkadotJS Apps, the `--ws-external` flag must be added to the collator options, before the `--` divider, and the WS port must be exposed from the container with an additional `-p 9944:9944` parameter.
+Make sure that you only expose the websocket port publicly if you are not running a collator.
+
+In addition to the websocket, you need to expose the ports for p2p connections.
+In the the command above these are `30333` for the parachain and `30334` for the relaychain.
+Make sure you configure your firewall in a way that allows incoming and outgoing connections to these ports.
 
 The Docker command will map the database files for the Relay Chain and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
 That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back on next containers.
