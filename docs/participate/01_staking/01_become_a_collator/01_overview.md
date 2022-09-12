@@ -14,7 +14,8 @@ However, the block time would be slower than with a full set of honest and funct
 If you want to join the KILT network as a collator, you have to run a full node of the blockchain and set up your session keys.
 You are also required to hold a minimum amount of  self-staked tokens to qualify for a collator seat.
 Once you have finished the mandatory steps described throughout the following sections, you can be added to the candidate pool.
-The candidate pool is sorted by the total staking amount (including delegations) with the ultimate decision criteria being whoever joined earlier.
+The candidate pool is sorted first by the total staking amount including delegations.
+If the pool is full and the new candidate has the exact same stake amount as the last member of the pool (by total stake), the blockchain favors the candidate that has been in the pool longest.
 Thus, only the collators with the highest total stake are periodically selected to be eligible block authors.
 
 :::info

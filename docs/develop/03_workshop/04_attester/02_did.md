@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
 import generateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
 
-Now it's time to make a DID using the previously created account for the <span className="label-role attester">Attester</span>.
+Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
 A DID may represent any entity, which could be a person, an organization or a machine.
 

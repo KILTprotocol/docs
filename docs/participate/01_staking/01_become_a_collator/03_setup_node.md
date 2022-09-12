@@ -163,7 +163,7 @@ In the the command above these are `30333` for the parachain and `30334` for the
 Make sure you configure your firewall in a way that allows incoming and outgoing connections to these ports.
 
 The Docker command will map the database files for the Relay Chain and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
-That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back on next containers.
+That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back on the next containers.
 
 The Docker container runs as an user with id 1000 and will try to access the mapped volume and the files it contains.
 If the files are not owned by a user with id 1000, this will result in an error.

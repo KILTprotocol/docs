@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
 Now that you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
-In KILT, there is an account which is an object that interacts with the blockchain.
+In KILT, an account is an object that interacts with the blockchain.
 An account contains multiple properties.
 One of them is the `address`: this is the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
 All we need to create an account is a mnemonic.

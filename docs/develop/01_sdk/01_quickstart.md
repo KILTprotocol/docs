@@ -120,7 +120,7 @@ You have connected to a Spiritnet node. Let's now start querying some data from 
 
 ## Query the KILT Blockchain
 
-We will be querying information related to a **web3name** (`john_doe`), and we will be using them to retrieve the **KILT DID** linked to it.
+We will be querying information related to a **web3name** (`john_doe`), and using them to retrieve the **KILT DID** linked to it.
 In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
 
 <SnippetBlock

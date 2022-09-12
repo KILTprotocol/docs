@@ -54,7 +54,7 @@ See the [guide to creating a proposal](../participate/03_treasury_proposal.md) f
 ## Tips
 
 Tips are a more agile and lightweight process to receive rewards for contributing to the KILT Protocol.
-Even though the funds also come from the Treasury, the procedure is more hands-down.
+Even though the funds also come from the Treasury, the procedure is more straightforward.
 The major difference compared to Treasury proposals is that for tips, determining the bounty amount is part of the course of tipping.
 In other words, the final tip amount is not clear beforehand and the group of pre-determined stakeholders comes to consensus on how much should be paid.
 Eventually, the median of proposed tips will be awarded from the Treasury.
@@ -65,11 +65,11 @@ In contrast to proposals, tips do not require an extensive document; a URL to th
 If the Finder is part of the group that decides about the bounty award, no deposit needs to be made.
 Moreover, the beneficiary will receive the entire tip without any deductions.
 Otherwise, a small deposit, which depends on the length of the message explaining the reason for the tip, needs to be reserved.
-It will be made available after the tipping process has finished.
+The deposit will be released after the tipping process has finished.
 Additionally, the Finder also receives a minor Finder's fee of 20% which is subtracted from the final tip amount.
 
 Therefore, **even if you are not a contributor, you can open a tipping process for someone else and receive a smaller portion of their potential reward**.
-Of course, you can also suggest contributions to the Council, which would then tip if it is deemed worthy.
+Of course, you can also suggest potential tip candidates to the Council, which would then tip if they are deemed worthy.
 
 ## Bug Reports
 
