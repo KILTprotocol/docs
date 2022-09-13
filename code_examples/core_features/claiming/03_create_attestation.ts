@@ -10,7 +10,7 @@ export async function createAttestation(
 ): Promise<void> {
   // Create an attestation object and write its root hash on the chain
   // using the provided attester's full DID.
-  const attestation = await Kilt.Attestation.fromCredentialAndDid(
+  const attestation = Kilt.Attestation.fromCredentialAndDid(
     credential,
     attester.uri
   )

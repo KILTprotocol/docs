@@ -21,7 +21,7 @@ export async function main() {
 
   // Create a callback that uses the DID attestation key to sign the credential
   const signCallback: Kilt.SignCallback = async ({ alg, data }) => {
-    const signature = await keyring.getPair(attestationKey.publicKey).sign(data)
+    const signature = keyring.getPair(attestationKey.publicKey).sign(data)
     return {
       alg,
       data: signature

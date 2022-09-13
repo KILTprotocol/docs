@@ -10,7 +10,7 @@ import { main as verifyAttestation } from './06_verify_attestation'
 import { main as verifyPresentation } from './07_verify_presentation'
 
 export async function runAll(): Promise<void> {
-  printHelloWorld()
+  await printHelloWorld()
   // Connect to Spiritnet
   await connect()
   const johnDoeDid = await fetchJohnDoeDid()

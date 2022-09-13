@@ -35,7 +35,7 @@ export async function runAll(
 
     return { data: key.sign(data), alg }
   }
-  const claimerLightDid = await createSimpleLightDid(keyring)
+  const claimerLightDid = createSimpleLightDid(keyring)
   const attesterFullDid = await createCompleteFullDid(
     keyring,
     submitterAccount,
@@ -52,11 +52,7 @@ export async function runAll(
     resolveOn
   )
   console.log('2 claiming) Create credential')
-  const credential = await requestAttestation(
-    claimerLightDid,
-    signCallback,
-    ctype
-  )
+  const credential = requestAttestation(claimerLightDid, ctype)
   console.log('3 claiming) Create attestation and credential')
   await createAttestation(
     attesterFullDid,

@@ -5,7 +5,7 @@ let encryptionKeyUri: Kilt.DidResourceUri
 let emailCtype: Kilt.ICType['hash']
 let requestChallenge: string
 
-export async function main() {
+export function main() {
   const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
   const { did: receiverDid } = Kilt.Did.Utils.parseDidUri(encryptionKeyUri)
 

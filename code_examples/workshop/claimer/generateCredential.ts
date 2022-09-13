@@ -9,19 +9,16 @@ import { generateKeypairs } from './generateKeypairs'
 import { getCtypeSchema } from '../attester/ctypeSchema'
 
 // create and return a Credential from claim
-async function credentialFromClaim(
-  lightDid: Kilt.DidDocument,
-  claim: Kilt.IClaim
-): Promise<Kilt.ICredential> {
+function credentialFromClaim(claim: Kilt.IClaim): Kilt.ICredential {
   const credential = Kilt.Credential.fromClaim(claim)
   return credential
 }
 
-export async function generateCredential(
+export function generateCredential(
   keyring: Keyring,
   claimAttributes: Kilt.IClaim['contents']
-): Promise<Kilt.ICredential> {
-  const { authenticationKey, encryptionKey } = await generateKeypairs(
+): Kilt.ICredential {
+  const { authenticationKey, encryptionKey } = generateKeypairs(
     keyring,
     process.env.CLAIMER_MNEMONIC
   )
@@ -34,11 +31,11 @@ export async function generateCredential(
 
   // create claim
   const ctype = getCtypeSchema()
-  const claim = await createClaim(lightDid, ctype, claimAttributes)
+  const claim = createClaim(lightDid, ctype, claimAttributes)
 
   // create credential and request attestation
-  console.log('claimer -> create request')
-  return await credentialFromClaim(lightDid, claim)
+  console.log('Claimer -> create request')
+  return credentialFromClaim(claim)
 }
 
 // don't execute if this is imported by another file
@@ -51,7 +48,7 @@ if (require.main === module) {
     })
 
     try {
-      const request = await generateCredential(keyring, {
+      const request = generateCredential(keyring, {
         age: 28,
         name: 'Max Mustermann'
       })

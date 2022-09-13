@@ -7,13 +7,13 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 
-export async function generateLightDid(keyring: Keyring): Promise<{
+export function generateLightDid(keyring: Keyring): {
   lightDid: Kilt.DidDocument
   mnemonic: string
-}> {
+} {
   // create secret and DID public keys
   const mnemonic = mnemonicGenerate()
-  const { authenticationKey, encryptionKey } = await generateKeypairs(
+  const { authenticationKey, encryptionKey } = generateKeypairs(
     keyring,
     mnemonic
   )
@@ -40,7 +40,7 @@ if (require.main === module) {
     })
 
     try {
-      const { lightDid, mnemonic } = await generateLightDid(keyring)
+      const { lightDid, mnemonic } = generateLightDid(keyring)
       console.log('\nsave following to .env to continue\n')
       console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
       console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)

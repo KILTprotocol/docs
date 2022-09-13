@@ -22,7 +22,7 @@ export async function main() {
       peerPublicKey,
       publicKey
     }) => {
-      const result = await Kilt.Utils.Crypto.decryptAsymmetric(
+      const result = Kilt.Utils.Crypto.decryptAsymmetric(
         { box: data, nonce },
         peerPublicKey,
         publicKey
