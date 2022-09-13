@@ -30,8 +30,7 @@ export async function verificationFlow() {
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
+    ss58Format: Kilt.Utils.ss58Format
   })
   const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
     return async ({ data, alg, publicKey }) => {
@@ -44,7 +43,7 @@ export async function verificationFlow() {
       return { data: key.sign(data), alg }
     }
   }
-  const { authenticationKey, encryptionKey } = await generateKeypairs(
+  const { authenticationKey, encryptionKey } = generateKeypairs(
     keyring,
     process.env.CLAIMER_MNEMONIC
   )

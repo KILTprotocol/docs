@@ -86,10 +86,9 @@ async function main(): Promise<void> {
   const api = await Kilt.connect(nodeAddress)
 
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
+    ss58Format: Kilt.Utils.ss58Format
   })
-  const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
+  const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed), {}, 'sr25519')
 
   const [
     claimingTestAccount,

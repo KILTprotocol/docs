@@ -34,7 +34,7 @@ export function generateCredential(
   const claim = createClaim(lightDid, ctype, claimAttributes)
 
   // create credential and request attestation
-  console.log('claimer -> create request')
+  console.log('Claimer -> create request')
   return credentialFromClaim(claim)
 }
 
