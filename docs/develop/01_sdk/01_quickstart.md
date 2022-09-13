@@ -144,7 +144,7 @@ The code snippet retrieves the service endpoints exposed by the DID we found for
 If the snippet printed some endpoints, congratulations!
 Let's see if we can find a Credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a Credential:
+We can select one of the endpoints and query the URL to see if it returns a signed Credential (i.e., a Presentation):
 
 <SnippetBlock
   className="language-ts"
