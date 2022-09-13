@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let domainLinkageCredential: Kilt.ICredential
+let domainLinkageCredential: Kilt.ICredentialPresentation
 
 export async function main() {
   const credentialSubject = {

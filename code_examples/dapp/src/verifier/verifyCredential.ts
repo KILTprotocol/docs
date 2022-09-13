@@ -1,5 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function verify(credentials: Kilt.ICredential[]) {
-  return Kilt.Credential.verify(credentials[0])
+export async function verify(credentials: Kilt.ICredentialPresentation[]) {
+  return Kilt.Credential.verifyPresentation(credentials[0])
 }

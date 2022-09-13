@@ -28,16 +28,9 @@ export async function main() {
     }
   }
 
-  const { signature, keyUri } = await Kilt.Did.signPayload(
-    fullDid,
-    Kilt.Utils.Crypto.coToUInt8(credential.rootHash),
-    signCallback,
-    attestationKey.id
-  )
-
-  const selfSignedCredential = await Kilt.Credential.addSignature(
+  const selfSignedPresentation = await Kilt.Credential.createPresentation({
     credential,
-    signature,
-    keyUri
-  )
+    signCallback,
+    claimerDid: fullDid
+  })
 }
