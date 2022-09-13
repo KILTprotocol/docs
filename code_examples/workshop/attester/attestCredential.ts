@@ -18,8 +18,8 @@ export async function attestCredential(
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
   const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
-  const account = await getAccount(keyring, mnemonic)
-  await generateKeypairs(keyring, mnemonic)
+  const account = getAccount(keyring, mnemonic)
+  generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(attesterDid)
 
   // build the attestation object
@@ -63,7 +63,7 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   }
 
   // first the claimer
-  const credential = await generateCredential(keyring, {
+  const credential = generateCredential(keyring, {
     age: 27,
     name: 'Mia Musterfrau'
   })
@@ -74,7 +74,6 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   await attestCredential(keyring, credential, signCallbackForKeyring(keyring))
 
   // send the attestation back to the claimer
-
   return credential
 }
 

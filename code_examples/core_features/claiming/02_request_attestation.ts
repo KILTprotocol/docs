@@ -1,10 +1,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function requestAttestation(
+export function requestAttestation(
   claimer: Kilt.DidDocument,
-  signCallback: Kilt.SignCallback,
   ctype: Kilt.ICType
-): Promise<Kilt.ICredential> {
+): Kilt.ICredential {
   // The claimer generates the claim they would like to get attested.
   const claim = Kilt.Claim.fromCTypeAndClaimContents(
     ctype,

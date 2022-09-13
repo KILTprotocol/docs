@@ -17,7 +17,7 @@ export async function main() {
     return
   }
 
-  const decryptedBytes = await Kilt.Utils.Crypto.decryptAsymmetric(
+  const decryptedBytes = Kilt.Utils.Crypto.decryptAsymmetric(
     { box: encryptedChallenge, nonce },
     encryptionKey.publicKey,
     keyAgreementKey.publicKey // derived from your seed phrase

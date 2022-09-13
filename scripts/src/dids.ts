@@ -16,9 +16,7 @@ export type TestDidDocument = Omit<Kilt.DidDocument, 'keyAgreement'> & {
   keyAgreement: Array<Kilt.DidEncryptionKey & { secretKey: Uint8Array }>
 }
 
-export async function generateAttesterDid(
-  keyring: Keyring
-): Promise<TestDidDocument> {
+export function generateAttesterDid(keyring: Keyring): TestDidDocument {
   const authSeed = blake2AsU8a('attester-auth')
   const encSeed = blake2AsU8a('attester-enc')
   const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair
@@ -47,9 +45,7 @@ export async function generateAttesterDid(
   return details
 }
 
-export async function generateClaimerDid(
-  keyring: Keyring
-): Promise<TestDidDocument> {
+export function generateClaimerDid(keyring: Keyring): TestDidDocument {
   const authSeed = blake2AsU8a('claimer-auth')
   const encSeed = blake2AsU8a('claimer-enc')
   const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair

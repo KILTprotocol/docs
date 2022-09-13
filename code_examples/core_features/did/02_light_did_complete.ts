@@ -4,10 +4,10 @@ import { naclBoxPairFromSecret, randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function createCompleteLightDid(
+export function createCompleteLightDid(
   keyring: Keyring,
   authenticationSeed: Uint8Array = randomAsU8a(32)
-): Promise<Kilt.DidDocument> {
+): Kilt.DidDocument {
   const authKey = keyring.addFromSeed(
     authenticationSeed
   ) as Kilt.NewLightDidVerificationKey
