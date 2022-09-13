@@ -63,14 +63,10 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   }
 
   // first the claimer
-  const credential = await generateCredential(
-    keyring,
-    {
-      age: 27,
-      name: 'Mia Musterfrau'
-    },
-    signCallbackForKeyring(keyring)
-  )
+  const credential = await generateCredential(keyring, {
+    age: 27,
+    name: 'Mia Musterfrau'
+  })
 
   // send the request to the attester
 

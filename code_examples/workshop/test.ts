@@ -57,14 +57,10 @@ async function testWorkshop() {
   process.env.CLAIMER_DID_URI = claimerDid.uri
   process.env.CLAIMER_MNEMONIC = claimerMnemonic
 
-  await generateCredential(
-    keyring,
-    {
-      age: 27,
-      name: 'Karl'
-    },
-    signCallbackForKeyring(keyring)
-  )
+  await generateCredential(keyring, {
+    age: 27,
+    name: 'Karl'
+  })
 
   const faucetSeed = process.env[SEED_ENV]
   if (!faucetSeed) {

@@ -5,7 +5,7 @@ export async function createPresentation(
   lightDid: Kilt.DidDocument,
   signCallback: Kilt.SignCallback,
   challenge?: string
-): Promise<Kilt.ICredential> {
+): Promise<Kilt.ICredentialPresentation> {
   // creates the presentation from credential, did and challenge
   return Kilt.Credential.createPresentation({
     credential,
