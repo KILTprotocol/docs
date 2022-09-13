@@ -22,21 +22,8 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
   
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js@0.28.2 dotenv ts-node typescript
+  npm install @kiltprotocol/sdk-js@0.29.0-rc.1 dotenv ts-node typescript
   ```
-
-  </TabItem>
-  <TabItem value='js' label='Javascript'>
-
-  Install the needed packages:
-  
-  ```bash npm2yarn
-  npm init -y
-  npm install @kiltprotocol/sdk-js@0.28.2 dotenv
-  ```
-  
-  </TabItem>
-</Tabs>
 
 ## Project Folder
 

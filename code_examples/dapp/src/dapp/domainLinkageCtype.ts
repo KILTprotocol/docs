@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main() {
+export function main() {
   const domainLinkageCType: Kilt.ICType = {
     schema: {
       $schema: 'http://kilt-protocol.org/draft-01/ctype#',

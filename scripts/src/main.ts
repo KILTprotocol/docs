@@ -29,8 +29,8 @@ async function main() {
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
   await cryptoWaitReady()
 
-  const kiltAttesterDid = await generateAttesterDid(keyring)
-  const kiltClaimerDid = await generateClaimerDid(keyring)
+  const kiltAttesterDid = generateAttesterDid(keyring)
+  const kiltClaimerDid = generateClaimerDid(keyring)
 
   // CType schema
   const drivingLicenseCtypeSchema: Kilt.CTypeSchemaWithoutId = {

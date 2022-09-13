@@ -4,10 +4,10 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 import { config as envConfig } from 'dotenv'
 import { setTimeout } from 'timers/promises'
 
-import { cryptoWaitReady, randomAsU8a } from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
 import { hexToU8a } from '@polkadot/util'
+import { randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -84,14 +84,11 @@ async function main(): Promise<void> {
   await gettingStartedFlow()
 
   const api = await Kilt.connect(nodeAddress)
-  // FIXME: Remove when used versions match
-  await cryptoWaitReady()
 
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
+    ss58Format: Kilt.Utils.ss58Format
   })
-  const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed))
+  const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed), {}, 'sr25519')
 
   const [
     claimingTestAccount,

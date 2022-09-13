@@ -18,10 +18,10 @@ export async function ensureStoredCtype(
   const did = process.env.ATTESTER_DID_URI as Kilt.DidUri
 
   // Load Account
-  const account = await getAccount(keyring, mnemonic)
+  const account = getAccount(keyring, mnemonic)
 
   // Load DID
-  await generateKeypairs(keyring, mnemonic)
+  generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(did)
 
   // get the CTYPE and see if it's stored, if yes return it

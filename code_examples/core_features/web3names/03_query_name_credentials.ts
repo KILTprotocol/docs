@@ -13,7 +13,7 @@ type CredentialMetadata = {
 }
 
 type CredentialEntry = {
-  credential: Kilt.ICredential
+  credential: Kilt.ICredentialPresentation
   metadata?: CredentialMetadata
 }
 
@@ -70,7 +70,7 @@ export async function queryPublishedCredentials(
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      await Kilt.Credential.verify(credential)
+      await Kilt.Credential.verifyPresentation(credential)
 
       // Verify that the credential refers to the intended subject
       if (

@@ -330,58 +330,59 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@kiltprotocol/augment-api@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/augment-api/-/augment-api-0.29.0-54.tgz#6bbceb167216315cb6899676204b164d7baf0282"
-  integrity sha512-PJCFWuJzQqgaKzKtqDuSvG77O6IGfJxF1Ch9sfyvKsd77RL0enG6qBGxc3KyHuXAhfXaIdBhA4KNYFyIg1CmxQ==
+"@kiltprotocol/augment-api@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/augment-api/-/augment-api-0.29.0-rc.1.tgz#0c3e4cbcabc93eccb40300fae1735704f32312e5"
+  integrity sha512-JCRCWQhfchiT9KL4lmTz+kPA2b6e+nRlDc0fAzSr7P0bnH7MNyzbMVAS5DB/TJZnB6ZJZ+0bgCwmKfflnQ3EAQ==
 
-"@kiltprotocol/chain-helpers@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/chain-helpers/-/chain-helpers-0.29.0-54.tgz#f26d72c338625016992d7f464ac2eb29ce83b2f4"
-  integrity sha512-yzCjOp4dLXch9TiUYfUNky1sPZfEEUYyl4xjjQSIM2wGqyhVkjYY988Ajydawq5B6T09ux2VP1UqmZF9Z12Phg==
+"@kiltprotocol/chain-helpers@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/chain-helpers/-/chain-helpers-0.29.0-rc.1.tgz#a3d0f6a8365a7cca0ba4f47386765a22de2295c6"
+  integrity sha512-sSPjHN2mKkPhObiKq7BsG4t33IPc777w9Ha+/YdGXWSLoDh3HvUpzDMYoqBaZ4dMdV4O71UJelsZp1oqaGjq1w==
   dependencies:
-    "@kiltprotocol/augment-api" "0.29.0-54"
-    "@kiltprotocol/config" "0.29.0-54"
-    "@kiltprotocol/types" "0.29.0-54"
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/augment-api" "0.29.0-rc.1"
+    "@kiltprotocol/config" "0.29.0-rc.1"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
     "@polkadot/api" "^9.0.0"
     "@polkadot/types" "^9.0.0"
 
-"@kiltprotocol/config@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/config/-/config-0.29.0-54.tgz#f72ec262e2d94bd0f8f2ce807cc40afe60cddf0e"
-  integrity sha512-xlOd6hdEQ5Rihbf5CdZzB92+YCY3FFBt9qMNxcduhEJXriUwhIKOs1PRHmkE2AK8wq03tMbkZnUlFgcZ5CnziQ==
+"@kiltprotocol/config@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/config/-/config-0.29.0-rc.1.tgz#81802469cb0f236bb2ac0530322d35f90f134619"
+  integrity sha512-qzQXWe25WARb2ICk7cEqHGcUfqv37s7tRfsM9bvRWCtOdTNTqXv0mrAcBp4L7s0iPejMcPjLNPE46W1QfztTew==
   dependencies:
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
     "@polkadot/api" "^9.0.0"
     typescript-logging "^0.6.4"
 
-"@kiltprotocol/core@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/core/-/core-0.29.0-54.tgz#6351d71396321b6061df1581348e3f9fb3b841b7"
-  integrity sha512-2Nf69gWE+wpkETSfUat2Z0J5jTmY8ervbFdjJ1yW2SooFRuvczcnZX8sunEDYxCHjwIMG7JDmoeBus4vBkkJ6Q==
+"@kiltprotocol/core@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/core/-/core-0.29.0-rc.1.tgz#7f32e9bacd6a5a181904839f4e6f3a2f7fa3c763"
+  integrity sha512-vIskXDL4JMYVxrvIu0EyqiJyoAs5eXQep8rYs9wQp6Uv5V5OriBTFmk4awA3gziG0nnkVo6RJOdsYa/Xccylxw==
   dependencies:
-    "@kiltprotocol/augment-api" "0.29.0-54"
-    "@kiltprotocol/chain-helpers" "0.29.0-54"
-    "@kiltprotocol/config" "0.29.0-54"
-    "@kiltprotocol/did" "0.29.0-54"
-    "@kiltprotocol/types" "0.29.0-54"
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/augment-api" "0.29.0-rc.1"
+    "@kiltprotocol/chain-helpers" "0.29.0-rc.1"
+    "@kiltprotocol/config" "0.29.0-rc.1"
+    "@kiltprotocol/did" "0.29.0-rc.1"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
     "@polkadot/api" "^9.0.0"
     "@polkadot/keyring" "^10.0.0"
     "@polkadot/types" "^9.0.0"
     "@polkadot/util" "^10.0.0"
     "@polkadot/util-crypto" "^10.0.0"
 
-"@kiltprotocol/did@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/did/-/did-0.29.0-54.tgz#3cf50eabfb179f9b0986c095049cf3ec99e9e6ec"
-  integrity sha512-uCgyKQVria2rHy7IdyjZZ9pE8YiiaJjSPpdRMfU7oyVOnDA06ImY71/sK8X3+Bbw7xr4UVJivp19xy7Lwm41WA==
+"@kiltprotocol/did@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/did/-/did-0.29.0-rc.1.tgz#39089368cdea05c4aff32daa84f3ef0f90174706"
+  integrity sha512-deu8gaTBnOcb0icr7c1BbyXR9Zx7Nr9BmLe2VeYl5Yp/qDwhbmh96DbHYtPbH7jG4IUs7EEtHZTK86y9jdtyOQ==
   dependencies:
-    "@kiltprotocol/augment-api" "0.29.0-54"
-    "@kiltprotocol/config" "0.29.0-54"
-    "@kiltprotocol/types" "0.29.0-54"
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/augment-api" "0.29.0-rc.1"
+    "@kiltprotocol/config" "0.29.0-rc.1"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
     "@polkadot/api" "^9.0.0"
     "@polkadot/keyring" "^10.0.0"
     "@polkadot/types" "^9.0.0"
@@ -389,48 +390,48 @@
     "@polkadot/util-crypto" "^10.0.0"
     cbor "^8.0.2"
 
-"@kiltprotocol/messaging@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/messaging/-/messaging-0.29.0-54.tgz#6645478b3ff6c9d704979a115344d362c5c0fe7f"
-  integrity sha512-raJ8Uws6qt9TU3rGYudlCZNAOaysw8vqp3kERoKsSAEBeifyJx7parHk020AeFBz4FIKMY5XH9Bm4eiMsmnmkQ==
+"@kiltprotocol/messaging@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/messaging/-/messaging-0.29.0-rc.1.tgz#5280f466c9407a5cc2e9e42f82ea216d7bed4c0b"
+  integrity sha512-Rkt//Vb9debHq5AgowSpsl5sEc/0GtSTFwlxOgTRyMkNvWoC0YGLmAxk5MNNxq6mDp459l9BJiukNbabA6MKbg==
   dependencies:
-    "@kiltprotocol/core" "0.29.0-54"
-    "@kiltprotocol/did" "0.29.0-54"
-    "@kiltprotocol/types" "0.29.0-54"
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/core" "0.29.0-rc.1"
+    "@kiltprotocol/did" "0.29.0-rc.1"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
     "@polkadot/util" "^10.0.0"
 
-"@kiltprotocol/sdk-js@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/sdk-js/-/sdk-js-0.29.0-54.tgz#b4a4ffa85c831a7afb70a2817481ed8308e6f73b"
-  integrity sha512-dfiwOFIlPApvSWDXSOCR5zdX0BeL2MW70Y5Oj9MDpqemhDhpllO5bNZXdw4r5qwZT0imvH5wQ8G3EftXAzRkWw==
+"@kiltprotocol/sdk-js@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/sdk-js/-/sdk-js-0.29.0-rc.1.tgz#31b8aa17d68b540d80d8ce56f5d54b6cc86174eb"
+  integrity sha512-bWF0nDsQnsN8tM6+5UW8YxYvMEBhSCJ3JnzD72i+CGH5x56caZsSI+zc2URBW6kxk+AfomnAYNA6Lc5ovmdjhg==
   dependencies:
-    "@kiltprotocol/augment-api" "0.29.0-54"
-    "@kiltprotocol/chain-helpers" "0.29.0-54"
-    "@kiltprotocol/core" "0.29.0-54"
-    "@kiltprotocol/did" "0.29.0-54"
-    "@kiltprotocol/messaging" "0.29.0-54"
-    "@kiltprotocol/types" "0.29.0-54"
-    "@kiltprotocol/utils" "0.29.0-54"
+    "@kiltprotocol/augment-api" "0.29.0-rc.1"
+    "@kiltprotocol/chain-helpers" "0.29.0-rc.1"
+    "@kiltprotocol/core" "0.29.0-rc.1"
+    "@kiltprotocol/did" "0.29.0-rc.1"
+    "@kiltprotocol/messaging" "0.29.0-rc.1"
+    "@kiltprotocol/types" "0.29.0-rc.1"
+    "@kiltprotocol/utils" "0.29.0-rc.1"
 
-"@kiltprotocol/types@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/types/-/types-0.29.0-54.tgz#7a33555d2a901630d826984954b477aab19cb667"
-  integrity sha512-9DX7y4O8ux/24n61fNHoxOzoo58aWNAoYDxs/3tZqcdxyMVZgYyjiLz42+MaKZdmbWaSO92ylZgrt8JkoAQKgw==
+"@kiltprotocol/types@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/types/-/types-0.29.0-rc.1.tgz#1319795ded559de0af3cc53d777a21c3d2a20bb3"
+  integrity sha512-5oPwI/FnQ1zduDcJScKxXzk2r0GRbSMfqPLQD3fWX36GSLL6en9tc+HSbmZPS2ehdM9ueEDk1O0Vs8d1IIQiIA==
   dependencies:
-    "@kiltprotocol/augment-api" "0.29.0-54"
+    "@kiltprotocol/augment-api" "0.29.0-rc.1"
     "@polkadot/api" "^9.0.0"
     "@polkadot/keyring" "^10.0.0"
     "@polkadot/types" "^9.0.0"
     "@polkadot/util" "^10.0.0"
     "@polkadot/util-crypto" "^10.0.0"
 
-"@kiltprotocol/utils@0.29.0-54":
-  version "0.29.0-54"
-  resolved "https://registry.yarnpkg.com/@kiltprotocol/utils/-/utils-0.29.0-54.tgz#11e5ad7f24069af6f5edb66d3fe16f38b22ca8c3"
-  integrity sha512-FhJyapuWwud7JodfeBJRT6Xj5Xhl1bTtSVGPpxCHqkKouH7F3EXJ2Aj3uY+2kFtLzcVx+yW678pdsl3gaYtcbw==
+"@kiltprotocol/utils@0.29.0-rc.1":
+  version "0.29.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@kiltprotocol/utils/-/utils-0.29.0-rc.1.tgz#b3af325e6f9d441ed91cf3d20e05b334992ce4d5"
+  integrity sha512-9BUKHWSYFamddNj723avSMJ5DzCs3xxUVJLgpiRZHWupY2mCUXVd6NcDSIGuUlfAvmsJMJL73MfNI9KsxwjdMg==
   dependencies:
-    "@kiltprotocol/types" "0.29.0-54"
+    "@kiltprotocol/types" "0.29.0-rc.1"
     "@polkadot/keyring" "^10.0.0"
     "@polkadot/util" "^10.0.0"
     "@polkadot/util-crypto" "^10.0.0"

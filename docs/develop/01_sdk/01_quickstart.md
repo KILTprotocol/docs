@@ -13,7 +13,7 @@ import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getti
 import FetchEndpointDataTs from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
 import FetchEndpointDataJs from '!!raw-loader!@site/code_examples/core_features/_js/getting_started/05_fetch_endpoint_data.js';
 import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
+import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_presentation.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
@@ -167,7 +167,7 @@ The code snippet retrieves the service endpoints exposed by the DID we found for
 If the snippet printed some endpoints, congratulations!
 Let's see if we can find a Credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a Credential:
+We can select one of the endpoints and query the URL to see if it returns a signed Credential (i.e., a Presentation):
 
 <TsJsSnippet tsSnippet={FetchEndpointDataTs} jsSnippet={FetchEndpointDataJs} funcEnd="return" />
 
@@ -191,7 +191,7 @@ This will be indicated by the result of the **verification** process as shown in
 <SnippetBlock
   className="language-ts"
 >
-  {VerifyCredential}
+  {VerifyPresentation}
 </SnippetBlock>
 
 Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's Credentials!

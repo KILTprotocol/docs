@@ -26,7 +26,7 @@ export async function main() {
     peerPublicKey,
     publicKey
   }) => {
-    const { box, nonce } = await Kilt.Utils.Crypto.encryptAsymmetric(
+    const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
       peerPublicKey,
       publicKey
