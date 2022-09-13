@@ -14,7 +14,7 @@ export async function main() {
   }
   // Create a callback that uses the DID encryption key to encrypt the message
   const encryptCallback = async ({ alg, data, peerPublicKey, publicKey }) => {
-    const { box, nonce } = await Kilt.Utils.Crypto.encryptAsymmetric(
+    const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
       peerPublicKey,
       publicKey

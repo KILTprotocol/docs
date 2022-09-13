@@ -1,12 +1,12 @@
-import { randomAsU8a } from '@polkadot/util-crypto'
+import { naclBoxPairFromSecret, randomAsU8a } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
-export async function createCompleteLightDid(
+export function createCompleteLightDid(
   keyring,
   authenticationSeed = randomAsU8a(32)
 ) {
   const authKey = keyring.addFromSeed(authenticationSeed)
   // Generate the encryption key.
-  const { publicKey: encPublicKey } = keyring.addFromSeed(randomAsU8a(32))
+  const { publicKey: encPublicKey } = naclBoxPairFromSecret(randomAsU8a(32))
   const service = [
     {
       id: '#my-service',

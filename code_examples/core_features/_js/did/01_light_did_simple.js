@@ -1,6 +1,6 @@
 import { randomAsU8a } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
-export async function createSimpleLightDid(
+export function createSimpleLightDid(
   keyring,
   authenticationSeed = randomAsU8a(32)
 ) {

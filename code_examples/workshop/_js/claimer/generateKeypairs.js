@@ -1,9 +1,13 @@
-import { randomAsHex } from '@polkadot/util-crypto'
-export async function generateKeypairs(keyring, mnemonic = randomAsHex(32)) {
+import {
+  naclBoxPairFromSecret,
+  randomAsHex,
+  randomAsU8a
+} from '@polkadot/util-crypto'
+export function generateKeypairs(keyring, mnemonic = randomAsHex(32)) {
   // signing keypair
-  const authKey = await keyring.addFromMnemonic(mnemonic)
+  const authKey = keyring.addFromMnemonic(mnemonic)
   // encryption keypair
-  const { publicKey: encryptionPk } = await keyring.addFromMnemonic(mnemonic)
+  const { publicKey: encryptionPk } = naclBoxPairFromSecret(randomAsU8a(32))
   // build the keys object
   return {
     authenticationKey: authKey,

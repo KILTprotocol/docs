@@ -16,16 +16,16 @@ import EncryptRequestCredentialMessageJs from '!!raw-loader!@site/code_examples/
 
 The job of the verifier is to request and verify credentials. Your verifier can request one or more credentials of a specific CType. For example, if you want to verify an email credential, you would use the email CType:
 
-<TsJsSnippet tsSnippet={EmailCtypeTs} jsSnippet={EmailCtypeJs} />
+<!-- <TsJsSnippet tsSnippet={EmailCtypeTs} jsSnippet={EmailCtypeJs} /> -->
 
 First, generate a request challenge and store it on the server side:
 
-<TsJsSnippet tsSnippet={GenerateChallengeTs} jsSnippet={GenerateChallengeJs} />
+<!-- <TsJsSnippet tsSnippet={GenerateChallengeTs} jsSnippet={GenerateChallengeJs} /> -->
 
 Then construct the `REQUEST_CREDENTIAL` message using the message body, sender DID and receiver DID:
 
-<TsJsSnippet tsSnippet={CreateRequestCredentialMessageTs} jsSnippet={CreateRequestCredentialMessageJs} />
+<!-- <TsJsSnippet tsSnippet={CreateRequestCredentialMessageTs} jsSnippet={CreateRequestCredentialMessageJs} /> -->
 
 Next, encrypt the message:
 
-<TsJsSnippet tsSnippet={EncryptRequestCredentialMessageTs} jsSnippet={EncryptRequestCredentialMessageJs} />
+<!-- <TsJsSnippet tsSnippet={EncryptRequestCredentialMessageTs} jsSnippet={EncryptRequestCredentialMessageJs} /> -->

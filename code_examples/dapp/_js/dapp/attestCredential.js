@@ -3,7 +3,7 @@ let selfSignedCredential
 let did
 let dappAccount
 export async function main() {
-  const attestation = await Kilt.Attestation.fromCredentialAndDid(
+  const attestation = Kilt.Attestation.fromCredentialAndDid(
     selfSignedCredential,
     did
   )

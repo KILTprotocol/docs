@@ -28,7 +28,7 @@ In order to indicate its support of the extension's API, the dApp creates the `w
 
 The dApp introduces itself to the extension with its name, encryption key URI, and a challenge. A copy of the challenge should be stored on the server side. For example:
 
-<TsJsSnippet tsSnippet={DappIntroductionTs} jsSnippet={DappIntroductionJs} />
+<!-- <TsJsSnippet tsSnippet={DappIntroductionTs} jsSnippet={DappIntroductionJs} /> -->
 
 At this point the extension has received the introduction of the dApp and returned a new session along with the encrypted challenge.
 
@@ -36,6 +36,6 @@ At this point the extension has received the introduction of the dApp and return
 
 The extension has provided the session along with an encrypted challenge. The dApp decrypts the challenge and verifies that it matches the original challenge. This should happen on the server side:
 
-<TsJsSnippet tsSnippet={SessionCheckTs} jsSnippet={SessionCheckJs} />
+<!-- <TsJsSnippet tsSnippet={SessionCheckTs} jsSnippet={SessionCheckJs} /> -->
 
 That's it! The communication session has been securely established and you're ready to start sending and receiving messages.

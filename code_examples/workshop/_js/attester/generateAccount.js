@@ -2,7 +2,7 @@ import { config as envConfig } from 'dotenv'
 import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 import * as Kilt from '@kiltprotocol/sdk-js'
-export async function generateAccount(keyring) {
+export function generateAccount(keyring) {
   // use the mnemonic from .env or make a new one
   const mnemonic = mnemonicGenerate()
   const account = keyring.addFromMnemonic(mnemonic)
@@ -21,7 +21,7 @@ if (require.main === module) {
       ss58Format: Kilt.Utils.ss58Format
     })
     try {
-      const { mnemonic, account } = await generateAccount(keyring)
+      const { mnemonic, account } = generateAccount(keyring)
       console.log('save to mnemonic and address to .env to continue!\n\n')
       console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
       console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)

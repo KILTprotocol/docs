@@ -3,10 +3,10 @@ import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateKeypairs } from './generateKeypairs'
-export async function generateLightDid(keyring) {
+export function generateLightDid(keyring) {
   // create secret and DID public keys
   const mnemonic = mnemonicGenerate()
-  const { authenticationKey, encryptionKey } = await generateKeypairs(
+  const { authenticationKey, encryptionKey } = generateKeypairs(
     keyring,
     mnemonic
   )
@@ -29,7 +29,7 @@ if (require.main === module) {
       ss58Format: Kilt.Utils.ss58Format
     })
     try {
-      const { lightDid, mnemonic } = await generateLightDid(keyring)
+      const { lightDid, mnemonic } = generateLightDid(keyring)
       console.log('\nsave following to .env to continue\n')
       console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
       console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)

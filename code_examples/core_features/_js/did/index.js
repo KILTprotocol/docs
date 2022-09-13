@@ -19,9 +19,9 @@ export async function runAll(
   console.log('Running DID flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
   console.log('1 did) Create simple light DID')
-  const simpleLightDid = await createSimpleLightDid(keyring)
+  const simpleLightDid = createSimpleLightDid(keyring)
   console.log('2 did) Create complete light DID')
-  await createCompleteLightDid(keyring)
+  createCompleteLightDid(keyring)
   console.log('3 did) Migrate first light DID to full DID')
   await migrateLightDid(
     simpleLightDid,

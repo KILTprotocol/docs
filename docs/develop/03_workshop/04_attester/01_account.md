@@ -81,7 +81,7 @@ Now run it to get your <span className="label-role attester">Attester</span> `<a
   <TabItem value='js' label='Javascript' default>
 
   ```bash
-  node ./attester/generateAccount.ts
+  node ./attester/generateAccount.js
   ```
 
   </TabItem>

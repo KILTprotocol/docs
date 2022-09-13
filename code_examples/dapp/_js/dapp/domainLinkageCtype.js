@@ -1,4 +1,4 @@
-export async function main() {
+export function main() {
   const domainLinkageCType = {
     schema: {
       $schema: 'http://kilt-protocol.org/draft-01/ctype#',

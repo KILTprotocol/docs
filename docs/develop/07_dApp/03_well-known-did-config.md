@@ -34,26 +34,26 @@ Upon receiving the GET request from the extension, your dApp will make a claim t
 
 Your dApp's claim is based on the domain linkage CType, which can be created from the existing CType schema:
 
-<TsJsSnippet tsSnippet={DomainLinkageCtypeTs} jsSnippet={DomainLinkageCtypeJs} />
+<!-- <TsJsSnippet tsSnippet={DomainLinkageCtypeTs} jsSnippet={DomainLinkageCtypeJs} /> -->
 
 The claim is built from the CType, claim contents, and your dApp's unique DID:
 
-<TsJsSnippet tsSnippet={DomainLinkageClaimTs} jsSnippet={DomainLinkageClaimJs} />
+<!-- <TsJsSnippet tsSnippet={DomainLinkageClaimTs} jsSnippet={DomainLinkageClaimJs} /> -->
 
 #### Adding the signature
 
 Your dApp creates a Credential based on the claim and signs the request's root hash with its assertion key. The resulting signature is then added to the to-be-attested Credential.
 
-<TsJsSnippet tsSnippet={SignCredentialTs} jsSnippet={SignCredentialJs} />
+<!-- <TsJsSnippet tsSnippet={SignCredentialTs} jsSnippet={SignCredentialJs} /> -->
 
 #### Self-attesting the credential
 
 Finally, your dApp creates the self-attestation and credential
 
-<TsJsSnippet tsSnippet={AttestCredentialTs} jsSnippet={AttestCredentialJs} />
+<!-- <TsJsSnippet tsSnippet={AttestCredentialTs} jsSnippet={AttestCredentialJs} /> -->
 
 ### Formatting the Domain Linkage Credential
 
 The Well Known DID Configuration specificaton requires a specific format (JSON-LD) for the domain linkage credential. Here's how you can present your credential to the extension in the expected format.
 
-<TsJsSnippet tsSnippet={FormatCredentialTs} jsSnippet={FormatCredentialJs} />
+<!-- <TsJsSnippet tsSnippet={FormatCredentialTs} jsSnippet={FormatCredentialJs} /> -->

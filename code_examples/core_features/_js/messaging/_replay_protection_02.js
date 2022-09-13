@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { blake2AsHex } from '@polkadot/util-crypto'
-export async function main(
+export function main(
   submissions,
   decrypted,
   MIN_ACCEPTED_AGE,

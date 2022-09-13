@@ -1,4 +1,5 @@
-export async function main(submissions, MAX_ACCEPTED_AGE) {
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export function main(submissions, MAX_ACCEPTED_AGE) {
   setInterval(() => {
     const outdatedTimestamp = Date.now() - MAX_ACCEPTED_AGE
     submissions.forEach((timestamp, hash) => {

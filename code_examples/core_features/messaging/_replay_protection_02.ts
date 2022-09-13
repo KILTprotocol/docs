@@ -4,7 +4,7 @@ import { blake2AsHex } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-function main(
+export function main(
   submissions: Map<string, number>,
   decrypted: Kilt.IMessage,
   MIN_ACCEPTED_AGE: number,

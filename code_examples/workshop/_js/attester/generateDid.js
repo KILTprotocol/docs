@@ -7,7 +7,7 @@ import { getAccount } from './generateAccount'
 export async function createFullDid(keyring, signCallback) {
   const mnemonic = process.env.ATTESTER_MNEMONIC
   // Load attester account
-  const account = await getAccount(keyring, mnemonic)
+  const account = getAccount(keyring, mnemonic)
   // generate the keypairs
   // we are using the same mnemonic as for the attester account, but we could also use a new secret
   const {
@@ -15,7 +15,7 @@ export async function createFullDid(keyring, signCallback) {
     keyAgreement,
     assertionMethod,
     capabilityDelegation
-  } = await generateKeypairs(keyring, mnemonic)
+  } = generateKeypairs(keyring, mnemonic)
   // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
   const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
     {

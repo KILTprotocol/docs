@@ -169,7 +169,9 @@ Let's see if we can find a Credential among them.
 
 We can select one of the endpoints and query the URL to see if it returns a signed Credential (i.e., a Presentation):
 
-<TsJsSnippet tsSnippet={FetchEndpointDataTs} jsSnippet={FetchEndpointDataJs} funcEnd="return" />
+<TsJsSnippet tsSnippet={FetchEndpointDataTs} jsSnippet={FetchEndpointDataJs} funcEnd="return">
+  {FetchEndpointDataTs}
+</TsJsSnippet>
 
 If the script completes with no errors, it means that we were able to retrieve a Credential using the URL specified in the service endpoint.
 

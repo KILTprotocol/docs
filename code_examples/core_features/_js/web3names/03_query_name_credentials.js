@@ -46,7 +46,7 @@ export async function queryPublishedCredentials(web3Name) {
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      await Kilt.Credential.verify(credential)
+      await Kilt.Credential.verifyPresentation(credential)
       // Verify that the credential refers to the intended subject
       if (
         !Kilt.Did.Utils.isSameSubject(credential.claim.owner, didForWeb3Name)

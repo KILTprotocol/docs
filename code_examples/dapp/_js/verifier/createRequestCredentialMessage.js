@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 let encryptionKeyUri
 let emailCtype
 let requestChallenge
-export async function main() {
+export function main() {
   const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
   const { did: receiverDid } = Kilt.Did.Utils.parseDidUri(encryptionKeyUri)
   const message = Kilt.Message.fromBody(

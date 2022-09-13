@@ -10,9 +10,9 @@ export async function ensureStoredCtype(keyring, signCallback) {
   const mnemonic = process.env.ATTESTER_MNEMONIC
   const did = process.env.ATTESTER_DID_URI
   // Load Account
-  const account = await getAccount(keyring, mnemonic)
+  const account = getAccount(keyring, mnemonic)
   // Load DID
-  await generateKeypairs(keyring, mnemonic)
+  generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(did)
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()

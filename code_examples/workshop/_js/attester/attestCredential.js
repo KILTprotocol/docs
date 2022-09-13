@@ -10,8 +10,8 @@ export async function attestCredential(keyring, request, signCallback) {
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC
   const attesterDid = process.env.ATTESTER_DID_URI
-  const account = await getAccount(keyring, mnemonic)
-  await generateKeypairs(keyring, mnemonic)
+  const account = getAccount(keyring, mnemonic)
+  generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(attesterDid)
   // build the attestation object
   const attestation = Kilt.Attestation.fromCredentialAndDid(
@@ -34,8 +34,7 @@ export async function attestCredential(keyring, request, signCallback) {
 }
 export async function attestingFlow() {
   const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format,
-    type: 'sr25519'
+    ss58Format: Kilt.Utils.ss58Format
   })
   const signCallbackForKeyring = (keyring) => {
     return async ({ data, alg, publicKey }) => {
@@ -48,14 +47,10 @@ export async function attestingFlow() {
     }
   }
   // first the claimer
-  const credential = await generateCredential(
-    keyring,
-    {
-      age: 27,
-      name: 'Mia Musterfrau'
-    },
-    signCallbackForKeyring(keyring)
-  )
+  const credential = generateCredential(keyring, {
+    age: 27,
+    name: 'Mia Musterfrau'
+  })
   // send the request to the attester
   // the attester checks the attributes and issues an attestation
   await attestCredential(keyring, credential, signCallbackForKeyring(keyring))
