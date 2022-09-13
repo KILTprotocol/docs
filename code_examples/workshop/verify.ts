@@ -14,11 +14,11 @@ function getChallenge(): string {
 
 // verifies validity, ownership & attestation
 async function verifyPresentation(
-  presentation: Kilt.ICredential,
+  presentation: Kilt.ICredentialPresentation,
   challenge: string
 ): Promise<boolean> {
   try {
-    await Kilt.Credential.verify(presentation, { challenge })
+    await Kilt.Credential.verifyPresentation(presentation, { challenge })
   } catch {
     return false
   }

@@ -15,15 +15,7 @@ export async function requestAttestation(
     },
     claimer.uri
   )
-  // The credential must be signed by the claimer to provide non-repudiation.
-  const credential = Kilt.Credential.fromClaim(claim)
-  await Kilt.Credential.sign(
-    credential,
-    signCallback,
-    claimer,
-    // The authentication key of the claimer is used to generate the signature.
-    claimer.authentication[0].id
-  )
 
+  const credential = Kilt.Credential.fromClaim(claim)
   return credential
 }

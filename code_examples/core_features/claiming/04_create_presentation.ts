@@ -6,7 +6,7 @@ export async function createPresentation(
   signCallback: Kilt.SignCallback,
   selectedAttributes: string[] | undefined = undefined,
   challenge: string | undefined = undefined
-): Promise<Kilt.ICredential> {
+): Promise<Kilt.ICredentialPresentation> {
   // Create a presentation with only the specified fields revealed, if specified.
   return Kilt.Credential.createPresentation({
     claimerDid: claimer,
