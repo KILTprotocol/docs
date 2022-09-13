@@ -1,27 +1,30 @@
 import React from 'react'
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import * as Babel from '@babel/standalone'
 
-import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
-const TsJsBlock = ({
-  tsSnippet,
-  jsSnippet,
-  ...props
-}) => {
-  return <Tabs groupId="ts-js-choice">
-    <TabItem value='ts' label='Typescript' default>
-      <CodeBlock {...props} className="language-ts">
-        {tsSnippet}
-      </CodeBlock>
-    </TabItem>
-    <TabItem value='js' label='Javascript'>
-      <CodeBlock {...props} className="language-js">
-        {jsSnippet}
-      </CodeBlock>
-    </TabItem>
-  </Tabs>
+import CodeBlock from '@theme/CodeBlock'
+
+const TsJsBlock = ({ tsSnippet, ...props }) => {
+  const jsSnippet = Babel.transform(tsSnippet, {
+    plugins: ['transform-typescript'],
+  }).code
+  return (
+    <Tabs groupId="ts-js-choice">
+      <TabItem value="ts" label="Typescript" default>
+        <CodeBlock {...props} className="language-ts">
+          {tsSnippet}
+        </CodeBlock>
+      </TabItem>
+      <TabItem value="js" label="Javascript">
+        <CodeBlock {...props} className="language-js">
+          {jsSnippet}
+        </CodeBlock>
+      </TabItem>
+    </Tabs>
+  )
 }
 
 export default TsJsBlock
