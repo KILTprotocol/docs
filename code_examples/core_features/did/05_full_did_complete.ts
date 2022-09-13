@@ -1,6 +1,10 @@
 import type { Keyring } from '@polkadot/api'
 
-import { blake2AsU8a, randomAsU8a } from '@polkadot/util-crypto'
+import {
+  blake2AsU8a,
+  naclBoxPairFromSecret,
+  randomAsU8a
+} from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -23,7 +27,7 @@ export async function createCompleteFullDid(
   const authKet = keyring.addFromSeed(
     authenticationSeed
   ) as Kilt.KiltKeyringPair
-  const { publicKey: encPublicKey } = keyring.addFromSeed(encryptionSeed)
+  const { publicKey: encPublicKey } = naclBoxPairFromSecret(randomAsU8a(32))
   const attKey = keyring.addFromSeed(attestationSeed) as Kilt.KiltKeyringPair
   const delKey = keyring.addFromSeed(delegationSeed) as Kilt.KiltKeyringPair
 
