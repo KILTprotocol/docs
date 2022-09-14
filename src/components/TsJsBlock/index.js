@@ -17,7 +17,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     plugins: ['transform-typescript'],
     retainLines: true,
   })
-  const { siteConfig: { customFields: { ...prettierConfig } } } = useDocusaurusContext()
+  const { siteConfig: { customFields: { prettierConfig } } } = useDocusaurusContext()
   // 2. Prettify the resulting JS
   const prettyJsSnippet =
     format(

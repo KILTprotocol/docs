@@ -182,9 +182,11 @@ module.exports = {
   // in TsJsBlock and TsJsSnippet components, and maybe also in the .prettierrc file, if needed
   // !!!
   customFields: {
-    trailingComma: "es5",
-    semi: false,
-    singleQuote: true,
-    printWidth: 80
+    prettierConfig: {
+      trailingComma: "es5",
+      semi: false,
+      singleQuote: true,
+      printWidth: 80
+    }
   }
 }
