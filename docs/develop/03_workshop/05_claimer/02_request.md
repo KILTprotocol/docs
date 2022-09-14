@@ -3,14 +3,12 @@ id: request
 title: Request an Attestation
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CreateClaimTs from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
-import CreateClaimJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/createClaim.js';
-import GenerateCredentialTs from '!!raw-loader!@site/code_examples/workshop/claimer/generateCredential.ts';
-import GenerateCredentialJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/generateCredential.js';
+import CreateClaim from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
+import GenerateCredential from '!!raw-loader!@site/code_examples/workshop/claimer/generateCredential.ts';
 
 In this section, we'll create a `Claim` and a `Credential`.
 But a credential in itself has no value.
@@ -33,21 +31,17 @@ We'll use provided `light DID`, `ctype` and <span className="label-role claimer"
 
   Create a file `claimer/createClaim.ts` and copy the code below.
 
-  <CodeBlock className="language-ts" title="claimer/createClaim.ts">
-    {CreateClaimTs}
-  </CodeBlock>
-
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   Create a file `claimer/createClaim.js` and copy the code below.
 
-  <CodeBlock className="language-js" title="claimer/createClaim.js">
-    {CreateClaimJs}
-  </CodeBlock>
-
   </TabItem>
 </Tabs>
+
+<TsJsBlock>
+  {CreateClaim}
+</TsJsBlock>
 
 The magic is happening in the `generateCredential` function.
 There we create a credential from a claim.
@@ -69,21 +63,17 @@ The credential contains all necessary information, so that the <span className="
 
   Create a file `claimer/generateCredential.ts` and copy the code below.
 
-  <CodeBlock className="language-ts" title="claimer/generateCredential.ts">
-    {GenerateCredentialTs}
-  </CodeBlock>
-
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   Create a file `claimer/generateCredential.js` and copy the code below.
 
-  <CodeBlock className="language-js" title="claimer/generateCredential.js">
-    {GenerateCredentialJs}
-  </CodeBlock>
-
   </TabItem>
 </Tabs>
+
+<TsJsBlock>
+  {GenerateCredential}
+</TsJsBlock>
 
 When `Attestations` are issued by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
 Each new `Credential` is unique.

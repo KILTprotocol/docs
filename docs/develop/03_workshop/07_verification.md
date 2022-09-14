@@ -8,10 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import VerifyTs from '!!raw-loader!@site/code_examples/workshop/verify.ts';
-import VerifyJs from '!!raw-loader!@site/code_examples/workshop/_js/verify.js';
-import CreatePresentationTs from '!!raw-loader!@site/code_examples/workshop/claimer/createPresentation.ts';
-import CreatePresentationJs from '!!raw-loader!@site/code_examples/workshop/_js/claimer/createPresentation.js';
+import Verify from '!!raw-loader!@site/code_examples/workshop/verify.ts';
+import CreatePresentation from '!!raw-loader!@site/code_examples/workshop/claimer/createPresentation.ts';
 
 In this section, you'll play the role of a <span className="label-role verifier">Verifier</span>:
 
@@ -44,21 +42,17 @@ This is done by creating a presentation and signing the <span className="label-r
 
   Create `claimer/createPresentation.ts` helper and copy the following code.
 
-  <CodeBlock className="language-ts" title="claimer/createPresentation.ts">
-    {CreatePresentationTs}
-  </CodeBlock>
-
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   Create `claimer/createPresentation.js` helper and copy the following code.
 
-  <CodeBlock className="language-js" title="claimer/createPresentation.js">
-    {CreatePresentationJs}
-  </CodeBlock>
-
   </TabItem>
 </Tabs>
+
+<TsJsBlock>
+  {CreatePresentation}
+</TsJsBlock>
 
 ## Verify
 
@@ -68,7 +62,9 @@ challenge for the <span className="label-role claimer">Claimer</span> to sign, t
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
-<TsJsBlock tsSnippet={VerifyTs} jsSnippet={VerifyJs} />
+<TsJsBlock>
+  {Verify}
+</TsJsBlock>
 
 ## Run
 

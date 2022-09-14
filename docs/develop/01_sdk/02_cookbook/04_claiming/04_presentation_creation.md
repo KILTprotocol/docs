@@ -5,8 +5,7 @@ title: Present a Credential
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import CreatePresentationTs from '!!raw-loader!@site/code_examples/core_features/claiming/04_create_presentation.ts';
-import CreatePresentationJs from '!!raw-loader!@site/code_examples/core_features/_js/claiming/04_create_presentation.js';
+import CreatePresentation from '!!raw-loader!@site/code_examples/core_features/claiming/04_create_presentation.ts';
 
 With a valid Credential, Claimers can now go to Verifiers to request some service upon providing proof of validity for a certain Credential.
 The process of presenting one or more Credentials to a Verifier is called `Presentation`.
@@ -22,4 +21,6 @@ Check the snippet below to see how that is done using the KILT SDK.
 
 The Claimer can generate a Presentation starting from a Credential, optionally specifying the fields to reveal and a Presentation challenge, which is useful to proof freshness of the generated Presentation.
 
-<TsJsBlock tsSnippet={CreatePresentationTs} jsSnippet={CreatePresentationJs} />
+<TsJsBlock>
+  {CreatePresentation}
+</TsJsBlock>

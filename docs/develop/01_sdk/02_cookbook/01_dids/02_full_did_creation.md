@@ -5,20 +5,21 @@ title: Create a Full DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidSimpleTs from '!!raw-loader!@site/code_examples/core_features/did/04_full_did_simple.ts';
-import FullDidSimpleJs from '!!raw-loader!@site/code_examples/core_features/_js/did/04_full_did_simple.js';
-import FullDidCompleteTs from '!!raw-loader!@site/code_examples/core_features/did/05_full_did_complete.ts';
-import FullDidCompleteJs from '!!raw-loader!@site/code_examples/core_features/_js/did/05_full_did_complete.js';
-import LightDidMigrateTs from '!!raw-loader!@site/code_examples/core_features/did/03_light_did_migrate.ts';
-import LightDidMigrateJs from '!!raw-loader!@site/code_examples/core_features/_js/did/03_light_did_migrate.js';
+import FullDidSimple from '!!raw-loader!@site/code_examples/core_features/did/04_full_did_simple.ts';
+import FullDidComplete from '!!raw-loader!@site/code_examples/core_features/did/05_full_did_complete.ts';
+import LightDidMigrate from '!!raw-loader!@site/code_examples/core_features/did/03_light_did_migrate.ts';
 
 The following is an example of how to create and write on the blockchain a full DID that specifies only an authentication key.
 
-<TsJsBlock tsSnippet={FullDidSimpleTs} jsSnippet={FullDidSimpleJs} />
+<TsJsBlock>
+  {FullDidSimple}
+</TsJsBlock>
 
 If additional keys or service endpoints are to be specified, then they can all be passed as parameters to the creation transaction.
 
-<TsJsBlock tsSnippet={FullDidCompleteTs} jsSnippet={FullDidCompleteJs} />
+<TsJsBlock>
+  {FullDidComplete}
+</TsJsBlock>
 
 ## Upgrade a light DID to a full DID
 
@@ -28,4 +29,6 @@ KILT supports this operation in a way that does not invalidate any Credentials t
 The following code shows how to migrate a light DID to a full DID.
 Credentials, Presentations, and verifications remain unchanged as adding support for DID migration does not affect the public API that the SDK exposes.
 
-<TsJsBlock tsSnippet={LightDidMigrateTs} jsSnippet={LightDidMigrateJs} />
+<TsJsBlock>
+  {LightDidMigrate}
+</TsJsBlock>

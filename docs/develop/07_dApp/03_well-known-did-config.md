@@ -5,16 +5,11 @@ title: Well Known DID Configuration
 
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
-import DomainLinkageCtypeTs from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageCtype.ts';
-import DomainLinkageCtypeJs from '!!raw-loader!@site/code_examples/dapp/_js/dapp/domainLinkageCtype.js';
-import DomainLinkageClaimTs from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageClaim.ts';
-import DomainLinkageClaimJs from '!!raw-loader!@site/code_examples/dapp/_js/dapp/domainLinkageClaim.js';
-import SignCredentialTs from '!!raw-loader!@site/code_examples/dapp/src/dapp/signCredential.ts';
-import SignCredentialJs from '!!raw-loader!@site/code_examples/dapp/_js/dapp/signCredential.js';
-import AttestCredentialTs from '!!raw-loader!@site/code_examples/dapp/src/dapp/attestCredential.ts';
-import AttestCredentialJs from '!!raw-loader!@site/code_examples/dapp/_js/dapp/attestCredential.js';
-import FormatCredentialTs from '!!raw-loader!@site/code_examples/dapp/src/dapp/formatCredential.ts';
-import FormatCredentialJs from '!!raw-loader!@site/code_examples/dapp/_js/dapp/formatCredential.js';
+import DomainLinkageCtype from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageCtype.ts';
+import DomainLinkageClaim from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageClaim.ts';
+import SignCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/signCredential.ts';
+import AttestCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/attestCredential.ts';
+import FormatCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/formatCredential.ts';
 
 The Well Known DID Configuration is implemented as a security measure when setting up the communication session between dApp and extension.
 
@@ -34,26 +29,36 @@ Upon receiving the GET request from the extension, your dApp will make a claim t
 
 Your dApp's claim is based on the domain linkage CType, which can be created from the existing CType schema:
 
-<!-- <TsJsSnippet tsSnippet={DomainLinkageCtypeTs} jsSnippet={DomainLinkageCtypeJs} /> -->
+<TsJsSnippet>
+  {DomainLinkageCtype}
+</TsJsSnippet>
 
 The claim is built from the CType, claim contents, and your dApp's unique DID:
 
-<!-- <TsJsSnippet tsSnippet={DomainLinkageClaimTs} jsSnippet={DomainLinkageClaimJs} /> -->
+<TsJsSnippet>
+  {DomainLinkageClaim}
+</TsJsSnippet>
 
 #### Adding the signature
 
 Your dApp creates a Credential based on the claim and signs the request's root hash with its assertion key. The resulting signature is then added to the to-be-attested Credential.
 
-<!-- <TsJsSnippet tsSnippet={SignCredentialTs} jsSnippet={SignCredentialJs} /> -->
+<TsJsSnippet>
+  {SignCredential}
+</TsJsSnippet>
 
 #### Self-attesting the credential
 
 Finally, your dApp creates the self-attestation and credential
 
-<!-- <TsJsSnippet tsSnippet={AttestCredentialTs} jsSnippet={AttestCredentialJs} /> -->
+<TsJsSnippet>
+  {AttestCredential}
+</TsJsSnippet>
 
 ### Formatting the Domain Linkage Credential
 
 The Well Known DID Configuration specificaton requires a specific format (JSON-LD) for the domain linkage credential. Here's how you can present your credential to the extension in the expected format.
 
-<!-- <TsJsSnippet tsSnippet={FormatCredentialTs} jsSnippet={FormatCredentialJs} /> -->
+<TsJsSnippet>
+  {FormatCredential}
+</TsJsSnippet>

@@ -4,13 +4,12 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CtypeSchemaTs from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
-import CtypeSchemaJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/ctypeSchema.js';
-import GenerateCtypeTs from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
-import GenerateCtypeJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/generateCtype.js';
+import CtypeSchema from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
+import GenerateCtype from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
 
 <!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
 import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
@@ -66,24 +65,20 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
   <TabItem value='ts' label='Typescript' default>
 
   Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
-  Copy the following to create a `CType` from a schema:
-
-  <CodeBlock title="attester/ctypeSchema.ts" className="language-ts">
-    {CtypeSchemaTs}
-  </CodeBlock>
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
   Now we have our entry ready, create a new file `attester/ctypeSchema.js`.
-  Copy the following to create a `CType` from a schema:
-
-  <CodeBlock title="attester/ctypeSchema.js" className="language-js">
-    {CtypeSchemaJs}
-  </CodeBlock>
 
   </TabItem>
 </Tabs>
+
+Copy the following to create a `CType` from a schema:
+
+<TsJsBlock>
+  {CtypeSchema}
+</TsJsBlock>
 
 ## Get CType
 
@@ -91,28 +86,22 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
   <TabItem value='ts' label='Typescript' default>
 
   Create a new file `attester/generateCtype.ts`.
-  We'll use this to check if the `CType` is on-chain already.
-  If yes we'll return it, otherwise we'll store it on-chain.
-  Remember, an account must have the required amount to pay the Angel's fee and deposit.
-
-  <CodeBlock title="attester/generateCtype.ts" className="language-ts">
-    {GenerateCtypeTs}
-  </CodeBlock>
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
   Create a new file `attester/generateCtype.js`.
-  We'll use this to check if the `CType` is on-chain already.
-  If yes we'll return it, otherwise we'll store it on-chain.
-  Remember, an account must have the required amount to pay the Angel's fee and deposit.
-
-  <CodeBlock title="attester/generateCtype.js" className="language-js">
-    {GenerateCtypeJs}
-  </CodeBlock>
 
   </TabItem>
 </Tabs>
+
+We'll use this to check if the `CType` is on-chain already.
+If yes we'll return it, otherwise we'll store it on-chain.
+Remember, an account must have the required amount to pay the Angel's fee and deposit.
+
+<TsJsBlock>
+  {GenerateCtype}
+</TsJsBlock>
 
 ## Run
 

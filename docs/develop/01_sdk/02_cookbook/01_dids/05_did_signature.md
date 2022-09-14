@@ -5,8 +5,7 @@ title: Generate and Verify a DID Signature
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DidSignatureTs from '!!raw-loader!@site/code_examples/core_features/did/08_did_signature.ts';
-import DidSignatureJs from '!!raw-loader!@site/code_examples/core_features/_js/did/08_did_signature.js';
+import DidSignature from '!!raw-loader!@site/code_examples/core_features/did/08_did_signature.ts';
 
 Beyond being used to authorize chain operations, both light and full DIDs have off-chain applications.
 
@@ -15,7 +14,9 @@ As a DID can have multiple keys, in addition to the signature data itself, a DID
 
 The snippet below shows how to generate and verify a DID signature using the KILT SDK.
 
-<TsJsBlock tsSnippet={DidSignatureTs} jsSnippet={DidSignatureJs} />
+<TsJsBlock>
+  {DidSignature}
+</TsJsBlock>
 
 :::note
 Notice that the snippet above takes a `DidDocument` instance to generate the signature.

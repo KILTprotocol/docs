@@ -8,23 +8,21 @@ import SnippetBlock from '../SnippetBlock'
 
 const TsJsSnippet = ({
   children,
-  tsSnippet,
-  jsSnippet,
   ...props
 }) => {
-  const tsSnippet2 = children
-  const { code: jsSnippet2 } = transform(tsSnippet2, {
+  const tsSnippet = children
+  const { code: jsSnippet } = transform(tsSnippet, {
     plugins: ['transform-typescript'],
   })
   return <Tabs groupId="ts-js-choice">
     <TabItem value='ts' label='Typescript' default>
       <SnippetBlock {...props} className="language-ts">
-        {tsSnippet2}
+        {tsSnippet}
       </SnippetBlock>
     </TabItem>
     <TabItem value='js' label='Javascript'>
       <SnippetBlock {...props} className="language-js">
-        {jsSnippet2}
+        {jsSnippet}
       </SnippetBlock>
     </TabItem>
   </Tabs>

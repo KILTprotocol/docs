@@ -3,12 +3,11 @@ id: account
 title: Account
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateAccountTs from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
-import GenerateAccountJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/generateAccount.js';
+import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
 In KILT, there is an account which is an object that interacts with the blockchain.
@@ -47,20 +46,17 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 
   Open `attester/generateAccount.ts` and paste the following code:
 
-  <CodeBlock className="language-ts" title="attester/generateAccount.ts">
-    {GenerateAccountTs}
-  </CodeBlock>
-
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-   Open `attester/generateAccount.js` and paste the following code:
+  Open `attester/generateAccount.js` and paste the following code:
 
-  <CodeBlock className="language-js" title="attester/generateAccount.js">
-    {GenerateAccountJs}
-  </CodeBlock>
   </TabItem>
 </Tabs>
+
+<TsJsBlock>
+  {GenerateAccount}
+</TsJsBlock>
 
 The code contains two methods.
 `generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.

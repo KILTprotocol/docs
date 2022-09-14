@@ -8,10 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairsTs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
-import GenerateKeypairsJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/generateKeypairs.js';
-import GenerateDidTs from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
-import GenerateDidJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/generateDid.js';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
 
 Time to make a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
@@ -59,21 +57,17 @@ We'll use a demo keyring to generate them.
 
   Create a file `attester/generateKeypairs.ts` and copy the code below.
 
-  <CodeBlock className="language-ts" title="attester/generateKeypairs.ts">
-    {GenerateKeypairsTs}
-  </CodeBlock>
-
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   Create a file `attester/generateKeypairs.js` and copy the code below.
 
-  <CodeBlock className="language-js" title="attester/generateKeypairs.js">
-    {GenerateKeypairsJs}
-  </CodeBlock>  
-
   </TabItem>
 </Tabs>
+
+ <TsJsBlock>
+  {GenerateKeypairs}
+</TsJsBlock>
 
 Once we have created all the necessary keys for a DID we can create the on-chain DID.
 To create a DID we first initialize everything.
@@ -81,7 +75,9 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<TsJsBlock tsSnippet={GenerateDidTs} jsSnippet={GenerateDidJs} />
+<TsJsBlock>
+  {GenerateDid}
+</TsJsBlock>
 
 ## Execute
 

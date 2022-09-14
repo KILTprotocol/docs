@@ -10,8 +10,7 @@ import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/gett
 import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
-import FetchEndpointDataTs from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
-import FetchEndpointDataJs from '!!raw-loader!@site/code_examples/core_features/_js/getting_started/05_fetch_endpoint_data.js';
+import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
 import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_presentation.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
@@ -169,8 +168,8 @@ Let's see if we can find a Credential among them.
 
 We can select one of the endpoints and query the URL to see if it returns a signed Credential (i.e., a Presentation):
 
-<TsJsSnippet tsSnippet={FetchEndpointDataTs} jsSnippet={FetchEndpointDataJs} funcEnd="return">
-  {FetchEndpointDataTs}
+<TsJsSnippet funcEnd="return">
+  {FetchEndpointData}
 </TsJsSnippet>
 
 If the script completes with no errors, it means that we were able to retrieve a Credential using the URL specified in the service endpoint.

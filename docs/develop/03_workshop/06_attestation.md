@@ -7,8 +7,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import AttestCredentialTs from '!!raw-loader!@site/code_examples/workshop/attester/attestCredential.ts';
-import AttestCredentialJs from '!!raw-loader!@site/code_examples/workshop/_js/attester/attestCredential.js';
+import AttestCredential from '!!raw-loader!@site/code_examples/workshop/attester/attestCredential.ts';
 
 In this section, your <span className="label-role attester">Attester</span> will receive and process a `Credential` where you'll
 
@@ -22,7 +21,9 @@ After that we can load the account and DID of the <span className="label-role at
 When everything is prepared, we can issue an attestation for the credential we received from the <span className="label-role claimer">Claimer</span>.
 The attestation becomes valid once it is submitted to the chain.
 
-<TsJsBlock tsSnippet={AttestCredentialTs} jsSnippet={AttestCredentialJs}/>
+<TsJsBlock>
+  {AttestCredential}
+</TsJsBlock>
 
 The function `attestingFlow` shows the process from the beginning to the end.
 First the <span className="label-role claimer">Claimer</span> generates the credential and sends it to the <span className="label-role attester">Attester</span>.
