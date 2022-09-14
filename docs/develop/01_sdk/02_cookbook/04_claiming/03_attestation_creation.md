@@ -2,7 +2,9 @@
 id: attestation-creation
 title: Attest a Claim (Issue a Credential)
 ---
-import CodeBlock from '@theme/CodeBlock';
+
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
 import CreateAttestation from '!!raw-loader!@site/code_examples/core_features/claiming/03_create_attestation.ts';
 
 Once an Attester has received a to-be-attested `Credential` from a Claimer, they will typically verify the information in it.
@@ -14,6 +16,6 @@ An Attester is required to have a full DID with an attestation key.
 To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
 :::
 
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {CreateAttestation}
-</CodeBlock>
+</TsJsBlock>

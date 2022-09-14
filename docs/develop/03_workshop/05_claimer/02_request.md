@@ -3,7 +3,10 @@ id: request
 title: Request an Attestation
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import CreateClaim from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
 import GenerateCredential from '!!raw-loader!@site/code_examples/workshop/claimer/generateCredential.ts';
 
@@ -22,11 +25,10 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 ## Create Claim
 
 We'll use provided `light DID`, `ctype` and <span className="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
-Create a file `claimer/createClaim.ts` and copy the code below.
 
-<CodeBlock className="language-ts" title="claimer/createClaim.ts">
+<TsJsBlock fileName="claimer/createClaim">
   {CreateClaim}
-</CodeBlock>
+</TsJsBlock>
 
 The magic is happening in the `generateCredential` function.
 There we create a credential from a claim.
@@ -42,11 +44,10 @@ There we load our light DID, create a claim and finally the credential.
 A claim is composed of attributes that we claim to be true about us.
 Since we want to receive an attestation for those claims, we build a `Credential`.
 The credential contains all necessary information, so that the <span className="label-role attester">Attester</span> can attest it for us.
-Create a file `claimer/generateCredential.ts` and copy the code below.
 
-<CodeBlock className="language-ts" title="claimer/generateCredential.ts">
+<TsJsBlock fileName="claimer/generateCredential">
   {GenerateCredential}
-</CodeBlock>
+</TsJsBlock>
 
 When `Attestations` are issued by <span className="label-role attester">Attesters</span>, they are written to chain which requires a deposit.
 Each new `Credential` is unique.
@@ -58,9 +59,22 @@ You can also share this credential with others in the workshop to see how they g
 
 Run it from command line:
 
-```bash
-yarn ts-node claimer/generateCredential.ts
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node claimer/generateCredential.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```bash
+  node claimer/generateCredential.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 OK, you've made a claim as a <span className="label-role claimer">Claimer</span> and created a credential from it.
 Let's finish up our <span className="label-role attester">Attester</span> and get the credential attested!

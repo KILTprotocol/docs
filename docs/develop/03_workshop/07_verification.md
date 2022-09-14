@@ -4,6 +4,10 @@ title: 🤝 Verification
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import Verify from '!!raw-loader!@site/code_examples/workshop/verify.ts';
 import CreatePresentation from '!!raw-loader!@site/code_examples/workshop/claimer/createPresentation.ts';
 
@@ -33,30 +37,41 @@ A `Presentation` also contains a proof that the <span className="label-role clai
 It's not enough to just send our Credential as a <span className="label-role claimer">Claimer</span> as we also need to prove our ownership.
 This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
-Create `claimer/createPresentation.ts` helper and copy the following code.
-
-<CodeBlock className="language-ts" title="claimer/createPresentation.ts">
+<TsJsBlock title="claimer/createPresentation">
   {CreatePresentation}
-</CodeBlock>
+</TsJsBlock>
 
 ## Verify
 
-Let's create our `verify.ts`.
+Let's write our verification script.
 Here we'll expose `getChallenge` which returns a random and unique
 challenge for the <span className="label-role claimer">Claimer</span> to sign, this is used to prove ownership.
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
-<CodeBlock className="language-ts" title="verify.ts">
+<TsJsBlock title="verify">
   {Verify}
-</CodeBlock>
+</TsJsBlock>
 
 ## Run
 
-run the verification flow on command line:
+Run the verification flow on command line:
 
-```bash
-yarn ts-node verify.ts
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node verify.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  ```bash
+  node verify.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 That's it! all done :-)

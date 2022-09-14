@@ -4,6 +4,10 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import CtypeSchema from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
 import GenerateCtype from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
 
@@ -57,30 +61,43 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
 Copy the following to create a `CType` from a schema:
 
-<CodeBlock title="attester/ctypeSchema.ts" className="language-ts">
+<TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}
-</CodeBlock>
+</TsJsBlock>
 
 ## Get CType
 
-Create a new file `attester/generateCtype.ts`.
+<TsJsBlock fileName="attester/generateCtype">
+  {GenerateCtype}
+</TsJsBlock>
+
 We'll use this to check if the `CType` is on-chain already.
 If yes we'll return it, otherwise we'll store it on-chain.
 Remember, an account must have the required amount to pay the Angel's fee and deposit.
 
-<CodeBlock title="attester/generateCtype.ts" className="language-ts">
-  {GenerateCtype}
-</CodeBlock>
-
 ## Run
 
-To run it, just execute the `attester/generateCtype.ts` file.
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-```bash
-yarn ts-node attester/generateCtype.ts
-```
+  To run it, just execute the `attester/generateCtype.ts` file.
+
+  ```bash
+  yarn ts-node attester/generateCtype.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  To run it, just execute the `attester/generateCtype.js` file.
+
+  ```bash
+  node attester/generateCtype.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 OK, now before we can attest Credentials, we need a <span className="label-role claimer">Claimer</span> to request it! Let's move on!

@@ -4,8 +4,12 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
-import generateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
 
 Time to make a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
@@ -47,11 +51,10 @@ To create a DID we can use the same keyrings that are used to generate accounts.
 For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types are used for signatures, we can use the same key for these.
 We'll use a demo keyring to generate them.
-Create a file `attester/generateKeypairs.ts` and copy the code below.
 
-<CodeBlock className="language-ts" title="attester/generateKeypairs.ts">
+ <TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
-</CodeBlock>
+</TsJsBlock>
 
 Once we have created all the necessary keys for a DID we can create the on-chain DID.
 To create a DID we first initialize everything.
@@ -59,17 +62,30 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<CodeBlock className="language-ts" title="attester/generateDid.ts">
-  {generateDid}
-</CodeBlock>
+<TsJsBlock fileName="attester/generateDid">
+  {GenerateDid}
+</TsJsBlock>
 
 ## Execute
 
 You can now execute the script with:
 
-```bash
-yarn ts-node ./attester/generateDid.ts
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node ./attester/generateDid.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  ```bash
+  node ./attester/generateAccount.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 Once you executed the script, the output should provide you with your `ATTESTER_DID_URI`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):

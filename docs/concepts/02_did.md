@@ -3,8 +3,6 @@ id: did
 title: KILT Decentralized Identifiers (DIDs)
 ---
 
-import ThemedImage from '@theme/ThemedImage';
-
 A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 A DID can be thought of as a container of different keys that are all under the control of the same DID subject.
 For the official W3C DID spec, please visit the [DID Core spec page](https://www.w3.org/TR/did-core/), while for the official KILT DID method specification, please visit the [KILT DID spec page](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).

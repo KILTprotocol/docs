@@ -1,4 +1,5 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
 module.exports = {
   title: 'KILT Protocol',
   tagline:
@@ -175,5 +176,17 @@ module.exports = {
         },
       },
     ],
-  ]
+  ],
+  // !!!
+  // If this changes, please change the key reference to this field
+  // in TsJsBlock and TsJsSnippet components, and maybe also in the .prettierrc file, if needed
+  // !!!
+  customFields: {
+    prettierConfig: {
+      trailingComma: "es5",
+      semi: false,
+      singleQuote: true,
+      printWidth: 80
+    }
+  }
 }

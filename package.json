@@ -5,8 +5,12 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "yarn generate-examples && yarn check-links && yarn package-code && docusaurus build",
+    "build": "yarn check-ts && yarn check-links && yarn generate-examples && yarn package-code && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q docs/**/*.md",
+    "check-ts": "yarn check-ts:core_features && yarn check-ts:dapp_examples && yarn check-ts:workshop",
+    "check-ts:core_features": "cd code_examples/core_features && yarn install && yarn check-ts",
+    "check-ts:dapp_examples": "cd code_examples/dapp && yarn install && yarn check-ts",
+    "check-ts:workshop": "cd code_examples/workshop && yarn install && yarn check-ts",
     "swizzle": "docusaurus swizzle",
     "deploy": "yarn run package-code && docusaurus deploy",
     "clear": "docusaurus clear",
@@ -17,6 +21,7 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
+    "@babel/standalone": "^7.19.0",
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
     "@docusaurus/remark-plugin-npm2yarn": "^2.1.0",
@@ -27,6 +32,7 @@
     "mdx-mermaid": "^1.2.2",
     "mermaid": "^9.0.0",
     "node-args": "^2.1.8",
+    "prettier": "^2.7.1",
     "raw-loader": "^4.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

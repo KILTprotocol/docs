@@ -3,7 +3,10 @@ id: account
 title: Account
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
 After you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
@@ -38,11 +41,9 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-Open `attester/generateAccount.ts` and paste the following code:
-
-<CodeBlock className="language-ts" title="attester/generateAccount.ts">
+<TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
-</CodeBlock>
+</TsJsBlock>
 
 The code contains two methods.
 `generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
@@ -52,9 +53,22 @@ We will use `getAccount` later to load the account that we will create and store
 
 Now run it to get your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
 
-```bash
-yarn ts-node ./attester/generateAccount.ts
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node ./attester/generateAccount.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  ```bash
+  node ./attester/generateAccount.js
+  ```
+
+  </TabItem>
+</Tabs>
 
 Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`.
 Be sure to save it in your `.env` file, it should now look similar to this.

@@ -3,7 +3,8 @@ id: full-did-batch
 title: Sign Extrinsics with a Full DID
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
 import FullDidBatch from '!!raw-loader!@site/code_examples/core_features/did/07_full_did_batch.ts';
 
 Full DIDs can also be used to batch multiple extrinsics that require the signature of the DID subject.
@@ -13,6 +14,6 @@ For more information, refer to the [official Substrate documentation](https://pa
 
 An example of a batched creation of two CTypes using the `authorizeBatch` is provided below.
 
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {FullDidBatch}
-</CodeBlock>
+</TsJsBlock>

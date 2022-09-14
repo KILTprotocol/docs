@@ -3,7 +3,8 @@ id: well-known-did-config
 title: Well Known DID Configuration
 ---
 
-import SnippetBlock from '@site/src/components/SnippetBlock';
+import TsJsSnippet from '@site/src/components/TsJsSnippet';
+
 import DomainLinkageCtype from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageCtype.ts';
 import DomainLinkageClaim from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageClaim.ts';
 import SignCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/signCredential.ts';
@@ -28,36 +29,36 @@ Upon receiving the GET request from the extension, your dApp will make a claim t
 
 Your dApp's claim is based on the domain linkage CType, which can be created from the existing CType schema:
 
-<SnippetBlock className="language-ts">
+<TsJsSnippet>
   {DomainLinkageCtype}
-</SnippetBlock>
+</TsJsSnippet>
 
 The claim is built from the CType, claim contents, and your dApp's unique DID:
 
-<SnippetBlock className="language-ts">
+<TsJsSnippet>
   {DomainLinkageClaim}
-</SnippetBlock>
+</TsJsSnippet>
 
 #### Adding the signature
 
 Your dApp creates a Credential based on the claim and signs the request's root hash with its assertion key. The resulting signature is then added to the to-be-attested Credential.
 
-<SnippetBlock className="language-ts">
+<TsJsSnippet>
   {SignCredential}
-</SnippetBlock>
+</TsJsSnippet>
 
 #### Self-attesting the credential
 
 Finally, your dApp creates the self-attestation and credential
 
-<SnippetBlock className="language-ts">
+<TsJsSnippet>
   {AttestCredential}
-</SnippetBlock>
+</TsJsSnippet>
 
 ### Formatting the Domain Linkage Credential
 
 The Well Known DID Configuration specificaton requires a specific format (JSON-LD) for the domain linkage credential. Here's how you can present your credential to the extension in the expected format.
 
-<SnippetBlock className="language-ts">
+<TsJsSnippet>
   {FormatCredential}
-</SnippetBlock>
+</TsJsSnippet>
