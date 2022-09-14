@@ -5,6 +5,8 @@ title: Quickstart
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
 import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';

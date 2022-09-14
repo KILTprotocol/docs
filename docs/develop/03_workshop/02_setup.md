@@ -3,6 +3,9 @@ id: setup
 title: 🎒 Setup
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed.
