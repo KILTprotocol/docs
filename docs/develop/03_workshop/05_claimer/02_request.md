@@ -26,20 +26,7 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 
 We'll use provided `light DID`, `ctype` and <span className="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create a file `claimer/createClaim.ts` and copy the code below.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  Create a file `claimer/createClaim.js` and copy the code below.
-
-  </TabItem>
-</Tabs>
-
-<TsJsBlock>
+<TsJsBlock fileName="claimer/createClaim">
   {CreateClaim}
 </TsJsBlock>
 
@@ -58,20 +45,7 @@ A claim is composed of attributes that we claim to be true about us.
 Since we want to receive an attestation for those claims, we build a `Credential`.
 The credential contains all necessary information, so that the <span className="label-role attester">Attester</span> can attest it for us.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create a file `claimer/generateCredential.ts` and copy the code below.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  Create a file `claimer/generateCredential.js` and copy the code below.
-
-  </TabItem>
-</Tabs>
-
-<TsJsBlock>
+<TsJsBlock fileName="claimer/generateCredential">
   {GenerateCredential}
 </TsJsBlock>
 

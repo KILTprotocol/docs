@@ -37,20 +37,7 @@ A `Presentation` also contains a proof that the <span className="label-role clai
 It's not enough to just send our Credential as a <span className="label-role claimer">Claimer</span> as we also need to prove our ownership.
 This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create `claimer/createPresentation.ts` helper and copy the following code.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  Create `claimer/createPresentation.js` helper and copy the following code.
-
-  </TabItem>
-</Tabs>
-
-<TsJsBlock>
+<TsJsBlock title="claimer/createPresentation">
   {CreatePresentation}
 </TsJsBlock>
 
@@ -62,7 +49,7 @@ challenge for the <span className="label-role claimer">Claimer</span> to sign, t
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
-<TsJsBlock>
+<TsJsBlock title="verify">
   {Verify}
 </TsJsBlock>
 

@@ -61,47 +61,21 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript'>
-
-  Now we have our entry ready, create a new file `attester/ctypeSchema.js`.
-
-  </TabItem>
-</Tabs>
-
 Copy the following to create a `CType` from a schema:
 
-<TsJsBlock>
+<TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}
 </TsJsBlock>
 
 ## Get CType
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create a new file `attester/generateCtype.ts`.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript'>
-
-  Create a new file `attester/generateCtype.js`.
-
-  </TabItem>
-</Tabs>
+<TsJsBlock fileName="attester/generateCtype">
+  {GenerateCtype}
+</TsJsBlock>
 
 We'll use this to check if the `CType` is on-chain already.
 If yes we'll return it, otherwise we'll store it on-chain.
 Remember, an account must have the required amount to pay the Angel's fee and deposit.
-
-<TsJsBlock>
-  {GenerateCtype}
-</TsJsBlock>
 
 ## Run
 

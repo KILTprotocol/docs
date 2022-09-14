@@ -21,7 +21,7 @@ After that we can load the account and DID of the <span className="label-role at
 When everything is prepared, we can issue an attestation for the credential we received from the <span className="label-role claimer">Claimer</span>.
 The attestation becomes valid once it is submitted to the chain.
 
-<TsJsBlock>
+<TsJsBlock fileName="attester/attestClaim">
   {AttestCredential}
 </TsJsBlock>
 

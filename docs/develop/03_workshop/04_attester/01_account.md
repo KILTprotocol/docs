@@ -41,20 +41,7 @@ To generate an account, one method from the KILT SDK is needed and one method fr
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Open `attester/generateAccount.ts` and paste the following code:
-
-  </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  Open `attester/generateAccount.js` and paste the following code:
-
-  </TabItem>
-</Tabs>
-
-<TsJsBlock>
+<TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
 </TsJsBlock>
 

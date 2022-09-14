@@ -24,20 +24,7 @@ Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_di
 
 Similar to the Attester, the Claimer must set up the DID keys.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create a file `claimer/generateKeypairs.ts` and copy the code below.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript'>
-
-  Create a file `claimer/generateKeypairs.js` and copy the code below.
-
-  </TabItem>
-</Tabs>
-
-<TsJsBlock>
+<TsJsBlock fileName="claimer/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
 
@@ -50,7 +37,7 @@ Once our `keypairs` are generated we can create our light DID.
 Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
 But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
 
-<TsJsBlock>
+<TsJsBlock fileName="claimer/generateLightDid">
   {GenerateLightDid}
 </TsJsBlock>
 

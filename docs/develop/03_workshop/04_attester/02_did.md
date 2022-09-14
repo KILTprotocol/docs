@@ -52,20 +52,7 @@ For our <span className="label-role attester">Attester</span> we'll need all fou
 Since three of the key types are used for signatures, we can use the same key for these.
 We'll use a demo keyring to generate them.
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
-  Create a file `attester/generateKeypairs.ts` and copy the code below.
-
-  </TabItem>
-  <TabItem value='js' label='Javascript' default>
-
-  Create a file `attester/generateKeypairs.js` and copy the code below.
-
-  </TabItem>
-</Tabs>
-
- <TsJsBlock>
+ <TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
 
@@ -75,7 +62,7 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<TsJsBlock>
+<TsJsBlock fileName="attester/generateDid">
   {GenerateDid}
 </TsJsBlock>
 
