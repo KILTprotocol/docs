@@ -1,4 +1,5 @@
 import React from 'react'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 
 import { format } from 'prettier/standalone'
 import { parsers } from 'prettier/parser-babel'
@@ -20,16 +21,13 @@ const TsJsSnippet = ({
     plugins: ['transform-typescript'],
     retainLines: true,
   })
+  const { siteConfig: { customFields: { ...prettierConfig } } } = useDocusaurusContext()
   // 2. Prettify the resulting JS
-  // FIXME: Maybe we can pass this as a config to the prop?
   const prettyJsSnippet =
     format(
       jsSnippet, {
-        semi: false,
-        trailingComma: 'none',
-        singleQuote: true,
-        printWidth: 80,
-        parser: parsers.babel.parse
+        parser: parsers.babel.parse,
+        ...prettierConfig
       })
   const tsFileName = fileName ? `${fileName}.ts` : undefined
   const jsFileName = fileName ? `${fileName}.js` : undefined
