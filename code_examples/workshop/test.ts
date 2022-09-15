@@ -64,7 +64,11 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed, {}, 'sr25519')
 
-  const tx = await Kilt.Balance.getTransferTx(attesterAccount.address, new BN(5), 0)
+  const tx = await Kilt.Balance.getTransferTx(
+    attesterAccount.address,
+    new BN(5),
+    0
+  )
   try {
     await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
   } catch {

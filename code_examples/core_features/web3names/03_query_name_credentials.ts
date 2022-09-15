@@ -61,9 +61,7 @@ export async function queryPublishedCredentials(
   // Retrieve the credentials pointed at by the endpoint.
   // Being an IPFS endpoint, the fetching can take an arbitrarily long time or even fail if the timeout is reached.
   // The case where the result is not a JSON should be properly handled in production settings.
-  const response = await fetch(
-    firstCredentialCollectionEndpointUrl as string
-  )
+  const response = await fetch(firstCredentialCollectionEndpointUrl as string)
   const credentialCollection: CredentialEntry[] = await response.json()
   console.log(`Credential collection behind the endpoint:`)
   console.log(JSON.stringify(credentialCollection, null, 2))
