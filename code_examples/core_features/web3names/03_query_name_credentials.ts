@@ -9,7 +9,7 @@ const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
 type CredentialMetadata = {
   label?: string
   blockNumber?: number
-  txHash?: string
+  txHash?: `0x{string}`
 }
 
 type CredentialEntry = {
@@ -65,8 +65,8 @@ export async function queryPublishedCredentials(
   )
   console.log(JSON.stringify(didEndpoints, null, 2))
 
-  // For demonstration, only one endpoint and its first URL are considered.
-  const firstCredentialCollectionEndpointUrl = didEndpoints[1]?.urls[0]
+  // For demonstration, only the first endpoint and its first URL are considered.
+  const firstCredentialCollectionEndpointUrl = didEndpoints[0]?.urls[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
       `The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`

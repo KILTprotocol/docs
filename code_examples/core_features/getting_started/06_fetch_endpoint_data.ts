@@ -15,8 +15,8 @@ export async function main(
     metadata?: any
   }
   const {
-    data: { credential }
-  } = await axios.get<PublishedCredential>(endpoints[1].urls[0])
+    data: [{ credential }]
+  } = await axios.get<PublishedCredential[]>(endpoints[1].urls[0])
 
   return credential
 }
