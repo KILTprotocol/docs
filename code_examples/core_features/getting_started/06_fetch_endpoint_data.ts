@@ -10,14 +10,13 @@ export async function main(
 ): Promise<Kilt.IRequestForAttestation> {
   // Define the type of a published credential
   type PublishedCredential = {
-    credential: Kilt.IRequestForAttestation,
+    credential: Kilt.IRequestForAttestation
     // Not relevant for this case, but production applications should parse this field as well
     metadata?: any
   }
-  const { data: { credential } } =
-    await axios.get<PublishedCredential>(
-      endpoints[1].urls[0]
-    )
+  const {
+    data: { credential }
+  } = await axios.get<PublishedCredential>(endpoints[1].urls[0])
 
   return credential
 }
