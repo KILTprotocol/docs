@@ -8,9 +8,9 @@ export async function main() {
     rootHash: domainLinkageCredential.rootHash
   }
 
-  const issuer = await Kilt.Attestation.query(
-    domainLinkageCredential.rootHash
-  ).then((att) => att?.owner)
+  const issuer = (
+    await Kilt.Attestation.query(domainLinkageCredential.rootHash)
+  )?.owner
 
   const issuanceDate = new Date().toISOString()
   const expirationDate = new Date(

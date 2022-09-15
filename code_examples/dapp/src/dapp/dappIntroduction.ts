@@ -27,7 +27,9 @@ export async function main() {
     `${fullDid?.uri}${fullDid.keyAgreement[0].id}` as Kilt.DidResourceUri
 
   // Generate and store challenge on the server side for the next step
-  const challenge = await fetch('/challenge').then((res) => res.text())
+  const response = await fetch('/challenge')
+  const challenge = await response.text()
+
   const session = await window.kilt.sporran.startSession(
     dAppName,
     dAppEncryptionKeyUri,
