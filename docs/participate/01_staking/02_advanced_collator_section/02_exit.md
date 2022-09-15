@@ -61,4 +61,4 @@ Moreover, if you are you are one of the top staked candidates, you will automati
 
 In case you executed the exit request, you cannot immediately unlock your previously staked tokens.
 There is a delay of 7 days in block time before you can free them by calling `unlockUnstaked`.
-See [here](../04_unlock_unstaked.md) for a step-by-step tutorial.
+See [here](../05_unlock_unstaked.md) for a step-by-step tutorial.

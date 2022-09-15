@@ -1,0 +1,47 @@
+---
+id: claim-rewards
+title: Claim Staking Rewards
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ClaimDelegatorStakingRewards from '!!raw-loader!@site/code_examples/staking/rewards/03_claim_delegator_staking_rewards.ts';
+
+
+<div className="nested-tab">
+<Tabs
+  groupId="rewards-apps-code"
+  defaultValue="polkadot-apps"
+>
+<TabItem value="polkadot-apps" label="Polkadot Apps" attributes={{'data-value': 'magenta'}}>
+
+### Prepare claiming
+
+First, you need to convert your _reward points_ into balance.
+
+1. Select the delegator account for which you want to claim the rewards. It should have enough balance to cover the transaction fee which is around 0.005 KILT (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> incrementDelegatorRewards()`
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
+
+<!-- TODO: Add screenshot -->
+
+### Claim
+
+Finally, you can claim your well deserved staking rewards.
+
+1. Select the delegator account for which you want to claim the rewards. It should have enough balance to cover the transaction fee which is around 0.005 KILT (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> claimRewards()`
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
+<!-- TODO: Add screenshot -->
+
+</TabItem>
+<TabItem value="polkadot-js" label="Polkadot JS" attributes={{'data-value': 'magenta'}}>
+
+<CodeBlock className="language-ts">
+    {ClaimDelegatorStakingRewards}
+</CodeBlock>
+
+</TabItem>
+</Tabs>
+</div>

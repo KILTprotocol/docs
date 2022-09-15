@@ -7,7 +7,7 @@ import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 
 A Delegator can revoke all of their delegations at once by calling `parachainStaking -> leaveDelegators`.
 - Your previously delegated amount will be prepared for unstaking.
-- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see the section [Unlock Unstaked](../04_unlock_unstaked.md) for more information.
+- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see the section [Unlock Unstaked](../05_unlock_unstaked.md) for more information.
 - Exiting does not count towards the limit of “1 delegation per round”.
 
 <StakingTxDisclaimer />

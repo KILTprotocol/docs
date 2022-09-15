@@ -53,7 +53,7 @@ If you have stopped to receive rewards, either
    2. Are not among the top staked candidates (of which are 30 at the time of writing 2022-05-05); or
    3. Are offline.
 
-In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](./04_unlock_unstaked.md).
+In case of 1. or 2i., your stake will automatically be unstaked and prepared for [unlocking](./05_unlock_unstaked.md).
 Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocking period](./03_delegate/05_exit.md/) if you don't want to or cannot delegate to another Collator candidate.
 </TabItem>
 </Tabs>
@@ -62,4 +62,4 @@ Otherwise, in case of 2ii. and 2iii., you need to [manually initiate the unlocki
 
 Staking puts a lock on your tokens which blocks them from being transferred.
 You can still use them for participating in Governance.
-If your funds are unstaked, you still need to wait 7 days (in block time) to [unlock tokens after unstaking them](./04_unlock_unstaked.md).
+If your funds are unstaked, you still need to wait 7 days (in block time) to [unlock tokens after unstaking them](./05_unlock_unstaked.md).

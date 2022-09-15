@@ -8,7 +8,7 @@ import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 You can revoke your delegation at any time by calling `parachainStaking -> revokeDelegation`.
 As a result, you won't receive any rewards immediately after the transaction is successfully executed.
 - The corresponding amount will be prepared for unstaking.
-- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see section [Unlock Unstaked](../04_unlock_unstaked.md) for more information.
+- You need to wait 7 days (in block time) before you can unlock your unstaked tokens, see section [Unlock Unstaked](../05_unlock_unstaked.md) for more information.
 - Revoking a delegation does not count towards the limit of “1 delegation per round”.
 
 <StakingTxDisclaimer />
