@@ -3,9 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function releaseWeb3Name(
   did: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   const web3NameReleaseTx = await Kilt.Did.Web3Names.getReleaseByOwnerTx()
   const authorisedWeb3NameReleaseTx = await Kilt.Did.authorizeExtrinsic(
@@ -16,9 +14,6 @@ export async function releaseWeb3Name(
   )
   await Kilt.Blockchain.signAndSubmitTx(
     authorisedWeb3NameReleaseTx,
-    submitterAccount,
-    {
-      resolveOn
-    }
+    submitterAccount
   )
 }

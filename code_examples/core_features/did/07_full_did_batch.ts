@@ -24,9 +24,7 @@ export async function batchCTypeCreationExtrinsics(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidDocument,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
@@ -44,7 +42,5 @@ export async function batchCTypeCreationExtrinsics(
   })
 
   // The authorized account submits the batch to the chain
-  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount)
 }

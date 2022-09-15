@@ -9,9 +9,7 @@ export async function updateFullDid(
   keyring: Keyring,
   fullDid: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
   // Ask the keyring to generate a new keypair to use for authentication.
   const newAuthKey = keyring.addFromSeed(
@@ -38,13 +36,7 @@ export async function updateFullDid(
   })
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.Blockchain.signAndSubmitTx(
-    authorisedBatchedTxs,
-    submitterAccount,
-    {
-      resolveOn
-    }
-  )
+  await Kilt.Blockchain.signAndSubmitTx(authorisedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
   const updatedDidDetails = await Kilt.Did.query(fullDid.uri)

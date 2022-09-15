@@ -15,9 +15,7 @@ import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
 export async function runAll(
-  submitterAccount: Kilt.KiltKeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
@@ -40,16 +38,14 @@ export async function runAll(
     keyring,
     submitterAccount,
     undefined,
-    signCallback,
-    resolveOn
+    signCallback
   )
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
     attesterFullDid,
     submitterAccount,
-    signCallback,
-    resolveOn
+    signCallback
   )
   console.log('2 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
@@ -58,8 +54,7 @@ export async function runAll(
     attesterFullDid,
     submitterAccount,
     signCallback,
-    credential,
-    resolveOn
+    credential
   )
   console.log('4 claiming) Create selective disclosure presentation')
   const presentation = await createPresentation(
@@ -76,11 +71,10 @@ export async function runAll(
     submitterAccount,
     signCallback,
     credential,
-    false,
-    resolveOn
+    false
   )
   console.log('7 claiming) Reclaim attestation deposit')
-  await reclaimAttestationDeposit(submitterAccount, credential, resolveOn)
+  await reclaimAttestationDeposit(submitterAccount, credential)
 
   console.log('Claiming flow completed!')
 }

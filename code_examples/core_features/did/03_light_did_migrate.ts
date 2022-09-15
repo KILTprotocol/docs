@@ -3,9 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function migrateLightDid(
   lightDid: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
   // Generate the DID migration extrinsic.
   const migrationTx = await Kilt.Did.Chain.getStoreTx(
@@ -15,9 +13,7 @@ export async function migrateLightDid(
   )
 
   // The extrinsic can then be submitted by the authorized account as usual.
-  await Kilt.Blockchain.signAndSubmitTx(migrationTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(migrationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned
   const migratedFullDidUri = Kilt.Did.Utils.getFullDidUri(lightDid.uri)

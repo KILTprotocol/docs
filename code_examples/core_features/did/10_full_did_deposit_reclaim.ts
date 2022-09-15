@@ -2,9 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimFullDidDeposit(
   depositPayerAccount: Kilt.KiltKeyringPair,
-  didUri: Kilt.DidUri,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  didUri: Kilt.DidUri
 ): Promise<void> {
   // Generate the submittable extrinsic to claim the deposit back.
   // It includes the DID identifier for which the deposit needs to be returned
@@ -18,9 +16,6 @@ export async function reclaimFullDidDeposit(
   // The submission will fail if `depositPayerAccount` is not the owner of the deposit associated with the given DID identifier.
   await Kilt.Blockchain.signAndSubmitTx(
     depositClaimExtrinsic,
-    depositPayerAccount,
-    {
-      resolveOn
-    }
+    depositPayerAccount
   )
 }

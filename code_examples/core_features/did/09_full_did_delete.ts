@@ -3,9 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function deleteFullDid(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidDocument,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
@@ -28,9 +26,6 @@ export async function deleteFullDid(
 
   await Kilt.Blockchain.signAndSubmitTx(
     didSignedDeletionExtrinsic,
-    submitterAccount,
-    {
-      resolveOn
-    }
+    submitterAccount
   )
 }

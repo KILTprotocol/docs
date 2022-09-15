@@ -12,9 +12,7 @@ export async function createCompleteFullDid(
   keyring: Keyring,
   submitterAccount: Kilt.KiltKeyringPair,
   authenticationSeed: Uint8Array = randomAsU8a(32),
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
   // Create the encryption key seed by hasing the provided authentication seed.
   const encryptionSeed = blake2AsU8a(authenticationSeed)
@@ -54,9 +52,7 @@ export async function createCompleteFullDid(
     signCallback
   )
 
-  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned.
   const fullDid = await Kilt.Did.query(

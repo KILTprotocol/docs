@@ -24,9 +24,7 @@ import { signCallbackForKeyring } from '../utils'
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  linkAccount: KeyringPair
 ): Promise<void> {
   console.log('Running linking flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
@@ -34,8 +32,7 @@ export async function runAll(
     keyring,
     submitterAccount,
     undefined,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
@@ -50,15 +47,13 @@ export async function runAll(
     fullDid,
     submitterAccount,
     linkAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(
     fullDid,
     submitterAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
@@ -75,17 +70,15 @@ export async function runAll(
     fullDid,
     submitterAccount,
     linkAccount.address,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('6 linking) Unlink submitter account from DID')
-  await unlinkDidFromAccount(submitterAccount, resolveOn)
+  await unlinkDidFromAccount(submitterAccount)
   console.log('7 linking) Re-add submitter account and claim deposit back')
   await linkDidToAccount(
     fullDid,
     submitterAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')

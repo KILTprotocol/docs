@@ -6,9 +6,7 @@ export async function linkAccountToDid(
   did: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccount: KeyringPair,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<void> {
   // The account to be linked has to sign a specifically-crafted payload to prove
   // willingness to be linked to the DID.
@@ -33,9 +31,6 @@ export async function linkAccountToDid(
 
   await Kilt.Blockchain.signAndSubmitTx(
     authorisedAccountLinkingTx,
-    submitterAccount,
-    {
-      resolveOn
-    }
+    submitterAccount
   )
 }

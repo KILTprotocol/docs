@@ -3,9 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createDriversLicenseCType(
   creator: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICType> {
   // Create a new CType definition.
   const ctype = Kilt.CType.fromSchema({
@@ -38,10 +36,7 @@ export async function createDriversLicenseCType(
   // using the KILT account specified in the creation operation.
   await Kilt.Blockchain.signAndSubmitTx(
     authorisedCtypeCreationTx,
-    submitterAccount,
-    {
-      resolveOn
-    }
+    submitterAccount
   )
 
   return ctype

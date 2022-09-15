@@ -17,9 +17,7 @@ import { signCallbackForKeyring } from '../utils'
 
 export async function runAll(
   api: ApiPromise,
-  submitterAccount: Kilt.KiltKeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running DID flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
@@ -32,24 +30,21 @@ export async function runAll(
   await migrateLightDid(
     simpleLightDid,
     submitterAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
     keyring,
     submitterAccount,
     undefined,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('5 did) Create complete full DID')
   const createdCompleteFullDid = await createCompleteFullDid(
     keyring,
     submitterAccount,
     undefined,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('6 did) Update full DID created at step 5')
   const updatedFullDid = await updateFullDid(
@@ -57,8 +52,7 @@ export async function runAll(
     keyring,
     createdCompleteFullDid,
     submitterAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log(
     '7 did) Use the same full DID created at step 5 to sign the batch'
@@ -67,8 +61,7 @@ export async function runAll(
     api,
     submitterAccount,
     updatedFullDid,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log(
     '8 did) Use the same full DID created at step 5 to generate the signature'
@@ -82,14 +75,9 @@ export async function runAll(
   await deleteFullDid(
     submitterAccount,
     createdSimpleFullDid,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('10 did) Delete full DID created at step 5')
-  await reclaimFullDidDeposit(
-    submitterAccount,
-    createdCompleteFullDid.uri,
-    resolveOn
-  )
+  await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }
