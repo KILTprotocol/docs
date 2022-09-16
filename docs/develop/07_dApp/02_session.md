@@ -26,7 +26,9 @@ For example:
 
 ## Dapp Introduces Itself
 
-The dApp introduces itself to the extension with its name, encryption key URI, and a challenge. A copy of the challenge should be stored on the server side. For example:
+The dapp introduces itself to the extension with its name, encryption key URI, and a challenge.
+A copy of the challenge should be stored on the server side.
+For example:
 
 <TsJsSnippet>
   {DappIntroduction}

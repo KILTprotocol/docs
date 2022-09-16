@@ -82,9 +82,6 @@ Remember, an account must have the required amount of tokens to pay the transact
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-<Tabs groupId="ts-js-choice">
-  <TabItem value='ts' label='Typescript' default>
-
   To run it, just execute the `attester/generateCtype.ts` file.
 
   ```bash
