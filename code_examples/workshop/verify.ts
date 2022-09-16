@@ -22,13 +22,10 @@ async function verifyPresentation(
 ): Promise<boolean> {
   try {
     await Kilt.Credential.verifyPresentation(presentation, { challenge })
-  } catch {
-    return false
-  }
-  const encodedAttestationInfo = await api.query.attestation.attestations(
-    presentation.rootHash
-  )
-  try {
+
+    const encodedAttestationInfo = await api.query.attestation.attestations(
+      presentation.rootHash
+    )
     const attestationInfo = Kilt.Attestation.fromChain(
       encodedAttestationInfo,
       presentation.rootHash
