@@ -10,7 +10,7 @@ export async function linkDidToAccount(
 ): Promise<void> {
   // Authorizing the extrinsic with the full DID and submitting it with the provided account
   // results in the submitter's account being linked to the DID authorizing the operation.
-  const accountLinkingTx = await api.tx.didLookup.associateSender()
+  const accountLinkingTx = api.tx.didLookup.associateSender()
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeExtrinsic(
     did,
     accountLinkingTx,

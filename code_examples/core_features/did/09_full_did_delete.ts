@@ -14,7 +14,7 @@ export async function deleteFullDid(
   const endpointsCountForDid = await api.query.did.didEndpointsCount(
     didIdentifier
   )
-  const didDeletionExtrinsic = await api.tx.did.delete(endpointsCountForDid)
+  const didDeletionExtrinsic = api.tx.did.delete(endpointsCountForDid)
 
   // Sign the DID deletion operation using the DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account

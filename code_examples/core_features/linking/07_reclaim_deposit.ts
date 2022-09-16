@@ -9,9 +9,7 @@ export async function reclaimLinkDeposit(
   linkedAccountAddress: KeyringPair['address']
 ): Promise<void> {
   // The tx does not need to be authorized by a DID, but the deposit payer's account claims the deposit and removes the link.
-  const accountUnlinkTx = await api.tx.didLookup.reclaimDeposit(
-    linkedAccountAddress
-  )
+  const accountUnlinkTx = api.tx.didLookup.reclaimDeposit(linkedAccountAddress)
 
   await Kilt.Blockchain.signAndSubmitTx(
     accountUnlinkTx,

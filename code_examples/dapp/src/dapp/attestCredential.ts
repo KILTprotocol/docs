@@ -12,6 +12,6 @@ export async function main() {
     selfSignedCredential,
     did
   )
-  const submitTx = await api.tx.attestation.add(cTypeHash, claimHash, null)
+  const submitTx = api.tx.attestation.add(cTypeHash, claimHash, null)
   await Kilt.Blockchain.signAndSubmitTx(submitTx, dappAccount)
 }

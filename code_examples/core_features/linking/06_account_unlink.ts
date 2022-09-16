@@ -8,7 +8,7 @@ export async function unlinkDidFromAccount(
   linkOwnerAccount: KeyringPair
 ): Promise<void> {
   // The tx does not need to be authorized by a DID, but the submitter account removes its own link.
-  const accountUnlinkTx = await api.tx.didLookup.removeSenderAssociation()
+  const accountUnlinkTx = api.tx.didLookup.removeSenderAssociation()
 
   await Kilt.Blockchain.signAndSubmitTx(accountUnlinkTx, linkOwnerAccount)
 }

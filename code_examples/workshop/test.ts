@@ -65,7 +65,7 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed, {}, 'sr25519')
 
-  const tx = await api.tx.balances.transfer(
+  const tx = api.tx.balances.transfer(
     attesterAccount.address,
     Kilt.BalanceUtils.convertToTxUnit(new BN(5), 0)
   )

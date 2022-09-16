@@ -8,7 +8,7 @@ export async function reclaimAttestationDeposit(
   credential: Kilt.ICredential
 ): Promise<void> {
   // Generate the submittable extrinsic to claim the deposit back.
-  const depositReclaimTx = await api.tx.attestation.reclaimDeposit(
+  const depositReclaimTx = api.tx.attestation.reclaimDeposit(
     credential.rootHash
   )
 

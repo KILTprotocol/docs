@@ -35,7 +35,7 @@ export async function attestCredential(
   // e.g., verify age with other credentials (birth certificate, passport, ...)
 
   // form tx and authorized extrinsic
-  const tx = await api.tx.attestation.add(claimHash, cTypeHash, null)
+  const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
     fullDid,
     tx,

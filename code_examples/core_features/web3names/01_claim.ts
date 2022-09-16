@@ -9,7 +9,7 @@ export async function claimWeb3Name(
   name: Kilt.Did.Web3Names.Web3Name,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
-  const web3NameClaimTx = await api.tx.web3Names.claim(name)
+  const web3NameClaimTx = api.tx.web3Names.claim(name)
   const authorizedWeb3NameClaimTx = await Kilt.Did.authorizeExtrinsic(
     did,
     web3NameClaimTx,

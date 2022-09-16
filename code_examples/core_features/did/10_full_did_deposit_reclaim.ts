@@ -12,7 +12,7 @@ export async function reclaimFullDidDeposit(
   // and the count of service endpoints to provide an upper bound to the computation of the extrinsic execution.
   const identifier = Kilt.Did.Chain.didToChain(didUri)
   const endpointsCountForDid = await api.query.did.didEndpointsCount(identifier)
-  const depositClaimExtrinsic = await api.tx.did.reclaimDeposit(
+  const depositClaimExtrinsic = api.tx.did.reclaimDeposit(
     identifier,
     endpointsCountForDid
   )
