@@ -21,7 +21,7 @@ async function testWorkshop() {
   envConfig()
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
   Kilt.config({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
-  await Kilt.connect(process.env.WSS_ADDRESS)
+  const api = await Kilt.connect(process.env.WSS_ADDRESS)
 
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
@@ -65,10 +65,9 @@ async function testWorkshop() {
 
   const faucetAccount = keyring.createFromUri(faucetSeed, {}, 'sr25519')
 
-  const tx = await Kilt.Balance.getTransferTx(
+  const tx = await api.tx.balances.transfer(
     attesterAccount.address,
-    new BN(5),
-    0
+    Kilt.BalanceUtils.convertToTxUnit(new BN(5), 0)
   )
   try {
     await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
@@ -103,11 +102,11 @@ async function testWorkshop() {
   )
   process.env.ATTESTER_DID_URI = attesterDid.uri
 
-  await ensureStoredCtype(keyring, signCallbackForKeyring(keyring))
+  await ensureStoredCtype(api, keyring, signCallbackForKeyring(keyring))
 
   // do attestation & verification
-  process.env.CLAIMER_CREDENTIAL = JSON.stringify(await attestingFlow())
-  await verificationFlow()
+  process.env.CLAIMER_CREDENTIAL = JSON.stringify(await attestingFlow(api))
+  await verificationFlow(api)
 }
 
 ;(async () => {

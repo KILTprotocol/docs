@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { config as envConfig } from 'dotenv'
 
 import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
@@ -11,6 +13,7 @@ import { getCtypeSchema } from './ctypeSchema'
 import { getFullDid } from './generateDid'
 
 export async function ensureStoredCtype(
+  api: ApiPromise,
   keyring: Keyring,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICType> {
@@ -34,7 +37,8 @@ export async function ensureStoredCtype(
   console.log('Ctype not present. Creating it now...')
 
   // authorize the extrinsic
-  const tx = await Kilt.CType.getStoreTx(ctype)
+  const encodedCtype = Kilt.CType.toChain(ctype)
+  const tx = await api.tx.ctype.add(encodedCtype)
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
     fullDid,
     tx,
@@ -52,7 +56,7 @@ export async function ensureStoredCtype(
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await Kilt.connect(process.env.WSS_ADDRESS as string)
+    const api = await Kilt.connect(process.env.WSS_ADDRESS as string)
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format
     })
@@ -69,7 +73,7 @@ if (require.main === module) {
     }
 
     try {
-      await ensureStoredCtype(keyring, signCallbackForKeyring(keyring))
+      await ensureStoredCtype(api, keyring, signCallbackForKeyring(keyring))
       process.exit(0)
     } catch (e) {
       console.log('Error while checking on chain ctype', e)
