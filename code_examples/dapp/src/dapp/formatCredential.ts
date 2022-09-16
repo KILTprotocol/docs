@@ -1,5 +1,8 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+let api: ApiPromise
 let domainLinkageCredential: Kilt.ICredentialPresentation
 
 export async function main() {
@@ -8,9 +11,13 @@ export async function main() {
     rootHash: domainLinkageCredential.rootHash
   }
 
-  const issuer = (
-    await Kilt.Attestation.query(domainLinkageCredential.rootHash)
-  )?.owner
+  const encodedAttestationDetails = await api.query.attestation.attestations(
+    domainLinkageCredential.rootHash
+  )
+  const issuer = Kilt.Attestation.fromChain(
+    encodedAttestationDetails,
+    domainLinkageCredential.claim.cTypeHash
+  ).owner
 
   const issuanceDate = new Date().toISOString()
   const expirationDate = new Date(
