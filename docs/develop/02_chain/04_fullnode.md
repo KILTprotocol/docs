@@ -7,27 +7,27 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 We will guide you through the process of setting up and connecting to a KILT full node.
-In contrast [to a Collator](../../participate/01_staking/01_become_a_collator/03_setup_node.md), full nodes do not author blocks.
+In contrast [to a collator](../../participate/01_staking/01_become_a_collator/03_setup_node.md), full nodes do not author blocks.
 They act as a backend for websites and help to verify new blocks or validate extrinsics (e.g., coin transfers and other transactions) directly on the network without relying on a centralized infrastructure provider.
 
 ## Setup
 
 There are currently two different runtimes (i.e., two different parachain environments) that a KILT full node can be part of:
 
-- **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features.
-- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to test applications that use KILT before connecting them to the production Spiritnet chain, which requires tokens that have real monetary value.
+- **Spiritnet**: the official public network, which contains only stable and thoroughly-tested features
+- **Peregrine**: the public test network whose runtime is as close to that of Spiritnet as possible. It can be used to test applications that use KILT before connecting them to the production Spiritnet chain, which requires tokens that have real monetary value
 
 Each runtime has its own benchmark measurements.
 
 :::info
 The remainder of this guide will focus on the official **Spiritnet**.
-Nevertheless, we recommend to try out the setup on our Peregrine testnet first.
+Nevertheless, we recommend trying out the setup on our Peregrine testnet first.
 Hence, at each step where it is applicable, we indicate what differs between the Peregrine and Spiritnet configuration for the full node to join either network.
 :::
 
 ### WASM Runtime Execution
 
-A KILT full node should use the `--execution=wasm` parameter for both the relaychain and parachain collation.
+A KILT full node should use the `--execution=wasm` parameter for both the Relay Chain and parachain collation.
 The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
 When this happens, the full node will crash and will stop synchronizing with the network.
 Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all nodes should execute the WASM version of the runtime logic.
@@ -35,7 +35,7 @@ Since the WASM runtime logic is part of the blockchain state itself and hence re
 ### Specify the Right Chainspec
 
 The `--chain` parameter indicates which blockchain the KILT full node will join.
-This parameter must be specified for both the parachain **and** the relaychain, since both chains are, as a matter of fact, separate blockchains.
+This parameter must be specified for both the parachain **and** the Relay Chain, since both chains are, as a matter of fact, separate blockchains.
 The KILT parachain accepts an additional parameter to select the environment to use for the WASM runtime execution.
 This can either be `peregrine` or `spiritnet`.
 
@@ -46,10 +46,10 @@ Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-
 ### Specify the Blockchain Storage Path
 
 The `--base-path` parameter specifies where all the persistent files must be stored.
-By default, the session keys will also be stored in the *base path*, but we recommend to separate them from the other files.
+By default, the session keys will also be stored in the *base path*, but we recommend separating them from the other files.
 This makes sure that the keyfiles are not accidentally lost or published when the blockchain database is either backed up or restored.
 You can configure where to store the session keys using the `--keystore-path` option.
-Since the Collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
+Since the collator will collate only for the parachain, there is no need to add this to the Relay Chain part of the command.
 
 ## Join the Network
 
@@ -66,7 +66,7 @@ values={[
 ### Build the Full Node
 
 In order to build the KILT full node executable, you need to have a [nightly version of Rust](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
-We recommend to align your nightly version with the one used in the [KILT node repository](https://github.com/KILTprotocol/kilt-node) by executing the [init script](https://github.com/KILTprotocol/kilt-node/blob/develop/scripts/init.sh).
+We recommend aligning your nightly version with the one used in the [KILT node repository](https://github.com/KILTprotocol/kilt-node) by executing the [init script](https://github.com/KILTprotocol/kilt-node/blob/develop/scripts/init.sh).
 After cloning the repository, you can build the executable by running the `build` command below from the root directory.
 
 ```bash
@@ -145,7 +145,7 @@ values={[
 ### Run an Archive Node
 
 The full node can also be started as a Docker container.
-To expose the websockets ensure that the `--rpc-external` and `--ws-external` flags are set.
+To expose the WebSockets ensure that the `--rpc-external` and `--ws-external` flags are set.
 
 To run an Archive full node add the option `--pruning archive` to the command.
 
@@ -215,8 +215,8 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
 
 ## Sync the Blockchain State
 
-Once started, the full node needs to fully sync up with both the parachain and the relaychain states.
-Depending on the size of both blockchain states and the node hardware specs, it may take from a number of hours to few days for the node to fully synchronize.
+Once started, the full node needs to fully sync up with both the parachain and the Relay Chain states.
+Depending on the size of both blockchain states and the node hardware specs, it may take from a number of hours to a few days for the node to fully synchronize.
 More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
 
 :::note Example of node sync
