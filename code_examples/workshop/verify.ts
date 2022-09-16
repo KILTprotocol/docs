@@ -28,11 +28,15 @@ async function verifyPresentation(
   const encodedAttestationInfo = await api.query.attestation.attestations(
     presentation.rootHash
   )
-  const attestationInfo = Kilt.Attestation.fromChain(
-    encodedAttestationInfo,
-    presentation.rootHash
-  )
-  return !attestationInfo.revoked
+  try {
+    const attestationInfo = Kilt.Attestation.fromChain(
+      encodedAttestationInfo,
+      presentation.rootHash
+    )
+    return !attestationInfo.revoked
+  } catch {
+    return false
+  }
 }
 
 export async function verificationFlow(api: ApiPromise) {

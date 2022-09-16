@@ -16,9 +16,6 @@ export async function queryPublishedCredentials(
   const { owner } = Kilt.Did.Web3Names.web3NameOwnerFromChain(
     encodedDidForWeb3Name
   )
-  if (!owner) {
-    throw `No DID found for "${web3Name}"`
-  }
 
   console.log(`DID for "${web3Name}": ${owner}`)
 
