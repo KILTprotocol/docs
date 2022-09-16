@@ -10,7 +10,9 @@ import GenerateChallenge from '!!raw-loader!@site/code_examples/dapp/src/verifie
 import CreateRequestCredentialMessage from '!!raw-loader!@site/code_examples/dapp/src/verifier/createRequestCredentialMessage.ts';
 import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/dapp/src/verifier/encryptRequestCredentialMessage.ts';
 
-The job of the verifier is to request and verify credentials. Your verifier can request one or more credentials of a specific CType. For example, if you want to verify an email credential, you would use the email CType:
+The job of the verifier is to request and verify credentials.
+Your verifier can request one or more credentials of a specific CType.
+For example, if you want to verify an email credential, you would use the email CType:
 
 <TsJsSnippet>
   {EmailCtype}

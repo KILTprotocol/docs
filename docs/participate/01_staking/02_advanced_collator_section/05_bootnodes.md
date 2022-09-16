@@ -6,7 +6,7 @@ title: Bootnodes
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The bootnodes are required to connect to the peer to peer network and discover additional peers.
+The bootnodes are required to connect to the peer-to-peer network and discover additional peers.
 The addresses are included in the chain spec, so there is no need to add them as a parameter to the start command.
 For the sake of completeness, the bootnodes are listed below:
 

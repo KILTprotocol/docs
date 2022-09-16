@@ -9,7 +9,7 @@ const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
 type CredentialMetadata = {
   label?: string
   blockNumber?: number
-  txHash?: string
+  txHash?: `0x{string}`
 }
 
 type CredentialEntry = {

@@ -17,7 +17,8 @@ When a message is received, decrypt it and check that it has the expected type:
   {DecryptCredentialMessage}
 </TsJsSnippet>
 
-Finally the message content (the credential that was requested) can be verified using the request challenge that was previously stored on the server side. This function will return `true` if the verification is successful.
+Finally the message content (the credential that was requested) can be verified using the request challenge that was previously stored on the server side.
+This function will return `true` if the verification is successful.
 
 <TsJsBlock>
   {VerifyCredential}

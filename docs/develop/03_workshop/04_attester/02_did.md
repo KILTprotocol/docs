@@ -11,19 +11,19 @@ import TabItem from '@theme/TabItem';
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
 import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
 
-Time to make a DID using the previously created account for the <span className="label-role attester">Attester</span>.
+Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
-A DID may represent any entity, may it be a person, an organization or a machine.
+A DID may represent any entity, which could be a person, an organization or a machine.
 
 A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.
-You would store a public encryption key and a service endpoint on-chain, that can both be queried using your DID.
+You would store a public encryption key and a service endpoint on-chain, which can both be queried using your DID.
 Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
 
-There are light and full DIDs.
-Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) if you want to learn more about DIDs and the difference between their light and full versions.
+There are two types of DIDs: light and full.
+Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.
 
 :::info KILT DID
 
@@ -32,7 +32,7 @@ There are currently four different key types that a DID supports:
 - An _authentication keypair_, used to sign claims and create authenticated credential presentations
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
-- A _capability-delegation keypair_, used to write Delegations on chain
+- A _capability-delegation keypair_, used to write delegations on chain
 
 Keys can be replaced over time, e.g., if a key is compromised.
 
@@ -87,14 +87,15 @@ You can now execute the script with:
   </TabItem>
 </Tabs>
 
-Once you executed the script, the output should provide you with your `ATTESTER_DID_URI`.
+Once you have executed the script, the output should provide you with your `ATTESTER_DID_URI`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
 ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
 ```
 
-Be sure to save it in your `.env` file, it should now look similar to this:
+Be sure to save it in your `.env` file.
+It should now look similar to this:
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws

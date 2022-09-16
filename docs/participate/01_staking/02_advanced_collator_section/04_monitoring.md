@@ -3,7 +3,7 @@ id: monitoring
 title: Set Up Node Monitoring
 ---
 
-It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the Collator process.
+It would be ideal if the host being monitored is not the host monitoring, i.e., if the monitoring process does not run on the same host as the collator process.
 However, in cases of limited resources, the two can also co-exist on the same host.
 
 The monitoring process collects two types of metrics: **Node Exporter metrics** and **blockchain metrics**.
@@ -20,7 +20,7 @@ The Docker compose setup creates and deploys up to four containers, all of which
 - **Node Exporter**: collects metrics from the host machine including CPU, memory, and storage usage, and network traffic statistics
 - **Prometheus**: stores the metrics collected by Node Exporter and collects additional metrics from the blockchain node
 - **Grafana**: shows the collected metrics in a customizable dashboard and can be configured to send alerts when certain conditions are met
-- **Collator**: the Collator node itself which runs one of the available KILT runtimes
+- **Collator**: the collator node itself, which runs one of the available KILT runtimes
 
 ## Installation
 Install the latest version of docker-compose from the [official docker-compose installation guide](https://docs.docker.com/compose/install/), then:

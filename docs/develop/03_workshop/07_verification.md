@@ -27,15 +27,15 @@ A `Credential` object is also called an Attested Claim: it is what <span classNa
 :::info Presentation
 
 A Credential is used to create the `Presentation` object by the <span className="label-role claimer">claimer</span>.
-Unlike the Credential, a `Presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span>.
-A `Presentation` also contains a proof that the <span className="label-role claimer">claimer</span> owns the Credential.
+Unlike the credential, a `presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span>.
+A `presentation` also contains a proof that the <span className="label-role claimer">claimer</span> owns the credential.
 
 :::
 
 ## Create Presentation
 
-It's not enough to just send our Credential as a <span className="label-role claimer">Claimer</span> as we also need to prove our ownership.
-This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
+It's not enough to just send our credential as a <span className="label-role claimer">Claimer</span> as we also need to prove ownership of it.
+This is done by creating a presentation by signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
 <TsJsBlock title="claimer/createPresentation">
   {CreatePresentation}
@@ -45,7 +45,7 @@ This is done by creating a presentation and signing the <span className="label-r
 
 Let's write our verification script.
 Here we'll expose `getChallenge` which returns a random and unique
-challenge for the <span className="label-role claimer">Claimer</span> to sign, this is used to prove ownership.
+challenge for the <span className="label-role claimer">Claimer</span> to sign; this is used to prove ownership.
 We'll also expose `verifyCredential` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
@@ -74,4 +74,4 @@ Run the verification flow on command line:
   </TabItem>
 </Tabs>
 
-That's it! all done :-)
+That's it! All done :-)

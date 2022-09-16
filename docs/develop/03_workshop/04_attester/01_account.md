@@ -9,10 +9,10 @@ import TabItem from '@theme/TabItem';
 
 import GenerateAccount from '!!raw-loader!@site/code_examples/workshop/attester/generateAccount.ts';
 
-After you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
-In KILT, there is an account which is an object that interacts with the blockchain.
+Now that you have [setup the project structure](./) in the last step, we'll create our <span className="label-role attester">Attester</span> account.
+In KILT, an account is an object that interacts with the blockchain.
 An account contains multiple properties.
-One of them is the `address`: it's the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
+One of them is the `address`: this is the entity's unique and public on-chain identifier, that is used to pay fees and deposits.
 All we need to create an account is a mnemonic.
 
 :::info KILT Account
@@ -36,7 +36,7 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 ## Create the Account
 
-To generate an account, one method from the KILT SDK is needed and one method from the polkadot crypto utility:
+To generate an account, one method from the KILT SDK is needed, and one method from the Polkadot crypto utility:
 
 - `mnemonicGenerate()` - Generates a mnemonic
 - `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
@@ -71,7 +71,7 @@ Now run it to get your <span className="label-role attester">Attester</span> `<a
 </Tabs>
 
 Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`.
-Be sure to save it in your `.env` file, it should now look similar to this.
+Be sure to save it in your `.env` file; it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws

@@ -18,7 +18,7 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 
  KILT is an open system.
  Anyone/anything can make a claim about themselves and attest it.
- But a credential only has value if the verifier _trusts_ the attester.
+ But a credential only has value if the Verifier _trusts_ the Attester.
 
 :::
 
@@ -30,10 +30,10 @@ We'll use provided `light DID`, `ctype` and <span className="label-role claimer"
   {CreateClaim}
 </TsJsBlock>
 
-The magic is happening in the `generateCredential` function.
+The magic happens in the `generateCredential` function.
 There we create a credential from a claim.
 Attestations can only be created for attributes that the <span className="label-role claimer">Claimer</span> wants to publish.
-To ensure that the Claimer also approves the attestation of the attributes in the credential, he has to digitally sign the credential.
+To ensure that the Claimer also approves the attestation of the attributes in the credential, they have to digitally sign the credential.
 The signature makes sure that the Attester doesn't change the attributes and the attestation is created for the agreed values.
 
 The `main` function puts it all together.

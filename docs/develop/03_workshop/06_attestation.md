@@ -28,7 +28,7 @@ The attestation becomes valid once it is submitted to the chain.
 The function `attestingFlow` shows the process from the beginning to the end.
 First the <span className="label-role claimer">Claimer</span> generates the credential and sends it to the <span className="label-role attester">Attester</span>.
 After that the <span className="label-role attester">Attester</span> checks the attributes and either attests or denies the attestation because the attributes are invalid.
-Once the attestation is written on the chain, the <span className="label-role claimer">Claimer</span> can share all or part of the attested Credentials with verifiers.
+Once the attestation is written on the chain, they can share all or part of the attested credentials with verifiers.
 
 ## Run
 
