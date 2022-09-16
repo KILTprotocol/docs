@@ -29,7 +29,8 @@ Of course this had major drawbacks:
 * It is hard to prove one's own identity to outsiders
 
 When people started to organize themselves in bigger groups, founding villages and cities, those drawbacks were amplified and needed to be addressed.
-Therefore mechanisms were introduced to create trust relationships between groups by issuing some form of attestation. In this way, certain properties about an individual could be verified by people who do not know the individual directly, but who trusted the group that gave the attestation, for example, a carpenter's guild, a monastery or a Scottish clan.
+Therefore mechanisms were introduced to create trust relationships between groups by issuing some form of attestation.
+In this way, certain properties about an individual could be verified by people who do not know the individual directly, but who trusted the group that gave the attestation, for example, a carpenter's guild, a monastery or a Scottish clan.
 When the organizational structures grew further and big bureaucratic nations emerged, the authorities issuing those attestations and the scope of the trust relationships also grew.
 
 Though we can now see a more and more centralized way of organizing trust, the actual information that makes up an identity is still handed out directly to the individual, who is still responsible for their own data.

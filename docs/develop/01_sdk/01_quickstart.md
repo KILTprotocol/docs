@@ -116,7 +116,8 @@ Connections to blockchain nodes should be dropped when no longer needed: to do t
 </SnippetBlock>
 
 **Congratulations!
-You have connected to a Spiritnet node. Let's now start querying some data from the chain!**
+You have connected to a Spiritnet node.
+Let's now start querying some data from the chain!**
 
 ## Query the KILT Blockchain
 

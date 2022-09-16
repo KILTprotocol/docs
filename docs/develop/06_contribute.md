@@ -4,7 +4,7 @@ title: Contribution Guidelines
 ---
 
 As a decentralized network, KILT depends on the support of its community.
-There are many ways to contribute to KILT Protocol and the products and services built on it. 
+There are many ways to contribute to KILT Protocol and the products and services built on it.
 The following guide is to **help builders and contributors** find the resources needed to take action and work under the guidance of the core developers.
 
 If you are interested in contributing but unsure how to begin, start in our [Clan KILT Discord](https://discord.gg/7uyfMXh6AT) channel.
@@ -33,8 +33,8 @@ The guidelines of how to do that are presented in the next section.
 
 ## Treasury Proposals
 
-A Treasury proposal is a request to receive funds from the Treasury pool. 
-The proposal should begin with a clear title, a written outline of the idea, and a discussion about implementation or deliverables as outlined above for feature requests. 
+A Treasury proposal is a request to receive funds from the Treasury pool.
+The proposal should begin with a clear title, a written outline of the idea, and a discussion about implementation or deliverables as outlined above for feature requests.
 The proposal should be for something that changes or adds value to KILT in a meaningful way.
 
 :::info

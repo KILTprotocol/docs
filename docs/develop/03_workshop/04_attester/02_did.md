@@ -90,7 +90,8 @@ Your output should look like this (but it won't be identical since the DIDs are 
 ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
 ```
 
-Be sure to save it in your `.env` file. It should now look similar to this:
+Be sure to save it in your `.env` file.
+It should now look similar to this:
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws

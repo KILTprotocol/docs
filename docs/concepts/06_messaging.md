@@ -34,7 +34,8 @@ While encrypted, the message travels in a compact and privacy-preserving envelop
   {encryptedMessage}
 </CodeBlock>
 
-The encrypted message not only references the DIDs of sender and recipient, it also references the unique identifier of the keys that were used in encryption. Therefore, this scheme still works if a DID should expose multiple encryption keys from which a message sender may choose.
+The encrypted message not only references the DIDs of sender and recipient, it also references the unique identifier of the keys that were used in encryption.
+Therefore, this scheme still works if a DID should expose multiple encryption keys from which a message sender may choose.
 
 :::caution
 While no one can read or change what is inside an encrypted message even if they intercept it while traveling on the network, a sophisticated attacker may try to guess what is inside and trick either side of the channel by resubmitting a copy of that message later.

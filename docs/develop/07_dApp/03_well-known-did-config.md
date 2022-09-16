@@ -9,13 +9,16 @@ The implementation is based on the [Well Known DID Configuration](https://identi
 
 ## Dapp Steps
 
-Add the following URI to your dapp's root. The extension will make an HTTP GET request to this URI, and your dapp will respond with the domain configuration resource.
+Add the following URI to your dapp's root.
+The extension will make an HTTP GET request to this URI, and your dapp will respond with the domain configuration resource.
 
 `/.well-known/did-configuration.json`
 
 ### Attesting the Domain Linkage Credential
 
-Upon receiving the GET request from the extension, your dapp will make a claim that contains its domain origin and DID. Then it will self-attest the claim. This self-attestation is referred to as a Domain Linkage Credential.
+Upon receiving the GET request from the extension, your dapp will make a claim that contains its domain origin and DID.
+Then it will self-attest the claim.
+This self-attestation is referred to as a Domain Linkage Credential.
 
 #### Making the claim
 
@@ -65,7 +68,8 @@ const claim = Claim.fromCTypeAndClaimContents(
 
 #### Adding the signature
 
-Your dapp creates a request for attestation based on the claim and signs the request's root hash with its assertion key. The resulting signature is then added to the request for attestation.
+Your dapp creates a request for attestation based on the claim and signs the request's root hash with its assertion key.
+The resulting signature is then added to the request for attestation.
 
 ```ts
 import { RequestForAttestation } from '@kiltprotocol/core'
@@ -105,7 +109,8 @@ const domainLinkageCredential = Credential.fromRequestAndAttestation(
 
 ### Formatting the Domain Linkage Credential
 
-The Well Known DID Configuration specificaton requires a specific format (JSON-LD) for the domain linkage credential. Here's how you can present your credential to the extension in the expected format.
+The Well Known DID Configuration specificaton requires a specific format (JSON-LD) for the domain linkage credential.
+Here's how you can present your credential to the extension in the expected format.
 
 ```ts
 const credentialSubject = {

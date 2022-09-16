@@ -12,5 +12,6 @@ Once the collator you have backed with your stake authors a block and thus recei
 The following sections will guide you through the process of becoming a delegator, adjusting your stake, revoking a delegation and unstaking your tokens.
 
 :::info
-The amount of delegators per collator is limited. Currently, each delegator can only stake to one collator per account; this may change if the community decides to enable multiple delegations per account.
+The amount of delegators per collator is limited.
+Currently, each delegator can only stake to one collator per account; this may change if the community decides to enable multiple delegations per account.
 :::

@@ -15,7 +15,8 @@ The following snippet shows how to do it:
 </CodeBlock>
 
 :::warning
-Please note that once deleted, a full DID becomes unusable and cannot be created anymore. This means that all credentials obtained with that DID are no longer valid and must be obtained with a different DID if needed.
+Please note that once deleted, a full DID becomes unusable and cannot be created anymore.
+This means that all credentials obtained with that DID are no longer valid and must be obtained with a different DID if needed.
 :::
 
 ## Claim back a DID deposit
