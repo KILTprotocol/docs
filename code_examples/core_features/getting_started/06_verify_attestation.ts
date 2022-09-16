@@ -1,7 +1,18 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(credential: Kilt.ICredential): Promise<boolean> {
-  const attestationInfo = await Kilt.Attestation.query(credential.rootHash)
+export async function main(
+  api: ApiPromise,
+  credential: Kilt.ICredential
+): Promise<boolean> {
+  const encodedAttestationInfo = await api.query.attestation.attestations(
+    credential.rootHash
+  )
+  const attestationInfo = Kilt.Attestation.fromChain(
+    encodedAttestationInfo,
+    credential.rootHash
+  )
   if (!attestationInfo) {
     return false
   }

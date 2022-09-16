@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 
@@ -15,6 +17,7 @@ import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
 export async function runAll(
+  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
@@ -43,6 +46,7 @@ export async function runAll(
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
+    api,
     attesterFullDid,
     submitterAccount,
     signCallback
@@ -51,6 +55,7 @@ export async function runAll(
   const credential = requestAttestation(claimerLightDid, ctype)
   console.log('3 claiming) Create attestation and credential')
   await createAttestation(
+    api,
     attesterFullDid,
     submitterAccount,
     signCallback,
@@ -67,6 +72,7 @@ export async function runAll(
   await verifyPresentation(presentation)
   console.log('6 claiming) Revoke credential')
   await revokeCredential(
+    api,
     attesterFullDid,
     submitterAccount,
     signCallback,
@@ -74,7 +80,7 @@ export async function runAll(
     false
   )
   console.log('7 claiming) Reclaim attestation deposit')
-  await reclaimAttestationDeposit(submitterAccount, credential)
+  await reclaimAttestationDeposit(api, submitterAccount, credential)
 
   console.log('Claiming flow completed!')
 }

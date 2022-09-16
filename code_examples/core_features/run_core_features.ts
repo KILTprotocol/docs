@@ -12,7 +12,6 @@ import { randomAsU8a } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { runAll as runAllClaiming } from './claiming'
-import { runAll as runAllDevSetup } from './dev_setup'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
@@ -31,10 +30,12 @@ async function endowAccounts(
   const transferBatch = await Promise.all(
     destinationAccounts.map(
       async (acc) =>
-        await Kilt.Balance.getTransferTx(
+        await api.tx.balances.transfer(
           acc,
-          Kilt.BalanceUtils.KILT_COIN.mul(amount),
-          0
+          Kilt.BalanceUtils.convertToTxUnit(
+            Kilt.BalanceUtils.KILT_COIN.mul(amount),
+            0
+          )
         )
     )
   )
@@ -113,11 +114,10 @@ async function main(): Promise<void> {
 
   // These should not conflict anymore since all accounts are different
   await Promise.all([
-    runAllClaiming(claimingTestAccount),
+    runAllClaiming(api, claimingTestAccount),
     runAllDid(api, didTestAccount),
-    runAllWeb3(web3TestAccount),
-    runAllLinking(api, accountLinkingTestAccount, faucetAccount),
-    runAllDevSetup()
+    runAllWeb3(api, web3TestAccount),
+    runAllLinking(api, accountLinkingTestAccount, faucetAccount)
   ])
 }
 

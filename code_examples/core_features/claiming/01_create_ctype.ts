@@ -1,6 +1,9 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createDriversLicenseCType(
+  api: ApiPromise,
   creator: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback
@@ -24,7 +27,7 @@ export async function createDriversLicenseCType(
   })
 
   // Generate a creation extrinsic
-  const ctypeCreationTx = await Kilt.CType.getStoreTx(ctype)
+  const ctypeCreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype))
   // Sign it with the right DID key
   const authorisedCtypeCreationTx = await Kilt.Did.authorizeExtrinsic(
     creator,

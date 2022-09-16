@@ -28,9 +28,9 @@ export async function batchCTypeCreationExtrinsics(
 ): Promise<void> {
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
-  const ctype1CreationTx = await Kilt.CType.getStoreTx(ctype1)
+  const ctype1CreationTx = await api.tx.ctype.add(Kilt.CType.toChain(ctype1))
   const ctype2 = getRandomCType()
-  const ctype2CreationTx = await Kilt.CType.getStoreTx(ctype2)
+  const ctype2CreationTx = await api.tx.ctype.add(Kilt.CType.toChain(ctype2))
 
   // Create the DID-signed batch
   const authorizedBatch = await Kilt.Did.authorizeBatch({

@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { Keyring } from '@polkadot/api'
 
 import { FetchError } from 'node-fetch'
@@ -15,6 +17,7 @@ import { verifyNameAndDidEquality } from './02_query_did_name'
 import { signCallbackForKeyring } from '../utils'
 
 export async function runAll(
+  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running web3name flow...')
@@ -29,16 +32,17 @@ export async function runAll(
 
   console.log('1 w3n) Claim web3name')
   await claimWeb3Name(
+    api,
     fullDid,
     submitterAccount,
     randomWeb3Name,
     signCallbackForKeyring(keyring)
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
-  await verifyNameAndDidEquality(randomWeb3Name, fullDid.uri)
+  await verifyNameAndDidEquality(api, randomWeb3Name, fullDid.uri)
   console.log('3 w3n) Query credentials for "john_doe" web3name')
   try {
-    await queryPublishedCredentials('john_doe')
+    await queryPublishedCredentials(api, 'john_doe')
   } catch (e) {
     if (e instanceof FetchError) {
       console.log(
@@ -51,17 +55,19 @@ export async function runAll(
   }
   console.log('4 w3n) Release web3name')
   await releaseWeb3Name(
+    api,
     fullDid,
     submitterAccount,
     signCallbackForKeyring(keyring)
   )
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
+    api,
     fullDid,
     submitterAccount,
     randomWeb3Name,
     signCallbackForKeyring(keyring)
   )
-  await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name)
+  await reclaimWeb3NameDeposit(api, submitterAccount, randomWeb3Name)
   console.log('web3name flow completed!')
 }

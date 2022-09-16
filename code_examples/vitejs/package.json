@@ -9,7 +9,7 @@
     "fix": "yarn lint:fix && yarn style:fix"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.29.0-rc.1",
+    "@kiltprotocol/sdk-js": "0.30.0-4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

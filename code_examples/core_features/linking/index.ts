@@ -36,6 +36,7 @@ export async function runAll(
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
+    api,
     fullDid,
     submitterAccount,
     randomWeb3Name,
@@ -51,6 +52,7 @@ export async function runAll(
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(
+    api,
     fullDid,
     submitterAccount,
     signCallbackForKeyring(keyring)
@@ -67,19 +69,21 @@ export async function runAll(
   }
   console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(
+    api,
     fullDid,
     submitterAccount,
     linkAccount.address,
     signCallbackForKeyring(keyring)
   )
   console.log('6 linking) Unlink submitter account from DID')
-  await unlinkDidFromAccount(submitterAccount)
+  await unlinkDidFromAccount(api, submitterAccount)
   console.log('7 linking) Re-add submitter account and claim deposit back')
   await linkDidToAccount(
+    api,
     fullDid,
     submitterAccount,
     signCallbackForKeyring(keyring)
   )
-  await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
+  await reclaimLinkDeposit(api, submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')
 }
