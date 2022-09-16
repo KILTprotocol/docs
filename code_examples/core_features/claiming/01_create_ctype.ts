@@ -29,7 +29,7 @@ export async function createDriversLicenseCType(
   // Generate a creation extrinsic
   const ctypeCreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype))
   // Sign it with the right DID key
-  const authorisedCtypeCreationTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedCtypeCreationTx = await Kilt.Did.authorizeExtrinsic(
     creator,
     ctypeCreationTx,
     signCallback,
@@ -38,7 +38,7 @@ export async function createDriversLicenseCType(
   // Submit the creation extrinsic to the KILT blockchain
   // using the KILT account specified in the creation operation.
   await Kilt.Blockchain.signAndSubmitTx(
-    authorisedCtypeCreationTx,
+    authorizedCtypeCreationTx,
     submitterAccount
   )
 

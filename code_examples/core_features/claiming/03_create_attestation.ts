@@ -20,14 +20,14 @@ export async function createAttestation(
     cTypeHash,
     delegationId
   )
-  const authorisedAttestationTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedAttestationTx = await Kilt.Did.authorizeExtrinsic(
     attester,
     attestationTx,
     signCallback,
     submitterAccount.address
   )
   await Kilt.Blockchain.signAndSubmitTx(
-    authorisedAttestationTx,
+    authorizedAttestationTx,
     submitterAccount
   )
 }

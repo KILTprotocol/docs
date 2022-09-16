@@ -22,7 +22,7 @@ export async function linkAccountToDid(
       did.uri,
       linkingAccountSignatureGeneration
     )
-  const authorisedAccountLinkingTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedAccountLinkingTx = await Kilt.Did.authorizeExtrinsic(
     did,
     accountLinkingTx,
     signCallback,
@@ -30,7 +30,7 @@ export async function linkAccountToDid(
   )
 
   await Kilt.Blockchain.signAndSubmitTx(
-    authorisedAccountLinkingTx,
+    authorizedAccountLinkingTx,
     submitterAccount
   )
 }

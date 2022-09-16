@@ -10,14 +10,14 @@ export async function claimWeb3Name(
   signCallback: Kilt.SignCallback
 ): Promise<void> {
   const web3NameClaimTx = await api.tx.web3Names.claim(name)
-  const authorisedWeb3NameClaimTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedWeb3NameClaimTx = await Kilt.Did.authorizeExtrinsic(
     did,
     web3NameClaimTx,
     signCallback,
     submitterAccount.address
   )
   await Kilt.Blockchain.signAndSubmitTx(
-    authorisedWeb3NameClaimTx,
+    authorizedWeb3NameClaimTx,
     submitterAccount
   )
 }

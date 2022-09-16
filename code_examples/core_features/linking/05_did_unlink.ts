@@ -14,7 +14,7 @@ export async function unlinkAccountFromDid(
   const accountUnlinkTx = await api.tx.didLookup.removeAccountAssociation(
     linkedAccountAddress
   )
-  const authorisedAccountUnlinkTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedAccountUnlinkTx = await Kilt.Did.authorizeExtrinsic(
     did,
     accountUnlinkTx,
     signCallback,
@@ -22,7 +22,7 @@ export async function unlinkAccountFromDid(
   )
 
   await Kilt.Blockchain.signAndSubmitTx(
-    authorisedAccountUnlinkTx,
+    authorizedAccountUnlinkTx,
     submitterAccount
   )
 }

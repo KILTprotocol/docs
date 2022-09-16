@@ -26,7 +26,7 @@ export async function updateFullDid(
     Kilt.Did.Chain.resourceIdToChain('#my-service')
   )
 
-  const authorisedBatchedTxs = await Kilt.Did.authorizeBatch({
+  const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
     extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
@@ -35,7 +35,7 @@ export async function updateFullDid(
   })
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.Blockchain.signAndSubmitTx(authorisedBatchedTxs, submitterAccount)
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
   const updatedDidDetails = await Kilt.Did.query(fullDid.uri)
