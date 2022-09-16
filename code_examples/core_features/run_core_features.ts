@@ -27,14 +27,12 @@ async function endowAccounts(
   destinationAccounts: Kilt.KiltKeyringPair['address'][],
   amount: BN
 ): Promise<void> {
-  const transferBatch = await Promise.all(
-    destinationAccounts.map((acc) =>
-      api.tx.balances.transfer(
-        acc,
-        Kilt.BalanceUtils.convertToTxUnit(
-          Kilt.BalanceUtils.KILT_COIN.mul(amount),
-          0
-        )
+  const transferBatch = destinationAccounts.map((acc) =>
+    api.tx.balances.transfer(
+      acc,
+      Kilt.BalanceUtils.convertToTxUnit(
+        Kilt.BalanceUtils.KILT_COIN.mul(amount),
+        0
       )
     )
   )
