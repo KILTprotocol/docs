@@ -3,11 +3,13 @@ id: session
 title: Setting Up the Communication Session
 ---
 
-The first step in creating your dApp is to set up the communication session. The purpose of the session is to pass encrypted messages back and forth between your dApp and the extension.
+The first step in creating your dapp is to set up the communication session.
+The purpose of the session is to pass encrypted messages back and forth between your dapp and the extension.
 
-## DApp indicates credential API support
+## Dapp Indicates Credential API Support
 
-In order to indicate its support of the extension's API, the dApp creates the `window.kilt` object as soon as possible. For example:
+In order to indicate its support of the extension's API, the dapp creates the `window.kilt` object as soon as possible.
+For example:
 
 ```html
 <head>
@@ -17,9 +19,11 @@ In order to indicate its support of the extension's API, the dApp creates the `w
 </head>
 ```
 
-## DApp introduces itself
+## Dapp Introduces Itself
 
-The dApp introduces itself to the extension with its name, encryption key URI, and a challenge. A copy of the challenge should be stored on the server side. For example:
+The dapp introduces itself to the extension with its name, encryption key URI, and a challenge.
+A copy of the challenge should be stored on the server side.
+For example:
 
 ```ts
 import { FullDidDetails } from '@kiltprotocol/did'
@@ -41,11 +45,13 @@ const session = await window.kilt.sporran.startSession(
 )
 ```
 
-At this point the extension has received the introduction of the dApp and returned a new session along with the encrypted challenge.
+At this point the extension has received the introduction of the dapp and returned a new session along with the encrypted challenge.
 
-## DApp checks the session values
+## Dapp checks the session values
 
-The extension has provided the session along with an encrypted challenge. The dApp decrypts the challenge and verifies that it matches the original challenge. This should happen on the server side:
+The extension has provided the session along with an encrypted challenge.
+The dapp decrypts the challenge and verifies that it matches the original challenge.
+This should happen on the server side:
 
 ```ts
 import { Crypto } from '@kiltprotocol/utils'

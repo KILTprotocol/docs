@@ -4,17 +4,17 @@ title: Technical Specifications
 ---
 
 :::note
-This section is WIP.
-The end goal is for it to host all of KILT specifications.
+This section is a WIP.
+The end goal is for it to host all KILT specifications.
 :::
 
-List of core specifications KILT has defined in an effort to standardize APIs and data structures across applications.
+List of core specifications KILT has defined in an effort to standardize APIs and data structures across applications:
 
 - [KILT DID Method (GitHub repo)][kilt-did-method]
 - [KiltPublishedCredentialCollectionV1 Service Type (GitHub repo)][kilt-published-credential-collection-v1]
 - [Asset DID Method (GitHub repo)][asset-did-method]
 
-List of extensions to the core KILT protocol that standardize communication with the core KILT components (e.g., API for wallets to present credentials).
+List of extensions to the core KILT protocol that standardize communication with the core KILT components (e.g., API for wallets to present credentials):
 
 - [Wallet Credential API (GitHub repo)][kilt-wallet-credential-api]
 - [Wallet DIDSign API (GitHub repo)][kilt-wallet-didsign-api]

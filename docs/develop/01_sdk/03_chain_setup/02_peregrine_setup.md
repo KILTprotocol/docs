@@ -19,7 +19,7 @@ Replace the WebSocket address of [your script](./index.md#set-up-your-project) o
 
 You can either use your own frontend or the [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws#/explorer) to interact with the chain.
 Moreover, you can use [Subscan](https://kilt-testnet.subscan.io/) as a chain explorer.
-For a full list of deployments and services, please have a look [here](../../02_chain/03_deployments.md).
+For a full list of deployments and services, take a look [here](../../02_chain/03_deployments.md).
 
 ## Standalone vs. Parachain (Peregrine/Spiritnet)
 
@@ -31,7 +31,7 @@ Block time is actually the same, but this might change in the future. -->
 
 ### Governance
 
-While governance is a very important part of our parachains, it is not used in the standalone version and is replaced by the **sudo** pallet.
+While governance is a very important part of our parachains, it is not used in the standalone version and is replaced by the **Sudo** pallet.
 None of the following pallets are part of the standalone chain, but they are all part of the parachain runtime:
 
 * Democracy
@@ -51,13 +51,13 @@ On the other hand, for a standalone development chain it is not necessary since 
 
 Deploying a parachain is more complex than deploying a standalone chain.
 For the standalone node, a single Docker command is sufficient.
-On the opposite, the task of spinning up a parachain can be split up in three steps.
+In contrast, the task of spinning up a parachain can be split up in three steps.
 
-1. Setup a relay chain with 4 validators.
-2. Start and connect your parachain node to the relaychain.
+1. Setup a Relay Chain with 4 validators.
+2. Start and connect your parachain node to the Relay Chain.
 3. Register your parachain using the runtime WASM and the genesis state.
 
-Since these steps are not trivial to execute and take quite some time to do manually, we provide a minimal [Docker-based setup script](https://github.com/KILTprotocol/local-parachain-setup) which automates these steps.
+Since these steps are not trivial to execute and take quite some time to do manually, we provide a minimal [Docker-based setup script](https://github.com/KILTprotocol/local-parachain-setup) which automates them.
 
 ### Transaction Encoding
 

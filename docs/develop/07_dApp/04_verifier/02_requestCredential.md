@@ -3,7 +3,9 @@ id: request
 title: Verifier Requests a Credential
 ---
 
-The job of the verifier is to request and verify credentials. Your verifier can request one or more credentials of a specific CType. For example, if you want to verify an email credential, you would use the email CType:
+The job of the verifier is to request and verify credentials.
+Your verifier can request one or more credentials of a specific CType.
+For example, if you want to verify an email credential, you would use the email CType:
 
 ```ts
 const emailCType = CType.fromCType({
