@@ -6,9 +6,15 @@ export function App() {
   const [did, setDid] = useState('')
   useEffect(() => {
     const resolveWeb3Name = async () => {
-      await Kilt.connect('wss://spiritnet.kilt.io')
-      const did = await Kilt.Did.Web3Names.queryDidForWeb3Name('john_doe')
-      setDid(did || 'unknown')
+      const api = await Kilt.connect('wss://spiritnet.kilt.io')
+      const encodedDidDetails = await api.query.web3Names.owner('john_doe')
+      try {
+        const { owner } =
+          Kilt.Did.Web3Names.web3NameOwnerFromChain(encodedDidDetails)
+        setDid(owner)
+      } catch {
+        setDid('unknown')
+      }
     }
     resolveWeb3Name()
   })

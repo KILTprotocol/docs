@@ -2,6 +2,7 @@
   "name": "vitejs-template",
   "private": true,
   "scripts": {
+    "check-ts": "yarn tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts --ext .tsx --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
