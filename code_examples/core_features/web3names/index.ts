@@ -15,9 +15,7 @@ import { verifyNameAndDidEquality } from './02_query_did_name'
 import { signCallbackForKeyring } from '../utils'
 
 export async function runAll(
-  submitterAccount: Kilt.KiltKeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running web3name flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
@@ -25,8 +23,7 @@ export async function runAll(
     keyring,
     submitterAccount,
     undefined,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
 
@@ -35,8 +32,7 @@ export async function runAll(
     fullDid,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(randomWeb3Name, fullDid.uri)
@@ -57,17 +53,15 @@ export async function runAll(
   await releaseWeb3Name(
     fullDid,
     submitterAccount,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
     fullDid,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring),
-    resolveOn
+    signCallbackForKeyring(keyring)
   )
-  await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name, resolveOn)
+  await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name)
   console.log('web3name flow completed!')
 }

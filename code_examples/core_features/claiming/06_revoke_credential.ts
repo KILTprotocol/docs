@@ -5,9 +5,7 @@ export async function revokeCredential(
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential,
-  shouldRemove = false,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.Blockchain
-    .IS_FINALIZED
+  shouldRemove = false
 ): Promise<void> {
   const tx = shouldRemove
     ? // If the attestation is to be removed, create a `remove` tx,
@@ -25,7 +23,5 @@ export async function revokeCredential(
   )
 
   // Submit the right tx to the KILT blockchain.
-  await Kilt.Blockchain.signAndSubmitTx(authorizedTx, submitterAccount, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(authorizedTx, submitterAccount)
 }

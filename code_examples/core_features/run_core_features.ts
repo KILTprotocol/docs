@@ -48,9 +48,7 @@ async function endowAccounts(
   )
   const batchTx = api.tx.utility.batchAll(transferBatch)
   try {
-    await Kilt.Blockchain.signAndSubmitTx(batchTx, faucetAccount, {
-      resolveOn
-    })
+    await Kilt.Blockchain.signAndSubmitTx(batchTx, faucetAccount)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
     const waitingTime = 2_000 // 2 seconds
@@ -63,7 +61,7 @@ async function endowAccounts(
     const resignedBatchTx = await batchTx.signAsync(faucetAccount, {
       nonce: -1
     })
-    await Kilt.Blockchain.submitSignedTx(resignedBatchTx, { resolveOn })
+    await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
   }
 }
 
@@ -83,6 +81,7 @@ async function main(): Promise<void> {
   }
   await gettingStartedFlow()
 
+  Kilt.config({ submitTxResolveOn: resolveOn })
   const api = await Kilt.connect(nodeAddress)
 
   const keyring = new Keyring({
@@ -114,10 +113,10 @@ async function main(): Promise<void> {
 
   // These should not conflict anymore since all accounts are different
   await Promise.all([
-    runAllClaiming(claimingTestAccount, resolveOn),
-    runAllDid(api, didTestAccount, resolveOn),
-    runAllWeb3(web3TestAccount, resolveOn),
-    runAllLinking(api, accountLinkingTestAccount, faucetAccount, resolveOn),
+    runAllClaiming(claimingTestAccount),
+    runAllDid(api, didTestAccount),
+    runAllWeb3(web3TestAccount),
+    runAllLinking(api, accountLinkingTestAccount, faucetAccount),
     runAllDevSetup()
   ])
 }
