@@ -1,4 +1,6 @@
-import { ApiPromise, Keyring } from '@polkadot/api'
+import type { ApiPromise } from '@polkadot/api'
+
+import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -73,11 +75,12 @@ export async function runAll(
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
+    api,
     submitterAccount,
     createdSimpleFullDid,
     signCallbackForKeyring(keyring)
   )
   console.log('10 did) Delete full DID created at step 5')
-  await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
+  await reclaimFullDidDeposit(api, submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }

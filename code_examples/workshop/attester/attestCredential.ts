@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { config as envConfig } from 'dotenv'
 
 import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
@@ -11,6 +13,7 @@ import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
 
 export async function attestCredential(
+  api: ApiPromise,
   keyring: Keyring,
   request: Kilt.ICredential,
   signCallback: Kilt.SignCallback
@@ -23,7 +26,7 @@ export async function attestCredential(
   const fullDid = await getFullDid(attesterDid)
 
   // build the attestation object
-  const attestation = Kilt.Attestation.fromCredentialAndDid(
+  const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
     request,
     fullDid.uri
   )
@@ -32,7 +35,7 @@ export async function attestCredential(
   // e.g., verify age with other credentials (birth certificate, passport, ...)
 
   // form tx and authorized extrinsic
-  const tx = await Kilt.Attestation.getStoreTx(attestation)
+  const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
     fullDid,
     tx,
@@ -45,7 +48,9 @@ export async function attestCredential(
   await Kilt.Blockchain.signAndSubmitTx(extrinsic, account)
 }
 
-export async function attestingFlow(): Promise<Kilt.ICredential> {
+export async function attestingFlow(
+  api: ApiPromise
+): Promise<Kilt.ICredential> {
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
@@ -70,7 +75,12 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
   // send the request to the attester
 
   // the attester checks the attributes and issues an attestation
-  await attestCredential(keyring, credential, signCallbackForKeyring(keyring))
+  await attestCredential(
+    api,
+    keyring,
+    credential,
+    signCallbackForKeyring(keyring)
+  )
 
   // send the attestation back to the claimer
   return credential
@@ -80,10 +90,10 @@ export async function attestingFlow(): Promise<Kilt.ICredential> {
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await Kilt.connect(process.env.WSS_ADDRESS as string)
+    const api = await Kilt.connect(process.env.WSS_ADDRESS)
 
     try {
-      const c = await attestingFlow()
+      const c = await attestingFlow(api)
       console.log('The claimer build their credential and now has to store it.')
       console.log('  add the following to your .env file. ')
       console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(c)}'`)

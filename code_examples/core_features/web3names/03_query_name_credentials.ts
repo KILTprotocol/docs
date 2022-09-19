@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import fetch from 'node-fetch'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -6,41 +8,31 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
   'KiltPublishedCredentialCollectionV1'
 
-type CredentialMetadata = {
-  label?: string
-  blockNumber?: number
-  txHash?: `0x{string}`
-}
-
-type CredentialEntry = {
-  credential: Kilt.ICredentialPresentation
-  metadata?: CredentialMetadata
-}
-
 export async function queryPublishedCredentials(
+  api: ApiPromise,
   web3Name: Kilt.Did.Web3Names.Web3Name
-): Promise<CredentialEntry[]> {
-  const didForWeb3Name = await Kilt.Did.Web3Names.queryDidForWeb3Name(web3Name)
-  if (!didForWeb3Name) {
-    throw `No DID found for "${didForWeb3Name}"`
-  }
+): Promise<Kilt.KiltPublishedCredentialCollectionV1> {
+  const encodedDidForWeb3Name = await api.query.web3Names.owner(web3Name)
+  const { owner } = Kilt.Did.Web3Names.web3NameOwnerFromChain(
+    encodedDidForWeb3Name
+  )
 
-  console.log(`DID for "${web3Name}": ${didForWeb3Name}`)
+  console.log(`DID for "${web3Name}": ${owner}`)
 
-  const resolutionResult = await Kilt.Did.resolve(didForWeb3Name)
+  const resolutionResult = await Kilt.Did.resolve(owner)
   if (!resolutionResult) {
     throw 'The DID does not exist on the KILT blockchain.'
   }
 
-  const didDetails = resolutionResult.document
+  const { document } = resolutionResult
   // If no details are returned but resolutionResult is not null, the DID has been deleted.
   // This information is present in `resolutionResult.metadata.deactivated`.
-  if (!didDetails) {
+  if (!document) {
     throw 'The DID has already been deleted.'
   }
 
   // Filter the endpoints by their type.
-  const didEndpoints = didDetails.service?.filter((service) =>
+  const didEndpoints = document.service?.filter((service) =>
     service.type.includes(PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE)
   )
 
@@ -62,7 +54,8 @@ export async function queryPublishedCredentials(
   // Being an IPFS endpoint, the fetching can take an arbitrarily long time or even fail if the timeout is reached.
   // The case where the result is not a JSON should be properly handled in production settings.
   const response = await fetch(firstCredentialCollectionEndpointUrl as string)
-  const credentialCollection: CredentialEntry[] = await response.json()
+  const credentialCollection: Kilt.KiltPublishedCredentialCollectionV1 =
+    await response.json()
   console.log(`Credential collection behind the endpoint:`)
   console.log(JSON.stringify(credentialCollection, null, 2))
 
@@ -72,9 +65,7 @@ export async function queryPublishedCredentials(
       await Kilt.Credential.verifyPresentation(credential)
 
       // Verify that the credential refers to the intended subject
-      if (
-        !Kilt.Did.Utils.isSameSubject(credential.claim.owner, didForWeb3Name)
-      ) {
+      if (!Kilt.Did.Utils.isSameSubject(credential.claim.owner, owner)) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
     })

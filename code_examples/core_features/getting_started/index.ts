@@ -12,8 +12,8 @@ import { main as verifyPresentation } from './07_verify_presentation'
 export async function runAll(): Promise<void> {
   await printHelloWorld()
   // Connect to Spiritnet
-  await connect()
-  const johnDoeDid = await fetchJohnDoeDid()
+  const api = await connect()
+  const johnDoeDid = await fetchJohnDoeDid(api)
   if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
@@ -30,7 +30,7 @@ export async function runAll(): Promise<void> {
     return
   }
 
-  const attestationStatus = await verifyAttestation(presentation)
+  const attestationStatus = await verifyAttestation(api, presentation)
   if (attestationStatus) {
     console.log("John Doe's credential is attested!")
   } else {

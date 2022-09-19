@@ -1,3 +1,5 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { config as envConfig } from 'dotenv'
 
 import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
@@ -14,19 +16,24 @@ function getChallenge(): string {
 
 // verifies validity, ownership & attestation
 async function verifyPresentation(
+  api: ApiPromise,
   presentation: Kilt.ICredentialPresentation,
   challenge: string
 ): Promise<boolean> {
   try {
     await Kilt.Credential.verifyPresentation(presentation, { challenge })
+
+    const attestationInfo = Kilt.Attestation.fromChain(
+      await api.query.attestation.attestations(presentation.rootHash),
+      presentation.rootHash
+    )
+    return !attestationInfo.revoked
   } catch {
     return false
   }
-  const attestationInfo = await Kilt.Attestation.query(presentation.rootHash)
-  return !attestationInfo?.revoked
 }
 
-export async function verificationFlow() {
+export async function verificationFlow(api: ApiPromise) {
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
   const keyring = new Keyring({
@@ -64,7 +71,7 @@ export async function verificationFlow() {
   )
 
   // The verifier checks the presentation
-  const isValid = await verifyPresentation(presentation, challenge)
+  const isValid = await verifyPresentation(api, presentation, challenge)
 
   if (isValid) {
     console.log('Verification successful! You are allowed to enter the club 🎉')
@@ -77,10 +84,10 @@ export async function verificationFlow() {
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await Kilt.connect(process.env.WSS_ADDRESS as string)
+    const api = await Kilt.connect(process.env.WSS_ADDRESS as string)
 
     try {
-      await verificationFlow()
+      await verificationFlow(api)
       process.exit(0)
     } catch (e) {
       console.log('Error in the verification flow', e)

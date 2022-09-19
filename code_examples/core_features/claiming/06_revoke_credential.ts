@@ -1,6 +1,9 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function revokeCredential(
+  api: ApiPromise,
   attester: Kilt.DidDocument,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
@@ -10,10 +13,10 @@ export async function revokeCredential(
   const tx = shouldRemove
     ? // If the attestation is to be removed, create a `remove` tx,
       // which revokes and removes the attestation in one go.
-      await Kilt.Attestation.getRemoveTx(credential.rootHash, 0)
+      api.tx.attestation.remove(credential.rootHash, null)
     : // Otherwise, simply revoke the attestation but leave it on chain.
       // Hence, the storage is not cleared and the deposit not returned.
-      await Kilt.Attestation.getRevokeTx(credential.rootHash, 0)
+      api.tx.attestation.revoke(credential.rootHash, null)
 
   const authorizedTx = await Kilt.Did.authorizeExtrinsic(
     attester,

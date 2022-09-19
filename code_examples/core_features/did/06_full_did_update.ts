@@ -19,15 +19,14 @@ export async function updateFullDid(
   // Create and sign the DID operation to replace the authentication key with the new one generated.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
-  const didKeyUpdateTx = await Kilt.Did.Chain.getSetKeyExtrinsic(
-    'authentication',
-    newAuthKey
+  const didKeyUpdateTx = api.tx.did.setAuthenticationKey(
+    Kilt.Did.Chain.publicKeyToChain(newAuthKey)
   )
-  const didServiceRemoveTx = await Kilt.Did.Chain.getRemoveEndpointExtrinsic(
-    '#my-service'
+  const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
+    Kilt.Did.Chain.resourceIdToChain('#my-service')
   )
 
-  const authorisedBatchedTxs = await Kilt.Did.authorizeBatch({
+  const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
     extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
@@ -36,7 +35,7 @@ export async function updateFullDid(
   })
 
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.Blockchain.signAndSubmitTx(authorisedBatchedTxs, submitterAccount)
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
   const updatedDidDetails = await Kilt.Did.query(fullDid.uri)
