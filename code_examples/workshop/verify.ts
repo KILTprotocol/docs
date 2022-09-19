@@ -23,11 +23,8 @@ async function verifyPresentation(
   try {
     await Kilt.Credential.verifyPresentation(presentation, { challenge })
 
-    const encodedAttestationInfo = await api.query.attestation.attestations(
-      presentation.rootHash
-    )
     const attestationInfo = Kilt.Attestation.fromChain(
-      encodedAttestationInfo,
+      await api.query.attestation.attestations(presentation.rootHash),
       presentation.rootHash
     )
     return !attestationInfo.revoked
