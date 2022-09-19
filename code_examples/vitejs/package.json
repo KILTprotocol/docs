@@ -5,7 +5,9 @@
     "lint": "eslint . --ext .ts --ext .tsx --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
-    "style:fix": "yarn style --write"
+    "style:fix": "yarn style --write",
+    "dev": "vite dev",
+    "build": "vite build"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.28.2",
