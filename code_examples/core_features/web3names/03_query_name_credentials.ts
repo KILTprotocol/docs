@@ -4,10 +4,6 @@ import fetch from 'node-fetch'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-// The type to filter the endpoints of the retrieved DID.
-const PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE =
-  'KiltPublishedCredentialCollectionV1'
-
 export async function queryPublishedCredentials(
   api: ApiPromise,
   web3Name: Kilt.Did.Web3Names.Web3Name
@@ -33,11 +29,11 @@ export async function queryPublishedCredentials(
 
   // Filter the endpoints by their type.
   const didEndpoints = document.service?.filter((service) =>
-    service.type.includes(PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE)
+    service.type.includes(Kilt.KiltPublishedCredentialCollectionV1Type)
   )
 
   console.log(
-    `Endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}" for the retrieved DID:`
+    `Endpoints of type "${Kilt.KiltPublishedCredentialCollectionV1Type}" for the retrieved DID:`
   )
   console.log(JSON.stringify(didEndpoints, null, 2))
 
@@ -46,7 +42,7 @@ export async function queryPublishedCredentials(
     didEndpoints?.[0]?.serviceEndpoint[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
-      `The DID has no service endpoints of type "${PUBLISHED_CREDENTIAL_COLLECTION_V1_TYPE}".`
+      `The DID has no service endpoints of type "${Kilt.KiltPublishedCredentialCollectionV1Type}".`
     )
   }
 
@@ -62,7 +58,7 @@ export async function queryPublishedCredentials(
   // Verify that all credentials are valid and that they all refer to the same DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      await Kilt.Credential.verifyPresentation(credential)
+      await Kilt.Credential.verifyCredential(credential)
 
       // Verify that the credential refers to the intended subject
       if (!Kilt.Did.Utils.isSameSubject(credential.claim.owner, owner)) {

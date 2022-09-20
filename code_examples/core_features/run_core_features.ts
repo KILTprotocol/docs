@@ -24,7 +24,7 @@ const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 async function endowAccounts(
   api: ApiPromise,
   faucetAccount: KeyringPair,
-  destinationAccounts: Kilt.KiltKeyringPair['address'][],
+  destinationAccounts: Kilt.KiltAddress[],
   amount: BN
 ): Promise<void> {
   const transferBatch = destinationAccounts.map((acc) =>

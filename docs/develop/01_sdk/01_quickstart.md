@@ -14,7 +14,7 @@ import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_sta
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
-import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_presentation.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
@@ -195,7 +195,7 @@ This will be indicated by the result of the **verification** process as shown in
 <SnippetBlock
   className="language-ts"
 >
-  {VerifyPresentation}
+  {VerifyCredential}
 </SnippetBlock>
 
 Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!

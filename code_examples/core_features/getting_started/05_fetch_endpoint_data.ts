@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(
   endpoints: Kilt.DidServiceEndpoint[]
-): Promise<Kilt.ICredentialPresentation> {
+): Promise<Kilt.ICredential> {
   const {
     data: [{ credential }]
   } = await axios.get<Kilt.KiltPublishedCredentialCollectionV1>(
