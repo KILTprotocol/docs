@@ -75,6 +75,10 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style
+      - name: Test production build
+        working-directory: code_examples/vitejs
+        run: |
+          yarn build
 
   # Only test the style conventions for the dapp snippets, nothing is run here
   dapp_examples:

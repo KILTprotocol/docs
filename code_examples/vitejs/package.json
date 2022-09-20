@@ -7,7 +7,9 @@
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
     "style:fix": "yarn style --write",
-    "fix": "yarn lint:fix && yarn style:fix"
+    "fix": "yarn lint:fix && yarn style:fix",
+    "dev": "vite dev",
+    "build": "vite build"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.30.0-4",
