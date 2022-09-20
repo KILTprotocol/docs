@@ -45,6 +45,7 @@ export async function runAll(
 
   console.log('1 linking) Link link account to DID')
   await linkAccountToDid(
+    api,
     fullDid,
     submitterAccount,
     linkAccount,
