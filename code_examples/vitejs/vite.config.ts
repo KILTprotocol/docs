@@ -31,6 +31,8 @@ export default defineConfig({
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
       string_decoder: 'rollup-plugin-node-polyfills/polyfills/string-decoder',
       events: 'rollup-plugin-node-polyfills/polyfills/events'
+
+      // other available polyfills that are not required by the KILT SDK
       // sys: "util",
       // path: "rollup-plugin-node-polyfills/polyfills/path",
       // querystring: "rollup-plugin-node-polyfills/polyfills/qs",
