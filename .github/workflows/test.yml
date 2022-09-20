@@ -75,3 +75,4 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style
+          yarn build
