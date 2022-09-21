@@ -7,15 +7,11 @@ let session: {
   encryptionKeyUri: Kilt.DidResourceUri
   send: (message: Kilt.IEncryptedMessage) => Promise<void>
 }
-let secretKey: Kilt.Utils.Crypto.CryptoInput
+let senderDid: Kilt.DidDocument
+let senderSecretKey: Kilt.Utils.Crypto.CryptoInput
 
 export async function main() {
-  const fullDid = await Kilt.Did.query(did)
-  if (!fullDid) {
-    return
-  }
-
-  const senderEncryptionKey = fullDid.keyAgreement?.[0]
+  const senderEncryptionKey = senderDid.keyAgreement?.[0]
   if (!senderEncryptionKey) {
     return
   }
@@ -28,12 +24,12 @@ export async function main() {
     const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
       peerPublicKey,
-      secretKey
+      senderSecretKey
     )
     return {
       data: box,
       nonce,
-      keyUri: `${fullDid.uri}${senderEncryptionKey.id}`
+      keyUri: `${senderDid.uri}${senderEncryptionKey.id}`
     }
   }
 

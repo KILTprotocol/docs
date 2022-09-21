@@ -5,28 +5,21 @@ import { verify } from './verifyCredential'
 type ListenCallback = (message: Kilt.IEncryptedMessage) => Promise<void>
 
 let session: { listen: (call: ListenCallback) => ReturnType<ListenCallback> }
+let receiverDid: Kilt.DidDocument
+let receiverSecretKey: Kilt.Utils.Crypto.CryptoInput
 
 export async function main() {
   await session.listen(async (message: Kilt.IEncryptedMessage) => {
-    const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
-    const fullDid = await Kilt.Did.query(did)
-    if (!fullDid) {
-      return
-    }
-
     // Create a callback that uses the DID encryption key to decrypt the message
     const decryptCallback: Kilt.DecryptCallback = async ({
-      keyUri,
       data,
       nonce,
       peerPublicKey
     }) => {
-      const { fragment: keyId } = Kilt.Did.Utils.parseDidUri(keyUri)
-      const { publicKey } = Kilt.Did.getKey(fullDid, keyId)
       const result = Kilt.Utils.Crypto.decryptAsymmetric(
         { box: data, nonce },
         peerPublicKey,
-        publicKey
+        receiverSecretKey
       )
       if (!result) {
         throw 'Cannot decrypt'
@@ -39,7 +32,7 @@ export async function main() {
     const decryptedMessage = await Kilt.Message.decrypt(
       message,
       decryptCallback,
-      fullDid
+      receiverDid
     )
 
     if (decryptedMessage.body.type !== 'submit-credential') {

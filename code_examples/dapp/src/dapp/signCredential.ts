@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -21,9 +22,12 @@ export async function main() {
 
   // Create a callback that uses the DID attestation key to sign the credential
   const signCallback: Kilt.SignCallback = async ({ data }) => {
-    const keypair = keyring.getPair(
-      attestationKey.publicKey
-    ) as Kilt.KiltKeyringPair
+    const { publicKey, type } = attestationKey
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const keypair = keyring.getPair(address) as Kilt.KiltKeyringPair
     return {
       data: keypair.sign(data),
       keyType: keypair.type,
