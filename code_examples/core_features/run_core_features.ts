@@ -49,7 +49,7 @@ async function endowAccounts(
     await Kilt.Blockchain.signAndSubmitTx(batchTx, faucetAccount)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
-    const waitingTime = 2_000 // 2 seconds
+    const waitingTime = 12_000 // 12 seconds
     console.log(
       `First submission failed. Waiting ${waitingTime} ms before retrying.`
     )
