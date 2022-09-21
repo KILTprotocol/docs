@@ -7,6 +7,7 @@ let session: {
   encryptionKeyUri: Kilt.DidResourceUri
   send: (message: Kilt.IEncryptedMessage) => Promise<void>
 }
+let secretKey: Kilt.Utils.Crypto.CryptoInput
 
 export async function main() {
   const fullDid = await Kilt.Did.query(did)
@@ -21,27 +22,23 @@ export async function main() {
 
   // Create a callback that uses the DID encryption key to encrypt the message
   const encryptCallback: Kilt.EncryptCallback = async ({
-    alg,
     data,
-    peerPublicKey,
-    publicKey
+    peerPublicKey
   }) => {
     const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
       peerPublicKey,
-      publicKey
+      secretKey
     )
     return {
-      alg,
       data: box,
-      nonce
+      nonce,
+      keyUri: `${fullDid.uri}${senderEncryptionKey.id}`
     }
   }
 
   const encryptedMesage = await Kilt.Message.encrypt(
     message,
-    senderEncryptionKey.id,
-    fullDid,
     encryptCallback,
     session.encryptionKeyUri
   )

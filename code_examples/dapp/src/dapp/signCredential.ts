@@ -20,17 +20,19 @@ export async function main() {
   }
 
   // Create a callback that uses the DID attestation key to sign the credential
-  const signCallback: Kilt.SignCallback = async ({ alg, data }) => {
-    const signature = keyring.getPair(attestationKey.publicKey).sign(data)
+  const signCallback: Kilt.SignCallback = async ({ data }) => {
+    const keypair = keyring.getPair(
+      attestationKey.publicKey
+    ) as Kilt.KiltKeyringPair
     return {
-      alg,
-      data: signature
+      data: keypair.sign(data),
+      keyType: keypair.type,
+      keyUri: `${fullDid.uri}${attestationKey.id}`
     }
   }
 
   const selfSignedPresentation = await Kilt.Credential.createPresentation({
     credential,
-    signCallback,
-    claimerDid: fullDid
+    signCallback
   })
 }

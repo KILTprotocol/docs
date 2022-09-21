@@ -16,12 +16,13 @@ export async function main() {
 
     // Create a callback that uses the DID encryption key to decrypt the message
     const decryptCallback: Kilt.DecryptCallback = async ({
-      alg,
+      keyUri,
       data,
       nonce,
-      peerPublicKey,
-      publicKey
+      peerPublicKey
     }) => {
+      const { fragment: keyId } = Kilt.Did.Utils.parseDidUri(keyUri)
+      const { publicKey } = Kilt.Did.getKey(fullDid, keyId)
       const result = Kilt.Utils.Crypto.decryptAsymmetric(
         { box: data, nonce },
         peerPublicKey,
@@ -31,7 +32,6 @@ export async function main() {
         throw 'Cannot decrypt'
       }
       return {
-        alg,
         data: result
       }
     }
