@@ -15,8 +15,7 @@ import { getFullDid } from './generateDid'
 export async function attestCredential(
   api: ApiPromise,
   keyring: Keyring,
-  request: Kilt.ICredential,
-  signCallback: Kilt.SignCallback
+  request: Kilt.ICredential
 ): Promise<void> {
   // load account & DID
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
@@ -24,11 +23,26 @@ export async function attestCredential(
   const account = getAccount(keyring, mnemonic)
   generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(attesterDid)
+  const signCallback: Kilt.SignCallback = async ({ data, keyRelationship }) => {
+    const { publicKey, type, id } = fullDid[keyRelationship][0]
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address)
+
+    return {
+      data: key.sign(data),
+      keyType: type,
+      keyUri: `${fullDid.uri}${id}`
+    }
+  }
 
   // build the attestation object
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
     request,
-    fullDid.uri
+    attesterDid
   )
 
   // check the request content and deny based on your business logic.
@@ -37,7 +51,7 @@ export async function attestCredential(
   // form tx and authorized extrinsic
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
-    fullDid,
+    attesterDid,
     tx,
     signCallback,
     account.address
@@ -54,17 +68,6 @@ export async function attestingFlow(
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
-  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-    return async ({ data, alg, publicKey }) => {
-      const address = encodeAddress(
-        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
-        Kilt.Utils.ss58Format
-      )
-      const key = keyring.getPair(address)
-
-      return { data: key.sign(data), alg }
-    }
-  }
 
   // first the claimer
   const credential = generateCredential(keyring, {
@@ -75,12 +78,7 @@ export async function attestingFlow(
   // send the request to the attester
 
   // the attester checks the attributes and issues an attestation
-  await attestCredential(
-    api,
-    keyring,
-    credential,
-    signCallbackForKeyring(keyring)
-  )
+  await attestCredential(api, keyring, credential)
 
   // send the attestation back to the claimer
   return credential

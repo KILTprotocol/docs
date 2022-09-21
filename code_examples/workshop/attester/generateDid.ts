@@ -9,8 +9,7 @@ import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 
 export async function createFullDid(
-  keyring: Keyring,
-  signCallback: Kilt.SignCallback
+  keyring: Keyring
 ): Promise<Kilt.DidDocument> {
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
 
@@ -35,7 +34,20 @@ export async function createFullDid(
       capabilityDelegation: [capabilityDelegation]
     },
     account.address,
-    signCallback
+    async ({ data }) => {
+      const { publicKey, type } = authentication
+      // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+      const address = encodeAddress(
+        type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+        Kilt.Utils.ss58Format
+      )
+      const key = keyring.getPair(address)
+
+      return {
+        data: key.sign(data),
+        keyType: type
+      }
+    }
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
@@ -68,19 +80,9 @@ if (require.main === module) {
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format
     })
-    const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-      return async ({ data, alg, publicKey }) => {
-        const address = encodeAddress(
-          alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey
-        )
-        const key = keyring.getPair(address)
-
-        return { data: key.sign(data), alg }
-      }
-    }
 
     try {
-      const did = await createFullDid(keyring, signCallbackForKeyring(keyring))
+      const did = await createFullDid(keyring)
       console.log('\nsave following to .env to continue\n')
       console.error(`ATTESTER_DID_URI=${did.uri}\n`)
       process.exit(0)

@@ -39,15 +39,27 @@ export async function verificationFlow(api: ApiPromise) {
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
-  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-    return async ({ data, alg, publicKey }) => {
+  const signCallbackForKeyring = (
+    keyring: Keyring,
+    did: Kilt.DidDocument
+  ): Kilt.SignCallback => {
+    return async ({ data, keyRelationship }) => {
+      const key = did[keyRelationship]?.[0]
+      if (!key) {
+        throw `No key for relationship "${keyRelationship}" found.`
+      }
+      const { publicKey, type, id } = key
       const address = encodeAddress(
-        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
+        type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
         Kilt.Utils.ss58Format
       )
-      const key = keyring.getPair(address)
+      const keypair = keyring.getPair(address)
 
-      return { data: key.sign(data), alg }
+      return {
+        data: keypair.sign(data),
+        keyType: type,
+        keyUri: `${did.uri}${id}`
+      }
     }
   }
   const { authenticationKey, encryptionKey } = generateKeypairs(
@@ -65,8 +77,7 @@ export async function verificationFlow(api: ApiPromise) {
   // create a presentation and send it to the verifier 🕊
   const presentation = await createPresentation(
     credential,
-    lightDid,
-    signCallbackForKeyring(keyring),
+    signCallbackForKeyring(keyring, lightDid),
     challenge
   )
 

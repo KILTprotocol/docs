@@ -1,7 +1,6 @@
 import { config as envConfig } from 'dotenv'
 import { setTimeout } from 'timers/promises'
 
-import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
 
@@ -26,17 +25,6 @@ async function testWorkshop() {
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
-  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-    return async ({ data, alg, publicKey }) => {
-      const address = encodeAddress(
-        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
-        Kilt.Utils.ss58Format
-      )
-      const key = keyring.getPair(address)
-
-      return { data: key.sign(data), alg }
-    }
-  }
 
   // setup attester account
   const { account: attesterAccount, mnemonic: attesterMnemonic } =
@@ -96,13 +84,10 @@ async function testWorkshop() {
   console.log('Successfully transferred tokens')
 
   // create attester did & ensure ctype
-  const attesterDid = await createFullDid(
-    keyring,
-    signCallbackForKeyring(keyring)
-  )
+  const attesterDid = await createFullDid(keyring)
   process.env.ATTESTER_DID_URI = attesterDid.uri
 
-  await ensureStoredCtype(api, keyring, signCallbackForKeyring(keyring))
+  await ensureStoredCtype(api, keyring)
 
   // do attestation & verification
   process.env.CLAIMER_CREDENTIAL = JSON.stringify(await attestingFlow(api))

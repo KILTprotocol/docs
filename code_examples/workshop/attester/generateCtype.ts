@@ -14,8 +14,7 @@ import { getFullDid } from './generateDid'
 
 export async function ensureStoredCtype(
   api: ApiPromise,
-  keyring: Keyring,
-  signCallback: Kilt.SignCallback
+  keyring: Keyring
 ): Promise<Kilt.ICType> {
   const mnemonic = process.env.ATTESTER_MNEMONIC as string
   const did = process.env.ATTESTER_DID_URI as Kilt.DidUri
@@ -26,30 +25,45 @@ export async function ensureStoredCtype(
   // Load DID
   generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(did)
+  const signCallback: Kilt.SignCallback = async ({ data, keyRelationship }) => {
+    const { publicKey, type, id } = fullDid[keyRelationship][0]
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address)
+
+    return {
+      data: key.sign(data),
+      keyType: type,
+      keyUri: `${fullDid.uri}${id}`
+    }
+  }
 
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()
-  const isStored = await Kilt.CType.verifyStored(ctype)
-  if (isStored) {
+  try {
+    await Kilt.CType.verifyStored(ctype)
     console.log('Ctype already stored. Skipping creation')
     return ctype
+  } catch {
+    console.log('Ctype not present. Creating it now...')
+    // authorize the extrinsic
+    const encodedCtype = Kilt.CType.toChain(ctype)
+    const tx = api.tx.ctype.add(encodedCtype)
+    const extrinsic = await Kilt.Did.authorizeExtrinsic(
+      fullDid.uri,
+      tx,
+      signCallback,
+      account.address
+    )
+
+    // write to chain then return ctype
+    await Kilt.Blockchain.signAndSubmitTx(extrinsic, account)
+
+    return ctype
   }
-  console.log('Ctype not present. Creating it now...')
-
-  // authorize the extrinsic
-  const encodedCtype = Kilt.CType.toChain(ctype)
-  const tx = api.tx.ctype.add(encodedCtype)
-  const extrinsic = await Kilt.Did.authorizeExtrinsic(
-    fullDid,
-    tx,
-    signCallback,
-    account.address
-  )
-
-  // write to chain then return ctype
-  await Kilt.Blockchain.signAndSubmitTx(extrinsic, account)
-
-  return ctype
 }
 
 // don't execute if this is imported by another file
@@ -60,20 +74,9 @@ if (require.main === module) {
     const keyring = new Keyring({
       ss58Format: Kilt.Utils.ss58Format
     })
-    const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-      return async ({ data, alg, publicKey }) => {
-        const address = encodeAddress(
-          alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
-          Kilt.Utils.ss58Format
-        )
-        const key = keyring.getPair(address)
-
-        return { data: key.sign(data), alg }
-      }
-    }
 
     try {
-      await ensureStoredCtype(api, keyring, signCallbackForKeyring(keyring))
+      await ensureStoredCtype(api, keyring)
       process.exit(0)
     } catch (e) {
       console.log('Error while checking on chain ctype', e)
