@@ -5,7 +5,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function unlinkAccountFromDid(
   api: ApiPromise,
-  did: Kilt.DidDocument,
+  did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccountAddress: KeyringPair['address'],
   signCallback: Kilt.SignCallback

@@ -7,7 +7,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function updateFullDid(
   api: ApiPromise,
   keyring: Keyring,
-  fullDid: Kilt.DidDocument,
+  fullDid: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
@@ -38,10 +38,10 @@ export async function updateFullDid(
   await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
-  const updatedDidDetails = await Kilt.Did.query(fullDid.uri)
+  const updatedDidDetails = await Kilt.Did.query(fullDid)
 
   if (!updatedDidDetails) {
-    throw `Could not find the updated DID ${fullDid.uri}`
+    throw `Could not find the updated DID ${fullDid}`
   }
 
   return updatedDidDetails

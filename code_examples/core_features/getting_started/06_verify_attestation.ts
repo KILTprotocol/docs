@@ -11,16 +11,12 @@ export async function main(
   const encodedAttestationInfo = await api.query.attestation.attestations(
     credential.rootHash
   )
-  let isCredentialValid = false
-  try {
-    // This function will throw if encodedAttestationInfo is None
-    const attestationInfo = Kilt.Attestation.fromChain(
-      encodedAttestationInfo,
-      credential.rootHash
-    )
-    // Return false if attestation.revoked is true, or true otherwise.
-    isCredentialValid = !attestationInfo.revoked
-  } catch {}
+  // This function will throw if encodedAttestationInfo is None
+  const attestationInfo = Kilt.Attestation.fromChain(
+    encodedAttestationInfo,
+    credential.rootHash
+  )
 
-  return isCredentialValid
+  // Return false if attestation.revoked is true, or true otherwise.
+  return !attestationInfo.revoked
 }

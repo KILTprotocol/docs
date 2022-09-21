@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function linkDidToAccount(
   api: ApiPromise,
-  did: Kilt.DidDocument,
+  did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback
 ): Promise<void> {

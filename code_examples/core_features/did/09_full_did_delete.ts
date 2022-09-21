@@ -5,12 +5,12 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function deleteFullDid(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  fullDid: Kilt.DidDocument,
+  fullDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
-  const didIdentifier = Kilt.Did.Chain.didToChain(fullDid.uri)
+  const didIdentifier = Kilt.Did.Chain.didToChain(fullDid)
   const endpointsCountForDid = await api.query.did.didEndpointsCount(
     didIdentifier
   )

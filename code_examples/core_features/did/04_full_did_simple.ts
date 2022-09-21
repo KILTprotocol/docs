@@ -7,8 +7,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createSimpleFullDid(
   keyring: Keyring,
   submitterAccount: Kilt.KiltKeyringPair,
-  authenticationSeed: Uint8Array = randomAsU8a(32),
-  signCallback: Kilt.SignCallback
+  authenticationSeed: Uint8Array = randomAsU8a(32)
 ): Promise<Kilt.DidDocument> {
   // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
   const authKey = keyring.addFromSeed(
@@ -23,7 +22,7 @@ export async function createSimpleFullDid(
       authentication: [authKey]
     },
     submitterAccount.address,
-    signCallback
+    async ({ data }) => ({ data: authKey.sign(data), keyType: authKey.type })
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)

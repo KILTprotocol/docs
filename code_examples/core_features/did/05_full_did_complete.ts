@@ -11,8 +11,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createCompleteFullDid(
   keyring: Keyring,
   submitterAccount: Kilt.KiltKeyringPair,
-  authenticationSeed: Uint8Array = randomAsU8a(32),
-  signCallback: Kilt.SignCallback
+  authenticationSeed: Uint8Array = randomAsU8a(32)
 ): Promise<Kilt.DidDocument> {
   // Create the encryption key seed by hasing the provided authentication seed.
   const encryptionSeed = blake2AsU8a(authenticationSeed)
@@ -22,7 +21,7 @@ export async function createCompleteFullDid(
   const delegationSeed = blake2AsU8a(attestationSeed)
 
   // Ask the keyring to generate the new keypairs.
-  const authKet = keyring.addFromSeed(
+  const authKey = keyring.addFromSeed(
     authenticationSeed
   ) as Kilt.KiltKeyringPair
   const { publicKey: encPublicKey } = naclBoxPairFromSecret(randomAsU8a(32))
@@ -31,7 +30,7 @@ export async function createCompleteFullDid(
 
   const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
     {
-      authentication: [authKet],
+      authentication: [authKey],
       keyAgreement: [
         {
           publicKey: encPublicKey,
@@ -49,14 +48,14 @@ export async function createCompleteFullDid(
       ]
     },
     submitterAccount.address,
-    signCallback
+    async ({ data }) => ({ data: authKey.sign(data), keyType: authKey.type })
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned.
   const fullDid = await Kilt.Did.query(
-    Kilt.Did.Utils.getFullDidUriFromKey(authKet)
+    Kilt.Did.Utils.getFullDidUriFromKey(authKey)
   )
 
   if (!fullDid) {

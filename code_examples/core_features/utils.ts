@@ -4,14 +4,18 @@ import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function signCallbackForKeyring(keyring: Keyring): Kilt.SignCallback {
-  return async ({ data, alg, publicKey }) => {
+export function signCallbackForKeyring(
+  keyring: Keyring,
+  did: Kilt.DidDocument
+): Kilt.SignCallback {
+  return async ({ data, keyRelationship }) => {
+    const { publicKey, type, id } = did[keyRelationship][0]
     const address = encodeAddress(
-      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
       Kilt.Utils.ss58Format
     )
     const key = keyring.getPair(address)
 
-    return { data: key.sign(data), alg }
+    return { data: key.sign(data), keyType: type, keyUri: `${did.uri}${id}` }
   }
 }

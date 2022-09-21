@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createAttestation(
   api: ApiPromise,
-  attester: Kilt.DidDocument,
+  attester: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential
@@ -12,7 +12,7 @@ export async function createAttestation(
   // Create an attestation object and write its root hash on the chain
   // using the provided attester's full DID.
   const { cTypeHash, claimHash, delegationId } =
-    Kilt.Attestation.fromCredentialAndDid(credential, attester.uri)
+    Kilt.Attestation.fromCredentialAndDid(credential, attester)
 
   // Write the attestation info on the chain.
   const attestationTx = api.tx.attestation.add(

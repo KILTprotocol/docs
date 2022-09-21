@@ -4,14 +4,14 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createDriversLicenseCType(
   api: ApiPromise,
-  creator: Kilt.DidDocument,
+  creator: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICType> {
   // Create a new CType definition.
   const ctype = Kilt.CType.fromSchema({
     $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${creator.uri}`,
+    title: `Drivers License by ${creator}`,
     properties: {
       name: {
         type: 'string'

@@ -25,18 +25,17 @@ export async function runAll(
   const fullDid = await createSimpleFullDid(
     keyring,
     submitterAccount,
-    undefined,
-    signCallbackForKeyring(keyring)
+    undefined
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
 
   console.log('1 w3n) Claim web3name')
   await claimWeb3Name(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyring(keyring, fullDid)
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(api, randomWeb3Name, fullDid.uri)
@@ -56,17 +55,17 @@ export async function runAll(
   console.log('4 w3n) Release web3name')
   await releaseWeb3Name(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyring(keyring, fullDid)
   )
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyring(keyring, fullDid)
   )
   await reclaimWeb3NameDeposit(api, submitterAccount, randomWeb3Name)
   console.log('web3name flow completed!')

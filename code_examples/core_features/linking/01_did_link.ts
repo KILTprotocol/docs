@@ -5,7 +5,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function linkAccountToDid(
   api: ApiPromise,
-  did: Kilt.DidDocument,
+  did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccount: KeyringPair,
   signCallback: Kilt.SignCallback
@@ -21,7 +21,7 @@ export async function linkAccountToDid(
   const accountLinkingParameters =
     await Kilt.Did.AccountLinks.associateAccountToChainArgs(
       linkedAccount.address,
-      did.uri,
+      did,
       linkingAccountSignatureGeneration
     )
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
