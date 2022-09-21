@@ -9,18 +9,19 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
 
 function encryptCallbackForKey({
-  secretKey
+  secretKey,
+  keyId
 }: {
   secretKey: Uint8Array
-  type: 'x25519'
+  keyId: `#${string}`
 }): Kilt.EncryptCallback {
-  return async function encryptCallback({ data, peerPublicKey, alg }) {
+  return async function encryptCallback({ data, did, peerPublicKey }) {
     const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
       peerPublicKey,
       secretKey
     )
-    return { alg, nonce, data: box }
+    return { nonce, data: box, keyUri: `${did}${keyId}` }
   }
 }
 
@@ -85,11 +86,9 @@ async function main() {
 
   const encrypted = await Kilt.Message.encrypt(
     message,
-    kiltClaimerDid.keyAgreement[0]?.id,
-    kiltClaimerDid,
     encryptCallbackForKey({
       secretKey: kiltClaimerDid.keyAgreement[0].secretKey,
-      type: 'x25519'
+      keyId: kiltClaimerDid.keyAgreement[0].id
     }),
     `${kiltAttesterDid.uri}${kiltAttesterDid.keyAgreement[0].id}`,
     { resolveKey }
