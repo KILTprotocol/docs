@@ -12,6 +12,27 @@ import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 import { getFullDid } from './generateDid'
 
+function getSignCallback(
+  keyring: Keyring,
+  did: Kilt.DidDocument
+): Kilt.SignCallback {
+  return async ({ data }) => {
+    const { publicKey, type, id } = did.assertionMethod[0]
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address) as Kilt.KiltKeyringPair
+
+    return {
+      data: key.sign(data),
+      keyType: type,
+      keyUri: `${did.uri}${id}`
+    }
+  }
+}
+
 export async function attestCredential(
   api: ApiPromise,
   keyring: Keyring,
@@ -23,21 +44,6 @@ export async function attestCredential(
   const account = getAccount(keyring, mnemonic)
   generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(attesterDid)
-  const signCallback: Kilt.SignCallback = async ({ data, keyRelationship }) => {
-    const { publicKey, type, id } = fullDid[keyRelationship][0]
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = encodeAddress(
-      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const key = keyring.getPair(address)
-
-    return {
-      data: key.sign(data),
-      keyType: type,
-      keyUri: `${fullDid.uri}${id}`
-    }
-  }
 
   // build the attestation object
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
@@ -53,7 +59,7 @@ export async function attestCredential(
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
     attesterDid,
     tx,
-    signCallback,
+    getSignCallback(keyring, fullDid),
     account.address
   )
 

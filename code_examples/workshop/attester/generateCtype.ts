@@ -12,6 +12,27 @@ import { getAccount } from './generateAccount'
 import { getCtypeSchema } from './ctypeSchema'
 import { getFullDid } from './generateDid'
 
+function getSignCallback(
+  keyring: Keyring,
+  did: Kilt.DidDocument
+): Kilt.SignCallback {
+  return async ({ data }) => {
+    const { publicKey, type, id } = did.assertionMethod[0]
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address) as Kilt.KiltKeyringPair
+
+    return {
+      data: key.sign(data),
+      keyType: type,
+      keyUri: `${did.uri}${id}`
+    }
+  }
+}
+
 export async function ensureStoredCtype(
   api: ApiPromise,
   keyring: Keyring
@@ -25,21 +46,6 @@ export async function ensureStoredCtype(
   // Load DID
   generateKeypairs(keyring, mnemonic)
   const fullDid = await getFullDid(did)
-  const signCallback: Kilt.SignCallback = async ({ data, keyRelationship }) => {
-    const { publicKey, type, id } = fullDid[keyRelationship][0]
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = encodeAddress(
-      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const key = keyring.getPair(address)
-
-    return {
-      data: key.sign(data),
-      keyType: type,
-      keyUri: `${fullDid.uri}${id}`
-    }
-  }
 
   // get the CTYPE and see if it's stored, if yes return it
   const ctype = getCtypeSchema()
@@ -55,7 +61,7 @@ export async function ensureStoredCtype(
     const extrinsic = await Kilt.Did.authorizeExtrinsic(
       fullDid.uri,
       tx,
-      signCallback,
+      getSignCallback(keyring, fullDid),
       account.address
     )
 

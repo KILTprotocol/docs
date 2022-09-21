@@ -8,6 +8,26 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 
+function getSignCallback(
+  keyring: Keyring,
+  authKey: Kilt.NewDidVerificationKey
+): Parameters<typeof Kilt.Did.Chain.getStoreTx>[2] {
+  return async ({ data }) => {
+    const { publicKey, type } = authKey
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address)
+
+    return {
+      data: key.sign(data),
+      keyType: type
+    }
+  }
+}
+
 export async function createFullDid(
   keyring: Keyring
 ): Promise<Kilt.DidDocument> {
@@ -34,20 +54,7 @@ export async function createFullDid(
       capabilityDelegation: [capabilityDelegation]
     },
     account.address,
-    async ({ data }) => {
-      const { publicKey, type } = authentication
-      // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-      const address = encodeAddress(
-        type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-        Kilt.Utils.ss58Format
-      )
-      const key = keyring.getPair(address)
-
-      return {
-        data: key.sign(data),
-        keyType: type
-      }
-    }
+    getSignCallback(keyring, authentication)
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
