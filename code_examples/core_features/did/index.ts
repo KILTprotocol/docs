@@ -15,7 +15,7 @@ import { migrateLightDid } from './03_light_did_migrate'
 import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
 import { updateFullDid } from './06_full_did_update'
 
-import { signCallbackForKeyring } from '../utils'
+import { signCallbackForKeyringAndDid } from '../utils'
 
 export async function runAll(
   api: ApiPromise,
@@ -32,7 +32,7 @@ export async function runAll(
   await migrateLightDid(
     simpleLightDid,
     submitterAccount,
-    signCallbackForKeyring(keyring, simpleLightDid)
+    signCallbackForKeyringAndDid(keyring, simpleLightDid)
   )
   console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
@@ -52,7 +52,7 @@ export async function runAll(
     keyring,
     createdCompleteFullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring, createdCompleteFullDid)
+    signCallbackForKeyringAndDid(keyring, createdCompleteFullDid)
   )
   console.log(
     '7 did) Use the same full DID created at step 5 to sign the batch'
@@ -61,7 +61,7 @@ export async function runAll(
     api,
     submitterAccount,
     updatedFullDid.uri,
-    signCallbackForKeyring(keyring, updatedFullDid)
+    signCallbackForKeyringAndDid(keyring, updatedFullDid)
   )
   console.log(
     '8 did) Use the same full DID created at step 5 to generate the signature'
@@ -69,14 +69,14 @@ export async function runAll(
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
     'test-payload',
-    signCallbackForKeyring(keyring, updatedFullDid)
+    signCallbackForKeyringAndDid(keyring, updatedFullDid)
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
     api,
     submitterAccount,
     createdSimpleFullDid.uri,
-    signCallbackForKeyring(keyring, createdSimpleFullDid)
+    signCallbackForKeyringAndDid(keyring, createdSimpleFullDid)
   )
   console.log('10 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(api, submitterAccount, createdCompleteFullDid.uri)

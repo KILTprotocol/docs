@@ -14,7 +14,7 @@ import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
 import { verifyNameAndDidEquality } from './02_query_did_name'
 
-import { signCallbackForKeyring } from '../utils'
+import { signCallbackForKeyringAndDid } from '../utils'
 
 export async function runAll(
   api: ApiPromise,
@@ -35,7 +35,7 @@ export async function runAll(
     fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(api, randomWeb3Name, fullDid.uri)
@@ -57,7 +57,7 @@ export async function runAll(
     api,
     fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
@@ -65,7 +65,7 @@ export async function runAll(
     fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   await reclaimWeb3NameDeposit(api, submitterAccount, randomWeb3Name)
   console.log('web3name flow completed!')

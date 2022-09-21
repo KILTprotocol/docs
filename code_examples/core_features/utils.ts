@@ -4,7 +4,7 @@ import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function signCallbackForKeyring(
+export function signCallbackForKeyringAndDid(
   keyring: Keyring,
   did: Kilt.DidDocument
 ): Kilt.SignCallback {

@@ -1,6 +1,5 @@
 import type { ApiPromise } from '@polkadot/api'
 
-import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -16,6 +15,8 @@ import { requestAttestation } from './02_request_attestation'
 import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
+import { signCallbackForKeyringAndDid } from '../utils'
+
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
@@ -28,28 +29,13 @@ export async function runAll(
     submitterAccount,
     undefined
   )
-  const signCallback: Kilt.SignCallback = async ({ data, keyRelationship }) => {
-    const { publicKey, type, id } = attesterFullDid[keyRelationship][0]
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = encodeAddress(
-      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const key = keyring.getPair(address)
-
-    return {
-      data: key.sign(data),
-      keyType: type,
-      keyUri: `${attesterFullDid.uri}${id}`
-    }
-  }
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
     api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallback
+    signCallbackForKeyringAndDid(keyring, attesterFullDid)
   )
   console.log('2 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
@@ -58,11 +44,11 @@ export async function runAll(
     api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyringAndDid(keyring, attesterFullDid),
     credential
   )
   console.log('4 claiming) Create selective disclosure presentation')
-  const presentation = await createPresentation(credential, signCallback, [
+  const presentation = await createPresentation(credential, signCallbackForKeyringAndDid(keyring, claimerLightDid), [
     'name',
     'id'
   ])
@@ -73,7 +59,7 @@ export async function runAll(
     api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyringAndDid(keyring, attesterFullDid),
     credential,
     false
   )

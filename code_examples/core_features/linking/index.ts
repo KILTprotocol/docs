@@ -18,7 +18,7 @@ import { reclaimLinkDeposit } from './07_reclaim_deposit'
 import { unlinkAccountFromDid } from './05_did_unlink'
 import { unlinkDidFromAccount } from './06_account_unlink'
 
-import { signCallbackForKeyring } from '../utils'
+import { signCallbackForKeyringAndDid } from '../utils'
 
 // The provided DID is assumed to have an associated web3name.
 export async function runAll(
@@ -39,7 +39,7 @@ export async function runAll(
     fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
 
   console.log('1 linking) Link link account to DID')
@@ -48,14 +48,14 @@ export async function runAll(
     fullDid.uri,
     submitterAccount,
     linkAccount,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(
     api,
     fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
@@ -73,7 +73,7 @@ export async function runAll(
     fullDid.uri,
     submitterAccount,
     linkAccount.address,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('6 linking) Unlink submitter account from DID')
   await unlinkDidFromAccount(api, submitterAccount)
@@ -82,7 +82,7 @@ export async function runAll(
     api,
     fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring, fullDid)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   await reclaimLinkDeposit(api, submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')
