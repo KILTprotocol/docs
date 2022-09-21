@@ -5,17 +5,13 @@ import { Keyring } from '@polkadot/api'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 let claim: Kilt.IClaim
-let did: Kilt.DidUri
+let did: Kilt.DidDocument
 let keyring: Keyring
 
 export async function main() {
   const credential = Kilt.Credential.fromClaim(claim)
 
-  const fullDid = await Kilt.Did.query(did)
-  if (!fullDid) {
-    return
-  }
-  const attestationKey = fullDid.assertionMethod?.[0]
+  const attestationKey = did.assertionMethod?.[0]
   if (!attestationKey) {
     return
   }
@@ -31,7 +27,7 @@ export async function main() {
     return {
       data: keypair.sign(data),
       keyType: keypair.type,
-      keyUri: `${fullDid.uri}${attestationKey.id}`
+      keyUri: `${did.uri}${attestationKey.id}`
     }
   }
 

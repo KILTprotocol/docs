@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let did: Kilt.DidUri
 let message: Kilt.IMessage
 let session: {
   encryptionKeyUri: Kilt.DidResourceUri
