@@ -48,10 +48,11 @@ export async function runAll(
     credential
   )
   console.log('4 claiming) Create selective disclosure presentation')
-  const presentation = await createPresentation(credential, signCallbackForKeyringAndDid(keyring, claimerLightDid), [
-    'name',
-    'id'
-  ])
+  const presentation = await createPresentation(
+    credential,
+    signCallbackForKeyringAndDid(keyring, claimerLightDid),
+    ['name', 'id']
+  )
   console.log('5 claiming) Verify selective disclosure presentation')
   await verifyPresentation(presentation)
   console.log('6 claiming) Revoke credential')
