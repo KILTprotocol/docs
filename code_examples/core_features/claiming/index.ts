@@ -26,8 +26,7 @@ export async function runAll(
   const claimerLightDid = createSimpleLightDid(keyring)
   const attesterFullDid = await createCompleteFullDid(
     keyring,
-    submitterAccount,
-    undefined
+    submitterAccount
   )
 
   console.log('1 claming) Create CType')

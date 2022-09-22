@@ -37,8 +37,7 @@ export async function runAll(
   console.log('4 did) Create simple full DID')
   const createdSimpleFullDid = await createSimpleFullDid(
     keyring,
-    submitterAccount,
-    undefined
+    submitterAccount
   )
   console.log('5 did) Create complete full DID')
   const createdCompleteFullDid = await createCompleteFullDid(

@@ -30,8 +30,7 @@ export async function runAll(
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
   const fullDid = await createSimpleFullDid(
     keyring,
-    submitterAccount,
-    undefined
+    submitterAccount
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
