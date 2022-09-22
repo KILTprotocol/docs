@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <Layout
       title="Docs"
-      description="KILT Protocol documentation to learn about KILT concepts, how to built on KILT and how to participate in the KILT ecosystem."
+      description="KILT Protocol documentation to learn about KILT concepts, how to build on KILT and how to participate in the KILT ecosystem."
     >
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">

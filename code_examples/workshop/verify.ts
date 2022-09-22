@@ -33,23 +33,33 @@ async function verifyPresentation(
   }
 }
 
+function getSignCallback(
+  keyring: Keyring,
+  did: Kilt.DidDocument
+): Kilt.SignCallback {
+  return async ({ data }) => {
+    const { publicKey, type, id } = did.authentication[0]
+    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
+    const address = encodeAddress(
+      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
+      Kilt.Utils.ss58Format
+    )
+    const key = keyring.getPair(address) as Kilt.KiltKeyringPair
+
+    return {
+      data: key.sign(data),
+      keyType: type,
+      keyUri: `${did.uri}${id}`
+    }
+  }
+}
+
 export async function verificationFlow(api: ApiPromise) {
   // Load credential and claimer DID
   const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
-  const signCallbackForKeyring = (keyring: Keyring): Kilt.SignCallback => {
-    return async ({ data, alg, publicKey }) => {
-      const address = encodeAddress(
-        alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
-        Kilt.Utils.ss58Format
-      )
-      const key = keyring.getPair(address)
-
-      return { data: key.sign(data), alg }
-    }
-  }
   const { authenticationKey, encryptionKey } = generateKeypairs(
     keyring,
     process.env.CLAIMER_MNEMONIC
@@ -65,8 +75,7 @@ export async function verificationFlow(api: ApiPromise) {
   // create a presentation and send it to the verifier 🕊
   const presentation = await createPresentation(
     credential,
-    lightDid,
-    signCallbackForKeyring(keyring),
+    getSignCallback(keyring, lightDid),
     challenge
   )
 

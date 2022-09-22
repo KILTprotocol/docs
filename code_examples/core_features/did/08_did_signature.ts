@@ -7,10 +7,10 @@ export async function generateAndVerifyDidAuthenticationSignature(
 ): Promise<void> {
   // Generate a signature using the provided DID's authentication key.
   const signature = await Kilt.Did.signPayload(
-    did,
+    did.uri,
     payload,
     signCallback,
-    did.authentication[0].id
+    'authentication'
   )
 
   // Print the generated signature object.
@@ -18,13 +18,10 @@ export async function generateAndVerifyDidAuthenticationSignature(
   console.log(JSON.stringify(signature, null, 2))
 
   // Verify the validity of the signature using the DID's authentication public key.
-  const signatureVerificationResult = await Kilt.Did.verifyDidSignature({
+  // It throws if the signature cannot be verified
+  await Kilt.Did.verifyDidSignature({
     message: payload,
     signature,
     expectedVerificationMethod: 'authentication'
   })
-
-  if (!signatureVerificationResult.verified) {
-    throw `Signature failed to verify. Reason: ${signatureVerificationResult.reason}`
-  }
 }

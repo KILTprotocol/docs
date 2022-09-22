@@ -1,6 +1,5 @@
 import type { ApiPromise } from '@polkadot/api'
 
-import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
 import { Keyring } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -16,56 +15,38 @@ import { requestAttestation } from './02_request_attestation'
 import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
+import { signCallbackForKeyringAndDid } from '../utils'
+
 export async function runAll(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const signCallback: Kilt.SignCallback<Kilt.SigningAlgorithms> = async ({
-    data,
-    alg,
-    publicKey
-  }) => {
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = encodeAddress(
-      alg === 'ecdsa-secp256k1' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const key = keyring.getPair(address)
-
-    return { data: key.sign(data), alg }
-  }
   const claimerLightDid = createSimpleLightDid(keyring)
-  const attesterFullDid = await createCompleteFullDid(
-    keyring,
-    submitterAccount,
-    undefined,
-    signCallback
-  )
+  const attesterFullDid = await createCompleteFullDid(keyring, submitterAccount)
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
     api,
-    attesterFullDid,
+    attesterFullDid.uri,
     submitterAccount,
-    signCallback
+    signCallbackForKeyringAndDid(keyring, attesterFullDid)
   )
   console.log('2 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
   console.log('3 claiming) Create attestation and credential')
   await createAttestation(
     api,
-    attesterFullDid,
+    attesterFullDid.uri,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyringAndDid(keyring, attesterFullDid),
     credential
   )
   console.log('4 claiming) Create selective disclosure presentation')
   const presentation = await createPresentation(
-    claimerLightDid,
     credential,
-    signCallback,
+    signCallbackForKeyringAndDid(keyring, claimerLightDid),
     ['name', 'id']
   )
   console.log('5 claiming) Verify selective disclosure presentation')
@@ -73,9 +54,9 @@ export async function runAll(
   console.log('6 claiming) Revoke credential')
   await revokeCredential(
     api,
-    attesterFullDid,
+    attesterFullDid.uri,
     submitterAccount,
-    signCallback,
+    signCallbackForKeyringAndDid(keyring, attesterFullDid),
     credential,
     false
   )

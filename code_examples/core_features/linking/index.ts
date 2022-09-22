@@ -18,7 +18,7 @@ import { reclaimLinkDeposit } from './07_reclaim_deposit'
 import { unlinkAccountFromDid } from './05_did_unlink'
 import { unlinkDidFromAccount } from './06_account_unlink'
 
-import { signCallbackForKeyring } from '../utils'
+import { signCallbackForKeyringAndDid } from '../utils'
 
 // The provided DID is assumed to have an associated web3name.
 export async function runAll(
@@ -28,35 +28,30 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running linking flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const fullDid = await createSimpleFullDid(
-    keyring,
-    submitterAccount,
-    undefined,
-    signCallbackForKeyring(keyring)
-  )
+  const fullDid = await createSimpleFullDid(keyring, submitterAccount)
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
 
   console.log('1 linking) Link link account to DID')
   await linkAccountToDid(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     linkAccount,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
@@ -71,19 +66,19 @@ export async function runAll(
   console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     linkAccount.address,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   console.log('6 linking) Unlink submitter account from DID')
   await unlinkDidFromAccount(api, submitterAccount)
   console.log('7 linking) Re-add submitter account and claim deposit back')
   await linkDidToAccount(
     api,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
-    signCallbackForKeyring(keyring)
+    signCallbackForKeyringAndDid(keyring, fullDid)
   )
   await reclaimLinkDeposit(api, submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')

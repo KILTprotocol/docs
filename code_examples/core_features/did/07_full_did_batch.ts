@@ -23,7 +23,7 @@ function getRandomCType(): Kilt.ICType {
 export async function batchCTypeCreationExtrinsics(
   api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
-  fullDid: Kilt.DidDocument,
+  fullDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Create two random demo CTypes
