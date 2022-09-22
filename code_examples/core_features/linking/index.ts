@@ -28,10 +28,7 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running linking flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const fullDid = await createSimpleFullDid(
-    keyring,
-    submitterAccount
-  )
+  const fullDid = await createSimpleFullDid(keyring, submitterAccount)
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
     api,

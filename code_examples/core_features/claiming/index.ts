@@ -24,10 +24,7 @@ export async function runAll(
   console.log('Running claiming flow...')
   const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
   const claimerLightDid = createSimpleLightDid(keyring)
-  const attesterFullDid = await createCompleteFullDid(
-    keyring,
-    submitterAccount
-  )
+  const attesterFullDid = await createCompleteFullDid(keyring, submitterAccount)
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
