@@ -1,21 +1,13 @@
-import type { Keyring } from '@polkadot/api'
-
-import { randomAsU8a } from '@polkadot/util-crypto'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function createSimpleLightDid(
-  keyring: Keyring,
-  authenticationSeed: Uint8Array = randomAsU8a(32)
-): Kilt.DidDocument {
-  // Ask the keyring to generate a new keypair to use for authentication with the generated seed.
-  const authKey = keyring.addFromSeed(
-    authenticationSeed
-  ) as Kilt.NewLightDidVerificationKey
-
+export function createSimpleLightDid({
+  authentication
+}: {
+  authentication: Kilt.KiltKeyringPair
+}): Kilt.DidDocument {
   // Create a light DID from the generated authentication key.
   const lightDID = Kilt.Did.createLightDidDocument({
-    authentication: [authKey]
+    authentication: [authentication as Kilt.NewLightDidVerificationKey]
   })
   console.log(lightDID.uri)
 

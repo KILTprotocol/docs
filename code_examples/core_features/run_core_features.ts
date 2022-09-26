@@ -77,7 +77,7 @@ async function main(): Promise<void> {
     await runAllGettingStarted()
     console.log('Getting started flow completed!')
   }
-  await gettingStartedFlow()
+  // await gettingStartedFlow()
 
   Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
   const api = await Kilt.connect(nodeAddress)
@@ -111,10 +111,38 @@ async function main(): Promise<void> {
 
   // These should not conflict anymore since all accounts are different
   await Promise.all([
-    runAllClaiming(api, claimingTestAccount),
-    runAllDid(api, didTestAccount),
-    runAllWeb3(api, web3TestAccount),
-    runAllLinking(api, accountLinkingTestAccount, faucetAccount)
+    // (async () => {
+    //   try {
+    //     await runAllClaiming(claimingTestAccount)
+    //   } catch (e) {
+    //     console.error('Claiming flow failed')
+    //     throw e
+    //   }
+    // })(),
+    (async () => {
+      try {
+        await runAllDid(didTestAccount)
+      } catch (e) {
+        console.error('DID flow failed')
+        throw e
+      }
+    })(),
+    // (async () => {
+    //   try {
+    //     await runAllWeb3(web3TestAccount)
+    //   } catch (e) {
+    //     console.error('Web3name flow failed')
+    //     throw e
+    //   }
+    // })(),
+    // (async () => {
+    //   try {
+    //     await runAllLinking(nodeAddress, accountLinkingTestAccount, faucetAccount)
+    //   } catch (e) {
+    //     console.error('Linking flow failed')
+    //     throw e
+    //   }
+    // })()
   ])
 }
 
@@ -123,7 +151,8 @@ async function main(): Promise<void> {
     await main()
     process.exit(0)
   } catch (e) {
-    console.log('Error in the core features test', e)
+    console.log('Error in the core features test')
+    console.log(e.toString())
     process.exit(1)
   }
 })()

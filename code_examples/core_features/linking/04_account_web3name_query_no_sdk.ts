@@ -1,10 +1,21 @@
-import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
+import { ApiPromise, WsProvider } from '@polkadot/api'
+
+// Import needed to provide KILT Typescript support to the api object.
+import '@kiltprotocol/augment-api'
+import { rpc, runtime, latest as types } from '@kiltprotocol/type-definitions'
+
 export async function queryAccountWeb3Name(
-  api: ApiPromise,
+  endpoint: string,
   lookupAccountAddress: KeyringPair['address']
 ): Promise<string | null> {
+  const api = await ApiPromise.create({
+    provider: new WsProvider(endpoint),
+    rpc,
+    runtime,
+    types
+  })
   // Call to the KILT RPC endpoint `did.queryByAccount`
   const didDetails = await api.rpc.did.queryByAccount(lookupAccountAddress)
   if (didDetails.isNone) {

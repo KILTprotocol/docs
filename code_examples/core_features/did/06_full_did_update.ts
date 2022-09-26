@@ -1,26 +1,19 @@
-import type { ApiPromise, Keyring } from '@polkadot/api'
-
-import { randomAsU8a } from '@polkadot/util-crypto'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function updateFullDid(
-  api: ApiPromise,
-  keyring: Keyring,
+  newAuthKeypair: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
-  // Ask the keyring to generate a new keypair to use for authentication.
-  const newAuthKey = keyring.addFromSeed(
-    randomAsU8a(32)
-  ) as Kilt.KiltKeyringPair
+  // Get the cached api object
+  const api = Kilt.ConfigService.get('api')
 
   // Create and sign the DID operation to replace the authentication key with the new one generated.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
   const didKeyUpdateTx = api.tx.did.setAuthenticationKey(
-    Kilt.Did.publicKeyToChain(newAuthKey)
+    Kilt.Did.publicKeyToChain(newAuthKeypair)
   )
   const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
     Kilt.Did.resourceIdToChain('#my-service')

@@ -1,13 +1,12 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function deleteFullDid(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
   const didIdentifier = Kilt.Did.toChain(fullDid)

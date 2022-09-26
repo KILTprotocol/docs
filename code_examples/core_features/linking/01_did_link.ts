@@ -1,15 +1,15 @@
-import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function linkAccountToDid(
-  api: ApiPromise,
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccount: KeyringPair,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // The account to be linked has to sign a specifically-crafted payload to prove
   // willingness to be linked to the DID.
   const linkingAccountSignatureGeneration = async (
@@ -18,12 +18,11 @@ export async function linkAccountToDid(
 
   // Authorizing the extrinsic with the full DID and including a signature of the linked account
   // results in the provided account being linked to the DID authorizing the operation.
-  const accountLinkingParameters =
-    await Kilt.Did.associateAccountToChainArgs(
-      linkedAccount.address,
-      did,
-      linkingAccountSignatureGeneration
-    )
+  const accountLinkingParameters = await Kilt.Did.associateAccountToChainArgs(
+    linkedAccount.address,
+    did,
+    linkingAccountSignatureGeneration
+  )
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
     ...accountLinkingParameters
   )

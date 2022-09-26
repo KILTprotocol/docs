@@ -1,5 +1,3 @@
-import { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 function getRandomCType(): Kilt.ICType {
@@ -21,11 +19,12 @@ function getRandomCType(): Kilt.ICType {
 }
 
 export async function batchCTypeCreationExtrinsics(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
   const ctype1CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype1))

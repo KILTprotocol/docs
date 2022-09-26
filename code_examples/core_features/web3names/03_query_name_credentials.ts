@@ -1,17 +1,14 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import fetch from 'node-fetch'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function queryPublishedCredentials(
-  api: ApiPromise,
   web3Name: Kilt.Did.Web3Name
 ): Promise<Kilt.KiltPublishedCredentialCollectionV1> {
+  const api = Kilt.ConfigService.get('api')
+
   const encodedDidForWeb3Name = await api.query.web3Names.owner(web3Name)
-  const { owner } = Kilt.Did.web3NameOwnerFromChain(
-    encodedDidForWeb3Name
-  )
+  const { owner } = Kilt.Did.web3NameOwnerFromChain(encodedDidForWeb3Name)
 
   console.log(`DID for "${web3Name}": ${owner}`)
 
