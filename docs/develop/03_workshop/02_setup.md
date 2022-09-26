@@ -25,7 +25,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
   
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js@0.30.0-12 dotenv ts-node typescript
+  npm install @kiltprotocol/sdk-js@0.29.0-rc.2 dotenv ts-node typescript
   ```
 
   </TabItem>
@@ -35,7 +35,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
   
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js@0.30.0-12 dotenv
+  npm install @kiltprotocol/sdk-js@0.29.0-rc.2 dotenv
   ```
 
   </TabItem>

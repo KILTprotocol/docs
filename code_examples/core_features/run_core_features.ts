@@ -79,7 +79,7 @@ async function main(): Promise<void> {
   }
   await gettingStartedFlow()
 
-  Kilt.config({ submitTxResolveOn: resolveOn })
+  Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
   const api = await Kilt.connect(nodeAddress)
 
   const keyring = new Keyring({

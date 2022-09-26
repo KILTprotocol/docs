@@ -19,7 +19,7 @@ const SEED_ENV = 'FAUCET_SEED'
 async function testWorkshop() {
   envConfig()
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
-  Kilt.config({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
+  Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
   const api = await Kilt.connect(process.env.WSS_ADDRESS)
 
   const keyring = new Keyring({
