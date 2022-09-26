@@ -6,7 +6,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function verifyNameAndDidEquality(
   api: ApiPromise,
-  web3Name: Kilt.Did.Web3Names.Web3Name,
+  web3Name: Kilt.Did.Web3Name,
   did: Kilt.DidUri
 ): Promise<void> {
   console.log(
@@ -15,14 +15,14 @@ export async function verifyNameAndDidEquality(
   // Query the owner of the provided web3name
   const encodedWeb3NameOwner = await api.query.web3Names.owner(web3Name)
   const { owner } =
-    Kilt.Did.Web3Names.web3NameOwnerFromChain(encodedWeb3NameOwner)
+    Kilt.Did.web3NameOwnerFromChain(encodedWeb3NameOwner)
   // Assert that it is the right owner
   assert(owner === did)
 
   // Query the web3name of the provided DID
-  const didIdentifier = Kilt.Did.Chain.didToChain(did)
+  const didIdentifier = Kilt.Did.toChain(did)
   const encodedDidName = await api.query.web3Names.names(didIdentifier)
-  const didName = Kilt.Did.Web3Names.web3NameFromChain(encodedDidName)
+  const didName = Kilt.Did.web3NameFromChain(encodedDidName)
   // Assert that it is the right web3name
   assert(didName === web3Name)
 }

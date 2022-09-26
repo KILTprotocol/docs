@@ -6,7 +6,7 @@ export async function claimWeb3Name(
   api: ApiPromise,
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  name: Kilt.Did.Web3Names.Web3Name,
+  name: Kilt.Did.Web3Name,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
   const web3NameClaimTx = api.tx.web3Names.claim(name)

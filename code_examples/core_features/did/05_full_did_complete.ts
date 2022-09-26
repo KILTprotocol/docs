@@ -28,7 +28,7 @@ export async function createCompleteFullDid(
   const attKey = keyring.addFromSeed(attestationSeed) as Kilt.KiltKeyringPair
   const delKey = keyring.addFromSeed(delegationSeed) as Kilt.KiltKeyringPair
 
-  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
+  const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authKey],
       keyAgreement: [
@@ -55,7 +55,7 @@ export async function createCompleteFullDid(
 
   // The new information is fetched from the blockchain and returned.
   const fullDid = await Kilt.Did.query(
-    Kilt.Did.Utils.getFullDidUriFromKey(authKey)
+    Kilt.Did.getFullDidUriFromKey(authKey)
   )
 
   if (!fullDid) {

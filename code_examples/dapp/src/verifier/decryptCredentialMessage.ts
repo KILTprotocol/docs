@@ -5,7 +5,6 @@ import { verify } from './verifyCredential'
 type ListenCallback = (message: Kilt.IEncryptedMessage) => Promise<void>
 
 let session: { listen: (call: ListenCallback) => ReturnType<ListenCallback> }
-let receiverDid: Kilt.DidDocument
 let receiverSecretKey: Kilt.Utils.Crypto.CryptoInput
 
 export async function main() {
@@ -32,7 +31,6 @@ export async function main() {
     const decryptedMessage = await Kilt.Message.decrypt(
       message,
       decryptCallback,
-      receiverDid
     )
 
     if (decryptedMessage.body.type !== 'submit-credential') {

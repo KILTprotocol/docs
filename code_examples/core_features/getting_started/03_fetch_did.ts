@@ -6,7 +6,7 @@ export async function main(api: ApiPromise): Promise<Kilt.DidUri | null> {
   const johnDoeOwner = await api.query.web3Names.owner('john_doe')
 
   // This function will throw if johnDoeOwner does not exist
-  const { owner } = Kilt.Did.Web3Names.web3NameOwnerFromChain(johnDoeOwner)
+  const { owner } = Kilt.Did.web3NameOwnerFromChain(johnDoeOwner)
   console.log(`My name is john_doe and this is my DID: "${owner}"`)
 
   return owner

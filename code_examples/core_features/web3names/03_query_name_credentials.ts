@@ -6,10 +6,10 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function queryPublishedCredentials(
   api: ApiPromise,
-  web3Name: Kilt.Did.Web3Names.Web3Name
+  web3Name: Kilt.Did.Web3Name
 ): Promise<Kilt.KiltPublishedCredentialCollectionV1> {
   const encodedDidForWeb3Name = await api.query.web3Names.owner(web3Name)
-  const { owner } = Kilt.Did.Web3Names.web3NameOwnerFromChain(
+  const { owner } = Kilt.Did.web3NameOwnerFromChain(
     encodedDidForWeb3Name
   )
 
@@ -61,7 +61,7 @@ export async function queryPublishedCredentials(
       await Kilt.Credential.verifyCredential(credential)
 
       // Verify that the credential refers to the intended subject
-      if (!Kilt.Did.Utils.isSameSubject(credential.claim.owner, owner)) {
+      if (!Kilt.Did.isSameSubject(credential.claim.owner, owner)) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
     })

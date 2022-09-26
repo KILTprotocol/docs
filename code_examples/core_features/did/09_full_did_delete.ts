@@ -10,7 +10,7 @@ export async function deleteFullDid(
 ): Promise<void> {
   // Create a DID deletion operation. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
-  const didIdentifier = Kilt.Did.Chain.didToChain(fullDid)
+  const didIdentifier = Kilt.Did.toChain(fullDid)
   const endpointsCountForDid = await api.query.did.didEndpointsCount(
     didIdentifier
   )

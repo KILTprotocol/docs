@@ -4,9 +4,9 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function queryAccountWeb3Name(
   lookupAccountAddress: KeyringPair['address']
-): Promise<Kilt.Did.Web3Names.Web3Name | null> {
+): Promise<Kilt.Did.Web3Name | null> {
   // Only function to call to perform the lookup.
-  const accountWeb3Name = await Kilt.Did.AccountLinks.queryWeb3Name(
+  const accountWeb3Name = await Kilt.Did.queryWeb3Name(
     lookupAccountAddress
   )
   if (accountWeb3Name) {

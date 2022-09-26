@@ -11,7 +11,7 @@ import { getAccount } from './generateAccount'
 function getSignCallback(
   keyring: Keyring,
   authKey: Kilt.NewDidVerificationKey
-): Parameters<typeof Kilt.Did.Chain.getStoreTx>[2] {
+): Parameters<typeof Kilt.Did.getStoreTx>[2] {
   return async ({ data }) => {
     const { publicKey, type } = authKey
     // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
@@ -46,7 +46,7 @@ export async function createFullDid(
   } = generateKeypairs(keyring, mnemonic)
 
   // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
-  const fullDidCreationTx = await Kilt.Did.Chain.getStoreTx(
+  const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
       keyAgreement: [keyAgreement],
@@ -60,7 +60,7 @@ export async function createFullDid(
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
 
   const fullDid = await Kilt.Did.query(
-    Kilt.Did.Utils.getFullDidUriFromKey(authentication)
+    Kilt.Did.getFullDidUriFromKey(authentication)
   )
 
   if (!fullDid) {

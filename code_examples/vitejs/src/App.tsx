@@ -10,7 +10,7 @@ export function App() {
       const encodedDidDetails = await api.query.web3Names.owner('john_doe')
       try {
         const { owner } =
-          Kilt.Did.Web3Names.web3NameOwnerFromChain(encodedDidDetails)
+          Kilt.Did.web3NameOwnerFromChain(encodedDidDetails)
         setDid(owner)
       } catch {
         setDid('unknown')

@@ -6,7 +6,7 @@ export async function migrateLightDid(
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
   // Generate the DID migration extrinsic.
-  const migrationTx = await Kilt.Did.Chain.getStoreTx(
+  const migrationTx = await Kilt.Did.getStoreTx(
     lightDid,
     submitterAccount.address,
     signCallback
@@ -16,7 +16,7 @@ export async function migrateLightDid(
   await Kilt.Blockchain.signAndSubmitTx(migrationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned
-  const migratedFullDidUri = Kilt.Did.Utils.getFullDidUri(lightDid.uri)
+  const migratedFullDidUri = Kilt.Did.getFullDidUri(lightDid.uri)
   const migratedFullDid = await Kilt.Did.query(migratedFullDidUri)
 
   if (!migratedFullDid) {

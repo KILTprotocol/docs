@@ -7,7 +7,7 @@ let requestChallenge: string
 
 export function main() {
   const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
-  const { did: receiverDid } = Kilt.Did.Utils.parseDidUri(encryptionKeyUri)
+  const { did: receiverDid } = Kilt.Did.parse(encryptionKeyUri)
 
   const message = Kilt.Message.fromBody(
     {

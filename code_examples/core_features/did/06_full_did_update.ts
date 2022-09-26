@@ -20,10 +20,10 @@ export async function updateFullDid(
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
   const didKeyUpdateTx = api.tx.did.setAuthenticationKey(
-    Kilt.Did.Chain.publicKeyToChain(newAuthKey)
+    Kilt.Did.publicKeyToChain(newAuthKey)
   )
   const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
-    Kilt.Did.Chain.resourceIdToChain('#my-service')
+    Kilt.Did.resourceIdToChain('#my-service')
   )
 
   const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
