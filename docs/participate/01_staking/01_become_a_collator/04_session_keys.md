@@ -56,7 +56,7 @@ The answer should look like the JSON object below.
 The `result` key is the HEX-encoded public part of the newly created session key.
 
 ```
-{"jsonrpc":"2.0","result":"0xb2dc33b1ff0c6f8b07f882236bb992e903452791ff5225b5eb4c2c1a40252d5d","id":1}
+{"jsonrpc":"2.0","result":"0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d51010","id":1}
 ```
 
 </TabItem>
