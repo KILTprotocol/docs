@@ -16,99 +16,97 @@ import generateDidKeypairs from '../utils/generateKeypairs'
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
-    console.log('Running DID flow...')
+  console.log('Running DID flow...')
 
-    console.log('1 did) Create simple light DID')
-    const { authentication: simpleLightDidAuth } =
-      generateDidKeypairs()
-    const simpleLightDid = createSimpleLightDid({ authentication: simpleLightDidAuth })
-    console.log('2 did) Create complete light DID')
-    const { authentication: completeLightDidAuth, encryption: completeLightDidEnc } =
-      generateDidKeypairs()
-    createCompleteLightDid({ authentication: completeLightDidAuth, encryption: completeLightDidEnc })
-    console.log('3 did) Migrate first light DID to full DID')
-    await migrateLightDid(
-      simpleLightDid,
-      submitterAccount,
-      async ({ data }) => ({
-        data: simpleLightDidAuth.sign(data),
-        keyType: simpleLightDidAuth.type,
-        // Not relevant in this case
-        keyUri: `${simpleLightDid.uri}${simpleLightDid.authentication[0].id}`
-      })
-    )
-    console.log('4 did) Create simple full DID')
-    const { authentication: simpleFullDidAuth } =
-      generateDidKeypairs()
-    const createdSimpleFullDid = await createSimpleFullDid(submitterAccount, {
-      authentication: simpleFullDidAuth
+  console.log('1 did) Create simple light DID')
+  const { authentication: simpleLightDidAuth } = generateDidKeypairs()
+  const simpleLightDid = createSimpleLightDid({
+    authentication: simpleLightDidAuth
+  })
+  console.log('2 did) Create complete light DID')
+  const {
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  } = generateDidKeypairs()
+  createCompleteLightDid({
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  })
+  console.log('3 did) Migrate first light DID to full DID')
+  await migrateLightDid(simpleLightDid, submitterAccount, async ({ data }) => ({
+    data: simpleLightDidAuth.sign(data),
+    keyType: simpleLightDidAuth.type,
+    // Not relevant in this case
+    keyUri: `${simpleLightDid.uri}${simpleLightDid.authentication[0].id}`
+  }))
+  console.log('4 did) Create simple full DID')
+  const { authentication: simpleFullDidAuth } = generateDidKeypairs()
+  const createdSimpleFullDid = await createSimpleFullDid(submitterAccount, {
+    authentication: simpleFullDidAuth
+  })
+  console.log('5 did) Create complete full DID')
+  const {
+    authentication: completeFullDidAuth,
+    encryption: completeFullDidEnc,
+    attestation: completeFullDidAtt,
+    delegation: completeFullDidDel
+  } = generateDidKeypairs()
+  const createdCompleteFullDid = await createCompleteFullDid(submitterAccount, {
+    authentication: completeFullDidAuth,
+    encryption: completeFullDidEnc,
+    attestation: completeFullDidAtt,
+    delegation: completeFullDidDel
+  })
+  console.log('6 did) Update full DID created at step 5')
+  const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
+  const updatedFullDid = await updateFullDid(
+    newCompleteFullDidAuth,
+    createdCompleteFullDid.uri,
+    submitterAccount,
+    async ({ data }) => ({
+      data: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type,
+      // Not relevant in this case
+      keyUri: `${createdCompleteFullDid.uri}${createdCompleteFullDid.authentication[0].id}`
     })
-    console.log('5 did) Create complete full DID')
-    const {
-      authentication: completeFullDidAuth,
-      encryption: completeFullDidEnc,
-      attestation: completeFullDidAtt,
-      delegation: completeFullDidDel
-    } = generateDidKeypairs()
-    const createdCompleteFullDid = await createCompleteFullDid(
-      submitterAccount,
-      {
-        authentication: completeFullDidAuth,
-        encryption: completeFullDidEnc,
-        attestation: completeFullDidAtt,
-        delegation: completeFullDidDel
-      }
-    )
-    console.log('6 did) Update full DID created at step 5')
-    const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
-    const updatedFullDid = await updateFullDid(
-      newCompleteFullDidAuth,
-      createdCompleteFullDid.uri,
-      submitterAccount,
-      async ({ data }) => ({
-        data: completeFullDidAuth.sign(data),
-        keyType: completeFullDidAuth.type,
-        // Not relevant in this case
-        keyUri: `${createdCompleteFullDid.uri}${createdCompleteFullDid.authentication[0].id}`
-      })
-    )
-    console.log(
-      '7 did) Use the same full DID created at step 5 to sign the batch'
-    )
-    await batchCTypeCreationExtrinsics(
-      submitterAccount,
-      updatedFullDid.uri,
-      async ({ data }) => ({
-        data: completeFullDidAtt.sign(data),
-        keyType: completeFullDidAtt.type,
-        // Not relevant in this case
-        keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
-      })
-    )
-    console.log(
-      '8 did) Use the same full DID created at step 5 to generate the signature'
-    )
-    await generateAndVerifyDidAuthenticationSignature(
-      updatedFullDid,
-      'test-payload',
-      async ({ data }) => ({
-        data: newCompleteFullDidAuth.sign(data),
-        keyType: newCompleteFullDidAuth.type,
-        keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
-      })
-    )
-    console.log('9 did) Delete full DID created at step 4')
-    await deleteFullDid(
-      submitterAccount,
-      createdSimpleFullDid.uri,
-      async ({ data }) => ({
-        data: simpleFullDidAuth.sign(data),
-        keyType: simpleFullDidAuth.type,
-        // Not relevant in this case
-        keyUri: `${createdSimpleFullDid.uri}${createdSimpleFullDid.authentication[0].id}`
-      })
-    )
-    console.log('10 did) Delete full DID created at step 5')
-    await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
-    console.log('DID flow completed!')
+  )
+  console.log(
+    '7 did) Use the same full DID created at step 5 to sign the batch'
+  )
+  await batchCTypeCreationExtrinsics(
+    submitterAccount,
+    updatedFullDid.uri,
+    async ({ data }) => ({
+      data: completeFullDidAtt.sign(data),
+      keyType: completeFullDidAtt.type,
+      // Not relevant in this case
+      keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
+    })
+  )
+  console.log(
+    '8 did) Use the same full DID created at step 5 to generate the signature'
+  )
+  await generateAndVerifyDidAuthenticationSignature(
+    updatedFullDid,
+    'test-payload',
+    async ({ data }) => ({
+      data: newCompleteFullDidAuth.sign(data),
+      keyType: newCompleteFullDidAuth.type,
+      keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
+    })
+  )
+  console.log('9 did) Delete full DID created at step 4')
+  await deleteFullDid(
+    submitterAccount,
+    createdSimpleFullDid.uri,
+    async ({ data }) => ({
+      data: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type,
+      // Not relevant in this case
+      keyUri: `${createdSimpleFullDid.uri}${createdSimpleFullDid.authentication[0].id}`
+    })
+  )
+  console.log('10 did) Delete full DID created at step 5')
+  await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
+  console.log('DID flow completed!')
 }
