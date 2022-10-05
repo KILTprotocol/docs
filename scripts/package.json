@@ -3,6 +3,7 @@
   "name": "kilt-docs-scripts",
   "license": "MIT",
   "scripts": {
+    "check-ts": "yarn tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",

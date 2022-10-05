@@ -77,7 +77,7 @@ export function generateClaimerDid(keyring: Keyring): TestDidDocument {
 const resolve = async (
   didUri: Kilt.DidUri
 ): Promise<Kilt.DidResolutionResult | null> => {
-  const { did: uriWithNoFragment } = Kilt.Did.parseDidUri(didUri)
+  const { did: uriWithNoFragment } = Kilt.Did.parse(didUri)
   if (uriWithNoFragment === claimerDid?.uri) {
     return {
       metadata: { deactivated: false },
@@ -96,7 +96,7 @@ const resolve = async (
 export const resolveKey: Kilt.DidResolveKey = async (
   keyUri: Kilt.DidResourceUri
 ) => {
-  const { did, fragment: keyId } = Kilt.Did.parseDidUri(keyUri)
+  const { did, fragment: keyId } = Kilt.Did.parse(keyUri)
   if (!keyId) {
     throw 'keyId must be present when resolving a key'
   }

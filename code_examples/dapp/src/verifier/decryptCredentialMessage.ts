@@ -30,7 +30,7 @@ export async function main() {
 
     const decryptedMessage = await Kilt.Message.decrypt(
       message,
-      decryptCallback,
+      decryptCallback
     )
 
     if (decryptedMessage.body.type !== 'submit-credential') {

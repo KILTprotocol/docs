@@ -1,63 +1,37 @@
 import { config as envConfig } from 'dotenv'
 
-import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
-import { Keyring } from '@polkadot/api'
+import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 import { getAccount } from './generateAccount'
 
-function getSignCallback(
-  keyring: Keyring,
-  authKey: Kilt.NewDidVerificationKey
-): Parameters<typeof Kilt.Did.getStoreTx>[2] {
-  return async ({ data }) => {
-    const { publicKey, type } = authKey
-    // Taken from https://github.com/polkadot-js/common/blob/master/packages/keyring/src/pair/index.ts#L44
-    const address = encodeAddress(
-      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const key = keyring.getPair(address)
-
-    return {
-      data: key.sign(data),
-      keyType: type
-    }
-  }
-}
-
 export async function createFullDid(
-  keyring: Keyring
-): Promise<Kilt.DidDocument> {
-  const mnemonic = process.env.ATTESTER_MNEMONIC as string
-
-  // Load attester account
-  const account = getAccount(keyring, mnemonic)
-
-  // generate the keypairs
-  // we are using the same mnemonic as for the attester account, but we could also use a new secret
-  const {
-    authentication,
-    keyAgreement,
-    assertionMethod,
-    capabilityDelegation
-  } = generateKeypairs(keyring, mnemonic)
-
-  // get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
+  submitterAccount: Kilt.KiltKeyringPair
+): Promise<{
+  mnemonic: string
+  fullDid: Kilt.DidDocument
+}> {
+  const mnemonic = mnemonicGenerate()
+  const { authentication, encryption, attestation, delegation } =
+    generateKeypairs(mnemonic)
+  // Get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
-      keyAgreement: [keyAgreement],
-      assertionMethod: [assertionMethod],
-      capabilityDelegation: [capabilityDelegation]
+      keyAgreement: [encryption],
+      assertionMethod: [attestation],
+      capabilityDelegation: [delegation]
     },
-    account.address,
-    getSignCallback(keyring, authentication)
+    submitterAccount.address,
+    async ({ data }) => ({
+      data: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
 
-  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, account)
+  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   const fullDid = await Kilt.Did.query(
     Kilt.Did.getFullDidUriFromKey(authentication)
@@ -67,31 +41,23 @@ export async function createFullDid(
     throw 'Full DID was not successfully created.'
   }
 
-  return fullDid
+  return { mnemonic, fullDid }
 }
 
-export async function getFullDid(
-  didUri: Kilt.DidUri
-): Promise<Kilt.DidDocument> {
-  // make sure the did is already on chain
-  const onChain = await Kilt.Did.query(didUri)
-  if (!onChain) throw Error(`failed to find on chain did: ${didUri}`)
-  return onChain
-}
-
-// don't execute if this is imported by another file
+// Don't execute if this is imported by another file
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await Kilt.connect(process.env.WSS_ADDRESS as string)
-    const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format
-    })
 
     try {
-      const did = await createFullDid(keyring)
+      await Kilt.connect(process.env.WSS_ADDRESS as string)
+
+      // Load attester account
+      const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
+      const account = getAccount(accountMnemonic)
+      const { mnemonic } = await createFullDid(account)
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_URI=${did.uri}\n`)
+      console.error(`ATTESTER_DID_MNEMONIC=${mnemonic}\n`)
       process.exit(0)
     } catch (e) {
       console.log('Error while creating attester DID', e)

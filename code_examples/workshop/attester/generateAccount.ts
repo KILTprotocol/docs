@@ -1,43 +1,38 @@
 import { config as envConfig } from 'dotenv'
 
-import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
-import { Keyring } from '@polkadot/api'
+import { mnemonicGenerate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function generateAccount(keyring: Keyring): {
+export function generateAccount(): {
   account: Kilt.KiltKeyringPair
   mnemonic: string
 } {
-  // use the mnemonic from .env or make a new one
   const mnemonic = mnemonicGenerate()
-  const account = keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
+  const account = Kilt.Utils.Crypto.makeKeypairFromSeed(
+    mnemonicToMiniSecret(mnemonic)
+  )
 
-  // save the mnemonic and address in .env so we keep the same account
+  // Save the mnemonic and address in .env so we keep the same account
   return { account, mnemonic }
 }
 
-export function getAccount(
-  keyring: Keyring,
-  mnemonic: string
-): Kilt.KiltKeyringPair {
-  return keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair
+export function getAccount(mnemonic: string): Kilt.KiltKeyringPair {
+  return Kilt.Utils.Crypto.makeKeypairFromSeed(mnemonicToMiniSecret(mnemonic))
 }
 
-// don't execute if this is imported by another file
+// Don't execute if this is imported by another file
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await cryptoWaitReady()
-    const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format
-    })
 
     try {
-      const { mnemonic, account } = generateAccount(keyring)
+      await Kilt.init()
+
+      const { mnemonic, account } = generateAccount()
       console.log('save to mnemonic and address to .env to continue!\n\n')
-      console.log(`ATTESTER_MNEMONIC="${mnemonic}"`)
-      console.log(`ATTESTER_ADDRESS=${account.address}\n\n`)
+      console.log(`ATTESTER_ACCOUNT_MNEMONIC="${mnemonic}"`)
+      console.log(`ATTESTER_ACCOUNT_ADDRESS=${account.address}\n\n`)
       process.exit(0)
     } catch (e) {
       console.log('Error while setting up attester account', e)
