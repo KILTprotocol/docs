@@ -46,7 +46,8 @@ async function testWorkshop() {
   }
 
   const faucetAccount = Kilt.Utils.Crypto.makeKeypairFromSeed(
-    hexToU8a(faucetSeed)
+    hexToU8a(faucetSeed),
+    'sr25519'
   )
 
   const tx = api.tx.balances.transfer(
@@ -79,7 +80,7 @@ async function testWorkshop() {
 
   console.log('Successfully transferred tokens')
 
-  // create attester did & ensure ctype
+  // Create attester DID & ensure CType
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(attesterAccount)
   const { attestation } = generateAttesterKeypairs(attesterMnemonic)
@@ -95,7 +96,7 @@ async function testWorkshop() {
     })
   )
 
-  // do attestation & verification
+  // Do attestation & verification
   const credential = await attestingFlow(
     lightDid.uri,
     attesterAccount,
@@ -110,8 +111,7 @@ async function testWorkshop() {
   await verificationFlow(credential, async ({ data }) => ({
     data: authentication.sign(data),
     keyType: authentication.type,
-    // Not needed
-    keyUri: `${lightDid.uri}#id`
+    keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`,
   }))
 }
 

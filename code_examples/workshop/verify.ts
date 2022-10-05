@@ -71,7 +71,6 @@ if (require.main === module) {
       await verificationFlow(credential, async ({ data }) => ({
         data: authentication.sign(data),
         keyType: authentication.type,
-        // Not needed
         keyUri: `${claimerDid.uri}${claimerDid.authentication[0].id}`
       }))
       process.exit(0)

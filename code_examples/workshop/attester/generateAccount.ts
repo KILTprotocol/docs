@@ -10,7 +10,8 @@ export function generateAccount(): {
 } {
   const mnemonic = mnemonicGenerate()
   const account = Kilt.Utils.Crypto.makeKeypairFromSeed(
-    mnemonicToMiniSecret(mnemonic)
+    mnemonicToMiniSecret(mnemonic),
+    'sr25519'
   )
 
   // Save the mnemonic and address in .env so we keep the same account
