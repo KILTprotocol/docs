@@ -2,8 +2,8 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateAccount } from './generateAccount'
 import { generateKeypairs } from './generateKeypairs'
-import { getAccount } from './generateAccount'
 import { getCtypeSchema } from './ctypeSchema'
 
 export async function ensureStoredCtype(
@@ -47,10 +47,12 @@ if (require.main === module) {
       await Kilt.connect(process.env.WSS_ADDRESS as string)
 
       const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
-      const account = getAccount(accountMnemonic)
+      const { account } = generateAccount(accountMnemonic)
+
       const didMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
       const { authentication, attestation } = generateKeypairs(didMnemonic)
       const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
+
       await ensureStoredCtype(account, attesterDidUri, async ({ data }) => ({
         data: attestation.sign(data),
         keyType: attestation.type,

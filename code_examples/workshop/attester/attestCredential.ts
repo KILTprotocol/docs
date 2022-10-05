@@ -2,10 +2,10 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateAccount } from './generateAccount'
 import { generateCredential } from '../claimer/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
-import { getAccount } from './generateAccount'
-import { getLightDid } from '../claimer/generateLightDid'
+import { generateLightDid } from '../claimer/generateLightDid'
 
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
@@ -15,16 +15,13 @@ export async function attestCredential(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // build the attestation object
+  // Get CType and root hash from the provided credential
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
     credential,
     attesterDid
   )
 
-  // check the request content and deny based on your business logic.
-  // e.g., verify age with other credentials (birth certificate, passport, ...)
-
-  // form tx and authorized extrinsic
+  // Create the tx and authorized extrinsic
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
   const extrinsic = await Kilt.Did.authorizeExtrinsic(
     attesterDid,
@@ -33,7 +30,7 @@ export async function attestCredential(
     attesterAccount.address
   )
 
-  // write to chain
+  // Submit the tx to write the attestation to the chain
   console.log('Attester -> create attestation...')
   await Kilt.Blockchain.signAndSubmitTx(extrinsic, attesterAccount)
 }
@@ -44,18 +41,18 @@ export async function attestingFlow(
   attesterDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<Kilt.ICredential> {
-  // first the claimer
+  // First the claimer
   const credential = generateCredential(claimerDid, {
     age: 27,
     name: 'Mia Musterfrau'
   })
 
-  // send the request to the attester
+  // ... send the request to the attester
 
-  // the attester checks the attributes and issues an attestation
+  // The attester checks the attributes and attests the provided credential
   await attestCredential(attesterAccount, attesterDid, credential, signCallback)
 
-  // send the attestation back to the claimer
+  // Return the generated credential
   return credential
 }
 
@@ -69,13 +66,17 @@ if (require.main === module) {
 
       const attesterAccountMnemonic = process.env
         .ATTESTER_ACCOUNT_MNEMONIC as string
-      const attesterAccount = getAccount(attesterAccountMnemonic)
+      const { account: attesterAccount } = generateAccount(
+        attesterAccountMnemonic
+      )
+
       const attesterDidMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
       const { authentication, attestation } =
         generateKeypairs(attesterDidMnemonic)
       const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
+
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
-      const claimerDid = await getLightDid(claimerDidMnemonic)
+      const claimerDid = await generateLightDid(claimerDidMnemonic)
 
       const credential = await attestingFlow(
         claimerDid.uri,
@@ -89,7 +90,7 @@ if (require.main === module) {
         })
       )
       console.log('The claimer build their credential and now has to store it.')
-      console.log('  add the following to your .env file. ')
+      console.log('Add the following to your .env file. ')
       console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(credential)}'`)
       process.exit(0)
     } catch (e) {

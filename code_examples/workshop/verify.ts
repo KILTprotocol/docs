@@ -6,7 +6,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createPresentation } from './claimer/createPresentation'
 import { generateKeypairs } from './claimer/generateKeypairs'
-import { getLightDid } from './claimer/generateLightDid'
+import { generateLightDid } from './claimer/generateLightDid'
 
 function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
@@ -65,7 +65,7 @@ if (require.main === module) {
     try {
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
       const { authentication } = generateKeypairs(claimerDidMnemonic)
-      const claimerDid = getLightDid(claimerDidMnemonic)
+      const claimerDid = generateLightDid(claimerDidMnemonic)
       // Load credential and claimer DID
       const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
       await verificationFlow(credential, async ({ data }) => ({

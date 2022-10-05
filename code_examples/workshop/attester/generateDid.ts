@@ -4,8 +4,8 @@ import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateAccount } from './generateAccount'
 import { generateKeypairs } from './generateKeypairs'
-import { getAccount } from './generateAccount'
 
 export async function createFullDid(
   submitterAccount: Kilt.KiltKeyringPair
@@ -54,8 +54,9 @@ if (require.main === module) {
 
       // Load attester account
       const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
-      const account = getAccount(accountMnemonic)
+      const { account } = generateAccount(accountMnemonic)
       const { mnemonic } = await createFullDid(account)
+
       console.log('\nsave following to .env to continue\n')
       console.error(`ATTESTER_DID_MNEMONIC=${mnemonic}\n`)
       process.exit(0)

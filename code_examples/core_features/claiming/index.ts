@@ -38,7 +38,7 @@ export async function runAll(
       data: attestation.sign(data),
       keyType: attestation.type,
       // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}${attesterFullDid.assertionMethod[0].id}`
+      keyUri: `${attesterFullDid.uri}#id`
     })
   )
   console.log('2 claiming) Create credential')
@@ -51,7 +51,7 @@ export async function runAll(
       data: attestation.sign(data),
       keyType: attestation.type,
       // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}${attesterFullDid.assertionMethod[0].id}`
+      keyUri: `${attesterFullDid.uri}#id`
     }),
     credential
   )
@@ -75,7 +75,7 @@ export async function runAll(
       data: attestation.sign(data),
       keyType: attestation.type,
       // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}${attesterFullDid.assertionMethod[0].id}`
+      keyUri: `${attesterFullDid.uri}#id`
     }),
     credential,
     false

@@ -37,7 +37,7 @@ export async function runAll(
       data: authentication.sign(data),
       keyType: authentication.type,
       // Not relevant in this case
-      keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+      keyUri: `${fullDid.uri}#id`
     })
   )
 
@@ -50,7 +50,7 @@ export async function runAll(
       data: authentication.sign(data),
       keyType: authentication.type,
       // Not relevant in this case
-      keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+      keyUri: `${fullDid.uri}#id`
     })
   )
   console.log('2 linking) Link DID to submitter account')
@@ -58,7 +58,7 @@ export async function runAll(
     data: authentication.sign(data),
     keyType: authentication.type,
     // Not relevant in this case
-    keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+    keyUri: `${fullDid.uri}#id`
   }))
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
@@ -79,7 +79,7 @@ export async function runAll(
       data: authentication.sign(data),
       keyType: authentication.type,
       // Not relevant in this case
-      keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+      keyUri: `${fullDid.uri}#id`
     })
   )
   console.log('6 linking) Unlink submitter account from DID')
@@ -89,7 +89,7 @@ export async function runAll(
     data: authentication.sign(data),
     keyType: authentication.type,
     // Not relevant in this case
-    keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+    keyUri: `${fullDid.uri}#id`
   }))
   await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')

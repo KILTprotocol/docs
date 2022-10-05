@@ -3,8 +3,8 @@ import { config as envConfig } from 'dotenv'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createClaim } from './createClaim'
+import { generateLightDid } from './generateLightDid'
 import { getCtypeSchema } from '../attester/ctypeSchema'
-import { getLightDid } from './generateLightDid'
 
 export function generateCredential(
   claimerDid: Kilt.DidUri,
@@ -26,8 +26,9 @@ if (require.main === module) {
 
     try {
       await Kilt.init()
+
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
-      const claimerDid = getLightDid(claimerDidMnemonic)
+      const claimerDid = generateLightDid(claimerDidMnemonic)
 
       const request = generateCredential(claimerDid.uri, {
         age: 28,

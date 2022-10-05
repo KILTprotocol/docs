@@ -37,7 +37,7 @@ export async function runAll(
     data: simpleLightDidAuth.sign(data),
     keyType: simpleLightDidAuth.type,
     // Not relevant in this case
-    keyUri: `${simpleLightDid.uri}${simpleLightDid.authentication[0].id}`
+    keyUri: `${simpleLightDid.uri}#id`
   }))
   console.log('4 did) Create simple full DID')
   const { authentication: simpleFullDidAuth } = generateDidKeypairs()
@@ -67,7 +67,7 @@ export async function runAll(
       data: completeFullDidAuth.sign(data),
       keyType: completeFullDidAuth.type,
       // Not relevant in this case
-      keyUri: `${createdCompleteFullDid.uri}${createdCompleteFullDid.authentication[0].id}`
+      keyUri: `${createdCompleteFullDid.uri}#id`
     })
   )
   console.log(
@@ -80,7 +80,7 @@ export async function runAll(
       data: completeFullDidAtt.sign(data),
       keyType: completeFullDidAtt.type,
       // Not relevant in this case
-      keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
+      keyUri: `${updatedFullDid.uri}#id`
     })
   )
   console.log(
@@ -103,7 +103,7 @@ export async function runAll(
       data: simpleFullDidAuth.sign(data),
       keyType: simpleFullDidAuth.type,
       // Not relevant in this case
-      keyUri: `${createdSimpleFullDid.uri}${createdSimpleFullDid.authentication[0].id}`
+      keyUri: `${createdSimpleFullDid.uri}#id`
     })
   )
   console.log('10 did) Delete full DID created at step 5')

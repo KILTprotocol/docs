@@ -31,7 +31,7 @@ export async function runAll(
       data: authentication.sign(data),
       keyType: authentication.type,
       // Not relevant in this case
-      keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+      keyUri: `${fullDid.uri}#id`
     })
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
@@ -65,7 +65,7 @@ export async function runAll(
       data: authentication.sign(data),
       keyType: authentication.type,
       // Not relevant in this case
-      keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+      keyUri: `${fullDid.uri}#id`
     })
   )
   await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name)

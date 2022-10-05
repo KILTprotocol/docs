@@ -6,7 +6,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 
-export function getLightDid(mnemonic: string): Kilt.DidDocument {
+export function generateLightDid(mnemonic: string): Kilt.DidDocument {
   const { authentication, encryption } = generateKeypairs(mnemonic)
   return Kilt.Did.createLightDidDocument({
     authentication: [authentication as Kilt.NewLightDidVerificationKey],

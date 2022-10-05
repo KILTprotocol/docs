@@ -4,22 +4,14 @@ import { mnemonicGenerate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function generateAccount(): {
+export function generateAccount(mnemonic?: string): {
   account: Kilt.KiltKeyringPair
   mnemonic: string
 } {
-  const mnemonic = mnemonicGenerate()
-  const account = Kilt.Utils.Crypto.makeKeypairFromSeed(
-    mnemonicToMiniSecret(mnemonic),
-    'sr25519'
-  )
+  const m = mnemonic || mnemonicGenerate()
+  const account = Kilt.Utils.Crypto.makeKeypairFromSeed(mnemonicToMiniSecret(m))
 
-  // Save the mnemonic and address in .env so we keep the same account
-  return { account, mnemonic }
-}
-
-export function getAccount(mnemonic: string): Kilt.KiltKeyringPair {
-  return Kilt.Utils.Crypto.makeKeypairFromSeed(mnemonicToMiniSecret(mnemonic))
+  return { account, mnemonic: m }
 }
 
 // Don't execute if this is imported by another file
