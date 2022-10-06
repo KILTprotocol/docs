@@ -20,7 +20,7 @@ export async function runAll(
   let { authentication, encryption, attestation, delegation } =
     generateDidKeypairs()
   const claimerLightDid = createSimpleLightDid({
-    authentication: authentication as Kilt.NewLightDidVerificationKey
+    authentication
   })
   const lightDidAuthKey = authentication
   ;({ authentication, encryption, attestation, delegation } =

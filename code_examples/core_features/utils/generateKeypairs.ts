@@ -1,15 +1,8 @@
-import type { Keypair } from '@polkadot/util-crypto/types'
-
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function generateKeypairs(mnemonic = randomAsU8a(32)): {
-  authentication: Kilt.KiltKeyringPair
-  encryption: Keypair & { type: Kilt.EncryptionKeyType }
-  attestation: Kilt.KiltKeyringPair
-  delegation: Kilt.KiltKeyringPair
-} {
+export function generateKeypairs(mnemonic = randomAsU8a(32)) {
   const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed(mnemonic)
   const encryption = Kilt.Utils.Crypto.makeEncryptionKeyFromSeed(mnemonic)
   const attestation = authentication.derive(

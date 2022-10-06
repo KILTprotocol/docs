@@ -9,7 +9,7 @@ import { generateKeypairs } from './generateKeypairs'
 export function generateLightDid(mnemonic: string): Kilt.DidDocument {
   const { authentication, encryption } = generateKeypairs(mnemonic)
   return Kilt.Did.createLightDidDocument({
-    authentication: [authentication as Kilt.NewLightDidVerificationKey],
+    authentication: [authentication],
     keyAgreement: [encryption]
   })
 }
