@@ -6,7 +6,7 @@ export async function linkAccountToDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccount: KeyringPair,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 

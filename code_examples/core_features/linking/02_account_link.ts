@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function linkDidToAccount(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 

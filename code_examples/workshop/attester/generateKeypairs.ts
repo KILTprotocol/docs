@@ -6,7 +6,7 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()) {
   const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed(
     mnemonicToMiniSecret(mnemonic)
   )
-  const encryption = Kilt.Utils.Crypto.makeEncryptionKeyFromSeed(
+  const encryption = Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(
     mnemonicToMiniSecret(mnemonic)
   )
   const attestation = authentication.derive(

@@ -31,10 +31,8 @@ export async function runAll(
       authentication
     },
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `did:kilt:${submitterAccount.address}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
@@ -43,10 +41,8 @@ export async function runAll(
     submitterAccount,
     randomWeb3Name,
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `${fullDid.uri}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
 
@@ -56,18 +52,14 @@ export async function runAll(
     submitterAccount,
     linkAccount,
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `${fullDid.uri}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   console.log('2 linking) Link DID to submitter account')
   await linkDidToAccount(fullDid.uri, submitterAccount, async ({ data }) => ({
-    data: authentication.sign(data),
-    keyType: authentication.type,
-    // Not relevant in this case
-    keyUri: `${fullDid.uri}#id`
+    signature: authentication.sign(data),
+    keyType: authentication.type
   }))
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
@@ -85,20 +77,16 @@ export async function runAll(
     submitterAccount,
     linkAccount.address,
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `${fullDid.uri}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   console.log('6 linking) Unlink submitter account from DID')
   await unlinkDidFromAccount(submitterAccount)
   console.log('7 linking) Re-add submitter account and claim deposit back')
   await linkDidToAccount(fullDid.uri, submitterAccount, async ({ data }) => ({
-    data: authentication.sign(data),
-    keyType: authentication.type,
-    // Not relevant in this case
-    keyUri: `${fullDid.uri}#id`
+    signature: authentication.sign(data),
+    keyType: authentication.type
   }))
   await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')

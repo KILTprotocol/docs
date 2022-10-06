@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function revokeCredential(
   attester: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
+  signCallback: Kilt.SignExtrinsicCallback,
   credential: Kilt.ICredential,
   shouldRemove = false
 ): Promise<void> {

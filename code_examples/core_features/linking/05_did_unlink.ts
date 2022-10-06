@@ -6,7 +6,7 @@ export async function unlinkAccountFromDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccountAddress: KeyringPair['address'],
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 

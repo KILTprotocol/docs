@@ -7,7 +7,7 @@ export async function createSimpleFullDid(
   }: {
     authentication: Kilt.NewDidVerificationKey
   },
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.DidDocument> {
   // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
   // The submitter account parameter, ensures that only an entity authorized by the DID subject
@@ -23,7 +23,7 @@ export async function createSimpleFullDid(
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned.
-  const fullDid = await Kilt.Did.query(
+  const fullDid = await Kilt.Did.fetch(
     Kilt.Did.getFullDidUriFromKey(authentication)
   )
 

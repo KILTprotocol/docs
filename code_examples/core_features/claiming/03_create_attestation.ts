@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createAttestation(
   attester: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback,
+  signCallback: Kilt.SignExtrinsicCallback,
   credential: Kilt.ICredential
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')

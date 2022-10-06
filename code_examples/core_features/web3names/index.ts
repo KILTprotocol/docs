@@ -23,10 +23,8 @@ export async function runAll(
       authentication
     },
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `did:kilt:${submitterAccount.address}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
@@ -37,10 +35,8 @@ export async function runAll(
     submitterAccount,
     randomWeb3Name,
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `${fullDid.uri}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
@@ -60,10 +56,8 @@ export async function runAll(
   }
   console.log('4 w3n) Release web3name')
   await releaseWeb3Name(fullDid.uri, submitterAccount, async ({ data }) => ({
-    data: authentication.sign(data),
-    keyType: authentication.type,
-    // Not relevant in this case
-    keyUri: `${fullDid.uri}${fullDid.authentication[0].id}`
+    signature: authentication.sign(data),
+    keyType: authentication.type
   }))
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
@@ -71,10 +65,8 @@ export async function runAll(
     submitterAccount,
     randomWeb3Name,
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `${fullDid.uri}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
   await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name)

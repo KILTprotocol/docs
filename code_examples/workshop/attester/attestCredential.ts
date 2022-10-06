@@ -11,7 +11,7 @@ export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
   credential: Kilt.ICredential,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
@@ -39,7 +39,7 @@ export async function attestingFlow(
   claimerDid: Kilt.DidUri,
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICredential> {
   // First the claimer
   const credential = generateCredential(claimerDid, {
@@ -83,10 +83,8 @@ if (require.main === module) {
         attesterAccount,
         attesterDidUri,
         async ({ data }) => ({
-          data: attestation.sign(data),
-          keyType: attestation.type,
-          // Not needed
-          keyUri: `${attesterDidUri}#id`
+          signature: attestation.sign(data),
+          keyType: attestation.type
         })
       )
       console.log('The claimer build their credential and now has to store it.')

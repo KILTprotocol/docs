@@ -25,7 +25,7 @@ export async function main() {
     )
     const keypair = keyring.getPair(address) as Kilt.KiltKeyringPair
     return {
-      data: keypair.sign(data),
+      signature: keypair.sign(data),
       keyType: keypair.type,
       keyUri: `${did.uri}${attestationKey.id}`
     }

@@ -34,10 +34,8 @@ export async function runAll(
       delegation
     },
     async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type,
-      // Not relevant in this case
-      keyUri: `did:kilt:${submitterAccount.address}#id`
+      signature: authentication.sign(data),
+      keyType: authentication.type
     })
   )
 
@@ -46,10 +44,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      data: attestation.sign(data),
-      keyType: attestation.type,
-      // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}#id`
+      signature: attestation.sign(data),
+      keyType: attestation.type
     })
   )
   console.log('2 claiming) Create credential')
@@ -59,10 +55,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      data: attestation.sign(data),
-      keyType: attestation.type,
-      // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}#id`
+      signature: attestation.sign(data),
+      keyType: attestation.type
     }),
     credential
   )
@@ -70,7 +64,7 @@ export async function runAll(
   const presentation = await createPresentation(
     credential,
     async ({ data }) => ({
-      data: lightDidAuthKey.sign(data),
+      signature: lightDidAuthKey.sign(data),
       keyType: lightDidAuthKey.type,
       keyUri: `${claimerLightDid.uri}${claimerLightDid.authentication[0].id}`
     }),
@@ -83,10 +77,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      data: attestation.sign(data),
-      keyType: attestation.type,
-      // Not relevant in this case
-      keyUri: `${attesterFullDid.uri}#id`
+      signature: attestation.sign(data),
+      keyType: attestation.type
     }),
     credential,
     false
