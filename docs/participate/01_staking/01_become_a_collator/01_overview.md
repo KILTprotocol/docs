@@ -37,7 +37,7 @@ There you will learn how to [**monitor**](../02_advanced_collator_section/04_mon
 
 As a collator you are required to keep track of updates and changes to configuration.
 You should also be accessible in case there is an issue with your node, as this affects not only your and your delegator's rewards, but also the entire network negatively.
-We recommend joining the [KILT Community Discord server](https://discord.gg/wBrXsB5G) and following (at least) the **collators** and **staking** channels.
+We recommend joining the [KILT Community Discord server](https://discord.gg/hX4pc8rdHS) and following (at least) the **collators** and **staking** channels.
 There, you will receive announcements about future updates and potential mandatory client upgrades.
 Moreover, the channels serve as a discussion hub for collators and delegators.
 
