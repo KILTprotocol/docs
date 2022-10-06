@@ -154,11 +154,13 @@ async function main(): Promise<void> {
 ;(async () => {
   try {
     await main()
+    process.exit(0)
   } catch (e) {
     if (e instanceof Error) {
       console.error(e.message)
     } else {
       console.error(JSON.stringify(e, null, 2))
     }
+    process.exit(1)
   }
 })()
