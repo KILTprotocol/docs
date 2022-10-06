@@ -12,7 +12,7 @@
     "generate": "ts-node src/main.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.29.0-rc.2"
+    "@kiltprotocol/sdk-js": "0.30.0-25"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
