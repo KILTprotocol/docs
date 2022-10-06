@@ -1,5 +1,3 @@
-import type { Keypair } from '@polkadot/util-crypto/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createCompleteFullDid(
@@ -10,11 +8,12 @@ export async function createCompleteFullDid(
     attestation,
     delegation
   }: {
-    authentication: Kilt.KiltKeyringPair
-    encryption: Keypair & { type: Kilt.EncryptionKeyType }
-    attestation: Kilt.KiltKeyringPair
-    delegation: Kilt.KiltKeyringPair
-  }
+    authentication: Kilt.NewDidVerificationKey
+    encryption: Kilt.NewDidEncryptionKey
+    attestation: Kilt.NewDidVerificationKey
+    delegation: Kilt.NewDidVerificationKey
+  },
+  signCallback: Kilt.SignCallback
 ): Promise<Kilt.DidDocument> {
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
@@ -32,10 +31,7 @@ export async function createCompleteFullDid(
       ]
     },
     submitterAccount.address,
-    async ({ data }) => ({
-      data: authentication.sign(data),
-      keyType: authentication.type
-    })
+    signCallback
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)

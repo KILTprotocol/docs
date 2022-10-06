@@ -21,7 +21,7 @@ export async function runAll(
   console.log('1 did) Create simple light DID')
   const { authentication: simpleLightDidAuth } = generateDidKeypairs()
   const simpleLightDid = createSimpleLightDid({
-    authentication: simpleLightDidAuth
+    authentication: simpleLightDidAuth as Kilt.NewLightDidVerificationKey
   })
   console.log('2 did) Create complete light DID')
   const {
@@ -29,7 +29,7 @@ export async function runAll(
     encryption: completeLightDidEnc
   } = generateDidKeypairs()
   createCompleteLightDid({
-    authentication: completeLightDidAuth,
+    authentication: completeLightDidAuth as Kilt.NewLightDidVerificationKey,
     encryption: completeLightDidEnc
   })
   console.log('3 did) Migrate first light DID to full DID')
@@ -41,9 +41,18 @@ export async function runAll(
   }))
   console.log('4 did) Create simple full DID')
   const { authentication: simpleFullDidAuth } = generateDidKeypairs()
-  const createdSimpleFullDid = await createSimpleFullDid(submitterAccount, {
-    authentication: simpleFullDidAuth
-  })
+  const createdSimpleFullDid = await createSimpleFullDid(
+    submitterAccount,
+    {
+      authentication: simpleFullDidAuth
+    },
+    async ({ data }) => ({
+      data: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type,
+      // Not needed
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
   console.log('5 did) Create complete full DID')
   const {
     authentication: completeFullDidAuth,
@@ -51,12 +60,21 @@ export async function runAll(
     attestation: completeFullDidAtt,
     delegation: completeFullDidDel
   } = generateDidKeypairs()
-  const createdCompleteFullDid = await createCompleteFullDid(submitterAccount, {
-    authentication: completeFullDidAuth,
-    encryption: completeFullDidEnc,
-    attestation: completeFullDidAtt,
-    delegation: completeFullDidDel
-  })
+  const createdCompleteFullDid = await createCompleteFullDid(
+    submitterAccount,
+    {
+      authentication: completeFullDidAuth,
+      encryption: completeFullDidEnc,
+      attestation: completeFullDidAtt,
+      delegation: completeFullDidDel
+    },
+    async ({ data }) => ({
+      data: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type,
+      // Not needed
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
   console.log('6 did) Update full DID created at step 5')
   const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
   const updatedFullDid = await updateFullDid(

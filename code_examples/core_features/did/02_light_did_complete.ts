@@ -1,13 +1,11 @@
-import type { Keypair } from '@polkadot/util-crypto/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export function createCompleteLightDid({
   authentication,
   encryption
 }: {
-  authentication: Kilt.KiltKeyringPair
-  encryption: Keypair & { type: Kilt.EncryptionKeyType }
+  authentication: Kilt.NewLightDidVerificationKey
+  encryption: Kilt.NewDidEncryptionKey
 }): Kilt.DidDocument {
   // Example service for the DID
   const service: Kilt.DidServiceEndpoint[] = [
@@ -20,7 +18,7 @@ export function createCompleteLightDid({
 
   // Create the KILT light DID with the information generated.
   const lightDID = Kilt.Did.createLightDidDocument({
-    authentication: [authentication as Kilt.NewLightDidVerificationKey],
+    authentication: [authentication],
     keyAgreement: [encryption],
     service
   })

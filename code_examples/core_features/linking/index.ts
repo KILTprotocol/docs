@@ -25,9 +25,18 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running linking flow...')
   const { authentication } = generateKeypairs()
-  const fullDid = await createSimpleFullDid(submitterAccount, {
-    authentication
-  })
+  const fullDid = await createSimpleFullDid(
+    submitterAccount,
+    {
+      authentication
+    },
+    async ({ data }) => ({
+      data: authentication.sign(data),
+      keyType: authentication.type,
+      // Not relevant in this case
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
     fullDid.uri,

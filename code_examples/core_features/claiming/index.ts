@@ -19,16 +19,27 @@ export async function runAll(
   console.log('Running claiming flow...')
   let { authentication, encryption, attestation, delegation } =
     generateDidKeypairs()
-  const claimerLightDid = createSimpleLightDid({ authentication })
+  const claimerLightDid = createSimpleLightDid({
+    authentication: authentication as Kilt.NewLightDidVerificationKey
+  })
   const lightDidAuthKey = authentication
   ;({ authentication, encryption, attestation, delegation } =
     generateDidKeypairs())
-  const attesterFullDid = await createCompleteFullDid(submitterAccount, {
-    authentication,
-    encryption,
-    attestation,
-    delegation
-  })
+  const attesterFullDid = await createCompleteFullDid(
+    submitterAccount,
+    {
+      authentication,
+      encryption,
+      attestation,
+      delegation
+    },
+    async ({ data }) => ({
+      data: authentication.sign(data),
+      keyType: authentication.type,
+      // Not relevant in this case
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(

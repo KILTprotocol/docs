@@ -17,9 +17,18 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running web3name flow...')
   const { authentication } = generateKeypairs()
-  const fullDid = await createSimpleFullDid(submitterAccount, {
-    authentication
-  })
+  const fullDid = await createSimpleFullDid(
+    submitterAccount,
+    {
+      authentication
+    },
+    async ({ data }) => ({
+      data: authentication.sign(data),
+      keyType: authentication.type,
+      // Not relevant in this case
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
   const randomWeb3Name = randomUUID().substring(0, 32)
 
   console.log('1 w3n) Claim web3name')
