@@ -69,8 +69,8 @@ export async function runAll(
       delegation: completeFullDidDel
     },
     async ({ data }) => ({
-      data: simpleFullDidAuth.sign(data),
-      keyType: simpleFullDidAuth.type,
+      data: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type,
       // Not needed
       keyUri: `did:kilt:${submitterAccount.address}#id`
     })

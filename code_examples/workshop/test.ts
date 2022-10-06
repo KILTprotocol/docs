@@ -107,5 +107,13 @@ async function testWorkshop() {
 }
 
 ;(async () => {
-  await testWorkshop()
+  try {
+    await testWorkshop()
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(e.message)
+    } else {
+      console.error(JSON.stringify(e, null, 2))
+    }
+  }
 })()

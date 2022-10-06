@@ -152,5 +152,13 @@ async function main(): Promise<void> {
 }
 
 ;(async () => {
-  await main()
+  try {
+    await main()
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(e.message)
+    } else {
+      console.error(JSON.stringify(e, null, 2))
+    }
+  }
 })()
