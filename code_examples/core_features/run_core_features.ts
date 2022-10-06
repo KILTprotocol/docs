@@ -51,7 +51,7 @@ async function endowAccounts(
     // Try a second time after a small delay and fetching the right nonce.
     const waitingTime = 12_000 // 12 seconds
     console.log(
-      `First submission failed. Waiting ${waitingTime} ms before retrying.`
+      `First submission failed for core features. Waiting ${waitingTime} ms before retrying.`
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
@@ -60,6 +60,7 @@ async function endowAccounts(
       nonce: -1
     })
     await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
+    console.log('Successfully transferred tokens')
   }
 }
 
@@ -151,12 +152,5 @@ async function main(): Promise<void> {
 }
 
 ;(async () => {
-  try {
-    await main()
-    process.exit(0)
-  } catch (e) {
-    console.log('Error in the core features test')
-    console.log(e.toString())
-    process.exit(1)
-  }
+  await main()
 })()

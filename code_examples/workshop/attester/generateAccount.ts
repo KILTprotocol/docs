@@ -26,10 +26,9 @@ if (require.main === module) {
       console.log('save to mnemonic and address to .env to continue!\n\n')
       console.log(`ATTESTER_ACCOUNT_MNEMONIC="${mnemonic}"`)
       console.log(`ATTESTER_ACCOUNT_ADDRESS=${account.address}\n\n`)
-      process.exit(0)
     } catch (e) {
-      console.log('Error while setting up attester account', e)
-      process.exit(1)
+      console.log('Error while setting up attester account')
+      throw e
     }
   })()
 }

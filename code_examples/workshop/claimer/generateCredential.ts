@@ -38,10 +38,9 @@ if (require.main === module) {
         '⚠️  save this to ./claimer/_credential.json for testing  ⚠️\n\n'
       )
       console.log(JSON.stringify(request, null, 2))
-      process.exit(0)
     } catch (e) {
-      console.log('Error while building credential', e)
-      process.exit(1)
+      console.log('Error while building credential')
+      throw e
     }
   })()
 }

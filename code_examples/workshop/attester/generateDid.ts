@@ -59,10 +59,9 @@ if (require.main === module) {
 
       console.log('\nsave following to .env to continue\n')
       console.error(`ATTESTER_DID_MNEMONIC=${mnemonic}\n`)
-      process.exit(0)
     } catch (e) {
-      console.log('Error while creating attester DID', e)
-      process.exit(1)
+      console.log('Error while creating attester DID')
+      throw e
     }
   })()
 }

@@ -58,24 +58,15 @@ async function testWorkshop() {
     await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
-    const waitingTime = 2_000 // 2 seconds
+    const waitingTime = 12_000 // 12 seconds
     console.log(
-      `First submission failed. Waiting ${waitingTime} ms before retrying.`
+      `First submission failed for workshop. Waiting ${waitingTime} ms before retrying.`
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
     // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool
     const resignedBatchTx = await tx.signAsync(faucetAccount, { nonce: -1 })
     await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
-  }
-  try {
-    await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
-  } catch {
-    // Try a second time after a timeout if the first time failed.
-    const waitingTime = 12_000
-    console.log(`First submission failed. Waiting ${waitingTime} ms`)
-    await setTimeout(waitingTime)
-    await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
   }
 
   console.log('Successfully transferred tokens')
@@ -116,11 +107,5 @@ async function testWorkshop() {
 }
 
 ;(async () => {
-  try {
-    await testWorkshop()
-    process.exit(0)
-  } catch (e) {
-    console.log('Error in the workshop', e)
-    process.exit(1)
-  }
+  await testWorkshop()
 })()

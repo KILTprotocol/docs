@@ -59,10 +59,9 @@ if (require.main === module) {
         // Not needed
         keyUri: `${attesterDidUri}#id`
       }))
-      process.exit(0)
     } catch (e) {
-      console.log('Error while checking on chain ctype', e)
-      process.exit(1)
+      console.log('Error while checking on chain ctype')
+      throw e
     }
   })()
 }

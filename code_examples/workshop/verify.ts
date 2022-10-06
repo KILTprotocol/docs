@@ -73,10 +73,9 @@ if (require.main === module) {
         keyType: authentication.type,
         keyUri: `${claimerDid.uri}${claimerDid.authentication[0].id}`
       }))
-      process.exit(0)
     } catch (e) {
-      console.log('Error in the verification flow', e)
-      process.exit(1)
+      console.log('Error in the verification flow')
+      throw e
     }
   })()
 }

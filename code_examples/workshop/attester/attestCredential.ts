@@ -92,10 +92,9 @@ if (require.main === module) {
       console.log('The claimer build their credential and now has to store it.')
       console.log('Add the following to your .env file. ')
       console.log(`CLAIMER_CREDENTIAL='${JSON.stringify(credential)}'`)
-      process.exit(0)
     } catch (e) {
-      console.log('Error while going throw attesting workflow', e)
-      process.exit(1)
+      console.log('Error while going throw attesting workflow')
+      throw e
     }
   })()
 }

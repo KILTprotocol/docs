@@ -25,10 +25,9 @@ if (require.main === module) {
       const mnemonic = mnemonicGenerate()
       console.log('\nsave following to .env to continue\n')
       console.log(`CLAIMER_DID_MNEMONIC="${mnemonic}"`)
-      process.exit(0)
     } catch (e) {
-      console.log('Error while setting up claimer DID', e)
-      process.exit(1)
+      console.log('Error while setting up claimer DID')
+      throw e
     }
   })()
 }
