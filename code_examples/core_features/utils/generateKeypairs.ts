@@ -1,10 +1,14 @@
-import { randomAsU8a } from '@polkadot/util-crypto'
+import { mnemonicGenerate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function generateKeypairs(mnemonic = randomAsU8a(32)) {
-  const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed(mnemonic)
-  const encryption = Kilt.Utils.Crypto.makeEncryptionKeyFromSeed(mnemonic)
+export function generateKeypairs(mnemonic = mnemonicGenerate()) {
+  const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed(
+    mnemonicToMiniSecret(mnemonic)
+  )
+  const encryption = Kilt.Utils.Crypto.makeEncryptionKeyFromSeed(
+    mnemonicToMiniSecret(mnemonic)
+  )
   const attestation = authentication.derive(
     '//attestation'
   ) as Kilt.KiltKeyringPair
