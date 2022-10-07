@@ -156,11 +156,7 @@ async function main(): Promise<void> {
     await main()
     process.exit(0)
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message)
-    } else {
-      console.error(JSON.stringify(e, null, 2))
-    }
+    console.error(e)
     process.exit(1)
   }
 })()

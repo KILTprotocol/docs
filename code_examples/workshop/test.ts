@@ -111,11 +111,7 @@ async function testWorkshop() {
     await testWorkshop()
     process.exit(0)
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message)
-    } else {
-      console.error(JSON.stringify(e, null, 2))
-    }
+    console.error(e)
     process.exit(1)
   }
 })()
