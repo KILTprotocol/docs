@@ -9,9 +9,19 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()) {
   const encryption = Kilt.Utils.Crypto.makeEncryptionKeyFromSeed(
     mnemonicToMiniSecret(mnemonic)
   )
+  const attestation = authentication.derive(
+    '//attestation'
+  ) as Kilt.KiltKeyringPair
+  const delegation = authentication.derive(
+    '//delegation'
+  ) as Kilt.KiltKeyringPair
 
   return {
     authentication,
-    encryption
+    encryption,
+    attestation,
+    delegation
   }
 }
+
+export default generateKeypairs

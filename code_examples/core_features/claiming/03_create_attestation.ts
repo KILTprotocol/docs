@@ -1,14 +1,13 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createAttestation(
-  api: ApiPromise,
   attester: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create an attestation object and write its root hash on the chain
   // using the provided attester's full DID.
   const { cTypeHash, claimHash, delegationId } =

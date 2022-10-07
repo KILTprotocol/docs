@@ -51,7 +51,7 @@ async function endowAccounts(
     // Try a second time after a small delay and fetching the right nonce.
     const waitingTime = 12_000 // 12 seconds
     console.log(
-      `First submission failed. Waiting ${waitingTime} ms before retrying.`
+      `First submission failed for core features. Waiting ${waitingTime} ms before retrying.`
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
@@ -60,6 +60,7 @@ async function endowAccounts(
       nonce: -1
     })
     await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
+    console.log('Successfully transferred tokens')
   }
 }
 
@@ -79,7 +80,7 @@ async function main(): Promise<void> {
   }
   await gettingStartedFlow()
 
-  Kilt.config({ submitTxResolveOn: resolveOn })
+  Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
   const api = await Kilt.connect(nodeAddress)
 
   const keyring = new Keyring({
@@ -111,10 +112,42 @@ async function main(): Promise<void> {
 
   // These should not conflict anymore since all accounts are different
   await Promise.all([
-    runAllClaiming(api, claimingTestAccount),
-    runAllDid(api, didTestAccount),
-    runAllWeb3(api, web3TestAccount),
-    runAllLinking(api, accountLinkingTestAccount, faucetAccount)
+    (async () => {
+      try {
+        await runAllClaiming(claimingTestAccount)
+      } catch (e) {
+        console.error('Claiming flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllDid(didTestAccount)
+      } catch (e) {
+        console.error('DID flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllWeb3(web3TestAccount)
+      } catch (e) {
+        console.error('Web3name flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllLinking(
+          nodeAddress,
+          accountLinkingTestAccount,
+          faucetAccount
+        )
+      } catch (e) {
+        console.error('Linking flow failed')
+        throw e
+      }
+    })()
   ])
 }
 
@@ -123,7 +156,7 @@ async function main(): Promise<void> {
     await main()
     process.exit(0)
   } catch (e) {
-    console.log('Error in the core features test', e)
+    console.error(e)
     process.exit(1)
   }
 })()

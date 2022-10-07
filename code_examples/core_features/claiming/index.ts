@@ -1,7 +1,3 @@
-import type { ApiPromise } from '@polkadot/api'
-
-import { Keyring } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createCompleteFullDid } from '../did/05_full_did_complete'
@@ -15,53 +11,88 @@ import { requestAttestation } from './02_request_attestation'
 import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
-import { signCallbackForKeyringAndDid } from '../utils'
+import generateDidKeypairs from '../utils/generateKeypairs'
 
 export async function runAll(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
-  const claimerLightDid = createSimpleLightDid(keyring)
-  const attesterFullDid = await createCompleteFullDid(keyring, submitterAccount)
+  let { authentication, encryption, attestation, delegation } =
+    generateDidKeypairs()
+  const claimerLightDid = createSimpleLightDid({
+    authentication
+  })
+  const lightDidAuthKey = authentication
+  ;({ authentication, encryption, attestation, delegation } =
+    generateDidKeypairs())
+  const attesterFullDid = await createCompleteFullDid(
+    submitterAccount,
+    {
+      authentication,
+      encryption,
+      attestation,
+      delegation
+    },
+    async ({ data }) => ({
+      data: authentication.sign(data),
+      keyType: authentication.type,
+      // Not relevant in this case
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
+  )
 
   console.log('1 claming) Create CType')
   const ctype = await createDriversLicenseCType(
-    api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallbackForKeyringAndDid(keyring, attesterFullDid)
+    async ({ data }) => ({
+      data: attestation.sign(data),
+      keyType: attestation.type,
+      // Not relevant in this case
+      keyUri: `${attesterFullDid.uri}#id`
+    })
   )
   console.log('2 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
   console.log('3 claiming) Create attestation and credential')
   await createAttestation(
-    api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallbackForKeyringAndDid(keyring, attesterFullDid),
+    async ({ data }) => ({
+      data: attestation.sign(data),
+      keyType: attestation.type,
+      // Not relevant in this case
+      keyUri: `${attesterFullDid.uri}#id`
+    }),
     credential
   )
   console.log('4 claiming) Create selective disclosure presentation')
   const presentation = await createPresentation(
     credential,
-    signCallbackForKeyringAndDid(keyring, claimerLightDid),
+    async ({ data }) => ({
+      data: lightDidAuthKey.sign(data),
+      keyType: lightDidAuthKey.type,
+      keyUri: `${claimerLightDid.uri}${claimerLightDid.authentication[0].id}`
+    }),
     ['name', 'id']
   )
   console.log('5 claiming) Verify selective disclosure presentation')
   await verifyPresentation(presentation)
   console.log('6 claiming) Revoke credential')
   await revokeCredential(
-    api,
     attesterFullDid.uri,
     submitterAccount,
-    signCallbackForKeyringAndDid(keyring, attesterFullDid),
+    async ({ data }) => ({
+      data: attestation.sign(data),
+      keyType: attestation.type,
+      // Not relevant in this case
+      keyUri: `${attesterFullDid.uri}#id`
+    }),
     credential,
     false
   )
   console.log('7 claiming) Reclaim attestation deposit')
-  await reclaimAttestationDeposit(api, submitterAccount, credential)
+  await reclaimAttestationDeposit(submitterAccount, credential)
 
   console.log('Claiming flow completed!')
 }

@@ -1,8 +1,8 @@
 import { config as envConfig } from 'dotenv'
 import { setTimeout } from 'timers/promises'
 
-import { BN } from '@polkadot/util'
-import { Keyring } from '@polkadot/api'
+import { BN, hexToU8a } from '@polkadot/util'
+import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -10,6 +10,8 @@ import { attestingFlow } from './attester/attestCredential'
 import { createFullDid } from './attester/generateDid'
 import { ensureStoredCtype } from './attester/generateCtype'
 import { generateAccount } from './attester/generateAccount'
+import { generateKeypairs as generateAttesterKeypairs } from './attester/generateKeypairs'
+import { generateKeypairs as generateClaimerKeypairs } from './claimer/generateKeypairs'
 import { generateCredential } from './claimer/generateCredential'
 import { generateLightDid } from './claimer/generateLightDid'
 import { verificationFlow } from './verify'
@@ -19,26 +21,18 @@ const SEED_ENV = 'FAUCET_SEED'
 async function testWorkshop() {
   envConfig()
   process.env.WSS_ADDRESS = 'wss://peregrine.kilt.io/parachain-public-ws'
-  Kilt.config({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
+  Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
   const api = await Kilt.connect(process.env.WSS_ADDRESS)
 
-  const keyring = new Keyring({
-    ss58Format: Kilt.Utils.ss58Format
-  })
-
   // setup attester account
-  const { account: attesterAccount, mnemonic: attesterMnemonic } =
-    await generateAccount(keyring)
-  process.env.ATTESTER_MNEMONIC = attesterMnemonic
-  process.env.ATTESTER_ADDRESS = attesterAccount.address
+  const { account: attesterAccount } = await generateAccount()
 
   // setup claimer & create a credential
-  const { lightDid: claimerDid, mnemonic: claimerMnemonic } =
-    generateLightDid(keyring)
-  process.env.CLAIMER_DID_URI = claimerDid.uri
-  process.env.CLAIMER_MNEMONIC = claimerMnemonic
+  const claimerMnemonic = mnemonicGenerate()
+  const { authentication } = generateClaimerKeypairs(claimerMnemonic)
+  const lightDid = generateLightDid(claimerMnemonic)
 
-  generateCredential(keyring, {
+  generateCredential(lightDid.uri, {
     age: 27,
     name: 'Karl'
   })
@@ -51,7 +45,10 @@ async function testWorkshop() {
     throw 'Account seed is missing'
   }
 
-  const faucetAccount = keyring.createFromUri(faucetSeed, {}, 'sr25519')
+  const faucetAccount = Kilt.Utils.Crypto.makeKeypairFromSeed(
+    hexToU8a(faucetSeed),
+    'sr25519'
+  )
 
   const tx = api.tx.balances.transfer(
     attesterAccount.address,
@@ -61,9 +58,9 @@ async function testWorkshop() {
     await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
-    const waitingTime = 2_000 // 2 seconds
+    const waitingTime = 12_000 // 12 seconds
     console.log(
-      `First submission failed. Waiting ${waitingTime} ms before retrying.`
+      `First submission failed for workshop. Waiting ${waitingTime} ms before retrying.`
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
@@ -71,27 +68,42 @@ async function testWorkshop() {
     const resignedBatchTx = await tx.signAsync(faucetAccount, { nonce: -1 })
     await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
   }
-  try {
-    await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
-  } catch {
-    // Try a second time after a timeout if the first time failed.
-    const waitingTime = 12_000
-    console.log(`First submission failed. Waiting ${waitingTime} ms`)
-    await setTimeout(waitingTime)
-    await Kilt.Blockchain.signAndSubmitTx(tx, faucetAccount)
-  }
 
   console.log('Successfully transferred tokens')
 
-  // create attester did & ensure ctype
-  const attesterDid = await createFullDid(keyring)
-  process.env.ATTESTER_DID_URI = attesterDid.uri
+  // Create attester DID & ensure CType
+  const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
+    await createFullDid(attesterAccount)
+  const { attestation } = generateAttesterKeypairs(attesterMnemonic)
 
-  await ensureStoredCtype(api, keyring)
+  await ensureStoredCtype(
+    attesterAccount,
+    attesterDid.uri,
+    async ({ data }) => ({
+      data: attestation.sign(data),
+      keyType: attestation.type,
+      // Not needed
+      keyUri: `${attesterDid.uri}#id`
+    })
+  )
 
-  // do attestation & verification
-  process.env.CLAIMER_CREDENTIAL = JSON.stringify(await attestingFlow(api))
-  await verificationFlow(api)
+  // Do attestation & verification
+  const credential = await attestingFlow(
+    lightDid.uri,
+    attesterAccount,
+    attesterDid.uri,
+    async ({ data }) => ({
+      data: attestation.sign(data),
+      keyType: attestation.type,
+      // Not needed
+      keyUri: `${attesterDid.uri}#id`
+    })
+  )
+  await verificationFlow(credential, async ({ data }) => ({
+    data: authentication.sign(data),
+    keyType: authentication.type,
+    keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
+  }))
 }
 
 ;(async () => {
@@ -99,7 +111,7 @@ async function testWorkshop() {
     await testWorkshop()
     process.exit(0)
   } catch (e) {
-    console.log('Error in the workshop', e)
+    console.error(e)
     process.exit(1)
   }
 })()

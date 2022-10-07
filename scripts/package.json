@@ -3,6 +3,7 @@
   "name": "kilt-docs-scripts",
   "license": "MIT",
   "scripts": {
+    "check-ts": "yarn tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",
@@ -11,7 +12,7 @@
     "generate": "ts-node src/main.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.30.0-12"
+    "@kiltprotocol/sdk-js": "0.29.0-rc.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",

@@ -1,12 +1,11 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimAttestationDeposit(
-  api: ApiPromise,
   depositPayer: Kilt.KiltKeyringPair,
   credential: Kilt.ICredential
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Generate the submittable extrinsic to claim the deposit back.
   const depositReclaimTx = api.tx.attestation.reclaimDeposit(
     credential.rootHash

@@ -1,53 +1,33 @@
 import { config as envConfig } from 'dotenv'
 
-import { cryptoWaitReady, mnemonicGenerate } from '@polkadot/util-crypto'
-import { Keyring } from '@polkadot/api'
+import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateKeypairs } from './generateKeypairs'
 
-export function generateLightDid(keyring: Keyring): {
-  lightDid: Kilt.DidDocument
-  mnemonic: string
-} {
-  // create secret and DID public keys
-  const mnemonic = mnemonicGenerate()
-  const { authenticationKey, encryptionKey } = generateKeypairs(
-    keyring,
-    mnemonic
-  )
-
-  // create the DID
-  const lightDid = Kilt.Did.createLightDidDocument({
-    authentication: [authenticationKey as Kilt.NewLightDidVerificationKey],
-    keyAgreement: [encryptionKey]
+export function generateLightDid(mnemonic: string): Kilt.DidDocument {
+  const { authentication, encryption } = generateKeypairs(mnemonic)
+  return Kilt.Did.createLightDidDocument({
+    authentication: [authentication],
+    keyAgreement: [encryption]
   })
-
-  return {
-    lightDid,
-    mnemonic
-  }
 }
 
-// don't execute if this is imported by another file
+// Don't execute if this is imported by another file
 if (require.main === module) {
   ;(async () => {
     envConfig()
-    await cryptoWaitReady()
-    const keyring = new Keyring({
-      ss58Format: Kilt.Utils.ss58Format
-    })
 
     try {
-      const { lightDid, mnemonic } = generateLightDid(keyring)
+      await Kilt.init()
+
+      const mnemonic = mnemonicGenerate()
       console.log('\nsave following to .env to continue\n')
-      console.log(`CLAIMER_MNEMONIC="${mnemonic}"`)
-      console.log(`CLAIMER_DID_URI="${lightDid.uri}"`)
-      process.exit(0)
+      console.log(`CLAIMER_DID_MNEMONIC="${mnemonic}"`)
     } catch (e) {
-      console.log('Error while setting up claimer DID', e)
-      process.exit(1)
+      console.log('Error while setting up claimer DID')
+      throw e
     }
   })()
 }

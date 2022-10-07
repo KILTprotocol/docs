@@ -1,15 +1,15 @@
-import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function unlinkAccountFromDid(
-  api: ApiPromise,
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   linkedAccountAddress: KeyringPair['address'],
   signCallback: Kilt.SignCallback
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // The DID owner removes the link between itself and the specified account.
   const accountUnlinkTx =
     api.tx.didLookup.removeAccountAssociation(linkedAccountAddress)

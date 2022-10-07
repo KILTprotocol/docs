@@ -12,7 +12,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.30.0-12",
+    "@kiltprotocol/sdk-js": "0.29.0-rc.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

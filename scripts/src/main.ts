@@ -119,11 +119,5 @@ async function main() {
 }
 
 ;(async () => {
-  try {
-    await main()
-    process.exit(0)
-  } catch (e) {
-    console.error(e)
-    process.exit(1)
-  }
+  await main()
 })()

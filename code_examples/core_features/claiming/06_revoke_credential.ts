@@ -1,15 +1,14 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function revokeCredential(
-  api: ApiPromise,
   attester: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignCallback,
   credential: Kilt.ICredential,
   shouldRemove = false
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   const tx = shouldRemove
     ? // If the attestation is to be removed, create a `remove` tx,
       // which revokes and removes the attestation in one go.

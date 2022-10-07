@@ -1,7 +1,3 @@
-import type { ApiPromise } from '@polkadot/api'
-
-import { Keyring } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { batchCTypeCreationExtrinsics } from './07_full_did_batch'
@@ -15,52 +11,95 @@ import { migrateLightDid } from './03_light_did_migrate'
 import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
 import { updateFullDid } from './06_full_did_update'
 
-import { signCallbackForKeyringAndDid } from '../utils'
+import generateDidKeypairs from '../utils/generateKeypairs'
 
 export async function runAll(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running DID flow...')
-  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
 
   console.log('1 did) Create simple light DID')
-  const simpleLightDid = createSimpleLightDid(keyring)
+  const { authentication: simpleLightDidAuth } = generateDidKeypairs()
+  const simpleLightDid = createSimpleLightDid({
+    authentication: simpleLightDidAuth
+  })
   console.log('2 did) Create complete light DID')
-  createCompleteLightDid(keyring)
+  const {
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  } = generateDidKeypairs()
+  createCompleteLightDid({
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  })
   console.log('3 did) Migrate first light DID to full DID')
-  await migrateLightDid(
-    simpleLightDid,
-    submitterAccount,
-    signCallbackForKeyringAndDid(keyring, simpleLightDid)
-  )
+  await migrateLightDid(simpleLightDid, submitterAccount, async ({ data }) => ({
+    data: simpleLightDidAuth.sign(data),
+    keyType: simpleLightDidAuth.type,
+    // Not relevant in this case
+    keyUri: `${simpleLightDid.uri}#id`
+  }))
   console.log('4 did) Create simple full DID')
+  const { authentication: simpleFullDidAuth } = generateDidKeypairs()
   const createdSimpleFullDid = await createSimpleFullDid(
-    keyring,
-    submitterAccount
+    submitterAccount,
+    {
+      authentication: simpleFullDidAuth
+    },
+    async ({ data }) => ({
+      data: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type,
+      // Not needed
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
   )
   console.log('5 did) Create complete full DID')
+  const {
+    authentication: completeFullDidAuth,
+    encryption: completeFullDidEnc,
+    attestation: completeFullDidAtt,
+    delegation: completeFullDidDel
+  } = generateDidKeypairs()
   const createdCompleteFullDid = await createCompleteFullDid(
-    keyring,
     submitterAccount,
-    undefined
+    {
+      authentication: completeFullDidAuth,
+      encryption: completeFullDidEnc,
+      attestation: completeFullDidAtt,
+      delegation: completeFullDidDel
+    },
+    async ({ data }) => ({
+      data: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type,
+      // Not needed
+      keyUri: `did:kilt:${submitterAccount.address}#id`
+    })
   )
   console.log('6 did) Update full DID created at step 5')
+  const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
   const updatedFullDid = await updateFullDid(
-    api,
-    keyring,
+    newCompleteFullDidAuth,
     createdCompleteFullDid.uri,
     submitterAccount,
-    signCallbackForKeyringAndDid(keyring, createdCompleteFullDid)
+    async ({ data }) => ({
+      data: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type,
+      // Not relevant in this case
+      keyUri: `${createdCompleteFullDid.uri}#id`
+    })
   )
   console.log(
     '7 did) Use the same full DID created at step 5 to sign the batch'
   )
   await batchCTypeCreationExtrinsics(
-    api,
     submitterAccount,
     updatedFullDid.uri,
-    signCallbackForKeyringAndDid(keyring, updatedFullDid)
+    async ({ data }) => ({
+      data: completeFullDidAtt.sign(data),
+      keyType: completeFullDidAtt.type,
+      // Not relevant in this case
+      keyUri: `${updatedFullDid.uri}#id`
+    })
   )
   console.log(
     '8 did) Use the same full DID created at step 5 to generate the signature'
@@ -68,16 +107,24 @@ export async function runAll(
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
     'test-payload',
-    signCallbackForKeyringAndDid(keyring, updatedFullDid)
+    async ({ data }) => ({
+      data: newCompleteFullDidAuth.sign(data),
+      keyType: newCompleteFullDidAuth.type,
+      keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
+    })
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
-    api,
     submitterAccount,
     createdSimpleFullDid.uri,
-    signCallbackForKeyringAndDid(keyring, createdSimpleFullDid)
+    async ({ data }) => ({
+      data: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type,
+      // Not relevant in this case
+      keyUri: `${createdSimpleFullDid.uri}#id`
+    })
   )
   console.log('10 did) Delete full DID created at step 5')
-  await reclaimFullDidDeposit(api, submitterAccount, createdCompleteFullDid.uri)
+  await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }

@@ -1,5 +1,3 @@
-import { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 function getRandomCType(): Kilt.ICType {
@@ -21,22 +19,25 @@ function getRandomCType(): Kilt.ICType {
 }
 
 export async function batchCTypeCreationExtrinsics(
-  api: ApiPromise,
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
   const ctype1CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype1))
-  const ctype2 = getRandomCType()
-  const ctype2CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype2))
+  // const ctype2 = getRandomCType()
+  // const ctype2CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype2))
 
   // Create the DID-signed batch
   const authorizedBatch = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
-    extrinsics: [ctype1CreationTx, ctype2CreationTx],
+    // FIXME: Re-add the didServiceRemoveTx once the batch fix is added
+    // extrinsics: [ctype1CreationTx, ctype2CreationTx],
+    extrinsics: [ctype1CreationTx],
     sign: signCallback,
     submitter: submitterAccount.address
   })
