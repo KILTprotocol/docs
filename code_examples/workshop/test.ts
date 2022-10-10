@@ -80,10 +80,8 @@ async function testWorkshop() {
     attesterAccount,
     attesterDid.uri,
     async ({ data }) => ({
-      data: attestation.sign(data),
-      keyType: attestation.type,
-      // Not needed
-      keyUri: `${attesterDid.uri}#id`
+      signature: attestation.sign(data),
+      keyType: attestation.type
     })
   )
 
@@ -93,14 +91,12 @@ async function testWorkshop() {
     attesterAccount,
     attesterDid.uri,
     async ({ data }) => ({
-      data: attestation.sign(data),
-      keyType: attestation.type,
-      // Not needed
-      keyUri: `${attesterDid.uri}#id`
+      signature: attestation.sign(data),
+      keyType: attestation.type
     })
   )
   await verificationFlow(credential, async ({ data }) => ({
-    data: authentication.sign(data),
+    signature: authentication.sign(data),
     keyType: authentication.type,
     keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
   }))

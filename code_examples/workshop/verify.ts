@@ -69,7 +69,7 @@ if (require.main === module) {
       // Load credential and claimer DID
       const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
       await verificationFlow(credential, async ({ data }) => ({
-        data: authentication.sign(data),
+        signature: authentication.sign(data),
         keyType: authentication.type,
         keyUri: `${claimerDid.uri}${claimerDid.authentication[0].id}`
       }))

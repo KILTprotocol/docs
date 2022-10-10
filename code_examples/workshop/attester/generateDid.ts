@@ -26,14 +26,14 @@ export async function createFullDid(
     },
     submitterAccount.address,
     async ({ data }) => ({
-      data: authentication.sign(data),
+      signature: authentication.sign(data),
       keyType: authentication.type
     })
   )
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
-  const fullDid = await Kilt.Did.query(
+  const fullDid = await Kilt.Did.fetch(
     Kilt.Did.getFullDidUriFromKey(authentication)
   )
 

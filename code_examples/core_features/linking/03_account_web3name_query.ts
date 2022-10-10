@@ -6,7 +6,7 @@ export async function queryAccountWeb3Name(
   lookupAccountAddress: KeyringPair['address']
 ): Promise<Kilt.Did.Web3Name | null> {
   // Only function to call to perform the lookup.
-  const accountWeb3Name = await Kilt.Did.queryWeb3Name(lookupAccountAddress)
+  const accountWeb3Name = await Kilt.Did.fetchWeb3Name(lookupAccountAddress)
   if (accountWeb3Name) {
     console.log(
       `web3name for account "${lookupAccountAddress}" -> "${accountWeb3Name}"`

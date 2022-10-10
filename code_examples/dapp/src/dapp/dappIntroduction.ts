@@ -18,7 +18,7 @@ export async function main() {
   const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
   const dAppName = 'Your dApp Name'
 
-  const fullDid = await Kilt.Did.query(did)
+  const fullDid = await Kilt.Did.fetch(did)
   // If there is no DID, or the DID does not have any key agreement key, return
   if (!fullDid || !fullDid.keyAgreement || !fullDid.keyAgreement[0]) {
     return

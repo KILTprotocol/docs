@@ -9,7 +9,7 @@ import { getCtypeSchema } from './ctypeSchema'
 export async function ensureStoredCtype(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICType> {
   const api = Kilt.ConfigService.get('api')
 
@@ -54,10 +54,8 @@ if (require.main === module) {
       const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
 
       await ensureStoredCtype(account, attesterDidUri, async ({ data }) => ({
-        data: attestation.sign(data),
-        keyType: attestation.type,
-        // Not needed
-        keyUri: `${attesterDidUri}#id`
+        signature: attestation.sign(data),
+        keyType: attestation.type
       }))
     } catch (e) {
       console.log('Error while checking on chain ctype')

@@ -4,7 +4,7 @@ export async function updateFullDid(
   newAuthKeypair: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.DidDocument> {
   // Get the cached api object
   const api = Kilt.ConfigService.get('api')
@@ -33,7 +33,7 @@ export async function updateFullDid(
   await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
-  const updatedDidDetails = await Kilt.Did.query(fullDid)
+  const updatedDidDetails = await Kilt.Did.fetch(fullDid)
 
   if (!updatedDidDetails) {
     throw `Could not find the updated DID ${fullDid}`

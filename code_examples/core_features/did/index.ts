@@ -34,10 +34,8 @@ export async function runAll(
   })
   console.log('3 did) Migrate first light DID to full DID')
   await migrateLightDid(simpleLightDid, submitterAccount, async ({ data }) => ({
-    data: simpleLightDidAuth.sign(data),
-    keyType: simpleLightDidAuth.type,
-    // Not relevant in this case
-    keyUri: `${simpleLightDid.uri}#id`
+    signature: simpleLightDidAuth.sign(data),
+    keyType: simpleLightDidAuth.type
   }))
   console.log('4 did) Create simple full DID')
   const { authentication: simpleFullDidAuth } = generateDidKeypairs()
@@ -47,10 +45,8 @@ export async function runAll(
       authentication: simpleFullDidAuth
     },
     async ({ data }) => ({
-      data: simpleFullDidAuth.sign(data),
-      keyType: simpleFullDidAuth.type,
-      // Not needed
-      keyUri: `did:kilt:${submitterAccount.address}#id`
+      signature: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type
     })
   )
   console.log('5 did) Create complete full DID')
@@ -69,10 +65,8 @@ export async function runAll(
       delegation: completeFullDidDel
     },
     async ({ data }) => ({
-      data: completeFullDidAuth.sign(data),
-      keyType: completeFullDidAuth.type,
-      // Not needed
-      keyUri: `did:kilt:${submitterAccount.address}#id`
+      signature: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type
     })
   )
   console.log('6 did) Update full DID created at step 5')
@@ -82,10 +76,8 @@ export async function runAll(
     createdCompleteFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      data: completeFullDidAuth.sign(data),
-      keyType: completeFullDidAuth.type,
-      // Not relevant in this case
-      keyUri: `${createdCompleteFullDid.uri}#id`
+      signature: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type
     })
   )
   console.log(
@@ -95,10 +87,8 @@ export async function runAll(
     submitterAccount,
     updatedFullDid.uri,
     async ({ data }) => ({
-      data: completeFullDidAtt.sign(data),
-      keyType: completeFullDidAtt.type,
-      // Not relevant in this case
-      keyUri: `${updatedFullDid.uri}#id`
+      signature: completeFullDidAtt.sign(data),
+      keyType: completeFullDidAtt.type
     })
   )
   console.log(
@@ -108,7 +98,7 @@ export async function runAll(
     updatedFullDid,
     'test-payload',
     async ({ data }) => ({
-      data: newCompleteFullDidAuth.sign(data),
+      signature: newCompleteFullDidAuth.sign(data),
       keyType: newCompleteFullDidAuth.type,
       keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
     })
@@ -118,10 +108,8 @@ export async function runAll(
     submitterAccount,
     createdSimpleFullDid.uri,
     async ({ data }) => ({
-      data: simpleFullDidAuth.sign(data),
-      keyType: simpleFullDidAuth.type,
-      // Not relevant in this case
-      keyUri: `${createdSimpleFullDid.uri}#id`
+      signature: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type
     })
   )
   console.log('10 did) Delete full DID created at step 5')

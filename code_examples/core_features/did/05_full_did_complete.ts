@@ -13,7 +13,7 @@ export async function createCompleteFullDid(
     attestation: Kilt.NewDidVerificationKey
     delegation: Kilt.NewDidVerificationKey
   },
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.DidDocument> {
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
@@ -37,7 +37,7 @@ export async function createCompleteFullDid(
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned.
-  const fullDid = await Kilt.Did.query(
+  const fullDid = await Kilt.Did.fetch(
     Kilt.Did.getFullDidUriFromKey(authentication)
   )
 

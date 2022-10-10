@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createDriversLicenseCType(
   creator: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICType> {
   const api = Kilt.ConfigService.get('api')
 
