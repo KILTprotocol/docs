@@ -26,7 +26,7 @@ Sporran should achieve compatibility by translating the messages sent to the pre
 
 For `request-attestation` credential as requestForAttestation (claimerSignature is not required by SKYC?).
 
-```
+```ts
 // before
 {
   requestForAttestation: { claim, ..., claimerSignature? }
@@ -42,7 +42,7 @@ For `request-attestation` credential as requestForAttestation (claimerSignature 
 
 For `submit-credential` content as request, add attestation.
 
-```
+```ts
 // before:
 Array<{
   attestation: { claimHash, owner, ... }
