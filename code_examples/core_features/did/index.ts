@@ -1,3 +1,5 @@
+import { stringToU8a } from '@polkadot/util'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { batchCTypeCreationExtrinsics } from './07_full_did_batch'
@@ -96,7 +98,7 @@ export async function runAll(
   )
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
-    'test-payload',
+    stringToU8a('test-payload'),
     async ({ data }) => ({
       signature: newCompleteFullDidAuth.sign(data),
       keyType: newCompleteFullDidAuth.type,

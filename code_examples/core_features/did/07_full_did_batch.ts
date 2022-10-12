@@ -3,18 +3,13 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 function getRandomCType(): Kilt.ICType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
   const randomFactor = Kilt.Utils.UUID.generate()
-  return Kilt.CType.fromSchema({
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `CType ${randomFactor}`,
-    properties: {
-      name: {
-        type: 'string'
-      },
-      age: {
-        type: 'integer'
-      }
+  return Kilt.CType.fromProperties(`CType ${randomFactor}`, {
+    name: {
+      type: 'string'
     },
-    type: 'object'
+    age: {
+      type: 'integer'
+    }
   })
 }
 

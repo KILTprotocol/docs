@@ -34,10 +34,9 @@ async function main() {
   const kiltClaimerDid = generateClaimerDid(keyring)
 
   // CType schema
-  const drivingLicenseCtypeSchema: Kilt.CTypeSchemaWithoutId = {
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${kiltAttesterDid.uri}`,
-    properties: {
+  const drivingLicenseCtype = Kilt.CType.fromProperties(
+    `Drivers License by ${kiltAttesterDid.uri}`,
+    {
       name: {
         type: 'string'
       },
@@ -47,14 +46,7 @@ async function main() {
       id: {
         type: 'string'
       }
-    },
-    type: 'object'
-  }
-
-  // CType
-  const ctypeDrivingsLicense: Kilt.ICType = Kilt.CType.fromSchema(
-    drivingLicenseCtypeSchema,
-    kiltAttesterDid.uri
+    }
   )
 
   // Claim
@@ -63,7 +55,7 @@ async function main() {
     age: 29
   }
   const claimExample = Kilt.Claim.fromCTypeAndClaimContents(
-    ctypeDrivingsLicense,
+    drivingLicenseCtype,
     claimContents,
     kiltClaimerDid.uri
   )
@@ -75,7 +67,7 @@ async function main() {
       content: {
         cTypes: [
           {
-            cTypeHash: ctypeDrivingsLicense.hash
+            cTypeHash: Kilt.CType.idToHash(drivingLicenseCtype.$id)
           }
         ]
       }
@@ -101,12 +93,8 @@ async function main() {
 
   await Promise.all([
     writeFile(
-      `${outDir}/ctype-schema.json`,
-      JSON.stringify(drivingLicenseCtypeSchema, null, 2)
-    ),
-    writeFile(
       `${outDir}/ctype.json`,
-      JSON.stringify(ctypeDrivingsLicense, null, 2)
+      JSON.stringify(drivingLicenseCtype, null, 2)
     ),
     writeFile(`${outDir}/claim.json`, JSON.stringify(claimExample, null, 2)),
     writeFile(

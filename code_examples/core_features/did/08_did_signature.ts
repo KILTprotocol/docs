@@ -8,7 +8,11 @@ export async function generateAndVerifyDidAuthenticationSignature(
   signCallback: Kilt.SignCallback
 ): Promise<void> {
   // Generate a signature using the provided DID's authentication key.
-  const { signature, keyUri } = await signCallback({ data: payload, did: did.uri, keyRelationship: 'authentication' })
+  const { signature, keyUri } = await signCallback({
+    data: payload,
+    did: did.uri,
+    keyRelationship: 'authentication'
+  })
   // Transform the signature into a signature
   const didSignature = { signature: u8aToHex(signature), keyUri }
 

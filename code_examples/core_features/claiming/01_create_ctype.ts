@@ -8,21 +8,16 @@ export async function createDriversLicenseCType(
   const api = Kilt.ConfigService.get('api')
 
   // Create a new CType definition.
-  const ctype = Kilt.CType.fromSchema({
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${creator}`,
-    properties: {
-      name: {
-        type: 'string'
-      },
-      age: {
-        type: 'integer'
-      },
-      id: {
-        type: 'string'
-      }
+  const ctype = Kilt.CType.fromProperties(`Drivers License by ${creator}`, {
+    name: {
+      type: 'string'
     },
-    type: 'object'
+    age: {
+      type: 'integer'
+    },
+    id: {
+      type: 'string'
+    }
   })
 
   // Generate a creation extrinsic
