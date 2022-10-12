@@ -13,7 +13,7 @@ export async function unlinkAccountFromDid(
   // The DID owner removes the link between itself and the specified account.
   const accountUnlinkTx =
     api.tx.didLookup.removeAccountAssociation(linkedAccountAddress)
-  const authorizedAccountUnlinkTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedAccountUnlinkTx = await Kilt.Did.authorizeTx(
     did,
     accountUnlinkTx,
     signCallback,

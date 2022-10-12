@@ -28,7 +28,7 @@ export async function createDriversLicenseCType(
   // Generate a creation extrinsic
   const ctypeCreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype))
   // Sign it with the right DID key
-  const authorizedCtypeCreationTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedCtypeCreationTx = await Kilt.Did.authorizeTx(
     creator,
     ctypeCreationTx,
     signCallback,

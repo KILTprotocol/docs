@@ -23,7 +23,7 @@ export async function attestCredential(
 
   // Create the tx and authorized extrinsic
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
-  const extrinsic = await Kilt.Did.authorizeExtrinsic(
+  const extrinsic = await Kilt.Did.authorizeTx(
     attesterDid,
     tx,
     signCallback,

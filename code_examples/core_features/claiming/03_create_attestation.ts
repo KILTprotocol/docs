@@ -19,7 +19,7 @@ export async function createAttestation(
     cTypeHash,
     delegationId
   )
-  const authorizedAttestationTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedAttestationTx = await Kilt.Did.authorizeTx(
     attester,
     attestationTx,
     signCallback,

@@ -24,7 +24,7 @@ export async function ensureStoredCtype(
     // authorize the extrinsic
     const encodedCtype = Kilt.CType.toChain(ctype)
     const tx = api.tx.ctype.add(encodedCtype)
-    const extrinsic = await Kilt.Did.authorizeExtrinsic(
+    const extrinsic = await Kilt.Did.authorizeTx(
       attesterDid,
       tx,
       signCallback,
