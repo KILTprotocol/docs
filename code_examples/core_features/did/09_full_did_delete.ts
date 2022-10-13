@@ -18,7 +18,7 @@ export async function deleteFullDid(
   // Sign the DID deletion operation using the DID authentication key.
   // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
-  const didSignedDeletionExtrinsic = await Kilt.Did.authorizeExtrinsic(
+  const didSignedDeletionExtrinsic = await Kilt.Did.authorizeTx(
     fullDid,
     didDeletionExtrinsic,
     signCallback,

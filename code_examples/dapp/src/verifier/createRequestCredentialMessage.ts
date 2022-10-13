@@ -2,7 +2,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 let encryptionKeyUri: Kilt.DidResourceUri
-let emailCtype: Kilt.ICType['hash']
+let emailCtype: Kilt.CTypeHash
 let requestChallenge: string
 
 export function main() {

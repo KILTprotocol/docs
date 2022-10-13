@@ -17,7 +17,7 @@ export async function revokeCredential(
       // Hence, the storage is not cleared and the deposit not returned.
       api.tx.attestation.revoke(credential.rootHash, null)
 
-  const authorizedTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedTx = await Kilt.Did.authorizeTx(
     attester,
     tx,
     signCallback,

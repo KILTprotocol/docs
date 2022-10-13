@@ -8,7 +8,7 @@ export async function releaseWeb3Name(
   const api = Kilt.ConfigService.get('api')
 
   const web3NameReleaseTx = api.tx.web3Names.releaseByOwner()
-  const authorizedWeb3NameReleaseTx = await Kilt.Did.authorizeExtrinsic(
+  const authorizedWeb3NameReleaseTx = await Kilt.Did.authorizeTx(
     did,
     web3NameReleaseTx,
     signCallback,
