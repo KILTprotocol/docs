@@ -3,12 +3,12 @@ id: v29-backwards-compatibility
 title: Backwards Compatibility / Interoperability with Previous Versions
 ---
 
-Beside the breaking code changes we have identified two data format changes which might affect interoperability.
+Beside the breaking code changes we have identified three data format changes which might affect interoperability.
 The didsign.io and w3n.id already accept bare requests for attestation, which are effectively the new Credentials, so nothing should break there.
 
-In the attester flow the `request-attestation` message is affected.
+In the attester flow the messages `submit-terms` and `request-attestation` are affected.
 In the verifier flow the `submit-credential` message is affected.
-Both these changes relate to the Credentials API and will require a new version of it released.
+These changes relate to the Credentials API and will require a new version of it released.
 The current specification defines the way for the extension to announce the version of specification it adheres to.
 This makes it possible for the DApp to detect the version mismatch.
 Unfortunately, the extension cannot detect the version mismatch.
@@ -22,7 +22,27 @@ While we only have one extension published, there are already several DApp imple
 This will address the case when the extension speaks the newer version, and we will try to avoid the opposite case by releasing the upgraded Sporran much earlier.
 We will not handle the case when the user manually disabled Sporran updates.
 
-Sporran should achieve compatibility by translating the messages sent to the previous versions of DApps.
+Sporran should achieve compatibility by translating the messages received from and sent to the previous versions of DApps.
+
+For `submit-terms` replace the items of the `cTypes` content property with the values of their `schema` properties.
+
+```ts
+// before
+{
+  cTypes: Array<{
+    schema: ICTypeSchema
+    hash: HexString // duplicates `schema.$id`
+    owner: DidUri | null // apparently unused
+  }>
+  ...
+}
+
+// after
+{
+  cTypes: Array<ICTypeSchema>
+  ...
+}
+```
 
 For `request-attestation` credential as requestForAttestation (claimerSignature is not required by SKYC?).
 
