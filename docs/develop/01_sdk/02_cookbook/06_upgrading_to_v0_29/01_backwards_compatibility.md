@@ -50,8 +50,8 @@ interface Old {
 ```
 
 Before sending the `submit-credential` to the old dApp, 
-for every item replace it with an object having the property `request` with the value of item itself,
-and the property `attestation` being the attestation for this credential.
+replace every item with an object having the property `request` with the value of item itself,
+and the property `attestation` with the attestation for this credential.
 
 ```ts
 interface New extends Array<{ claim, ..., claimerSignature }> {}
