@@ -14,7 +14,7 @@ Note that we anticipate the extensions to be upgraded first, so the dApps will n
 
 In the attester flow the messages `submit-terms` and `request-attestation` are affected.
 In the verifier flow the `submit-credential` message is affected.
-The extension can achieve compatibility by translating the messages received from and sent to the previous versions of DApps.
+The extension can achieve compatibility by translating the messages received from and sent to the previous versions of dApps.
 We will link here to the code examples to achieve that, but you can also implement the following steps yourself.
 
 When receiving `submit-terms` from the old dApp, replace the items of the `cTypes` content property with the values of their `schema` properties:
