@@ -3,32 +3,24 @@ id: v29-backwards-compatibility
 title: Backwards Compatibility / Interoperability with Previous Versions
 ---
 
-Beside the breaking code changes we have identified three data format changes which might affect interoperability.
-The didsign.io and w3n.id already accept bare requests for attestation, which are effectively the new Credentials, so nothing should break there.
+Depending on how exactly your application interacts with other applications, the changed data formats might make them incompatible.
+Supporting only the latest version will result in poor user experience and therefore is not recommended.
+
+We have only identified the Credentials API as definitely having breaking changes. 
+The new version 3.0 of [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) uses the data types from the SDK version 0.29.
+Since the specification requires the dApp and the extension to announce the versions of the API they use,
+it is relatively simple to make your application backwards compatible.
+Note that we anticipate the extensions to be upgraded first, so the dApps will not have to be backwards compatible.
 
 In the attester flow the messages `submit-terms` and `request-attestation` are affected.
 In the verifier flow the `submit-credential` message is affected.
-These changes relate to the Credentials API and will require a new version of it released.
-The current specification defines the way for the extension to announce the version of specification it adheres to.
-This makes it possible for the DApp to detect the version mismatch.
-Unfortunately, the extension cannot detect the version mismatch.
-The new specification version should also require the DApp to announce the version of specification it adheres to.
-(This will be a non-enumerable property: `Object.defineProperty(window.kilt, 'meta', { value: { versions: { credentials: '3.0' } }, enumerable: false })`)
+The extension can achieve compatibility by translating the messages received from and sent to the previous versions of DApps.
+We will link here to the code examples to achieve that, but you can also implement the following steps yourself.
 
-With the versions known the apps might choose to either bail on version mismatch, or attempt to be compatible.
-Bailing will result in a bad user experience without recourse, so we want to avoid that.
-Backwards compatibility is not straightforward though, and we want to limit its scope.
-While we only have one extension published, there are already several DApp implementations, so we will try to handle the compatibility in the extension: the Sporran.
-This will address the case when the extension speaks the newer version, and we will try to avoid the opposite case by releasing the upgraded Sporran much earlier.
-We will not handle the case when the user manually disabled Sporran updates.
-
-Sporran should achieve compatibility by translating the messages received from and sent to the previous versions of DApps.
-
-For `submit-terms` replace the items of the `cTypes` content property with the values of their `schema` properties.
+When receiving `submit-terms` from the old dApp, replace the items of the `cTypes` content property with the values of their `schema` properties:
 
 ```ts
-// before
-{
+interface Old {
   cTypes: Array<{
     schema: ICTypeSchema
     hash: HexString // duplicates `schema.$id`
@@ -37,38 +29,35 @@ For `submit-terms` replace the items of the `cTypes` content property with the v
   ...
 }
 
-// after
-{
-  cTypes: Array<ICTypeSchema>
+interface New {
+  cTypes: Array<ICTypeSchema> // Note that 0.29 renames ICTypeSchema to ICType
   ...
 }
 ```
 
-For `request-attestation` credential as requestForAttestation (claimerSignature is not required by SKYC?).
+Before sending the `request-attestation` to the old dApp rename `credential` to `requestForAttestation`:
 
 ```ts
-// before
-{
-  requestForAttestation: { claim, ..., claimerSignature? }
+interface New {
+  credential: { claim, ... }
   quote?: IQuoteAgreement
 }
 
-// after:
-{
-  credential: { claim, ... }
+interface Old {
+  requestForAttestation: { claim, ... }
   quote?: IQuoteAgreement
 }
 ```
 
-For `submit-credential` content as request, add attestation.
+Before sending the `submit-credential` to the old dApp, 
+for every item replace it with an object having the property `request` with the value of item itself,
+and the property `attestation` being the attestation for this credential.
 
 ```ts
-// before:
-Array<{
+interface New extends Array<{ claim, ..., claimerSignature }> {}
+
+interface Old extends Array<{
   attestation: { claimHash, owner, ... }
   request: { claim, ..., claimerSignature }
-}>
-
-// after:
-Array<{ claim, ..., claimerSignature }>
+}> {}
 ```
