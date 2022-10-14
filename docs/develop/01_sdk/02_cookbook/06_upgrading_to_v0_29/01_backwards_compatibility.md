@@ -35,7 +35,7 @@ interface New {
 }
 ```
 
-Before sending the `request-attestation` to the old dApp rename `credential` to `requestForAttestation`:
+Before sending the `request-attestation` to the old dApp, rename `credential` to `requestForAttestation`:
 
 ```ts
 interface New {
