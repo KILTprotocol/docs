@@ -33,11 +33,12 @@ export async function updateFullDid(
   await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
   // Get the updated DID Document
-  const updatedDidDetails = await Kilt.Did.fetch(fullDid)
+  const encodedUpdatedDidDetails = await api.call.did.query(fullDid)
+  const { document } = Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails)
 
-  if (!updatedDidDetails) {
+  if (!document) {
     throw `Could not find the updated DID ${fullDid}`
   }
 
-  return updatedDidDetails
+  return document
 }

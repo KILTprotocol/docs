@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -24,6 +25,7 @@ export async function linkAccountToDid(
     linkingAccountSignatureGeneration
   )
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
+    //@ts-ignore
     ...accountLinkingParameters
   )
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeTx(

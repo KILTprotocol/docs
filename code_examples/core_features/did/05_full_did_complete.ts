@@ -15,6 +15,8 @@ export async function createCompleteFullDid(
   },
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.DidDocument> {
+  const api = Kilt.ConfigService.get('api')
+
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
@@ -37,13 +39,15 @@ export async function createCompleteFullDid(
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
   // The new information is fetched from the blockchain and returned.
-  const fullDid = await Kilt.Did.fetch(
-    Kilt.Did.getFullDidUriFromKey(authentication)
+  const fullDid = Kilt.Did.getFullDidUriFromKey(authentication)
+  const encodedUpdatedDidDetails = await api.call.did.query(
+    Kilt.Did.toChain(fullDid)
   )
+  const { document } = Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails)
 
-  if (!fullDid) {
+  if (!document) {
     throw 'Could not find the DID just created.'
   }
 
-  return fullDid
+  return document
 }
