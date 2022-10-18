@@ -15,16 +15,19 @@ let window: {
 }
 
 export async function main() {
+  const api = Kilt.ConfigService.get('api')
+
   const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
   const dAppName = 'Your dApp Name'
 
-  const fullDid = await Kilt.Did.fetch(did)
+  const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(did))
+  const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
   // If there is no DID, or the DID does not have any key agreement key, return
-  if (!fullDid || !fullDid.keyAgreement || !fullDid.keyAgreement[0]) {
+  if (!document || !document.keyAgreement || !document.keyAgreement[0]) {
     return
   }
   const dAppEncryptionKeyUri =
-    `${fullDid?.uri}${fullDid.keyAgreement[0].id}` as Kilt.DidResourceUri
+    `${document?.uri}${document.keyAgreement[0].id}` as Kilt.DidResourceUri
 
   // Generate and store challenge on the server side for the next step
   const response = await fetch('/challenge')
