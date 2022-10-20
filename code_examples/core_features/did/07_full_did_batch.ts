@@ -23,16 +23,14 @@ export async function batchCTypeCreationExtrinsics(
   // Create two random demo CTypes
   const ctype1 = getRandomCType()
   const ctype1CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype1))
-  // const ctype2 = getRandomCType()
-  // const ctype2CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype2))
+  const ctype2 = getRandomCType()
+  const ctype2CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype2))
 
   // Create the DID-signed batch
   const authorizedBatch = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
-    // FIXME: Re-add the didServiceRemoveTx once the batch fix is added
-    // extrinsics: [ctype1CreationTx, ctype2CreationTx],
-    extrinsics: [ctype1CreationTx],
+    extrinsics: [ctype1CreationTx, ctype2CreationTx],
     sign: signCallback,
     submitter: submitterAccount.address
   })

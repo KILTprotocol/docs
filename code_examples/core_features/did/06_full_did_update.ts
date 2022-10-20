@@ -15,16 +15,14 @@ export async function updateFullDid(
   const didKeyUpdateTx = api.tx.did.setAuthenticationKey(
     Kilt.Did.publicKeyToChain(newAuthKeypair)
   )
-  // const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
-  //   Kilt.Did.resourceIdToChain('#my-service')
-  // )
+  const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
+    Kilt.Did.resourceIdToChain('#my-service')
+  )
 
   const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
-    // FIXME: Re-add the didServiceRemoveTx once the batch fix is added
-    // extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
-    extrinsics: [didKeyUpdateTx],
+    extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
     sign: signCallback,
     submitter: submitterAccount.address
   })
