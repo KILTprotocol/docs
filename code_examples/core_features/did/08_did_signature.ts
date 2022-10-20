@@ -1,5 +1,3 @@
-import { u8aToHex } from '@polkadot/util'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateAndVerifyDidAuthenticationSignature(
@@ -13,8 +11,6 @@ export async function generateAndVerifyDidAuthenticationSignature(
     did: did.uri,
     keyRelationship: 'authentication'
   })
-  // Transform the signature into a signature
-  const didSignature = { signature: u8aToHex(signature), keyUri }
 
   // Print the generated signature object.
   console.log('Generated signature:')
@@ -24,7 +20,8 @@ export async function generateAndVerifyDidAuthenticationSignature(
   // It throws if the signature cannot be verified
   await Kilt.Did.verifyDidSignature({
     message: payload,
-    signature: didSignature,
+    signature,
+    keyUri,
     expectedVerificationMethod: 'authentication'
   })
 }
