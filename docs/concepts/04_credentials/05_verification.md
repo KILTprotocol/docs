@@ -16,8 +16,8 @@ For the verification process:
 During the verification process the Claimer wants to prove three things to the Verifier:
 
 - The credential is valid (i.e., not revoked by its Attester)
-- The claim in the credential actually refers to the Claimer 
-- The claim contains information that is relevant for the Verifier in this use case
+- The attributes in the credential actually refer to the Claimer 
+- The credential contains information that is relevant for the Verifier in this use case
 
 ## Requesting a Credential from a Claimer
 
@@ -54,7 +54,7 @@ That problem is addressed in the next section.
 ### Verifying the Owner of the Presented Credential
 
 When issued, a credential is linked to the KILT Decentralized Identifier (DID) of the original Claimer.
-The DID can be resolved to the public key of the Claimer according to the [KILT DID specification](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).
+The DID can be resolved to the public key of the Claimer according to the [KILT DID specification](https://github.com/KILTprotocol/spec-kilt-did).
 
 The Verifier assumes that the private key for the DID public key is only known to the owner of the credential, and is not shared across users.
 Therefore, when requesting the Claimer to generate a presentation, the Verifier challenges the Claimer to sign a nonce (a random number that is used once) that the Verifier sends together with their request.

@@ -15,7 +15,7 @@ The schema defines which properties exist and what their type should be, e.g., a
 ## JSON Schema
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
-This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CTypeSchema.ts).
+This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CType.schemas.ts).
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
@@ -39,7 +39,7 @@ When creating a new CType schema, the following properties are required:
   {ctypeSchema}
 </CodeBlock>
 
-The CType schema is afterwards wrapped into the full CType object:
+The CType schema is afterwards hashed to generate its own identifier, and it becomes the full CType object:
 
 <CodeBlock className="language-json" title="Full CType example">
   {ctype}
@@ -71,8 +71,7 @@ The hash is computed from the following fields of the CType schema:
 - `title`
 - `type`
 
-The `$id` property, if present, is excluded from the hashing process since it represents the result of such a process, and is overwritten with the resulting hash, prepended with `kilt:ctype:` to form a URI.
-Hence, a typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101`.
+A typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101`.
 
 ## Storing and Querying CTypes
 
