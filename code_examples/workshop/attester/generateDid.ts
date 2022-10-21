@@ -18,7 +18,7 @@ export async function createFullDid(
   const mnemonic = mnemonicGenerate()
   const { authentication, encryption, attestation, delegation } =
     generateKeypairs(mnemonic)
-  // Get extrinsic that will create the DID on chain and DID-URI that can be used to resolve the DID Document
+  // Get tx that will create the DID on chain and DID-URI that can be used to resolve the DID Document.
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
@@ -46,7 +46,7 @@ export async function createFullDid(
   return { mnemonic, fullDid: document }
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

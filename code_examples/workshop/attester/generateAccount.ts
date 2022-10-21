@@ -15,7 +15,7 @@ export function generateAccount(mnemonic = mnemonicGenerate()): {
   return { account, mnemonic }
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

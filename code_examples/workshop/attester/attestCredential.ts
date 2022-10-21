@@ -15,13 +15,13 @@ export async function attestCredential(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // Get CType and root hash from the provided credential
+  // Get CType and root hash from the provided credential.
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
     credential,
     attesterDid
   )
 
-  // Create the tx and authorized extrinsic
+  // Create the tx and authorize it.
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
   const extrinsic = await Kilt.Did.authorizeTx(
     attesterDid,
@@ -30,7 +30,7 @@ export async function attestCredential(
     attesterAccount.address
   )
 
-  // Submit the tx to write the attestation to the chain
+  // Submit the tx to write the attestation to the chain.
   console.log('Attester -> create attestation...')
   await Kilt.Blockchain.signAndSubmitTx(extrinsic, attesterAccount)
 }
@@ -41,7 +41,7 @@ export async function attestingFlow(
   attesterDid: Kilt.DidUri,
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICredential> {
-  // First the claimer
+  // First the claimer.
   const credential = generateCredential(claimerDid, {
     age: 27,
     name: 'Mia Musterfrau'
@@ -49,14 +49,14 @@ export async function attestingFlow(
 
   // ... send the request to the attester
 
-  // The attester checks the attributes and attests the provided credential
+  // The attester checks the attributes and attests the provided credential.
   await attestCredential(attesterAccount, attesterDid, credential, signCallback)
 
-  // Return the generated credential
+  // Return the generated credential.
   return credential
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

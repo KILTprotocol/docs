@@ -13,7 +13,7 @@ export async function ensureStoredCtype(
 ): Promise<Kilt.ICType> {
   const api = Kilt.ConfigService.get('api')
 
-  // get the CTYPE and see if it's stored, if yes return it
+  // Get the CTYPE and see if it's stored, if yes return it.
   const ctype = getCtypeSchema()
   try {
     await Kilt.CType.verifyStored(ctype)
@@ -21,7 +21,7 @@ export async function ensureStoredCtype(
     return ctype
   } catch {
     console.log('Ctype not present. Creating it now...')
-    // authorize the extrinsic
+    // Authorize the tx.
     const encodedCtype = Kilt.CType.toChain(ctype)
     const tx = api.tx.ctype.add(encodedCtype)
     const extrinsic = await Kilt.Did.authorizeTx(
@@ -31,14 +31,14 @@ export async function ensureStoredCtype(
       attesterAccount.address
     )
 
-    // write to chain then return ctype
+    // Write to chain then return the CType.
     await Kilt.Blockchain.signAndSubmitTx(extrinsic, attesterAccount)
 
     return ctype
   }
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

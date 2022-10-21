@@ -55,7 +55,7 @@ async function endowAccounts(
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
-    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool
+    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool.
     const resignedBatchTx = await batchTx.signAsync(faucetAccount, {
       nonce: -1
     })
@@ -97,7 +97,7 @@ async function main(): Promise<void> {
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
-  // Endow all the needed accounts in one batch transfer, to avoid tx collisions
+  // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
     api,
     faucetAccount,
@@ -110,7 +110,7 @@ async function main(): Promise<void> {
     new BN(10)
   )
 
-  // These should not conflict anymore since all accounts are different
+  // These should not conflict anymore since all accounts are different.
   await Promise.all([
     (async () => {
       try {

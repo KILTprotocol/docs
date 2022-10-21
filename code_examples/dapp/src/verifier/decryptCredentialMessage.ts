@@ -9,7 +9,7 @@ let receiverSecretKey: Kilt.Utils.Crypto.CryptoInput
 
 export async function main() {
   await session.listen(async (message: Kilt.IEncryptedMessage) => {
-    // Create a callback that uses the DID encryption key to decrypt the message
+    // Create a callback that uses the DID encryption key to decrypt the message.
     const decryptCallback: Kilt.DecryptCallback = async ({
       data,
       nonce,

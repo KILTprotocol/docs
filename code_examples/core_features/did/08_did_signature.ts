@@ -17,7 +17,7 @@ export async function generateAndVerifyDidAuthenticationSignature(
   console.log(JSON.stringify(signature, null, 2))
 
   // Verify the validity of the signature using the DID's authentication public key.
-  // It throws if the signature cannot be verified
+  // It throws if the signature cannot be verified.
   await Kilt.Did.verifyDidSignature({
     message: payload,
     signature,

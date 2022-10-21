@@ -12,7 +12,7 @@ function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
 }
 
-// verifies validity, ownership & attestation
+// Verifies validity, ownership & attestation.
 async function verifyPresentation(
   api: ApiPromise,
   presentation: Kilt.ICredentialPresentation,
@@ -47,7 +47,7 @@ export async function verificationFlow(
     challenge
   )
 
-  // The verifier checks the presentation
+  // The verifier checks the presentation.
   const isValid = await verifyPresentation(api, presentation, challenge)
 
   if (isValid) {
@@ -57,7 +57,7 @@ export async function verificationFlow(
   }
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

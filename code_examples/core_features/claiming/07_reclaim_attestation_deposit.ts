@@ -6,7 +6,7 @@ export async function reclaimAttestationDeposit(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // Generate the submittable extrinsic to claim the deposit back.
+  // Generate the tx to claim the deposit back.
   const depositReclaimTx = api.tx.attestation.reclaimDeposit(
     credential.rootHash
   )

@@ -7,7 +7,6 @@ export async function queryAccountWeb3Name(
 ): Promise<Kilt.Did.Web3Name | null> {
   const api = Kilt.ConfigService.get('api')
 
-  // Only function to call to perform the lookup.
   const encodedLinkedDetails = await api.call.did.queryByAccount(
     Kilt.Did.accountToChain(lookupAccountAddress)
   )

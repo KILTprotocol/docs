@@ -59,7 +59,7 @@ export async function queryPublishedCredentials(
     credentialCollection.map(async ({ credential }) => {
       await Kilt.Credential.verifyCredential(credential)
 
-      // Verify that the credential refers to the intended subject
+      // Verify that the credential refers to the intended subject.
       if (!Kilt.Did.isSameSubject(credential.claim.owner, uri)) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
