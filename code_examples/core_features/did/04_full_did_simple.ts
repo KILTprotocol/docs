@@ -7,7 +7,7 @@ export async function createSimpleFullDid(
   }: {
     authentication: Kilt.NewDidVerificationKey
   },
-  signCallback: Kilt.SignExtrinsicCallback
+  signCallback: Kilt.Did.GetStoreTxSignCallback
 ): Promise<Kilt.DidDocument> {
   const api = Kilt.ConfigService.get('api')
 
