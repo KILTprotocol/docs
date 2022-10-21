@@ -24,7 +24,7 @@ First, generate a request challenge and store it on the server side:
   {GenerateChallenge}
 </TsJsSnippet>
 
-Then construct the `REQUEST_CREDENTIAL` message using the message body, sender DID and receiver DID:
+Then construct the `request-credential` message using the message body, sender DID and receiver DID:
 
 <TsJsSnippet>
   {CreateRequestCredentialMessage}

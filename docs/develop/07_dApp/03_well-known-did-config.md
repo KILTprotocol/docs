@@ -7,7 +7,7 @@ import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
 import DomainLinkageCtype from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageCtype.ts';
 import DomainLinkageClaim from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageClaim.ts';
-import SignCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/signCredential.ts';
+import SignPresentation from '!!raw-loader!@site/code_examples/dapp/src/dapp/signPresentation.ts';
 import AttestCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/attestCredential.ts';
 import FormatCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/formatCredential.ts';
 
@@ -24,19 +24,18 @@ The extension will make an HTTP GET request to this URI, and your dapp will resp
 
 ### Attesting the Domain Linkage Credential
 
-Upon receiving the GET request from the extension, your dapp will make a claim that contains its domain origin and DID.
-Then it will self-attest the claim.
-This self-attestation is referred to as a Domain Linkage Credential.
+Upon receiving the GET request from the extension, your dapp will generate a self-issued credential containing its domain origin and DID.
+This credential is referred to as a Domain Linkage Credential.
 
 #### Making the claim
 
-Your dapp's claim is based on the domain linkage CType, which can be created from the existing CType schema:
+Your dapp's credential is based on the domain linkage CType, which can be created from the existing CType schema:
 
 <TsJsSnippet>
   {DomainLinkageCtype}
 </TsJsSnippet>
 
-The claim is built from the CType, claim contents, and your dapp's unique DID:
+The credential is built from the CType, claim contents, and your dapp's unique DID:
 
 <TsJsSnippet>
   {DomainLinkageClaim}
@@ -44,23 +43,15 @@ The claim is built from the CType, claim contents, and your dapp's unique DID:
 
 #### Adding the signature
 
-Your dapp creates a credential based on the claim and signs the request's root hash with its assertion key.
-The resulting signature is then added to the to-be-attested credential.
-
-```ts
-import { RequestForAttestation } from '@kiltprotocol/core'
-import { FullDidDetails } from '@kiltprotocol/did'
-import { Crypto } from '@kiltprotocol/utils'
-
-const requestForAttestation = RequestForAttestation.fromClaim(claim)
+Your dapp creates a presentation based on the credential and signs it with its assertion key.
 
 <TsJsSnippet>
-  {SignCredential}
+  {SignPresentation}
 </TsJsSnippet>
 
 #### Self-attesting the credential
 
-Finally, your dapp creates the self-attestation and credential
+Finally, your dapp self-attests the credential.
 
 <TsJsSnippet>
   {AttestCredential}
