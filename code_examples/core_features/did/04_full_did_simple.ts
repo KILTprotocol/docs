@@ -29,11 +29,5 @@ export async function createSimpleFullDid(
   const encodedUpdatedDidDetails = await api.call.did.query(
     Kilt.Did.toChain(fullDid)
   )
-  const { document } = Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails)
-
-  if (!document) {
-    throw 'Could not find the DID just created.'
-  }
-
-  return document
+  return Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails).document
 }

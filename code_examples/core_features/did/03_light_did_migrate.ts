@@ -22,10 +22,5 @@ export async function migrateLightDid(
   const encodedUpdatedDidDetails = await api.call.did.query(
     Kilt.Did.toChain(migratedFullDidUri)
   )
-  const { document } = Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails)
-
-  if (!document) {
-    throw 'Could not find the DID just migrated.'
-  }
-  return document
+  return Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails).document
 }

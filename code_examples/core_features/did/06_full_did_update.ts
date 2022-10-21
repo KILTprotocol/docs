@@ -34,11 +34,5 @@ export async function updateFullDid(
   const encodedUpdatedDidDetails = await api.call.did.query(
     Kilt.Did.toChain(fullDid)
   )
-  const { document } = Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails)
-
-  if (!document) {
-    throw `Could not find the updated DID ${fullDid}`
-  }
-
-  return document
+  return Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails).document
 }
