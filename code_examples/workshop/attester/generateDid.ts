@@ -13,6 +13,8 @@ export async function createFullDid(
   mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
+  const api = Kilt.ConfigService.get('api')
+
   const mnemonic = mnemonicGenerate()
   const { authentication, encryption, attestation, delegation } =
     generateKeypairs(mnemonic)
@@ -33,15 +35,15 @@ export async function createFullDid(
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
-  const fullDid = await Kilt.Did.fetch(
-    Kilt.Did.getFullDidUriFromKey(authentication)
-  )
+  const didUri = Kilt.Did.getFullDidUriFromKey(authentication)
+  const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
+  const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
 
-  if (!fullDid) {
+  if (!document) {
     throw 'Full DID was not successfully created.'
   }
 
-  return { mnemonic, fullDid }
+  return { mnemonic, fullDid: document }
 }
 
 // Don't execute if this is imported by another file

@@ -7,12 +7,14 @@ export async function queryPublishedCredentials(
 ): Promise<Kilt.KiltPublishedCredentialCollectionV1> {
   const api = Kilt.ConfigService.get('api')
 
-  const encodedDidForWeb3Name = await api.query.web3Names.owner(web3Name)
-  const { owner } = Kilt.Did.web3NameOwnerFromChain(encodedDidForWeb3Name)
+  const encodedDidForWeb3Name = await api.call.did.queryByWeb3Name(web3Name)
+  const {
+    document: { uri }
+  } = Kilt.Did.linkedInfoFromChain(encodedDidForWeb3Name)
 
-  console.log(`DID for "${web3Name}": ${owner}`)
+  console.log(`DID for "${web3Name}": ${uri}`)
 
-  const resolutionResult = await Kilt.Did.resolve(owner)
+  const resolutionResult = await Kilt.Did.resolve(uri)
   if (!resolutionResult) {
     throw 'The DID does not exist on the KILT blockchain.'
   }
@@ -58,7 +60,7 @@ export async function queryPublishedCredentials(
       await Kilt.Credential.verifyCredential(credential)
 
       // Verify that the credential refers to the intended subject
-      if (!Kilt.Did.isSameSubject(credential.claim.owner, owner)) {
+      if (!Kilt.Did.isSameSubject(credential.claim.owner, uri)) {
         throw 'One of the credentials refers to a different subject than expected.'
       }
     })

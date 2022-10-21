@@ -5,11 +5,16 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function queryAccountWeb3Name(
   lookupAccountAddress: KeyringPair['address']
 ): Promise<Kilt.Did.Web3Name | null> {
+  const api = Kilt.ConfigService.get('api')
+
   // Only function to call to perform the lookup.
-  const accountWeb3Name = await Kilt.Did.fetchWeb3Name(lookupAccountAddress)
-  if (accountWeb3Name) {
+  const encodedLinkedDetails = await api.call.did.queryByAccount(
+    Kilt.Did.accountToChain(lookupAccountAddress)
+  )
+  const { web3Name } = Kilt.Did.linkedInfoFromChain(encodedLinkedDetails)
+  if (web3Name) {
     console.log(
-      `web3name for account "${lookupAccountAddress}" -> "${accountWeb3Name}"`
+      `web3name for account "${lookupAccountAddress}" -> "${web3Name}"`
     )
   } else {
     console.log(
@@ -17,5 +22,5 @@ export async function queryAccountWeb3Name(
     )
   }
 
-  return accountWeb3Name
+  return web3Name
 }

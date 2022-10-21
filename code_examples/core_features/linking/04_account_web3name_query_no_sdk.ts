@@ -4,7 +4,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 
 // Import needed to provide KILT Typescript support to the api object.
 import '@kiltprotocol/augment-api'
-import { rpc, runtime, latest as types } from '@kiltprotocol/type-definitions'
+import { typesBundle } from '@kiltprotocol/type-definitions'
 
 export async function queryAccountWeb3Name(
   endpoint: string,
@@ -12,12 +12,10 @@ export async function queryAccountWeb3Name(
 ): Promise<string | null> {
   const api = await ApiPromise.create({
     provider: new WsProvider(endpoint),
-    rpc,
-    runtime,
-    types
+    typesBundle
   })
-  // Call to the KILT RPC endpoint `did.queryByAccount`
-  const didDetails = await api.rpc.did.queryByAccount(lookupAccountAddress)
+  // Call to the KILT runtime API `did.queryByAccount`
+  const didDetails = await api.call.did.queryByAccount(lookupAccountAddress)
   if (didDetails.isNone) {
     throw `No DID for the KILT account "${lookupAccountAddress}".`
   }

@@ -2,12 +2,15 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+// TODO: Replace api.call.didApi with api.call.did once it's deployed on Spiritnet
 export async function main(api: ApiPromise): Promise<Kilt.DidUri | null> {
-  const johnDoeOwner = await api.query.web3Names.owner('john_doe')
+  const johnDoeOwner = await api.call.didApi.queryDidByW3n('john_doe')
 
   // This function will throw if johnDoeOwner does not exist
-  const { owner } = Kilt.Did.web3NameOwnerFromChain(johnDoeOwner)
-  console.log(`My name is john_doe and this is my DID: "${owner}"`)
+  const {
+    document: { uri }
+  } = Kilt.Did.linkedInfoFromChain(johnDoeOwner)
+  console.log(`My name is john_doe and this is my DID: "${uri}"`)
 
-  return owner
+  return uri
 }
