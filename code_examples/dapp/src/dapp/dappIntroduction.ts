@@ -23,7 +23,7 @@ export async function main() {
   const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(did))
   const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
   // If there is no DID, or the DID does not have any key agreement key, return
-  if (!document || !document.keyAgreement || !document.keyAgreement[0]) {
+  if (!document.keyAgreement || !document.keyAgreement[0]) {
     return
   }
   const dAppEncryptionKeyUri =
