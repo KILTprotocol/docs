@@ -11,7 +11,7 @@ export async function main(
   const encodedAttestationInfo = await api.query.attestation.attestations(
     credential.rootHash
   )
-  // This function will throw if encodedAttestationInfo is None
+  // This function will throw if encodedAttestationInfo does not exist
   const attestationInfo = Kilt.Attestation.fromChain(
     encodedAttestationInfo,
     credential.rootHash

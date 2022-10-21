@@ -169,20 +169,20 @@ The code snippet retrieves the service endpoints exposed by the DID we found for
 If the snippet printed some endpoints, congratulations!
 Let's see if we can find a credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a signed credential (i.e., a presentation):
+We can select one of the endpoints and query the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1):
 
 <TsJsSnippet funcEnd="return">
   {FetchEndpointData}
 </TsJsSnippet>
 
-If the script completes with no errors, it means that we were able to retrieve a credential using the URL specified in the service endpoint.
+If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service endpoint.
 
 We will now have to make sure the credential is **valid** and has a valid **structure**.
 To do that, we need to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
 <SnippetBlock
   className="language-ts"
-  funcEnd="return"
+  funcEnd="}"
 >
   {VerifyAttestation}
 </SnippetBlock>

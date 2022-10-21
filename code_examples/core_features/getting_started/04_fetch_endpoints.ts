@@ -5,7 +5,7 @@ export async function main(
 ): Promise<Kilt.DidServiceEndpoint[]> {
   const johnDoeDidDocument = await Kilt.Did.resolve(johnDoeDid)
   console.log(`John Doe's DID Document:`)
-  console.log(JSON.stringify(johnDoeDidDocument, undefined, 2))
+  console.log(JSON.stringify(johnDoeDidDocument, null, 2))
 
   const endpoints = johnDoeDidDocument?.document?.service
   if (!endpoints) {
@@ -14,7 +14,7 @@ export async function main(
   }
 
   console.log('Endpoints:')
-  console.log(JSON.stringify(endpoints, undefined, 2))
+  console.log(JSON.stringify(endpoints, null, 2))
 
   return endpoints
 }
