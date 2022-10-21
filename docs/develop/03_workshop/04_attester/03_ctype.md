@@ -50,8 +50,6 @@ Let's have a look at these attributes.
 | `schema` > `$schema`    | The JSON schema on which the CType is based.                             |
 | `schema` > `title`      | The title of the CType.                                                  |
 | `schema` > `properties` | The properties that a claim of type in `$schema` should have.            |
-| `owner`                 | The DID of the user who created this CType.                              |
-| `hash`                  | Most important attribute, the hash is the CType's **digital footprint**. |
 
 A CType is stored on the KILT blockchain.
 
@@ -61,7 +59,7 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-Copy the following to create a `CType` from a schema:
+Copy the following to create a `CType` with a given schema:
 
 <TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}

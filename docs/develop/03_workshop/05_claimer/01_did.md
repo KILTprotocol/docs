@@ -15,7 +15,7 @@ Time to make a light DID using the previously created account for the <span clas
 Since a light DID is not registered on the blockchain, you don't need funds for creating one.
 Remember light DIDs can:
 
-- Sign claims and attestations with the authentication keys
+- Sign attestation requests and presentation with the authentication keys
 - Encrypt messages with the encryption keys
 
 Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between their light and full versions.
@@ -35,7 +35,7 @@ Here the keys are both derived from the same seed, but they could also have two 
 
 Once our `keypairs` are generated we can create our light DID.
 Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
-But we'll still accept `didUri` and prompt to save it in `.env` for our reference.
+But we'll still accept the `mnemonic` and prompt to save it in `.env` for our reference.
 
 <TsJsBlock fileName="claimer/generateLightDid">
   {GenerateLightDid}
@@ -64,18 +64,17 @@ The Claimer doesn't need to hold funds and also doesn't need a blockchain accoun
   </TabItem>
 </Tabs>
 
-Your output will provide you with `CLAIMER_MNEMONIC` and `CLAIMER_DID_URI`.
+Your output will provide you with `CLAIMER_DID_MNEMONIC`.
 Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
-ATTESTER_MNEMONIC="warrior icon use cry...
-ATTESTER_ADDRESS=4ohMvUHsyeDhMVZF...
-ATTESTER_DID_URI=did:kilt:4ohMvUHsyeDhMVZF...
+ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
+ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
+ATTESTER_DID_MNEMONIC="beyond large galaxy...
 
-CLAIMER_MNEMONIC="danger awkward wrestle snap...
-CLAIMER_DID_URI=did:kilt:light:004tTDugL...
+CLAIMER_DID_MNEMONIC="danger awkward wrestle snap...
 ```
 
 Well done - You've successfully generated a light DID!
