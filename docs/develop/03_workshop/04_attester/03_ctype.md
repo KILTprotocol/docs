@@ -44,12 +44,12 @@ For example, a very basic CType for a driver's license could look like this:
 
 Let's have a look at these attributes.
 
-| Key                     | Value                                                                                                                                                               |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schema` > `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
-| `schema` > `$schema`    | The JSON schema on which the CType is based.                                                                                                                        |
-| `schema` > `title`      | The title of the CType.                                                                                                                                             |
-| `schema` > `properties` | The properties that a claim of type in `$schema` should have.                                                                                                       |
+| Key          | Value                                                                                                                                                               |
+| -------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
+| `$schema`    | A reference to the meta-schema describing what a CType may look like. This is the same for all CTypes.                                                              |
+| `title`      | The title of the CType.                                                                                                                                             |
+| `properties` | The properties that a claim conforming to this CType may have.                                                                                                      |
 
 A CType is stored on the KILT blockchain.
 
