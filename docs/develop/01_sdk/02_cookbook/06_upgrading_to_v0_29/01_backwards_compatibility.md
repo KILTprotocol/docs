@@ -17,7 +17,7 @@ Since version 3.0, the specification requires conformant web apps as well as ext
 Because extensions inject themselves into web pages that signal support for kilt features via the `window.kilt` property, the recommended strategy is to handle backward compatibility on the extension side.
 This way, extensions can be upgraded ahead of time, and implement a fallback to a version 2.0 compatible interface if a web application does not signal version 3.0 support.
 Following this strategy, backward compatibility on the application side is not strictly necessary.
-It is recommended, however, that web apps which have upgraded to version 3.0 notify users trying to connect with an older extension of the incompatibility with their extension and suggest to upgrade.
+We recommend notifying users of web apps that have upgraded to version 3.0 if they try to connect with an older extension, pointing them to the need to upgrade their extension to use this app.
 
 ## Message Translation
 
