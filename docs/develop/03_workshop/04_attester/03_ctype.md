@@ -46,10 +46,10 @@ Let's have a look at these attributes.
 
 | Key                     | Value                                                                                                                                                               |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schema` > `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
-| `schema` > `$schema`    | The JSON schema on which the CType is based.                                                                                                                        |
-| `schema` > `title`      | The title of the CType.                                                                                                                                             |
-| `schema` > `properties` | The properties that a claim of type in `$schema` should have.                                                                                                       |
+| `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
+| `$schema`    | The JSON schema on which the CType is based.                                                                                                                        |
+| `title`      | The title of the CType.                                                                                                                                             |
+| `properties` | The properties that a claim of type in `$schema` should have.                                                                                                       |
 
 A CType is stored on the KILT blockchain.
 
