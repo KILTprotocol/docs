@@ -3,7 +3,7 @@ id: v29-backward-compatibility
 title: Backward Compatibility with Pre-0.29.x Versions
 ---
 
-Depending on how exactly your application interacts with other applications, changes to some data formats and interfaces might mean that translations are required for them to remain compatible.
+Depending on how exactly your application interacts with other applications, changes to some data formats and interfaces might mean that conversions are required for them to remain compatible.
 
 To align with breaking changes to data structures in messaging, credentials, and CTypes, we published version 3.0 of the [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) that specifies how browser extensions like the [Sporran credential wallet](https://github.com/BTE-Trusted-Entity/sporran-extension) interact with web applications that produce or consume credentials.
 
@@ -19,14 +19,14 @@ This way, extensions can be upgraded ahead of time, and implement a fallback to 
 Following this strategy, backward compatibility on the application side is not strictly necessary.
 We recommend notifying users of web apps that have upgraded to version 3.0 if they try to connect with an older extension, pointing them to the need to upgrade their extension to use this app.
 
-## Message Translation
+## Message Conversion
 
 Breaking changes introduced with version 3.0 of the Credential Api exclusively affect selected data types of messages passed between the application backend and extension.
 In the attester (credential issuance) flow the message types `submit-terms` and `request-attestation` have changed.
 In the verifier (presentation exchange) flow the message type `submit-credential` message is affected.
 
 Version 3.0 extensions can achieve backward compatibility by translating messages received from and sent to the application which implements an earlier version of the specification.
-Below you can find brief descriptions of how these translations can be implemented.
+Below you can find brief descriptions of how these conversions can be implemented.
 
 <!--TODO: After Sporran release, replace with the following
 Below you can find links to the code examples of how this is achieved in the Sporran extension, but we also provide brief descriptions of how you can implement these steps yourself.
