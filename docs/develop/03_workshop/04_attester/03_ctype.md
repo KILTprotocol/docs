@@ -44,14 +44,12 @@ For example, a very basic CType for a driver's license could look like this:
 
 Let's have a look at these attributes.
 
-| Key                     | Value                                                                    |
-| ----------------------- | ------------------------------------------------------------------------ |
-| `schema` > `$id`        | The KILT id of this CType.                                               |
-| `schema` > `$schema`    | The JSON schema on which the CType is based.                             |
-| `schema` > `title`      | The title of the CType.                                                  |
-| `schema` > `properties` | The properties that a claim of type in `$schema` should have.            |
-| `owner`                 | The DID of the user who created this CType.                              |
-| `hash`                  | Most important attribute, the hash is the CType's **digital footprint**. |
+| Key                     | Value                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schema` > `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
+| `schema` > `$schema`    | The JSON schema on which the CType is based.                                                                                                                        |
+| `schema` > `title`      | The title of the CType.                                                                                                                                             |
+| `schema` > `properties` | The properties that a claim of type in `$schema` should have.                                                                                                       |
 
 A CType is stored on the KILT blockchain.
 
@@ -61,7 +59,7 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-Copy the following to create a `CType` from a schema:
+Copy the following to create a `CType` with a given schema:
 
 <TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}

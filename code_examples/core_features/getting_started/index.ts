@@ -11,7 +11,7 @@ import { main as verifyCredential } from './07_verify_credential'
 
 export async function runAll(): Promise<void> {
   await printHelloWorld()
-  // Connect to Spiritnet
+  // Connect to Spiritnet.
   const api = await connect()
   const johnDoeDid = await fetchJohnDoeDid(api)
   if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'

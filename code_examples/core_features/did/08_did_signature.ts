@@ -5,7 +5,7 @@ export async function generateAndVerifyDidAuthenticationSignature(
   payload: Uint8Array,
   signCallback: Kilt.SignCallback
 ): Promise<void> {
-  // Generate a signature using the provided DID's authentication key.
+  // Generate a signature using the provided signing callback.
   const { signature, keyUri } = await signCallback({
     data: payload,
     did: did.uri,
@@ -17,7 +17,7 @@ export async function generateAndVerifyDidAuthenticationSignature(
   console.log(JSON.stringify(signature, null, 2))
 
   // Verify the validity of the signature using the DID's authentication public key.
-  // It throws if the signature cannot be verified
+  // It throws if the signature cannot be verified.
   await Kilt.Did.verifyDidSignature({
     message: payload,
     signature,

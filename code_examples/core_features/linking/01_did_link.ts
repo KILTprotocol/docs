@@ -16,7 +16,7 @@ export async function linkAccountToDid(
     signaturePayload: string | Uint8Array
   ) => linkedAccount.sign(signaturePayload)
 
-  // Authorizing the extrinsic with the full DID and including a signature of the linked account
+  // Authorizing the tx with the full DID and including a signature of the linked account
   // results in the provided account being linked to the DID authorizing the operation.
   const accountLinkingParameters = await Kilt.Did.associateAccountToChainArgs(
     linkedAccount.address,

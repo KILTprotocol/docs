@@ -10,16 +10,16 @@ export function generateCredential(
   claimerDid: Kilt.DidUri,
   claimAttributes: Kilt.IClaim['contents']
 ): Kilt.ICredential {
-  // Create claim
+  // Create claim.
   const ctype = getCtypeSchema()
   const claim = createClaim(claimerDid, ctype, claimAttributes)
 
-  // Create credential and request attestation
+  // Create credential and request attestation.
   console.log('Claimer -> create request')
   return Kilt.Credential.fromClaim(claim)
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

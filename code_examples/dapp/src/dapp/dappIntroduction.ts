@@ -29,7 +29,7 @@ export async function main() {
   const dAppEncryptionKeyUri =
     `${document.uri}${document.keyAgreement[0].id}` as Kilt.DidResourceUri
 
-  // Generate and store challenge on the server side for the next step
+  // Generate and store challenge on the server side for the next step.
   const response = await fetch('/challenge')
   const challenge = await response.text()
 

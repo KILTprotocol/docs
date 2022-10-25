@@ -11,11 +11,11 @@ export async function verifyNameAndDidEquality(
   console.log(
     `Querying the blockchain for the web3name "${web3Name}" and the DID "${did}"...`
   )
-  // Query the owner of the provided web3name
+  // Query the owner of the provided web3name.
   const encodedWeb3NameOwner = await api.call.did.queryByWeb3Name(web3Name)
   const {
     document: { uri }
   } = Kilt.Did.linkedInfoFromChain(encodedWeb3NameOwner)
-  // Assert that it is the right owner
+  // Assert that it is the right owner.
   assert(uri === did)
 }

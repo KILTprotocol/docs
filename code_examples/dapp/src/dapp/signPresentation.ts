@@ -16,7 +16,7 @@ export async function main() {
     return
   }
 
-  // Create a callback that uses the DID attestation key to sign the credential
+  // Create a callback that uses the DID attestation key to sign the credential.
   const signCallback: Kilt.SignCallback = async ({ data }) => {
     const { publicKey, type } = attestationKey
     const address = encodeAddress(

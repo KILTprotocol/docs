@@ -14,7 +14,7 @@ export function generateLightDid(mnemonic: string): Kilt.DidDocument {
   })
 }
 
-// Don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
     envConfig()

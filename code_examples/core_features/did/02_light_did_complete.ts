@@ -7,7 +7,7 @@ export function createCompleteLightDid({
   authentication: Kilt.NewLightDidVerificationKey
   encryption: Kilt.NewDidEncryptionKey
 }): Kilt.DidDocument {
-  // Example service for the DID
+  // Example service for the DID.
   const service: Kilt.DidServiceEndpoint[] = [
     {
       id: '#my-service',

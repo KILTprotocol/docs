@@ -10,7 +10,7 @@ export function main(
   MIN_ACCEPTED_AGE: number,
   MAX_ACCEPTED_AGE: number
 ) {
-  // is messageId fresh and createdAt recent ?
+  // Is messageId fresh and createdAt recent?
   const messageId =
     decrypted.messageId || blake2AsHex(JSON.stringify(decrypted))
   if (

@@ -23,7 +23,7 @@ export async function createCompleteFullDid(
       keyAgreement: [encryption],
       assertionMethod: [attestation],
       capabilityDelegation: [delegation],
-      // Example service
+      // Example service.
       service: [
         {
           id: '#my-service',

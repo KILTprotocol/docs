@@ -24,10 +24,10 @@ async function testWorkshop() {
   Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
   const api = await Kilt.connect(process.env.WSS_ADDRESS)
 
-  // setup attester account
+  // Setup attester account.
   const { account: attesterAccount } = await generateAccount()
 
-  // setup claimer & create a credential
+  // Setup claimer & create a credential.
   const claimerMnemonic = mnemonicGenerate()
   const { authentication } = generateClaimerKeypairs(claimerMnemonic)
   const lightDid = generateLightDid(claimerMnemonic)
@@ -64,14 +64,14 @@ async function testWorkshop() {
     )
     await setTimeout(waitingTime)
     console.log('Retrying...')
-    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool
+    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool.
     const resignedBatchTx = await tx.signAsync(faucetAccount, { nonce: -1 })
     await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
   }
 
   console.log('Successfully transferred tokens')
 
-  // Create attester DID & ensure CType
+  // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(attesterAccount)
   const { attestation } = generateAttesterKeypairs(attesterMnemonic)
@@ -85,7 +85,7 @@ async function testWorkshop() {
     })
   )
 
-  // Do attestation & verification
+  // Do attestation & verification.
   const credential = await attestingFlow(
     lightDid.uri,
     attesterAccount,

@@ -11,9 +11,9 @@ export async function createSimpleFullDid(
 ): Promise<Kilt.DidDocument> {
   const api = Kilt.ConfigService.get('api')
 
-  // Generate the DID-signed creation extrinsic and submit it to the blockchain with the specified account.
+  // Generate the DID-signed creation tx and submit it to the blockchain with the specified account.
   // The submitter account parameter, ensures that only an entity authorized by the DID subject
-  // can submit the extrinsic to the KILT blockchain.
+  // can submit the tx to the KILT blockchain.
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication]

@@ -50,7 +50,7 @@ Because the DID and the account are not connected, DIDs do not hold any coins.
 To create a DID we can use the same keyrings that are used to generate accounts.
 For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types are used for signatures, we can use the same key for these.
-We'll use a demo keyring to generate them.
+We'll use the default KILT keyring to generate them.
 
  <TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
@@ -87,7 +87,7 @@ You can now execute the script with:
   </TabItem>
 </Tabs>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_URI`.
+Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
@@ -100,9 +100,9 @@ It should now look similar to this:
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
-ATTESTER_MNEMONIC="warrior icon use cry...
-ATTESTER_ADDRESS=4ohMvUHsyeDhMVZF...
-ATTESTER_DID_URI=did:kilt:4ohMvUHsyeDhMVZF...
+ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
+ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
+ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ```
 
 Well done - You've successfully generated a full DID! Let's create a CType!

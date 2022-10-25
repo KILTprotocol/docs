@@ -15,7 +15,7 @@ export async function main() {
     return
   }
 
-  // Create a callback that uses the DID encryption key to encrypt the message
+  // Create a callback that uses the DID encryption key to encrypt the message.
   const encryptCallback: Kilt.EncryptCallback = async ({
     data,
     peerPublicKey

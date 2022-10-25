@@ -12,14 +12,13 @@ import AttestCredential from '!!raw-loader!@site/code_examples/workshop/attester
 In this section, your <span className="label-role attester">Attester</span> will receive and process a `Credential` where you'll
 
 - Attest or deny it;
-- Store the attestation on the chain (more specifically only its hash, we'll get to that);
+- Store the attestation information on the chain;
 
 ## Attest a Credential
 
-The `attestCredential` function first initialized all libraries, as always.
-After that we can load the account and DID of the <span className="label-role attester">Attester</span>.
+The `attestCredential` function loads the account and DID of the <span className="label-role attester">Attester</span>.
 When everything is prepared, we can issue an attestation for the credential we received from the <span className="label-role claimer">Claimer</span>.
-The attestation becomes valid once it is submitted to the chain.
+The credential is considered to be valid from the time it is attested on chain until the time it is revoked.
 
 <TsJsBlock fileName="attester/attestClaim">
   {AttestCredential}

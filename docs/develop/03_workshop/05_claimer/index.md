@@ -27,7 +27,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
       └─ generateCredential.ts # create the credential object that is sent to the attester for attestation
       ├─ generateKeypairs.ts # create keypairs for the light DID
       ├─ generateLightDid.ts # create the light DID for the claimer
-    ```
+  ```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>

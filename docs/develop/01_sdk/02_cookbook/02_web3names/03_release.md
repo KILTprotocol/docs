@@ -8,7 +8,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Release from '!!raw-loader!@site/code_examples/core_features/web3names/04_release.ts';
 import ReclaimDeposit from '!!raw-loader!@site/code_examples/core_features/web3names/05_reclaim_deposit.ts';
 
-If a web3name is no longer needed, either the DID owner or the deposit payer can release it, with the previously reserved deposit going back to the original payer.
+If a web3name is no longer needed, either the DID owner or the deposit payer can release it, with deposit being released and returned to the original payer.
 
 In the case of the DID owner willing to release the web3name, the following snippet provides a reference implementation on how to achieve that.
 

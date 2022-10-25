@@ -36,18 +36,14 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 ## Create the Account
 
-To generate an account, one method from the KILT SDK is needed, and one method from the Polkadot crypto utility:
+To generate an account, one method from the Polkadot crypto utility, and one method from the KILT SDK is needed:
 
-- `mnemonicGenerate()` - Generates a mnemonic
-- `addFromMnemonic(mnemonic)` - takes a mnemonic as an input, and outputs an `Account` instance.
+- `mnemonicGenerate()` - Generates a 12-word mnemonic
+- `makeKeypairFromSeed(seed)` - takes a mnemonic as an input, and outputs a `Keypair` instance.
 
 <TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
 </TsJsBlock>
-
-The code contains two methods.
-`generateAccount` creates and returns a new account while `getAccount` loads an existing secret and creates an account from it.
-We will use `getAccount` later to load the account that we will create and store in the next step.
 
 ## Execute
 
@@ -70,14 +66,14 @@ Now run it to get your <span className="label-role attester">Attester</span> `<a
   </TabItem>
 </Tabs>
 
-Your output will provide you with `ATTESTER_MNEMONIC` and `ATTESTER_ADDRESS`.
+Your output will provide you with `ATTESTER_ACCOUNT_MNEMONIC` and `ATTESTER_ACCOUNT_ADDRESS`.
 Be sure to save it in your `.env` file; it should now look similar to this.
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
-ATTESTER_MNEMONIC="warrior icon use cry..."
-ATTESTER_ADDRESS="4ohMvUHsyeDhMVZF..."
+ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry..."
+ATTESTER_ACCOUNT_ADDRESS="4ohMvUHsyeDhMVZF..."
 ```
 
 :::warning Get PILT coins!

@@ -29,7 +29,7 @@ export async function main() {
 
   const decryptedChallenge = u8aToHex(decryptedBytes)
 
-  // Compare the decrypted challenge to the challenge you stored earlier
+  // Compare the decrypted challenge to the challenge you stored earlier.
   if (decryptedChallenge === originalChallenge) {
     return session
   }

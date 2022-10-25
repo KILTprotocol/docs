@@ -18,16 +18,10 @@ In this section, you'll play the role of a <span className="label-role verifier"
 - You'll verify that the attestation is valid, i.e., its hash exists on-chain and the attestation has not been revoked.
 - You'll verify that the `Credential` is owned by the <span className="label-role claimer">Claimer</span> sending it
 
-:::info Credential
-
-A `Credential` object is also called an Attested Claim: it is what <span className="label-role claimer">claimers</span> need to create `Presentations`.
-
-:::
-
 :::info Presentation
 
 A Credential is used to create the `Presentation` object by the <span className="label-role claimer">claimer</span>.
-Unlike the credential, a `presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span>.
+Unlike the credential, a `presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span> and can contain a claimer-signed challenge.
 A `presentation` also contains a proof that the <span className="label-role claimer">claimer</span> owns the credential.
 
 :::
@@ -35,7 +29,7 @@ A `presentation` also contains a proof that the <span className="label-role clai
 ## Create Presentation
 
 It's not enough to just send our credential as a <span className="label-role claimer">Claimer</span> as we also need to prove ownership of it.
-This is done by creating a presentation by signing the <span className="label-role verifier">Verifier</span>'s challenge.
+This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
 <TsJsBlock title="claimer/createPresentation">
   {CreatePresentation}
@@ -46,7 +40,7 @@ This is done by creating a presentation by signing the <span className="label-ro
 Let's write our verification script.
 Here we'll expose `getChallenge` which returns a random and unique
 challenge for the <span className="label-role claimer">Claimer</span> to sign; this is used to prove ownership.
-We'll also expose `verifyCredential` which will do the actual verification.
+We'll also expose `verifyPresentation` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
 <TsJsBlock title="verify">
