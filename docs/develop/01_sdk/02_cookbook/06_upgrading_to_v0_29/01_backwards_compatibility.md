@@ -3,21 +3,38 @@ id: v29-backwards-compatibility
 title: Backwards Compatibility / Interoperability with Previous Versions
 ---
 
-Depending on how exactly your application interacts with other applications, the changed data formats might make them incompatible.
-Supporting only the latest version will result in poor user experience and therefore is not recommended.
+Depending on how exactly your application interacts with other applications, changes to some data formats and interfaces might mean that translations are required for them to remain compatible.
 
-We have only identified the Credentials API as definitely having breaking changes. 
-The new version 3.0 of [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) uses the data types from the SDK version 0.29.
-Since the specification requires the dApp and the extension to announce the versions of the API they use,
-it is relatively simple to make your application backwards compatible.
-Note that we anticipate the extensions to be upgraded first, so the dApps will not have to be backwards compatible.
+To align with breaking changes to data structures in messaging, credentials, and CTypes, we published a version 3.0 of the [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) that specifices how browser extensions like the Sporran credential wallet interact with web applications that produce or consume credentials.
 
-In the attester flow the messages `submit-terms` and `request-attestation` are affected.
-In the verifier flow the `submit-credential` message is affected.
-The extension can achieve compatibility by translating the messages received from and sent to the previous versions of dApps.
-We will link here to the code examples to achieve that, but you can also implement the following steps yourself.
+When upgrading to a 0.29.x version of the SDK and to the Credentials API version 3.0, we recommend backwards support of Credentials API version 2.0, as supporting only the latest version may result in poor user experience. In what follows, we outline an upgrade strategy for implementers of the Credentials API specification.
 
-When receiving `submit-terms` from the old dApp, replace the items of the `cTypes` content property with the values of their `schema` properties:
+These instructions will also help with translating from and to data types of pre 0.29 SDK versions in other scenarios, such as when sending messages between clients, or when importing older data (e.g. credentials).
+
+## General Strategy
+
+Since version 3.0, the specification requires conformant web apps as well as extensions to announce the versions of the API they use, allowing for version negotiation.
+Because extensions injects themselves into web pages that signal support for kilt features via the `window.kilt` property, the recommended strategy is to handle backwards compatibility on the extension side.
+This way, extensions can be upgraded ahead of time, and implement a fallback to a version 2.0 compatible interface if a web application does not signal version 3.0 support.
+Following this strategy, backwards compatibilty on the application side is not strictly necessary.
+It is recommended, however, that web apps which have upgraded to version 3.0 notify users trying to connect with an older extension of the incompatibility with their extension and suggest to upgrade.
+
+## Message Translation
+
+Breaking changes introduced with version 3.0 of the credential api exclusively affect selected data types of message that are passed between application backend and extension.
+In the attester (credential issuance) flow the message types `submit-terms` and `request-attestation` have changed.
+In the verifier (presentation exchange) flow the message type `submit-credential` message is affected.
+
+Version 3.0 extensions can achieve backwards compatibility by translating messages received from and sent to the application implementing an earlier version of the specification.
+Below you can find brief descriptions of how these translations can be implemented.
+
+<!--TODO: After Sporran release, replace with the following
+Below you can find links to the code examples of how this is achieved in the Sporran extension, but we also provide brief descriptions of how you can implement these steps yourself.
+-->
+
+### `submit-terms`
+
+When receiving a `submit-terms` message from the old web app, replace the items of the `cTypes` content property with the values of their `schema` properties:
 
 ```ts
 interface Old {
@@ -35,7 +52,13 @@ interface New {
 }
 ```
 
-Before sending the `request-attestation` to the old dApp, rename `credential` to `requestForAttestation`:
+<!--TODO: After Sporran release, and add link to code example here and for the other 2 message types
+[> Code Example in the Sporran Extension Repository]()
+-->
+
+### `request-attestation`
+
+Before encrypting a `request-attestation` type message destined for an older web app, rename `credential` to `requestForAttestation`:
 
 ```ts
 interface New {
@@ -49,9 +72,9 @@ interface Old {
 }
 ```
 
-Before sending the `submit-credential` to the old dApp, 
-replace every item with an object having the property `request` with the value of item itself,
-and the property `attestation` with the attestation for this credential.
+### `submit-credential`
+
+Before encrypting a `submit-credential` message for the older application, replace every item with an object having the property `request` with the value of item itself, and the property `attestation` with the attestation for this credential.
 
 ```ts
 interface New extends Array<{ claim, ..., claimerSignature }> {}
