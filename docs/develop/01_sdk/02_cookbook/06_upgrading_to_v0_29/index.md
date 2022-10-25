@@ -10,4 +10,4 @@ These pages serve as a reference point for what to consider when upgrading to ma
 
 Find out what has changed and how to upgrade in the [release notes](https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0).
 
-Also make sure to read up on [how to remain interoperable](./01_backwards_compatibility.md) with previous versions of the SDK.
+Also make sure to read up on [how to remain interoperable](./01_backward_compatibility.md) with previous versions of the SDK.
