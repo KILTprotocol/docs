@@ -1,6 +1,6 @@
 ---
 id: v29-backward-compatibility
-title: Backward Compatibility / Interoperability with Previous Versions
+title: Backward Compatibility with Pre-0.29.x Versions
 ---
 
 Depending on how exactly your application interacts with other applications, changes to some data formats and interfaces might mean that translations are required for them to remain compatible.
