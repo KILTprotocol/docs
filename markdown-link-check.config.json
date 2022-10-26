@@ -3,6 +3,10 @@
     {
       "pattern": "^@site/",
       "replacement": "{{BASEURL}}/"
+    },
+    {
+      "pattern": "^/img/",
+      "replacement": "{{BASEURL}}/static/img/"
     }
   ],
   "aliveStatusCodes": [
