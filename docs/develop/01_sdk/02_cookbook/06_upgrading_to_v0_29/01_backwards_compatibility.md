@@ -72,6 +72,13 @@ interface Old {
 }
 ```
 
+:::info
+The old `IRequestForAttestation` interface optionally allowed claimers to attach a signature for authentication.
+There is no property intended for this purpose on the new interface, as the message encryption scheme already takes care of authentication.
+What has changed is that this form of authentication is __not publicly verifiable__.
+Attesters can instead require claimers to sign a quote agreement for the purpose of bookkeeping, which contains the credential hash and thus represents a commitment to any claims made.
+:::
+
 ### `submit-credential`
 
 Before encrypting a `submit-credential` message for the older application, replace every item with an object having the property `request` with the value of item itself, and the property `attestation` with the attestation for this credential.
