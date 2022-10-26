@@ -5,8 +5,8 @@
       "replacement": "{{BASEURL}}/"
     },
     {
-      "pattern": "^/",
-      "replacement": "{{BASEURL}}/static/"
+      "pattern": "^/img/",
+      "replacement": "{{BASEURL}}/static/img/"
     }
   ],
   "aliveStatusCodes": [
