@@ -36,7 +36,7 @@ When the organizational structures grew further and big bureaucratic nations eme
 Though we can now see a more and more centralized way of organizing trust, the actual information that makes up an identity is still handed out directly to the individual, who is still responsible for their own data.
 Take official personal documents like passports as an example.
 They are issued by trusted entities and handed out to the holder.
-That holder then has full control of their credential (their passsport) and can use it wherever needed.
+That holder then has full control of their credential (their passport) and can use it wherever needed.
 
 However, with the invention of the internet, and later of Web 2.0, services evolved and merged into totally centralized solutions including Google, Meta, and Twitter among others.
 They no longer simply attest someone's email account, but due to their business model, our personal data (i.e., our identity) is stored and controlled by those same service providers.
