@@ -19,7 +19,7 @@ This data format is used to define [CType models](https://github.com/KILTprotoco
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
-- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype-input](http://kilt-protocol.org/draft-01/ctype-input#).
+- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype#).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
 

@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 In this section you will walk though all processes done by the <span className="label-role claimer">Claimer</span>.
 
-1. The first step is to [create a DID](./did), which is the identity that is used to interact with <span className="label-role attester">Attesters</span> and <span className="label-role verifier">Verifiers</span>.
+1. The first step is to [create a DID](./01_did.md), which is the identity that is used to interact with <span className="label-role attester">Attesters</span> and <span className="label-role verifier">Verifiers</span>.
 2. Next, we will create a claim, request a credential and present it to a <span className="label-role verifier">Verifier</span>
 
 ## Folder Structure

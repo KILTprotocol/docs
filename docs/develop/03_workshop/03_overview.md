@@ -39,7 +39,7 @@ participant B as KILT Blockchain
 The <span className="label-role verifier">Verifier</span> requests a presentation from the  <span className="label-role claimer">Claimer</span> for a specific CType.
 Without a specific CType, the presentation is meaningless.
 Thus, it is important to require this.
-We will [explain CTypes in more detail](attester/ctype) in a later chapter.
+We will [explain CTypes in more detail](./04_attester/03_ctype.md) in a later chapter.
 A presentation is derived from a credential and does not need to contain all attributes.
 A <span className="label-role claimer">Claimer</span> could choose to hide their address from their passport if the <span className="label-role verifier">Verifier</span> is only interested in their age.
 
