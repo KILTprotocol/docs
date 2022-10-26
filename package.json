@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "yarn check-ts && yarn check-links && yarn generate-examples && yarn package-code && docusaurus build",
+    "build": "yarn check-ts && yarn generate-examples && yarn package-code && yarn check-links && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find docs -name '*.md')",
     "check-ts": "yarn check-ts:core_features && yarn check-ts:dapp_examples && yarn check-ts:vitejs && yarn check-ts:workshop",
     "check-ts:core_features": "cd code_examples/core_features && yarn install && yarn check-ts",
