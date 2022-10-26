@@ -8,5 +8,10 @@
   "aliveStatusCodes": [
     200,
     403
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^#.+"
+    }
   ]
 }
