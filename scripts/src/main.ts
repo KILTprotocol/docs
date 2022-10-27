@@ -9,8 +9,11 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
 
-//@ts-ignore Hacking tweetnacl randomBytes to produce deterministic output
+//@ts-ignore Hacking tweetnacl randomBytes & UUID generate to produce deterministic output
 nacl.randomBytes = (n: number) => new Uint8Array(n).fill(1)
+Kilt.Utils.UUID.generate = () => Kilt.Utils.Crypto.hashStr("look ma I'm random")
+// set timestamp to always create the same message object
+Date.now = () => Date.UTC(2024, 4, 20, 4, 20, 24, 420)
 
 function encryptCallbackForKey({
   secretKey,
