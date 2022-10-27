@@ -1,3 +1,4 @@
+import * as nacl from 'tweetnacl'
 import { mkdir, writeFile } from 'fs/promises'
 import { normalize } from 'path'
 
@@ -7,6 +8,9 @@ import { cryptoWaitReady } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
+
+//@ts-ignore Hacking tweetnacl randomBytes to produce deterministic output
+nacl.randomBytes = (n: number) => new Uint8Array(n).fill(1)
 
 function encryptCallbackForKey({
   secretKey,
