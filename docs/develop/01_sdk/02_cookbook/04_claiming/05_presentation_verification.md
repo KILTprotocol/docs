@@ -2,16 +2,18 @@
 id: presentation-verification
 title: Verify a Credential or a Presentation
 ---
-import CodeBlock from '@theme/CodeBlock';
+
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
 import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/claiming/05_verify_presentation.ts';
 
 Whether a presentation involves selective disclosure or a whole credential is not technically relevant to Verifiers.
 This is because in KILT a presentation **is** a credential.
 This means that the logic for Verifiers does not change depending on the case, thus verifying a presentation is as easy as calling one SDK function, like the following code snippet:
 
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {VerifyPresentation}
-</CodeBlock>
+</TsJsBlock>
 
 :::warning
 Verifying a presentation provides proof that all the information is correct and authentic, and that the credential has not been revoked.

@@ -2,57 +2,64 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { generateAccount } from './generateAccount'
 import { generateKeypairs } from './generateKeypairs'
-import { getAccount } from './generateAccount'
 import { getCtypeSchema } from './ctypeSchema'
-import { getFullDid } from './generateDid'
 
-export async function ensureStoredCtype(): Promise<Kilt.CType> {
-  // Init
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-  const mnemonic = process.env.ATTESTER_MNEMONIC as string
-  const did = process.env.ATTESTER_DID_URI as Kilt.DidUri
+export async function ensureStoredCtype(
+  attesterAccount: Kilt.KiltKeyringPair,
+  attesterDid: Kilt.DidUri,
+  signCallback: Kilt.SignExtrinsicCallback
+): Promise<Kilt.ICType> {
+  const api = Kilt.ConfigService.get('api')
 
-  // Load Account
-  const account = await getAccount(mnemonic)
-
-  // Load DID
-  const keystore = new Kilt.Did.DemoKeystore()
-  await generateKeypairs(keystore, mnemonic)
-  const fullDid = await getFullDid(did)
-
-  // get the CTYPE and see if it's stored, if yes return it
+  // Get the CTYPE and see if it's stored, if yes return it.
   const ctype = getCtypeSchema()
-  const isStored = await ctype.verifyStored()
-  if (isStored) {
+  try {
+    await Kilt.CType.verifyStored(ctype)
     console.log('Ctype already stored. Skipping creation')
     return ctype
+  } catch {
+    console.log('Ctype not present. Creating it now...')
+    // Authorize the tx.
+    const encodedCtype = Kilt.CType.toChain(ctype)
+    const tx = api.tx.ctype.add(encodedCtype)
+    const extrinsic = await Kilt.Did.authorizeTx(
+      attesterDid,
+      tx,
+      signCallback,
+      attesterAccount.address
+    )
+
+    // Write to chain then return the CType.
+    await Kilt.Blockchain.signAndSubmitTx(extrinsic, attesterAccount)
+
+    return ctype
   }
-  console.log('Ctype not present. Creating it now...')
-
-  // authorize the extrinsic
-  const tx = await ctype.getStoreTx()
-  const extrinsic = await fullDid.authorizeExtrinsic(
-    tx,
-    keystore,
-    account.address
-  )
-
-  // write to chain then return ctype
-  await Kilt.BlockchainUtils.signAndSubmitTx(extrinsic, account, {
-    resolveOn: Kilt.BlockchainUtils.IS_FINALIZED
-  })
-
-  return ctype
 }
 
-// don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
-  envConfig()
-  ensureStoredCtype()
-    .catch((e) => {
-      console.log('Error while checking on chain ctype', e)
-      process.exit(1)
-    })
-    .then(() => process.exit())
+  ;(async () => {
+    envConfig()
+
+    try {
+      await Kilt.connect(process.env.WSS_ADDRESS as string)
+
+      const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
+      const { account } = generateAccount(accountMnemonic)
+
+      const didMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
+      const { authentication, attestation } = generateKeypairs(didMnemonic)
+      const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
+
+      await ensureStoredCtype(account, attesterDidUri, async ({ data }) => ({
+        signature: attestation.sign(data),
+        keyType: attestation.type
+      }))
+    } catch (e) {
+      console.log('Error while checking on chain ctype')
+      throw e
+    }
+  })()
 }

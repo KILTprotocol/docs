@@ -4,18 +4,18 @@ title: Quickstart
 ---
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
+import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
-import InitSDK from '!!raw-loader!@site/code_examples/core_features/getting_started/02_init_sdk.ts';
-import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/03_connect.ts';
-import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_did.ts';
-import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/06_fetch_endpoint_data.ts';
-import BuildCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_build_credential.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/08_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/09_disconnect.ts';
+import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';
+import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
+import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
+import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
+import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 You will learn how to:
@@ -35,14 +35,33 @@ We will focus on creating a new project from scratch, which will require a littl
 First, we need to create a new project in a new directory.
 For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
 
-```bash npm2yarn
-npm install @kiltprotocol/sdk-js node axios
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
+
+  ```bash npm2yarn
+  npm install @kiltprotocol/sdk-js axios node
+  ```
+
+  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
+
+  ```bash npm2yarn
+  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  ```
+
+  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
+
+  </TabItem>
+</Tabs>
 
 After you have imported the SDK you will be able to access the functionalities that KILT provides.
-With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
 Inside the `package.json` add in the value `"type": "module"`.
 
 Let's first declare our `main` function that will execute our script:
@@ -53,16 +72,20 @@ Let's first declare our `main` function that will execute our script:
 
 If the setup is correct you can execute the script by calling the name of the file using Node.
 
-<Tabs>
-  <TabItem value='npm' label='npm' default>
-    <CodeBlock className="language-bash">
-      npm node quickstart.js
-    </CodeBlock>
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn ts-node quickstart.ts
+  ```
+
   </TabItem>
-  <TabItem value='yarn' label='Yarn'>
-    <CodeBlock className="language-bash">
-      yarn node quickstart.js
-    </CodeBlock>
+  <TabItem value='js' label='Javascript'>
+
+  ```bash
+  node quickstart.js
+  ```
+
   </TabItem>
 </Tabs>
 
@@ -87,18 +110,9 @@ We will move onto connecting to the **KILT blockchain**.
 Connecting to and disconnecting from the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a credential**.
 
 Still within the same `main` function, you need to configure the SDK to connect to a **KILT node**.
-For this, the SDK exposes **`Kilt.init()`** to configure the address of the node to connect to.
+For this, the SDK exposes **`Kilt.connect()`** to configure the address of the node to connect to.
 
 We will use the official **Spiritnet** address:
-
-<SnippetBlock
-  className="language-ts"
->
-  {InitSDK}
-</SnippetBlock>
-
-Once the node address has been configured, we can establish a connection with the Spiritnet node.
-Again, the SDK makes this process very easy to follow, by exposing a `Kilt.connect()` function:
 
 <SnippetBlock
   className="language-ts"
@@ -155,25 +169,22 @@ The code snippet retrieves the service endpoints exposed by the DID we found for
 If the snippet printed some endpoints, congratulations!
 Let's see if we can find a credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a credential:
+We can select one of the endpoints and query the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1):
 
-<SnippetBlock
-  className="language-ts"
-  funcEnd="return"
->
+<TsJsSnippet funcEnd="return">
   {FetchEndpointData}
-</SnippetBlock>
+</TsJsSnippet>
 
-If the script completes with no errors, it means that we were able to retrieve a credential using the URL specified in the service endpoint.
+If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service endpoint.
 
 We will now have to make sure the credential is **valid** and has a valid **structure**.
 To do that, we need to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
 <SnippetBlock
   className="language-ts"
-  funcEnd="return"
+  funcEnd="}"
 >
-  {BuildCredential}
+  {VerifyAttestation}
 </SnippetBlock>
 
 Execute the script and see if you get a valid attestation for John Doe's credential!

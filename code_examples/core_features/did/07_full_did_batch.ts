@@ -1,52 +1,40 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
-import { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-function getRandomCType(): Kilt.CType {
+function getRandomCType(): Kilt.ICType {
   // Random factor ensures that each created CType is unique and does not already exist on chain.
   const randomFactor = Kilt.Utils.UUID.generate()
-  return Kilt.CType.fromSchema({
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `CType ${randomFactor}`,
-    properties: {
-      name: {
-        type: 'string'
-      },
-      age: {
-        type: 'integer'
-      }
+  return Kilt.CType.fromProperties(`CType ${randomFactor}`, {
+    name: {
+      type: 'string'
     },
-    type: 'object'
+    age: {
+      type: 'integer'
+    }
   })
 }
 
 export async function batchCTypeCreationExtrinsics(
-  keystore: Kilt.Did.DemoKeystore,
-  api: ApiPromise,
-  submitterAccount: KeyringPair,
-  fullDid: Kilt.Did.FullDidDetails,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair,
+  fullDid: Kilt.DidUri,
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
-  // Create two random demo CTypes
+  const api = Kilt.ConfigService.get('api')
+
+  // Create two random demo CTypes.
   const ctype1 = getRandomCType()
-  const ctype1CreationTx = await ctype1.getStoreTx()
+  const ctype1CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype1))
   const ctype2 = getRandomCType()
-  const ctype2CreationTx = await ctype2.getStoreTx()
+  const ctype2CreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype2))
 
-  // Create the DID-signed batch
-  const batch = await new Kilt.Did.DidBatchBuilder(api, fullDid)
-    .addMultipleExtrinsics([ctype1CreationTx, ctype2CreationTx])
-    .build(keystore, submitterAccount.address)
-
-  // The authorized account submits the batch to the chain
-  await Kilt.BlockchainUtils.signAndSubmitTx(batch, submitterAccount, {
-    resolveOn
+  // Create the DID-signed batch.
+  const authorizedBatch = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batchAll,
+    did: fullDid,
+    extrinsics: [ctype1CreationTx, ctype2CreationTx],
+    sign: signCallback,
+    submitter: submitterAccount.address
   })
 
-  if (!(await ctype1.verifyStored()) || !(await ctype2.verifyStored())) {
-    throw 'One of the two CTypes has not been properly stored.'
-  }
+  // The authorized account submits the batch to the chain.
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount)
 }

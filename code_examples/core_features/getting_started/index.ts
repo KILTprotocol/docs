@@ -1,29 +1,27 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as buildCredential } from './07_build_credential'
-import { main as connect } from './03_connect'
-import { main as disconnect } from './09_disconnect'
-import { main as fetchEndpointData } from './06_fetch_endpoint_data'
-import { main as fetchJohnDoeDid } from './04_fetch_did'
-import { main as fetchJohnDoeEndpoints } from './05_fetch_endpoints'
-import { main as initSDKWithSpiritnet } from './02_init_sdk'
+import { main as connect } from './02_connect'
+import { main as disconnect } from './08_disconnect'
+import { main as fetchEndpointData } from './05_fetch_endpoint_data'
+import { main as fetchJohnDoeDid } from './03_fetch_did'
+import { main as fetchJohnDoeEndpoints } from './04_fetch_endpoints'
 import { main as printHelloWorld } from './01_print_hello_world'
-import { main as verifyCredential } from './08_verify_credential'
+import { main as verifyAttestation } from './06_verify_attestation'
+import { main as verifyCredential } from './07_verify_credential'
 
 export async function runAll(): Promise<void> {
-  printHelloWorld()
-  await initSDKWithSpiritnet()
-  // Connect to Spiritnet
-  await connect()
-  const johnDoeDid = await fetchJohnDoeDid()
+  await printHelloWorld()
+  // Connect to Spiritnet.
+  const api = await connect()
+  const johnDoeDid = await fetchJohnDoeDid(api)
   if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
     throw `DID doesn't include the service endpoints`
 
-  let request: Kilt.IRequestForAttestation
+  let credential: Kilt.ICredential
   try {
-    request = await fetchEndpointData(endpoints)
+    credential = await fetchEndpointData(endpoints)
   } catch {
     // FIXME: Occasionally there is a timeout error, because the endpoint uses the official ipfs gateway.
     // Fix it by using a reliable endpoint.
@@ -32,9 +30,13 @@ export async function runAll(): Promise<void> {
     return
   }
 
-  const credential = await buildCredential(request)
-  if (!credential) throw 'Credential not created'
-  const credentialValidity = await verifyCredential(credential)
-  if (!credentialValidity) throw 'Credential not valid.'
+  const attestationStatus = await verifyAttestation(api, credential)
+  if (attestationStatus) {
+    console.log("John Doe's credential is attested!")
+  } else {
+    console.log("John Doe's credential is not attested.")
+  }
+
+  await verifyCredential(credential)
   await disconnect()
 }

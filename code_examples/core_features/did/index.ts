@@ -1,7 +1,4 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
-import { ApiPromise } from '@polkadot/api'
-import { randomAsHex } from '@polkadot/util-crypto'
+import { stringToU8a } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -16,77 +13,108 @@ import { migrateLightDid } from './03_light_did_migrate'
 import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
 import { updateFullDid } from './06_full_did_update'
 
+import generateDidKeypairs from '../utils/generateKeypairs'
+
 export async function runAll(
-  api: ApiPromise,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running DID flow...')
-  const keystore = new Kilt.Did.DemoKeystore()
 
   console.log('1 did) Create simple light DID')
-  let randomSeed = randomAsHex(32)
-  const simpleLightDid = await createSimpleLightDid(keystore, randomSeed)
-  randomSeed = randomAsHex(32)
+  const { authentication: simpleLightDidAuth } = generateDidKeypairs()
+  const simpleLightDid = createSimpleLightDid({
+    authentication: simpleLightDidAuth
+  })
   console.log('2 did) Create complete light DID')
-  await createCompleteLightDid(keystore, randomSeed)
+  const {
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  } = generateDidKeypairs()
+  createCompleteLightDid({
+    authentication: completeLightDidAuth,
+    encryption: completeLightDidEnc
+  })
   console.log('3 did) Migrate first light DID to full DID')
-  await migrateLightDid(keystore, submitterAccount, simpleLightDid, resolveOn)
+  await migrateLightDid(simpleLightDid, submitterAccount, async ({ data }) => ({
+    signature: simpleLightDidAuth.sign(data),
+    keyType: simpleLightDidAuth.type
+  }))
   console.log('4 did) Create simple full DID')
+  const { authentication: simpleFullDidAuth } = generateDidKeypairs()
   const createdSimpleFullDid = await createSimpleFullDid(
-    keystore,
-    api,
     submitterAccount,
-    undefined,
-    resolveOn
+    {
+      authentication: simpleFullDidAuth
+    },
+    async ({ data }) => ({
+      signature: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type
+    })
   )
   console.log('5 did) Create complete full DID')
+  const {
+    authentication: completeFullDidAuth,
+    encryption: completeFullDidEnc,
+    attestation: completeFullDidAtt,
+    delegation: completeFullDidDel
+  } = generateDidKeypairs()
   const createdCompleteFullDid = await createCompleteFullDid(
-    keystore,
-    api,
     submitterAccount,
-    undefined,
-    resolveOn
+    {
+      authentication: completeFullDidAuth,
+      encryption: completeFullDidEnc,
+      attestation: completeFullDidAtt,
+      delegation: completeFullDidDel
+    },
+    async ({ data }) => ({
+      signature: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type
+    })
   )
   console.log('6 did) Update full DID created at step 5')
+  const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
   const updatedFullDid = await updateFullDid(
-    keystore,
-    api,
+    newCompleteFullDidAuth,
+    createdCompleteFullDid.uri,
     submitterAccount,
-    createdCompleteFullDid,
-    resolveOn
+    async ({ data }) => ({
+      signature: completeFullDidAuth.sign(data),
+      keyType: completeFullDidAuth.type
+    })
   )
   console.log(
     '7 did) Use the same full DID created at step 5 to sign the batch'
   )
   await batchCTypeCreationExtrinsics(
-    keystore,
-    api,
     submitterAccount,
-    updatedFullDid,
-    resolveOn
+    updatedFullDid.uri,
+    async ({ data }) => ({
+      signature: completeFullDidAtt.sign(data),
+      keyType: completeFullDidAtt.type
+    })
   )
   console.log(
     '8 did) Use the same full DID created at step 5 to generate the signature'
   )
   await generateAndVerifyDidAuthenticationSignature(
-    keystore,
     updatedFullDid,
-    'test-payload'
+    stringToU8a('test-payload'),
+    async ({ data }) => ({
+      signature: newCompleteFullDidAuth.sign(data),
+      keyType: newCompleteFullDidAuth.type,
+      keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
+    })
   )
   console.log('9 did) Delete full DID created at step 4')
   await deleteFullDid(
-    keystore,
     submitterAccount,
-    createdSimpleFullDid,
-    resolveOn
+    createdSimpleFullDid.uri,
+    async ({ data }) => ({
+      signature: simpleFullDidAuth.sign(data),
+      keyType: simpleFullDidAuth.type
+    })
   )
   console.log('10 did) Delete full DID created at step 5')
-  await reclaimFullDidDeposit(
-    submitterAccount,
-    createdCompleteFullDid.identifier,
-    resolveOn
-  )
+  await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }

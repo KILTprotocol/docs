@@ -1,35 +1,31 @@
-import type { Option, Struct } from '@polkadot/types'
-import type { ApiPromise } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
-import { hexToString } from '@polkadot/util'
+import { ApiPromise, WsProvider } from '@polkadot/api'
 
-import * as Kilt from '@kiltprotocol/sdk-js'
+// Import needed to provide KILT Typescript support to the api object.
+import '@kiltprotocol/augment-api'
+import { typesBundle } from '@kiltprotocol/type-definitions'
 
 export async function queryAccountWeb3Name(
-  api: ApiPromise,
+  endpoint: string,
   lookupAccountAddress: KeyringPair['address']
-): Promise<Kilt.Did.Web3Names.Web3Name | null> {
-  // First RPC call to `api.query.didLookup.connectedDids` for account -> DID lookup.
-  const maybeAccountDid = await api.query.didLookup.connectedDids<
-    Option<Struct>
-  >(lookupAccountAddress)
-  if (maybeAccountDid.isNone) {
+): Promise<string | null> {
+  const api = await ApiPromise.create({
+    provider: new WsProvider(endpoint),
+    typesBundle
+  })
+  // Call to the KILT runtime API `did.queryByAccount`
+  const didDetails = await api.call.did.queryByAccount(lookupAccountAddress)
+  if (didDetails.isNone) {
     throw `No DID for the KILT account "${lookupAccountAddress}".`
   }
-  const accountDidIdentifier = maybeAccountDid.unwrap()?.get('did')?.toHuman()
-  console.log(
-    `The provided account has been linked to the following DID: "did:kilt:${accountDidIdentifier}"`
-  )
 
-  // Second RPC call to `api.query.web3Names.names` for DID -> web3name lookup.
-  const maybeDidName = await api.query.web3Names.names<Option<Struct>>(
-    accountDidIdentifier
-  )
-  if (maybeDidName.isNone) {
+  const { w3n } = didDetails.unwrap()
+  if (w3n.isNone) {
     throw `No web3name for the KILT account "${lookupAccountAddress}".`
   }
-  const web3Name = hexToString(maybeDidName.unwrap()?.toHex())
+
+  const web3Name = w3n.unwrap().toHuman()
   console.log(
     `The provided account is identifiable by the following web3name: "w3n:${web3Name}"`
   )

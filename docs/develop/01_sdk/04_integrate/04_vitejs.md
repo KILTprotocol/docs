@@ -18,7 +18,7 @@ Bootstrap using the template of your choice and install KILT + NodeJS polyfills:
 ```bash
 yarn create vite my-app --template react-ts
 cd my-app
-yarn add @kiltprotocol/sdk-js@0.28.3
+yarn add @kiltprotocol/sdk-js
 yarn add --dev @esbuild-plugins/node-globals-polyfill
 yarn add --dev @esbuild-plugins/node-modules-polyfill
 ```

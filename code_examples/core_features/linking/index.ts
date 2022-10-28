@@ -2,8 +2,6 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { randomUUID } from 'crypto'
 
-import { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from '../web3names/01_claim'
@@ -17,64 +15,79 @@ import { reclaimLinkDeposit } from './07_reclaim_deposit'
 import { unlinkAccountFromDid } from './05_did_unlink'
 import { unlinkDidFromAccount } from './06_account_unlink'
 
+import generateKeypairs from '../utils/generateKeypairs'
+
 // The provided DID is assumed to have an associated web3name.
 export async function runAll(
-  api: ApiPromise,
-  submitterAccount: KeyringPair,
-  linkAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  endpoint: string,
+  submitterAccount: Kilt.KiltKeyringPair,
+  linkAccount: KeyringPair
 ): Promise<void> {
   console.log('Running linking flow...')
-  const keystore = new Kilt.Did.DemoKeystore()
+  const { authentication } = generateKeypairs()
   const fullDid = await createSimpleFullDid(
-    keystore,
-    api,
     submitterAccount,
-    undefined,
-    resolveOn
+    {
+      authentication
+    },
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
   await claimWeb3Name(
-    keystore,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    resolveOn
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
 
   console.log('1 linking) Link link account to DID')
   await linkAccountToDid(
-    keystore,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     linkAccount,
-    resolveOn
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
   console.log('2 linking) Link DID to submitter account')
-  await linkDidToAccount(keystore, fullDid, submitterAccount, resolveOn)
+  await linkDidToAccount(fullDid.uri, submitterAccount, async ({ data }) => ({
+    signature: authentication.sign(data),
+    keyType: authentication.type
+  }))
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
   if (!web3Name) {
     throw `The DID "${fullDid.uri}" is assumed to have a linked web3name, which it does not.`
   }
   console.log('4 linking) Query web3name for submitter account without SDK')
-  web3Name = await queryAccountWithoutSdk(api, submitterAccount.address)
+  web3Name = await queryAccountWithoutSdk(endpoint, submitterAccount.address)
   if (!web3Name) {
     throw 'The retrieved web3name should have been the same as the one of the link account, which is not.'
   }
   console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(
-    keystore,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     linkAccount.address,
-    resolveOn
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
   console.log('6 linking) Unlink submitter account from DID')
-  await unlinkDidFromAccount(submitterAccount, resolveOn)
+  await unlinkDidFromAccount(submitterAccount)
   console.log('7 linking) Re-add submitter account and claim deposit back')
-  await linkDidToAccount(keystore, fullDid, submitterAccount, resolveOn)
+  await linkDidToAccount(fullDid.uri, submitterAccount, async ({ data }) => ({
+    signature: authentication.sign(data),
+    keyType: authentication.type
+  }))
   await reclaimLinkDeposit(submitterAccount, submitterAccount.address)
   console.log('Linking flow completed!')
 }

@@ -1,4 +1,5 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
 module.exports = {
   title: 'KILT Protocol',
   tagline:
@@ -12,6 +13,13 @@ module.exports = {
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
   themeConfig: {
     image: 'img/expert_dark_preview.png',
+    announcementBar: {
+      id: 'sdk-refactor-announcement',
+      content: 'Our Javascript SDK has undergone a major overhaul with the latest version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Check what to consider when upgrading <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">here</a>.',
+      backgroundColor: '#2db528',
+      textColor: '#fff',
+      isCloseable: true,
+    },
     navbar: {
       title: '', // no title since the Name is already in the logo
       logo: {
@@ -175,5 +183,17 @@ module.exports = {
         },
       },
     ],
-  ]
+  ],
+  // !!!
+  // If this changes, please change the key reference to this field
+  // in TsJsBlock and TsJsSnippet components, and maybe also in the .prettierrc file, if needed
+  // !!!
+  customFields: {
+    prettierConfig: {
+      trailingComma: "es5",
+      semi: false,
+      singleQuote: true,
+      printWidth: 80
+    }
+  }
 }

@@ -1,18 +1,16 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimAttestationDeposit(
-  depositPayer: KeyringPair,
-  credential: Kilt.Credential,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  depositPayer: Kilt.KiltKeyringPair,
+  credential: Kilt.ICredential
 ): Promise<void> {
-  // Generate the submittable extrinsic to claim the deposit back.
-  const depositReclaimTx = await credential.attestation.getReclaimDepositTx()
+  const api = Kilt.ConfigService.get('api')
+
+  // Generate the tx to claim the deposit back.
+  const depositReclaimTx = api.tx.attestation.reclaimDeposit(
+    credential.rootHash
+  )
 
   // Submit the revocation tx to the KILT blockchain.
-  await Kilt.BlockchainUtils.signAndSubmitTx(depositReclaimTx, depositPayer, {
-    resolveOn
-  })
+  await Kilt.Blockchain.signAndSubmitTx(depositReclaimTx, depositPayer)
 }

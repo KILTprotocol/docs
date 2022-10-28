@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "target": "ES2020"
+  },
+  "exclude": [
+    "test.ts"
+  ]
+}
