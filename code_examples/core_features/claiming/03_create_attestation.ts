@@ -1,34 +1,32 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createAttestation(
-  keystore: Kilt.KeystoreSigner,
-  requestForAttestation: Kilt.IRequestForAttestation,
-  attester: Kilt.Did.FullDidDetails,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
-): Promise<Kilt.Credential> {
+  attester: Kilt.DidUri,
+  submitterAccount: Kilt.KiltKeyringPair,
+  signCallback: Kilt.SignExtrinsicCallback,
+  credential: Kilt.ICredential
+): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create an attestation object and write its root hash on the chain
   // using the provided attester's full DID.
-  const attestation = await Kilt.Attestation.fromRequestAndDid(
-    requestForAttestation,
-    attester.uri
-  )
-  const attestationTx = await attestation
-    .getStoreTx()
-    .then((tx) =>
-      attester.authorizeExtrinsic(tx, keystore, submitterAccount.address)
-    )
-  await Kilt.BlockchainUtils.signAndSubmitTx(attestationTx, submitterAccount, {
-    resolveOn
-  })
+  const { cTypeHash, claimHash, delegationId } =
+    Kilt.Attestation.fromCredentialAndDid(credential, attester)
 
-  // Return the credential, which is the combination of the original request for attestation
-  // plus the on-chain attestation info.
-  return Kilt.Credential.fromRequestAndAttestation(
-    requestForAttestation,
-    attestation
+  // Write the attestation info on the chain.
+  const attestationTx = api.tx.attestation.add(
+    claimHash,
+    cTypeHash,
+    delegationId
+  )
+  const authorizedAttestationTx = await Kilt.Did.authorizeTx(
+    attester,
+    attestationTx,
+    signCallback,
+    submitterAccount.address
+  )
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorizedAttestationTx,
+    submitterAccount
   )
 }

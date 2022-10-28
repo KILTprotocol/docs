@@ -1,53 +1,39 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
-import { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function updateFullDid(
-  keystore: Kilt.Did.DemoKeystore,
-  api: ApiPromise,
-  submitterAccount: KeyringPair,
-  fullDid: Kilt.Did.FullDidDetails,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
-): Promise<Kilt.Did.FullDidDetails> {
-  // Ask the keystore to generate a new keypair to use for authentication.
-  // With no seed specified, a random one will be used.
-  const newAuthenticationKeyPublicDetails = await keystore.generateKeypair({
-    alg: Kilt.Did.SigningAlgorithms.Ed25519
+  newAuthKeypair: Kilt.KiltKeyringPair,
+  fullDid: Kilt.DidUri,
+  submitterAccount: Kilt.KiltKeyringPair,
+  signCallback: Kilt.SignExtrinsicCallback
+): Promise<Kilt.DidDocument> {
+  const api = Kilt.ConfigService.get('api')
+
+  // Create the tx to update the authentication key.
+  const didKeyUpdateTx = api.tx.did.setAuthenticationKey(
+    Kilt.Did.publicKeyToChain(newAuthKeypair)
+  )
+  // Create the tx to remove the service with ID `#my-service`.
+  const didServiceRemoveTx = api.tx.did.removeServiceEndpoint(
+    Kilt.Did.resourceIdToChain('#my-service')
+  )
+
+  // Create and sign the DID operation that contains the two (unsigned) txs.
+  // This results in a DID-signed tx that can be then signed and submitted to the KILT blockchain by the account
+  // authorized in this operation, Alice in this case.
+  const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
+    batchFunction: api.tx.utility.batchAll,
+    did: fullDid,
+    extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
+    sign: signCallback,
+    submitter: submitterAccount.address
   })
 
-  // Create and sign the DID operation to replace the authentication key with the new one generated.
-  // This results in an unsigned extrinsic that can be then signed and submitted to the KILT blockchain by the account
-  // authorized in this operation, Alice in this case.
-  const didUpdateExtrinsic = await new Kilt.Did.FullDidUpdateBuilder(
-    api,
-    fullDid
-  )
-    .setAuthenticationKey({
-      publicKey: newAuthenticationKeyPublicDetails.publicKey,
-      type: Kilt.VerificationKeyType.Ed25519
-    })
-    .removeServiceEndpoint('my-service')
-    .build(keystore, submitterAccount.address)
-
   // Submit the DID update tx to the KILT blockchain after signing it with the authorized KILT account.
-  await Kilt.BlockchainUtils.signAndSubmitTx(
-    didUpdateExtrinsic,
-    submitterAccount,
-    {
-      resolveOn
-    }
-  )
+  await Kilt.Blockchain.signAndSubmitTx(authorizedBatchedTxs, submitterAccount)
 
-  // Get the updated DID Doc
-  const updatedDidDetails = await Kilt.Did.FullDidDetails.fromChainInfo(
-    fullDid.uri
+  // Get the updated DID Document.
+  const encodedUpdatedDidDetails = await api.call.did.query(
+    Kilt.Did.toChain(fullDid)
   )
-
-  if (!updatedDidDetails) {
-    throw `Could not find the updated DID ${fullDid.uri}`
-  }
-  return updatedDidDetails
+  return Kilt.Did.linkedInfoFromChain(encodedUpdatedDidDetails).document
 }

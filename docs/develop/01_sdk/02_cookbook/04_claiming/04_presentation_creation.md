@@ -2,7 +2,9 @@
 id: presentation-creation
 title: Present a Credential
 ---
-import CodeBlock from '@theme/CodeBlock';
+
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
 import CreatePresentation from '!!raw-loader!@site/code_examples/core_features/claiming/04_create_presentation.ts';
 
 With a valid credential, Claimers can now go to Verifiers to request some service upon providing proof of validity of a certain credential.
@@ -19,6 +21,6 @@ Check the snippet below to see how that is done using the KILT SDK.
 
 The Claimer can generate a presentation starting from a credential, optionally specifying the fields to reveal and a presentation challenge, which is useful to prove freshness of the generated presentation.
 
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {CreatePresentation}
-</CodeBlock>
+</TsJsBlock>

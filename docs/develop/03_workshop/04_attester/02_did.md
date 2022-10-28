@@ -4,8 +4,12 @@ title: DID
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
-import generateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
 
 Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
@@ -56,19 +60,13 @@ The keystore ...
 :::
 
 To create a DID we need a keystore.
-<<<<<<< HEAD:docs/develop/03_workshop/04_attester/02_did.md
-For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
-Since three of the key types use are used for signatures, we can use the same key for these.
-=======
 For our <span class="label-role attester">Attester</span> we'll need all four types of keys.
 Since three of the key types are used for signatures, we can use the same key for these.
->>>>>>> a3c43966 (fix: typos (#65)):docs/sdk/1-workshop/03-attester/02-did.md
-We'll use a demo keystore to generate them.
-Create a file `attester/generateKeypairs.ts` and copy the code below.
+We'll use the default KILT keyring to generate them.
 
-<CodeBlock className="language-ts" title="attester/generateKeypairs.ts">
+<TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
-</CodeBlock>
+</TsJsBlock>
 
 Once we have created all the necessary keys for a DID we can create the on-chain DID.
 To create a DID we first initialize everything.
@@ -76,19 +74,32 @@ After that, we load the account that we created in the [last section](./01_accou
 The account will be used to pay for the DID registration.
 Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
 
-<CodeBlock className="language-ts" title="attester/generateDid.ts">
-  {generateDid}
-</CodeBlock>
+<TsJsBlock fileName="attester/generateDid">
+  {GenerateDid}
+</TsJsBlock>
 
 ## Execute
 
 You can now execute the script with:
 
-```bash
-yarn ts-node ./attester/generateDid.ts
-```
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_URI`.
+  ```bash
+  yarn ts-node ./attester/generateDid.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  ```bash
+  node ./attester/generateAccount.js
+  ```
+
+  </TabItem>
+</Tabs>
+
+Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
@@ -101,9 +112,9 @@ It should now look similar to this:
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
 
-ATTESTER_MNEMONIC="warrior icon use cry...
-ATTESTER_ADDRESS=4ohMvUHsyeDhMVZF...
-ATTESTER_DID_URI=did:kilt:4ohMvUHsyeDhMVZF...
+ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
+ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
+ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ```
 
 Well done - You've successfully generated a full DID! Let's create a CType!

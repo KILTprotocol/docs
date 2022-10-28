@@ -2,6 +2,7 @@
 id: overview
 title: Overview
 ---
+
 import ThemedImage from '@theme/ThemedImage';
 
 **Credentials** consist of a set of claims which belong to a **Claimer**, are attested by an **Attester** and can be verified by **Verifiers**.
@@ -21,8 +22,10 @@ To get a credential, a Claimer needs to go through following process:
 1. Find a **CType** a claim should be based on. Potential Attesters and Verifiers might advertise this information themselves.
 2. Make a **claim** containing a set of properties about themselves.
 3. Potentially request and receive **Terms** and agree on a **Quote** with the potential Attester.
-4. **Request a (credential) attestation** from the Attester.
-5. Wait for the claim to be **attested** by the Attester.
+4. **Request an attestation** from the Attester.
+5. Wait for the claims to be **attested** by the Attester.
+
+Once attested, the claims are considered to be a valid credential.
 
 To verify a credential, a Claimer can generate a presentation of it to a Verifier, with the following process:
 
@@ -32,4 +35,4 @@ To verify a credential, a Claimer can generate a presentation of it to a Verifie
 
 Each step is described in more detail in the next sections.
 
-If you want to learn about how implement the above flow in a dapp that interacts with a browser extension, please refer to the [Credential API specification](https://github.com/KILTprotocol/credential-api/blob/master/readme.md).
+If you want to learn about how implement the above flow in a dapp that interacts with a browser extension, please refer to the [Credential API specification](https://github.com/KILTprotocol/spec-ext-credential-api).

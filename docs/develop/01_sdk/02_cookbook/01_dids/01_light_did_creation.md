@@ -3,28 +3,25 @@ id: light-did-creation
 title: Create a Light DID
 ---
 
-import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+
 import LightDidSimple from '!!raw-loader!@site/code_examples/core_features/did/01_light_did_simple.ts';
 import LightDidComplete from '!!raw-loader!@site/code_examples/core_features/did/02_light_did_complete.ts';
 
-The creation of a light DID requires a keystore instance that conforms to the [Keystore interface](https://github.com/KILTprotocol/sdk-js/blob/master/packages/types/src/Keystore.ts).
-For the sake of ease of use, the SDK provides a [demo keystore](https://github.com/KILTprotocol/sdk-js/blob/master/packages/did/src/DemoKeystore/DemoKeystore.ts) which can be used to generate key pairs that are kept in memory and disappear at the end of the program execution.
+The creation of a light DID requires the generation of some keying material for keys that are to be used for authentication and encryption.
+For the sake of ease of use, the example snippets below show how to use keys generated with a `Keyring`, provided also by the `@polkadot/api` library, to generate key pairs that are kept in memory and disappear at the end of the program execution, unless saved to some persistent storage.
 
-:::warning
-Using the demo keystore in production is highly discouraged as all the keys are kept in the memory and easily retrievable by malicious actors.
-:::
+The following is an example of how to create a light DID after creating an authentication keypair.
 
-The following is an example of how to create a light DID after creating an instance of the demo keystore.
-
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {LightDidSimple}
-</CodeBlock>
+</TsJsBlock>
 
 For cases in which an encryption key and some service endpoints also need to be added to a light DID:
 
-<CodeBlock className="language-ts">
+<TsJsBlock>
   {LightDidComplete}
-</CodeBlock>
+</TsJsBlock>
 
 :::info
 In KILT, light DIDs are meant to be used in one of two cases:

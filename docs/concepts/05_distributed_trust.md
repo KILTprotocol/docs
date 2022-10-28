@@ -5,10 +5,6 @@ title: Distributed Trust
 
 import ThemedImage from '@theme/ThemedImage';
 
-:::caution
-This feature is currently a preview on Peregrine and is therefore not available on Spiritnet.
-:::
-
 In some cases, Attesters are individuals that attest to the validity of claims made by Claimers.
 Nevertheless, in most cases multiple Attesters group together to build up trust in a brand.
 In this way, Verifiers no longer need to trust each and every Attester individually; they can put trust in the brand as a whole, which in return ensures that all Attesters working for this brand are credible.

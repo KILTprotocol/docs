@@ -1,20 +1,26 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { blake2AsHex } from '@polkadot/util-crypto'
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
+export function main(
   submissions: Map<string, number>,
-  decrypted: Kilt.Message,
+  decrypted: Kilt.IMessage,
   MIN_ACCEPTED_AGE: number,
   MAX_ACCEPTED_AGE: number
-): Promise<void> {
-  // is messageId fresh and createdAt recent ?
+) {
+  // Is messageId fresh and createdAt recent?
+  const messageId =
+    decrypted.messageId || blake2AsHex(JSON.stringify(decrypted))
   if (
-    submissions.has(decrypted.messageId) ||
+    submissions.has(messageId) ||
     decrypted.createdAt < Date.now() - MAX_ACCEPTED_AGE ||
     decrypted.createdAt > Date.now() - MIN_ACCEPTED_AGE
   ) {
     // no -> reject message
   } else {
-    submissions.set(decrypted.messageId, decrypted.createdAt)
+    submissions.set(messageId, decrypted.createdAt)
     // yes -> accept & process message
   }
 }

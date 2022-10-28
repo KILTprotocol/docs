@@ -1,20 +1,14 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createPresentation(
-  credentialObj: Kilt.ICredential,
-  lightDid: Kilt.Did.LightDidDetails,
-  keystore: Kilt.Did.DemoKeystore,
+  credential: Kilt.ICredential,
+  signCallback: Kilt.SignCallback,
   challenge?: string
-): Promise<Kilt.ICredential> {
-  // creates a Credential from object
-  const credential = new Kilt.Credential(credentialObj)
-
-  // creates the presentation from credential, keystore, did and challenge
-  const presentation = await credential.createPresentation({
-    signer: keystore,
-    claimerDid: lightDid,
-    challenge: challenge
+): Promise<Kilt.ICredentialPresentation> {
+  // Create the presentation from credential, DID and challenge.
+  return Kilt.Credential.createPresentation({
+    credential,
+    signCallback,
+    challenge
   })
-
-  return presentation
 }
