@@ -6,7 +6,7 @@ export async function getUnclaimedStakingRewards(
   account: string
 ) {
   const rewards =
-    await api.call.parachainStakingApi.getUnclaimedStakingRewards<Balance>(
+    await api.call.staking.getUnclaimedStakingRewards<Balance>(
       account
     )
   return rewards.toBigInt()

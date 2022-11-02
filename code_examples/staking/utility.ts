@@ -1,18 +1,12 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types'
-import { typeBundleForPolkadot } from '@kiltprotocol/type-definitions'
-
+import { typesBundle } from '@kiltprotocol/type-definitions'
 
 export async function connect(wssProvider: string) {
   return ApiPromise.create({
     provider: new WsProvider(wssProvider),
-    typesBundle: {
-      spec: {
-        'mashnet-node': typeBundleForPolkadot,
-        'kilt-spiritnet': typeBundleForPolkadot
-      }
-    }
+    typesBundle,
   })
 }
 

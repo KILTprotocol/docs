@@ -9,7 +9,7 @@ export async function claimDelegatorStakingRewards(
     // convert delegator participation points into rewards
     api.tx.parachainStaking.incrementDelegatorRewards(),
     // mint rewards for delegator address
-    api.tx.parachainStaking.claimRewardsFor(submitterAccount.address)
+    api.tx.parachainStaking.claimRewards()
   ])
 
   // boilerplate to sign and send tx to websocket

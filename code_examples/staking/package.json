@@ -7,14 +7,14 @@
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
-    "test": "ts-node run_core_features.ts"
+    "test": "ts-node index.ts"
   },
   "dependencies": {
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@kiltprotocol/type-definitions": "^0.2.1",
-    "@polkadot/api": "^9.3.3",
+    "@kiltprotocol/type-definitions": "^0.29.0",
+    "@polkadot/api": "^9.6.2",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
