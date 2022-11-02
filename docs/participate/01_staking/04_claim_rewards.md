@@ -14,7 +14,7 @@ import ClaimRewardsDelegator from './_04_claim_rewards_delegator.mdx';
 Until runtime version 1.8.0 (`spiritnet-10800`), staking rewards were automatically minted.
 In 1.9.0 (`spiritnet-10900`) this will change:
 Hereafter, the rewards are still accounted to the collators and their delegators in each block.
-However, they need to be claimed by calling an extrinsic, similar to Polkadot.
+However, they need to be claimed by calling an extrinsic, similar to the pull-based approach on Polkadot.
 Since the rewards never expire, one does not need to rush.
 
 This change improves the scalability of our LDPoS by orders of magnitude because it removes the `Rewarded` events for a collator and all their delegators in each block.
