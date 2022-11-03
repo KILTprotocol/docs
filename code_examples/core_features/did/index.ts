@@ -2,16 +2,17 @@ import { stringToU8a } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { batchCTypeCreationExtrinsics } from './07_full_did_batch'
+import { batchCTypeCreationExtrinsics } from './08_full_did_batch'
 import { createCompleteFullDid } from './05_full_did_complete'
 import { createCompleteLightDid } from './02_light_did_complete'
 import { createSimpleFullDid } from './04_full_did_simple'
 import { createSimpleLightDid } from './01_light_did_simple'
-import { deleteFullDid } from './09_full_did_delete'
-import { generateAndVerifyDidAuthenticationSignature } from './08_did_signature'
+import { deleteFullDid } from './10_full_did_delete'
+import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
-import { reclaimFullDidDeposit } from './10_full_did_deposit_reclaim'
-import { updateFullDid } from './06_full_did_update'
+import { queryFullDid } from './06_full_did_query'
+import { reclaimFullDidDeposit } from './11_full_did_deposit_reclaim'
+import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
 
@@ -71,7 +72,9 @@ export async function runAll(
       keyType: completeFullDidAuth.type
     })
   )
-  console.log('6 did) Update full DID created at step 5')
+  console.log('6 did) Query full DID')
+  queryFullDid(createdCompleteFullDid.uri)
+  console.log('7 did) Update full DID created at step 5')
   const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
   const updatedFullDid = await updateFullDid(
     newCompleteFullDidAuth,
@@ -83,7 +86,7 @@ export async function runAll(
     })
   )
   console.log(
-    '7 did) Use the same full DID created at step 5 to sign the batch'
+    '8 did) Use the same full DID created at step 5 to sign the batch'
   )
   await batchCTypeCreationExtrinsics(
     submitterAccount,
@@ -94,7 +97,7 @@ export async function runAll(
     })
   )
   console.log(
-    '8 did) Use the same full DID created at step 5 to generate the signature'
+    '9 did) Use the same full DID created at step 5 to generate the signature'
   )
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
@@ -105,7 +108,7 @@ export async function runAll(
       keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
     })
   )
-  console.log('9 did) Delete full DID created at step 4')
+  console.log('10 did) Delete full DID created at step 4')
   await deleteFullDid(
     submitterAccount,
     createdSimpleFullDid.uri,
@@ -114,7 +117,7 @@ export async function runAll(
       keyType: simpleFullDidAuth.type
     })
   )
-  console.log('10 did) Delete full DID created at step 5')
+  console.log('11 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }
