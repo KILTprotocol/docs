@@ -5,8 +5,8 @@ title: Delete a Full DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidDelete from '!!raw-loader!@site/code_examples/core_features/did/09_full_did_delete.ts';
-import FullDidDepositReclaim from '!!raw-loader!@site/code_examples/core_features/did/10_full_did_deposit_reclaim.ts';
+import FullDidDelete from '!!raw-loader!@site/code_examples/core_features/did/10_full_did_delete.ts';
+import FullDidDepositReclaim from '!!raw-loader!@site/code_examples/core_features/did/11_full_did_deposit_reclaim.ts';
 
 Once a DID is no longer needed, it is recommended to deactivate it by removing it from the KILT blockchain.
 The following snippet shows how to do it:
