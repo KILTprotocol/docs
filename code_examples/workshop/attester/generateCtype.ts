@@ -58,7 +58,7 @@ if (require.main === module) {
         keyType: attestation.type
       }))
       
-      console.log(`your ctype was succsesfully created\n\n${ JSON.stringify( newCType ) }`)
+      console.log(`your ctype was succsesfully created\n\n${ JSON.stringify( newCType, null, 2 ) }`)
     } catch (e) {
       console.log('Error while checking on chain ctype')
       throw e
