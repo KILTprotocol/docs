@@ -31,7 +31,7 @@ A `presentation` also contains a proof that the <span className="label-role clai
 It's not enough to just send our credential as a <span className="label-role claimer">Claimer</span> as we also need to prove ownership of it.
 This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
-<TsJsBlock title="claimer/createPresentation">
+<TsJsBlock fileName="claimer/createPresentation">
   {CreatePresentation}
 </TsJsBlock>
 
@@ -43,7 +43,7 @@ challenge for the <span className="label-role claimer">Claimer</span> to sign; t
 We'll also expose `verifyPresentation` which will do the actual verification.
 Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
 
-<TsJsBlock title="verify">
+<TsJsBlock fileName="verify">
   {Verify}
 </TsJsBlock>
 
