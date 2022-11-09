@@ -63,6 +63,7 @@ if (require.main === module) {
     envConfig()
 
     try {
+      await Kilt.connect(process.env.WSS_ADDRESS as string)
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
       const { authentication } = generateKeypairs(claimerDidMnemonic)
       const claimerDid = generateLightDid(claimerDidMnemonic)
