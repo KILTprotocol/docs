@@ -48,6 +48,6 @@ You can reduce down to the minimum delegation amount (20 KILT), e.g., any value 
 
 :::caution
 You cannot adjust your stake if your Collator candidate is in the leaving state, e.g., they want to stop collating.
-However, you can still [**revoke**](./04_revoke.md) your delegation or [**exit**](./05_exit.md).
+However, you can still [**remove**](./04_exit.md) your delegation.
 :::
 

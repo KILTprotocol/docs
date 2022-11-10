@@ -17,10 +17,11 @@ flowchart TD
    C --> |yes| D("Delegating to a Collator Candidate")
    C --> |no| C2{"Balance locked?\n e.g., previously delegated \n without unlocking?"}
    C2 --> |no| A
-   C2 --> |yes| G 
+   C2 --> |yes| G
+   D --> D2("Accumulating rewards \non each block built by \n delegated collator") 
    D --> |"leave \n Delegators"| E("Not delegating")
-   D --> |"revoke \n delegation"| E
    D --> |"your Collator \n candidate leaves"| E
+   E --> E2("Not accumulating \n rewards") 
    E --> F{"Delegate to \n another candidate?"}
    F --> |yes| B
    F --> |no| G("Locked tokens")
@@ -35,7 +36,9 @@ flowchart TD
     C:::preDelegationCheck
     C2:::notDelegating
     D:::activelyDelegating
+    D2:::activelyDelegating
     E:::notDelegating
+    E2:::preUnlockStaked
     F:::notDelegating
     G:::preUnlockStaked
     H:::preUnlockStaked
