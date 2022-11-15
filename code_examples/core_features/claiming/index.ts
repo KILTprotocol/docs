@@ -17,14 +17,13 @@ export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  let { authentication, encryption, attestation, delegation } =
-    generateDidKeypairs()
+  const lightDidAuthKey = generateDidKeypairs().authentication
   const claimerLightDid = createSimpleLightDid({
-    authentication
+    authentication: lightDidAuthKey
   })
-  const lightDidAuthKey = authentication
-  ;({ authentication, encryption, attestation, delegation } =
-    generateDidKeypairs())
+
+  const { authentication, encryption, attestation, delegation } =
+    generateDidKeypairs()
   const attesterFullDid = await createCompleteFullDid(
     submitterAccount,
     {
