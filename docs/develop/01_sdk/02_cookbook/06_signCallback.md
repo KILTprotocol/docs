@@ -22,7 +22,7 @@ May it be a ledger, an air gaped phone or your browser extension.
 The interface is generic enough to support implementations for all these security measures.
 There are three different flavours of the `SignCallback`.
 
-## The family of SignCallbacks
+## SignCallbacks Family
 
 There are three types of signing callbacks.
 The `SignCallback` is the most general and can be used in most all cases, except when a DID is registered on chain.
