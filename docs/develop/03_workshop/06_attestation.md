@@ -20,7 +20,7 @@ The `attestCredential` function loads the account and DID of the <span className
 When everything is prepared, we can issue an attestation for the credential we received from the <span className="label-role claimer">Claimer</span>.
 The credential is considered to be valid from the time it is attested on chain until the time it is revoked.
 
-<TsJsBlock fileName="attester/attestClaim">
+<TsJsBlock fileName="attester/attestCredential">
   {AttestCredential}
 </TsJsBlock>
 
