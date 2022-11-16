@@ -1,14 +1,14 @@
-import { DidResourceUri, SignCallback } from '@kiltprotocol/sdk-js'
+import * as Kilt from '@kiltprotocol/sdk-js'
 import { lookupDidDocument, lookupDidKeyPair } from '.'
 
-export const signCallback: SignCallback = async ({
+export const signCallback: Kilt.SignCallback = async ({
   data,
   keyRelationship,
-  did
+  did: didUri
 }) => {
   // look up the DID document for the DID that should sign the data
-  const didDoc = lookupDidDocument(did)
-  const keyUri: DidResourceUri = `${did}${didDoc[keyRelationship][0].id}`
+  const didDoc = lookupDidDocument(didUri)
+  const keyUri: Kilt.DidResourceUri = `${didUri}${didDoc[keyRelationship][0].id}`
   const signingKey = lookupDidKeyPair(keyUri)
 
   return {

@@ -1,15 +1,14 @@
 import { mnemonicGenerate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { KiltEncryptionKeypair, KiltKeyringPair } from '@kiltprotocol/sdk-js'
 
 export function generateKeypairs(mnemonic = mnemonicGenerate()): {
-  authentication: KiltKeyringPair & {
+  authentication: Kilt.KiltKeyringPair & {
     type: 'ed25519'
   }
-  encryption: KiltEncryptionKeypair
-  attestation: KiltKeyringPair
-  delegation: KiltKeyringPair
+  encryption: Kilt.KiltEncryptionKeypair
+  attestation: Kilt.KiltKeyringPair
+  delegation: Kilt.KiltKeyringPair
 } {
   const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed(
     mnemonicToMiniSecret(mnemonic)
