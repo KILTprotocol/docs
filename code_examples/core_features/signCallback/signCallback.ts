@@ -6,9 +6,14 @@ export const signCallback: Kilt.SignCallback = async ({
   keyRelationship,
   did: didUri
 }) => {
-  // look up the DID document for the DID that should sign the data
+  // Look up the DID document for the DID that should sign the data.
   const didDoc = lookupDidDocument(didUri)
+  // The KeyUri identifies a public key inside the DID document.
+  // We need the key for a specific VerificationKeyRelationship, we therefore build
+  // the KeyUri for the first public key with the required VerificationKeyRelationship.
   const keyUri: Kilt.DidResourceUri = `${didUri}${didDoc[keyRelationship][0].id}`
+
+  // We look up the key pair for the specific key URI
   const signingKey = lookupDidKeyPair(keyUri)
 
   return {
