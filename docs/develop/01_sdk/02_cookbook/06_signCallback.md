@@ -20,7 +20,6 @@ This is what the `SignCallback` does.
 The `SignCallback` defines an interface between the SDK and an arbitrary signing strategy.
 May it be a ledger, an air gapped phone or your browser extension.
 The interface is generic enough to support implementations for all these security measures.
-There are three different flavours of the `SignCallback`.
 
 ## SignCallbacks Family
 
