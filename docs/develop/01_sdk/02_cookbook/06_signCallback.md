@@ -10,7 +10,7 @@ import SignExtrinsicCallback from '!!raw-loader!@site/code_examples/core_feature
 import GetStoreTxSignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/getStoreTxSignCallback.ts';
 
 Signing data involves using the private key and therefore needs to be secure.
-There are many different options how data could be sign.
+There are many different options how data could be signed.
 You might have the private key stored in memory and are therefore able to simply sign the data.
 This is the easiest option but also comes with higher security risk.
 Storing the private key on a separate device or inside a sandboxed application can increase security.
