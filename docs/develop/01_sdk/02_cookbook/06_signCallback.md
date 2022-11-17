@@ -18,17 +18,17 @@ But to enable these security options, we need a generic interface to talk to the
 This is what the `SignCallback` does.
 
 The `SignCallback` defines an interface between the SDK and an arbitrary signing strategy.
-May it be a ledger, an air gaped phone or your browser extension.
+May it be a ledger, an air gapped phone or your browser extension.
 The interface is generic enough to support implementations for all these security measures.
 There are three different flavours of the `SignCallback`.
 
 ## SignCallbacks Family
 
 There are three types of signing callbacks.
-The `SignCallback` is the most general and can be used in most all cases, except when a DID is registered on chain.
+The `SignCallback` is the most general and can be used in almost all cases, except when signing a full DID creation transaction.
 The `SignExtrinsicCallback` is a special `SignCallback` which can only be used to sign extrinsics.
 Every `SignCallback` can also be used as a `SignExtrinsicCallback`.
-The `GetStoreTxSignCallback` can only be used to sign the registration of a new DID.
+The `GetStoreTxSignCallback` can only be used to sign the creation of a new DID.
 
 ### SignCallback
 
@@ -39,7 +39,7 @@ It is called with `SignRequestData` which contains
 * the `keyRelationship` which specifies which DID key must be used
 * and the `did` (`DidUri`) which specifies the DID that must sign the data
 
-The call back is expected to return `SignResponseData` which contains
+The callback is expected to return `SignResponseData` which contains
 
 * the `signature` as an `UInt8Array`
 * the `keyUri` which identifies the key that was used for signing
@@ -64,10 +64,10 @@ The `SignExtrinsicCallback` is called with the same `SignRequestData`, but can r
 
 ### GetStoreTxSignCallback
 
-The `GetStoreTxSignCallback` is only used to sign the data that is submitted to the blockchain when a DID is registered.
+The `GetStoreTxSignCallback` is only used to sign the data that is submitted to the blockchain when a DID is being created.
 Because there is no DID identifier before the DID is registered on chain, this callback doesn't receive the DID as a parameter.
-There is also no DID document and no public key stored if the DID isn't registered yet.
-Therefore the `keyUri` can not point to a valid DID key.
+There is also no DID document and no public key stored if the DID hasn't yet been created.
+Therefore the `keyUri` cannot point to a valid DID key.
 
 <TsJsBlock>
     {GetStoreTxSignCallback}
