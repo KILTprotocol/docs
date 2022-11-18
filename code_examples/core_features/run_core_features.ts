@@ -113,17 +113,50 @@ async function main(): Promise<void> {
 
   // These should not conflict anymore since all accounts are different.
   await Promise.all([
-    runAllClaiming(claimingTestAccount).catch(() =>
-      console.error('Claiming flow failed')
-    ),
-    runAllDid(didTestAccount).catch(() => console.error('DID flow failed')),
-    runAllWeb3(web3TestAccount).catch(() =>
-      console.error('Web3name flow failed')
-    ),
-    runAllLinking(nodeAddress, accountLinkingTestAccount, faucetAccount).catch(
-      () => console.error('Linking flow failed')
-    ),
-    runAllSignCallback().catch(() => console.error('SignCallback flow failed'))
+    (async () => {
+      try {
+        await runAllClaiming(claimingTestAccount)
+      } catch (e) {
+        console.error('Claiming flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllDid(didTestAccount)
+      } catch (e) {
+        console.error('DID flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllWeb3(web3TestAccount)
+      } catch (e) {
+        console.error('Web3name flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllLinking(
+          nodeAddress,
+          accountLinkingTestAccount,
+          faucetAccount
+        )
+      } catch (e) {
+        console.error('Linking flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllSignCallback()
+      } catch (e) {
+        console.error('SignCallback flow failed')
+        throw e
+      }
+    })()
   ])
 }
 
