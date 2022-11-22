@@ -11,20 +11,21 @@ import GetUnclaimedStakingRewards from '!!raw-loader!@site/code_examples/staking
 import ClaimRewardsCollator from './_04_claim_rewards_collator.mdx';
 import ClaimRewardsDelegator from './_04_claim_rewards_delegator.mdx';
 
-Until runtime version 1.8.0 (`spiritnet-10800`), staking rewards were automatically minted.
-In 1.9.0 (`spiritnet-10900`) this will change:
+Until runtime version 1.7.5 (`spiritnet-10750`), staking rewards were automatically minted.
+In 1.8.0 (`spiritnet-10801`) this will change:
 Hereafter, the rewards are still accounted to the collators and their delegators in each block.
-However, they need to be claimed by calling an extrinsic, similar to the pull-based approach on Polkadot.
-Since the rewards never expire, one does not need to rush.
+However, they need to be actively claimed by calling an extrinsic, similar to the pull-based approach on Polkadot.
+Since the rewards never expire, one does not need to rush to do so.
 
 This change improves the scalability of our LDPoS by orders of magnitude because it removes the `Rewarded` events for a collator and all their delegators in each block.
-Moreover, the taxable event is not enforced upon the users.
-Now, one can chose the point in time by calling the claiming extrinsic.
+This reduces the number of taxable events from many thousands per year to any number a user might find suitable.
+Please check our blogpost for more details.
 
 ## How to check the reward amount
 
 Unfortunately, the amount of accumulated rewards are not directly stored on the chain but divided into multiple storage entries.
 Luckily, you can easily query your current reward status by performing a runtime API call which we created for that specific purpose.
+Since this is just a simple query, it does not cost any transaction fees.
 
 <Tabs
   groupId="rewards-apps-code"
@@ -52,6 +53,7 @@ In the Polkadot JS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/
 
 In order to move the staking rewards into your wallet, you need to call two different extrinsics: `increment{Collator, Delegator}Rewards` and `claimRewards`.
 This can be done sequentially or in a batch.
+To save transaction fees, we recommend the latter [batched call](#recommendation-batched-call).
 
 <!-- TODO: Add mermaid diagram -->
 
