@@ -1,8 +1,8 @@
 {
-  "cTypeHash": "0x485ab5479a20a6427265a902b8bfa5e84b31ba17f6e22258cc4797e725635111",
+  "cTypeHash": "0xc22f85da01c18c1b48acf9556ac7167247ce253cc10373ea77f50fc91521d478",
   "contents": {
     "name": "Alice",
     "age": 29
   },
-  "owner": "did:kilt:4srGMHf1PPtJ7fydTzDKaMtY8aqQhuhPZ1mCmTH1Z1fgCGpF"
+  "owner": "did:kilt:4qWb21mMmWjbgsVuQPJ1f9VFQMbyZwDSFC5wTzJZC91ehVam"
 }

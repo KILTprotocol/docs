@@ -68,7 +68,7 @@ This could include staked or vested coins.
 
 :::note
 
-rounded numbers are used as an example only – make sure that you always leave enough free, usable balance to cover the transaction fees.
+Rounded numbers are used as an example only – make sure that you always leave enough free, usable balance to cover the transaction fees.
 
 :::
 

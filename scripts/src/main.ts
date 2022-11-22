@@ -1,25 +1,49 @@
+import * as nacl from 'tweetnacl'
 import { mkdir, writeFile } from 'fs/promises'
 import { normalize } from 'path'
 
+import { Keyring } from '@polkadot/api'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { generateAttesterDid, generateClaimerDid, resolver } from './dids'
+import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
+
+//@ts-ignore Hacking tweetnacl randomBytes & UUID generate to produce deterministic output
+nacl.randomBytes = (n: number) => new Uint8Array(n).fill(1)
+Kilt.Utils.UUID.generate = () => Kilt.Utils.Crypto.hashStr("look ma I'm random")
+// set timestamp to always create the same message object
+Date.now = () => Date.UTC(2024, 4, 20, 4, 20, 24, 420)
+
+function encryptCallbackForKey({
+  secretKey,
+  keyId
+}: {
+  secretKey: Uint8Array
+  keyId: `#${string}`
+}): Kilt.EncryptCallback {
+  return async function encryptCallback({ data, did, peerPublicKey }) {
+    const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
+      data,
+      peerPublicKey,
+      secretKey
+    )
+    return { nonce, data: box, keyUri: `${did}${keyId}` }
+  }
+}
 
 async function main() {
   console.log('Generating JSON files for documentation')
-  await cryptoWaitReady
-  const keystore = new Kilt.Did.DemoKeystore()
+  const keyring = new Keyring({ ss58Format: Kilt.Utils.ss58Format })
+  await cryptoWaitReady()
 
-  const kiltAttesterDid = await generateAttesterDid(keystore)
-  const kiltClaimerDid = await generateClaimerDid(keystore)
+  const kiltAttesterDid = generateAttesterDid(keyring)
+  const kiltClaimerDid = generateClaimerDid(keyring)
 
   // CType schema
-  const drivingLicenseCtypeSchema: Kilt.CTypeSchemaWithoutId = {
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${kiltAttesterDid.uri}`,
-    properties: {
+  const drivingLicenseCtype = Kilt.CType.fromProperties(
+    `Drivers License by ${kiltAttesterDid.uri}`,
+    {
       name: {
         type: 'string'
       },
@@ -29,14 +53,7 @@ async function main() {
       id: {
         type: 'string'
       }
-    },
-    type: 'object'
-  }
-
-  // CType
-  const ctypeDrivingsLicense: Kilt.CType = Kilt.CType.fromSchema(
-    drivingLicenseCtypeSchema,
-    kiltAttesterDid.uri
+    }
   )
 
   // Claim
@@ -45,19 +62,19 @@ async function main() {
     age: 29
   }
   const claimExample = Kilt.Claim.fromCTypeAndClaimContents(
-    ctypeDrivingsLicense,
+    drivingLicenseCtype,
     claimContents,
     kiltClaimerDid.uri
   )
 
   // Encrypted message
-  const message = new Kilt.Message(
+  const message = Kilt.Message.fromBody(
     {
-      type: Kilt.MessageBodyType.REQUEST_CREDENTIAL,
+      type: 'request-credential',
       content: {
         cTypes: [
           {
-            cTypeHash: ctypeDrivingsLicense.hash
+            cTypeHash: Kilt.CType.idToHash(drivingLicenseCtype.$id)
           }
         ]
       }
@@ -65,17 +82,15 @@ async function main() {
     kiltClaimerDid.uri,
     kiltAttesterDid.uri
   )
-  const encrypted = await message.encrypt(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    kiltClaimerDid.encryptionKey!.id,
-    kiltClaimerDid,
-    keystore,
-    Kilt.Did.Utils.assembleKeyUri(
-      kiltAttesterDid.uri,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      kiltAttesterDid.encryptionKey!.id
-    ),
-    { resolver }
+
+  const encrypted = await Kilt.Message.encrypt(
+    message,
+    encryptCallbackForKey({
+      secretKey: kiltClaimerDid.keyAgreement[0].secretKey,
+      keyId: kiltClaimerDid.keyAgreement[0].id
+    }),
+    `${kiltAttesterDid.uri}${kiltAttesterDid.keyAgreement[0].id}`,
+    { resolveKey }
   )
 
   const outDir = normalize(`${__dirname}/../out`)
@@ -85,12 +100,8 @@ async function main() {
 
   await Promise.all([
     writeFile(
-      `${outDir}/ctype-schema.json`,
-      JSON.stringify(drivingLicenseCtypeSchema, null, 2)
-    ),
-    writeFile(
       `${outDir}/ctype.json`,
-      JSON.stringify(ctypeDrivingsLicense, null, 2)
+      JSON.stringify(drivingLicenseCtype, null, 2)
     ),
     writeFile(`${outDir}/claim.json`, JSON.stringify(claimExample, null, 2)),
     writeFile(
@@ -102,9 +113,6 @@ async function main() {
   console.log('Generation completed successfully!')
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+;(async () => {
+  await main()
+})()

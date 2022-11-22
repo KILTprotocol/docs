@@ -8,7 +8,7 @@ import ViteConfig from '!!raw-loader!@site/code_examples/vitejs/vite.config.ts';
 import App from '!!raw-loader!@site/code_examples/vitejs/src/App.tsx';
 
 [ViteJS](https://vitejs.dev/guide/) is a great tool to bootstrap your project.
-As for all browser based projects, you have to make sure that NodeJS polyfills are in place to make the SDK work in such environment.
+As for all browser based projects, you have to make sure that NodeJS polyfills are in place to make the SDK work in such an environment.
 If you start from any ViteJS template, you only have to make sure to install and enable those polyfills.
 
 Bootstrap using the template of your choice and install KILT + NodeJS polyfills:
@@ -18,7 +18,7 @@ Bootstrap using the template of your choice and install KILT + NodeJS polyfills:
 ```bash
 yarn create vite my-app --template react-ts
 cd my-app
-yarn add @kiltprotocol/sdk-js@0.28.2
+yarn add @kiltprotocol/sdk-js
 yarn add --dev @esbuild-plugins/node-globals-polyfill
 yarn add --dev @esbuild-plugins/node-modules-polyfill
 ```

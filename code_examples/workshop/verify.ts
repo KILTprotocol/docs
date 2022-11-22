@@ -1,58 +1,54 @@
+import type { ApiPromise } from '@polkadot/api'
+
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createPresentation } from './claimer/createPresentation'
 import { generateKeypairs } from './claimer/generateKeypairs'
+import { generateLightDid } from './claimer/generateLightDid'
 
 function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
 }
 
-// verifies validity, ownership & attestation
+// Verifies validity, ownership & attestation.
 async function verifyPresentation(
-  presentation: Kilt.ICredential,
+  api: ApiPromise,
+  presentation: Kilt.ICredentialPresentation,
   challenge: string
 ): Promise<boolean> {
-  const credential = new Kilt.Credential(presentation)
+  try {
+    await Kilt.Credential.verifyPresentation(presentation, { challenge })
 
-  const isValid = await credential.verify({ challenge })
-  const isRevoked = credential.attestation.revoked
-
-  // Custom logic
-  // e.g., only allow access if age >= 18
-
-  return isValid && !isRevoked
+    const attestationInfo = Kilt.Attestation.fromChain(
+      await api.query.attestation.attestations(presentation.rootHash),
+      presentation.rootHash
+    )
+    return !attestationInfo.revoked
+  } catch {
+    return false
+  }
 }
 
-export async function verificationFlow() {
-  await Kilt.init({ address: process.env.WSS_ADDRESS })
-
-  // Load credential and claimer DID
-  const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
-  const keystore = new Kilt.Did.DemoKeystore()
-  const keys = await generateKeypairs(keystore, process.env.CLAIMER_MNEMONIC)
-  const lightDid = Kilt.Did.LightDidDetails.fromDetails({
-    ...keys,
-    authenticationKey: {
-      publicKey: keys.authenticationKey.publicKey,
-      type: Kilt.VerificationKeyType.Sr25519
-    }
-  })
+export async function verificationFlow(
+  credential: Kilt.ICredential,
+  signCallback: Kilt.SignCallback
+) {
+  const api = Kilt.ConfigService.get('api')
 
   // Verifier sends a unique challenge to the claimer 🕊
   const challenge = getChallenge()
 
-  // create a presentation and send it to the verifier 🕊
+  // Create a presentation and send it to the verifier 🕊
   const presentation = await createPresentation(
     credential,
-    lightDid,
-    keystore,
+    signCallback,
     challenge
   )
 
-  // The verifier checks the presentation
-  const isValid = await verifyPresentation(presentation, challenge)
+  // The verifier checks the presentation.
+  const isValid = await verifyPresentation(api, presentation, challenge)
 
   if (isValid) {
     console.log('Verification successful! You are allowed to enter the club 🎉')
@@ -61,15 +57,26 @@ export async function verificationFlow() {
   }
 }
 
-// don't execute if this is imported by another file
+// Don't execute if this is imported by another file.
 if (require.main === module) {
-  envConfig()
-  verificationFlow()
-    .catch((e) => {
-      console.log('Error in the verification flow', e)
-      process.exit(1)
-    })
-    .then(() => {
-      process.exit()
-    })
+  ;(async () => {
+    envConfig()
+
+    try {
+      await Kilt.connect(process.env.WSS_ADDRESS as string)
+      const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
+      const { authentication } = generateKeypairs(claimerDidMnemonic)
+      const claimerDid = generateLightDid(claimerDidMnemonic)
+      // Load credential and claimer DID
+      const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
+      await verificationFlow(credential, async ({ data }) => ({
+        signature: authentication.sign(data),
+        keyType: authentication.type,
+        keyUri: `${claimerDid.uri}${claimerDid.authentication[0].id}`
+      }))
+    } catch (e) {
+      console.log('Error in the verification flow')
+      throw e
+    }
+  })()
 }

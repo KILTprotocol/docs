@@ -1,9 +1,5 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import { FetchError } from 'node-fetch'
 import { randomUUID } from 'crypto'
-
-import { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -14,30 +10,34 @@ import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
 import { verifyNameAndDidEquality } from './02_query_did_name'
 
+import generateKeypairs from '../utils/generateKeypairs'
+
 export async function runAll(
-  api: ApiPromise,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
+  submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running web3name flow...')
-  const keystore = new Kilt.Did.DemoKeystore()
+  const { authentication } = generateKeypairs()
   const fullDid = await createSimpleFullDid(
-    keystore,
-    api,
     submitterAccount,
-    undefined,
-    resolveOn
+    {
+      authentication
+    },
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
   const randomWeb3Name = randomUUID().substring(0, 32)
 
   console.log('1 w3n) Claim web3name')
   await claimWeb3Name(
-    keystore,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    resolveOn
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
   await verifyNameAndDidEquality(randomWeb3Name, fullDid.uri)
@@ -55,15 +55,20 @@ export async function runAll(
     }
   }
   console.log('4 w3n) Release web3name')
-  await releaseWeb3Name(keystore, fullDid, submitterAccount, resolveOn)
+  await releaseWeb3Name(fullDid.uri, submitterAccount, async ({ data }) => ({
+    signature: authentication.sign(data),
+    keyType: authentication.type
+  }))
   console.log('5 w3n) Re-claim web3name and reclaim deposit')
   await claimWeb3Name(
-    keystore,
-    fullDid,
+    fullDid.uri,
     submitterAccount,
     randomWeb3Name,
-    resolveOn
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type
+    })
   )
-  await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name, resolveOn)
+  await reclaimWeb3NameDeposit(submitterAccount, randomWeb3Name)
   console.log('web3name flow completed!')
 }

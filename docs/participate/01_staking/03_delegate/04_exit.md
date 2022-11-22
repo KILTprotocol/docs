@@ -16,6 +16,6 @@ As a result, you won't receive any rewards immediately after the transaction is 
 
 ![](/img/chain/parachainStaking-leaveDelegators.png)
 
-1. Select the Delegator's KILT address as the extrinsic submitter (the *using the selected account* field)
+1. Select the KILT address you delegated from as the extrinsic submitter (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> leaveDelegators`.
 3. Sign and submit the extrinsic (the *Submit Transaction* button)

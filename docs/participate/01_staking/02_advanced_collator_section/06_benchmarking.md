@@ -1,9 +1,9 @@
 ---
 id: benchmarking
-title: Benchmark your Collator
+title: Benchmark Your Collator
 ---
 
-To enable benchmarking, the Collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
+To enable benchmarking, the collator must enable the benchmarking feature from a new build of the `kilt-parachain`.
 
 
 
@@ -18,7 +18,7 @@ At the moment, we have benchmarked the Spiritnet and Peregrine runtimes on an AM
 After executing the benchmarks on a server compare the weights to the official KILT weights.
 Your weight results should at least be similar to the official ones and the lower yours are, the better.
 
-The commands executed to benchmark the KILT runtimes can be found in the official benchmark files for both [spiritnet](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/spiritnet/src/weights) and [peregrine](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/peregrine/src/weights).
+The commands executed to benchmark the KILT runtimes can be found in the official benchmark files for both [Spiritnet](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/spiritnet/src/weights) and [Peregrine](https://github.com/KILTprotocol/kilt-node/tree/master/runtimes/peregrine/src/weights).
 
 Below is an example of benchmarking for the the `balances` pallet.
 

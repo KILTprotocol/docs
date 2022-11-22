@@ -15,11 +15,11 @@ The schema defines which properties exist and what their type should be, e.g., a
 ## JSON Schema
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
-This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CTypeSchema.ts).
+This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CType.schemas.ts).
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
-- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype-input](http://kilt-protocol.org/draft-01/ctype-input#).
+- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype#).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
 
@@ -39,7 +39,7 @@ When creating a new CType schema, the following properties are required:
   {ctypeSchema}
 </CodeBlock>
 
-The CType schema is afterwards wrapped into the full CType object:
+The CType schema is afterwards hashed to generate its own identifier, and it becomes the full CType object:
 
 <CodeBlock className="language-json" title="Full CType example">
   {ctype}
@@ -58,7 +58,7 @@ The hash of the CType is used to identify and anchor it to the KILT blockchain.
 ### Constructing the `hash` for the `$id`
 
 KILT uses the hashing algorithm `blake2b256` to compute the hash of CTypes.
-Before hasing, the CType object is sorted by a canonicalization algorithm to ensure that semantically equivalent CTypes with different order of their properties result in the same final hash.
+Before hashing, the CType object is sorted by a canonicalization algorithm to ensure that semantically equivalent CTypes with different order of their properties result in the same final hash.
 
 The hash is computed from the following fields of the CType schema:
 
@@ -71,14 +71,14 @@ The hash is computed from the following fields of the CType schema:
 - `title`
 - `type`
 
-The `$id` property, if present, is excluded from the hashing process since it represents the result of such a process, and is overwritten with the resulting hash, prepended with `kilt:ctype:` to form a URI.
-Hence, a typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101`.
+A typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c209f9126e5053fas503e459af4255cf8011d5101`.
 
 ## Storing and Querying CTypes
 
 CTypes can be stored on the blockchain.
 After creating a CType, its full content is included only in the blockchain block history, while its hash is anchored to the blockchain state.
 
-Querying the full content of a CType is not trivial, since the transaction would have to be found in the blockchain history. This functionality can be and is offered by indexing services, such as [Subscan](https://spiritnet.subscan.io/).
+Querying the full content of a CType is not trivial, since the transaction would have to be found in the blockchain history.
+This functionality can be and is offered by indexing services, such as [Subscan](https://spiritnet.subscan.io/).
 
-For a detailed developer-oriented guide to KILT CTypes, please refer to our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
+For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).

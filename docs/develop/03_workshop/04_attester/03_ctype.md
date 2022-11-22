@@ -4,6 +4,10 @@ title: CType
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 import CtypeSchema from '!!raw-loader!@site/code_examples/workshop/attester/ctypeSchema.ts';
 import GenerateCtype from '!!raw-loader!@site/code_examples/workshop/attester/generateCtype.ts';
 
@@ -15,22 +19,22 @@ A CType defines the structure of a claim.
 You can think of it as the data model for your claim.
 
 
-Before the <span className="label-role attester">Attester</span> can issue attestations, they need to decide which CType they support.
-A traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
-Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes instead of creating new ones.
-But in this workshop, we create our own CType.
+Before the <span className="label-role attester">Attester</span> can attest credentials, they need to decide which CType they support.
+For example, a traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.
+Since CTypes enable interoperability between Attesters, it is highly recommended to use existing CTypes rather than creating new ones.
+However, for this workshop we will create our own CType.
 
 :::info CType
 
-A CType ensures that a claim contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
-The CType is especially important since a verifier would request attestations for a specific CType (e.g., the traffic police wants to see your driver's license and not your gym membership).
+A CType ensures that a credential contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
+The CType is especially important since a Verifier would request credentials for a specific CType (e.g., the traffic police want to see your driver's license and not your gym membership).
 
-If you want to learn more about CTypes take a look at our [in depth CType documentation](/docs/concepts/credentials/ctypes).
-You can also [read through existing ctypes in our ctype-index](https://github.com/KILTprotocol/ctype-index).
+If you want to learn more about CTypes take a look at our [in depth CType documentation](@site/docs/concepts/04_credentials/02_ctypes.md).
+You can also [read through existing CTypes in our CType-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
 Creating CTypes requires an account and a full DID.
-Make sure your account holds tokes so that you can pay the fees for creating a CType.
+Make sure your account holds KILT tokens so that you can pay the fees for creating a CType.
 
 For example, a very basic CType for a driver's license could look like this:
 
@@ -40,14 +44,12 @@ For example, a very basic CType for a driver's license could look like this:
 
 Let's have a look at these attributes.
 
-| Key                     | Value                                                                    |
-| ----------------------- | ------------------------------------------------------------------------ |
-| `schema` > `$id`        | The KILT id of this CType.                                               |
-| `schema` > `$schema`    | The JSON schema on which the CType is based.                             |
-| `schema` > `title`      | The title of the CType.                                                  |
-| `schema` > `properties` | The properties that a claim of type in `$schema` should have.            |
-| `owner`                 | The DID of the user who created this CType.                              |
-| `hash`                  | Most important attribute, the hash is the CType's **digital footprint**. |
+| Key          | Value                                                                                                                                                               |
+| -------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
+| `$schema`    | A reference to the meta-schema describing what a CType may look like. This is the same for all CTypes.                                                              |
+| `title`      | The title of the CType.                                                                                                                                             |
+| `properties` | The properties that a claim conforming to this CType may have.                                                                                                      |
 
 A CType is stored on the KILT blockchain.
 
@@ -57,30 +59,43 @@ In this tutorial, we'll have the <span className="label-role attester">Attester<
 
 ## Create CType
 
-Now we have our entry ready, create a new file `attester/ctypeSchema.ts`.
-Copy the following to create a `CType` from a schema:
+Copy the following to create a `CType` with a given schema:
 
-<CodeBlock title="attester/ctypeSchema.ts" className="language-ts">
+<TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}
-</CodeBlock>
+</TsJsBlock>
 
 ## Get CType
 
-Create a new file `attester/generateCtype.ts`.
+<TsJsBlock fileName="attester/generateCtype">
+  {GenerateCtype}
+</TsJsBlock>
+
 We'll use this to check if the `CType` is on-chain already.
 If yes we'll return it, otherwise we'll store it on-chain.
-Remember, an account must have the required amount to pay the Angel's fee and deposit.
-
-<CodeBlock title="attester/generateCtype.ts" className="language-ts">
-  {GenerateCtype}
-</CodeBlock>
+Remember, an account must have the required amount of tokens to pay the transaction fee and deposit.
 
 ## Run
 
-To run it, just execute the `attester/generateCtype.ts` file.
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-```bash
-yarn ts-node attester/generateCtype.ts
-```
+  To run it, just execute the `attester/generateCtype.ts` file.
 
-OK, now before we can issue Credentials, we need a <span className="label-role claimer">Claimer</span> to request one! Let's move on!
+  ```bash
+  yarn ts-node attester/generateCtype.ts
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript' default>
+
+  To run it, just execute the `attester/generateCtype.js` file.
+
+  ```bash
+  node attester/generateCtype.js
+  ```
+
+  </TabItem>
+</Tabs>
+
+OK, now before we can attest Credentials, we need a <span className="label-role claimer">Claimer</span> to request it! Let's move on!

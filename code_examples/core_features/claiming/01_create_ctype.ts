@@ -1,44 +1,39 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function createDriversLicenseCType(
-  keystore: Kilt.Did.DemoKeystore,
-  creatorDid: Kilt.Did.FullDidDetails,
-  submitterAccount: KeyringPair,
-  resolveOn: Kilt.SubscriptionPromise.ResultEvaluator = Kilt.BlockchainUtils
-    .IS_FINALIZED
-): Promise<Kilt.CType> {
+  creator: Kilt.DidUri,
+  submitterAccount: Kilt.KiltKeyringPair,
+  signCallback: Kilt.SignExtrinsicCallback
+): Promise<Kilt.ICType> {
+  const api = Kilt.ConfigService.get('api')
+
   // Create a new CType definition.
-  const ctype = Kilt.CType.fromSchema({
-    $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-    title: `Drivers License by ${creatorDid.uri}`,
-    properties: {
-      name: {
-        type: 'string'
-      },
-      age: {
-        type: 'integer'
-      },
-      id: {
-        type: 'string'
-      }
+  const ctype = Kilt.CType.fromProperties(`Drivers License by ${creator}`, {
+    name: {
+      type: 'string'
     },
-    type: 'object'
+    age: {
+      type: 'integer'
+    },
+    id: {
+      type: 'string'
+    }
   })
 
-  // Generate a creation extrinsic and sign it with the attester's attestation key.
-  const ctypeCreationTx = await ctype
-    .getStoreTx()
-    .then((tx) =>
-      creatorDid.authorizeExtrinsic(tx, keystore, submitterAccount.address)
-    )
-  // Submit the creation extrinsic to the KILT blockchain
-  // using the KILT account specified in the creation operation.
-  await Kilt.BlockchainUtils.signAndSubmitTx(
+  // Generate a creation tx.
+  const ctypeCreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype))
+  // Sign it with the right DID key.
+  const authorizedCtypeCreationTx = await Kilt.Did.authorizeTx(
+    creator,
     ctypeCreationTx,
-    submitterAccount,
-    { resolveOn }
+    signCallback,
+    submitterAccount.address
+  )
+  // Submit the creation tx to the KILT blockchain
+  // using the KILT account specified in the creation operation.
+  await Kilt.Blockchain.signAndSubmitTx(
+    authorizedCtypeCreationTx,
+    submitterAccount
   )
 
   return ctype

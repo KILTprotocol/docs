@@ -12,7 +12,8 @@ ERROR in ./node_modules/cbor/lib/commented.js 3:15-32
 Module not found: Error: Can't resolve 'stream' in 'node_modules/cbor/lib'
 
 BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
-This is no longer the case. Verify if you need this module and configure a polyfill for it.
+This is no longer the case.
+Verify if you need this module and configure a polyfill for it.
 ```
 
 ### Solution

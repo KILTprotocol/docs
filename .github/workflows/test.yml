@@ -62,7 +62,7 @@ jobs:
           yarn install --frozen-lockfile
           yarn run ts-node run_core_features.ts
 
-  # Only test the style conventions for the snippets, nothing is run here
+  # Only test the style conventions for the viteJS snippets, nothing is run here
   vitejs:
     name: Test ViteJS snippets
     runs-on: ubuntu-latest
@@ -72,6 +72,24 @@ jobs:
 
       - name: Test style conventions
         working-directory: code_examples/vitejs
+        run: |
+          yarn install --frozen-lockfile
+          yarn lint && yarn style
+      - name: Test production build
+        working-directory: code_examples/vitejs
+        run: |
+          yarn build
+
+  # Only test the style conventions for the dapp snippets, nothing is run here
+  dapp_examples:
+    name: Test dapp interactions snippets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Test style conventions
+        working-directory: code_examples/dapp
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style

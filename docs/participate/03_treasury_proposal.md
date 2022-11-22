@@ -27,7 +27,7 @@ Don’t forget to link it when completing the Polkassembly information!
 
 ## Submit Proposal
 
-When you have feedback from the community and are satisfied with your proposal, head to [polkadot apps](https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws#/treasury)
+When you have feedback from the community and are satisfied with your proposal, head to [Polkadot.JS apps](https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws#/treasury)
 
 Scroll to  the “+ Submit Proposal” button and click.
 Complete the form:
@@ -39,7 +39,7 @@ Complete the form:
 
 ## Polkassembly Details
 
-Click the [Polkassembly](https://kilt.polkassembly.network/discussions) link to the right of the proposal on Polkadot-JS and connect with the account that you used to submit the proposal in order to be able to edit the proposal details.
+Click the [Polkassembly](https://kilt.polkassembly.network/discussions) link to the right of the proposal on Polkadot.JS and connect with the account that you used to submit the proposal in order to be able to edit the proposal details.
 
 Enter the following information:
 
@@ -56,7 +56,7 @@ Enter the following information:
 * Engage
 * Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter)
 
-Click [here](https://www.kilt.io/treasury/overview/) to get an overview about Treasury.
+Click [here](https://www.kilt.io/treasury/overview/) to get an overview of the Treasury.
 Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
 
 ## Illustration
@@ -69,21 +69,21 @@ While all nodes with yellow background represent <span style={{backgroundColor: 
 ```mermaid
 flowchart TD
     %% nodes
-    Proposer --> |"share contribution idea"|Discuss("Polkassembly: \n kilt.polkassembly.network")
-    Discuss --> |"gather feedback"|Community
-    Discuss --> |"come to agreement about \n scope and financial objective"|Council
-    Community --> |"supports Proposal"|Propose("Propose to chain")
-    Council --> |"approves Pre-Proposal"|Propose
+    Proposer --> |"Share contribution idea"|Discuss("Polkassembly: \n kilt.polkassembly.network")
+    Discuss --> |"Gather feedback"|Community
+    Discuss --> |"Come to agreement about \n scope and financial objective"|Council
+    Community --> |"Supports proposal"|Propose("Propose to chain")
+    Council --> |"Approves pre-proposal"|Propose
     Propose --> |"reserve 5% of \n demanded amount \n"|Deposit
-    Propose --> |"on Polkassembly, \n provide details in"|Document("Proposal document")
-    Propose ----> |"select address"|Beneficiary
-    Document --> |"start work"|Deliverables
-    Deliverables --> |"complete work"|Council_Review{"Council review"}
+    Propose --> |"On Polkassembly, \n provide details in"|Document("Proposal document")
+    Propose ----> |"Select address"|Beneficiary
+    Document --> |"Start work"|Deliverables
+    Deliverables --> |"Complete work"|Council_Review{"Council review"}
     Council_Review ----> Council_Approval("Council approval")
     Council_Review -...-> Council_Rejection("Council rejection")
-    Council_Approval ----> |"receive requested \n funds from Treasury"|Beneficiary
-    Council_Approval ----> |unreserve Deposit|Deposit
-    Council_Rejection -.-> |"slash Deposit \n to Treasury"|Deposit
+    Council_Approval ----> |"Receive requested \n funds from Treasury"|Beneficiary
+    Council_Approval ----> |Unreserve deposit|Deposit
+    Council_Rejection -.-> |"Slash deposit \n to Treasury"|Deposit
 
     %% class mapping
     Proposer:::ofchain
