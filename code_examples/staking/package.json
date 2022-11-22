@@ -13,8 +13,8 @@
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@kiltprotocol/type-definitions": "^0.29.0",
-    "@polkadot/api": "^9.6.2",
+    "@kiltprotocol/type-definitions": "^0.30.0-rc.1",
+    "@polkadot/api": "^9.9.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
