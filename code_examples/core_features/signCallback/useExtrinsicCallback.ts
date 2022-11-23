@@ -2,14 +2,12 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { Extrinsic } from '@polkadot/types/interfaces'
 
-
 export async function useSignExtrinsicCallback(
   didUri: Kilt.DidUri,
-  didSigningKey: Kilt.KeyringPair & { type: "sr25519" | "ed25519" },
+  didSigningKey: Kilt.KeyringPair & { type: 'sr25519' | 'ed25519' },
   extrinsic: Extrinsic,
   submitterAddress: Kilt.KiltKeyringPair['address']
 ) {
-
   // The SignExtrinsicCallback is a more specialized SignCallback since it doesn't
   // need to return the keyUri.
   const signCallback: Kilt.SignExtrinsicCallback = async ({
@@ -21,7 +19,7 @@ export async function useSignExtrinsicCallback(
     did
   }) => ({
     signature: didSigningKey.sign(data),
-    keyType: didSigningKey.type,
+    keyType: didSigningKey.type
   })
 
   return await Kilt.Did.authorizeTx(

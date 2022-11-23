@@ -55,5 +55,7 @@ export async function runAll(): Promise<void> {
   )
 
   console.log('Test getStoreTxSignCallback')
-  await useStoreTxSignCallback("4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g")
+  await useStoreTxSignCallback(
+    '4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
+  )
 }

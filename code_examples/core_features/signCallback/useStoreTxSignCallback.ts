@@ -1,11 +1,12 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function useStoreTxSignCallback(
-  submitterAddress: Kilt.KiltKeyringPair['address'],
+  submitterAddress: Kilt.KiltKeyringPair['address']
 ): Promise<Kilt.SubmittableExtrinsic> {
   // Here we create a new key pair for the DID that will be created later.
   // This step might happen in an extension or else where, depending on your application.
-  const authenticationKey: Kilt.KiltKeyringPair = Kilt.Utils.Crypto.makeKeypairFromSeed()
+  const authenticationKey: Kilt.KiltKeyringPair =
+    Kilt.Utils.Crypto.makeKeypairFromSeed()
 
   // This is the sign callback. We use the just created key to sign arbitrary data
   // and return the signature together with the key type.
@@ -22,6 +23,6 @@ export async function useStoreTxSignCallback(
       authentication: [authenticationKey]
     },
     submitterAddress,
-    getStoreTxSignCallback,
+    getStoreTxSignCallback
   )
 }
