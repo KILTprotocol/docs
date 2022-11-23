@@ -5,9 +5,9 @@ import {
   DidUri,
   KiltKeyringPair
 } from '@kiltprotocol/sdk-js'
-import { getStoreTxSignCallback } from './getStoreTxSignCallback'
-import { signCallback } from './signCallback'
-import { signExtrinsicCallback } from './signExtrinsicCallback'
+import { useSignCallback } from './useSignCallback'
+import { useSignExtrinsicCallback } from './useExtrinsicCallback'
+import { useStoreTxSignCallback } from './useStoreTxSignCallback'
 
 // The _keyUri parameter is there to show that the DID key pair is looked up using the URI
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,22 +32,28 @@ export function lookupDidDocument(_did: DidUri): DidDocument {
 
 export async function runAll(): Promise<void> {
   console.log('Test signCallback')
-  await signCallback({
-    data: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
-    keyRelationship: 'authentication',
-    did: 'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
-  })
+  const didKey = Kilt.Utils.Crypto.makeKeypairFromSeed()
+
+  await useSignCallback(
+    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g',
+    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g#key-one',
+    didKey,
+    // We don't use the extrinsic anyways!
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]) as any,
+    '4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
+  )
 
   console.log('Test signExtrinsicCallback')
-  await signExtrinsicCallback({
-    data: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
-    keyRelationship: 'authentication',
-    did: 'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
-  })
+  await useSignExtrinsicCallback(
+    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g',
+    didKey,
+    // We don't use the extrinsic anyways!
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]) as any,
+    '4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
+  )
 
   console.log('Test getStoreTxSignCallback')
-  await getStoreTxSignCallback({
-    data: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
-    keyRelationship: 'authentication'
-  })
+  await useStoreTxSignCallback("4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g")
 }

@@ -5,9 +5,9 @@ title: SignCallback
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import SignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/signCallback.ts';
-import SignExtrinsicCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/signExtrinsicCallback.ts';
-import GetStoreTxSignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/getStoreTxSignCallback.ts';
+import SignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useSignCallback.ts';
+import SignExtrinsicCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useExtrinsicCallback.ts';
+import GetStoreTxSignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useStoreTxSignCallback.ts';
 
 Signing data involves using the private key and therefore needs to be secure.
 There are many different options how data could be signed.
@@ -43,6 +43,9 @@ The callback is expected to return `SignResponseData` which contains
 * the `signature` as an `UInt8Array`
 * the `keyUri` which identifies the key that was used for signing
 * and the `keyType` which specifies the signature scheme that was used (either `sr25519`, `ed25519` or `ecdsa`)
+
+The signed callback can be used as a closure.
+If you already have the private key of the DID stored in the surrounding scope, you can just use this key.
 
 <TsJsBlock>
     {SignCallback}
