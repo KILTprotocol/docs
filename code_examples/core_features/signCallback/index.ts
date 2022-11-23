@@ -5,6 +5,7 @@ import {
   DidUri,
   KiltKeyringPair
 } from '@kiltprotocol/sdk-js'
+import { ApiPromise } from '@polkadot/api'
 import { useSignCallback } from './useSignCallback'
 import { useSignExtrinsicCallback } from './useExtrinsicCallback'
 import { useStoreTxSignCallback } from './useStoreTxSignCallback'
@@ -30,27 +31,26 @@ export function lookupDidDocument(_did: DidUri): DidDocument {
   return lightDID
 }
 
-export async function runAll(): Promise<void> {
+export async function runAll(api: ApiPromise): Promise<void> {
   console.log('Test signCallback')
   const didKey = Kilt.Utils.Crypto.makeKeypairFromSeed()
 
-  await useSignCallback(
-    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g',
-    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g#key-one',
-    didKey,
-    // We don't use the extrinsic anyways!
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]) as any,
-    '4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
-  )
+  ;(
+    await useSignCallback(
+      'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g#key-one',
+      didKey
+    )
+  )({
+    data: new Uint8Array([0, 1, 2, 3, 4]),
+    keyRelationship: 'authentication',
+    did: 'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
+  })
 
   console.log('Test signExtrinsicCallback')
   await useSignExtrinsicCallback(
     'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g',
     didKey,
-    // We don't use the extrinsic anyways!
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]) as any,
+    api.tx.didLookup.associateSender(),
     '4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
   )
 

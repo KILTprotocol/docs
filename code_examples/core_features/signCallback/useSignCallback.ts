@@ -2,13 +2,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { Extrinsic } from '@polkadot/types/interfaces'
 
-export async function useSignCallback(
-  didUri: Kilt.DidUri,
+export function useSignCallback(
   keyUri: Kilt.DidResourceUri,
-  didSigningKey: Kilt.KeyringPair & { type: 'sr25519' | 'ed25519' },
-  extrinsic: Extrinsic,
-  submitterAddress: Kilt.KiltKeyringPair['address']
-) {
+  didSigningKey: Kilt.KeyringPair & { type: 'sr25519' | 'ed25519' }
+): Kilt.SignCallback {
   const signCallback: Kilt.SignCallback = async ({
     data,
     // The key relationship specifies which DID key must be used.
@@ -22,10 +19,5 @@ export async function useSignCallback(
     keyUri
   })
 
-  return await Kilt.Did.authorizeTx(
-    didUri,
-    extrinsic,
-    signCallback,
-    submitterAddress
-  )
+  return signCallback
 }

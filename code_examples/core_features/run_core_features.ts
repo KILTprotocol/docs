@@ -151,7 +151,7 @@ async function main(): Promise<void> {
     })(),
     (async () => {
       try {
-        await runAllSignCallback()
+        await runAllSignCallback(api)
       } catch (e) {
         console.error('SignCallback flow failed')
         throw e
