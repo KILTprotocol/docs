@@ -10,7 +10,7 @@
     "fix": "yarn lint:fix && yarn style:fix"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.29.0"
+    "@kiltprotocol/sdk-js": "0.30.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
