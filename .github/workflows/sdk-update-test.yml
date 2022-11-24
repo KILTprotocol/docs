@@ -131,6 +131,10 @@ jobs:
         working-directory: code_examples/vitejs
         run: |
           yarn install
+      - name: Regenerate yarn lock for dapp interactions snippets
+        working-directory: code_examples/dapp
+        run: |
+          yarn install
       - name: Regenerate yarn lock for scripts
         working-directory: scripts
         run: |
