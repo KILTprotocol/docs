@@ -1,6 +1,6 @@
 ---
 id: did-query
-title: Resolve a DID
+title: Resolve a Full DID
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';

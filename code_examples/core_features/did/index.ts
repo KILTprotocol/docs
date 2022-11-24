@@ -15,10 +15,13 @@ import { reclaimFullDidDeposit } from './11_full_did_deposit_reclaim'
 import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
+import { getRandomCType } from '../utils/getRandomCtype'
+import { signDidExtrinsic } from './08_full_did_sign_tx'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
   console.log('Running DID flow...')
 
   console.log('1 did) Create simple light DID')
@@ -74,6 +77,7 @@ export async function runAll(
   )
   console.log('6 did) Query full DID')
   queryFullDid(createdCompleteFullDid.uri)
+
   console.log('7 did) Update full DID created at step 5')
   const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
   const updatedFullDid = await updateFullDid(
@@ -86,7 +90,7 @@ export async function runAll(
     })
   )
   console.log(
-    '8 did) Use the same full DID created at step 5 to sign the batch'
+    '8.1 did) Use the same full DID created at step 5 to sign the batch'
   )
   await batchCTypeCreationExtrinsics(
     submitterAccount,
@@ -96,6 +100,21 @@ export async function runAll(
       keyType: completeFullDidAtt.type
     })
   )
+
+  console.log(
+    '8.2 did) Use the same full DID created at step 5 to sign the single tx'
+  )
+  const ctype2 = getRandomCType()
+  await signDidExtrinsic(
+    submitterAccount,
+    updatedFullDid.uri,
+    async ({ data }) => ({
+      signature: completeFullDidAtt.sign(data),
+      keyType: completeFullDidAtt.type
+    }),
+    api.tx.ctype.add(Kilt.CType.toChain(ctype2))
+  )
+
   console.log(
     '9 did) Use the same full DID created at step 5 to generate the signature'
   )
