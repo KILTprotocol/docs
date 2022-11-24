@@ -102,8 +102,8 @@ export async function runAll(
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
     stringToU8a('test-payload'),
-    async ({ data }) => ({
-      signature: newCompleteFullDidAuth.sign(data),
+    async () => ({
+      key: newCompleteFullDidAuth,
       keyType: newCompleteFullDidAuth.type,
       keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
     })
