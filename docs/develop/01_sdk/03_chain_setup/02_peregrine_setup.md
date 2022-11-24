@@ -67,5 +67,5 @@ Even the same call in the same pallet can have a different encoding for differen
 
 | Chain      | Encoding of Vesting.vest() |
 | ---------- | -------------------------- |
-| Spiritnet  | `0x2900`                   |
+| Spiritnet  | `0.30.0`                   |
 | Standalone | `0x2100`                   |
