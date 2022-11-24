@@ -25,7 +25,7 @@ jobs:
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**/*"
           exclude: "**/*.lock"
-          regex: true
+          regex: false
       - name: Test style conventions
         working-directory: code_examples/workshop
         run: |
@@ -54,7 +54,7 @@ jobs:
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**/*"
           exclude: "**/*.lock"
-          regex: true
+          regex: false
       - name: Test style conventions
         working-directory: code_examples/core_features
         run: |
@@ -83,7 +83,7 @@ jobs:
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**/*"
           exclude: "**/*.lock"
-          regex: true
+          regex: false
       - name: Test style conventions
         working-directory: code_examples/vitejs
         run: |
@@ -104,21 +104,21 @@ jobs:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
           include: "docs/**/*.md"
-          regex: true
+          regex: false
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**/*"
           exclude: "**/*.lock"
-          regex: true
+          regex: false
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "scripts/**"
           exclude: "**/*.lock"
-          regex: true    
+          regex: false    
       - name: Regenerate yarn lock for core_features
         working-directory: code_examples/core_features
         run: |
