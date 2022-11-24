@@ -25,8 +25,8 @@ The interface is generic enough to support implementations for all these securit
 
 There are three types of signing callbacks:
 1. The `SignCallback` is the most general and can be used in almost all cases, except when signing a full DID creation transaction.
-2. The `SignExtrinsicCallback` is a special `SignCallback` which can only be used to sign extrinsics. 
-Thus, every `SignCallback` can also be used as a `SignExtrinsicCallback`.
+2. The `SignExtrinsicCallback` is a special `SignCallback` which can only be used to sign extrinsics.
+   Thus, every `SignCallback` can also be used as a `SignExtrinsicCallback`.
 3. The `GetStoreTxSignCallback` can only be used to sign the creation of a new DID.
 
 ### SignCallback
@@ -34,7 +34,7 @@ Thus, every `SignCallback` can also be used as a `SignExtrinsicCallback`.
 The plain `SignCallback` signs arbitrary data.
 It is called with `SignRequestData` which contains
 
-* the `data`  as `UInt8Array` that should be signed
+* the `data` as `UInt8Array` that should be signed
 * the `keyRelationship` which specifies which DID key must be used
 * and the `did` (`DidUri`) which specifies the DID that must sign the data
 
@@ -61,8 +61,7 @@ Using this relation between extrinsic and key, the chain looks up the public key
 The `SignExtrinsicCallback` is called with the same `SignRequestData`, but can return a `SignResponseData` that doesn't contain the `keyUri` but only
 
 * the `signature` as an `UInt8Array`
-* and the `keyType` which specifies the signature scheme that was used (either `sr25519`, `ed25519` or `ecdsa`)
-.
+* and the `keyType` which specifies the signature scheme that was used (either `sr25519`, `ed25519` or `ecdsa`).
 
 <TsJsBlock>
     {SignExtrinsicCallback}
