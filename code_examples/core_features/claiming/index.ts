@@ -17,25 +17,18 @@ export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  let { authentication, encryption, attestation, delegation } =
-    generateDidKeypairs()
+  const claimerAuthKey = generateDidKeypairs().authentication
   const claimerLightDid = createSimpleLightDid({
-    authentication
+    authentication: claimerAuthKey
   })
-  const lightDidAuthKey = authentication
-  ;({ authentication, encryption, attestation, delegation } =
-    generateDidKeypairs())
+
+  const attersterKeys = generateDidKeypairs()
   const attesterFullDid = await createCompleteFullDid(
     submitterAccount,
-    {
-      authentication,
-      encryption,
-      attestation,
-      delegation
-    },
+    attersterKeys,
     async ({ data }) => ({
-      signature: authentication.sign(data),
-      keyType: authentication.type
+      signature: attersterKeys.authentication.sign(data),
+      keyType: attersterKeys.authentication.type
     })
   )
 
@@ -44,8 +37,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attestation.sign(data),
-      keyType: attestation.type
+      signature: attersterKeys.attestation.sign(data),
+      keyType: attersterKeys.attestation.type
     })
   )
   console.log('2 claiming) Create credential')
@@ -55,8 +48,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attestation.sign(data),
-      keyType: attestation.type
+      signature: attersterKeys.attestation.sign(data),
+      keyType: attersterKeys.attestation.type
     }),
     credential
   )
@@ -64,8 +57,8 @@ export async function runAll(
   const presentation = await createPresentation(
     credential,
     async ({ data }) => ({
-      signature: lightDidAuthKey.sign(data),
-      keyType: lightDidAuthKey.type,
+      signature: claimerAuthKey.sign(data),
+      keyType: claimerAuthKey.type,
       keyUri: `${claimerLightDid.uri}${claimerLightDid.authentication[0].id}`
     }),
     ['name', 'id']
@@ -77,8 +70,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attestation.sign(data),
-      keyType: attestation.type
+      signature: attersterKeys.attestation.sign(data),
+      keyType: attersterKeys.attestation.type
     }),
     credential,
     false
