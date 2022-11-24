@@ -23,7 +23,7 @@ jobs:
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**"
+          include: "code_examples/**/*"
           exclude: "**/*.lock"
           regex: true
       - name: Test style conventions
@@ -52,7 +52,7 @@ jobs:
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**"
+          include: "code_examples/**/*"
           exclude: "**/*.lock"
           regex: true
       - name: Test style conventions
@@ -81,7 +81,7 @@ jobs:
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**"
+          include: "code_examples/**/*"
           exclude: "**/*.lock"
           regex: true
       - name: Test style conventions
@@ -103,13 +103,13 @@ jobs:
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
-          include: "docs/**.md"
+          include: "docs/**/*.md"
           regex: true
       - uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**"
+          include: "code_examples/**/*"
           exclude: "**/*.lock"
           regex: true
       - uses: jacobtomlinson/gha-find-replace@v2
