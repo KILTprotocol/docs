@@ -1,6 +1,6 @@
 # Website
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This website is built using [Docusaurus 2](https://docusaurus.io/blog/2022/08/01/announcing-docusaurus-2.0), a modern static website generator.
 
 Hosted at https://dev.kilt.io
 
