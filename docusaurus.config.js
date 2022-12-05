@@ -22,8 +22,7 @@ module.exports = {
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'sdk-refactor-announcement',
-      content:
-        'Our Javascript SDK has undergone a major overhaul with the latest version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
+      content: 'Our Javascript SDK has undergone a major overhaul with the version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -184,6 +183,7 @@ module.exports = {
           ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
