@@ -42,7 +42,7 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
 
   ```bash npm2yarn
-  npm install @kiltprotocol/sdk-js axios node
+  npm install @kiltprotocol/sdk-js axios ts-node typescript
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
@@ -53,7 +53,7 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
 
   ```bash npm2yarn
-  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  npm install @kiltprotocol/sdk-js axios node
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
