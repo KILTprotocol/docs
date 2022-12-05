@@ -12,13 +12,13 @@ For accounts that have been linked to DIDs that have claimed a web3name, the lin
 
 This section shows how to perform the `account -> web3name` querying both with and without the support of the KILT SDK.
 
-## Query an Account's web3name Without the KILT SDK
+## Query an Account's web3name with the KILT SDK
 
 <TsJsBlock>
   {AccountWeb3NameQuery}
 </TsJsBlock>
 
-## Query an Account's web3name with the KILT SDK
+## Query an Account's web3name without the KILT SDK
 
 <TsJsBlock>
   {AccountWeb3NameQueryNoSDK}
