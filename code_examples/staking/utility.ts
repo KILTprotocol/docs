@@ -6,7 +6,7 @@ import { typesBundle } from '@kiltprotocol/type-definitions'
 export async function connect(wssProvider: string) {
   return ApiPromise.create({
     provider: new WsProvider(wssProvider),
-    typesBundle,
+    typesBundle
   })
 }
 

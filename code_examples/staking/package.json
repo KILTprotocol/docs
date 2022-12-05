@@ -3,18 +3,20 @@
   "name": "kilt-staking-calls",
   "license": "MIT",
   "scripts": {
+    "check-ts": "yarn tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
     "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
+    "fix": "yarn lint:fix && yarn style:fix",
     "test": "ts-node index.ts"
   },
   "dependencies": {
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@kiltprotocol/type-definitions": "^0.30.0-rc.1",
-    "@polkadot/api": "^9.9.1",
+    "@kiltprotocol/type-definitions": "^0.30.0",
+    "@polkadot/api": "^9.10.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
@@ -25,6 +27,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "ts-node": "^10.6.0",
-    "typescript": "~4.5.0"
+    "typescript": "^4.7.0"
   }
 }
