@@ -57,7 +57,21 @@ In order to move the staking rewards into your wallet, you need to call two diff
 This can be done sequentially or in a batch.
 To save transaction fees, we recommend the latter [batched call](#recommendation-batched-call).
 
-<!-- TODO: Add mermaid diagram -->
+<div className="kilt-mermaid">
+
+```mermaid
+
+graph TD
+Alice("Alice holds free KILT") ---> |"call joinCandidates"| C("Active Collator")
+Alice ---> |"call joinDelegators"| D("Active Delegator")
+C ---> |"build block"| R
+D ---> |"delegated collator \n builds block"| R("Reward counter is \n internally increased")
+R ---> |"call increment...Rewards"| R2("Rewards are \n converted into Balance")
+R2 ---> |"call claimRewards"| R3("Rewards are moved \n into Alice's wallet")
+
+```
+
+</div>
 
 <StakingTxDisclaimer />
 
