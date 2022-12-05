@@ -40,6 +40,8 @@ In the Polkadot JS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/
 3. Select your KILT address (the *account: AccountId32* field)
 4. Submit the runtime call (the *Submit Runtime call* button). You do not need to sign or pay any fees.
 
+![](/img/chain/parachainStaking-getUnclaimedStakingRewards.png)
+
 </TabItem>
 
 <TabItem value="polkadot-js" label="Polkadot JS">

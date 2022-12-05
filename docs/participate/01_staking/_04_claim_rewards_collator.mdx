@@ -1,8 +1,3 @@
----
-id: claim-rewards
-title: Claim Staking Rewards
----
-
 import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -24,7 +19,7 @@ It should have enough balance to cover the transaction fee which is around 0.000
 2. Select the appropriate extrinsic: `parachainStaking -> incrementCollatorRewards()`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
 
-<!-- TODO: Add screenshot -->
+![](/img/chain/parachainStaking-incrementCollatorRewards.png)
 
 ### Claim
 
@@ -34,7 +29,8 @@ Finally, you can claim your well deserved staking rewards.
 It should have enough balance to cover the transaction fee which is around 0.0001 KILT (the *using the selected account* field)
 2. Select the appropriate extrinsic: `parachainStaking -> claimRewards()`
 3. Sign and submit the extrinsic (the *Submit Transaction* button)
-<!-- TODO: Add screenshot -->
+
+![](/img/chain/parachainStaking-claimRewards.png)
 
 ### Recommendation: Batched call
 
@@ -47,7 +43,7 @@ It should have enough balance to cover the transaction fee which is around 0.000
 4. Press the `+` button and add the reward claiming extrinsic: `parachainStaking -> claimRewards()`
 5. Sign and submit the extrinsic (the *Submit Transaction* button)
 
-<!-- TODO: Add screenshot -->
+![](/img/chain/parachainStaking-batch-incrementCollatorRewards-claimRewards.png)
 
 </TabItem>
 <TabItem value="polkadot-js" label="Polkadot JS" attributes={{'data-value': 'magenta'}}>
