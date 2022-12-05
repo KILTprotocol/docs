@@ -15,6 +15,7 @@ import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
+import { runAll as runAllSignCallback } from './signCallback'
 import { runAll as runAllWeb3 } from './web3names'
 
 const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
@@ -145,6 +146,14 @@ async function main(): Promise<void> {
         )
       } catch (e) {
         console.error('Linking flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllSignCallback(api)
+      } catch (e) {
+        console.error('SignCallback flow failed')
         throw e
       }
     })()
