@@ -1,0 +1,57 @@
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ClaimCollatorStakingRewards from '!!raw-loader!@site/code_examples/staking/rewards/02_claim_collator_staking_rewards.ts';
+
+<div className="nested-tab">
+<Tabs
+  groupId="rewards-apps-code"
+  defaultValue="polkadot-apps"
+>
+<TabItem value="polkadot-apps" label="Polkadot Apps" attributes={{'data-value': 'magenta'}}>
+
+### Prepare claiming
+
+First, you need to convert your _reward points_ into balance.
+
+1. Select the collator account for which you want to claim the rewards.
+It should have enough balance to cover the transaction fee which is around 0.0001 KILT (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> incrementCollatorRewards()`
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
+
+![](/img/chain/parachainStaking-incrementCollatorRewards.png)
+
+### Claim
+
+Finally, you can claim your well deserved staking rewards.
+
+1. Select the collator account for which you want to claim the rewards.
+It should have enough balance to cover the transaction fee which is around 0.0001 KILT (the *using the selected account* field)
+2. Select the appropriate extrinsic: `parachainStaking -> claimRewards()`
+3. Sign and submit the extrinsic (the *Submit Transaction* button)
+
+![](/img/chain/parachainStaking-claimRewards.png)
+
+### Recommendation: Batched call
+
+We recommend to execute both extrinsics in a single batch to save on transaction fees:
+
+1. Select the collator account for which you want to claim the rewards. 
+It should have enough balance to cover the transaction fee which is around 0.000112 KILT (the *using the selected account* field)
+2. Select the batch extrinsic: `utility -> batch()`
+3. Select the reward increment extrinsic: `parachainStaking -> incrementCollatorRewards()`
+4. Press the `+` button and add the reward claiming extrinsic: `parachainStaking -> claimRewards()`
+5. Sign and submit the extrinsic (the *Submit Transaction* button)
+
+![](/img/chain/parachainStaking-batch-incrementCollatorRewards-claimRewards.png)
+
+</TabItem>
+<TabItem value="polkadot-js" label="Polkadot JS" attributes={{'data-value': 'magenta'}}>
+
+<CodeBlock className="language-ts">
+    {ClaimCollatorStakingRewards}
+</CodeBlock>
+
+</TabItem>
+</Tabs>
+</div>
