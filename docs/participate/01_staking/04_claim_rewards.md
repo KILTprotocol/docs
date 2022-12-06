@@ -91,7 +91,3 @@ R2 ---> |"call claimRewards"| R3("Rewards are moved \n into Alice's wallet")
 
 </TabItem>
 </Tabs>
-
-
-## Runtime API
-
