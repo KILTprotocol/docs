@@ -1,6 +1,6 @@
 {
   "author": "KILT Protocol",
-  "name": "kilt-docs-scripts",
+  "name": "kilt-staking-calls",
   "license": "MIT",
   "scripts": {
     "check-ts": "yarn tsc -p tsconfig.json --noEmit",
@@ -9,13 +9,14 @@
     "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
     "fix": "yarn lint:fix && yarn style:fix",
-    "generate": "ts-node src/main.ts"
+    "test": "ts-node index.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.30.0"
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
+    "@kiltprotocol/type-definitions": "^0.30.0",
+    "@polkadot/api": "^9.10.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
