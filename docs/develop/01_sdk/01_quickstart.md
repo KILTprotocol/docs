@@ -35,7 +35,6 @@ We will focus on creating a new project from scratch, which will require a littl
 First, we need to create a new project in a new directory.
 For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
@@ -66,14 +65,14 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-After you have imported the SDK you will be able to access the functionalities that KILT provides.
+  After you have imported the SDK you will be able to access the functionalities that KILT provides.
+  We are making a new file that contents the compiler configuration for typescript.
 
   ```bash
   touch tsconfig.json
   ```
 
-Inside the `tsconfig.json` add in the following value:
-
+  Inside the `tsconfig.json` add in the following value:
 
   ```bash
   {
@@ -84,14 +83,13 @@ Inside the `tsconfig.json` add in the following value:
   ```
 
   </TabItem>
-<TabItem value='js' label='Javascript'>
+  <TabItem value='js' label='Javascript'>
 
-After you have imported the SDK you will be able to access the functionalities that KILT provides.
-Inside the `package.json` add in the value `"type": "module"`.
+  After you have imported the SDK you will be able to access the functionalities that KILT provides.
+  Inside the `package.json` add in the value `"type": "module"`.
 
   </TabItem>
 </Tabs>
-
 
 Let's first declare our `main` function that will execute our script:
 
