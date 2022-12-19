@@ -90,13 +90,13 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'participate/content-creation-guidelines',
-              label: 'Content Creation Guidelines',
+              docId: 'participate/treasury-proposal',
+              label: 'Treasury Proposals',
             },
             {
               type: 'doc',
-              docId: 'participate/treasury-proposal',
-              label: 'Treasury Proposals',
+              docId: 'participate/content-creation-guidelines',
+              label: 'Content Creation Guidelines',
             },
             {
               type: 'doc',
