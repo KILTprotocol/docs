@@ -13,8 +13,8 @@ import Connect from '!!raw-loader!@site/code_examples/core_features/getting_star
 import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
-import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_credential.ts';
+import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_attestation.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
@@ -63,8 +63,35 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   </TabItem>
 </Tabs>
 
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+After you have imported the SDK you will be able to access the functionalities that KILT provides.
+
+  ```bash
+  touch tsconfig.json
+  ```
+
+Inside the `tsconfig.json` add in the following value:
+
+
+  ```bash
+  {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+  }
+  ```
+
+  </TabItem>
+<TabItem value='js' label='Javascript'>
+
 After you have imported the SDK you will be able to access the functionalities that KILT provides.
 Inside the `package.json` add in the value `"type": "module"`.
+
+  </TabItem>
+</Tabs>
+
 
 Let's first declare our `main` function that will execute our script:
 
@@ -181,18 +208,8 @@ We can select one of the endpoints and query the URL to see if it returns a KILT
 If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service endpoint.
 
 We will now have to make sure the credential is **valid** and has a valid **structure**.
-To do that, we need to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
-<SnippetBlock
-  className="language-ts"
-  funcEnd="}"
->
-  {VerifyAttestation}
-</SnippetBlock>
-
-Execute the script and see if you get a valid attestation for John Doe's credential!
-
-If so, it is then time to verify the credential.
+It is then time to verify the credential.
 This will be indicated by the result of the **verification** process as shown in the snippet below:
 
 <SnippetBlock
@@ -201,7 +218,18 @@ This will be indicated by the result of the **verification** process as shown in
   {VerifyCredential}
 </SnippetBlock>
 
-Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+Now excute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+
+Now time to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
+
+<SnippetBlock
+  className="language-ts"
+  funcEnd="return"
+>
+  {VerifyAttestation}
+</SnippetBlock>
+
+Now, the last step is to excute the complete script and see if you get a valid attestation for John Doe's credential!
 
 Was it successful? Nice Job!
 

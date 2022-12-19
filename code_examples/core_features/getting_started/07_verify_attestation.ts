@@ -18,5 +18,9 @@ export async function main(
   )
 
   // Return false if attestation.revoked is true, or true otherwise.
-  return !attestationInfo.revoked
+  const revokedStatus = !attestationInfo.revoked
+
+  console.log('Checking the revoked status of the attestation', revokedStatus)
+
+  return revokedStatus
 }
