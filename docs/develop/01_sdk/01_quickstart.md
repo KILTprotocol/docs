@@ -118,6 +118,7 @@ We will use the official **Spiritnet** address:
 
 <SnippetBlock
   className="language-ts"
+  funcEnd="return"
 >
   {Connect}
 </SnippetBlock>
