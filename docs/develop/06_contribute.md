@@ -49,7 +49,7 @@ In addition you should:
 
 The proposal should then be discussed with the community (including, for example, the KILT Technical Committee, governance, or relevant project team) using community channels such as [Discord](https://discord.gg/7uyfMXh6AT) or [Polkassembly](https://kilt.polkassembly.network/discussions).
 If the community is not in agreement with the proposal, it is unlikely that it would be approved by governance.
-See the [guide to creating a proposal](../participate/03_treasury_proposal.md) for additional details.
+See the [guide to creating a proposal](../participate/04_treasury_proposal.md) for additional details.
 
 ## Tips
 

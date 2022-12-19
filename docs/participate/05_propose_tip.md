@@ -3,7 +3,7 @@ id: treasury-tip
 title: Treasury Tips
 ---
 
-Similar to [opening a Treasury proposal](./03_treasury_proposal.md), anyone can start a tipping process.
+Similar to [opening a Treasury proposal](./04_treasury_proposal.md), anyone can start a tipping process.
 Of course, success of such can only be expected if it is based on a meaningful contribution.
 The variety of potential contributions is vast, please see our [Contribution guide](../develop/06_contribute.md) for more details.
 There, you will also find a high level description of tips and the differences to Treasury proposals.
