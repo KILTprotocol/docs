@@ -220,7 +220,7 @@ This will be indicated by the result of the **verification** process as shown in
 
 Now excute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
 
-Now time to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
+Now it's time to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
 <SnippetBlock
   className="language-ts"
