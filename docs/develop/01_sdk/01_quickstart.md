@@ -42,6 +42,7 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
 
   ```bash npm2yarn
+  npm init -y
   npm install @kiltprotocol/sdk-js axios ts-node typescript
   ```
 
@@ -53,6 +54,7 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
 
   ```bash npm2yarn
+  npm init -y
   npm install @kiltprotocol/sdk-js axios node
   ```
 
