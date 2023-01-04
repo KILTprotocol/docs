@@ -14,11 +14,14 @@ const SEED_ENV = 'FAUCET_SEED'
     }
     program
       .description("Test the code examples used in the KILT documentation.")
-    program.command("all").description("Run all tests").action(() => {
-      for (const key in whichToRun) {
-        whichToRun[key] = true
-      }
-    })
+    program
+      .command("all", { isDefault: true })
+      .description("Run all tests")
+      .action(() => {
+        for (const key in whichToRun) {
+          whichToRun[key] = true
+        }
+      })
     program
       .command("workshop")
       .description("Test code examples inside the workshop")
