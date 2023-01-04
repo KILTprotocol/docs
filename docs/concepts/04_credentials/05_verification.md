@@ -53,7 +53,7 @@ That problem is addressed in the next section.
 
 ### Verifying the Owner of the Presented Credential
 
-When issued, a credential is linked to the KILT Decentralized Identifier (DID) of the original Claimer.
+When issued, a credential is linked to the KILT decentralized identifier (DID) of the original Claimer.
 The DID can be resolved to the public key of the Claimer according to the [KILT DID specification](https://github.com/KILTprotocol/spec-kilt-did).
 
 The Verifier assumes that the private key for the DID public key is only known to the owner of the credential, and is not shared across users.

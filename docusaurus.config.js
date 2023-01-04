@@ -3,7 +3,7 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -11,7 +11,14 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
+    mermaid: {
+      theme: { light: 'default', dark: 'dark' },
+    },
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'sdk-refactor-announcement',
@@ -95,6 +102,11 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'participate/content-creation-guidelines',
+              label: 'Content Creation Guidelines',
+            },
+            {
+              type: 'doc',
               docId: 'participate/treasury-tip',
               label: 'Treasury Tips',
             },
@@ -173,7 +185,6 @@ module.exports = {
         docs: {
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
-            require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
@@ -191,10 +202,10 @@ module.exports = {
   // !!!
   customFields: {
     prettierConfig: {
-      trailingComma: "es5",
+      trailingComma: 'es5',
       semi: false,
       singleQuote: true,
-      printWidth: 80
-    }
-  }
+      printWidth: 80,
+    },
+  },
 }

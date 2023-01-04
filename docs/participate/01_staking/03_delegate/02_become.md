@@ -48,22 +48,22 @@ flowchart TD
     D:::activelyDelegating
     E:::activelyDelegating
     F:::activelyDelegating
-    
+
     %% StyleDef
-    classDef preDelegationCheck fill:#FFF4BD,stroke:none;
-    classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;;
-    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
-    classDef activelyDelegating fill:#94C973,stroke:#333, stroke-width:2px;
-    classDef preUnlockStaked fill:#F37970, stroke:black;
+    classDef preDelegationCheck fill:#FFF4BD, stroke:none, color:black;
+    classDef notDelegating fill:#F1C0B9, stroke:black, color:black, stroke-width:1px;;
+    classDef unstakedFreeKilt fill:#85D2D0, stroke:black, color:black, stroke-width:1px;
+    classDef activelyDelegating fill:#94C973, stroke:#333, color:black, stroke-width:2px;
+    classDef preUnlockStaked fill:#F37970, stroke:black, color:black;
 ```
 </div>
 
 :::info
 If your chosen collator fails to produce blocks, neither the collator itself nor their delegators receive rewards.
-This can happen if the collator has connectivity issues or are not building blocks fast enough. 
+This can happen if the collator has connectivity issues or are not building blocks fast enough.
 :::
 
-## Unhappy Path 
+## Unhappy Path
 
 If the delegation pool of your chosen collator candidate is full, you may still delegate to them if you stake more than the current lowest delegator stake of that pool.
 When that happens,
@@ -87,11 +87,11 @@ flowchart TD
     B:::preDelegationCheck
     C:::preDelegationCheck
     C2:::notDelegating
-    
+
     %% StyleDef
-    classDef preDelegationCheck fill:#FFF4BD,stroke:none;
-    classDef notDelegating fill:#F1C0B9, stroke:black, stroke-width:1px;
-    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px
+    classDef preDelegationCheck fill:#FFF4BD, stroke:none, color:black;
+    classDef notDelegating fill:#F1C0B9, stroke:black, color:black, stroke-width:1px;
+    classDef unstakedFreeKilt fill:#85D2D0, stroke:black, color:black, stroke-width:1px;
 ```
 </div>
 
