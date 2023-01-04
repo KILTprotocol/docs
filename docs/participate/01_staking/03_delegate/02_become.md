@@ -36,17 +36,18 @@ If your chosen collator candidate has at least one empty slot in their delegatio
 
 ```mermaid
 flowchart TD
-   A["Hold at least 20 KILT"] --> |"Decide on candidate"| B("Collator candidate chosen");
-   B --> |"Call extrinsic joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another delegator"};
-   C --> |yes| D("Delegating to a collator candidate")
-   D --> |"Collator produces block"| E("Receive rewards")
-
+   A["Hold at least 20 KILT"] --> |"decide on candidate"| B("Collator Candidate chosen");
+   B --> |"call extrinsic joinDelegators"| C{"Can delegate to target? \n Either \n 1. There are empty \n delegations or \n 2. You delegate more \n than another Delegator"};
+   C --> |yes| D("Delegating to a Collator Candidate")
+   D --> |"Collator produces block"| E("Account rewards")
+   E --> |"claim"| F("Have rewards in wallet")
     %% Styles
     A:::unstakedFreeKilt
     B:::preDelegationCheck
     C:::preDelegationCheck
     D:::activelyDelegating
     E:::activelyDelegating
+    F:::activelyDelegating
 
     %% StyleDef
     classDef preDelegationCheck fill:#FFF4BD, stroke:none, color:black;

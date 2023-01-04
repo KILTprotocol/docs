@@ -3,7 +3,7 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -99,6 +99,11 @@ module.exports = {
               type: 'doc',
               docId: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/content-creation-guidelines',
+              label: 'Content Creation Guidelines',
             },
             {
               type: 'doc',
