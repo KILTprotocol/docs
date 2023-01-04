@@ -6,8 +6,8 @@ title: Verifier Verifies a Credential
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/dapp/src/verifier/decryptCredentialMessage.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/dapp/src/verifier/verifyCredential.ts';
+import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/decryptCredentialMessage.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/verifyCredential.ts';
 
 After sending the `request-credential` message to the extension, the verifier listens for a message of type `submit-credential` in response.
 

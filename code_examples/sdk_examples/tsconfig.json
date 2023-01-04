@@ -3,5 +3,8 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "target": "ES2020"
-  }
+  },
+  "exclude": [
+    "src/test.ts"
+  ]
 }

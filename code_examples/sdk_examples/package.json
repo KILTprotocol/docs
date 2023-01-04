@@ -1,20 +1,24 @@
 {
-  "name": "dapp-example-snippets",
-  "private": true,
+  "author": "KILT Protocol",
+  "name": "kilt-sdk_examples",
+  "private": "true",
+  "license": "MIT",
   "scripts": {
     "check-ts": "yarn tsc -p tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts --ext .tsx --format=codeframe",
+    "lint": "eslint . --ext .ts --format=codeframe",
     "lint:fix": "yarn lint --fix",
-    "style": "prettier --check --config .prettierrc '**/*.ts{,x}'",
+    "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
-    "fix": "yarn lint:fix && yarn style:fix"
+    "fix": "yarn lint:fix && yarn style:fix",
+    "test": "ts-node src/test.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.30.0"
+    "@kiltprotocol/sdk-js": "0.30.0",
+    "commander": "^9.4.1",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
-    "@types/node-fetch": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.36.0",
     "@typescript-eslint/parser": "^5.36.0",
     "eslint": "^8.10.0",
@@ -23,7 +27,6 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "node-fetch": "^2.6.7",
     "prettier": "^2.5.1",
     "ts-node": "^10.6.0",
     "typescript": "^4.7.0"

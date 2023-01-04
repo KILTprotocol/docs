@@ -13,7 +13,7 @@ export async function main() {
 
   const attestationKey = did.assertionMethod?.[0]
   if (!attestationKey) {
-    return
+    throw "An attestation key is required in order to submit attestations."
   }
 
   // Create a callback that uses the DID attestation key to sign the credential.
@@ -31,7 +31,7 @@ export async function main() {
     }
   }
 
-  const selfSignedPresentation = await Kilt.Credential.createPresentation({
+  return await Kilt.Credential.createPresentation({
     credential,
     signCallback
   })
