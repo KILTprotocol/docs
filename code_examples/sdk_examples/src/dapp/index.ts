@@ -1,7 +1,6 @@
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { main as attestCredential } from './dapp/attestCredential'
-import chalk from 'chalk'
 import { createFullDid } from '../workshop/attester/generateDid'
 import { domainLinkageCType } from './dapp/domainLinkageCtype'
 import { main as domainLinkageCredential } from './dapp/domainLinkageClaim'

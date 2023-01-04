@@ -4,7 +4,6 @@ import { mnemonicGenerate } from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { attestingFlow } from './attester/attestCredential'
-import chalk from 'chalk'
 import { createFullDid } from './attester/generateDid'
 import { ensureStoredCtype } from './attester/generateCtype'
 import { generateAccount } from './attester/generateAccount'
