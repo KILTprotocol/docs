@@ -25,7 +25,7 @@ Check out our Treasury proposal template or Polkassembly’s [proposal document 
 Multiple types of proposals can be created covering building and infrastructure, outreach and hackathons, or [educational content](04_content_creation_guidelines.md) such as videos, blogs and translations.
 
 Once your proposal document is complete, upload it so that it’s accessible to the Council for review.
-Don’t forget to link it when completing the Polkassembly information! 
+Don’t forget to link it when completing the Polkassembly information!
 
 ## Submit Proposal
 
@@ -34,8 +34,8 @@ When you have feedback from the community and are satisfied with your proposal, 
 Scroll to  the “+ Submit Proposal” button and click.
 Complete the form:
 
-* Submit with Account: this is the account that will make the 5% deposit 
-* Beneficiary: this is the account that will receive Treasury funding if successful 
+* Submit with Account: this is the account that will make the 5% deposit
+* Beneficiary: this is the account that will receive Treasury funding if successful
 * Value: this is the full amount of KILT being requested
 * Click submit to complete the proposal
 
@@ -102,8 +102,8 @@ flowchart TD
     Beneficiary:::onchain
 
     %% styling classes
-    classDef ofchain fill:#FFF4BD,stroke:black, stroke-width:1px;
-    classDef onchain fill:#85D2D0,stroke:black, stroke-width:1px;
+    classDef ofchain fill:#FFF4BD, stroke:black, stroke-width:1px, color:black;
+    classDef onchain fill:#85D2D0, stroke:black, stroke-width:1px, color:black;
 ```
 
 </div>

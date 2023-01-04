@@ -32,8 +32,8 @@ For the sake of completeness, the bootnodes are listed below:
 For **Peregrine**, the parachain bootnodes are:
 
 ```
---bootnodes=/dns4/eyrie-1.kilt.io/tcp/30371/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M \
---bootnodes=/dns4/eyrie-2.kilt.io/tcp/30372/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ
+--bootnodes=/dns4/eyrie-4.kilt.io/tcp/30371/p2p/12D3KooWALJtiCZzcUPVsCa5f5egGfQyFhPY67kKosDw95bJqK7M
+--bootnodes=/dns4/eyrie-5.kilt.io/tcp/30372/p2p/12D3KooWCRgcGtFRsvqxqgysiR6Ah9SAzUNkM12Ef9sy59ZEspSQ
 ```
 
 </TabItem>
