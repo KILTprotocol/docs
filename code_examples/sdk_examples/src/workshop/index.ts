@@ -1,4 +1,3 @@
-
 import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -14,8 +13,10 @@ import { generateLightDid } from './claimer/generateLightDid'
 import { getFunds } from '../getFunds'
 import { verificationFlow } from './verify'
 
-
-export async function testWorkshop(faucetAccount: Kilt.KeyringPair, wssAddress: string) {
+export async function testWorkshop(
+  faucetAccount: Kilt.KeyringPair,
+  wssAddress: string
+) {
   console.log('Running the workshop!')
 
   Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
@@ -34,7 +35,7 @@ export async function testWorkshop(faucetAccount: Kilt.KeyringPair, wssAddress: 
     name: 'Karl'
   })
 
-  await getFunds(api, faucetAccount, attesterAccount.address, 5);
+  await getFunds(api, faucetAccount, attesterAccount.address, 5)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =

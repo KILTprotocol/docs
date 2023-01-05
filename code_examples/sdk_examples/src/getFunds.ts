@@ -7,7 +7,8 @@ export async function getFunds(
   api: ApiPromise,
   faucetAccount: Kilt.KeyringPair,
   recipient: Kilt.KiltAddress,
-  kiltAmount: number) {
+  kiltAmount: number
+) {
   const tx = api.tx.balances.transfer(
     recipient,
     Kilt.BalanceUtils.convertToTxUnit(new BN(kiltAmount), 0)

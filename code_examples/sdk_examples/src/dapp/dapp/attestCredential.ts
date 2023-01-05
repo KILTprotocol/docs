@@ -30,9 +30,9 @@ export async function main(
   const result = await Kilt.Blockchain.signAndSubmitTx(submitTx, dappAccount)
 
   if (result.isError) {
-    console.log("Attestation failed")
+    console.log('Attestation failed')
   } else {
-    console.log("Attestation successful")
+    console.log('Attestation successful')
   }
   return result
 }
