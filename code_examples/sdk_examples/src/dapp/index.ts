@@ -3,9 +3,11 @@ import { main as attestCredential } from './dapp/attestCredential'
 import { createFullDid } from '../workshop/attester/generateDid'
 import { domainLinkageCType } from './dapp/domainLinkageCtype'
 import { main as domainLinkageCredential } from './dapp/domainLinkageClaim'
+import { main as formatCredential } from './dapp/formatCredential'
 import { generateAccount } from '../workshop/attester/generateAccount'
 import { generateKeypairs as generateAttesterKeypairs } from '../workshop/attester/generateKeypairs'
 import { getFunds } from '../getFunds'
+import { main as signPresentation } from './dapp/signPresentation'
 
 export async function testDapp(
   faucetAccount: Kilt.KeyringPair,
@@ -24,7 +26,7 @@ export async function testDapp(
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(attesterAccount)
-  const { attestation: attestationKey } =
+  const { attestation: attestationKey, authentication: authenticationKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
   const credential = domainLinkageCredential(
@@ -38,4 +40,6 @@ export async function testDapp(
     attestationKey,
     credential
   )
+  const presentation = await signPresentation(attesterDid.uri, authenticationKey, credential)
+  await formatCredential(api, presentation)
 }

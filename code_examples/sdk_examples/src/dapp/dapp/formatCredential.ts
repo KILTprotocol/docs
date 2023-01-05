@@ -2,10 +2,7 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let api: ApiPromise
-let domainLinkageCredential: Kilt.ICredentialPresentation
-
-export async function main() {
+export async function main(api: ApiPromise, domainLinkageCredential: Kilt.ICredentialPresentation) {
   const credentialSubject = {
     ...domainLinkageCredential.claim.contents,
     rootHash: domainLinkageCredential.rootHash
@@ -20,13 +17,10 @@ export async function main() {
   ).owner
 
   const issuanceDate = new Date().toISOString()
-  const expirationDate = new Date(
-    Date.now() + 1000 * 60 * 60 * 24 * 365 * 5
-  ).toISOString() // 5 years, for example
 
   const claimerSignature = domainLinkageCredential.claimerSignature
   if (!claimerSignature) {
-    return
+    throw "Claimer signature is required,"
   }
 
   const proof = {
@@ -37,14 +31,13 @@ export async function main() {
     challenge: claimerSignature.challenge
   }
 
-  return {
+  const wellKnownDidconfig = {
     '@context': [
       'https://www.w3.org/2018/credentials/v1',
       'https://identity.foundation/.well-known/did-configuration/v1'
     ],
     issuer,
     issuanceDate,
-    expirationDate,
     type: [
       'VerifiableCredential',
       'DomainLinkageCredential',
@@ -53,4 +46,7 @@ export async function main() {
     credentialSubject,
     proof
   }
+
+  console.log(JSON.stringify(wellKnownDidconfig))
+  return wellKnownDidconfig
 }
