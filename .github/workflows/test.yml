@@ -37,7 +37,7 @@ jobs:
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
-          yarn run ts-node test.ts
+          yarn test
 
   core_features:
     name: Test core features snippets
