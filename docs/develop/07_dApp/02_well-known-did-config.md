@@ -14,7 +14,7 @@ import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/
 
 :::danger This is a working draft
 
-The Well-Known DID Configuration uses work in progress specifications and will change in the future.
+The KILT support of the *Well-Known DID Configuration* uses unpublished specifications and will change in the future.
 
 :::
 
