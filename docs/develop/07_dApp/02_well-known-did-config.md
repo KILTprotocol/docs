@@ -12,6 +12,12 @@ import SignPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/
 import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/attestCredential.ts';
 import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/formatCredential.ts';
 
+:::danger This is a working draft
+
+The Well-Known DID Configuration uses work in progress specifications and will change in the future.
+
+:::
+
 The *Well-Known DID Configuration* is implemented as a security measure when setting up the communication session between the dapp and extension.
 It ensures that the DID that the browser extension is communicating is linked to the domain that is visited by the browser.
 This rule is currently enforced by the KILT DID Wallet reference implementation (Sporran Extension), but might be relaxed in the future.
