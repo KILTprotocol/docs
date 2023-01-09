@@ -40,7 +40,7 @@ For the *Well-Known DID Configuration* you need to go through the following step
 ### Create a DID
 
 Your dapp needs a DID to identify itself to the extension.
-If you don't have a DID yet, follow the [*create a full DID* guide](/docs/develop/sdk/cookbook/dids/full-did-creation).
+If you don't have a DID yet, follow the [*create a full DID* guide](../01_sdk/02_cookbook/01_dids/02_full_did_creation.md).
 
 ### Making the claim
 
@@ -75,7 +75,7 @@ In order to attest the credential we go through the following steps:
   {AttestCredential}
 </TsJsSnippet>
 
-If you want to learn more about attestations you can refer to our [concept guide](/docs/concepts/credentials/attestation) or the [cookbook](/docs/develop/sdk/cookbook/claiming/attestation-creation)
+If you want to learn more about attestations you can refer to our [concept guide](../../concepts/04_credentials/04_attestation.md) or the [cookbook](../01_sdk/02_cookbook/04_claiming/03_attestation_creation.md)
 
 ### Presenting the credential
 
