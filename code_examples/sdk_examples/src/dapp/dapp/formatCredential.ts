@@ -2,7 +2,10 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(api: ApiPromise, domainLinkageCredential: Kilt.ICredentialPresentation) {
+export async function main(
+  api: ApiPromise,
+  domainLinkageCredential: Kilt.ICredentialPresentation
+) {
   const credentialSubject = {
     ...domainLinkageCredential.claim.contents,
     rootHash: domainLinkageCredential.rootHash
@@ -20,7 +23,7 @@ export async function main(api: ApiPromise, domainLinkageCredential: Kilt.ICrede
 
   const claimerSignature = domainLinkageCredential.claimerSignature
   if (!claimerSignature) {
-    throw "Claimer signature is required,"
+    throw 'Claimer signature is required,'
   }
 
   const proof = {

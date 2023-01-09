@@ -40,6 +40,10 @@ export async function testDapp(
     attestationKey,
     credential
   )
-  const presentation = await signPresentation(attesterDid.uri, authenticationKey, credential)
+  const presentation = await signPresentation(
+    attesterDid.uri,
+    authenticationKey,
+    credential
+  )
   await formatCredential(api, presentation)
 }
