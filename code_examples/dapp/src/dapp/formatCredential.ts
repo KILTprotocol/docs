@@ -7,10 +7,7 @@ export type Parameter = {
   domainLinkagePresentation: Kilt.ICredentialPresentation
 }
 
-export async function main({
-  api,
-  domainLinkagePresentation
-}: Parameter) {
+export async function main({ api, domainLinkagePresentation }: Parameter) {
   const credentialSubject = {
     ...domainLinkagePresentation.claim.contents,
     rootHash: domainLinkagePresentation.rootHash
