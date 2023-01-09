@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export type Parameter = {

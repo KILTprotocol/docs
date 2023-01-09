@@ -1,3 +1,4 @@
+
 import * as Kilt from '@kiltprotocol/sdk-js'
 export type Parameter = {
   domainLinkageCType: Kilt.ICType

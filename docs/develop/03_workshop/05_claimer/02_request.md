@@ -7,8 +7,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CreateClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/createClaim.ts';
-import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateCredential.ts';
+import CreateClaim from '!!raw-loader!@site/code_examples/workshop/claimer/createClaim.ts';
+import GenerateCredential from '!!raw-loader!@site/code_examples/workshop/claimer/generateCredential.ts';
 
 In this section, we'll create a `Claim` and a `Credential`.
 But a credential in itself has no value.
