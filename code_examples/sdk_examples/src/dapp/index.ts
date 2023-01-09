@@ -29,7 +29,7 @@ export async function testDapp(
   const { attestation: attestationKey, authentication: assertionMethodKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
-  const domainLinkageCredential = getDomainLinkageCredential({
+  const { domainLinkageCredential } = getDomainLinkageCredential({
     domainLinkageCType,
     didUri: attesterDid.uri
   })
@@ -40,7 +40,7 @@ export async function testDapp(
     attestationKey,
     domainLinkageCredential
   })
-  const domainLinkagePresentation = await signPresentation({
+  const { domainLinkagePresentation } = await signPresentation({
     didUri: attesterDid.uri,
     assertionMethodKey: assertionMethodKey,
     domainLinkageCredential

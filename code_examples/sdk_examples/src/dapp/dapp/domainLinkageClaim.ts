@@ -18,8 +18,5 @@ export function main({
     didUri
   )
 
-  const domainLinkageCredential = Kilt.Credential.fromClaim(claim)
-
-  console.log(JSON.stringify(domainLinkageCredential))
-  return domainLinkageCredential
+  return { domainLinkageCredential: Kilt.Credential.fromClaim(claim) }
 }

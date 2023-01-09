@@ -28,6 +28,5 @@ export async function main({
     })
   })
 
-  console.log(JSON.stringify(domainLinkagePresentation))
-  return domainLinkagePresentation
+  return { domainLinkagePresentation }
 }
