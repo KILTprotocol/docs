@@ -33,6 +33,8 @@ This JSON-file must contain a credential presentation that conforms to the [Doma
 For the *Well-Known DID Configuration* you need to go through the following steps:
 
 0. Create a full DID
+    * You will need the `assertionMethodKey` a.k.a. `attestationKey` for signing the credential
+    * The `authenticationKey` is required for signing the transaction
 1. Create a claim
 2. Attest the claim
 3. Create a presentation
