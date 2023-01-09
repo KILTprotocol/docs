@@ -24,20 +24,20 @@ jobs:
           node-version: 16.x
 
       - name: Test style conventions
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
-          yarn test
+          yarn run ts-node test.ts
 
   core_features:
     name: Test core features snippets
@@ -79,3 +79,17 @@ jobs:
         working-directory: code_examples/vitejs
         run: |
           yarn build
+
+  # Only test the style conventions for the dapp snippets, nothing is run here
+  dapp_examples:
+    name: Test dapp interactions snippets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Test style conventions
+        working-directory: code_examples/dapp
+        run: |
+          yarn install --frozen-lockfile
+          yarn lint && yarn style

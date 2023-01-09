@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 16.x
       - name: Get current package version
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
       - uses: jacobtomlinson/gha-find-replace@v2
@@ -27,12 +27,12 @@ jobs:
           exclude: "**/*.lock"
           regex: false
       - name: Test style conventions
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         run: |
           yarn install
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
@@ -124,11 +124,15 @@ jobs:
         run: |
           yarn install
       - name: Regenerate yarn lock for workshop
-        working-directory: code_examples/sdk_examples
+        working-directory: code_examples/workshop
         run: |
           yarn install
       - name: Regenerate yarn lock for vitejs
         working-directory: code_examples/vitejs
+        run: |
+          yarn install
+      - name: Regenerate yarn lock for dapp interactions snippets
+        working-directory: code_examples/dapp
         run: |
           yarn install
       - name: Regenerate yarn lock for scripts
