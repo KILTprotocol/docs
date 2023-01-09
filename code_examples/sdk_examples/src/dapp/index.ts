@@ -2,10 +2,10 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { main as attestCredential } from './dapp/attestCredential'
 import { createFullDid } from '../workshop/attester/generateDid'
 import { domainLinkageCType } from './dapp/domainLinkageCtype'
-import { main as domainLinkageCredential } from './dapp/domainLinkageClaim'
 import { main as formatCredential } from './dapp/formatCredential'
 import { generateAccount } from '../workshop/attester/generateAccount'
 import { generateKeypairs as generateAttesterKeypairs } from '../workshop/attester/generateKeypairs'
+import { main as getDomainLinkageCredential } from './dapp/domainLinkageClaim'
 import { getFunds } from '../getFunds'
 import { main as signPresentation } from './dapp/signPresentation'
 
@@ -19,31 +19,31 @@ export async function testDapp(
   const api = await Kilt.connect(wssAddress)
 
   // Setup attester account.
-  const { account: attesterAccount } = await generateAccount()
+  const { account: dappAccount } = await generateAccount()
 
-  await getFunds(api, faucetAccount, attesterAccount.address, 4)
+  await getFunds(api, faucetAccount, dappAccount.address, 4)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
-    await createFullDid(attesterAccount)
-  const { attestation: attestationKey, authentication: authenticationKey } =
+    await createFullDid(dappAccount)
+  const { attestation: attestationKey, authentication: assertionMethodKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
-  const credential = domainLinkageCredential(
+  const domainLinkageCredential = getDomainLinkageCredential({
     domainLinkageCType,
-    attesterDid.uri
-  )
-  await attestCredential(
+    didUri: attesterDid.uri
+  })
+  await attestCredential({
     api,
-    attesterDid.uri,
-    attesterAccount,
+    didUri: attesterDid.uri,
+    dappAccount,
     attestationKey,
-    credential
-  )
-  const presentation = await signPresentation(
-    attesterDid.uri,
-    authenticationKey,
-    credential
-  )
-  await formatCredential(api, presentation)
+    domainLinkageCredential
+  })
+  const domainLinkagePresentation = await signPresentation({
+    didUri: attesterDid.uri,
+    assertionMethodKey: assertionMethodKey,
+    domainLinkageCredential
+  })
+  await formatCredential({ api, domainLinkagePresentation })
 }

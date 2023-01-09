@@ -2,26 +2,29 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
-  api: ApiPromise,
-  domainLinkageCredential: Kilt.ICredentialPresentation
-) {
+export async function main({
+  api,
+  domainLinkagePresentation
+}: {
+  api: ApiPromise
+  domainLinkagePresentation: Kilt.ICredentialPresentation
+}) {
   const credentialSubject = {
-    ...domainLinkageCredential.claim.contents,
-    rootHash: domainLinkageCredential.rootHash
+    ...domainLinkagePresentation.claim.contents,
+    rootHash: domainLinkagePresentation.rootHash
   }
 
   const encodedAttestationDetails = await api.query.attestation.attestations(
-    domainLinkageCredential.rootHash
+    domainLinkagePresentation.rootHash
   )
   const issuer = Kilt.Attestation.fromChain(
     encodedAttestationDetails,
-    domainLinkageCredential.claim.cTypeHash
+    domainLinkagePresentation.claim.cTypeHash
   ).owner
 
   const issuanceDate = new Date().toISOString()
 
-  const claimerSignature = domainLinkageCredential.claimerSignature
+  const claimerSignature = domainLinkagePresentation.claimerSignature
   if (!claimerSignature) {
     throw 'Claimer signature is required,'
   }

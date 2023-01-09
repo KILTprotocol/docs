@@ -2,11 +2,15 @@
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
-  didUri: Kilt.DidUri,
-  assertionMethodKey: Kilt.KiltKeyringPair,
+export async function main({
+  didUri,
+  assertionMethodKey,
+  domainLinkageCredential
+}: {
+  didUri: Kilt.DidUri
+  assertionMethodKey: Kilt.KiltKeyringPair
   domainLinkageCredential: Kilt.ICredential
-) {
+}) {
   // We need the KeyId of the AssertionMethod Key. There is only
   // one AssertionMethodKey and its id is stored on the blockchain.
   const didResolveResult = await Kilt.Did.resolve(didUri)
@@ -15,7 +19,7 @@ export async function main(
   }
   const assertionMethodKeyId = didResolveResult.document.assertionMethod[0].id
 
-  const presentation = await Kilt.Credential.createPresentation({
+  const domainLinkagePresentation = await Kilt.Credential.createPresentation({
     credential: domainLinkageCredential,
     signCallback: async ({ data }) => ({
       signature: assertionMethodKey.sign(data),
@@ -24,6 +28,6 @@ export async function main(
     })
   })
 
-  console.log(JSON.stringify(presentation))
-  return presentation
+  console.log(JSON.stringify(domainLinkagePresentation))
+  return domainLinkagePresentation
 }

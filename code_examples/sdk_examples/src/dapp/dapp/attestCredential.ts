@@ -2,15 +2,21 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(
-  api: ApiPromise,
-  didUri: Kilt.DidUri,
-  dappAccount: Kilt.KiltKeyringPair,
-  attestationKey: Kilt.KiltKeyringPair,
-  selfSignedCredential: Kilt.ICredential
-) {
+export async function main({
+  api,
+  didUri,
+  dappAccount,
+  attestationKey,
+  domainLinkageCredential
+}: {
+  api: ApiPromise
+  didUri: Kilt.DidUri
+  dappAccount: Kilt.KiltKeyringPair
+  attestationKey: Kilt.KiltKeyringPair
+  domainLinkageCredential: Kilt.ICredential
+}) {
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
-    selfSignedCredential,
+    domainLinkageCredential,
     didUri
   )
   const attestationTx = api.tx.attestation.add(claimHash, cTypeHash, null)
