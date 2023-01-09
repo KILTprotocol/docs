@@ -1,12 +1,12 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-
+export type Parameter = {
+  domainLinkageCType: Kilt.ICType
+  didUri: Kilt.DidUri
+}
 export function main({
   domainLinkageCType,
   didUri
-}: {
-  domainLinkageCType: Kilt.ICType
-  didUri: Kilt.DidUri
-}) {
+}: Parameter) {
   const claimContents: Kilt.IClaimContents = {
     id: didUri,
     origin: 'https://example.com'
