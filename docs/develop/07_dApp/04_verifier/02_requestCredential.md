@@ -5,10 +5,10 @@ title: Verifier Requests a Credential
 
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
-import EmailCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/emailCtype.ts';
-import GenerateChallenge from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/generateChallenge.ts';
-import CreateRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/createRequestCredentialMessage.ts';
-import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/encryptRequestCredentialMessage.ts';
+import EmailCtype from '!!raw-loader!@site/code_examples/dapp/src/verifier/emailCtype.ts';
+import GenerateChallenge from '!!raw-loader!@site/code_examples/dapp/src/verifier/generateChallenge.ts';
+import CreateRequestCredentialMessage from '!!raw-loader!@site/code_examples/dapp/src/verifier/createRequestCredentialMessage.ts';
+import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/dapp/src/verifier/encryptRequestCredentialMessage.ts';
 
 The job of the verifier is to request and verify credentials.
 Your verifier can request one or more credentials of a specific CType.
