@@ -5,7 +5,7 @@
   "scripts": {
     "build": "yarn check-ts && yarn generate-examples && yarn check-links && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find docs -name '*.md')",
-    "check-ts": "concurrently -m 1 yarn:check:*",
+    "check-ts": "concurrently -m 1 yarn:check-ts:*",
     "check-ts:vitejs": "cd code_examples/vitejs && yarn install && yarn check-ts",
     "check-ts:scripts": "cd scripts && yarn install && yarn check-ts",
     "check-ts:examples": "cd code_examples/sdk_examples && yarn install && yarn check-ts",

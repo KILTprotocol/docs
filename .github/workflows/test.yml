@@ -16,11 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test_cases: ["dapp", "workshop", "core"]
+        test_case: ["dapp", "workshop", "core"]
         required: ['required']
         include:
           - node-version: "staking"
             required: 'optional'
+
+    continue-on-error: ${{ matrix.required == 'optional' }}
 
     steps:
       - uses: actions/checkout@v1
@@ -43,7 +45,7 @@ jobs:
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
-          yarn test
+          yarn test ${{ matrix.test_case }}
 
   # Only test the style conventions for the viteJS snippets, nothing is run here
   vitejs:
@@ -62,3 +64,17 @@ jobs:
         working-directory: code_examples/vitejs
         run: |
           yarn build
+
+  check-links:
+    name: Check for broken links
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install
+        run: |
+          yarn install --frozen-lockfile
+      - name: Check for broken links
+        run: |
+          yarn check-links
