@@ -1,6 +1,6 @@
 ---
 id: well-known-did-config
-title: Well Known DID Configuration
+title: Well-Known DID Configuration
 ---
 
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
@@ -90,7 +90,7 @@ To use the newly attested credential, we need to derive a presentation from it t
 </TsJsSnippet>
 
 
-The Well Known DID Configuration specification requires a specific format (JSON-LD) for the domain linkage credential.
+The Well-Known DID Configuration specification requires a verifiable credential.
 For now we have to manually convert our KILT credential into the required format.
 
 <TsJsSnippet>
