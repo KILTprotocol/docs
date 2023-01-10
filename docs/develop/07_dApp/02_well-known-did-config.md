@@ -57,7 +57,7 @@ The claim has to be based on the [Domain Linkage CType][CType-Domain-Linkage]:
 
 The credential is built from the CType, claim contents, and your dapp's unique DID:
 
-<TsJsSnippet>
+<TsJsSnippet funcEnd="return">
   {DomainLinkageClaim}
 </TsJsSnippet>
 
@@ -75,7 +75,7 @@ In order to attest the credential we go through the following steps:
 3. authorizing the transaction with your DID
 4. paying for the transaction with a KILT account and submitting it to the chain
 
-<TsJsSnippet>
+<TsJsSnippet funcEnd="return">
   {AttestCredential}
 </TsJsSnippet>
 
@@ -85,7 +85,7 @@ If you want to learn more about attestations you can refer to our [concept guide
 
 To use the newly attested credential, we need to derive a presentation from it to host on the dapp website.
 
-<TsJsSnippet>
+<TsJsSnippet funcEnd="return">
   {SignPresentation}
 </TsJsSnippet>
 
@@ -93,7 +93,7 @@ To use the newly attested credential, we need to derive a presentation from it t
 The Well-Known DID Configuration specification requires a verifiable credential.
 For now we have to manually convert our KILT credential into the required format.
 
-<TsJsSnippet>
+<TsJsSnippet funcEnd="return">
   {FormatCredential}
 </TsJsSnippet>
 

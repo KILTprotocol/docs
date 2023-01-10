@@ -1,8 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+
 export type Parameter = {
   domainLinkageCType: Kilt.ICType
   didUri: Kilt.DidUri
 }
+
 export function main({ domainLinkageCType, didUri }: Parameter) {
   const claimContents: Kilt.IClaimContents = {
     id: didUri,
@@ -14,6 +16,7 @@ export function main({ domainLinkageCType, didUri }: Parameter) {
     claimContents,
     didUri
   )
+  const domainLinkageCredential = Kilt.Credential.fromClaim(claim)
 
-  return { domainLinkageCredential: Kilt.Credential.fromClaim(claim) }
+  return { domainLinkageCredential }
 }

@@ -52,6 +52,5 @@ export async function main({ api, domainLinkagePresentation }: Parameter) {
     proof
   }
 
-  console.log(JSON.stringify(wellKnownDidconfig))
   return wellKnownDidconfig
 }
