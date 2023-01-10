@@ -5,7 +5,7 @@ title: Verify a Credential or a Presentation
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import VerifyPresentation from '!!raw-loader!@site/code_examples/core_features/claiming/05_verify_presentation.ts';
+import VerifyPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/claiming/05_verify_presentation.ts';
 
 Whether a presentation involves selective disclosure or a whole credential is not technically relevant to Verifiers.
 This is because in KILT a presentation **is** a credential.

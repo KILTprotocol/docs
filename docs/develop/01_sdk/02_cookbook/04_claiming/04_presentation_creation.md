@@ -5,7 +5,7 @@ title: Present a Credential
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import CreatePresentation from '!!raw-loader!@site/code_examples/core_features/claiming/04_create_presentation.ts';
+import CreatePresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/claiming/04_create_presentation.ts';
 
 With a valid credential, Claimers can now go to Verifiers to request some service upon providing proof of validity of a certain credential.
 The process of presenting one or more credentials to a Verifier is called `Presentation`.
