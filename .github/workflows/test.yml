@@ -11,9 +11,16 @@ on:
       - "*"
 
 jobs:
-  workshop:
+  code_examples:
     name: Test Workshop snippets
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test_cases: ["dapp", "workshop", "core"]
+        required: ['required']
+        include:
+          - node-version: "staking"
+            required: 'optional'
 
     steps:
       - uses: actions/checkout@v1
@@ -31,36 +38,12 @@ jobs:
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code_examples/sdk_examples
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
           yarn test
-
-  core_features:
-    name: Test core features snippets
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Test style conventions
-        working-directory: code_examples/core_features
-        run: |
-          yarn install --frozen-lockfile
-          yarn lint && yarn style
-
-      - name: Run tests
-        timeout-minutes: 60
-        working-directory: code_examples/core_features
-        env:
-          NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
-        run: |
-          yarn install --frozen-lockfile
-          yarn run ts-node run_core_features.ts
 
   # Only test the style conventions for the viteJS snippets, nothing is run here
   vitejs:

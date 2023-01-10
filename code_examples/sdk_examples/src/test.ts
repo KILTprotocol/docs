@@ -43,6 +43,12 @@ const SEED_ENV = 'FAUCET_SEED'
     .action(() => {
       whichToRun.core = true
     })
+    program
+    .command('staking')
+    .description('Test code examples inside the Staking section')
+    .action(() => {
+      whichToRun.staking = true
+    })
   program.parse()
 
   envConfig()
