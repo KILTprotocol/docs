@@ -43,7 +43,7 @@ const SEED_ENV = 'FAUCET_SEED'
     .action(() => {
       whichToRun.core = true
     })
-    program
+  program
     .command('staking')
     .description('Test code examples inside the Staking section')
     .action(() => {
