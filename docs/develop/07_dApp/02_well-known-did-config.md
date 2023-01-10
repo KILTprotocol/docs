@@ -20,7 +20,7 @@ The KILT support of the *Well-Known DID Configuration* uses unpublished specific
 :::
 
 The *Well-Known DID Configuration* is implemented as a security measure when setting up the communication session between the dapp and extension.
-It ensures that the DID that the browser extension is communicating is linked to the domain that is visited by the browser.
+It ensures that the DID that the browser extension is communicating to is linked to the domain that is visited by the browser.
 This rule is currently enforced by the KILT DID Wallet reference implementation (Sporran Extension), but might be relaxed in the future.
 The implementation is based on the [*Well-Known DID Configuration*](https://identity.foundation/.well-known/resources/did-configuration/) specified by the Decentralized Identity Foundation.
 
@@ -44,6 +44,7 @@ For the *Well-Known DID Configuration* you need to go through the following step
 
 Your dapp needs a DID to identify itself to the extension.
 If you don't have a DID yet, follow the [*create a full DID* guide](../01_sdk/02_cookbook/01_dids/02_full_did_creation.md).
+Make sure to create your DID with an `assertionMethodKey` so that you are able to issue attestations.
 
 ### Making the claim
 
