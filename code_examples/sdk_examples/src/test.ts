@@ -2,7 +2,9 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { config as envConfig } from 'dotenv'
 import { hexToU8a } from '@polkadot/util'
 import { program } from 'commander'
+import { testCoreFeatures } from './core_features'
 import { testDapp } from './dapp'
+import { testStaking } from './staking'
 import { testWorkshop } from './workshop'
 
 const SEED_ENV = 'FAUCET_SEED'
@@ -10,7 +12,9 @@ const SEED_ENV = 'FAUCET_SEED'
 ;(async () => {
   const whichToRun = {
     workshop: false,
-    dapp: false
+    dapp: false,
+    core: false,
+    staking: false
   }
   program.description('Test the code examples used in the KILT documentation.')
   program
@@ -32,6 +36,12 @@ const SEED_ENV = 'FAUCET_SEED'
     .description('Test code examples inside the DApp section')
     .action(() => {
       whichToRun.dapp = true
+    })
+  program
+    .command('core')
+    .description('Test code examples inside the Core Feature section')
+    .action(() => {
+      whichToRun.core = true
     })
   program.parse()
 
@@ -59,6 +69,12 @@ const SEED_ENV = 'FAUCET_SEED'
     }
     if (whichToRun.dapp) {
       await testDapp(faucetAccount, wssAddress)
+    }
+    if (whichToRun.core) {
+      await testCoreFeatures(faucetAccount, wssAddress)
+    }
+    if (whichToRun.staking) {
+      await testStaking(faucetAccount, wssAddress)
     }
     process.exit(0)
   } catch (e) {

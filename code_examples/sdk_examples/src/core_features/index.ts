@@ -1,16 +1,10 @@
-import type { ApiPromise } from '@polkadot/api'
-import type { KeyringPair } from '@polkadot/keyring/types'
-
-import { config as envConfig } from 'dotenv'
-import { setTimeout } from 'timers/promises'
-
 import { BN } from '@polkadot/util'
 import { Keyring } from '@polkadot/api'
-import { hexToU8a } from '@polkadot/util'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+import { endowAccounts } from '../getFunds'
 import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
@@ -20,59 +14,11 @@ import { runAll as runAllWeb3 } from './web3names'
 
 const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
   Kilt.Blockchain.IS_IN_BLOCK
-const nodeAddress = 'wss://peregrine.kilt.io/parachain-public-ws'
 
-async function endowAccounts(
-  api: ApiPromise,
-  faucetAccount: KeyringPair,
-  destinationAccounts: Kilt.KiltAddress[],
-  amount: BN
+export async function testCoreFeatures(
+  faucetAccount: Kilt.KeyringPair,
+  wssAddress: string
 ): Promise<void> {
-  const transferBatch = destinationAccounts.map((acc) =>
-    api.tx.balances.transfer(
-      acc,
-      Kilt.BalanceUtils.convertToTxUnit(
-        Kilt.BalanceUtils.KILT_COIN.mul(amount),
-        0
-      )
-    )
-  )
-
-  console.log(
-    `Endowing test accounts "${destinationAccounts}"
-    from faucet "${faucetAccount.address}"
-    with ${Kilt.BalanceUtils.formatKiltBalance(amount, {
-      decimals: 0
-    })} each...`
-  )
-  const batchTx = api.tx.utility.batchAll(transferBatch)
-  try {
-    await Kilt.Blockchain.signAndSubmitTx(batchTx, faucetAccount)
-  } catch {
-    // Try a second time after a small delay and fetching the right nonce.
-    const waitingTime = 12_000 // 12 seconds
-    console.log(
-      `First submission failed for core features. Waiting ${waitingTime} ms before retrying.`
-    )
-    await setTimeout(waitingTime)
-    console.log('Retrying...')
-    // nonce: -1 tells the client to fetch the latest nonce by also checking the tx pool.
-    const resignedBatchTx = await batchTx.signAsync(faucetAccount, {
-      nonce: -1
-    })
-    await Kilt.Blockchain.submitSignedTx(resignedBatchTx)
-    console.log('Successfully transferred tokens')
-  }
-}
-
-async function main(): Promise<void> {
-  envConfig()
-
-  const faucetSeed = process.env['FAUCET_SEED']
-  if (!faucetSeed) {
-    throw `No faucet seed specified with the "FAUCET_SEED" env variable.`
-  }
-
   // Connects to (and at the end disconnects from) Spiritnet, so it must be called before we connect to Peregrine for the rest of the tests.
   const gettingStartedFlow = async () => {
     console.log('Running getting started flow...')
@@ -82,12 +28,11 @@ async function main(): Promise<void> {
   await gettingStartedFlow()
 
   Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
-  const api = await Kilt.connect(nodeAddress)
+  const api = await Kilt.connect(wssAddress)
 
   const keyring = new Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
-  const faucetAccount = keyring.addFromSeed(hexToU8a(faucetSeed), {}, 'sr25519')
 
   const [
     claimingTestAccount,
@@ -140,7 +85,7 @@ async function main(): Promise<void> {
     (async () => {
       try {
         await runAllLinking(
-          nodeAddress,
+          wssAddress,
           accountLinkingTestAccount,
           faucetAccount
         )
@@ -159,13 +104,3 @@ async function main(): Promise<void> {
     })()
   ])
 }
-
-;(async () => {
-  try {
-    await main()
-    process.exit(0)
-  } catch (e) {
-    console.error(e)
-    process.exit(1)
-  }
-})()

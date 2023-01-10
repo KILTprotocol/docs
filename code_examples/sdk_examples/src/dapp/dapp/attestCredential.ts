@@ -6,13 +6,13 @@ export async function main({
   api,
   didUri,
   dappAccount,
-  attestationKey,
+  assertionMethodKey,
   domainLinkageCredential
 }: {
   api: ApiPromise
   didUri: Kilt.DidUri
   dappAccount: Kilt.KiltKeyringPair
-  attestationKey: Kilt.KiltKeyringPair
+  assertionMethodKey: Kilt.KiltKeyringPair
   domainLinkageCredential: Kilt.ICredential
 }) {
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
@@ -26,8 +26,8 @@ export async function main({
     didUri,
     attestationTx,
     async ({ data }) => ({
-      signature: attestationKey.sign(data),
-      keyType: attestationKey.type
+      signature: assertionMethodKey.sign(data),
+      keyType: assertionMethodKey.type
     }),
     dappAccount.address
   )

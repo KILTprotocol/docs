@@ -26,7 +26,7 @@ export async function testDapp(
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(dappAccount)
-  const { attestation: attestationKey, authentication: assertionMethodKey } =
+  const { attestation: assertionMethodKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
   const { domainLinkageCredential } = getDomainLinkageCredential({
@@ -37,7 +37,7 @@ export async function testDapp(
     api,
     didUri: attesterDid.uri,
     dappAccount,
-    attestationKey,
+    assertionMethodKey,
     domainLinkageCredential
   })
   const { domainLinkagePresentation } = await signPresentation({
