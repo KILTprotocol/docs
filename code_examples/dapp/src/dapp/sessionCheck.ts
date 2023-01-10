@@ -14,7 +14,7 @@ export async function main() {
   const { encryptionKeyUri, encryptedChallenge, nonce } = session
   const encryptionKey = await Kilt.Did.resolveKey(encryptionKeyUri)
   if (!encryptionKey) {
-    throw "an encryption key is required"
+    throw 'an encryption key is required'
   }
 
   const decryptedBytes = Kilt.Utils.Crypto.decryptAsymmetric(
