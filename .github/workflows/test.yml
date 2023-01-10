@@ -12,7 +12,7 @@ on:
 
 jobs:
   code_examples:
-    name: Test Workshop snippets
+    name: Test code snippets
     runs-on: ubuntu-latest
     strategy:
       matrix:
