@@ -1,38 +1,32 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { blake2AsU8a, encodeAddress } from '@polkadot/util-crypto'
-import { Keyring } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let claim: Kilt.IClaim
-let did: Kilt.DidDocument
-let keyring: Keyring
+export type Parameter = {
+  didUri: Kilt.DidUri
+  assertionMethodKey: Kilt.KiltKeyringPair
+  domainLinkageCredential: Kilt.ICredential
+}
 
-export async function main() {
-  const credential = Kilt.Credential.fromClaim(claim)
-
-  const attestationKey = did.assertionMethod?.[0]
-  if (!attestationKey) {
-    return
+export async function main({
+  didUri,
+  assertionMethodKey,
+  domainLinkageCredential
+}: Parameter) {
+  // We need the KeyId of the AssertionMethod Key. There is only
+  // one AssertionMethodKey and its id is stored on the blockchain.
+  const didResolveResult = await Kilt.Did.resolve(didUri)
+  if (typeof didResolveResult.document === 'undefined') {
+    throw 'DID must be resolvable (i.e. not deleted)'
   }
+  const assertionMethodKeyId = didResolveResult.document.assertionMethod[0].id
 
-  // Create a callback that uses the DID attestation key to sign the credential.
-  const signCallback: Kilt.SignCallback = async ({ data }) => {
-    const { publicKey, type } = attestationKey
-    const address = encodeAddress(
-      type === 'ecdsa' ? blake2AsU8a(publicKey) : publicKey,
-      Kilt.Utils.ss58Format
-    )
-    const keypair = keyring.getPair(address) as Kilt.KiltKeyringPair
-    return {
-      signature: keypair.sign(data),
-      keyType: keypair.type,
-      keyUri: `${did.uri}${attestationKey.id}`
-    }
-  }
-
-  const selfSignedPresentation = await Kilt.Credential.createPresentation({
-    credential,
-    signCallback
+  const domainLinkagePresentation = await Kilt.Credential.createPresentation({
+    credential: domainLinkageCredential,
+    signCallback: async ({ data }) => ({
+      signature: assertionMethodKey.sign(data),
+      keyType: assertionMethodKey.type,
+      keyUri: `${didUri}${assertionMethodKeyId}`
+    })
   })
+
+  return { domainLinkagePresentation }
 }
