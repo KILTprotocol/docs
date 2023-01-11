@@ -45,5 +45,6 @@ export async function testDapp(
     assertionMethodKey: assertionMethodKey,
     domainLinkageCredential
   })
-  await formatCredential({ api, domainLinkagePresentation })
+  const pseudoVc = await formatCredential({ api, domainLinkagePresentation })
+  console.log(JSON.stringify(pseudoVc))
 }
