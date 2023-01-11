@@ -1,19 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let domainLinkageCtype: Kilt.ICType
+export type Parameter = {
+  domainLinkageCType: Kilt.ICType
+  didUri: Kilt.DidUri
+}
 
-export function main() {
-  const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
-
+export function main({ domainLinkageCType, didUri }: Parameter) {
   const claimContents: Kilt.IClaimContents = {
-    id: did,
-    origin: 'https://example-dApp.com'
+    id: didUri,
+    origin: 'https://example.com'
   }
 
   const claim = Kilt.Claim.fromCTypeAndClaimContents(
-    domainLinkageCtype,
+    domainLinkageCType,
     claimContents,
-    did
+    didUri
   )
+  const domainLinkageCredential = Kilt.Credential.fromClaim(claim)
+
+  return { domainLinkageCredential }
 }

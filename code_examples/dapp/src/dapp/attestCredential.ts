@@ -2,16 +2,45 @@ import type { ApiPromise } from '@polkadot/api'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let api: ApiPromise
-let selfSignedCredential: Kilt.ICredential
-let did: Kilt.DidUri
-let dappAccount: Kilt.KiltKeyringPair
+export type Parameter = {
+  api: ApiPromise
+  didUri: Kilt.DidUri
+  dappAccount: Kilt.KiltKeyringPair
+  authenticationKey: Kilt.KiltKeyringPair
+  domainLinkageCredential: Kilt.ICredential
+}
 
-export async function main() {
+export async function main({
+  api,
+  didUri,
+  dappAccount,
+  authenticationKey,
+  domainLinkageCredential
+}: Parameter) {
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
-    selfSignedCredential,
-    did
+    domainLinkageCredential,
+    didUri
   )
-  const submitTx = api.tx.attestation.add(cTypeHash, claimHash, null)
-  await Kilt.Blockchain.signAndSubmitTx(submitTx, dappAccount)
+  const attestationTx = api.tx.attestation.add(claimHash, cTypeHash, null)
+
+  // We authorize the call using the attestation key of the Dapps DID.
+  const submitTx = await Kilt.Did.authorizeTx(
+    didUri,
+    attestationTx,
+    async ({ data }) => ({
+      signature: authenticationKey.sign(data),
+      keyType: authenticationKey.type
+    }),
+    dappAccount.address
+  )
+
+  // Since DIDs can not hold any balance, we pay for the transaction using our blockchain account
+  const result = await Kilt.Blockchain.signAndSubmitTx(submitTx, dappAccount)
+
+  if (result.isError) {
+    console.log('Attestation failed')
+  } else {
+    console.log('Attestation successful')
+  }
+  return result
 }
