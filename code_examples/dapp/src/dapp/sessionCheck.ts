@@ -3,7 +3,7 @@ import { u8aToHex } from '@polkadot/util'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 let session: {
-  encryptionKeyId: Kilt.DidResourceUri
+  encryptionKeyUri: Kilt.DidResourceUri
   encryptedChallenge: string
   nonce: string
 }
@@ -11,8 +11,8 @@ let keyAgreementKey: Kilt.DidEncryptionKey
 let originalChallenge: `0x{string}`
 
 export async function main() {
-  const { encryptionKeyId, encryptedChallenge, nonce } = session
-  const encryptionKey = await Kilt.Did.resolveKey(encryptionKeyId)
+  const { encryptionKeyUri, encryptedChallenge, nonce } = session
+  const encryptionKey = await Kilt.Did.resolveKey(encryptionKeyUri)
   if (!encryptionKey) {
     throw 'an encryption key is required'
   }
