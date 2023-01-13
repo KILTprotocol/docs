@@ -38,4 +38,6 @@ export async function main() {
     dAppEncryptionKeyUri,
     challenge
   )
+
+  return session
 }
