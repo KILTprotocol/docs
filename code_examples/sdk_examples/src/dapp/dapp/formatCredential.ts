@@ -39,21 +39,23 @@ export async function main({
 
   const wellKnownDidconfig = {
     '@context': 'https://identity.foundation/.well-known/did-configuration/v1',
-    linked_dids: [{
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://identity.foundation/.well-known/did-configuration/v1"
-      ],
-      issuer,
-      issuanceDate,
-      type: [
-        'VerifiableCredential',
-        'DomainLinkageCredential',
-        'KiltCredential2020'
-      ],
-      credentialSubject,
-      proof
-    }]
+    linked_dids: [
+      {
+        '@context': [
+          'https://www.w3.org/2018/credentials/v1',
+          'https://identity.foundation/.well-known/did-configuration/v1'
+        ],
+        issuer,
+        issuanceDate,
+        type: [
+          'VerifiableCredential',
+          'DomainLinkageCredential',
+          'KiltCredential2020'
+        ],
+        credentialSubject,
+        proof
+      }
+    ]
   }
 
   console.log(JSON.stringify(wellKnownDidconfig))
