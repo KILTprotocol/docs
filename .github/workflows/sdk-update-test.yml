@@ -88,12 +88,8 @@ jobs:
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "scripts/**"
           exclude: "**/*.lock"
-          regex: false    
-      - name: Regenerate yarn lock for core_features
-        working-directory: code_examples/sdk_examples/src/core_features
-        run: |
-          yarn install
-      - name: Regenerate yarn lock for workshop
+          regex: false
+      - name: Regenerate yarn lock for SDK examples
         working-directory: code_examples/sdk_examples
         run: |
           yarn install
