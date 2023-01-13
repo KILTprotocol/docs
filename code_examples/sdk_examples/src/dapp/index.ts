@@ -42,7 +42,7 @@ export async function testDapp(
   })
   const { domainLinkagePresentation } = await signPresentation({
     didUri: attesterDid.uri,
-    assertionMethodKey: assertionMethodKey,
+    assertionMethodKey,
     domainLinkageCredential
   })
   const pseudoVc = await formatCredential({ api, domainLinkagePresentation })
