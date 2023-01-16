@@ -16,14 +16,14 @@ export async function queryPublishedCredentials(
 
   const resolutionResult = await Kilt.Did.resolve(uri)
   if (!resolutionResult) {
-    throw 'The DID does not exist on the KILT blockchain.'
+    throw new Error('The DID does not exist on the KILT blockchain.')
   }
 
   const { document } = resolutionResult
   // If no details are returned but resolutionResult is not null, the DID has been deleted.
   // This information is present in `resolutionResult.metadata.deactivated`.
   if (!document) {
-    throw 'The DID has already been deleted.'
+    throw new Error('The DID has already been deleted.')
   }
 
   // Filter the endpoints by their type.
@@ -61,7 +61,9 @@ export async function queryPublishedCredentials(
 
       // Verify that the credential refers to the intended subject.
       if (!Kilt.Did.isSameSubject(credential.claim.owner, uri)) {
-        throw 'One of the credentials refers to a different subject than expected.'
+        throw new Error(
+          'One of the credentials refers to a different subject than expected.'
+        )
       }
     })
   )

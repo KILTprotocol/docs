@@ -25,7 +25,7 @@ export async function main({ api, domainLinkagePresentation }: Parameter) {
 
   const claimerSignature = domainLinkagePresentation.claimerSignature
   if (!claimerSignature) {
-    throw 'Claimer signature is required,'
+    throw new Error('Claimer signature is required.')
   }
 
   const proof = {

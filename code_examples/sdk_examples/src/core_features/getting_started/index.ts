@@ -14,10 +14,11 @@ export async function runAll(): Promise<void> {
   // Connect to Spiritnet.
   const api = await connect()
   const johnDoeDid = await fetchJohnDoeDid(api)
-  if (!johnDoeDid) throw '"john_doe" is not associated to any DID on Spiritnet'
+  if (!johnDoeDid)
+    throw new Error('"john_doe" is not associated to any DID on Spiritnet')
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
-    throw `DID doesn't include the service endpoints`
+    throw new Error(`DID doesn't include the service endpoints`)
 
   let credential: Kilt.ICredential
   try {

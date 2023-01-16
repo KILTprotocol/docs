@@ -21,7 +21,7 @@ export async function main() {
         receiverSecretKey
       )
       if (!result) {
-        throw 'Cannot decrypt'
+        throw new Error('Cannot decrypt')
       }
       return {
         data: result
@@ -34,7 +34,7 @@ export async function main() {
     )
 
     if (decryptedMessage.body.type !== 'submit-credential') {
-      throw 'Unexpected message type'
+      throw new Error('Unexpected message type')
     }
 
     await verify(decryptedMessage.body.content)

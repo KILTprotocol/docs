@@ -64,12 +64,16 @@ export async function runAll(
   console.log('3 linking) Query web3name for link account with SDK')
   let web3Name = await queryAccountWithSdk(linkAccount.address)
   if (!web3Name) {
-    throw `The DID "${fullDid.uri}" is assumed to have a linked web3name, which it does not.`
+    throw new Error(
+      `The DID "${fullDid.uri}" is assumed to have a linked web3name, which it does not.`
+    )
   }
   console.log('4 linking) Query web3name for submitter account without SDK')
   web3Name = await queryAccountWithoutSdk(endpoint, submitterAccount.address)
   if (!web3Name) {
-    throw 'The retrieved web3name should have been the same as the one of the link account, which is not.'
+    throw new Error(
+      'The retrieved web3name should have been the same as the one of the link account, which is not.'
+    )
   }
   console.log('5 linking) Unlink link account from DID')
   await unlinkAccountFromDid(

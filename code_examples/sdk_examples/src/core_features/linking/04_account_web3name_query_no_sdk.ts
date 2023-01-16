@@ -17,12 +17,14 @@ export async function queryAccountWeb3Name(
   // Call to the KILT runtime API `did.queryByAccount`
   const didDetails = await api.call.did.queryByAccount(lookupAccountAddress)
   if (didDetails.isNone) {
-    throw `No DID for the KILT account "${lookupAccountAddress}".`
+    throw new Error(`No DID for the KILT account "${lookupAccountAddress}".`)
   }
 
   const { w3n } = didDetails.unwrap()
   if (w3n.isNone) {
-    throw `No web3name for the KILT account "${lookupAccountAddress}".`
+    throw new Error(
+      `No web3name for the KILT account "${lookupAccountAddress}".`
+    )
   }
 
   const web3Name = w3n.unwrap().toHuman()

@@ -15,7 +15,7 @@ export async function main({
   // one AssertionMethodKey and its id is stored on the blockchain.
   const didResolveResult = await Kilt.Did.resolve(didUri)
   if (typeof didResolveResult.document === 'undefined') {
-    throw 'DID must be resolvable (i.e. not deleted)'
+    throw new Error('DID must be resolvable (i.e. not deleted)')
   }
   const assertionMethodKeyId = didResolveResult.document.assertionMethod[0].id
 

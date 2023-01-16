@@ -62,7 +62,7 @@ const SEED_ENV = 'FAUCET_SEED'
     console.log(
       `Account seed with sufficient balance is required. Set the secret seed using the ${SEED_ENV} environment variable.`
     )
-    throw 'Account seed is missing'
+    throw new Error('Account seed is missing')
   }
   const faucetAccount = Kilt.Utils.Crypto.makeKeypairFromSeed(
     hexToU8a(faucetSeed),
