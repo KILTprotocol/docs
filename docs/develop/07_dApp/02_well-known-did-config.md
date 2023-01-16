@@ -6,12 +6,11 @@ title: Well-Known DID Configuration
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DomainLinkageCtype from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageCtype.ts';
-import DomainLinkageClaim from '!!raw-loader!@site/code_examples/dapp/src/dapp/domainLinkageClaim.ts';
-import SignPresentation from '!!raw-loader!@site/code_examples/dapp/src/dapp/signPresentation.ts';
-import AttestCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/attestCredential.ts';
-import FormatCredential from '!!raw-loader!@site/code_examples/dapp/src/dapp/formatCredential.ts';
-
+import DomainLinkageCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/domainLinkageCtype.ts';
+import DomainLinkageClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/domainLinkageClaim.ts';
+import SignPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/signPresentation.ts';
+import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/attestCredential.ts';
+import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/formatCredential.ts';
 
 :::danger This is a working draft
 

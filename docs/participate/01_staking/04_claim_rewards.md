@@ -7,7 +7,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import StakingTxDisclaimer from './_disclaimer_staking_tx.md';
-import GetUnclaimedStakingRewards from '!!raw-loader!@site/code_examples/staking/rewards/01_query_staking_rewards.ts';
+import GetUnclaimedStakingRewards from '!!raw-loader!@site/code_examples/sdk_examples/src/staking/rewards/01_query_staking_rewards.ts';
 import ClaimRewardsCollator from './_04_claim_rewards_collator.mdx';
 import ClaimRewardsDelegator from './_04_claim_rewards_delegator.mdx';
 

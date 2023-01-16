@@ -5,9 +5,9 @@ title: SignCallback
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import SignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useSignCallback.ts';
-import SignExtrinsicCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useExtrinsicCallback.ts';
-import GetStoreTxSignCallback from '!!raw-loader!@site/code_examples/core_features/signCallback/useStoreTxSignCallback.ts';
+import SignCallback from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/signCallback/useSignCallback.ts';
+import SignExtrinsicCallback from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/signCallback/useExtrinsicCallback.ts';
+import GetStoreTxSignCallback from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/signCallback/useStoreTxSignCallback.ts';
 
 Signing data involves using the private key and therefore needs to be secure.
 There are many different options how data could be signed.
