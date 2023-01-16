@@ -98,7 +98,7 @@ export const resolveKey: Kilt.DidResolveKey = async (
 ) => {
   const { did, fragment: keyId } = Kilt.Did.parse(keyUri)
   if (!keyId) {
-    throw 'keyId must be present when resolving a key'
+    throw new Error('keyId must be present when resolving a key')
   }
 
   const resolved = await resolve(keyUri)

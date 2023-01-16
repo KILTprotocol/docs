@@ -11,9 +11,18 @@ on:
       - "*"
 
 jobs:
-  workshop:
-    name: Test Workshop snippets
+  code_examples:
+    name: Test code snippets
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test_case: ["dapp", "workshop", "core"]
+        required: ['required']
+        include:
+          - node-version: "staking"
+            required: 'optional'
+
+    continue-on-error: ${{ matrix.required == 'optional' }}
 
     steps:
       - uses: actions/checkout@v1
@@ -24,43 +33,19 @@ jobs:
           node-version: 16.x
 
       - name: Test style conventions
-        working-directory: code_examples/workshop
+        working-directory: code_examples/sdk_examples
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
-          yarn run ts-node test.ts
-
-  core_features:
-    name: Test core features snippets
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Test style conventions
-        working-directory: code_examples/core_features
-        run: |
-          yarn install --frozen-lockfile
-          yarn lint && yarn style
-
-      - name: Run tests
-        timeout-minutes: 60
-        working-directory: code_examples/core_features
-        env:
-          NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
-        run: |
-          yarn install --frozen-lockfile
-          yarn run ts-node run_core_features.ts
+          yarn test ${{ matrix.test_case }}
 
   # Only test the style conventions for the viteJS snippets, nothing is run here
   vitejs:
@@ -80,16 +65,16 @@ jobs:
         run: |
           yarn build
 
-  # Only test the style conventions for the dapp snippets, nothing is run here
-  dapp_examples:
-    name: Test dapp interactions snippets
+  check-links:
+    name: Check for broken links
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
 
-      - name: Test style conventions
-        working-directory: code_examples/dapp
+      - name: Install
         run: |
           yarn install --frozen-lockfile
-          yarn lint && yarn style
+      - name: Check for broken links
+        run: |
+          yarn check-links

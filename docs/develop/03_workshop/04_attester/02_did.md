@@ -8,8 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
-import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
 
 Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
