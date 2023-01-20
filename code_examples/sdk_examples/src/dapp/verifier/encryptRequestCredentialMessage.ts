@@ -53,7 +53,7 @@ export async function main({
   )
 
   // Finally, send the encrypted message to the extension.
-  // while the above code will be executed on the server, this must happen in
-  // the frontend since its dispatching the message to the browser extension.
+  // While the above code will be executed on the server, this must happen in
+  // the frontend since it's dispatching the message to the browser extension.
   await session.send(encryptedMessage)
 }

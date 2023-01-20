@@ -11,7 +11,7 @@ export interface Param {
 export function main({ verifierDidUri, session, requestChallenge }: Param): {
   message: Kilt.IMessage
 } {
-  // The `session` is was created earlier in your frontend. only the session DID URI is sent to your backend.
+  // The `session` was created earlier in your frontend. Only the session DID URI is sent to your backend.
   const { did: claimerSessionDidUri } = Kilt.Did.parse(session.encryptionKeyUri)
 
   // The message is constructed in your backend
