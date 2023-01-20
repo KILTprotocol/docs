@@ -10,9 +10,7 @@ import EmailCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/v
 import GenerateChallenge from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/generateChallenge.ts';
 import CreateRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/createRequestCredentialMessage.ts';
 import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/encryptRequestCredentialMessage.ts';
-
-import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/decryptCredentialMessage.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/verifyCredential.ts';
+import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/verifyCredentialMessage.ts';
 
 
 This section demonstrates how to build a basic verifier according to the [Credential API Specification](https://github.com/KILTprotocol/spec-ext-credential-api).
@@ -51,15 +49,16 @@ The challenge can be generated using the polkadot crypto utilities:
   {GenerateChallenge}
 </TsJsBlock>
 
-TODO: Explain what we do here, who
-Then construct the `request-credential` message using the message body, verifier DID and claimer DID:
+With the challenge we can construct the `request-credential` message.
+The request is sent to the light DID (`claimerSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
+The credential it self doesn't need to be issued to this DID since it's only used to encrypt the messages.
 
-<TsJsSnippet>
+<TsJsSnippet funcEnd="return">
   {CreateRequestCredentialMessage}
 </TsJsSnippet>
 
-Next, encrypt the message:
-
+After we have build the message object, we must encrypt it for the claimer.
+Once it's encrypted we can pass on the message to the extension
 <TsJsSnippet>
   {EncryptRequestCredentialMessage}
 </TsJsSnippet>
@@ -69,17 +68,11 @@ Next, encrypt the message:
 
 After sending the `request-credential` message to the extension, the verifier listens for a message of type `submit-credential` in response.
 
-When a message is received, decrypt it and check that it has the expected type:
+After the response from the extension is received, forwarded to the server and decrypted, the verifier must check that it has has the expected CType and that it contains a valid credential.
+Since everyone can run an attestation service, you need to make sure that you also verify that the attester is trusted.
 
 <TsJsSnippet>
   {DecryptCredentialMessage}
 </TsJsSnippet>
-
-Finally the message content (the credential that was requested) can be verified using the request challenge that was previously stored on the server side.
-This function will throw if the verification is not successful.
-
-<TsJsBlock>
-  {VerifyCredential}
-</TsJsBlock>
 
 That's it! Your verifier has successfully requested and verified a credential.

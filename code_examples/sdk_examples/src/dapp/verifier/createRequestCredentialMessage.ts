@@ -1,23 +1,37 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let encryptionKeyUri: Kilt.DidResourceUri
-let emailCtype: Kilt.CTypeHash
-let requestChallenge: string
+export interface Param {
+  verifierDidUri: Kilt.DidUri,
+  session: {
+    encryptionKeyUri: Kilt.DidResourceUri
+  },
+  requestChallenge: string,
+}
 
-export function main() {
-  const did = 'did:kilt:4smcAoiTiCLaNrGhrAM4wZvt5cMKEGm8f3Cu9aFrpsh5EiNV'
-  const { did: receiverDid } = Kilt.Did.parse(encryptionKeyUri)
+export function main({
+  verifierDidUri,
+  session,
+  requestChallenge,
+}: Param): { message: Kilt.IMessage } {
+  // The `session` is was created earlier in your frontend. only the session DID URI is sent to your backend.
+  const { did: claimerSessionDidUri } = Kilt.Did.parse(session.encryptionKeyUri)
 
+  // The message is constructed in your backend
   const message = Kilt.Message.fromBody(
     {
       content: {
-        cTypes: [{ cTypeHash: emailCtype }],
+        cTypes: [{
+          // the hash of the email CType
+          cTypeHash: "0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac",
+          requiredProperties: ["Email"]
+        }],
         challenge: requestChallenge
       },
       type: 'request-credential'
     },
-    did,
-    receiverDid
+    verifierDidUri,
+    claimerSessionDidUri
   )
+
+  return { message }
 }
