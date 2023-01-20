@@ -5,9 +5,9 @@ title: Protect Against Replay Attacks
 
 import SnippetBlock from '@site/src/components/SnippetBlock';
 
-import DefineRange from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_01.ts';
-import EvaluateMessageTime from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_02.ts';
-import PurgeTimeout from '!!raw-loader!@site/code_examples/core_features/messaging/_replay_protection_03.ts';
+import DefineRange from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/_replay_protection_01.ts';
+import EvaluateMessageTime from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/_replay_protection_02.ts';
+import PurgeTimeout from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/_replay_protection_03.ts';
 
 Whenever data travels on a public network, even when encrypted or signed, the communicating parties need to make sure they never accept and process a message more than once to protect against exploits by malicious third parties (so-called replay attacks).
 When requesting and submitting credential presentations, vulnerabilities for replay attacks can be prevented by requesting that the Claimer sign a unique piece of data as part of the presentation, as shown in the [Verification Cookbook section](../04_claiming/04_presentation_creation.md).

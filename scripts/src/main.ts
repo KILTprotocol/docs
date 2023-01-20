@@ -9,6 +9,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore Hacking tweetnacl randomBytes & UUID generate to produce deterministic output
 nacl.randomBytes = (n: number) => new Uint8Array(n).fill(1)
 Kilt.Utils.UUID.generate = () => Kilt.Utils.Crypto.hashStr("look ma I'm random")
