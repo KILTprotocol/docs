@@ -1,7 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-
-
 export interface Param {
   message: Kilt.IMessage
   verifierDidUri: Kilt.DidUri
@@ -20,15 +18,15 @@ export async function main({
   message,
   verifierDidUri,
   verifierKeys,
-  session,
+  session
 }: Param) {
   const verifierDidDoc = (await Kilt.Did.resolve(verifierDidUri)).document
   if (!verifierDidDoc) {
-    throw new Error("The verifier DID must exist")
+    throw new Error('The verifier DID must exist')
   }
   const verifierEncryptionKey = verifierDidDoc.keyAgreement?.[0]
   if (!verifierEncryptionKey) {
-    throw new Error("The verifier DID must have a key agreement key")
+    throw new Error('The verifier DID must have a key agreement key')
   }
 
   // Create a callback that uses the DID encryption key to encrypt the message.

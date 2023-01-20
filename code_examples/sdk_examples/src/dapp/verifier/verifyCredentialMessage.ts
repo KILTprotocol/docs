@@ -19,7 +19,6 @@ function isTrustedAttester(_attester: Kilt.DidUri): boolean {
 }
 
 export async function main({ session, verifierKeys }: Param) {
-
   async function processInBackend(message: Kilt.IEncryptedMessage) {
     // Create a callback that uses the DID encryption key to decrypt the message.
     const decryptCallback: Kilt.DecryptCallback = async ({
@@ -53,15 +52,23 @@ export async function main({ session, verifierKeys }: Param) {
     try {
       await Kilt.Credential.verifyPresentation(credential)
     } catch (e) {
-      console.log("credential was invalid:", e)
+      console.log('credential was invalid:', e)
       return
     }
 
     const api = Kilt.ConfigService.get('api')
-    const attestationChain = await api.query.attestations.attestation(credential.rootHash)
-    const attestation = Kilt.Attestation.fromChain(attestationChain, credential.rootHash)
+    const attestationChain = await api.query.attestations.attestation(
+      credential.rootHash
+    )
+    const attestation = Kilt.Attestation.fromChain(
+      attestationChain,
+      credential.rootHash
+    )
     if (isTrustedAttester(attestation.owner)) {
-      console.log("The claim is valid. Claimers email:", credential.claim.contents.Email)
+      console.log(
+        'The claim is valid. Claimers email:',
+        credential.claim.contents.Email
+      )
     }
   }
 
