@@ -14,7 +14,7 @@ The purpose of the session is to pass encrypted messages back and forth between 
 ## Dapp Indicates Credential API Support
 
 In order to indicate its support of the extension's API, the dapp creates the `window.kilt` object as soon as possible.
-To indicate the API version that the dapp supports, we also create the properties `window.kilt.meta.version.credentials`.
+To indicate the API version that the dapp supports, we also create the properties `window.kilt.meta.versions.credentials`.
 Since `meta` is not an extension, this property is not enumerable.
 For example:
 

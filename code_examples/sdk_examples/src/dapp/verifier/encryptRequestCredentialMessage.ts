@@ -14,13 +14,14 @@ export interface Param {
     send: (message: Kilt.IEncryptedMessage) => Promise<void>
   }
 }
+
 export async function main({
   message,
   verifierDidUri,
   verifierKeys,
   session
 }: Param) {
-  const verifierDidDoc = (await Kilt.Did.resolve(verifierDidUri)).document
+  const { document: verifierDidDoc } = await Kilt.Did.resolve(verifierDidUri)
   if (!verifierDidDoc) {
     throw new Error('The verifier DID must exist')
   }
