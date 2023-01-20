@@ -57,7 +57,7 @@ export async function main({ session, verifierKeys }: Param) {
     }
 
     const api = Kilt.ConfigService.get('api')
-    const attestationChain = await api.query.attestations.attestation(
+    const attestationChain = await api.query.attestation.attestations(
       credential.rootHash
     )
     const attestation = Kilt.Attestation.fromChain(
