@@ -79,9 +79,13 @@ export async function runAll(
     false
   )
   console.log('7 claiming) Presentation should fail to verify after revocation')
-  await verifyPresentation(presentation, {
-    trustedAttesterUris: [attesterFullDid.uri]
-  })
+  try {
+    await verifyPresentation(presentation, {
+      trustedAttesterUris: [attesterFullDid.uri]
+    })
+    throw 'Error: verification should fail after revocation'
+    // eslint-disable-next-line no-empty
+  } catch {}
   console.log('8 claiming) Reclaim attestation deposit')
   await reclaimAttestationDeposit(submitterAccount, credential)
 

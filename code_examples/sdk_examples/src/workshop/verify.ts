@@ -58,7 +58,7 @@ export async function verificationFlow(
     api,
     presentation,
     challenge,
-    trustedAttesterUris || []
+    trustedAttesterUris
   )
 
   if (isValid) {
