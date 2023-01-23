@@ -14,7 +14,7 @@ export async function main(credential: Kilt.ICredential): Promise<void> {
     )
     // Verify that the credential is not revoked. Exception caught by the catch {} block below.
     if (attestation.revoked) {
-      throw 'The credential has been revoked, hence it is not valid.'
+      throw new Error('The credential has been revoked, hence it is not valid.')
     }
     console.log(
       "John Doe's credential is valid!",
