@@ -16,7 +16,8 @@ function getChallenge(): string {
 async function verifyPresentation(
   api: ApiPromise,
   presentation: Kilt.ICredentialPresentation,
-  challenge: string
+  challenge: string,
+  trustedAttesterUris: Kilt.DidUri[],
 ): Promise<boolean> {
   try {
     await Kilt.Credential.verifyPresentation(presentation, { challenge })
@@ -25,7 +26,11 @@ async function verifyPresentation(
       await api.query.attestation.attestations(presentation.rootHash),
       presentation.rootHash
     )
-    return !attestationInfo.revoked
+    if (attestationInfo.revoked) {
+      return false
+    }
+    // Returns true if no trusted attester URI is provided or, if it is, if it matches the one that issued the presented credential.
+    return trustedAttesterUris.includes(attestationInfo.owner)
   } catch {
     return false
   }
@@ -33,7 +38,8 @@ async function verifyPresentation(
 
 export async function verificationFlow(
   credential: Kilt.ICredential,
-  signCallback: Kilt.SignCallback
+  signCallback: Kilt.SignCallback,
+  trustedAttesterUris: Kilt.DidUri[] = [],
 ) {
   const api = Kilt.ConfigService.get('api')
 
@@ -48,7 +54,7 @@ export async function verificationFlow(
   )
 
   // The verifier checks the presentation.
-  const isValid = await verifyPresentation(api, presentation, challenge)
+  const isValid = await verifyPresentation(api, presentation, challenge, trustedAttesterUris || [])
 
   if (isValid) {
     console.log('Verification successful! You are allowed to enter the club 🎉')
@@ -67,13 +73,14 @@ if (require.main === module) {
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
       const { authentication } = generateKeypairs(claimerDidMnemonic)
       const claimerDid = generateLightDid(claimerDidMnemonic)
+      const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
       // Load credential and claimer DID
       const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)
       await verificationFlow(credential, async ({ data }) => ({
         signature: authentication.sign(data),
         keyType: authentication.type,
         keyUri: `${claimerDid.uri}${claimerDid.authentication[0].id}`
-      }))
+      }), [attesterDid])
     } catch (e) {
       console.log('Error in the verification flow')
       throw e

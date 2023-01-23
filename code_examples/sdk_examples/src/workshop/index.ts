@@ -65,5 +65,5 @@ export async function testWorkshop(
     signature: authentication.sign(data),
     keyType: authentication.type,
     keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
-  }))
+  }), [attesterDid.uri])
 }

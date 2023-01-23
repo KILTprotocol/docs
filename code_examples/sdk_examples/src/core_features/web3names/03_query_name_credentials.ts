@@ -59,6 +59,15 @@ export async function queryPublishedCredentials(
     credentialCollection.map(async ({ credential }) => {
       await Kilt.Credential.verifyCredential(credential)
 
+      const attestationInfo = await api.query.attestation.attestations(credential.rootHash)
+      const attestation = Kilt.Attestation.fromChain(attestationInfo, credential.rootHash)
+      // Verify that the credential is not revoked.
+      if (attestation.revoked) {
+        throw new Error(
+          'One of the credentials has been revoked, hence it is not valid.'
+        )
+      }
+
       // Verify that the credential refers to the intended subject.
       if (!Kilt.Did.isSameSubject(credential.claim.owner, uri)) {
         throw new Error(

@@ -52,7 +52,7 @@ export async function main({ session, verifierKeys }: Param) {
     try {
       await Kilt.Credential.verifyPresentation(credential)
     } catch (e) {
-      console.log('credential was invalid:', e)
+      console.log('Credential was invalid:', e)
       return
     }
 
@@ -64,9 +64,13 @@ export async function main({ session, verifierKeys }: Param) {
       attestationChain,
       credential.rootHash
     )
+    if (attestation.revoked) {
+      console.log('Credential has been revoked and hence it\'s not valid.')
+      return
+    }
     if (isTrustedAttester(attestation.owner)) {
       console.log(
-        'The claim is valid. Claimers email:',
+        'The claim is valid. Claimer\'s email:',
         credential.claim.contents.Email
       )
     }
