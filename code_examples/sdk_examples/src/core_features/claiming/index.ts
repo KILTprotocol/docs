@@ -64,7 +64,9 @@ export async function runAll(
     ['name', 'id']
   )
   console.log('5 claiming) Verify selective disclosure presentation')
-  await verifyPresentation(presentation)
+  await verifyPresentation(presentation, {
+    trustedAttesterUris: [attesterFullDid.uri]
+  })
   console.log('6 claiming) Revoke credential')
   await revokeCredential(
     attesterFullDid.uri,
@@ -76,7 +78,15 @@ export async function runAll(
     credential,
     false
   )
-  console.log('7 claiming) Reclaim attestation deposit')
+  console.log('7 claiming) Presentation should fail to verify after revocation')
+  try {
+    await verifyPresentation(presentation, {
+      trustedAttesterUris: [attesterFullDid.uri]
+    })
+    throw new Error('Error: verification should fail after revocation')
+    // eslint-disable-next-line no-empty
+  } catch {}
+  console.log('8 claiming) Reclaim attestation deposit')
   await reclaimAttestationDeposit(submitterAccount, credential)
 
   console.log('Claiming flow completed!')

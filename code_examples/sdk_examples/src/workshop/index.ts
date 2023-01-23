@@ -61,9 +61,13 @@ export async function testWorkshop(
       keyType: attestation.type
     })
   )
-  await verificationFlow(credential, async ({ data }) => ({
-    signature: authentication.sign(data),
-    keyType: authentication.type,
-    keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
-  }))
+  await verificationFlow(
+    credential,
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type,
+      keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
+    }),
+    [attesterDid.uri]
+  )
 }
