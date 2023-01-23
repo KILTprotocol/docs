@@ -49,12 +49,7 @@ export async function main({ session, verifierKeys }: Param) {
     }
     const credential = decryptedMessage.body.content[0]
 
-    try {
-      await Kilt.Credential.verifyPresentation(credential)
-    } catch (e) {
-      console.log('Credential was invalid:', e)
-      return
-    }
+    await Kilt.Credential.verifyPresentation(credential)
 
     const api = Kilt.ConfigService.get('api')
     const attestationChain = await api.query.attestation.attestations(
@@ -65,8 +60,7 @@ export async function main({ session, verifierKeys }: Param) {
       credential.rootHash
     )
     if (attestation.revoked) {
-      console.log("Credential has been revoked and hence it's not valid.")
-      return
+      throw new Error("Credential has been revoked and hence it's not valid.")
     }
     if (isTrustedAttester(attestation.owner)) {
       console.log(
