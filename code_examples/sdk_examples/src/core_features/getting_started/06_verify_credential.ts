@@ -5,8 +5,13 @@ export async function main(credential: Kilt.ICredential): Promise<void> {
     await Kilt.Credential.verifyCredential(credential)
 
     const api = Kilt.ConfigService.get('api')
-    const attestationInfo = await api.query.attestation.attestations(credential.rootHash)
-    const attestation = Kilt.Attestation.fromChain(attestationInfo, credential.rootHash)
+    const attestationInfo = await api.query.attestation.attestations(
+      credential.rootHash
+    )
+    const attestation = Kilt.Attestation.fromChain(
+      attestationInfo,
+      credential.rootHash
+    )
     // Verify that the credential is not revoked. Exception caught by the catch {} block below.
     if (attestation.revoked) {
       throw 'The credential has been revoked, hence it is not valid.'

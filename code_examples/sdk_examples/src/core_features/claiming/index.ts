@@ -64,7 +64,9 @@ export async function runAll(
     ['name', 'id']
   )
   console.log('5 claiming) Verify selective disclosure presentation')
-  await verifyPresentation(presentation, { trustedAttesterUris: [attesterFullDid.uri] })
+  await verifyPresentation(presentation, {
+    trustedAttesterUris: [attesterFullDid.uri]
+  })
   console.log('6 claiming) Revoke credential')
   await revokeCredential(
     attesterFullDid.uri,
@@ -77,7 +79,9 @@ export async function runAll(
     false
   )
   console.log('7 claiming) Presentation should fail to verify after revocation')
-  await verifyPresentation(presentation, { trustedAttesterUris: [attesterFullDid.uri] })
+  await verifyPresentation(presentation, {
+    trustedAttesterUris: [attesterFullDid.uri]
+  })
   console.log('8 claiming) Reclaim attestation deposit')
   await reclaimAttestationDeposit(submitterAccount, credential)
 

@@ -65,12 +65,12 @@ export async function main({ session, verifierKeys }: Param) {
       credential.rootHash
     )
     if (attestation.revoked) {
-      console.log('Credential has been revoked and hence it\'s not valid.')
+      console.log("Credential has been revoked and hence it's not valid.")
       return
     }
     if (isTrustedAttester(attestation.owner)) {
       console.log(
-        'The claim is valid. Claimer\'s email:',
+        "The claim is valid. Claimer's email:",
         credential.claim.contents.Email
       )
     }

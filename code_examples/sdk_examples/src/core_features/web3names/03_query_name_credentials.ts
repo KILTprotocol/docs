@@ -59,8 +59,13 @@ export async function queryPublishedCredentials(
     credentialCollection.map(async ({ credential }) => {
       await Kilt.Credential.verifyCredential(credential)
 
-      const attestationInfo = await api.query.attestation.attestations(credential.rootHash)
-      const attestation = Kilt.Attestation.fromChain(attestationInfo, credential.rootHash)
+      const attestationInfo = await api.query.attestation.attestations(
+        credential.rootHash
+      )
+      const attestation = Kilt.Attestation.fromChain(
+        attestationInfo,
+        credential.rootHash
+      )
       // Verify that the credential is not revoked.
       if (attestation.revoked) {
         throw new Error(

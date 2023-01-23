@@ -4,9 +4,9 @@ export async function verifyPresentation(
   presentation: Kilt.ICredentialPresentation,
   {
     challenge,
-    trustedAttesterUris = [],
+    trustedAttesterUris = []
   }: {
-    challenge?: string,
+    challenge?: string
     trustedAttesterUris?: Kilt.DidUri[]
   } = {}
 ): Promise<void> {
@@ -23,7 +23,7 @@ export async function verifyPresentation(
     presentation.rootHash
   )
   if (attestation.revoked) {
-    throw 'Credential has been revoked and hence it\'s not valid.'
+    throw "Credential has been revoked and hence it's not valid."
   }
   if (!trustedAttesterUris.includes(attestation.owner)) {
     throw `Credential was issued by ${attestation.owner} which is not in the provided list of trusted attesters: ${trustedAttesterUris}.`
