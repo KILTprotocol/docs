@@ -3,8 +3,8 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function createPresentation(
   credential: Kilt.ICredential,
   signCallback: Kilt.SignCallback,
-  selectedAttributes: string[] | undefined = undefined,
-  challenge: string | undefined = undefined
+  selectedAttributes?: string[],
+  challenge?: string
 ): Promise<Kilt.ICredentialPresentation> {
   // Create a presentation with only the specified fields revealed, if specified.
   return Kilt.Credential.createPresentation({
