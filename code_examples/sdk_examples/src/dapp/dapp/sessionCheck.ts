@@ -1,16 +1,16 @@
-import { u8aToHex } from '@polkadot/util'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-let session: {
-  encryptionKeyUri: Kilt.DidResourceUri
-  encryptedChallenge: string
-  nonce: string
+export interface Param {
+  session: {
+    encryptionKeyUri: Kilt.DidResourceUri,
+    encryptedChallenge: string,
+    nonce: string,
+  },
+  keyAgreementKeyPair: Kilt.KiltEncryptionKeypair,
+  originalChallenge: `0x{string}`
 }
-let keyAgreementKey: Kilt.DidEncryptionKey
-let originalChallenge: `0x{string}`
 
-export async function main() {
+export async function main({ session, keyAgreementKeyPair, originalChallenge }: Param) {
   const { encryptionKeyUri, encryptedChallenge, nonce } = session
   const encryptionKey = await Kilt.Did.resolveKey(encryptionKeyUri)
   if (!encryptionKey) {
@@ -20,17 +20,18 @@ export async function main() {
   const decryptedBytes = Kilt.Utils.Crypto.decryptAsymmetric(
     { box: encryptedChallenge, nonce },
     encryptionKey.publicKey,
-    keyAgreementKey.publicKey // derived from your seed phrase
+    keyAgreementKeyPair.secretKey // derived from your seed phrase
   )
   // If it fails to decrypt, return.
   if (!decryptedBytes) {
-    return
+    throw new Error('Could not decode')
   }
 
-  const decryptedChallenge = u8aToHex(decryptedBytes)
+  const decryptedChallenge = Kilt.Utils.Crypto.u8aToHex(decryptedBytes)
 
   // Compare the decrypted challenge to the challenge you stored earlier.
-  if (decryptedChallenge === originalChallenge) {
-    return session
+  if (decryptedChallenge !== originalChallenge) {
+    throw new Error('Invalid challenge')
   }
+  return session
 }
