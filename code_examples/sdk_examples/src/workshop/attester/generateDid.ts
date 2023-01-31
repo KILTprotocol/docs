@@ -16,15 +16,15 @@ export async function createFullDid(
   const api = Kilt.ConfigService.get('api')
 
   const mnemonic = mnemonicGenerate()
-  const { authentication, encryption, attestation, delegation } =
+  const { authentication, keyAgreement, assertionMethod, capabilityDelegation } =
     generateKeypairs(mnemonic)
   // Get tx that will create the DID on chain and DID-URI that can be used to resolve the DID Document.
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
-      keyAgreement: [encryption],
-      assertionMethod: [attestation],
-      capabilityDelegation: [delegation]
+      keyAgreement: [keyAgreement],
+      assertionMethod: [assertionMethod],
+      capabilityDelegation: [capabilityDelegation]
     },
     submitterAccount.address,
     async ({ data }) => ({
