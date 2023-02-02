@@ -112,7 +112,6 @@ values={[
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --chain=polkadot \
   --execution=wasm
@@ -131,7 +130,6 @@ values={[
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
@@ -180,7 +178,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
   --chain=polkadot \
@@ -201,7 +198,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
