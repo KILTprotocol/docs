@@ -84,14 +84,6 @@ This makes sure that the keyfiles are not accidentally lost or published when th
 You can configure where to store the session keys using the `--keystore-path` option.
 Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
-### Storage Root Error
-
-Due to issues with the current implementation of the caching logic, it is recommended to reduce the cache size.
-Otherwise the node might get blacklisted by other peers and ultimately disconnected from the p2p network.
-This leads to a longer block time and a loss of rewards for the collator.
-
-Throughout this guide, the option `--state-cache-size=1` was added to reduce the cache size to 1 Byte.
-
 ## Obtain the Node Executable
 
 <Tabs
