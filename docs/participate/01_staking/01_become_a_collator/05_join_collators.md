@@ -7,7 +7,7 @@ import StakingTxDisclaimer from '../_disclaimer_staking_tx.md';
 
 Before a collator can author blocks, the node needs to fully sync up with both the KILT parachain and the Polkadot Relay Chain.
 Depending on the size of the blockchain states, it may take from a number of hours to few days for the node to fully synchronize.
-More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
+More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot#synchronize-chain-data).
 
 After you have finished with the setup, you can finally tell the chain that you are ready to collate and join the pool of candidates.
 

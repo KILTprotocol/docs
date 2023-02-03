@@ -112,7 +112,6 @@ values={[
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --chain=polkadot \
   --execution=wasm
@@ -131,7 +130,6 @@ values={[
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
@@ -180,7 +178,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
   --chain=polkadot \
@@ -201,7 +198,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
-  --state-cache-size=1 \
   -- \
   --base-path=/data/relay \
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
@@ -217,7 +213,7 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
 
 Once started, the full node needs to fully sync up with both the parachain and the Relay Chain states.
 Depending on the size of both blockchain states and the node hardware specs, it may take from a number of hours to a few days for the node to fully synchronize.
-More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
+More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot#synchronize-chain-data).
 
 :::note Example of node sync
 ```Example of node sync
