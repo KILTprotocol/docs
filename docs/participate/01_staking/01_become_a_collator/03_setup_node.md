@@ -84,14 +84,6 @@ This makes sure that the keyfiles are not accidentally lost or published when th
 You can configure where to store the session keys using the `--keystore-path` option.
 Since the collator will collate only for the parachain, there is no need to add this to the relaychain part of the command.
 
-### Storage Root Error
-
-Due to issues with the current implementation of the caching logic, it is recommended to reduce the cache size.
-Otherwise the node might get blacklisted by other peers and ultimately disconnected from the p2p network.
-This leads to a longer block time and a loss of rewards for the collator.
-
-Throughout this guide, the option `--state-cache-size=1` was added to reduce the cache size to 1 Byte.
-
 ## Obtain the Node Executable
 
 <Tabs
@@ -177,7 +169,7 @@ If that is the case, run `sudo chown -R 1000:1000 $HOME/data` to give the contai
 
 Before a collator can author blocks, the node needs to fully sync up with both the parachain and the Relay Chain.
 Depending on the size of the blockchain states, it may take a number of hours to few days for the node to catch up.
-More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-kusama#synchronize-chain-data).
+More details can be found on the [Polkadot network docs](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot#synchronize-chain-data).
 
 :::note Example of node sync:
 ```Example of node sync
