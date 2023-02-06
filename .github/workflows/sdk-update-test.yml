@@ -3,6 +3,9 @@ name: test-docs-examples-2
 on:
   repository_dispatch:
     types: [ sdk-update ]
+  push:
+    branches:
+      - rf-fix-triggered-wf
 
 jobs:
   code_examples:
