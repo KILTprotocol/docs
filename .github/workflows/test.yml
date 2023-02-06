@@ -19,7 +19,7 @@ jobs:
         test_case: ["dapp", "workshop", "core"]
         required: ['required']
         include:
-          - node-version: "staking"
+          - test_case: "staking"
             required: 'optional'
 
     continue-on-error: ${{ matrix.required == 'optional' }}
