@@ -9,10 +9,9 @@ export function generateAccount(mnemonic = mnemonicGenerate()): {
   account: Kilt.KiltKeyringPair
   mnemonic: string
 } {
-  const signingKeyPairType = 'sr25519';
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: signingKeyPairType,
+    type: 'sr25519',
   });
   return { account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair, mnemonic: mnemonic };
 }
