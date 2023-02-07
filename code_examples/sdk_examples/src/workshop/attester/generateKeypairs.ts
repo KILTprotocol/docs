@@ -9,7 +9,7 @@ import {
 } from '@polkadot/util-crypto'
 import { generateAccount } from './generateAccount'
 
-const generateKeyAgreement = function (mnemonic: string) {
+function generateKeyAgreement(mnemonic: string) {
   const secretKeyPair = sr25519PairFromSeed(mnemonicToMiniSecret(mnemonic))
   const { path } = keyExtractPath('//did//keyAgreement//0')
   const { secretKey } = keyFromPath(secretKeyPair, path, 'sr25519')
