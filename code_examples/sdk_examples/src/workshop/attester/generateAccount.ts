@@ -4,7 +4,6 @@ import { mnemonicGenerate } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-// This function basically creates a keyring from a mnemonic
 export function generateAccount(mnemonic = mnemonicGenerate()): {
   account: Kilt.KiltKeyringPair
   mnemonic: string
@@ -15,7 +14,7 @@ export function generateAccount(mnemonic = mnemonicGenerate()): {
   })
   return {
     account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair,
-    mnemonic: mnemonic
+    mnemonic
   }
 }
 
