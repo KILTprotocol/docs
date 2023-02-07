@@ -71,7 +71,7 @@ if (require.main === module) {
       )
 
       const attesterDidMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
-      const { authentication, attestation } =
+      const { authentication, assertionMethod } =
         generateKeypairs(attesterDidMnemonic)
       const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
 
@@ -83,8 +83,8 @@ if (require.main === module) {
         attesterAccount,
         attesterDidUri,
         async ({ data }) => ({
-          signature: attestation.sign(data),
-          keyType: attestation.type
+          signature: assertionMethod.sign(data),
+          keyType: assertionMethod.type
         })
       )
       console.log('The claimer build their credential and now has to store it.')

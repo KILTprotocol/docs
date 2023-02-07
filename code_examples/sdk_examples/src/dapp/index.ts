@@ -26,7 +26,7 @@ export async function testDapp(
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(dappAccount)
-  const { attestation: assertionMethodKey } =
+  const { assertionMethod: assertionMethodKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
   const { domainLinkageCredential } = getDomainLinkageCredential({
