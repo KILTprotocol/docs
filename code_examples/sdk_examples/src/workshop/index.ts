@@ -40,14 +40,14 @@ export async function testWorkshop(
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
     await createFullDid(attesterAccount)
-  const { attestation } = generateAttesterKeypairs(attesterMnemonic)
+  const { assertionMethod } = generateAttesterKeypairs(attesterMnemonic)
 
   await ensureStoredCtype(
     attesterAccount,
     attesterDid.uri,
     async ({ data }) => ({
-      signature: attestation.sign(data),
-      keyType: attestation.type
+      signature: assertionMethod.sign(data),
+      keyType: assertionMethod.type
     })
   )
 
@@ -57,8 +57,8 @@ export async function testWorkshop(
     attesterAccount,
     attesterDid.uri,
     async ({ data }) => ({
-      signature: attestation.sign(data),
-      keyType: attestation.type
+      signature: assertionMethod.sign(data),
+      keyType: assertionMethod.type
     })
   )
   await verificationFlow(
