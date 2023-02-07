@@ -11,9 +11,12 @@ export function generateAccount(mnemonic = mnemonicGenerate()): {
 } {
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: 38,
-    type: 'sr25519',
-  });
-  return { account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair, mnemonic: mnemonic };
+    type: 'sr25519'
+  })
+  return {
+    account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair,
+    mnemonic: mnemonic
+  }
 }
 
 // Don't execute if this is imported by another file.
