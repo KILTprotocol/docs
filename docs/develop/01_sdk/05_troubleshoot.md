@@ -6,7 +6,7 @@ title: Troubleshoot
 Solutions and workarounds for common or unresolved issues.
 
 ## Node version
-Kilt currently supports NodeJS 14,16, and 18
+Kilt currently supports NodeJS 14,16, and 18.
 
 ## Vite version
 Vite is known to work with version ^4.1.0
