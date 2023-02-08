@@ -39,7 +39,7 @@ export async function createFullDid(
 
   await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
 
-  const didUri = Kilt.Did.getFullDidUriFromKey(authentication)
+  const didUri = Kilt.Did.getFullDidUriFromKey(authentication[0])
   const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
   const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
 
