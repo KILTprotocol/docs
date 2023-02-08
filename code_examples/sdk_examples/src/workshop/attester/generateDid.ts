@@ -25,15 +25,15 @@ export async function createFullDid(
   // Get tx that will create the DID on chain and DID-URI that can be used to resolve the DID Document.
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
-      authentication: [authentication],
-      keyAgreement: [keyAgreement],
-      assertionMethod: [assertionMethod],
-      capabilityDelegation: [capabilityDelegation]
+      authentication: authentication,
+      keyAgreement: keyAgreement,
+      assertionMethod: assertionMethod,
+      capabilityDelegation: capabilityDelegation
     },
     submitterAccount.address,
     async ({ data }) => ({
-      signature: authentication.sign(data),
-      keyType: authentication.type
+      signature: authentication[0].sign(data),
+      keyType: authentication[0].type
     })
   )
 
