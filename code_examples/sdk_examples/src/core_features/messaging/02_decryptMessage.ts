@@ -1,68 +1,34 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { useEncryptionSignCallback } from './core_features/signCallback/useEncryptionSignCallback'
-import generateKeypairs from './core_features/utils/generateKeypairs'
+import { useDecryptionSignCallback } from '../signCallback/useDecryptionSignCallback'
+import generateKeypairs from '../utils/generateKeypairs'
 
 const handle = generateKeypairs(
   'prevent modify win search fatigue panther glue message cloud review arena outside'
 )
 
 async function decryptMessage(
-  receiveUri: Kilt.DidUri,
-  senderUri: Kilt.DidUri,
-  keyAgreement: Kilt.KiltEncryptionKeypair
+  keyAgreement: Kilt.KiltEncryptionKeypair,
+  message: Kilt.IEncryptedMessage
 ) {
   await Kilt.connect('wss://peregrine.kilt.io')
-  const challenge = Kilt.Utils.UUID.generate()
 
-  Kilt.CType.isICType(
-    '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac'
-  )
-
-  Kilt.Did.validateUri(
-    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
-  )
-
-  const requestCredentialContent = {
-    cTypeHash:
-      '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac' as `0x${string}`,
-    trustedAttesters: [
-      'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g' as Kilt.DidUri
-    ]
-  }
-
-  const messageBody: Kilt.IRequestCredential = {
-    type: 'request-credential',
-    content: { cTypes: [requestCredentialContent], challenge: challenge }
-  }
-
-  const message = Kilt.Message.fromBody(messageBody, senderUri, receiveUri)
-
-  if (!message) {
-    console.log('message', message)
-    throw new Error('Invalid message')
-  }
-
-  const senderDidDocument = await Kilt.Did.resolve(senderUri)
-
-  const receiverDidDocument = await Kilt.Did.resolve(receiveUri)
-
-  const receiverKeyAgreement =
-    `${receiveUri}${receiverDidDocument.document.keyAgreement?.[0].id}` as Kilt.DidResourceUri
   // encrypt the message
-  const encryptedMessage = await Kilt.Message.encrypt(
+  const decryptedMessage = await Kilt.Message.decrypt(
     message,
-    useEncryptionSignCallback({
-      keyAgreement,
-      didDocument: senderDidDocument.document
-    }),
-    receiverKeyAgreement
+    useDecryptionSignCallback({
+      keyAgreement
+    })
   )
 
-  console.log(JSON.parse(JSON.stringify(encryptedMessage)))
+  console.log(JSON.parse(JSON.stringify(decryptedMessage)))
 }
 
-encryptMessage(
-  'did:kilt:4rTp8S2uNFxshHPKsm1gRdUQRU1RwSV4HGnVQmDuwwpaMFVm',
-  'did:kilt:4onLir6gKafuugdFW8BhLhUA3kcK8ihriefB2TvVJHLoxhgK',
-  handle.encryption
-)
+decryptMessage(handle.encryption, {
+  ciphertext:
+    '0x246e87c4f99cfec6b68688ad453e2a4b35b6d8e4d7df859a41f27e50ea69fc918f9b5ff0f6346fd953801db68c52df90f116f6f5963a7d82609d345305627c559984e51920146bff99019768de76ddaec64bdafd9cad1c94a15fd2e89b91212a82d60ec23e9a7ca8112445538527d439e1b6794b9fb180b8434d56aa452e8b88b67b6c80df9a83b2e3e593e3f7270cce26bcaad125082008cf26e3db63e34834dc61d25ef95903fb40a07b062d0ca74de1149bc15a7e70b3434ffbb67cc256ec068f6a289d2b9de783e8545f4f2fed9f71696755cdf7bfd9adbcca49f2945b88990f7236b36f4b05001fe94fc4ea6cb494cbf97247bb0ef68df04358f3202ae39c5825ff7b1e71f040d5454a73cb4e3e95af4962119840a474728f5e31783af2b18e366d3a216e4ccc3f25435d2301df678370d24bc626158718dc4d077cdd6b2df7e0e18e740a4152ef1063c65b7d13c616c2401b69a1785d107c0e1f8ca1d5dcb774ab3222a0d5e25431ebe9bd3e8a1e9ed37deef1ff752a87885b0f7145cb8c011b38914dcfa676afda17109bf9ac6f2924d6d665222bef8ea8a7269209d53922fcd32e8f275350c4572d9ceefffaa0ed9501ed4ad02350b8ee8a0525874f0ca9b34cab7284b4717990ca0f0291e31a56d61751ebd310de43b63e5efb6ea00ddd186ea55a8860ef659c72d46bf7b8ab30ed21a7ceff9e893c37cc4ace61f91742af6d5cdba7a04dfb4c00b3dbafb9b5fdaf9374eea4505e80025bb0d5ed594b36ba08542b44bf53f40b69a004da32e0529fe084f6994325',
+  nonce: '0x8096e3f344fc06c20c4b3168a8406f39de1cdcb980e8fa15',
+  senderKeyUri:
+    'did:kilt:4onLir6gKafuugdFW8BhLhUA3kcK8ihriefB2TvVJHLoxhgK#0xbf4b49eb53efb2c8b55ad198d594772b7dd5f379d122a3c491efdc2cb5a27bfd',
+  receiverKeyUri:
+    'did:kilt:4rTp8S2uNFxshHPKsm1gRdUQRU1RwSV4HGnVQmDuwwpaMFVm#0x4809a637ec44802577dd03861cff757ad87002e24e12f4d4444d4de2590c5da7'
+} as Kilt.IEncryptedMessage)
