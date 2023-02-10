@@ -10,6 +10,7 @@ import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
 import { runAll as runAllSignCallback } from './signCallback'
+import { runAll as runAllMessaging } from './messaging'
 import { runAll as runAllWeb3 } from './web3names'
 
 const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
@@ -38,7 +39,8 @@ export async function testCoreFeatures(
     claimingTestAccount,
     didTestAccount,
     web3TestAccount,
-    accountLinkingTestAccount
+    accountLinkingTestAccount,
+    messagingAccount
   ] = Array(4)
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
@@ -51,7 +53,8 @@ export async function testCoreFeatures(
       claimingTestAccount.address,
       didTestAccount.address,
       web3TestAccount.address,
-      accountLinkingTestAccount.address
+      accountLinkingTestAccount.address,
+      messagingAccount.address
     ],
     new BN(10)
   )
@@ -99,6 +102,14 @@ export async function testCoreFeatures(
         await runAllSignCallback(api)
       } catch (e) {
         console.error('SignCallback flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllMessaging(messagingAccount)
+      } catch (e) {
+        console.error('Messaging flow failed')
         throw e
       }
     })()
