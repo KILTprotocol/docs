@@ -41,7 +41,7 @@ export async function testCoreFeatures(
     web3TestAccount,
     accountLinkingTestAccount,
     messagingAccount
-  ] = Array(4)
+  ] = Array(5)
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
