@@ -4,16 +4,20 @@ export async function generateMessage(
   senderUri: Kilt.DidUri,
   receiverUri: Kilt.DidUri
 ) {
+  // Creating a challenge to submit to the receiver
   const challenge = Kilt.Utils.UUID.generate()
 
-  Kilt.CType.isICType(
-    '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac'
-  )
-
+  // Trusted Attesters uri is checked if it is a valid uri
   Kilt.Did.validateUri(
     'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
   )
+  // Sender uri is checked if it is a valid uri
+  Kilt.Did.validateUri(senderUri)
+  // Receiver uri is checked if it is a valid uri
+  Kilt.Did.validateUri(receiverUri)
 
+  // The content of the request credentials
+  // It includes a ctype that is being requested, this can be for attestation or verification
   const requestCredentialContent = {
     cTypeHash:
       '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac' as `0x${string}`,
