@@ -29,6 +29,7 @@ The message structure is checked and validated on the protocol level to ensure t
 The messages data are encrypted and decrypted using nacl's 'x25519-xsalsa20-poly1305' algorithm, which provides repudiable authenticated encryption based on an x25519 key agreement.
 The DID holds the keys for the encryption and decryptions.
 These keys are called `KeyAgreement` keys this key can be also known as encryption keys.
+The different keys are found within the [DID Spec](https://www.w3.org/TR/did-core/#verification-relationships).
 
 The content of the object is converted from a serialised string to a unit 8 array, which is passed into the callback function along with the senders DID and key agreement public key of the receiver.
 
