@@ -65,7 +65,7 @@ export async function testCoreFeatures(
         console.error('Claiming flow failed')
         throw e
       }
-    })(),
+    })()
     // (async () => {
     //   try {
     //     await runAllDid(didTestAccount)

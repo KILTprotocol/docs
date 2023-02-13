@@ -18,9 +18,12 @@ export async function verify(credential: KiltVC.VerifiableCredential) {
 
   // 2. Verify credential schema, if present
   if (credential.credentialSchema) {
-    const { verified: vcVerified, errors } = KiltVC.verification.validateSchema(credential)  
+    const { verified: vcVerified, errors } =
+      KiltVC.verification.validateSchema(credential)
     if (!vcVerified) {
-      throw new Error(`Schema failed to verify for provided credential with the following errors: ${errors}.`)
+      throw new Error(
+        `Schema failed to verify for provided credential with the following errors: ${errors}.`
+      )
     }
   }
   // Unfortunately the VC `credentialSchema` definition is underspecified in their context.
