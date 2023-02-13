@@ -13,6 +13,6 @@ export async function exportCredentialToVerifiableCredential(
 
   // Turn the KILT credential into a VerifiableCredential
   const vc = KiltVC.fromCredentialAndAttestation(credential, attestation)
-  console.log(JSON.stringify(vc, null, 2))
+  console.log('Exported credential: ', JSON.stringify(vc, null, 2))
   return vc
 }

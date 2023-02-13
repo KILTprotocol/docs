@@ -1,8 +1,8 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import * as KiltVC from '@kiltprotocol/vc-export'
 
-import jsigs from 'jsonld-signatures'
-import vcjs from 'vc-js'
+import * as jsigs from 'jsonld-signatures'
+import * as vcjs from 'vc-js'
 
 export async function verify(credential: KiltVC.VerifiableCredential) {
   // 1. Set up suites
@@ -16,10 +16,12 @@ export async function verify(credential: KiltVC.VerifiableCredential) {
     KiltConnection
   })
 
-  // 2. Verify credential schema
-  const schemaVerified = KiltVC.verification.validateSchema(credential).verified
-  if (!schemaVerified) {
-    throw new Error('Schema failed to verify for provided credential.')
+  // 2. Verify credential schema, if present
+  if (credential.credentialSchema) {
+    const { verified: vcVerified, errors } = KiltVC.verification.validateSchema(credential)  
+    if (!vcVerified) {
+      throw new Error(`Schema failed to verify for provided credential with the following errors: ${errors}.`)
+    }
   }
   // Unfortunately the VC `credentialSchema` definition is underspecified in their context.
   // We therefore have to remove it before credential verification.
@@ -32,17 +34,17 @@ export async function verify(credential: KiltVC.VerifiableCredential) {
   const purpose = new jsigs.purposes.AssertionProofPurpose()
 
   // 5. Call vc-js.verifyCredential with suites and context loader
-  const result = await vcjs.verifyCredential({
+  const { verified, error } = await vcjs.verifyCredential({
     credential,
     suite: [signatureSuite, integritySuite, attestedSuite],
     purpose,
     documentLoader
   })
 
-  // 6. Make sure all `results` indicate successful verification
-  const verified = result.results.every((i) => i.verified === true)
   if (!verified) {
-    throw new Error('Some proofs could not be verified.')
+    console.log('Error', error)
+    console.log('Error', JSON.stringify(error, null, 2))
+    throw new Error(`Some proofs could not be verified. Error: ${error}`)
   }
   console.log('All proofs successfully verified! ✅')
 }
