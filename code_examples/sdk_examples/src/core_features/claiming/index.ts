@@ -104,7 +104,7 @@ export async function runAll(
     credential
   )
   console.log('8.2 claiming) Export credential to VC')
-  const vc = await exportCredentialToVerifiableCredential(credential)
+  const vc = await exportCredentialToVerifiableCredential(credential, ctype)
   console.log('9 claiming) Verify VC with KILT SDK')
   await verifyVerifiableCredential(vc)
   console.log('10 claiming) Verify VP with vc-js')

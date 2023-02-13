@@ -2,7 +2,8 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import * as KiltVC from '@kiltprotocol/vc-export'
 
 export async function exportCredentialToVerifiableCredential(
-  credential: Kilt.ICredential
+  credential: Kilt.ICredential,
+  ctype?: Kilt.ICType
 ): Promise<KiltVC.VerifiableCredential> {
   // Fetch the attestion
   const api = Kilt.ConfigService.get('api')
@@ -12,7 +13,7 @@ export async function exportCredentialToVerifiableCredential(
   )
 
   // Turn the KILT credential into a VerifiableCredential
-  const vc = KiltVC.fromCredentialAndAttestation(credential, attestation)
+  const vc = KiltVC.fromCredentialAndAttestation(credential, attestation, ctype)
   console.log('Exported credential: ', JSON.stringify(vc, null, 2))
   return vc
 }
