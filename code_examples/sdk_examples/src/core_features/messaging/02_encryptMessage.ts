@@ -3,8 +3,8 @@ import { useEncryptionSignCallback } from '../signCallback/useEncryptionSignCall
 
 export async function encryptMessage(
   message: Kilt.IMessage,
-  receiverUri: Kilt.DidUri,
   senderUri: Kilt.DidUri,
+  receiverUri: Kilt.DidUri,
   keyAgreement: Kilt.KiltEncryptionKeypair
 ): Promise<Kilt.IEncryptedMessage> {
   const senderDidDocument = await Kilt.Did.resolve(senderUri)

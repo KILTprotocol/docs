@@ -1,8 +1,8 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateMessage(
-  receiverUri: Kilt.DidUri,
-  senderUri: Kilt.DidUri
+  senderUri: Kilt.DidUri,
+  receiverUri: Kilt.DidUri
 ) {
   const challenge = Kilt.Utils.UUID.generate()
 
