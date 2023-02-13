@@ -1,12 +1,12 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+import { createAttestation } from '../claiming/03_create_attestation'
 import { createCompleteFullDid } from '../did/05_full_did_complete'
+import { createDriversLicenseCType } from '../claiming/01_create_ctype'
 import { decryptMessage } from './03_decrypt_message'
 import { encryptMessage } from './02_encrypt_message'
 import generateKeypairs from '../utils/generateKeypairs'
 import { generateMessage } from './01_generate_message'
-import { createDriversLicenseCType } from '../claiming/01_create_ctype'
 import { requestAttestation } from '../claiming/02_request_attestation'
-import { createAttestation } from '../claiming/03_create_attestation'
 
 // Runs through the messaging encryption and decryption of messages
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
