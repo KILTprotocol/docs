@@ -2,15 +2,12 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function generateMessage(
   senderUri: Kilt.DidUri,
-  receiverUri: Kilt.DidUri
+  receiverUri: Kilt.DidUri,
+  cTypeHash: Kilt.CTypeHash
 ) {
   // Creating a challenge to submit to the receiver
   const challenge = Kilt.Utils.UUID.generate()
 
-  // Trusted Attesters uri is checked if it is a valid uri
-  Kilt.Did.validateUri(
-    'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g'
-  )
   // Sender uri is checked if it is a valid uri
   Kilt.Did.validateUri(senderUri)
   // Receiver uri is checked if it is a valid uri
@@ -18,12 +15,10 @@ export async function generateMessage(
 
   // The content of the request credentials
   // It includes a ctype that is being requested, this can be for attestation or verification
+  // The sender is the trusted attester in the scenario
   const requestCredentialContent = {
-    cTypeHash:
-      '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac' as `0x${string}`,
-    trustedAttesters: [
-      'did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g' as Kilt.DidUri
-    ]
+    cTypeHash: cTypeHash,
+    trustedAttesters: [senderUri]
   }
 
   const messageBody: Kilt.IRequestCredential = {

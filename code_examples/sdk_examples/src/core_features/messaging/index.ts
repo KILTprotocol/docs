@@ -4,10 +4,14 @@ import { decryptMessage } from './03_decrypt_message'
 import { encryptMessage } from './02_encrypt_message'
 import generateKeypairs from '../utils/generateKeypairs'
 import { generateMessage } from './01_generate_message'
+import { createDriversLicenseCType } from '../claiming/01_create_ctype'
+import { requestAttestation } from '../claiming/02_request_attestation'
+import { createAttestation } from '../claiming/03_create_attestation'
 
 // Runs through the messaging encryption and decryption of messages
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   console.log('Running messaging flow...')
+  console.log('Generating a sender DID')
   const sender = generateKeypairs()
   const senderFullDid = await createCompleteFullDid(
     submitterAccount,
@@ -19,7 +23,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
       keyType: sender.authentication.type
     })
   )
-
+  console.log('Generating a receiver DID')
   const receiver = generateKeypairs()
   const receiverFullDid = await createCompleteFullDid(
     submitterAccount,
@@ -31,8 +35,37 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
       keyType: receiver.authentication.type
     })
   )
+
+  console.log(
+    'Generating a receiver credential for the encrypting and decrypting of the message'
+  )
+  const ctype = await createDriversLicenseCType(
+    senderFullDid.uri,
+    submitterAccount,
+    async ({ data }) => ({
+      signature: sender.attestation.sign(data),
+      keyType: sender.attestation.type
+    })
+  )
+
+  const credential = requestAttestation(receiverFullDid, ctype)
+
+  await createAttestation(
+    senderFullDid.uri,
+    submitterAccount,
+    async ({ data }) => ({
+      signature: sender.attestation.sign(data),
+      keyType: sender.attestation.type
+    }),
+    credential
+  )
+
   console.log('Generating the message to encrypt and decrypt')
-  const message = await generateMessage(senderFullDid.uri, receiverFullDid.uri)
+  const message = await generateMessage(
+    senderFullDid.uri,
+    receiverFullDid.uri,
+    credential.claim.cTypeHash
+  )
 
   console.log(message)
 
@@ -45,7 +78,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   )
 
   console.log('Decrypting the message from two users')
-  await decryptMessage(encryptedMessage, receiver.encryption)
+  await decryptMessage(encryptedMessage, receiver.encryption, credential)
 
   await Kilt.disconnect()
 }
