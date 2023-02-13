@@ -34,5 +34,7 @@ export async function generateMessage(
     throw new Error('Invalid message')
   }
 
+  console.log(`Generated Message: ${JSON.stringify(message, null, 4)}`)
+
   return message
 }

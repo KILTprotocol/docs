@@ -4,14 +4,11 @@ import { useDecryptionSignCallback } from '../signCallback/useDecryptionSignCall
 export async function decryptMessage(
   encryptedMessage: Kilt.IEncryptedMessage,
   keyAgreement: Kilt.KiltEncryptionKeypair
-): Promise<Kilt.IMessage> {
+): Promise<void> {
   // encrypt the message
   const decryptedMessage = await Kilt.Message.decrypt(
     encryptedMessage,
     useDecryptionSignCallback(keyAgreement)
   )
-
-  console.log(JSON.parse(JSON.stringify(decryptedMessage)))
-
-  return decryptedMessage
+  console.log(`Decrypted Message: ${JSON.stringify(decryptedMessage, null, 4)}`)
 }
