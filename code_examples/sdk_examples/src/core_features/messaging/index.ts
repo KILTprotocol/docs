@@ -1,9 +1,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { createCompleteFullDid } from '../did/05_full_did_complete'
-import { decryptMessage } from './03_decryptMessage'
-import { encryptMessage } from './02_encryptMessage'
+import { decryptMessage } from './03_decrypt_message'
+import { encryptMessage } from './02_encrypt_message'
 import generateKeypairs from '../utils/generateKeypairs'
-import { generateMessage } from './01_generateMessage'
+import { generateMessage } from './01_generate_message'
 
 // Runs through the messaging encryption and decryption of messages
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
@@ -46,6 +46,6 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
 
   console.log('Decrypting the message from two users')
   await decryptMessage(encryptedMessage, receiver.encryption)
-  
+
   await Kilt.disconnect()
 }
