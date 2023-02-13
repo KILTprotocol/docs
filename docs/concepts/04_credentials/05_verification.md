@@ -6,7 +6,7 @@ title: Verification
 KILT allows a Verifier to check if the information in a credential presented by a Claimer is correct and valid.
 With the presentation of the credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the Claimer’s attributes.
 
-The Verifier trusts this third party either because they trust their reputation directly or they trust a delegation structure that this Verifier is part of (e.g., a State department issuing driving licenses).
+The Verifier trusts this third party either because they trust their reputation directly or they trust a delegation structure that this Attester is part of (e.g., a State department issuing driving licenses).
 
 For the verification process:
 
