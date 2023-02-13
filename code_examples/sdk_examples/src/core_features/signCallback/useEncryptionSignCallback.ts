@@ -18,8 +18,8 @@ export function useEncryptionSignCallback({
     }
     const { sealed, nonce } = naclSeal(
       data,
-      peerPublicKey,
-      keyAgreement.secretKey
+      keyAgreement.secretKey,
+      peerPublicKey
     )
     return {
       nonce,
