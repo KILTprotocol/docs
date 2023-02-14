@@ -9,7 +9,7 @@ export async function issueCredential(
   const api = Kilt.ConfigService.get('api')
 
   const credentialCreationTx = api.tx.publicCredentials.add(
-    Kilt.PublicCredential.toChain(credential),
+    Kilt.PublicCredential.toChain(credential)
   )
 
   // Same as for traditional KILT credentials

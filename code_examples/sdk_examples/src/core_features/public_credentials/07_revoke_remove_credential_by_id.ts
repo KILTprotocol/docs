@@ -9,7 +9,9 @@ export async function revokeCredentialById(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  const tx = shouldRemove ? api.tx.publicCredentials.remove(credentialId, null) : api.tx.publicCredentials.revoke(credentialId, null)
+  const tx = shouldRemove
+    ? api.tx.publicCredentials.remove(credentialId, null)
+    : api.tx.publicCredentials.revoke(credentialId, null)
 
   // Same as for traditional KILT credentials
   const authorizedAttestationTx = await Kilt.Did.authorizeTx(

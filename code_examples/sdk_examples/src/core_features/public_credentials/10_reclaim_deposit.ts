@@ -7,10 +7,11 @@ export async function reclaimDeposit(
   const api = Kilt.ConfigService.get('api')
 
   // Generate the tx to claim the deposit back.
-  const credentialId = Kilt.PublicCredential.getIdForCredential(credential, credential.attester)
-  const depositReclaimTx = api.tx.publicCredentials.reclaimDeposit(
-    credentialId
+  const credentialId = Kilt.PublicCredential.getIdForCredential(
+    credential,
+    credential.attester
   )
+  const depositReclaimTx = api.tx.publicCredentials.reclaimDeposit(credentialId)
 
   // Submit the revocation tx to the KILT blockchain.
   await Kilt.Blockchain.signAndSubmitTx(depositReclaimTx, depositPayer)

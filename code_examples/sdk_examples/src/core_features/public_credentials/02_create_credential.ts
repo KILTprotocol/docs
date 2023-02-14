@@ -3,7 +3,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export function createNftCollectionCredential(
   ctype: Kilt.ICType,
   assetDid: Kilt.AssetDidUri,
-  artistDid: Kilt.DidUri,
+  artistDid: Kilt.DidUri
 ): Kilt.IPublicCredentialInput {
   const claims: Kilt.IClaimContents = {
     name: 'Awesome NFT drop',

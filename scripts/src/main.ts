@@ -94,7 +94,8 @@ async function main() {
     { resolveKey }
   )
 
-  const assetDid: Kilt.AssetDidUri = 'did:asset:eip155:1.erc721:0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb:1005'
+  const assetDid: Kilt.AssetDidUri =
+    'did:asset:eip155:1.erc721:0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb:1005'
   const publicCredential: Kilt.IPublicCredentialInput = {
     claims: claimContents,
     cTypeHash: Kilt.CType.idToHash(drivingLicenseCtype.$id),

@@ -8,20 +8,23 @@ export async function createNftCollectionCType(
   const api = Kilt.ConfigService.get('api')
 
   // Create a new CType definition.
-  const ctype = Kilt.CType.fromProperties(`NFT Collection Certification CType by ${creator}`, {
-    name: {
-      type: 'string'
-    },
-    pieces: {
-      type: 'integer'
-    },
-    creationDate: {
-      type: 'string'
-    },
-    artistIdentity: {
-      type: 'string'
-    },
-  })
+  const ctype = Kilt.CType.fromProperties(
+    `NFT Collection Certification CType by ${creator}`,
+    {
+      name: {
+        type: 'string'
+      },
+      pieces: {
+        type: 'integer'
+      },
+      creationDate: {
+        type: 'string'
+      },
+      artistIdentity: {
+        type: 'string'
+      }
+    }
+  )
 
   // Generate a creation tx.
   const ctypeCreationTx = api.tx.ctype.add(Kilt.CType.toChain(ctype))
