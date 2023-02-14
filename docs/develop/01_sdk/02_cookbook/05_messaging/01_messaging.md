@@ -30,11 +30,14 @@ The message requires a `messageBody`, sender and receiver uri.
 ## Encryption
 
 The messages data are encrypted and decrypted using [nacl's](https://github.com/dchest/tweetnacl-js) 'x25519-xsalsa20-poly1305' algorithm, which provides repudiable authenticated encryption based on an x25519 key agreement.
-The DID holds the keys for the encryption and decryptions.
-These keys are called `KeyAgreement` keys this key can be also known as encryption keys.
+The DID holds keys for the encryption and decryption.
+The key is called `KeyAgreement` keys.
+They may also be known as encryption keys.
 The different keys are found within the [DID Spec](https://www.w3.org/TR/did-core/#verification-relationships).
 
 The content of the object is converted from a serialized string to a byte array, which is passed into the callback function along with the senders DID and key agreement public key of the receiver.
+
+The following example here will take a generated message and encrypt the message for the receiver to decrypt later.
 
 <TsJsBlock>
   {EncryptMessage}
@@ -45,7 +48,9 @@ The encrypted data is converted into a Hex string which is known as the cipherte
 ## Decryption
 
 The decryption takes the encrypted message and decypher the content.
-The function takes a credential from the receiver and checks it against the request credentials content to see if they have a valid credential to send back.
+The following example here will take a encrypted message and decrypt using the private key of the receiver.
+Once decrypted, it checks the content is a valid message.
+The decrypted data can be used for additional steps.
 
 <TsJsBlock>
   {DecryptMessage}
