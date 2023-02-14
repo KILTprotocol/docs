@@ -6,7 +6,7 @@ title: Verification
 KILT allows a Verifier to check if the information in a credential presented by a Claimer is correct and valid.
 With the presentation of the credential, the Claimer also presents evidence that a third party (i.e., an Attester) ensured the correctness of the Claimer’s attributes.
 
-The Verifier trusts this third party either because they trust their reputation directly or they trust a delegation structure that this Verifier is part of (e.g., a State department issuing driving licenses).
+The Verifier trusts this third party either because they trust their reputation directly or they trust a delegation structure that this Attester is part of (e.g., a State department issuing driving licenses).
 
 For the verification process:
 
@@ -53,7 +53,7 @@ That problem is addressed in the next section.
 
 ### Verifying the Owner of the Presented Credential
 
-When issued, a credential is linked to the KILT Decentralized Identifier (DID) of the original Claimer.
+When issued, a credential is linked to the KILT decentralized identifier (DID) of the original Claimer.
 The DID can be resolved to the public key of the Claimer according to the [KILT DID specification](https://github.com/KILTprotocol/spec-kilt-did).
 
 The Verifier assumes that the private key for the DID public key is only known to the owner of the credential, and is not shared across users.

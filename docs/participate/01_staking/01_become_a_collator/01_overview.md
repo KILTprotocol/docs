@@ -29,8 +29,8 @@ First, we will discuss the hardware requirements and how you could test the perf
 Then, we go over a few configuration options and show you how to set up and start a KILT collator, including how to generate your sessions keys and join the pool of collator candidates.
 
 :::info
-If you are already collating, you can skip to the advanced section.
-There you will learn how to [**monitor**](../02_advanced_collator_section/04_monitoring.md) or [**benchmark**](../02_advanced_collator_section/06_benchmarking.md) your node, [**adjust your stake**](../02_advanced_collator_section/01_adjust_stake.md), [**fix problems**](../05_troubleshooting.md) or [**leave the network**](../02_advanced_collator_section/02_exit.md).
+In case you are already collating, you could check out the advanced section.
+There you will learn how to [**monitor**](../02_advanced_collator_section/04_monitoring.md) or [**benchmark**](../02_advanced_collator_section/06_benchmarking.md) your node, [**adjust your stake**](../02_advanced_collator_section/01_adjust_stake.md), [**fix problems**](../06_troubleshooting.md) or [**leave the network**](../02_advanced_collator_section/02_exit.md).
 :::
 
 ## Join the Community

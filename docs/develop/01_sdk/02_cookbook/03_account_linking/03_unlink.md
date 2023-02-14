@@ -5,9 +5,9 @@ title: Unlink an Account From a KILT DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DidUnlink from '!!raw-loader!@site/code_examples/core_features/linking/05_did_unlink.ts';
-import AccountUnlink from '!!raw-loader!@site/code_examples/core_features/linking/06_account_unlink.ts';
-import ReclaimDeposit from '!!raw-loader!@site/code_examples/core_features/linking/07_reclaim_deposit.ts';
+import DidUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/05_did_unlink.ts';
+import AccountUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/06_account_unlink.ts';
+import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/07_reclaim_deposit.ts';
 
 Similar to the way a new account <-> DID link is created, removing a link can happen in one of three ways:
 

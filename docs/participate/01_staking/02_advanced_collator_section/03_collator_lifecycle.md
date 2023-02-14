@@ -34,11 +34,11 @@ flowchart TD
     L:::stakedReleasableKilt
 
     %% style definition
-    classDef leavingLocked fill:#FFF4BD,stroke:none;
-    classDef leavingUnlocked fill:#F1C0B9, stroke:black, stroke-width:1px;;
-    classDef unstakedFreeKilt fill:#85D2D0,stroke:black, stroke-width:1px;
-    classDef activeCollator fill:#94C973,stroke:#333, stroke-width:2px;
-    classDef stakedReleasableKilt fill:#F37970, stroke:black;
+    classDef leavingLocked fill:#FFF4BD, stroke:none, color:black;
+    classDef leavingUnlocked fill:#F1C0B9, stroke:black, stroke-width:1px, color:black;
+    classDef unstakedFreeKilt fill:#85D2D0, stroke:black, stroke-width:1px, color:black;
+    classDef activeCollator fill:#94C973, stroke:#333, stroke-width:2px, color:black;
+    classDef stakedReleasableKilt fill:#F37970, stroke:black, color:black;
 ```
 
 </div>

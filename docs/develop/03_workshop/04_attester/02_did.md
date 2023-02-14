@@ -8,14 +8,14 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/workshop/attester/generateKeypairs.ts';
-import GenerateDid from '!!raw-loader!@site/code_examples/workshop/attester/generateDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
 
 Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
 
 A DID may represent any entity, which could be a person, an organization or a machine.
 
-A KILT Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
+A KILT decentralized identifier (DID) is a string uniquely identifying each KILT user.
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.

@@ -8,14 +8,14 @@ import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import PrintHelloWorld from '!!raw-loader!@site/code_examples/core_features/getting_started/01_print_hello_world.ts';
-import Connect from '!!raw-loader!@site/code_examples/core_features/getting_started/02_connect.ts';
-import FetchDid from '!!raw-loader!@site/code_examples/core_features/getting_started/03_fetch_did.ts';
-import FetchEndpoints from '!!raw-loader!@site/code_examples/core_features/getting_started/04_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/core_features/getting_started/05_fetch_endpoint_data.ts';
-import VerifyAttestation from '!!raw-loader!@site/code_examples/core_features/getting_started/06_verify_attestation.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/core_features/getting_started/07_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/core_features/getting_started/08_disconnect.ts';
+import PrintHelloWorld from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/01_print_hello_world.ts';
+import Connect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect.ts';
+import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/03_fetch_did.ts';
+import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
+import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
+import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
+import VerifyAttestation from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_verify_attestation.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/08_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 You will learn how to:
@@ -35,14 +35,14 @@ We will focus on creating a new project from scratch, which will require a littl
 First, we need to create a new project in a new directory.
 For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
-
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
 
   ```bash npm2yarn
-  npm install @kiltprotocol/sdk-js axios node
+  npm init -y
+  npm install @kiltprotocol/sdk-js axios ts-node typescript
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
@@ -53,7 +53,8 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
 
   ```bash npm2yarn
-  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  npm init -y
+  npm install @kiltprotocol/sdk-js axios node
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
@@ -61,8 +62,34 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
   </TabItem>
 </Tabs>
 
-After you have imported the SDK you will be able to access the functionalities that KILT provides.
-Inside the `package.json` add in the value `"type": "module"`.
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  After you have imported the SDK you will be able to access the functionalities that KILT provides.
+  We are making a new file that contents the compiler configuration for typescript.
+
+  ```bash
+  touch tsconfig.json
+  ```
+
+  Inside the `tsconfig.json` add in the following value:
+
+  ```bash
+  {
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+  }
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  After you have imported the SDK you will be able to access the functionalities that KILT provides.
+  Inside the `package.json` add in the value `"type": "module"`.
+
+  </TabItem>
+</Tabs>
 
 Let's first declare our `main` function that will execute our script:
 
@@ -116,6 +143,7 @@ We will use the official **Spiritnet** address:
 
 <SnippetBlock
   className="language-ts"
+  funcEnd="return"
 >
   {Connect}
 </SnippetBlock>
@@ -178,18 +206,8 @@ We can select one of the endpoints and query the URL to see if it returns a KILT
 If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service endpoint.
 
 We will now have to make sure the credential is **valid** and has a valid **structure**.
-To do that, we need to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
 
-<SnippetBlock
-  className="language-ts"
-  funcEnd="}"
->
-  {VerifyAttestation}
-</SnippetBlock>
-
-Execute the script and see if you get a valid attestation for John Doe's credential!
-
-If so, it is then time to verify the credential.
+It is then time to verify the credential.
 This will be indicated by the result of the **verification** process as shown in the snippet below:
 
 <SnippetBlock
@@ -198,7 +216,18 @@ This will be indicated by the result of the **verification** process as shown in
   {VerifyCredential}
 </SnippetBlock>
 
-Now, the last step is to excute the complete script and wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+Now excute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+
+Now it's time to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
+
+<SnippetBlock
+  className="language-ts"
+  funcEnd="return"
+>
+  {VerifyAttestation}
+</SnippetBlock>
+
+Now, the last step is to excute the complete script and see if you get a valid attestation for John Doe's credential!
 
 Was it successful? Nice Job!
 

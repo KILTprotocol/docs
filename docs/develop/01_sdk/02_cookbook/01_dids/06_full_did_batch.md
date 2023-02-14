@@ -5,8 +5,8 @@ title: Sign Extrinsics With a Full DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidSignTx from '!!raw-loader!@site/code_examples/core_features/did/08_full_did_sign_tx.ts';
-import FullDidBatch from '!!raw-loader!@site/code_examples/core_features/did/08_full_did_batch.ts';
+import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_sign_tx.ts';
+import FullDidBatch from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_batch.ts';
 
 A DID can be used to sign extrinsics.
 But not every extrinsics can be sign using a DID.
