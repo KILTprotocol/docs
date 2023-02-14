@@ -11,18 +11,18 @@ import { requestAttestation } from './02_request_attestation'
 import { revokeCredential } from './06_revoke_credential'
 import { verifyPresentation } from './05_verify_presentation'
 
-import generateDidKeypairs from '../utils/generateKeypairs'
+import { generateKeypairs } from '../utils/generateKeypairs'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  const claimerAuthKey = generateDidKeypairs().authentication
+  const claimerAuthKey = generateKeypairs().authentication
   const claimerLightDid = createSimpleLightDid({
     authentication: claimerAuthKey
   })
 
-  const attersterKeys = generateDidKeypairs()
+  const attersterKeys = generateKeypairs()
   const attesterFullDid = await createCompleteFullDid(
     submitterAccount,
     attersterKeys,
