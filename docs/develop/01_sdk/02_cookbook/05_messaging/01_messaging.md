@@ -32,7 +32,6 @@ The messages data are encrypted and decrypted using [nacl's](https://github.com/
 The DID holds keys for the encryption and decryption.
 The key is called `KeyAgreement` keys.
 They may also be known as encryption keys.
-The different keys are found within the [DID Spec](https://www.w3.org/TR/did-core/#verification-relationships).
 
 The content of the object is converted from a serialized string to a byte array, which is passed into the callback function along with the senders DID and key agreement public key of the receiver.
 
