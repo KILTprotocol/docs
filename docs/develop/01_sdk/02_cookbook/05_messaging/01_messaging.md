@@ -3,7 +3,7 @@ id: messaging_book
 title: Generate a Message
 ---
 
-import SnippetBlock from '@site/src/components/SnippetBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 
 import GenerateMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/01_generate_message.ts';
 import EncryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/02_encrypt_message.ts';
@@ -19,11 +19,9 @@ There are multiple different message types.
 In this example we are going to build a `request-credential` message.
 The message structure is checked and validated on by the KILT SDK to ensure the users are sending correctly structured messages.
 
-<SnippetBlock
-  className="language-ts"
->
+<TsJsBlock>
   {GenerateMessage}
-</SnippetBlock>
+</TsJsBlock>
 
 ## Encryption
 
@@ -34,11 +32,9 @@ The different keys are found within the [DID Spec](https://www.w3.org/TR/did-cor
 
 The content of the object is converted from a serialized string to a byte array, which is passed into the callback function along with the senders DID and key agreement public key of the receiver.
 
-<SnippetBlock
-  className="language-ts"
->
+<TsJsBlock>
   {EncryptMessage}
-</SnippetBlock>
+</TsJsBlock>
 
 The encrypted data is converted into a Hex string which is known as the ciphertext along with the nonce that was generated during encryption.
 
@@ -47,8 +43,6 @@ The encrypted data is converted into a Hex string which is known as the cipherte
 The decryption takes the encrypted message and decypher the content.
 The function takes a credential from the receiver and checks it against the request credentials content to see if they have a valid credential to send back.
 
-<SnippetBlock
-  className="language-ts"
->
+<TsJsBlock>
   {DecryptMessage}
-</SnippetBlock>
+</TsJsBlock>
