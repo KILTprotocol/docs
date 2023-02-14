@@ -1,17 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+// Just a helper to get a random ctype
+import { getRandomCType } from '../utils/getRandomCtype'
 
-function getRandomCType(): Kilt.ICType {
-  // Random factor ensures that each created CType is unique and does not already exist on chain.
-  const randomFactor = Kilt.Utils.UUID.generate()
-  return Kilt.CType.fromProperties(`CType ${randomFactor}`, {
-    name: {
-      type: 'string'
-    },
-    age: {
-      type: 'integer'
-    }
-  })
-}
 
 export async function batchCTypeCreationExtrinsics(
   submitterAccount: Kilt.KiltKeyringPair,

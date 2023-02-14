@@ -1,6 +1,6 @@
 ---
 id: full-did-batch
-title: Sign Extrinsics With a Full DID
+title: Build DID Extrinsics
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
@@ -16,7 +16,7 @@ The first flavour can only be called using an account.
 These extrinsic require fee payment and need therefore be send from an account with sufficient balance.
 
 The second flavour is callable from a DID.
-Since every transaction requires fees to be paid, this flavour needs to be wrapped inside a normal account extrinsic.
+Since every extrinsic requires fees to be paid, this flavour needs to be wrapped inside a normal account extrinsic.
 The account will pay all fees and deposit that will be required.
 
 This document describes how to sign the DID extrinsics.
@@ -25,7 +25,7 @@ The first function signs a single extrinsic while the second one batches multipl
 
 ## Single extrinsics
 
-To sign a single transaction, you need to provide:
+To build a single extrinsic, you need to provide:
 
 * the DID that should be the origin of the extrinsic
 * a [`SignCallback`](../06_signCallback.md) that signs the extrinsic

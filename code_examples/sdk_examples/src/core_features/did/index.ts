@@ -16,7 +16,7 @@ import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
 import { getRandomCType } from '../utils/getRandomCtype'
-import { signDidExtrinsic } from './08_full_did_sign_tx'
+import { signDidExtrinsic } from './08_full_did_tx'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
