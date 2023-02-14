@@ -3,7 +3,7 @@ import type { KeyringPair } from '@polkadot/keyring/types'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimLinkDeposit(
-  depositPayerAccountAccount: KeyringPair,
+  submitterAddress: KeyringPair,
   linkedAccountAddress: KeyringPair['address']
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
@@ -13,6 +13,6 @@ export async function reclaimLinkDeposit(
 
   await Kilt.Blockchain.signAndSubmitTx(
     accountUnlinkTx,
-    depositPayerAccountAccount
+    submitterAddress
   )
 }

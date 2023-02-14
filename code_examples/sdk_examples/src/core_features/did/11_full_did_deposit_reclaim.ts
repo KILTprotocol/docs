@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimFullDidDeposit(
-  depositPayerAccount: Kilt.KiltKeyringPair,
+  submitterAddress: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
@@ -16,9 +16,9 @@ export async function reclaimFullDidDeposit(
     endpointsCountForDid
   )
 
-  // The submission will fail if `depositPayerAccount` is not the owner of the deposit associated with the given DID identifier.
+  // The submission will fail if `submitterAddress` is not the owner of the deposit associated with the given DID identifier.
   await Kilt.Blockchain.signAndSubmitTx(
     depositClaimExtrinsic,
-    depositPayerAccount
+    submitterAddress
   )
 }
