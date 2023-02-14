@@ -1,16 +1,19 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { u8aToHex } from '@polkadot/util'
 
-type KeyLookup = (parameter: { didUri: Kilt.DidUri, keyRelationship: Kilt.VerificationKeyRelationship }) => Promise<{
-  key: Kilt.KiltKeyringPair,
-  keyType: Kilt.VerificationKeyType,
+type KeyLookup = (parameter: {
+  didUri: Kilt.DidUri
+  keyRelationship: Kilt.VerificationKeyRelationship
+}) => Promise<{
+  key: Kilt.KiltKeyringPair
+  keyType: Kilt.VerificationKeyType
   keyUri: Kilt.DidResourceUri
 }>
 
 export async function generateAndVerifyDidAuthenticationSignature(
   did: Kilt.DidDocument,
   payload: Uint8Array,
-  keyLookup: KeyLookup,
+  keyLookup: KeyLookup
 ): Promise<void> {
   // How the key is looked up depends on where the key is stored (e.g. memory, hardware wallet, browser extension)
   const { key, keyUri } = await keyLookup({

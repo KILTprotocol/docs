@@ -2,7 +2,6 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 // Just a helper to get a random ctype
 import { getRandomCType } from '../utils/getRandomCtype'
 
-
 export async function batchCTypeCreationExtrinsics(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,

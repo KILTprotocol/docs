@@ -4,7 +4,7 @@ export async function signDidExtrinsic(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignExtrinsicCallback,
-  extrinsic: Kilt.SubmittableExtrinsic,
+  extrinsic: Kilt.SubmittableExtrinsic
 ): Promise<void> {
   // This results in a DID-signed tx that can be signed and submitted to
   // the KILT blockchain by the account authorized in this operation (the `submitterAccount`).
@@ -15,8 +15,5 @@ export async function signDidExtrinsic(
     submitterAccount.address
   )
 
-  await Kilt.Blockchain.signAndSubmitTx(
-    didSignedExtrinsic,
-    submitterAccount
-  )
+  await Kilt.Blockchain.signAndSubmitTx(didSignedExtrinsic, submitterAccount)
 }
