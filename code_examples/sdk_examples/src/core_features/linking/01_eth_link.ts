@@ -5,7 +5,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function linkAccountToDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkedAccount: KeyringPair,
+  linkedAccount: KeyringPair & { type: "ethereum" },
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')

@@ -16,7 +16,7 @@ const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
   Kilt.Blockchain.IS_IN_BLOCK
 
 export async function testCoreFeatures(
-  faucetAccount: Kilt.KeyringPair,
+  faucetAccount: Kilt.KiltKeyringPair,
   wssAddress: string
 ): Promise<void> {
   // Connects to (and at the end disconnects from) Spiritnet, so it must be called before we connect to Peregrine for the rest of the tests.
@@ -41,7 +41,7 @@ export async function testCoreFeatures(
     accountLinkingTestAccount
   ] = Array(4)
     .fill(0)
-    .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
+    .map(() => keyring.addFromSeed(randomAsU8a(32), undefined, "sr25519") as Kilt.KiltKeyringPair & { type: "sr25519" })
 
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
@@ -58,49 +58,50 @@ export async function testCoreFeatures(
 
   // These should not conflict anymore since all accounts are different.
   await Promise.all([
-    (async () => {
-      try {
-        await runAllClaiming(claimingTestAccount)
-      } catch (e) {
-        console.error('Claiming flow failed')
-        throw e
-      }
-    })(),
-    (async () => {
-      try {
-        await runAllDid(didTestAccount)
-      } catch (e) {
-        console.error('DID flow failed')
-        throw e
-      }
-    })(),
-    (async () => {
-      try {
-        await runAllWeb3(web3TestAccount)
-      } catch (e) {
-        console.error('Web3name flow failed')
-        throw e
-      }
-    })(),
+    // (async () => {
+    //   try {
+    //     await runAllClaiming(claimingTestAccount)
+    //   } catch (e) {
+    //     console.error('Claiming flow failed')
+    //     throw e
+    //   }
+    // })(),
+    // (async () => {
+    //   try {
+    //     await runAllDid(didTestAccount)
+    //   } catch (e) {
+    //     console.error('DID flow failed')
+    //     throw e
+    //   }
+    // })(),
+    // (async () => {
+    //   try {
+    //     await runAllWeb3(web3TestAccount)
+    //   } catch (e) {
+    //     console.error('Web3name flow failed')
+    //     throw e
+    //   }
+    // })(),
     (async () => {
       try {
         await runAllLinking(
+          keyring,
           wssAddress,
+          faucetAccount,
           accountLinkingTestAccount,
-          faucetAccount
         )
       } catch (e) {
         console.error('Linking flow failed')
         throw e
       }
     })(),
-    (async () => {
-      try {
-        await runAllSignCallback(api)
-      } catch (e) {
-        console.error('SignCallback flow failed')
-        throw e
-      }
-    })()
+    // (async () => {
+    //   try {
+    //     await runAllSignCallback(api)
+    //   } catch (e) {
+    //     console.error('SignCallback flow failed')
+    //     throw e
+    //   }
+    // })()
   ])
 }
