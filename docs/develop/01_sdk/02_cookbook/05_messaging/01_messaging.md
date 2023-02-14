@@ -49,6 +49,8 @@ The decryption takes the encrypted message and decypher the content.
 The following example here will take a encrypted message and decrypt using the private key of the receiver.
 Once decrypted, it checks the content is a valid message.
 The decrypted data can be used for additional steps.
+After decrypting, the receiver may wish to present a credential from the trusted attester list with a given ctype. 
+If they do not have the given credential, they may need to get a credential
 
 <TsJsBlock>
   {DecryptMessage}
