@@ -19,6 +19,10 @@ There are multiple different message types.
 In this example we are going to build a `request-credential` message.
 The message structure is checked and validated on by the KILT SDK to ensure the users are sending correctly structured messages.
 
+The following example here will generate a message by constructing the message content.
+The message content includes a valid `cTypeHash` and a list of `trusted attesters`.
+The message requires a `messageBody`, sender and receiver uri.
+
 <TsJsBlock>
   {GenerateMessage}
 </TsJsBlock>
