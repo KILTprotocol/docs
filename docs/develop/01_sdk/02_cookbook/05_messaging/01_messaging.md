@@ -10,7 +10,6 @@ import EncryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/co
 import DecryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/03_decrypt_message.ts';
 
 KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) [messaging protocol](../../../../concepts/06_messaging.md).
-The message types are defined by the actions that will be resolved by the receiver.
 Each of the messages sent are encrypted using the [DID key agreement key](https://www.w3.org/TR/did-core/#key-agreement).
 The key agreement key of a DID can be queried from the KILT blockchain.
 
