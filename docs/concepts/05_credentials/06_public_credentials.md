@@ -11,7 +11,7 @@ Given that with [AssetDIDs][asset-did-concepts] there is now a way to uniquely i
 
 Public credentials are not very different in their structure compared to traditional KILT credentials.
 The main difference is that, since they are public, public credentials do not have any selective disclosure capabilities, hence all the cryptographic information required to enable those is stripped away from the credential content.
-Everything else remain as for regular credentials, including the requirement of a structure matching a CType, and optionally the presence of some delegation information.
+Everything else remain as for regular credentials, including the requirement for its structure to match a given CType, and optionally the presence of some delegation information.
 
 <CodeBlock className="language-json" title="Public credential example">
   {PublicCredential}

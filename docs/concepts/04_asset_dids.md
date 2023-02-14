@@ -21,7 +21,9 @@ An AssetDID is a *generative* identifier, meaning that it does not depend nor re
 Rather, given the asset that needs to be identified, it is **always** possible to generate (hence the term generative) its AssetDID.
 The reverse is also true: given an AssetDID, it is always possible to dereference it into its building components which, together, uniquely identified a given asset.
 
-### Chain namespace and Chain reference
+AssetDIDs always start with the `did:asset` prefix, and then contain a *chain* component (namespace + reference) and an *asset* component (namespace + reference + identifier).
+
+### Chain Namespace and Chain Reference
 
 Together, they identify the (blockchain) network on which the asset lives.
 
@@ -31,7 +33,7 @@ For instance, both the Ethereum mainnet and the Goerli testnet have a chain name
 
 A list of Ethereum chain IDs (which are used as reference) can be found on [chainlist.org][chainlist].
 
-### Asset namespace, Asset reference and Asset Identifier
+### Asset Namespace, Asset Reference and Asset Identifier
 
 Similarly to their chain counterparts, asset *namespaces* are used to distinguish among different asset classes that might live within the same environment.
 In the case of NFTs for instance, a smart contract could support both ERC20 (fungible) and ERC721 (non-fungible) tokens, hence the namespace is used to distinguish between the two token types.
