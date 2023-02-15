@@ -45,7 +45,9 @@ export async function runAll(
   console.log('2 claiming) Fetch CType')
   const ctypeDetails = await fetchCType(ctype.$id)
   if (!ctypeDetails) {
-    throw new Error('Could not retrieve CType details of a CType that was just created.')
+    throw new Error(
+      'Could not retrieve CType details of a CType that was just created.'
+    )
   }
   console.log('Retrieved CType details: ', ctypeDetails)
   console.log('3 claiming) Create credential')
