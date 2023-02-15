@@ -44,9 +44,10 @@ export async function runAll(
   )
   console.log('2 claiming) Fetch CType')
   const ctypeDetails = await fetchCType(ctype.$id)
-  if (ctypeDetails !== ctype) {
-    throw new Error('Retrieved CType details do not match the original CType.')
+  if (!ctypeDetails) {
+    throw new Error('Could not retrieve CType details of a CType that was just created.')
   }
+  console.log('Retrieved CType details: ', ctypeDetails)
   console.log('3 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
   console.log('4 claiming) Create attestation and credential')
