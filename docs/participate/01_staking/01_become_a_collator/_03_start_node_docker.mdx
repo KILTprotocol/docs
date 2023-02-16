@@ -15,7 +15,6 @@ Please select your target network:
   ```bash=
   docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
     -v ~/data:/data kiltprotocol/kilt-node:latest \
-    --state-cache-size=1 \
     --chain=spiritnet \
     --runtime=spiritnet \
     --rpc-port=9933 \
@@ -42,7 +41,6 @@ Please select your target network:
   ```bash=
   docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
     -v ~/data:/data kiltprotocol/kilt-node:latest \
-    --state-cache-size=1 \
     --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
     --runtime=peregrine \
     --rpc-port=9933 \
