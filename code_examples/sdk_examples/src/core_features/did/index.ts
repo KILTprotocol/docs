@@ -17,7 +17,7 @@ import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
 import getExtrinsic from '../utils/getExtrinsic'
-import { signDidExtrinsic } from './08_full_did_tx'
+import { signAndSendDidExtrinsic } from './08_full_did_tx'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
@@ -104,7 +104,7 @@ export async function runAll(
   console.log(
     '8.2 did) Use the same full DID created at step 5 to sign the single tx'
   )
-  await signDidExtrinsic(
+  await signAndSendDidExtrinsic(
     submitterAccount,
     updatedFullDid.uri,
     async ({ data }) => ({

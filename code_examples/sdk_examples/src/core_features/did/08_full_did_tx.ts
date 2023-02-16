@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function signDidExtrinsic(
+export async function signAndSendDidExtrinsic(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignExtrinsicCallback,
