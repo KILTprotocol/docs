@@ -8,13 +8,13 @@ export async function generateMessage(
   // Creating a challenge to submit to the receiver
   const challenge = Kilt.Utils.UUID.generate()
 
-  // Sender uri is checked if it is a valid uri
+  // Sender uri is checked if it is a valid URI
   Kilt.Did.validateUri(senderUri)
   // Receiver uri is checked if it is a valid uri
   Kilt.Did.validateUri(receiverUri)
 
-  // The content of the request credentials
-  // It includes a ctype that is being requested, this can be for attestation or verification
+  // The content of the 'request-credential' message
+  // It includes a CType that is being requested, this can be for attestation or verification
   // The sender is the trusted attester in the scenario
   const requestCredentialContent = {
     cTypeHash: cTypeHash,
@@ -28,7 +28,7 @@ export async function generateMessage(
 
   const message = Kilt.Message.fromBody(messageBody, senderUri, receiverUri)
 
-  console.log(`Generated Message: ${JSON.stringify(message, null, 4)}`)
+  console.log(`Generated message: ${JSON.stringify(message, null, 4)}`)
 
   return message
 }

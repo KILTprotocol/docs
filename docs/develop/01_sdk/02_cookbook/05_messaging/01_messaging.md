@@ -10,11 +10,11 @@ import EncryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/co
 import DecryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/03_decrypt_message.ts';
 
 KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) [messaging protocol](../../../../concepts/06_messaging.md).
-Each of the messages sent are encrypted using the [DID key agreement key](https://www.w3.org/TR/did-core/#key-agreement).
+Each of the messages sent is encrypted using the [DID key agreement key](https://www.w3.org/TR/did-core/#key-agreement).
 The key agreement key of a DID can be queried from the KILT blockchain.
 
-A message consists of the senders DID URI, the receivers DID URI, the message type and the body.
-There are multiple different message types.
+A message consists of the sender's DID URI, the receiver's DID URI, the message type and the body.
+There are multiple different message types, each of them with a different structure and containing different information.
 In this example we are going to build a `request-credential` message.
 The message structure is checked and validated on by the KILT SDK to ensure the users are sending correctly structured messages.
 
@@ -28,7 +28,7 @@ The message requires a `messageBody`, sender and receiver uri.
 
 ## Encryption
 
-The messages data are encrypted and decrypted using [nacl's](https://github.com/dchest/tweetnacl-js) 'x25519-xsalsa20-poly1305' algorithm, which provides repudiable authenticated encryption based on an x25519 key agreement.
+The messages data are encrypted and decrypted using [nacl's](https://github.com/dchest/tweetnacl-js) 'x25519-xsalsa20-poly1305' algorithm, which provides repudiable authenticated encryption based on an x25519 key agreement protocol.
 The DID holds keys for the encryption and decryption.
 The key is called `KeyAgreement` keys.
 They may also be known as encryption keys.
