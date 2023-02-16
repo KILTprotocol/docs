@@ -4,7 +4,7 @@ import { createDriversLicenseCType } from '../claiming/01_create_ctype'
 import { decryptMessage } from './03_decrypt_message'
 import { encryptMessage } from './02_encrypt_message'
 import generateKeypairs from '../utils/generateKeypairs'
-import { generateMessage } from './01_generate_message'
+import { generateRequestCredentialMessage } from './01_generate_request_credential_message'
 
 // Runs through the messaging encryption and decryption of messages
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
@@ -34,10 +34,8 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     })
   )
 
-  console.log(
-    '3 Messaging) Generating a ctype for the message passing'
-    )
-    const { $id } = await createDriversLicenseCType(
+  console.log('3 Messaging) Generating a ctype for the message passing')
+  const { $id } = await createDriversLicenseCType(
     senderFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
@@ -49,7 +47,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   const cTypeHash = Kilt.CType.idToHash($id)
 
   console.log('4 Messaging) Generating the message to encrypt and decrypt')
-  const message = await generateMessage(
+  const message = await generateRequestCredentialMessage(
     senderFullDid.uri,
     receiverFullDid.uri,
     cTypeHash
@@ -63,7 +61,9 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     sender.encryption
   )
 
-  console.log('6 Messaging) Decrypting the message from sender for the receiver')
+  console.log(
+    '6 Messaging) Decrypting the message from sender for the receiver'
+  )
   await decryptMessage(encryptedMessage, receiver.encryption)
 
   console.log('Messagin flow completed!')

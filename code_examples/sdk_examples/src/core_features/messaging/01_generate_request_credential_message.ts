@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function generateMessage(
+export async function generateRequestCredentialMessage(
   senderUri: Kilt.DidUri,
   receiverUri: Kilt.DidUri,
   cTypeHash: Kilt.CTypeHash
@@ -26,7 +26,7 @@ export async function generateMessage(
     content: { cTypes: [requestCredentialContent], challenge: challenge }
   }
 
-  // The message will throw an Error if invalid 
+  // The message will throw an Error if invalid
   const message = Kilt.Message.fromBody(messageBody, senderUri, receiverUri)
 
   console.log(`Generated message: ${JSON.stringify(message, null, 4)}`)
