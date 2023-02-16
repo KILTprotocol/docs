@@ -28,7 +28,8 @@ The first function signs a single extrinsic while the second one batches multipl
 To sign a single extrinsic, you need to provide:
 
 * the DID that wants to sign the extrinsic (also called *origin* of the extrinsic)
-* a [`SignCallback`](../06_signCallback.md) that signs the extrinsic
+  * refer to the [full did creation guide](02_full_did_creation.md) to learn how to create a DID
+* [a `SignCallback` that signs the extrinsic](../06_signCallback.md)
 * the extrinsic that should be signed and submitted
 * and the address of the account that pays for the fees.
 
@@ -39,13 +40,18 @@ To sign a single extrinsic, you need to provide:
 
 ## Batch multiple extrinsics
 
-Full DIDs can also be used to batch multiple extrinsics that require the signature of the DID subject.
-For instance, a batch could include the creation of two different CTypes in the same operation.
-This would save the user the time of producing one additional block and generating one additional signature, as multiple extrinsics are batched and signed at once, and they are submitted and executed in the same block.
+Full DIDs can also be used to batch multiple extrinsics that require the signature of the DID.
+For instance, a batch could create multiple service endpoints with a single submission to the blockchain.
+This would save the user the time of generating one additional signature, as multiple extrinsics are batched and signed at once.
+The extrinsics are also submitted and executed in the same block.
 For more information, see the [official Substrate documentation](https://paritytech.github.io/substrate/master/pallet_utility/pallet/struct.Pallet.html).
 
-An example of a batched creation of two CTypes using the `authorizeBatch` is provided below.
+An example of a batch using the `authorizeBatch` is provided below.
 
 <TsJsBlock>
   {FullDidBatch}
 </TsJsBlock>
+
+DIDs have different keys that posses different capabilities.
+Each key can only be used to authorize a specific subset of extrinsics.
+If extrinsics are batched together that require different DID keys, the `authorizeBatch` function will call the sign callback multiple times.
