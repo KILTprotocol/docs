@@ -1,30 +1,27 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { naclSeal } from '@polkadot/util-crypto'
+import { u8aToHex } from '@polkadot/util'
 
-export function useEncryptionSignCallback({
+export function useEncryptionCallback({
   keyAgreement,
-  didDocument
+  didUri
 }: {
   keyAgreement: Kilt.KiltEncryptionKeypair
-  didDocument: Kilt.DidDocument
+  didUri: Kilt.DidUri
 }): Kilt.EncryptCallback {
   return async function encryptCallback({
     data,
     peerPublicKey
   }): Promise<Kilt.EncryptResponseData> {
-    const keyId = didDocument.keyAgreement?.[0].id
-    if (!keyId) {
-      throw new Error(`Encryption key not found in did "${didDocument.uri}"`)
-    }
     const { sealed, nonce } = naclSeal(
       data,
-      keyAgreement.secretKey,
-      peerPublicKey
+      peerPublicKey,
+      keyAgreement.secretKey
     )
     return {
       nonce,
       data: sealed,
-      keyUri: `${didDocument.uri}${keyId}`
+      keyUri: `${didUri}#${u8aToHex(keyAgreement.publicKey)}`
     }
   }
 }

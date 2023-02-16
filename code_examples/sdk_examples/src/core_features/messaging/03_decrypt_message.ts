@@ -1,5 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { useDecryptionSignCallback } from '../signCallback/useDecryptionSignCallback'
+import { useDecryptionSignCallback } from '../signCallback/useDecryptionCallback'
 
 export async function decryptMessage(
   encryptedMessage: Kilt.IEncryptedMessage,

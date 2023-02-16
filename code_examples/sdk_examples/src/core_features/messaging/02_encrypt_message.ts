@@ -1,5 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { useEncryptionSignCallback } from '../signCallback/useEncryptionSignCallback'
+import { useEncryptionCallback } from '../signCallback/useEncryptionCallback'
 
 export async function encryptMessage(
   message: Kilt.IMessage,
@@ -16,9 +16,9 @@ export async function encryptMessage(
   // encrypt the message
   const encryptedMessage = await Kilt.Message.encrypt(
     message,
-    useEncryptionSignCallback({
+    useEncryptionCallback({
       keyAgreement,
-      didDocument: senderDidDocument.document
+      didUri: senderDidDocument.document.uri
     }),
     receiverKeyAgreement
   )
