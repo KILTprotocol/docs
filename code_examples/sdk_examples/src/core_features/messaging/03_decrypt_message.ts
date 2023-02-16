@@ -4,7 +4,7 @@ import { useDecryptionSignCallback } from '../signCallback/useDecryptionSignCall
 export async function decryptMessage(
   encryptedMessage: Kilt.IEncryptedMessage,
   keyAgreement: Kilt.KiltEncryptionKeypair
-): Promise<void> {
+): Promise<Kilt.IMessage> {
   // Decrypting the message to retrieve the content
   const decryptedMessage = await Kilt.Message.decrypt(
     encryptedMessage,
@@ -33,4 +33,6 @@ export async function decryptMessage(
   // The trusted attesters is an array that includes the list of trusted entities
   // The receiver can check if they have a given credential from the trusted list
   console.log(`A list of trusted attesters DID :${trustedAttesters}`)
+
+  return decryptedMessage
 }
