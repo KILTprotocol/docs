@@ -9,7 +9,7 @@ import { generateMessage } from './01_generate_message'
 // Runs through the messaging encryption and decryption of messages
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   console.log('Running messaging flow...')
-  console.log('Generating a sender DID')
+  console.log(`1 Messaging) Generating a sender's DID`)
   const sender = generateKeypairs()
   const senderFullDid = await createCompleteFullDid(
     submitterAccount,
@@ -21,7 +21,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
       keyType: sender.authentication.type
     })
   )
-  console.log('Generating a receiver DID')
+  console.log(`2 Messaging) Generating a receiver's DID`)
   const receiver = generateKeypairs()
   const receiverFullDid = await createCompleteFullDid(
     submitterAccount,
@@ -35,9 +35,9 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   )
 
   console.log(
-    'Generating a receiver credential for the encrypting and decrypting of the message'
-  )
-  const { $id } = await createDriversLicenseCType(
+    '3 Messaging) Generating a ctype for the message passing'
+    )
+    const { $id } = await createDriversLicenseCType(
     senderFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
@@ -48,16 +48,14 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
 
   const cTypeHash = Kilt.CType.idToHash($id)
 
-  console.log('Generating the message to encrypt and decrypt')
+  console.log('4 Messaging) Generating the message to encrypt and decrypt')
   const message = await generateMessage(
     senderFullDid.uri,
     receiverFullDid.uri,
     cTypeHash
   )
 
-  console.log(message)
-
-  console.log('Encrypting the message from two users')
+  console.log('5 Messaging) Encrypting the message from two users')
   const encryptedMessage = await encryptMessage(
     message,
     senderFullDid.uri,
@@ -65,7 +63,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     sender.encryption
   )
 
-  console.log('Decrypting the message from two users')
+  console.log('6 Messaging) Decrypting the message from two users')
   await decryptMessage(encryptedMessage, receiver.encryption)
 
   console.log('Messagin flow completed!')
