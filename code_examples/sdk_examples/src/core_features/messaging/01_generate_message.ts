@@ -28,11 +28,6 @@ export async function generateMessage(
 
   const message = Kilt.Message.fromBody(messageBody, senderUri, receiverUri)
 
-  if (!message) {
-    console.log('message', message)
-    throw new Error('Invalid message')
-  }
-
   console.log(`Generated Message: ${JSON.stringify(message, null, 4)}`)
 
   return message
