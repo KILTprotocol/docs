@@ -5,7 +5,7 @@ title: Resolve a DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DidQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/06_full_did_query.ts';
+import DidQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/06_did_query.ts';
 
 Querying the state of a DID is called **resolution**.
 The entity that queries the DID Document for a given DID, i.e., resolves it, is called a **resolver**.

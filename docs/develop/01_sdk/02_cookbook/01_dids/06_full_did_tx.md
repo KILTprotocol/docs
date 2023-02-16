@@ -5,7 +5,7 @@ title: Build DID Extrinsics
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_sign_tx.ts';
+import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_tx.ts';
 import FullDidBatch from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_batch.ts';
 
 DID keys can be used to sign extrinsic.
