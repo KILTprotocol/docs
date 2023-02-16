@@ -1,11 +1,11 @@
 ---
 id: did-query
-title: Resolve a Full DID
+title: Resolve a DID
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/06_full_did_query.ts';
+import DidQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/06_full_did_query.ts';
 
 Querying the state of a DID is called **resolution**.
 The entity that queries the DID Document for a given DID, i.e., resolves it, is called a **resolver**.
@@ -13,7 +13,7 @@ The entity that queries the DID Document for a given DID, i.e., resolves it, is 
 The KILT SDK provides such a resolver to use with KILT DIDs, as the snippet below shows:
 
 <TsJsBlock>
-  {FullDidQuery}
+  {DidQuery}
 </TsJsBlock>
 
 :::note

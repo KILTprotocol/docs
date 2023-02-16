@@ -10,7 +10,7 @@ import { createSimpleLightDid } from './01_light_did_simple'
 import { deleteFullDid } from './10_full_did_delete'
 import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
-import { queryFullDid } from './06_full_did_query'
+import { queryFullDid } from './06_did_query'
 import { reclaimFullDidDeposit } from './11_full_did_deposit_reclaim'
 import { updateFullDid } from './07_full_did_update'
 
