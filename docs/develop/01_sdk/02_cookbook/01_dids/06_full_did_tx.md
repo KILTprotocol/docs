@@ -8,14 +8,14 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_sign_tx.ts';
 import FullDidBatch from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_batch.ts';
 
-A DID can be used to sign extrinsics.
-But not every extrinsics can be sign using a DID.
+DID keys can be used to sign extrinsic.
+But not every extrinsic can be signed using a DID.
 The Spiritnet blockchain offers two flavours of extrinsics.
 
 The first flavour can only be called using an account.
-These extrinsic require fee payment and need therefore be send from an account with sufficient balance.
+These extrinsic require fee payment and need therefore be sent from an account with sufficient balance.
 
-The second flavour is callable from a DID.
+The second callable flavour is from a DID.
 Since every extrinsic requires fees to be paid, this flavour needs to be wrapped inside a normal account extrinsic.
 The account will pay all fees and deposit that will be required.
 
@@ -25,11 +25,11 @@ The first function signs a single extrinsic while the second one batches multipl
 
 ## Single extrinsics
 
-To build a single extrinsic, you need to provide:
+To sign a single extrinsic, you need to provide:
 
-* the DID that should be the origin of the extrinsic
+* the DID that wants to sign the extrinsic (also called *origin* of the extrinsic)
 * a [`SignCallback`](../06_signCallback.md) that signs the extrinsic
-* the extrinsic that should be submitted
+* the extrinsic that should be signed and submitted
 * and the address of the account that pays for the fees.
 
 <TsJsBlock>
