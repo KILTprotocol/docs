@@ -16,7 +16,6 @@ import { reclaimFullDidDeposit } from './12_full_did_deposit_reclaim'
 import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
-import getExtrinsic from '../utils/getExtrinsic'
 import { signAndSendDidExtrinsic } from './08_full_did_tx'
 
 export async function runAll(
@@ -111,7 +110,6 @@ export async function runAll(
       signature: completeFullDidAtt.sign(data),
       keyType: completeFullDidAtt.type
     }),
-    getExtrinsic()
   )
 
   console.log(
