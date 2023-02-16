@@ -10,7 +10,7 @@ export async function generateMessage(
 
   // Sender uri is checked if it is a valid URI
   Kilt.Did.validateUri(senderUri)
-  // Receiver uri is checked if it is a valid uri
+  // Receiver uri is checked if it is a valid URI
   Kilt.Did.validateUri(receiverUri)
 
   // The content of the 'request-credential' message
