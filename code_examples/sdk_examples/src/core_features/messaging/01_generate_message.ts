@@ -26,6 +26,7 @@ export async function generateMessage(
     content: { cTypes: [requestCredentialContent], challenge: challenge }
   }
 
+  // The message will throw an Error if invalid 
   const message = Kilt.Message.fromBody(messageBody, senderUri, receiverUri)
 
   console.log(`Generated message: ${JSON.stringify(message, null, 4)}`)
