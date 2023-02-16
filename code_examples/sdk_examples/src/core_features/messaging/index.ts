@@ -55,7 +55,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     cTypeHash
   )
 
-  console.log('5 Messaging) Encrypting the message from two users')
+  console.log('5 Messaging) Encrypting the message for sender to receiver')
   const encryptedMessage = await encryptMessage(
     message,
     senderFullDid.uri,
@@ -63,7 +63,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     sender.encryption
   )
 
-  console.log('6 Messaging) Decrypting the message from two users')
+  console.log('6 Messaging) Decrypting the message from sender for the receiver')
   await decryptMessage(encryptedMessage, receiver.encryption)
 
   console.log('Messagin flow completed!')
