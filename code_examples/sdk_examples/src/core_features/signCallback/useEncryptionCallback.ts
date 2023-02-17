@@ -4,10 +4,10 @@ import { u8aToHex } from '@polkadot/util'
 
 export function useEncryptionCallback({
   keyAgreement,
-  didUri
+  keyAgreementUri
 }: {
   keyAgreement: Kilt.KiltEncryptionKeypair
-  didUri: Kilt.DidUri
+  keyAgreementUri: Kilt.DidResourceUri
 }): Kilt.EncryptCallback {
   return async function encryptCallback({
     data,
@@ -21,7 +21,7 @@ export function useEncryptionCallback({
     return {
       nonce,
       data: sealed,
-      keyUri: `${didUri}#${u8aToHex(keyAgreement.publicKey)}`
+      keyUri: keyAgreementUri
     }
   }
 }

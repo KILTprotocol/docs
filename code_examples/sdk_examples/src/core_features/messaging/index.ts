@@ -10,27 +10,27 @@ import { generateRequestCredentialMessage } from './01_generate_request_credenti
 export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   console.log('Running messaging flow...')
   console.log(`1 Messaging) Generating a sender's DID`)
-  const sender = generateKeypairs()
+  const senderKeypairs = generateKeypairs()
   const senderFullDid = await createCompleteFullDid(
     submitterAccount,
     {
-      ...sender
+      ...senderKeypairs
     },
     async ({ data }) => ({
-      signature: sender.authentication.sign(data),
-      keyType: sender.authentication.type
+      signature: senderKeypairs.authentication.sign(data),
+      keyType: senderKeypairs.authentication.type
     })
   )
   console.log(`2 Messaging) Generating a receiver's DID`)
-  const receiver = generateKeypairs()
+  const receiverKeypairs = generateKeypairs()
   const receiverFullDid = await createCompleteFullDid(
     submitterAccount,
     {
-      ...receiver
+      ...receiverKeypairs
     },
     async ({ data }) => ({
-      signature: receiver.authentication.sign(data),
-      keyType: receiver.authentication.type
+      signature: receiverKeypairs.authentication.sign(data),
+      keyType: receiverKeypairs.authentication.type
     })
   )
 
@@ -39,8 +39,8 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     senderFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: sender.attestation.sign(data),
-      keyType: sender.attestation.type
+      signature: senderKeypairs.attestation.sign(data),
+      keyType: senderKeypairs.attestation.type
     })
   )
 
@@ -58,13 +58,13 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     message,
     senderFullDid.uri,
     receiverFullDid.uri,
-    sender.encryption
+    senderKeypairs.encryption
   )
 
   console.log(
     '6 Messaging) Decrypting the message from sender for the receiver'
   )
-  await decryptMessage(encryptedMessage, receiver.encryption)
+  await decryptMessage(encryptedMessage, receiverKeypairs.encryption)
 
   console.log('Messagin flow completed!')
 }
