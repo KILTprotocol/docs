@@ -68,7 +68,9 @@ const MNEMONIC_ENV = 'BASE_MNEMONIC'
     throw new Error('Account seed is missing')
   }
 
-  const baseAccount = await new Keyring({ type: 'sr25519' }).addFromMnemonic(mnemonic)
+  const baseAccount = await new Keyring({ type: 'sr25519' }).addFromMnemonic(
+    mnemonic
+  )
 
   // If any of these flows fail, just send some more tokens to the account that is failing.
   try {
