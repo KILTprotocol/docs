@@ -42,7 +42,7 @@ jobs:
         timeout-minutes: 60
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
+          BASE_MNEMONIC: ${{ secrets.BASE_MNEMONIC }}
         run: |
           yarn install --frozen-lockfile
           yarn test ${{ matrix.test_case }}

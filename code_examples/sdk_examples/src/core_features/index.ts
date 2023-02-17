@@ -17,7 +17,7 @@ const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
   Kilt.Blockchain.IS_IN_BLOCK
 
 export async function testCoreFeatures(
-  faucetAccount: Kilt.KeyringPair,
+  account: Kilt.KeyringPair,
   wssAddress: string
 ): Promise<void> {
   // Connects to (and at the end disconnects from) Spiritnet, so it must be called before we connect to Peregrine for the rest of the tests.
@@ -48,7 +48,7 @@ export async function testCoreFeatures(
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
     api,
-    faucetAccount,
+    account,
     [
       claimingTestAccount.address,
       didTestAccount.address,
@@ -87,11 +87,7 @@ export async function testCoreFeatures(
     })(),
     (async () => {
       try {
-        await runAllLinking(
-          wssAddress,
-          accountLinkingTestAccount,
-          faucetAccount
-        )
+        await runAllLinking(wssAddress, accountLinkingTestAccount, account)
       } catch (e) {
         console.error('Linking flow failed')
         throw e
