@@ -105,7 +105,7 @@ The extension will make an HTTP GET request to the following URI, and your dapp 
 
 How the file is hosted depends on your project setup and is out of scope for this guide.
 
-[concept-attestations]: ../../concepts/04_credentials/04_attestation.md
+[concept-attestations]: ../../concepts/05_credentials/04_attestation.md
 [cookbook-attestations]: ../01_sdk/02_cookbook/04_claiming/03_attestation_creation.md
 [create-full-did]: ../01_sdk/02_cookbook/01_dids/02_full_did_creation.md
 [well-known-spec]: https://identity.foundation/.well-known/resources/did-configuration/
