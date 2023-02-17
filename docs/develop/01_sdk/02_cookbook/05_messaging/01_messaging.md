@@ -11,8 +11,6 @@ import DecryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/co
 
 KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) [messaging protocol](../../../../concepts/06_messaging.md).
 Each of the messages sent is encrypted using the [DID key agreement key](https://www.w3.org/TR/did-core/#key-agreement).
-The key agreement key of a DID can be queried from the KILT blockchain.
-
 A message consists of the sender's DID URI, the receiver's DID URI, the message type and the body.
 There are multiple different message types, each of them with a different structure and containing different information.
 In this example we are going to build a `request-credential` message.
