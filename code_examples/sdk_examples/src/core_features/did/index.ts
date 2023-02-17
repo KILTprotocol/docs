@@ -8,13 +8,14 @@ import { createCompleteLightDid } from './02_light_did_complete'
 import { createSimpleFullDid } from './04_full_did_simple'
 import { createSimpleLightDid } from './01_light_did_simple'
 import { deleteFullDid } from './10_full_did_delete'
+import { exportDid } from './11_did_export'
 import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
 import { queryFullDid } from './06_full_did_query'
-import { reclaimFullDidDeposit } from './11_full_did_deposit_reclaim'
+import { reclaimFullDidDeposit } from './12_full_did_deposit_reclaim'
 import { updateFullDid } from './07_full_did_update'
 
-import generateDidKeypairs from '../utils/generateKeypairs'
+import { generateKeypairs } from '../utils/generateKeypairs'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
@@ -22,7 +23,7 @@ export async function runAll(
   console.log('Running DID flow...')
 
   console.log('1 did) Create simple light DID')
-  const { authentication: simpleLightDidAuth } = generateDidKeypairs()
+  const { authentication: simpleLightDidAuth } = generateKeypairs()
   const simpleLightDid = createSimpleLightDid({
     authentication: simpleLightDidAuth
   })
@@ -30,7 +31,7 @@ export async function runAll(
   const {
     authentication: completeLightDidAuth,
     encryption: completeLightDidEnc
-  } = generateDidKeypairs()
+  } = generateKeypairs()
   createCompleteLightDid({
     authentication: completeLightDidAuth,
     encryption: completeLightDidEnc
@@ -41,7 +42,7 @@ export async function runAll(
     keyType: simpleLightDidAuth.type
   }))
   console.log('4 did) Create simple full DID')
-  const { authentication: simpleFullDidAuth } = generateDidKeypairs()
+  const { authentication: simpleFullDidAuth } = generateKeypairs()
   const createdSimpleFullDid = await createSimpleFullDid(
     submitterAccount,
     {
@@ -58,7 +59,7 @@ export async function runAll(
     encryption: completeFullDidEnc,
     attestation: completeFullDidAtt,
     delegation: completeFullDidDel
-  } = generateDidKeypairs()
+  } = generateKeypairs()
   const createdCompleteFullDid = await createCompleteFullDid(
     submitterAccount,
     {
@@ -75,7 +76,7 @@ export async function runAll(
   console.log('6 did) Query full DID')
   queryFullDid(createdCompleteFullDid.uri)
   console.log('7 did) Update full DID created at step 5')
-  const { authentication: newCompleteFullDidAuth } = generateDidKeypairs()
+  const { authentication: newCompleteFullDidAuth } = generateKeypairs()
   const updatedFullDid = await updateFullDid(
     newCompleteFullDidAuth,
     createdCompleteFullDid.uri,
@@ -117,7 +118,9 @@ export async function runAll(
       keyType: simpleFullDidAuth.type
     })
   )
-  console.log('11 did) Delete full DID created at step 5')
+  console.log('11 did) Export DID created at step 5')
+  await exportDid(createdCompleteFullDid, 'application/ld+json')
+  console.log('12 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }
