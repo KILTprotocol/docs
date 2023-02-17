@@ -1,7 +1,8 @@
-import * as Kilt from '@kiltprotocol/sdk-js'
 import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { randomUUID } from 'crypto'
+
+import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from '../web3names/01_claim'
 import { createSimpleFullDid } from '../did/04_full_did_simple'
