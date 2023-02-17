@@ -5,7 +5,7 @@ export function createNftCollectionCredential(
   assetDid: Kilt.AssetDidUri,
   artistDid: Kilt.DidUri
 ): Kilt.IPublicCredentialInput {
-  const claims: Kilt.IClaimContents = {
+  const claimProperties: Kilt.IClaimContents = {
     name: 'Awesome NFT drop',
     // NFT collection only has 100 pieces in total
     pieces: 100,
@@ -13,11 +13,11 @@ export function createNftCollectionCredential(
     creationDate: new Date(2023, 0, 1).toISOString(),
     artistIdentity: artistDid
   }
-
-  return {
-    claims,
+  const fullClaim: Kilt.IAssetClaim = {
+    contents: claimProperties,
     cTypeHash: Kilt.CType.idToHash(ctype.$id),
-    delegationId: null,
     subject: assetDid
   }
+
+  return Kilt.PublicCredential.fromClaim(fullClaim)
 }
