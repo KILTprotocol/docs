@@ -80,7 +80,7 @@ As of the [KILT runtime 1.9.0][kilt-runtime-1.9.0], CTypes can be queried direct
 After creating a CType, its full content is included only in the blockchain block history, while its hash and creation block number is anchored to the blockchain state.
 
 Querying the full content of a CType then becomes trivial, since the CType hash can be used to look up its creation block number, and then that information can be used to ask any KILT archive node for the extrinsic information about the CType creation.
-The information includes the whole CType, which is not available for the user to, e.g., verify credentials against it.
+The information includes the whole CType, which is now available for the user to, e.g., verify credentials against it.
 
 For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
 
