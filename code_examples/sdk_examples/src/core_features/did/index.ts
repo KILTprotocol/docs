@@ -8,10 +8,11 @@ import { createCompleteLightDid } from './02_light_did_complete'
 import { createSimpleFullDid } from './04_full_did_simple'
 import { createSimpleLightDid } from './01_light_did_simple'
 import { deleteFullDid } from './10_full_did_delete'
+import { exportDid } from './11_did_export'
 import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
 import { queryFullDid } from './06_full_did_query'
-import { reclaimFullDidDeposit } from './11_full_did_deposit_reclaim'
+import { reclaimFullDidDeposit } from './12_full_did_deposit_reclaim'
 import { updateFullDid } from './07_full_did_update'
 
 import { generateKeypairs } from '../utils/generateKeypairs'
@@ -117,7 +118,9 @@ export async function runAll(
       keyType: simpleFullDidAuth.type
     })
   )
-  console.log('11 did) Delete full DID created at step 5')
+  console.log('11 did) Export DID created at step 5')
+  await exportDid(createdCompleteFullDid, 'application/ld+json')
+  console.log('12 did) Delete full DID created at step 5')
   await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }

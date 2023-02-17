@@ -75,10 +75,13 @@ A typical CType ID would look like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c2
 
 ## Storing and Querying CTypes
 
-CTypes can be stored on the blockchain.
-After creating a CType, its full content is included only in the blockchain block history, while its hash is anchored to the blockchain state.
+As of the [KILT runtime 1.9.0][kilt-runtime-1.9.0], CTypes can be queried directly from any KILT archive node!
 
-Querying the full content of a CType is not trivial, since the transaction would have to be found in the blockchain history.
-This functionality can be and is offered by indexing services, such as [Subscan](https://spiritnet.subscan.io/).
+After creating a CType, its full content is included only in the blockchain block history, while its hash and creation block number is anchored to the blockchain state.
+
+Querying the full content of a CType then becomes trivial, since the CType hash can be used to look up its creation block number, and then that information can be used to ask any KILT archive node for the extrinsic information about the CType creation.
+The information includes the whole CType, which is now available for the user to, e.g., verify credentials against it.
 
 For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
+
+[kilt-runtime-1.9.0]: https://github.com/KILTprotocol/kilt-node/releases/tag/1.9.0
