@@ -17,8 +17,5 @@ export async function reclaimFullDidDeposit(
   )
 
   // The submission will fail if `submitterAddress` is not the owner of the deposit associated with the given DID identifier.
-  await Kilt.Blockchain.signAndSubmitTx(
-    depositClaimExtrinsic,
-    submitterAddress
-  )
+  await Kilt.Blockchain.signAndSubmitTx(depositClaimExtrinsic, submitterAddress)
 }
