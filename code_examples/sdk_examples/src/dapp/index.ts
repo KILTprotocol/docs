@@ -10,7 +10,7 @@ import { getFunds } from '../getFunds'
 import { main as signPresentation } from './dapp/signPresentation'
 
 export async function testDapp(
-  faucetAccount: Kilt.KeyringPair,
+  account: Kilt.KeyringPair,
   wssAddress: string
 ) {
   console.log('Running the dapp examples!')
@@ -21,7 +21,7 @@ export async function testDapp(
   // Setup attester account.
   const { account: dappAccount } = await generateAccount()
 
-  await getFunds(api, faucetAccount, dappAccount.address, 4)
+  await getFunds(api, account, dappAccount.address, 4)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =

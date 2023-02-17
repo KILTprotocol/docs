@@ -14,7 +14,7 @@ import { getFunds } from '../getFunds'
 import { verificationFlow } from './verify'
 
 export async function testWorkshop(
-  faucetAccount: Kilt.KeyringPair,
+  account: Kilt.KeyringPair,
   wssAddress: string
 ) {
   console.log('Running the workshop!')
@@ -35,7 +35,7 @@ export async function testWorkshop(
     name: 'Karl'
   })
 
-  await getFunds(api, faucetAccount, attesterAccount.address, 5)
+  await getFunds(api, account, attesterAccount.address, 5)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
