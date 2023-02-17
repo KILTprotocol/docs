@@ -1,5 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { useDecryptionSignCallback } from '../signCallback/useDecryptionCallback'
+import { useDecryptionCallback } from '../signCallback/useDecryptionCallback'
 
 export async function decryptMessage(
   encryptedMessage: Kilt.IEncryptedMessage,
@@ -8,7 +8,7 @@ export async function decryptMessage(
   // Decrypting the message to retrieve the content
   const decryptedMessage = await Kilt.Message.decrypt(
     encryptedMessage,
-    useDecryptionSignCallback(keyAgreement)
+    useDecryptionCallback(keyAgreement)
   )
 
   // Verifying this is a message

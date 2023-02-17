@@ -1,6 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { naclSeal } from '@polkadot/util-crypto'
-import { u8aToHex } from '@polkadot/util'
 
 export function useEncryptionCallback({
   keyAgreement,
