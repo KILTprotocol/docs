@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function createDriversLicenseCType(
+export async function createNftCollectionCType(
   creator: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignExtrinsicCallback
@@ -8,17 +8,23 @@ export async function createDriversLicenseCType(
   const api = Kilt.ConfigService.get('api')
 
   // Create a new CType definition.
-  const ctype = Kilt.CType.fromProperties(`Drivers License by ${creator}`, {
-    name: {
-      type: 'string'
-    },
-    age: {
-      type: 'integer'
-    },
-    id: {
-      type: 'string'
+  const ctype = Kilt.CType.fromProperties(
+    `NFT Collection Certification CType by ${creator}`,
+    {
+      name: {
+        type: 'string'
+      },
+      pieces: {
+        type: 'integer'
+      },
+      creationDate: {
+        type: 'string'
+      },
+      artistIdentity: {
+        type: 'string'
+      }
     }
-  })
+  )
 
   // Generate a creation tx.
   const encodedCtype = Kilt.CType.toChain(ctype)

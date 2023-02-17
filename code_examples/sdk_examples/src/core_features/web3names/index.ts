@@ -10,7 +10,7 @@ import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
 import { verifyNameAndDidEquality } from './02_query_did_name'
 
-import generateKeypairs from '../utils/generateKeypairs'
+import { generateKeypairs } from '../utils/generateKeypairs'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair

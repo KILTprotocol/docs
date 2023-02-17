@@ -94,6 +94,15 @@ async function main() {
     { resolveKey }
   )
 
+  const assetDid: Kilt.AssetDidUri =
+    'did:asset:eip155:1.erc721:0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb:1005'
+  const publicCredential: Kilt.IPublicCredentialInput = {
+    claims: claimContents,
+    cTypeHash: Kilt.CType.idToHash(drivingLicenseCtype.$id),
+    delegationId: null,
+    subject: assetDid
+  }
+
   const outDir = normalize(`${__dirname}/../out`)
 
   console.log(`Creating output directory at ${outDir}...`)
@@ -108,6 +117,10 @@ async function main() {
     writeFile(
       `${outDir}/encrypted-message.json`,
       JSON.stringify(encrypted, null, 2)
+    ),
+    writeFile(
+      `${outDir}/public-credential.json`,
+      JSON.stringify(publicCredential, null, 2)
     )
   ])
 

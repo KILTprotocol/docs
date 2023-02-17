@@ -9,6 +9,7 @@ import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
+import { runAll as runAllPublicCredentials } from './public_credentials'
 import { runAll as runAllSignCallback } from './signCallback'
 import { runAll as runAllWeb3 } from './web3names'
 
@@ -38,8 +39,9 @@ export async function testCoreFeatures(
     claimingTestAccount,
     didTestAccount,
     web3TestAccount,
-    accountLinkingTestAccount
-  ] = Array(4)
+    accountLinkingTestAccount,
+    publicCredentialsTestAccount
+  ] = Array(5)
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
@@ -51,7 +53,8 @@ export async function testCoreFeatures(
       claimingTestAccount.address,
       didTestAccount.address,
       web3TestAccount.address,
-      accountLinkingTestAccount.address
+      accountLinkingTestAccount.address,
+      publicCredentialsTestAccount.address
     ],
     new BN(10)
   )
@@ -99,6 +102,14 @@ export async function testCoreFeatures(
         await runAllSignCallback(api)
       } catch (e) {
         console.error('SignCallback flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllPublicCredentials(publicCredentialsTestAccount)
+      } catch (e) {
+        console.error('Public credentials flow failed')
         throw e
       }
     })()

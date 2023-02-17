@@ -1,15 +1,17 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function reclaimAttestationDeposit(
+export async function reclaimDeposit(
   submitterAddress: Kilt.KiltKeyringPair,
-  credential: Kilt.ICredential
+  credential: Kilt.IPublicCredential
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
   // Generate the tx to claim the deposit back.
-  const depositReclaimTx = api.tx.attestation.reclaimDeposit(
-    credential.rootHash
+  const credentialId = Kilt.PublicCredential.getIdForCredential(
+    credential,
+    credential.attester
   )
+  const depositReclaimTx = api.tx.publicCredentials.reclaimDeposit(credentialId)
 
   // Submit the revocation tx to the KILT blockchain.
   await Kilt.Blockchain.signAndSubmitTx(depositReclaimTx, submitterAddress)
