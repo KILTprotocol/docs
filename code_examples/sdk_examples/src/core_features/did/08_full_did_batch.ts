@@ -22,6 +22,6 @@ export async function batchCTypeCreationExtrinsics(
     submitter: submitterAccount.address
   })
 
-  // The authorized account submits the batch to the chain.
+  // wrap the DID extrinsic in an account extrinsic
   await Kilt.Blockchain.signAndSubmitTx(authorizedBatch, submitterAccount)
 }

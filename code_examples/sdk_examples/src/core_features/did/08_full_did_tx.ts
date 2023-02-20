@@ -18,5 +18,6 @@ export async function signAndSendDidExtrinsic(
     submitterAccount.address
   )
 
+  // wrap the DID extrinsic in an account extrinsic
   await Kilt.Blockchain.signAndSubmitTx(didSignedExtrinsic, submitterAccount)
 }
