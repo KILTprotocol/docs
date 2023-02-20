@@ -11,16 +11,16 @@ export async function encryptMessage(
 
   const { document: receiverDocument } = await Kilt.Did.resolve(receiverUri)
 
-  const receiverKeyAgreement =
-    `${receiverUri}${receiverDocument.keyAgreement?.[0].id}` as Kilt.DidResourceUri
+  const receiverKeyAgreementUri = `${receiverUri}${receiverDocument.keyAgreement?.[0].id}`
+  const senderKeyAgreeementUri = `${senderUri}${senderDocument.keyAgreement?.[0].id}`
   // encrypt the message
   const encryptedMessage = await Kilt.Message.encrypt(
     message,
     useEncryptionCallback({
       keyAgreement,
-      keyAgreementUri: `${senderUri}${senderDocument.keyAgreement?.[0].id}`
+      keyAgreementUri: senderKeyAgreeementUri as Kilt.DidResourceUri
     }),
-    receiverKeyAgreement
+    receiverKeyAgreementUri as Kilt.DidResourceUri
   )
   console.log(`Encrypted Message: ${JSON.stringify(encryptedMessage, null, 4)}`)
 

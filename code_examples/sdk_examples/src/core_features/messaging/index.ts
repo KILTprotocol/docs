@@ -3,7 +3,7 @@ import { createCompleteFullDid } from '../did/05_full_did_complete'
 import { createDriversLicenseCType } from '../claiming/01_create_ctype'
 import { decryptMessage } from './03_decrypt_message'
 import { encryptMessage } from './02_encrypt_message'
-import generateKeypairs from '../utils/generateKeypairs'
+import { generateKeypairs } from '../utils/generateKeypairs'
 import { generateRequestCredentialMessage } from './01_generate_request_credential_message'
 
 // Runs through the messaging encryption and decryption of messages
@@ -21,6 +21,7 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
       keyType: senderKeypairs.authentication.type
     })
   )
+
   console.log(`2 Messaging) Generating a receiver's DID`)
   const receiverKeypairs = generateKeypairs()
   const receiverFullDid = await createCompleteFullDid(
