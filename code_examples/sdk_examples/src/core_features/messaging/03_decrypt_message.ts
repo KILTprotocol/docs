@@ -11,7 +11,7 @@ export async function decryptMessage(
     useDecryptionCallback(keyAgreement)
   )
 
-  // Verifying this is a message
+  // Verifying this is a properly-formatted message
   Kilt.Message.verify(decryptedMessage)
 
   console.log(`Decrypted Message: ${JSON.stringify(decryptedMessage, null, 4)}`)

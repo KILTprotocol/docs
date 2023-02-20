@@ -67,5 +67,5 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
   )
   await decryptMessage(encryptedMessage, receiverKeypairs.encryption)
 
-  console.log('Messagin flow completed!')
+  console.log('Messaging flow completed!')
 }

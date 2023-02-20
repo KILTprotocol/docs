@@ -31,7 +31,7 @@ The DID holds keys for the encryption and decryption.
 The key is called `KeyAgreement` keys.
 They may also be known as encryption keys.
 
-The content of the object is converted from a serialized string to a byte array, which is passed into the callback function along with the senders DID and key agreement public key of the receiver.
+The content of the object is converted from a serialized string to a byte array, which is passed into the callback function along with the sender's DID and key agreement public key of the receiver.
 
 The following example here will take a generated message and encrypt the message for the receiver to decrypt later.
 
@@ -39,15 +39,15 @@ The following example here will take a generated message and encrypt the message
   {EncryptMessage}
 </TsJsBlock>
 
-The encrypted data is converted into a Hex string which is known as the ciphertext along with the nonce that was generated during encryption.
+The encrypted data is converted into a hex string which is known as the ciphertext along with the nonce that was generated during encryption.
 
 ## Decryption
 
-The decryption takes the encrypted message and decypher the content.
+The decryption takes the encrypted message and decyphers its content.
 The following example here will take a encrypted message and decrypt using the private key of the receiver.
 Once decrypted, it checks the content is a valid message.
 The decrypted data can be used for additional steps.
-After decrypting, the receiver may wish to present a credential from the trusted attester list with a given ctype.
+After decrypting, the receiver may wish to present a credential from the trusted attester list with a given CType.
 If they do not have the given credential, they may need to get a credential
 
 <TsJsBlock>
