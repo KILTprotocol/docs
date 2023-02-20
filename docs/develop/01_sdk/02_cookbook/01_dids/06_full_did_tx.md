@@ -10,14 +10,14 @@ import FullDidBatch from '!!raw-loader!@site/code_examples/sdk_examples/src/core
 
 DID keys can be used to sign extrinsic.
 But not every extrinsic can be signed using a DID.
-The Spiritnet blockchain offers two flavours of extrinsics.
+The Spiritnet blockchain offers two types of extrinsics.
 
-The first flavour can only be called using an account.
-These extrinsic require fee payment and need therefore be sent from an account with sufficient balance.
-
-The second callable flavour is from a DID.
-Since every extrinsic requires fees to be paid, this flavour needs to be wrapped inside a normal account extrinsic.
-The account will pay all fees and deposit that will be required.
+The first type can only be called using an account.
+We call them account extrinsic.
+The second callable type are DID extrinsics.
+They must be used for all KILT features like creating CTypes, issue attestations, etc.
+Since every extrinsic requires fees to be paid, this type needs to be wrapped inside an account extrinsic.
+Accounts hold balances and can therefore pay fees and provide deposits.
 
 This document describes how to sign the DID extrinsics.
 The KILT SDK provides two functions for signing DID extrinsics.
