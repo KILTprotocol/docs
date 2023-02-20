@@ -29,7 +29,7 @@ To sign a single extrinsic, you need to provide:
 
 * the DID that wants to sign the extrinsic (also called *origin* of the extrinsic)
   * refer to the [full did creation guide](02_full_did_creation.md) to learn how to create a DID
-* [a `SignCallback` that signs the extrinsic](../06_signCallback.md)
+* [a `SignCallback` that signs the extrinsic](../07_signCallback.md)
 * the extrinsic that should be signed and submitted
 * and the address of the account that pays for the fees.
 
