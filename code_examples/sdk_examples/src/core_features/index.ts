@@ -9,6 +9,7 @@ import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
+import { runAll as runAllPublicCredentials } from './public_credentials'
 import { runAll as runAllSignCallback } from './signCallback'
 import { runAll as runAllWeb3 } from './web3names'
 
@@ -16,7 +17,7 @@ const resolveOn: Kilt.SubscriptionPromise.ResultEvaluator =
   Kilt.Blockchain.IS_IN_BLOCK
 
 export async function testCoreFeatures(
-  faucetAccount: Kilt.KeyringPair,
+  account: Kilt.KeyringPair,
   wssAddress: string
 ): Promise<void> {
   // Connects to (and at the end disconnects from) Spiritnet, so it must be called before we connect to Peregrine for the rest of the tests.
@@ -38,20 +39,22 @@ export async function testCoreFeatures(
     claimingTestAccount,
     didTestAccount,
     web3TestAccount,
-    accountLinkingTestAccount
-  ] = Array(4)
+    accountLinkingTestAccount,
+    publicCredentialsTestAccount
+  ] = Array(5)
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
     api,
-    faucetAccount,
+    account,
     [
       claimingTestAccount.address,
       didTestAccount.address,
       web3TestAccount.address,
-      accountLinkingTestAccount.address
+      accountLinkingTestAccount.address,
+      publicCredentialsTestAccount.address
     ],
     new BN(10)
   )
@@ -84,11 +87,7 @@ export async function testCoreFeatures(
     })(),
     (async () => {
       try {
-        await runAllLinking(
-          wssAddress,
-          accountLinkingTestAccount,
-          faucetAccount
-        )
+        await runAllLinking(wssAddress, accountLinkingTestAccount, account)
       } catch (e) {
         console.error('Linking flow failed')
         throw e
@@ -99,6 +98,14 @@ export async function testCoreFeatures(
         await runAllSignCallback(api)
       } catch (e) {
         console.error('SignCallback flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllPublicCredentials(publicCredentialsTestAccount)
+      } catch (e) {
+        console.error('Public credentials flow failed')
         throw e
       }
     })()

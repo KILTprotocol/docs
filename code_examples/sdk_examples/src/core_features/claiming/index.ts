@@ -3,26 +3,27 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { createCompleteFullDid } from '../did/05_full_did_complete'
 import { createSimpleLightDid } from '../did/01_light_did_simple'
 
-import { createAttestation } from './03_create_attestation'
+import { createAttestation } from './04_create_attestation'
 import { createDriversLicenseCType } from './01_create_ctype'
-import { createPresentation } from './04_create_presentation'
-import { reclaimAttestationDeposit } from './07_reclaim_attestation_deposit'
-import { requestAttestation } from './02_request_attestation'
-import { revokeCredential } from './06_revoke_credential'
-import { verifyPresentation } from './05_verify_presentation'
+import { createPresentation } from './05_create_presentation'
+import { fetchCType } from './02_fetch_ctype'
+import { reclaimAttestationDeposit } from './08_reclaim_attestation_deposit'
+import { requestAttestation } from './03_request_attestation'
+import { revokeCredential } from './07_revoke_credential'
+import { verifyPresentation } from './06_verify_presentation'
 
-import generateDidKeypairs from '../utils/generateKeypairs'
+import { generateKeypairs } from '../utils/generateKeypairs'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  const claimerAuthKey = generateDidKeypairs().authentication
+  const claimerAuthKey = generateKeypairs().authentication
   const claimerLightDid = createSimpleLightDid({
     authentication: claimerAuthKey
   })
 
-  const attersterKeys = generateDidKeypairs()
+  const attersterKeys = generateKeypairs()
   const attesterFullDid = await createCompleteFullDid(
     submitterAccount,
     attersterKeys,
@@ -41,9 +42,17 @@ export async function runAll(
       keyType: attersterKeys.attestation.type
     })
   )
-  console.log('2 claiming) Create credential')
+  console.log('2 claiming) Fetch CType')
+  const ctypeDetails = await fetchCType(ctype.$id)
+  if (!ctypeDetails) {
+    throw new Error(
+      'Could not retrieve CType details of a CType that was just created.'
+    )
+  }
+  console.log('Retrieved CType details: ', ctypeDetails)
+  console.log('3 claiming) Create credential')
   const credential = requestAttestation(claimerLightDid, ctype)
-  console.log('3 claiming) Create attestation and credential')
+  console.log('4 claiming) Create attestation and credential')
   await createAttestation(
     attesterFullDid.uri,
     submitterAccount,
@@ -53,7 +62,7 @@ export async function runAll(
     }),
     credential
   )
-  console.log('4 claiming) Create selective disclosure presentation')
+  console.log('5 claiming) Create selective disclosure presentation')
   const presentation = await createPresentation(
     credential,
     async ({ data }) => ({
@@ -63,11 +72,11 @@ export async function runAll(
     }),
     ['name', 'id']
   )
-  console.log('5 claiming) Verify selective disclosure presentation')
+  console.log('6 claiming) Verify selective disclosure presentation')
   await verifyPresentation(presentation, {
     trustedAttesterUris: [attesterFullDid.uri]
   })
-  console.log('6 claiming) Revoke credential')
+  console.log('7.1 claiming) Revoke credential')
   await revokeCredential(
     attesterFullDid.uri,
     submitterAccount,
@@ -78,7 +87,9 @@ export async function runAll(
     credential,
     false
   )
-  console.log('7 claiming) Presentation should fail to verify after revocation')
+  console.log(
+    '7.2 claiming) Presentation should fail to verify after revocation'
+  )
   try {
     await verifyPresentation(presentation, {
       trustedAttesterUris: [attesterFullDid.uri]

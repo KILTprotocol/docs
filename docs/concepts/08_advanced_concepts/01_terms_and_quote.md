@@ -19,7 +19,7 @@ The `Terms` object consists of following items:
 - **CTypes**: An optional list of full CTypes, in case the Claimer does not know the correct CType for the credential, yet.
 - **Legitimations**: A legitimation is a credential, issued to the Attester, showing that the Attester has the authority or legitimacy to attest the claim requested.
   - This is a way of establishing trust between the participants.
-- **Delegation Id**: An Attester may be part of a top-down trust authority that has given them the right to attest in the name of an institution, or similar, as explained in the [Distributed Trust section](../05_distributed_trust.md). If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.
+- **Delegation Id**: An Attester may be part of a top-down trust authority that has given them the right to attest in the name of an institution, or similar, as explained in the [Distributed Trust section](../06_distributed_trust.md). If the Attester has attestation rights, delegated from another entity, this should be stated clearly at this point.
 - **Quote**: As shown in the [section below](#defining-a-quote).
 
 Only the CType hash in the partial claim is required, everything else is optional.
