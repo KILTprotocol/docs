@@ -13,10 +13,10 @@ import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
 import { queryFullDid } from './06_did_query'
 import { reclaimFullDidDeposit } from './12_full_did_deposit_reclaim'
+import { signAndSendDidExtrinsic } from './08_full_did_tx'
 import { updateFullDid } from './07_full_did_update'
 
 import generateDidKeypairs from '../utils/generateKeypairs'
-import { signAndSendDidExtrinsic } from './08_full_did_tx'
 
 export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
