@@ -5,9 +5,9 @@ import getExtrinsic from '../utils/getExtrinsic'
 export async function signAndSendDidExtrinsic(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
-  signCallback: Kilt.SignExtrinsicCallback,
+  signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
-  const extrinsic = getExtrinsic();
+  const extrinsic = getExtrinsic()
 
   // This results in a DID-signed tx that can be signed and submitted to
   // the KILT blockchain by the account authorized in this operation (the `submitterAccount`).

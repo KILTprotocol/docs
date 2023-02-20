@@ -109,7 +109,7 @@ export async function runAll(
     async ({ data }) => ({
       signature: completeFullDidAtt.sign(data),
       keyType: completeFullDidAtt.type
-    }),
+    })
   )
 
   console.log(
