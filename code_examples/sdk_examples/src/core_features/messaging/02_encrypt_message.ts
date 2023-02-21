@@ -24,7 +24,7 @@ export async function encryptMessage(
     }),
     receiverKeyAgreementUri
   )
-  
+
   console.log(`Encrypted Message: ${JSON.stringify(encryptedMessage, null, 4)}`)
 
   return encryptedMessage
