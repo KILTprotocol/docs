@@ -2,7 +2,6 @@ import { stringToU8a } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { batchCTypeCreationExtrinsics } from './08_full_did_batch'
 import { createCompleteFullDid } from './05_full_did_complete'
 import { createCompleteLightDid } from './02_light_did_complete'
 import { createSimpleFullDid } from './04_full_did_simple'
@@ -13,7 +12,8 @@ import { generateAndVerifyDidAuthenticationSignature } from './09_did_signature'
 import { migrateLightDid } from './03_light_did_migrate'
 import { queryFullDid } from './06_did_query'
 import { reclaimFullDidDeposit } from './12_full_did_deposit_reclaim'
-import { signAndSendDidExtrinsic } from './08_full_did_tx'
+import { signAndSubmitDidExtrinsic } from './08_full_did_tx'
+import { signAndSubmitDidExtrinsicBatch } from './08_full_did_batch'
 import { updateFullDid } from './07_full_did_update'
 
 import { generateKeypairs } from '../utils/generateKeypairs'
@@ -91,7 +91,7 @@ export async function runAll(
   console.log(
     '8.1 did) Use the same full DID created at step 5 to sign the batch'
   )
-  await batchCTypeCreationExtrinsics(
+  await signAndSubmitDidExtrinsicBatch(
     submitterAccount,
     updatedFullDid.uri,
     async ({ data }) => ({
@@ -103,7 +103,7 @@ export async function runAll(
   console.log(
     '8.2 did) Use the same full DID created at step 5 to sign the single tx'
   )
-  await signAndSendDidExtrinsic(
+  await signAndSubmitDidExtrinsic(
     submitterAccount,
     updatedFullDid.uri,
     async ({ data }) => ({

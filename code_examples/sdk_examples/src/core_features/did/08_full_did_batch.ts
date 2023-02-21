@@ -2,7 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 // Just a helper to get an extrinsic
 import getExtrinsic from '../utils/getExtrinsic'
 
-export async function batchCTypeCreationExtrinsics(
+export async function signAndSubmitDidExtrinsicBatch(
   submitterAccount: Kilt.KiltKeyringPair,
   fullDid: Kilt.DidUri,
   signCallback: Kilt.SignExtrinsicCallback
