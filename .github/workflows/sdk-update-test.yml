@@ -34,7 +34,7 @@ jobs:
         working-directory: code_examples/sdk_examples/
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
+          BASE_MNEMONIC: ${{ secrets.BASE_MNEMONIC }}
         run: |
           yarn test
 
