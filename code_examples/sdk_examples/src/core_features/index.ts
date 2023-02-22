@@ -9,6 +9,7 @@ import { runAll as runAllClaiming } from './claiming'
 import { runAll as runAllDid } from './did'
 import { runAll as runAllGettingStarted } from './getting_started'
 import { runAll as runAllLinking } from './linking'
+import { runAll as runAllMessaging } from './messaging'
 import { runAll as runAllPublicCredentials } from './public_credentials'
 import { runAll as runAllSignCallback } from './signCallback'
 import { runAll as runAllWeb3 } from './web3names'
@@ -40,8 +41,9 @@ export async function testCoreFeatures(
     didTestAccount,
     web3TestAccount,
     accountLinkingTestAccount,
-    publicCredentialsTestAccount
-  ] = Array(5)
+    publicCredentialsTestAccount,
+    messagingAccount
+  ] = Array(6)
     .fill(0)
     .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
 
@@ -54,7 +56,8 @@ export async function testCoreFeatures(
       didTestAccount.address,
       web3TestAccount.address,
       accountLinkingTestAccount.address,
-      publicCredentialsTestAccount.address
+      publicCredentialsTestAccount.address,
+      messagingAccount.address
     ],
     new BN(10)
   )
@@ -106,6 +109,14 @@ export async function testCoreFeatures(
         await runAllPublicCredentials(publicCredentialsTestAccount)
       } catch (e) {
         console.error('Public credentials flow failed')
+        throw e
+      }
+    })(),
+    (async () => {
+      try {
+        await runAllMessaging(messagingAccount)
+      } catch (e) {
+        console.error('Messaging flow failed')
         throw e
       }
     })()
