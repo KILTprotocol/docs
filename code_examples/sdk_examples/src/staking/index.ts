@@ -9,7 +9,7 @@ import { getUnclaimedStakingRewards } from './rewards/01_query_staking_rewards'
 // We don't expect these tests to pass yet.
 // We would need a collator seed and a delegator seed to test if we can claim rewards.
 export async function testStaking(
-  faucetAccount: Kilt.KeyringPair,
+  account: Kilt.KeyringPair,
   wssAddress: string
 ) {
   const api = await connect(wssAddress)

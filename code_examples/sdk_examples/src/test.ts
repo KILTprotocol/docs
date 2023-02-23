@@ -1,13 +1,15 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+
+import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
-import { hexToU8a } from '@polkadot/util'
 import { program } from 'commander'
+
 import { testCoreFeatures } from './core_features'
 import { testDapp } from './dapp'
 import { testStaking } from './staking'
 import { testWorkshop } from './workshop'
 
-const SEED_ENV = 'FAUCET_SEED'
+const MNEMONIC_ENV = 'BASE_MNEMONIC'
 
 ;(async () => {
   const whichToRun = {
@@ -56,31 +58,33 @@ const SEED_ENV = 'FAUCET_SEED'
 
   const wssAddress =
     process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io/parachain-public-ws'
-  const faucetSeed = process.env[SEED_ENV]
+  const mnemonic = process.env[MNEMONIC_ENV]
 
-  if (!faucetSeed) {
+  if (!mnemonic) {
     console.log(
-      `Account seed with sufficient balance is required. Set the secret seed using the ${SEED_ENV} environment variable.`
+      `The base mnemonic to generate the test accounts has not been specified.
+        Set the secret seed using the ${MNEMONIC_ENV} environment variable.`
     )
     throw new Error('Account seed is missing')
   }
-  const faucetAccount = Kilt.Utils.Crypto.makeKeypairFromSeed(
-    hexToU8a(faucetSeed),
-    'sr25519'
+
+  const baseAccount = await new Keyring({ type: 'sr25519' }).addFromMnemonic(
+    mnemonic
   )
 
+  // If any of these flows fail, just send some more tokens to the account that is failing.
   try {
     if (whichToRun.workshop) {
-      await testWorkshop(faucetAccount, wssAddress)
+      await testWorkshop(baseAccount.derive('//workshop'), wssAddress)
     }
     if (whichToRun.dapp) {
-      await testDapp(faucetAccount, wssAddress)
+      await testDapp(baseAccount.derive('//dapp'), wssAddress)
     }
     if (whichToRun.core) {
-      await testCoreFeatures(faucetAccount, wssAddress)
+      await testCoreFeatures(baseAccount.derive('//core'), wssAddress)
     }
     if (whichToRun.staking) {
-      await testStaking(faucetAccount, wssAddress)
+      await testStaking(baseAccount.derive('//staking'), wssAddress)
     }
     process.exit(0)
   } catch (e) {

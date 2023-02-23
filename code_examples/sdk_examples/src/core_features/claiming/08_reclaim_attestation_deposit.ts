@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimAttestationDeposit(
-  depositPayer: Kilt.KiltKeyringPair,
+  submitterAddress: Kilt.KiltKeyringPair,
   credential: Kilt.ICredential
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
@@ -12,5 +12,5 @@ export async function reclaimAttestationDeposit(
   )
 
   // Submit the revocation tx to the KILT blockchain.
-  await Kilt.Blockchain.signAndSubmitTx(depositReclaimTx, depositPayer)
+  await Kilt.Blockchain.signAndSubmitTx(depositReclaimTx, submitterAddress)
 }

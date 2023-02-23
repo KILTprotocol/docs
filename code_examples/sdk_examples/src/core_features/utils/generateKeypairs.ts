@@ -31,4 +31,5 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()): {
   }
 }
 
+// Required for the raw-loader to successfully import this code snippet as text.
 export default generateKeypairs
