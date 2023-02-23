@@ -21,7 +21,7 @@ export async function linkAccountToDid(
 
   // Afterwards we build the extrinsic using the parameters from above.
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
-    ...accountLinkingParameters
+    ...(accountLinkingParameters as any as [any, any])
   )
 
   // Next the DID signs the extrinsic.

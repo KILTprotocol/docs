@@ -24,7 +24,7 @@ export async function linkAccountToDid(
     linkingAccountSignatureGeneration
   )
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
-    ...accountLinkingParameters
+    ...(accountLinkingParameters as any as [any, any])
   )
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeTx(
     did,
