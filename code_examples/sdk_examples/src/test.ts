@@ -2,6 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
+import { hexToU8a } from '@polkadot/util'
 import { program } from 'commander'
 
 import { testCoreFeatures } from './core_features'
@@ -10,6 +11,7 @@ import { testStaking } from './staking'
 import { testWorkshop } from './workshop'
 
 const MNEMONIC_ENV = 'BASE_MNEMONIC'
+const FAUCET_SEED_ENV = 'FAUCET_SEED'
 
 ;(async () => {
   const whichToRun = {
@@ -59,32 +61,59 @@ const MNEMONIC_ENV = 'BASE_MNEMONIC'
   const wssAddress =
     process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io/parachain-public-ws'
   const mnemonic = process.env[MNEMONIC_ENV]
+  const faucetSeed = process.env[FAUCET_SEED_ENV]
 
-  if (!mnemonic) {
+  let baseAccountStrategy: 'base-mnemonic' | 'faucet-seed' = 'base-mnemonic'
+
+  // Faucet seed only a fallback if mnemonic is not specified. Otherwise mnemonic always wins.
+  if (!mnemonic && faucetSeed) {
+    baseAccountStrategy = 'faucet-seed'
+  } else if (!mnemonic && !faucetSeed) {
     console.log(
-      `The base mnemonic to generate the test accounts has not been specified.
-        Set the secret seed using the ${MNEMONIC_ENV} environment variable.`
+      `Neither base mnemonic "${MNEMONIC_ENV}" nor faucet seed "${FAUCET_SEED_ENV}" have been specified.
+        Please specify at least one of them.`
     )
-    throw new Error('Account seed is missing')
+    throw new Error('Account mnemonic or faucet seed is missing.')
   }
 
-  const baseAccount = await new Keyring({ type: 'sr25519' }).addFromMnemonic(
-    mnemonic
-  )
+  let [workshopAccount, dappAccount, coreAccount, stakingAccount] = new Array(4)
+
+  switch (baseAccountStrategy) {
+    case 'base-mnemonic': {
+      const baseAccount = await new Keyring({
+        type: 'sr25519'
+      }).addFromMnemonic(mnemonic as string)
+      workshopAccount = baseAccount.derive('//workshop')
+      dappAccount = baseAccount.derive('//dapp')
+      coreAccount = baseAccount.derive('//core')
+      stakingAccount = baseAccount.derive('//staking')
+      break
+    }
+    case 'faucet-seed': {
+      const faucetAccount = Kilt.Utils.Crypto.makeKeypairFromSeed(
+        hexToU8a(faucetSeed),
+        'sr25519'
+      ) as Kilt.KeyringPair
+      workshopAccount = faucetAccount
+      dappAccount = faucetAccount
+      coreAccount = faucetAccount
+      stakingAccount = faucetAccount
+    }
+  }
 
   // If any of these flows fail, just send some more tokens to the account that is failing.
   try {
     if (whichToRun.workshop) {
-      await testWorkshop(baseAccount.derive('//workshop'), wssAddress)
+      await testWorkshop(workshopAccount, wssAddress)
     }
     if (whichToRun.dapp) {
-      await testDapp(baseAccount.derive('//dapp'), wssAddress)
+      await testDapp(dappAccount, wssAddress)
     }
     if (whichToRun.core) {
-      await testCoreFeatures(baseAccount.derive('//core'), wssAddress)
+      await testCoreFeatures(coreAccount, wssAddress)
     }
     if (whichToRun.staking) {
-      await testStaking(baseAccount.derive('//staking'), wssAddress)
+      await testStaking(stakingAccount, wssAddress)
     }
     process.exit(0)
   } catch (e) {
