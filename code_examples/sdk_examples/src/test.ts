@@ -81,7 +81,8 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
   switch (baseAccountStrategy) {
     case 'base-mnemonic': {
       const baseAccount = await new Keyring({
-        type: 'sr25519'
+        type: 'sr25519',
+        ss58Format: Kilt.Utils.ss58Format
       }).addFromMnemonic(mnemonic as string)
       workshopAccount = baseAccount.derive('//workshop')
       dappAccount = baseAccount.derive('//dapp')
