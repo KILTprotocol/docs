@@ -2,8 +2,8 @@ import { Keyring } from '@polkadot/api'
 import type { KeyringPair } from '@polkadot/keyring/types'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
-import Web3 from 'web3';
-const web3 = new Web3();
+import Web3 from 'web3'
+const web3 = new Web3()
 
 import { randomUUID } from 'crypto'
 
@@ -29,7 +29,7 @@ export async function runAll(
   keyring: Keyring,
   endpoint: string,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkAccount: Kilt.KiltKeyringPair & { type: 'ed25519' | 'sr25519' | 'ecdsa' },
+  linkAccount: Kilt.KiltKeyringPair & { type: 'ed25519' | 'sr25519' | 'ecdsa' }
 ): Promise<void> {
   console.log('Running linking flow...')
   const { authentication } = generateKeypairs()
@@ -68,7 +68,11 @@ export async function runAll(
   // Link eth address using polkadot-js
   {
     console.log('1.2.1 linking) Link eth account to DID (polkadot-js)')
-    const linkEthAccount = keyring.addFromSeed(randomAsU8a(32), undefined, "ethereum") as KeyringPair & { type: "ethereum" };
+    const linkEthAccount = keyring.addFromSeed(
+      randomAsU8a(32),
+      undefined,
+      'ethereum'
+    ) as KeyringPair & { type: 'ethereum' }
     await linkEthAccountToDid(
       fullDid.uri,
       submitterAccount,
@@ -83,8 +87,10 @@ export async function runAll(
   // link eth address using web3js
   {
     console.log('1.2.2 linking) Link eth account to DID (web3js)')
-    const ethSecretKey = randomAsU8a(32);
-    const linkEthAddress = web3.eth.accounts.privateKeyToAccount(Kilt.Utils.Crypto.u8aToHex(ethSecretKey)).address;
+    const ethSecretKey = randomAsU8a(32)
+    const linkEthAddress = web3.eth.accounts.privateKeyToAccount(
+      Kilt.Utils.Crypto.u8aToHex(ethSecretKey)
+    ).address
 
     await linkEthAccountToDidWeb3js(
       fullDid.uri,

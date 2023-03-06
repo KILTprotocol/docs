@@ -1,7 +1,7 @@
-import Web3 from 'web3';
-const web3 = new Web3();
+import Web3 from 'web3'
+const web3 = new Web3()
 
-import { hexToString, hexToU8a } from "@polkadot/util";
+import { hexToU8a, u8aToString } from '@polkadot/util'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -14,31 +14,30 @@ export async function linkAccountToDid(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // The account to be linked has to sign a specifically-crafted payload to prove
-  // willingness to be linked to the DID.
-  const linkingAccountSignatureGeneration = async (
-    signaturePayload: string | Uint8Array
-  ) => {
-    let signResult;
-    if (typeof signaturePayload === "string") {
-      console.log("string", signaturePayload)
-      signResult = await web3.eth.accounts.sign(hexToString(signaturePayload), linkedAccountPrivateKey)
-    } else {
-      console.log("u8a", Kilt.Utils.Crypto.u8aToHex(signaturePayload))
-      signResult = await web3.eth.accounts.sign(Kilt.Utils.Crypto.u8aToHex(signaturePayload), linkedAccountPrivateKey)
-    }
-    console.log("signature", signResult)
-    return hexToU8a(signResult.signature)
-  }
+  const blockNo = await api.query.system.number()
+  // the challenge will be valid for 300 blocks (~1h)
+  const validTill = blockNo.addn(300)
 
-  console.log("linkedAccountAddress", linkedAccountAddress)
-  // Authorizing the tx with the full DID and including a signature of the linked account
-  // results in the provided account being linked to the DID authorizing the operation.
-  const accountLinkingParameters = await Kilt.Did.associateAccountToChainArgs(
-    linkedAccountAddress,
-    did,
-    linkingAccountSignatureGeneration
+  // We build the challenge that needs to be signed by the ethereum account
+  const challenge = u8aToString(
+    await Kilt.Did.getLinkingChallenge(did, validTill)
   )
+
+  // sign the challenge
+  const signResult = await web3.eth.accounts.sign(
+    challenge,
+    linkedAccountPrivateKey
+  )
+
+  // build the arguments for the extrinsic that links ethereum account and DID
+  const accountLinkingParameters = await Kilt.Did.getLinkingArguments(
+    linkedAccountAddress,
+    validTill,
+    hexToU8a(signResult.signature),
+    'ethereum'
+  )
+
+  // Build the actual extrinsic
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
     ...(accountLinkingParameters as any as [any, any])
   )
@@ -49,6 +48,7 @@ export async function linkAccountToDid(
     submitterAccount.address
   )
 
+  // sign and submit the extrinsic to the blockchain
   await Kilt.Blockchain.signAndSubmitTx(
     authorizedAccountLinkingTx,
     submitterAccount
