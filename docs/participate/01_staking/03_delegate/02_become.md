@@ -15,7 +15,7 @@ Anyone can delegate to a collator candidate by staking a minimum of 20 KILT and 
 ![](/img/chain/parachainStaking-joinDelegators.png)
 
 1. Select the KILT address you want to delegate from as the extrinsic submitter (the *using the selected account* field)
-2. Select the appropriate extrinsic: `parachainStaking -> revokeDelegation`
+2. Select the appropriate extrinsic: `parachainStaking -> joinDelegators`
 3. Select the `Id` option (the *MultiAddress (LookupSource) field*)
 4. Select the collator account (the *Id: AccountId* field)
 5. Choose the desired stake amount.
