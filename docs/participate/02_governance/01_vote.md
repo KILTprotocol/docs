@@ -79,5 +79,5 @@ If the referendum is successful, your voting coins will remain locked for the ti
 KILT also uses an algorithm to adapt the amount of “aye” (yes/agree) votes needed to pass depending on voter turnout: the greater the number of voters, the lower the threshold required to pass.
 Therefore, when voter turnout is low a supermajority is generally required; with a high turnout a simple majority is sufficient.
 
-Before voting on any referendum, you can read more about it and join the discussion in [Polkassembly](https://kilt.polkassembly.network/referenda) (under “On-chain” → “Referenda”).
+Before voting on any referendum, you can read more about it and join the discussion in [Polkassembly](https://kilt.polkassembly.network/referenda) (under “Democracy” → “Referenda”).
 Polkassembly is an open source platform for providing information, context and a discussion forum for proposals and referenda in the Polkadot ecosystem.
