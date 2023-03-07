@@ -102,6 +102,11 @@ module.exports = {
             },
             {
               type: 'doc',
+              docId: 'participate/bounty-hunters',
+              label: 'Bounty Programme',
+            },
+            {
+              type: 'doc',
               docId: 'participate/content-creation-guidelines',
               label: 'Content Creation Guidelines',
             },

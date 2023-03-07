@@ -1,6 +1,6 @@
 ---
 id: bounty-hunters
-title: Bounty Hunting
+title: Bounty Programme
 ---
 
 The bounty program is a system in which individuals can earn rewards by completing specific tasks related to the KILT Protocol. Bounties can cover a wide range of activities that are relevant to the development and improvement of the KILT Protocol. Here are some examples of the types of tasks that might be included in the bounty program:
