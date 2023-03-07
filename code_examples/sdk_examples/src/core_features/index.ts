@@ -97,7 +97,12 @@ export async function testCoreFeatures(
     })(),
     (async () => {
       try {
-        await runAllLinking(wssAddress, accountLinkingTestAccount, account)
+        await runAllLinking(
+          keyring,
+          wssAddress,
+          account as Kilt.KiltKeyringPair,
+          accountLinkingTestAccount
+        )
       } catch (e) {
         console.error('Linking flow failed')
         throw e
