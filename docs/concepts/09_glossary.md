@@ -5,26 +5,70 @@ title: KILT Glossary
 
 Here is a glossary of terms related to the KILT Protocol:
 
-KILT Protocol: An open-source blockchain protocol for issuing self-sovereign, and verifiable credentials for Web3, the next generation of the internet. KILT’s mission is to return control over personal data to its owner, restoring privacy to the individual. Developers and entrepreneurs can use KILT’s SDK to quickly spin up applications for issuing, holding and verifying credentials in order to create businesses around identity and privacy.
+## W3C: Self-Sovereign Identity (SSI)
 
-DID: Stands for Decentralized Identifier, a unique identifier for entities (people, organizations, or things) that is anchored to a blockchain and provides verifiable digital identity. For example, did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar. In KILT, identity is built by adding credentials to the DID. A DID can be used for people, machines, services and anything that identities can be built on.
+**Decentralized Identifiers (DID)**: Stands for Decentralized Identifier, a unique identifier for entities (people, organizations, or things) that is anchored to a blockchain and provides verifiable digital identity. For example, did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar. In KILT, identity is built by adding credentials to the DID. A DID can be used for people, machines, services and anything that identities can be built on.
 
-Verifiable Credentials: Digital credentials that contain claims about an entity's identity, qualifications, or other attributes that are cryptographically signed and verifiable.
+**DID Authentication**: DID authentication is the process of proving that a DID owner has control over a DID, typically by using a digital signature or other cryptographic mechanism.
 
-Attestation: The act of providing evidence or confirming the validity of a claim, typically performed by a trusted third party.
+**DID Communication**: DID communication refers to the use of DIDs to enable secure and decentralized communication between two or more parties, without the need for a central intermediary.
 
-Trust Anchors: Entities that are trusted to issue or verify claims on the KILT network, such as governments, educational institutions, or professional organizations.
+**DID Controller**: A DID controller is an entity that has control over a DID, such as the entity that created the DID or an entity that has been authorized by the DID owner to manage the DID.
 
-Anchor Repository: A decentralized repository where trust anchors can store and manage the public keys used for cryptographic signing and verification of claims.
+**DID Document**: A DID document is a JSON-LD document that contains information about a DID, including public keys, service endpoints, and other metadata.
 
-KILT Coin: The native coin of the KILT Protocol, used for staking and as a means of exchange on the network.
+**DID Method**: A DID method is a set of rules and specifications for how a DID is created, resolved, and managed on a particular network or platform.
 
-Polkadot: A multi-chain network that allows for interoperability between different blockchain protocols, including the KILT Protocol.
+**DID Resolver**: A DID resolver is a software component that can resolve a DID to a DID Document, which contains information about the DID, such as public keys, service endpoints, and other metadata.
 
-Substrate: A modular blockchain development framework used to build custom blockchain solutions, including the KILT Protocol.
+**Self-Sovereign Identity**: A decentralized digital identity management system that enables individuals to own and control their identity information using secure digital technologies, such as blockchain. SSI eliminates the need for intermediaries and provides individuals with greater privacy, security, and control over their personal data. It is an emerging concept that has the potential to transform how identity is managed and verified across various sectors.
 
-Parachain: A specialized blockchain that runs on top of the Polkadot network and is connected to the main network through a relay chain.
+**Verifiable Credentials**: Verifiable credentials are digital credentials that can be used to prove claims about a person, organization, or thing, and are designed to be portable, interoperable, and privacy-preserving. Verifiable credentials are often associated with DIDs and can be stored and managed using a DID-based identity system.
 
-Relay Chain: The central chain in the Polkadot network that coordinates communication and consensus between different parachains.
+## KILT Protocol Specific Terms
+
+**Attestation**: The act of providing evidence or confirming the validity of a claim, typically performed by a trusted third party.
+
+**Attester**: A person or organization or entity that verifies or validates the identity or credentials of an individual in a digital or physical setting. Attesters play a critical role in building trust and establishing the authenticity of information and data shared between parties.
+
+**Claimer**: An individual or entity that asserts a claim or statement about their identity or qualifications. The claimer can use digital credentials, such as badges or certificates, to provide evidence of their claims, which can be verified by third-party entities or systems.
+
+**Claim Type (CType)**: A specific type of claim that can be made about an individual, such as their education, work experience, or identity information. Each claim type has a defined set of attributes that must be provided to support the claim, and it can be used to generate verifiable credentials that can be shared with others.
+
+**Credential**: A verifiable digital representation of a claim made by a claimer, which has been attested to by a trusted entity, such as an attester. It consists of a set of attributes that describe the claim and the proof of its validity, and can be shared with third parties to provide verifiable proof of the claim.
+
+**Digital Identity**: A self-sovereign identity that is owned and controlled by the individual or entity it represents. It consists of verifiable credentials that are issued by trusted entities, such as attesters, and can be used to prove claims about the individual or entity's identity, qualifications, or other attributes.
+
+**KILT Coin**: The native coin of the KILT Protocol, used for staking, used for extrinsics and as a means of exchange on the network.
+
+**KILT Protocol**: An open-source blockchain protocol for issuing self-sovereign, and verifiable credentials for Web3, the next generation of the internet. KILT’s mission is to return control over personal data to its owner, restoring privacy to the individual. Developers and entrepreneurs can use KILT’s SDK to quickly spin up applications for issuing, holding and verifying credentials in order to create businesses around identity and privacy.
+
+**Request for Attestation**: A request made by a third party to an attester to verify the authenticity of a claim made by a claimer. The request for attestation includes the specific claim type and attributes to be verified, and it can be used to generate verifiable credentials that can be shared with others.
+
+**Trust Anchors**: Entities that are trusted to issue or verify claims on the KILT network, such as governments, educational institutions, or professional organizations.
+
+**Trust Market**: A market that operates on trust and reputation rather than financial incentives, where buyers and sellers exchange goods or services based on established reputation through digital platforms. While trust markets offer benefits such as reducing the need for intermediaries, they also face challenges that need to be addressed to maintain trust and fairness in transactions.
+
+**Transport-Agnostic Messaging Layer**: A messaging system that is not dependent on any particular communication protocol or technology. It allows different systems or applications to communicate with each other regardless of the underlying transport protocol used, providing a standardized way of exchanging messages across different platforms and technologies.
+
+**Verifier**: A person, organization, or system that checks the validity and authenticity of an individual's credentials or qualifications. Verifiers play a critical role in building trust and ensuring that credentials are accurate and reliable.
+
+## Eco-system terms
+
+**Blockchain Technology**: A type of distributed ledger technology that allows multiple parties to have a synchronized, transparent, and immutable record of transactions. It uses cryptographic techniques to secure and verify transactions, and it does not require a central authority or intermediaries.
+
+**Decentralized Network**: A network of computers or nodes that operate without a central authority or control. In a decentralized network, each node has equal control over the network, and decisions are made through a consensus mechanism, rather than by a single entity or group.
+
+**Distributed Ledger Technology (DLT)**: A type of digital database that stores information across a network of computers or nodes. It allows multiple parties to have a synchronized, transparent, and immutable record of transactions, without the need for a central authority or intermediaries.
+
+**Extrinsics**: A transaction that originates from an external account and affects the state of the blockchain. It can be used to execute actions on the network, such as transferring funds, making governance decisions, use functionality of the parachain or interacting with smart contracts. More details about Extrinsics can be found at the [offical documentation](https://wiki.polkadot.network/docs/learn-extrinsics)
+
+**Parachain**: A specialized blockchain that runs on top of the Polkadot network and is connected to the main network through a relay chain. More details about Parachains can be found at the [offical documentation](https://wiki.polkadot.network/docs/learn-parachains)
+
+**Polkadot**: A multi-chain network that allows for interoperability between different blockchain protocols, including the KILT Protocol. More details about Polkadot can be found on their [offical documentation](https://wiki.polkadot.network/docs/getting-started#what-is-polkadot)
+
+**Substrate**: A modular blockchain development framework used to build custom blockchain solutions, including the KILT Protocol. More details about Substrate can be found on their [offical documentation](https://docs.substrate.io/)
+
+**Relay Chain**: The central chain in the Polkadot network that coordinates communication and consensus between different parachains. More details about Parachains can be found at the [offical documentation](https://wiki.polkadot.network/docs/learn-architecture)
 
 I hope this glossary helps clarify some of the key terms related to the KILT Protocol!
