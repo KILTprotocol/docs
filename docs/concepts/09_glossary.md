@@ -155,4 +155,3 @@ More details about Substrate can be found on their [offical Polkadot documentati
 The central chain in the Polkadot network that coordinates communication and consensus between different parachains.
 More details about Parachains can be found at the [offical Polkadot documentation](https://wiki.polkadot.network/docs/learn-architecture)
 
-I hope this glossary helps clarify some of the key terms related to the KILT Protocol!
