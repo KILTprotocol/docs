@@ -16,7 +16,7 @@ A DID can be used for people, machines, services and anything that identities ca
 
 ### DID Authentication
 
-DID authentication is the process of proving that a DID owner has control over a DID, typically by using a digital signature or other cryptographic mechanism.
+DID authentication is the process of proving that an entity has control over a DID, typically by using a digital signature or other cryptographic mechanism.
 
 ### DID Communication
 
@@ -63,7 +63,7 @@ Attesters play a critical role in building trust and establishing the authentici
 ### Claimer
 
 An individual or entity that asserts a claim or statement about their identity or qualifications.
-The claimer can use digital credentials, such as badges or certificates, to provide evidence of their claims, which can be verified by third-party entities or systems.
+The claimer can use credentials to provide evidence of their claims, which can be verified by third-party entities or systems.
 
 ### Claim Type (CType)
 
@@ -75,13 +75,14 @@ Each claim type has a defined set of attributes that must be provided to support
 A verifiable digital representation of a claim made by a claimer, which has been attested to by a trusted entity, such as an attester.
 It consists of a set of attributes that describe the claim and the proof of its validity, and can be shared with third parties to provide verifiable proof of the claim.
 
-### Digital Identity
+### KILT Digital Identity
 
-A self-sovereign identity that is owned and controlled by the individual or entity it represents. It consists of verifiable credentials that are issued by trusted entities, such as attesters, and can be used to prove claims about the individual or entity's identity, qualifications, or other attributes.
+A self-sovereign identity that is owned and controlled by the individual or entity it represents.
+It consists of verifiable credentials that are issued by trusted entities, such as attesters, and can be used to prove claims about the individual or entity's identity, qualifications, or other attributes.
 
-### KILT Coin
+### KILT Token
 
-The native coin of the KILT Protocol network, used for staking, transaction fees and as a means of exchange on the network.
+The native token of the KILT blockchain used for paying for attestations and DIDs. It can also be used for governance, staking, transaction fees and as a means of exchange on the network.
 
 ### KILT Protocol
 
