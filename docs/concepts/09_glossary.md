@@ -53,11 +53,11 @@ Verifiable credentials are often associated with DIDs and can be stored and mana
 
 ### Attestation
 
-The act of providing evidence or confirming the validity of a claim, typically performed by a trusted attester.
+The act of providing evidence or confirming the validity of the data within the claim, typically performed by a trusted attester. 
 
 ### Attester
 
-A person, organization or entity that verifies and validates the identity or credentials of an individual in a digital or physical setting.
+An entity makes sure that certain statements are accurate. This entity examines claims made by other entities and only approves those that are true, issuing a certification. However, there may be dishonest attesters who approve false statements as well.
 Attesters play a critical role in building trust and establishing the authenticity of information and data shared between parties.
 
 ### Claimer
