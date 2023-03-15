@@ -72,7 +72,7 @@ Each claim type has a defined set of attributes that must be provided to support
 
 ### Credential
 
-A verifiable digital representation of a claim made by a claimer, which has been attested to by a trusted entity, such as an attester.
+A verifiable digital representation of a claim made by a claimer, which has been attested to by a trusted entity, such as an attester or issuer.
 It consists of a set of attributes that describe the claim and the proof of its validity, and can be shared with third parties to provide verifiable proof of the claim.
 
 ### KILT Digital Identity
