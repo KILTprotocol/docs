@@ -88,7 +88,6 @@ The native token of the KILT blockchain used for paying for attestations and DID
 
 An open-source blockchain protocol for issuing self-sovereign, and verifiable credentials for Web3, the next generation of the Internet.
 KILT’s mission is to return control over personal data to its owner, restoring privacy to the individual.
-Developers and entrepreneurs can use KILT’s SDK to quickly spin up applications for issuing, holding and verifying credentials in order to create businesses around identity and privacy.
 
 ### Request for Attestation
 
