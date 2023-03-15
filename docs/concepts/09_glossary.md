@@ -91,7 +91,6 @@ KILT’s mission is to return control over personal data to its owner, restoring
 
 ### Request for Attestation
 
-A request made by a third party to an attester to verify the authenticity of a claim made by a claimer. The request for attestation includes the specific claim type and attributes to be verified, and it can be used to generate verifiable credentials that can be shared with others.
 
 ### Trust Anchors
 
