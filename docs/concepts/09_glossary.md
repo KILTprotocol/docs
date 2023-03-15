@@ -135,7 +135,7 @@ It can be used to execute actions on the network, such as transferring funds, ma
 
 ### Parachain
 
-A specialized blockchain that runs on top of the Polkadot network and is connected to the main network through a relay chain.
+A specialized blockchain that runs on top of the Polkadot network and is connected through the relay chain.
 More details about Parachains can be found at the [offical Polkadot documentation](https://wiki.polkadot.network/docs/learn-parachains)
 
 ### Polkadot
