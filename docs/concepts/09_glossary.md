@@ -68,7 +68,7 @@ The claimer can use credentials to provide evidence of their claims, which can b
 ### Claim Type (CType)
 
 A specific type of claim that can be made about an individual, such as their education, work experience, or identity information.
-Each claim type has a defined set of attributes that must be provided to support the claim, and it can be used to generate verifiable credentials that can be shared with others.
+Each claim type has a defined set of attributes that must be provided to support the claims data type and structure. It can be used to generate verifiable credentials that can be shared with others. [CTypes concept page for more details](https://docs.kilt.io/docs/concepts/credentials/ctypes)
 
 ### Credential
 
