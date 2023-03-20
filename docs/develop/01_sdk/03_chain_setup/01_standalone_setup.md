@@ -55,3 +55,53 @@ This should give you `{"jsonrpc":"2.0","result":"KILT Node","id":1}` as a respon
 In addition, you can also connect to the exposed WebSocket endpoints using [your script](./index.md#set-up-your-project).
 Simply replace the WebSocket address with `ws://127.0.0.1:9944`.
 Please note that we connect to the port `9944` as we are using the WebSocket protocol for our SDK and not bare HTTP.
+
+The `--dev` node provides a pre funded account which you can instantiate with
+
+```
+const faucetSeed = "receive clutch item involve chaos clutch furnace arrest claw isolate okay together"
+// creates an ed25519 key by default which is required to access the funds
+const devFaucet = Crypto.makeKeypairFromUri(faucetSeed)
+```
+
+this account can not be used to sign any DID operation. You have to create a `sr25519` key for this. The good news is that you can transfer tokens from the `devFaucet` to your `testAccount`
+
+```
+import { cryptoWaitReady } from "@polkadot/util-crypto";
+import { Blockchain, connect } from "@kiltprotocol/sdk-js";
+import { Crypto } from '@kiltprotocol/utils'
+
+async function fundAccount {
+    await cryptoWaitReady();
+    const api = await Kilt.connect(process.env.WSS_ADDRESS as string);
+    const faucetSeed = "receive clutch item involve chaos clutch furnace arrest claw isolate okay together"
+    // creates an ed25519 key by default
+    const devFaucet = Crypto.makeKeypairFromUri(faucetSeed)
+    const account = submitterAccount()
+    const transferTx = api.tx.balances.transfer(account.address, "10000000000000000")
+    await Blockchain.signAndSubmitTx(transferTx, devFaucet)
+}
+
+function submitterAccount(): Kilt.KiltKeyringPair {
+  if(!mainAccount) {
+    const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
+    const { account } = generateAccount(accountMnemonic)
+    mainAccount = account
+  }
+  return mainAccount
+}
+
+export function generateAccount(mnemonic = mnemonicGenerate()): {
+  account: Kilt.KiltKeyringPair
+  mnemonic: string
+} {
+  const keyring = new Kilt.Utils.Keyring({
+    ss58Format: 38,
+    type: 'sr25519'
+  })
+  return {
+    account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair,
+    mnemonic
+  }
+}
+```
