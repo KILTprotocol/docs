@@ -122,3 +122,6 @@ A TsJsSnippet is preferred since it automatically generates JavaScript examples.
 </TsJsSnippet>
 ```
 
+## Deployment
+
+This code is automatically deployed when pushed to master.
