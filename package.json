@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "build": "yarn check-ts && yarn generate-examples && yarn check-links && docusaurus build",
+    "build": "yarn check-ts && yarn check-links && yarn generate-examples && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find docs -name '*.md')",
     "check-ts": "concurrently -m 1 yarn:check-ts:*",
     "check-ts:vitejs": "cd code_examples/vitejs && yarn install && yarn check-ts",
