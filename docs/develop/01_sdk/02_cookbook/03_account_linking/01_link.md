@@ -8,6 +8,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import SubAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_sub_link.ts';
+import EthAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link.ts';
+import EthWeb3AccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_web3js.ts';
 import SenderLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/02_sender_link.ts';
 
 Sometimes there is the need to link a DID to an account publicly.
@@ -61,7 +63,14 @@ The proof will only be valid up until the blocknumber is reached.
             {SubAccLink}
         </TsJsBlock>
     </TabItem>
-    <TabItem value="eth-link" label="Ethereum">
-        🚧
+    <TabItem value="eth-link" label="Ethereum (polkadot-js)">
+        <TsJsBlock>
+            {EthAccLink}
+        </TsJsBlock>
+    </TabItem>
+    <TabItem value="eth-link" label="Ethereum (web3.js)">
+        <TsJsBlock>
+            {EthWeb3AccLink}
+        </TsJsBlock>
     </TabItem>
 </Tabs>
