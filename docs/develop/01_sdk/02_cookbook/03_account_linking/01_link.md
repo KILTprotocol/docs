@@ -10,6 +10,7 @@ import TabItem from '@theme/TabItem';
 import SubAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_sub_link.ts';
 import EthAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link.ts';
 import EthWeb3AccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_web3js.ts';
+import EthMetamaskAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_metamask.ts';
 import SenderLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/02_sender_link.ts';
 
 Sometimes there is the need to link a DID to an account publicly.
@@ -75,6 +76,12 @@ With this option you can link addresses that are supported by the Spiritnet bloc
     <TabItem value="eth-link-web3js" label="Ethereum (web3.js)">
         <TsJsBlock>
             {EthWeb3AccLink}
+        </TsJsBlock>
+    </TabItem>
+    <TabItem value="eth-link-metamask" label="Ethereum (web3.js)">
+        Refer to the <a href="https://docs.metamask.io/guide/signing-data.html#personal-sign">Metamask documentation</a> for further information.
+        <TsJsBlock>
+            {EthMetamaskAccLink}
         </TsJsBlock>
     </TabItem>
 </Tabs>
