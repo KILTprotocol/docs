@@ -3,11 +3,16 @@ import { hexToU8a, u8aToString } from '@polkadot/util'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 type MetamaskApi = {
-  request: (_: { method: string, params: [string, string, string] }) => Promise<string>
+  request: (_: {
+    method: string
+    params: [string, string, string]
+  }) => Promise<string>
 }
 
 declare global {
-  interface Window { ethereum: MetamaskApi }
+  interface Window {
+    ethereum: MetamaskApi
+  }
 }
 
 export async function linkAccountToDid(
@@ -30,8 +35,8 @@ export async function linkAccountToDid(
   // sign the challenge
   const signature = await window.ethereum.request({
     method: 'personal_sign',
-    params: [challenge, linkedAccountAddress, ''],
-  });
+    params: [challenge, linkedAccountAddress, '']
+  })
 
   // build the arguments for the extrinsic that links ethereum account and DID
   const accountLinkingParameters = await Kilt.Did.getLinkingArguments(
