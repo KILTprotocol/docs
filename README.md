@@ -40,7 +40,7 @@ When a subcommand is added, it also needs to be added to the [test setup](.githu
 ### Where to put the code
 
 To add a code example that is executed and tested, add the file to one of the code sections.
-Depending on where the code examples is used, the code has to be put into a different section in the `code_examples` folder.
+Depending on where the code example is used, the code has to be put into a different section in the `code_examples` folder.
 
 * `docs/develop/01_sdk/` -> `code_examples/sdk_examples/src/core_features/...`
 * `docs/develop/01_sdk/04_integrate/04_vitejs` -> `code_examples/vitejs`
@@ -95,7 +95,7 @@ We imported `TsJsBlock` and the content `FullDidSimple` in the top of the file.
 Use `TsJsSnippet` and `SnippetBlock` if you only want to present the content of a function.
 These components will look for a `main`-function in your code and only show the content of that function.
 This is suitable for very short examples, usually only a few lines.
-Since imports and the function signature is hidden, this code can become harder to understand and to reuse might be more complicated.
+Since imports and the function signature is hidden, this code can become harder to understand and reuse.
 
 ```md
 import SnippetBlock from '@site/src/components/SnippetBlock';
@@ -115,7 +115,7 @@ We imported `SnippetBlock` and the content `Connect` in the top of the file.
   {Connect}
 </SnippetBlock>
 
-A TsJsSnippet is preferred since it automatically generates JavaScript examples.
+A `TsJsSnippet` is preferred since it automatically generates JavaScript examples.
 
 <TsJsSnippet funcEnd="return">
   {FetchEndpointData}
