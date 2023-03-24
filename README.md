@@ -56,16 +56,17 @@ When writing code examples make sure that the script is as self explaining as po
 * *Easy to understand*
   * If possible don't import helper functions that are not part of the SDK or polkadot-js
   * Ensure that there is no magic happening
+  * Import SDK like this `import * as Kilt from '@kiltprotocol/sdk-js'` which avoids big import statements
 * *Reusable*
   * Make sure the code could be copy pasted and would run with little effort in a different environment
 * *Concise*
-  * only show what is relevant for the text you are writing
-  * prerequisites and setup should be done as much as possible outside of the code
-    * always link to other guides that explain the setup (e.g. DID creation, ...)
+  * Only show what is relevant for the text you are writing
+  * Prerequisites and setup should be done as much as possible outside of the code
+    * Always link to other guides that explain the setup (e.g. DID creation, ...)
   * The code example should be wrapped in a function and anything that needs to be setup should be passed as parameters
 * *Tested*
   * Your code should be executed (call the function in one of the `index.ts` or `test.ts` files)
-  * if possible return something that could be checked to ensure that the function executed successfully
+  * If possible return something that could be checked to ensure that the function executed successfully
 
 ### How to include the code inside markdown
 
@@ -89,8 +90,6 @@ We imported `TsJsBlock` and the content `FullDidSimple` in the top of the file.
   {FullDidSimple}
 </TsJsBlock>
 ```
-
-
 
 Use `TsJsSnippet` and `SnippetBlock` if you only want to present the content of a function.
 These components will look for a `main`-function in your code and only show the content of that function.
