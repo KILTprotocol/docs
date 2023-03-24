@@ -68,7 +68,7 @@ The proof will only be valid up until the blocknumber is reached.
             {EthAccLink}
         </TsJsBlock>
     </TabItem>
-    <TabItem value="eth-link" label="Ethereum (web3.js)">
+    <TabItem value="eth-link-web3js" label="Ethereum (web3.js)">
         <TsJsBlock>
             {EthWeb3AccLink}
         </TsJsBlock>
