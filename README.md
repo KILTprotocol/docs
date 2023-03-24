@@ -42,29 +42,29 @@ When a subcommand is added, it also needs to be added to the [test setup](.githu
 To add a code example that is executed and tested, add the file to one of the code sections.
 Depending on where the code example is used, the code has to be put into a different section in the `code_examples` folder.
 
-* `docs/develop/01_sdk/` -> `code_examples/sdk_examples/src/core_features/...`
-* `docs/develop/01_sdk/04_integrate/04_vitejs` -> `code_examples/vitejs`
-  * ViteJS requires it's own `package.json` and was therefore put into its own project
-* `docs/develop/03_workshop` -> `code_examples/sdk_examples/src/workshop/...`
-* `docs/develop/07_dApp/` -> `code_examples/sdk_examples/src/dapp/...`
-* `docs/participate/01_staking` -> `code_examples/sdk_examples/src/staking/...`
+* Anything in the SDK section -> `code_examples/sdk_examples/src/core_features/...`
+  * Except ViteJS since it requires a special setup -> `code_examples/vitejs`
+* The workshop -> `code_examples/sdk_examples/src/workshop/...`
+* dApp examples -> `code_examples/sdk_examples/src/dapp/...`
+* The Staking guide -> `code_examples/sdk_examples/src/staking/...`
+* ➕ Add sections where you see fit
 
 ### How to write the examples
 
 When writing code examples make sure that the script is as self explaining as possible.
 
-* *Easy to understand*
+* 👶 *Easy to understand*
   * If possible don't import helper functions that are not part of the SDK or polkadot-js
   * Ensure that there is no magic happening
   * Import SDK like this `import * as Kilt from '@kiltprotocol/sdk-js'` which avoids big import statements
-* *Reusable*
+* ♻️ *Reusable*
   * Make sure the code could be copy pasted and would run with little effort in a different environment
-* *Concise*
+* 🎯 *Concise*
   * Only show what is relevant for the text you are writing
   * Prerequisites and setup should be done as much as possible outside of the code
     * Always link to other guides that explain the setup (e.g. DID creation, ...)
   * The code example should be wrapped in a function and anything that needs to be setup should be passed as parameters
-* *Tested*
+* 🧪 *Tested*
   * Your code should be executed (call the function in one of the `index.ts` or `test.ts` files)
   * If possible return something that could be checked to ensure that the function executed successfully
 
@@ -123,4 +123,4 @@ A `TsJsSnippet` is preferred since it automatically generates JavaScript example
 
 ## Deployment
 
-This code is automatically deployed when pushed to master.
+This code is automatically deployed when pushed to `master` using AWS Amplify.
