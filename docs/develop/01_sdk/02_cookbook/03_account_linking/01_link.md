@@ -21,16 +21,16 @@ Linking accounts can be useful when your account should have an identity.
 E.g. as a collator, you might want to provide some public information so that delegator can better decide who earned their stake.
 
 An account can be linked to a DID in one of two ways.
-Either the account that sends the transaction links itself to the DID or the sender is unrelated to the DID and a third account is linked.
-In that case a challenge needs to be signed with the third account, to proof ownership.
+Either the account that sends the transaction links itself to the DID, or the sender is unrelated to the DID and a third account is linked.
+In the latter case, a challenge needs to be signed with the third account, to prove ownership.
 
-The second option is useful in cases where the account that should be linked doesn't own KILT tokens or the transaction is paid for by a third party.
+The second option is useful in cases where the account that should be linked doesn't own KILT tokens and the transaction is paid for by a third party.
 
 :::warning Don't use linked accounts for asset transfers
 
 Don't use these linked accounts for asset transfers.
 Since these accounts are not limited to KILT accounts, but can be used on any chain, the recipient might not be able to access the transferred asset on other chains.
-When a link to an account on a different substrate chain is created, this account might only be usable on this specific chain.
+When a link to an account on a different Polkadot chain is created, this account might only be usable on this specific chain.
 
 If you want transfer assets to a DID have a look at [the asset transfer service endpoint](https://github.com/KILTprotocol/spec-KiltTransferAssetRecipientV1).
 
@@ -40,7 +40,7 @@ If you want transfer assets to a DID have a look at [the asset transfer service 
 
 Link the sender of the transaction to the DID.
 The sender will provide the deposit and pay the fees.
-He will also be linked to the DID.
+They will also be linked to the DID.
 
 <TsJsBlock>
   {SenderLink}
@@ -50,9 +50,9 @@ He will also be linked to the DID.
 
 Link another account to the DID.
 The sender will provide the deposit and pay the fees, but will not be linked to the DID in any way.
-The account that should be linked must sign a challenge to proof that the account agrees to be linked.
+The account that should be linked must sign a challenge to prove that the account agrees to be linked.
 
-The proof contains the DID that the account will be linked to and an expiration date (as a blocknumber), to prevent replay attacks.
+The proof contains the DID that the account will be linked to and an expiration date (in terms of blocks), to prevent replay attacks.
 The proof will only be valid up until the blocknumber is reached.
 
 <Tabs
