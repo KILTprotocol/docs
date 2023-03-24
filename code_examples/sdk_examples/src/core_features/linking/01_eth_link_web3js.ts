@@ -1,7 +1,5 @@
-import Web3 from 'web3'
-const web3 = new Web3()
-
 import { hexToU8a, u8aToString } from '@polkadot/util'
+import Web3 from 'web3'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -13,6 +11,7 @@ export async function linkAccountToDid(
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
+  const web3 = new Web3()
 
   const blockNo = await api.query.system.number()
   // the challenge will be valid for 300 blocks (~1h)
