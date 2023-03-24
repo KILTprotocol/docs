@@ -22,9 +22,11 @@ E.g. as a collator, you might want to provide some public information so that de
 
 An account can be linked to a DID in one of two ways.
 Either the account that sends the transaction links itself to the DID, or the sender is unrelated to the DID and a third account is linked.
-In the latter case, a challenge needs to be signed with the third account, to prove ownership.
+In the latter case, a challenge needs to be signed using the third account, to prove ownership.
 
 The second option is useful in cases where the account that should be linked doesn't own KILT tokens and the transaction is paid for by a third party.
+This option also allows to link accounts schemas that are not native to the Spiritnet Blockchain.
+Right now the only other address scheme supported are ethereum account.
 
 :::warning Don't use linked accounts for asset transfers
 
@@ -54,6 +56,8 @@ The account that should be linked must sign a challenge to prove that the accoun
 
 The proof contains the DID that the account will be linked to and an expiration date (in terms of blocks), to prevent replay attacks.
 The proof will only be valid up until the blocknumber is reached.
+
+With this option you can link addresses that are supported by the Spiritnet blockchain (sr25519, ed25519, ecdsa), but also ethereum addresses
 
 <Tabs
   defaultValue="substrate-link"
