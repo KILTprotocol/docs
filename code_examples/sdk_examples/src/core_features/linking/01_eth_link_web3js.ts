@@ -39,7 +39,7 @@ export async function linkAccountToDid(
 
   // Build the actual extrinsic
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
-    ...(accountLinkingParameters as any as [any, any])
+    ...accountLinkingParameters
   )
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeTx(
     did,
