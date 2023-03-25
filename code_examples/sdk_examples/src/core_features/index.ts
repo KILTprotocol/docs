@@ -45,7 +45,14 @@ export async function testCoreFeatures(
     messagingAccount
   ] = Array(6)
     .fill(0)
-    .map(() => keyring.addFromSeed(randomAsU8a(32)) as Kilt.KiltKeyringPair)
+    .map(
+      () =>
+        keyring.addFromSeed(
+          randomAsU8a(32),
+          undefined,
+          'sr25519'
+        ) as Kilt.KiltKeyringPair & { type: 'sr25519' }
+    )
 
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
@@ -90,7 +97,12 @@ export async function testCoreFeatures(
     })(),
     (async () => {
       try {
-        await runAllLinking(wssAddress, accountLinkingTestAccount, account)
+        await runAllLinking(
+          keyring,
+          wssAddress,
+          account as Kilt.KiltKeyringPair,
+          accountLinkingTestAccount
+        )
       } catch (e) {
         console.error('Linking flow failed')
         throw e
