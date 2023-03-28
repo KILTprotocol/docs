@@ -55,3 +55,14 @@ This should give you `{"jsonrpc":"2.0","result":"KILT Node","id":1}` as a respon
 In addition, you can also connect to the exposed WebSocket endpoints using [your script](./index.md#set-up-your-project).
 Simply replace the WebSocket address with `ws://127.0.0.1:9944`.
 Please note that we connect to the port `9944` as we are using the WebSocket protocol for our SDK and not bare HTTP.
+
+The `--dev` parameter provides a pre-funded account which you can use as a faucet, and that has the following mnemonic: `receive clutch item involve chaos clutch furnace arrest claw isolate okay together`.
+
+You can create the account with the following SDK function:
+
+```ts
+// Creates an ed25519 key by default which is required to access the funds.
+const devFaucet = Crypto.makeKeypairFromUri(faucetSeed)
+```
+
+With the new `devFaucet`, you can transfer funds to other accounts and test all the KILT features that require tx fee payment.
