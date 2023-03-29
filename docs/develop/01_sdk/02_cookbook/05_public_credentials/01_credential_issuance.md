@@ -45,4 +45,10 @@ Once the credential object is created, it must be written to the blockchain for 
   {IssueCredential}
 </TsJsBlock>
 
+:::info Credential has to be CBOR-encoded!
+Given a public credential object, the SDK internally CBOR-encodes it before firing the extrinsic to the blockchain!
+This is to save space on credentials that actually benefit from CBOR compression (e.g., if they contain a lot of binary information).
+Hence, creating public credentials without the SDK requires the credential to be CBOR-encoded!
+:::
+
 [ctypes-link]: ../../../../concepts/05_credentials/02_ctypes.md
