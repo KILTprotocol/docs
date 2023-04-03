@@ -15,7 +15,25 @@ module.exports = {
     mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
+  // Config taken from https://docusaurus.io/docs/search#using-algolia-docsearch
+  // `appId`, `apiKey`, and `indexName` were provided in the email
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'I7C7DMFMTM',
+      // Public API key: it is safe to commit it
+      apiKey: '7645cdf46221542ea3778361ef714b6a',
+      indexName: 'kilt',
+      // Optional: see doc section below
+      contextualSearch: true,
+      // Optional: Algolia search parameters
+      searchParameters: {},
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+
+      // Algolia-specific configurations
+      placeholder: 'Search within the KILT documentation!',
+    },
     mermaid: {
       theme: { light: 'default', dark: 'dark' },
     },
