@@ -9,6 +9,8 @@ import {
 } from '@polkadot/util-crypto'
 import { generateAccount } from './generateAccount'
 
+// Because there is no first-class support for this class of keys,
+// we need to use a workaround to generate a key we can use for encryption/decryption.
 function generateKeyAgreement(mnemonic: string) {
   const secretKeyPair = sr25519PairFromSeed(mnemonicToMiniSecret(mnemonic))
   const { path } = keyExtractPath('//did//keyAgreement//0')
