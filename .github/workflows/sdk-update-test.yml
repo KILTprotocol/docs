@@ -18,7 +18,7 @@ jobs:
       - name: Get current package version
         working-directory: code_examples/sdk_examples/
         id: kiltprotocol_sdk
-        run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
+        run: echo "current_tag=$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')" >> $GITHUB_OUTPUT
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
@@ -52,7 +52,7 @@ jobs:
       - name: Get current package version
         working-directory: code_examples/vitejs
         id: kiltprotocol_sdk
-        run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
+        run: echo "current_tag=$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')" >> $GITHUB_OUTPUT
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
@@ -83,7 +83,7 @@ jobs:
       - name: Get current package version
         working-directory: code_examples/sdk_examples/
         id: kiltprotocol_sdk
-        run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
+        run: echo "current_tag=$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')" >> $GITHUB_OUTPUT
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
