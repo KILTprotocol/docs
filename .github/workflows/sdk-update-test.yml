@@ -141,30 +141,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Generate issue
+      - name: Generate issue body
         run: |
-          echo "[At least on of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
+          echo "ISSUE_BODY=[At least one of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> $GITHUB_ENV
       - name: Create issue
         id: issue
-        uses: peter-evans/create-issue-from-file@v4
+        uses: imjohnbo/issue-bot@v3
         with:
-          title: New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
-          repository: KILTProtocol/ticket
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          content-filepath: .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
-          assignees: ntn-x2,tjwelde,rflechtner
+          title: [AUTOMATIC] New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
+          body: |
+            ## Incompatible SDK detected
+            
+            ${{ env.ISSUE_BODY }}
+
+            ### Tasks
+
+            - [ ] Check if any docs need to be updated, and if needed do so
           labels: |
             :memo:  documentation
             📚 release
             🧰 sdk
             🚚 high
-      - name: Create or Update Project Card on weekly-board
-        uses: peter-evans/create-or-update-project-card@v2
-        with:
-          project-name: Weekly Board 📅
-          project-number: 10
-          project-location: KILTProtocol
-          repository: KILTProtocol/ticket
-          column-name: To Do
+          column: 📥  Inbox
+          assignees: "ntn-x2, rflechtner"
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          issue-number: ${{ steps.issue.outputs.issue-number }}
+          project-v2-path: orgs/KILTprotocol/projects/24
