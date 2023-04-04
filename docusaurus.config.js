@@ -211,6 +211,12 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        // sitemap: {
+        //   changefreq: 'daily',
+        //   priority: 0.5,
+        //   ignorePatterns: ['/tags/**'],
+        //   filename: 'sitemap.xml',
+        // },
       },
     ],
   ],

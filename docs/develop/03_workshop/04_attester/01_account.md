@@ -36,10 +36,9 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 ## Create the Account
 
-To generate an account, one method from the Polkadot crypto utility, and one method from the KILT SDK is needed:
+To generate an account, we use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/_kiltprotocol_types.KiltKeyringPair.html) generated via the SDK.
+The mnemonic is generated with the polkadot function `mnemonicGenerate()`, which generates a 12-word mnemonic.
 
-- `mnemonicGenerate()` - Generates a 12-word mnemonic
-- `makeKeypairFromSeed(seed)` - takes a mnemonic as an input, and outputs a [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/_kiltprotocol_types.KiltKeyringPair.html) instance. A `Keypair` and a `KeyringKeypair` different in what information they expose. While a `Keypair` exposes both its public and private keys, a `KeyringPair` is managed by a keyring, which does not allow exposing private keys, but only supports signing arbitrary payloads.
 
 <TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
