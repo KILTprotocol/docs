@@ -9,16 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Get current package version
         working-directory: code_examples/sdk_examples/
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
-      - uses: jacobtomlinson/gha-find-replace@v2
+      - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
@@ -42,12 +43,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Get current package version
         working-directory: code_examples/vitejs
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
-      - uses: jacobtomlinson/gha-find-replace@v2
+      - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
@@ -68,25 +69,25 @@ jobs:
     needs: [ vitejs, code_examples ]
     if: success() && !contains(github.event.client_payload.latestTag, 'rc')
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Get current package version
         working-directory: code_examples/sdk_examples/
         id: kiltprotocol_sdk
         run: echo "::set-output name=current_tag::$(grep kiltprotocol/sdk-js package.json | awk -F \" '{print $4}')"
-      - uses: jacobtomlinson/gha-find-replace@v2
+      - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
           include: "docs/**/*.md"
           regex: false
-      - uses: jacobtomlinson/gha-find-replace@v2
+      - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
           include: "code_examples/**/*"
           exclude: "**/*.lock"
           regex: false
-      - uses: jacobtomlinson/gha-find-replace@v2
+      - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
@@ -129,13 +130,13 @@ jobs:
     if: failure()
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Generate issue
         run: |
           echo "[At least on of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> .github/ISSUE_TEMPLATE/sdk-incompatible-with-docs.md
       - name: Create issue
         id: issue
-        uses: peter-evans/create-issue-from-file@v3
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
           repository: KILTProtocol/ticket
