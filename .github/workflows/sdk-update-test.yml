@@ -44,6 +44,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Get current package version
         working-directory: code_examples/vitejs
         id: kiltprotocol_sdk
@@ -70,6 +75,11 @@ jobs:
     if: success() && !contains(github.event.client_payload.latestTag, 'rc')
     steps:
       - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Get current package version
         working-directory: code_examples/sdk_examples/
         id: kiltprotocol_sdk
