@@ -148,7 +148,7 @@ jobs:
         id: issue
         uses: imjohnbo/issue-bot@v3
         with:
-          title: [AUTOMATIC] New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples
+          title: "[AUTOMATIC] New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples"
           body: |
             ## Incompatible SDK detected
             
