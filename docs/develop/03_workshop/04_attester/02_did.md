@@ -93,7 +93,7 @@ You can now execute the script with:
   <TabItem value='js' label='Javascript' default>
 
   ```bash
-  node ./attester/generateAccount.js
+  node ./attester/generateDid.js
   ```
 
   </TabItem>
@@ -103,7 +103,7 @@ Once you have executed the script, the output should provide you with your `ATTE
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
-ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
+ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ```
 
 Be sure to save it in your `.env` file.
