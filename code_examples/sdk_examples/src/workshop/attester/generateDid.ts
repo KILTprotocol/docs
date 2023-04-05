@@ -64,7 +64,7 @@ if (require.main === module) {
       const { mnemonic } = await createFullDid(account)
 
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_MNEMONIC=${mnemonic}\n`)
+      console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
     } catch (e) {
       console.log('Error while creating attester DID')
       throw e
