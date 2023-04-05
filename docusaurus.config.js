@@ -22,7 +22,7 @@ module.exports = {
       // The application ID provided by Algolia
       appId: 'I7C7DMFMTM',
       // Public API key: it is safe to commit it
-      apiKey: '7645cdf46221542ea3778361ef714b6a',
+      apiKey: '7f744ee37f644c445d01463be7c2eb4d',
       indexName: 'kilt',
       // Optional: see doc section below
       contextualSearch: true,
