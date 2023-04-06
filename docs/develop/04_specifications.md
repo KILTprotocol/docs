@@ -1,5 +1,5 @@
 ---
-id: index
+id: specifications
 title: Technical Specifications
 ---
 
@@ -13,6 +13,7 @@ List of core specifications KILT has defined in an effort to standardize APIs an
 - [KILT DID Method (GitHub repo)][kilt-did-method]
 - [KiltPublishedCredentialCollectionV1 Service Type (GitHub repo)][kilt-published-credential-collection-v1]
 - [Asset DID Method (GitHub repo)][asset-did-method]
+- [KiltTransferAssetRecipientV1 Service Type (GitHub repo)][kilt-transfer-asset-receipient-v1]
 
 List of extensions to the core KILT protocol that standardize communication with the core KILT components (e.g., API for wallets to present credentials):
 
@@ -22,5 +23,6 @@ List of extensions to the core KILT protocol that standardize communication with
 [kilt-did-method]: https://github.com/KILTprotocol/spec-kilt-did
 [kilt-published-credential-collection-v1]: https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1
 [asset-did-method]: https://github.com/KILTprotocol/spec-asset-did
+[kilt-transfer-asset-receipient-v1]: https://github.com/KILTprotocol/spec-KiltTransferAssetRecipientV1
 [kilt-wallet-credential-api]: https://github.com/KILTprotocol/spec-ext-credential-api
 [kilt-wallet-didsign-api]: https://github.com/KILTprotocol/spec-ext-didsign-api
