@@ -78,7 +78,7 @@ With this option you can link addresses that are supported by the Spiritnet bloc
             {EthWeb3AccLink}
         </TsJsBlock>
     </TabItem>
-    <TabItem value="eth-link-metamask" label="Ethereum (web3.js)">
+    <TabItem value="eth-link-metamask" label="Ethereum (MetaMask)">
         Refer to the <a href="https://docs.metamask.io/guide/signing-data.html#personal-sign">Metamask documentation</a> for further information.
         <TsJsBlock>
             {EthMetamaskAccLink}
