@@ -84,7 +84,7 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/specifications/index',
+              docId: 'develop/specifications',
               label: 'Technical Specifications',
             },
             {
