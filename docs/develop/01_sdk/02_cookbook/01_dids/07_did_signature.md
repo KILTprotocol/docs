@@ -14,6 +14,9 @@ As a DID can have multiple keys, in addition to the signature data itself, a DID
 
 The snippet below shows how to generate and verify a DID signature using the KILT SDK.
 
+You may notice the import of the `u8aToHex` utility function from the `@polkadot/util` package. This is because the KILT SDK uses the [polkadot.js](https://polkadot.js.org/docs/) libraries, that are intended to be used to interact with [substrate](https://docs.substrate.io/) based blockchains like KILT.
+Those libraries provide all the necessary basics, like cryptographic primitives or serialization, but they do not provide any high-level functionality.
+
 <TsJsBlock>
   {DidSignature}
 </TsJsBlock>
