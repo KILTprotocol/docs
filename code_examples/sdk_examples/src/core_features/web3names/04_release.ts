@@ -2,7 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function releaseWeb3Name(
   did: Kilt.DidUri,
-  submitterKeyPair: Kilt.KiltKeyringPair,
+  submitterAccount: Kilt.KiltKeyringPair,
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
@@ -12,10 +12,10 @@ export async function releaseWeb3Name(
     did,
     web3NameReleaseTx,
     signCallback,
-    submitterKeyPair.address
+    submitterAccount.address
   )
   await Kilt.Blockchain.signAndSubmitTx(
     authorizedWeb3NameReleaseTx,
-    submitterKeyPair
+    submitterAccount
   )
 }
