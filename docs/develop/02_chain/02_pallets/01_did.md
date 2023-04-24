@@ -26,9 +26,9 @@ To create a full DID the user first has to create a set of keys, where some of t
 
 * one authentication key for signing extrinsics from your DID
 * zero or more key agreement keys for encrypting messages that are sent to you
-* one attestation key for signing attestations (optional)
-* one delegation key for authorizing delegations (optional)
-* service endpoints that point to external hostings for others to find (optional)
+* (optional) one attestation key for signing attestations
+* (optional) one delegation key for authorizing delegations
+* (optional) service endpoints that point to external hostings for others to find
 
 With those mandatory keys prepared, they are ready to write the DID to the KILT blockchain.
 The user then has to create the `did::create` extrinsic and sign it with any KILT account that has enough funding to pay both the transaction fees and the DID deposit.
