@@ -35,7 +35,7 @@ Don't use these linked accounts for asset transfers.
 Since these accounts are not limited to KILT accounts, but can be used on any chain, the recipient might not be able to access the transferred asset on other chains.
 When a link to an account on a different Polkadot chain is created, this account might only be usable on this specific chain.
 
-If you want transfer assets to a DID have a look at [the asset transfer service endpoint](https://github.com/KILTprotocol/spec-KiltTransferAssetRecipientV1).
+If you want transfer assets to a DID have a look at [the asset transfer service](https://github.com/KILTprotocol/spec-KiltTransferAssetRecipientV1).
 
 :::
 

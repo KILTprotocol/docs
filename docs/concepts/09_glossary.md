@@ -28,7 +28,7 @@ A DID controller is an entity that has control over a DID, such as the entity th
 
 ### DID Document
 
-A DID document is a JSON-LD document that contains information about a DID, including public keys, service endpoints, and other metadata.
+A DID document is a JSON-LD document that contains information about a DID, including public keys, services, and other metadata.
 
 ### DID Method
 
@@ -36,7 +36,7 @@ A DID method is a set of rules and specifications for how a DID is created, reso
 
 ### DID Resolver
 
-A DID resolver is a software component that can resolve a DID to a DID Document, which contains information about the DID, such as public keys, service endpoints, and other metadata.
+A DID resolver is a software component that can resolve a DID to a DID Document, which contains information about the DID, such as public keys, services, and other metadata.
 
 ### Self-Sovereign Identity
 
@@ -53,7 +53,7 @@ Verifiable credentials are often associated with DIDs and can be stored and mana
 
 ### Attestation
 
-The act of providing evidence or confirming the validity of the data within the claim, typically performed by a trusted attester. 
+The act of providing evidence or confirming the validity of the data within the claim, typically performed by a trusted attester.
 
 ### Attester
 

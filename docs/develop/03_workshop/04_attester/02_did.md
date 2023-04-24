@@ -19,7 +19,7 @@ A KILT decentralized identifier (DID) is a string uniquely identifying each KILT
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.
-You would store a public encryption key and a service endpoint on-chain, which can both be queried using your DID.
+You would store a public encryption key and a services on-chain, which can both be queried using your DID.
 Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
 
 There are two types of DIDs: light and full.
