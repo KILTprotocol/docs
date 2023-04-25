@@ -20,7 +20,7 @@ You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.
 You would store a public encryption key and a services on-chain, which can both be queried using your DID.
-Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
+Other users can now encrypt messages using your public encryption key and send the message to your service.
 
 There are two types of DIDs: light and full.
 Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.

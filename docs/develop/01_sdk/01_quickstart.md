@@ -23,7 +23,7 @@ You will learn how to:
 1. Import the **KILT SDK** into a project
 2. Connect to the **KILT blockchain**
 3. Query a **web3name** to get its **DID**
-4. Verify a **credential**, published via a **DID service** // dafuq? todo:
+4. Verify a **credential**, available via a **DID service**
 
 After completing the quickstart guide, you should have gained a better understanding of KILT through hands-on experience.
 The guide requires some experience with javascript and command-line tools.
