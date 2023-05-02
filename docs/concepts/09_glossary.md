@@ -145,8 +145,8 @@ More details about Polkadot can be found on their [offical documentation](https:
 
 ### polkadot.js
 
-A JavaScript library that allows developers to interact with the substrate based blockchains, including the KILT Protocol.
-It is the basis of the KILT SDK and provides many utils and functions that may be usefull for application developers.
+A JavaScript library that allows developers to interact with Substrate-based blockchains, including KILT Spiritnet and Peregrine.
+It is the basis of the KILT SDK and provides many utils and functions that may be useful for application developers.
 More details about polkadot.js can be found on their [official documentation](https://polkadot.js.org/docs/).
 
 ### Substrate
