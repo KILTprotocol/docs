@@ -41,10 +41,10 @@ If you wish to become a candidate at a later stage, you will have to apply again
 
 1. Select one of your KILT addresses with sufficient funds to pay for the transaction fee (~5 milli KILT) as the extrinsic submitter (the *using the selected account* field)
 _NOTE: Of course, you can chose your collator account._
-1. Select the appropriate extrinsic: `parachainStaking -> executeLeaveCandidates`
-2. Select the `Id` option (the *MultiAddress (LookupSource) field*)
-3. Select the collator account (the *Id: AccountId* field)
-4. Sign and submit the extrinsic (the *Submit Transaction* button)
+2. Select the appropriate extrinsic: `parachainStaking -> executeLeaveCandidates`
+3. Select the `Id` option (the *MultiAddress (LookupSource) field*)
+4. Select the collator account (the *Id: AccountId* field)
+5. Sign and submit the extrinsic (the *Submit Transaction* button)
 
 ## Cancel the Exit Request
 
