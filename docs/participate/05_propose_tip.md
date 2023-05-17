@@ -13,20 +13,22 @@ In the following, we will lead you through the necessary steps from requesting a
 ## Lifecycle of a Tipping Process
 
 Since anyone can propose a tip, you can certainly do that for someone else, the **<span style={{background: '#7cd27c', color: 'black'}}>Beneficiary</span>**.
-In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will receive a **share of 20% of their final tip** if your proposal is successful.
-However, you also need to make a **minor deposit**, which is dependent on the number of characters you provide for the reason for the tip.
-Overall, you should expect to provide between 0.05 to 0.2 KILT as a deposit.
+In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will need to put down a **minor deposit**, which depends on who long the "reason message" is, meaning how many characters form the reason why the tipping is being proposed.
+Overall, you should expect to provide **between 0.05 to 0.2 KILT** as a deposit.
 For example, if you provide a URL that includes 60 characters, the deposit would be around 0.07 KILT.
 
-After a tip proposal is made, the KILT Council and a few other core contributors come to consensus on how much should be paid.
+After a tip proposal is made, the set of tippers, which is elected by the KILT Council, come to consensus on how much should be paid.
 Every member of this stakeholder group, the <span style={{background: '#c7fff9', color: 'black'}}>**Tippers**</span>, can submit an appropriate amount.
 Eventually, the median of all tips is taken as the final amount.
 
 Once at least half of the Tippers have declared their tip, the ending phase starts.
-After 24 hours in blocktime have passed, the tip is automatically closed and paid from the Treasury.
+After 24 hours have passed, the tip is automatically closed and paid from the Treasury.
 However, other Tippers can still submit their suitable amount and thus influence the final amount of the tip.
-During payout, 20% of the tip is given to the Finder, and their deposit is returned.
-If the Finder is a member of the Tippers, the entire tip goes to the Beneficiary.
+After payout, the original deposit is returned to the Finder.
+
+:::note No Finder's fees
+While tipping allows a configurable percentage of the final tip to go to the original Finder, the current KILT configuration has set this fee to 0, meaning that the Finder's will thus not get rewarded for successful tips.
+:::
 
 <div className="kilt-mermaid">
 
@@ -56,7 +58,7 @@ flowchart TD
     %% Treasury
     Payout_1 --> Payout_2{Is there a Finder's fee?}:::Payment
     Payout_2 --> |Yes| Payout_3(Reduce final tip amount by Finder's fee):::Payment
-    Payout_2 --> |No| Payout_4[("💰 Treasury")]:::Payment
+    Payout_2 --> |No (as is currently the case for KILT)| Payout_4[("💰 Treasury")]:::Payment
     Payout_3 --> Payout_4{{"Ready to pay out"}}
     Payout_4 --> Treasury[("💰 Wait for Spending Period \n of Treasury to end")]:::Payment
     Treasury ==> |"Receive tip"| Beneficiary
