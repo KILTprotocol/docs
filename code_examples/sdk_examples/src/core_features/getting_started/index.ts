@@ -18,7 +18,7 @@ export async function runAll(): Promise<void> {
     throw new Error('"john_doe" is not associated to any DID on Spiritnet')
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
-    throw new Error(`DID doesn't include the service endpoints`)
+    throw new Error(`DID doesn't include services`)
 
   let credential: Kilt.ICredential
   try {

@@ -41,7 +41,7 @@ export async function queryPublishedCredentials(
     credentialEndpoints?.[0]?.serviceEndpoint[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
-      `The DID has no service endpoints of type "${Kilt.KiltPublishedCredentialCollectionV1Type}".`
+      `The DID has no services of type "${Kilt.KiltPublishedCredentialCollectionV1Type}".`
     )
   }
 

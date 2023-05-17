@@ -23,7 +23,7 @@ You will learn how to:
 1. Import the **KILT SDK** into a project
 2. Connect to the **KILT blockchain**
 3. Query a **web3name** to get its **DID**
-4. Verify a **credential**, published via a **DID service endpoint**
+4. Verify a **credential**, available via a **DID service**
 
 After completing the quickstart guide, you should have gained a better understanding of KILT through hands-on experience.
 The guide requires some experience with javascript and command-line tools.
@@ -180,12 +180,12 @@ Now let's see if John Doe has any public KILT credentials that we could retrieve
 
 ## Retrieve and Verify a Credential
 
-A **KILT DID** can expose service endpoints, which allow external resources to be linked to the DID.
+A **KILT DID** can expose services, which allow external resources to be linked to the DID.
 One type of external resource is represented by, you guessed it, **KILT credentials**!
-Therefore, let's see how we can retrieve the **service endpoints** of John Doe's DID and see if they link to any public credentials for us to **query** and **verify**.
+Therefore, let's see how we can retrieve the **services** of John Doe's DID and see if they link to any public credentials for us to **query** and **verify**.
 
 We will keep adding code below what we just added.
-The code snippet retrieves the service endpoints exposed by the DID we found for `john_doe`:
+The code snippet retrieves the services exposed by the DID we found for `john_doe`:
 
 <SnippetBlock
   className="language-ts"
@@ -203,7 +203,7 @@ We can select one of the endpoints and query the URL to see if it returns a KILT
   {FetchEndpointData}
 </TsJsSnippet>
 
-If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service endpoint.
+If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service.
 
 We will now have to make sure the credential is **valid** and has a valid **structure**.
 

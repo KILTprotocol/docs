@@ -17,7 +17,7 @@ The following is an example of how to create a light DID after creating an authe
   {LightDidSimple}
 </TsJsBlock>
 
-For cases in which an encryption key and some service endpoints also need to be added to a light DID:
+For cases in which an encryption key and some services also need to be added to a light DID:
 
 <TsJsBlock>
   {LightDidComplete}
