@@ -25,6 +25,7 @@ Once at least half of the Tippers have declared their tip, the ending phase star
 After 24 hours have passed, the tip is automatically closed and paid from the Treasury.
 However, other Tippers can still submit their suitable amount and thus influence the final amount of the tip.
 After payout, the original deposit is returned to the Finder.
+The proposal will not be approved and paid out until at least half the tippers have voted with `Aye`. At any point before it is approved, the Finder can cancel the tip proposal and get back their deposit.
 
 :::note No Finder's fees
 While tipping allows a configurable percentage of the final tip to go to the original Finder, the current KILT configuration has set this fee to 0, meaning that the Finder's will thus not get rewarded for successful tips.
