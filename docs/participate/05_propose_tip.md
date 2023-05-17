@@ -58,7 +58,7 @@ flowchart TD
     %% Treasury
     Payout_1 --> Payout_2{Is there a Finder's fee?}:::Payment
     Payout_2 --> |Yes| Payout_3(Reduce final tip amount by Finder's fee):::Payment
-    Payout_2 --> |No (as is currently the case for KILT)| Payout_4[("💰 Treasury")]:::Payment
+    Payout_2 --> |No| Payout_4[("💰 Treasury")]:::Payment
     Payout_3 --> Payout_4{{"Ready to pay out"}}
     Payout_4 --> Treasury[("💰 Wait for Spending Period \n of Treasury to end")]:::Payment
     Treasury ==> |"Receive tip"| Beneficiary
