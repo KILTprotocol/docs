@@ -13,7 +13,7 @@ In the following, we will lead you through the necessary steps from requesting a
 ## Lifecycle of a Tipping Process
 
 Since anyone can propose a tip, you can certainly do that for someone else, the **<span style={{background: '#7cd27c', color: 'black'}}>Beneficiary</span>**.
-In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will need to put down a **minor deposit**, which depends on who long the "reason message" is, meaning how many characters form the reason why the tipping is being proposed.
+In that case, you, the <span style={{background: '#fff4bd', color: 'black'}}>**Finder**</span>, will need to put down a **minor deposit**, which depends on how long the "reason of the tip message" is, meaning how many characters form the reason why the tipping is being proposed.
 Overall, you should expect to provide **between 0.05 to 0.2 KILT** as a deposit.
 For example, if you provide a URL that includes 60 characters, the deposit would be around 0.07 KILT.
 
