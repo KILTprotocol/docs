@@ -11,7 +11,7 @@ import FetchCType from '!!raw-loader!@site/code_examples/sdk_examples/src/core_f
 Every KILT credential has to conform to a CType.
 A CType describes which properties a credential has and what type these properties have.
 CTypes must be registered on the Spiritnet blockchain.
-To learn more about the CTypes, see the [CType concept section](../../../../concepts/05_credentials/02_ctypes.md)
+To learn more about CTypes, see the [CType concept section](/docs/concepts/05_credentials/02_ctypes.md)
 
 The creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
@@ -37,9 +37,7 @@ The following snippets show how to create a CType:
 ## Retrieve a CType from its ID
 
 CTypes can be queried directly from any KILT archive nodes.
-This is possible because the CType is written onchain when they are registered.
-
-The SDK makes it easy to use this feature:
+The following example shows how to query a CType using the SDK:
 
 <TsJsBlock>
   {FetchCType}
