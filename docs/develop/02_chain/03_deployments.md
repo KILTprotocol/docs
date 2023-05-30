@@ -23,5 +23,5 @@ To learn more about how to set up a node for either environment, please check ou
 [spirit-wss-kilt]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.kilt.io
 [spirit-wss-onfinality]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws
 [spirit-wss-dwellir]: https://polkadot.js.org/apps/?rpc=wss://kilt-rpc.dwellir.com
-[pere-faucet]: https://faucet.kilt.io
+[pere-faucet]: https://faucet.peregrine.kilt.io
 [pere-wss-kilt]: https://polkadot.js.org/apps/?rpc=wss://peregrine.kilt.io/parachain-public-ws
