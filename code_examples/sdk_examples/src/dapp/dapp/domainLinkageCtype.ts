@@ -1,16 +1,29 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export const domainLinkageCType: Kilt.ICType = {
-  $id: 'kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643',
-  $schema: 'http://kilt-protocol.org/draft-01/ctype#',
-  title: 'Domain Linkage Credential',
-  properties: {
-    id: {
-      type: 'string'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export async function main(): Promise<Kilt.ICType> {
+  const { creator, createdAt, ...domainLinkageCType } =
+    await Kilt.CType.fetchFromChain(
+      'kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643'
+    )
+
+  console.log(JSON.stringify(domainLinkageCType, null, 2))
+
+  /** Prints the following definition:
+  {
+    "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "origin": {
+            "type": "string"
+        }
     },
-    origin: {
-      type: 'string'
-    }
-  },
-  type: 'object'
+    "title": "Domain Linkage Credential",
+    "type": "object",
+    "$id": "kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643"
+  }
+  */
+  return domainLinkageCType
 }
