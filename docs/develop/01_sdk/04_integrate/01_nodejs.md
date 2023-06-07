@@ -19,7 +19,7 @@ Have a look at these example `package.json` and `index.js` files for reference:
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.33.0-rc.2"
+    "@kiltprotocol/sdk-js": "0.33.0-rc.3"
   }
 }
 ```

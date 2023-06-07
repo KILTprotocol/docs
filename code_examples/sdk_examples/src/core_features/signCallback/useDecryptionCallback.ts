@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { naclOpen } from '@polkadot/util-crypto'
 
 export function useDecryptionCallback(
   keyAgreement: Kilt.KiltEncryptionKeypair
@@ -9,9 +8,8 @@ export function useDecryptionCallback(
     nonce,
     peerPublicKey
   }): Promise<Kilt.DecryptResponseData> {
-    const decrypted = naclOpen(
-      data,
-      nonce,
+    const decrypted = Kilt.Utils.Crypto.decryptAsymmetric(
+      { box: data, nonce },
       peerPublicKey,
       keyAgreement.secretKey
     )
