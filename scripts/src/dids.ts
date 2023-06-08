@@ -1,10 +1,6 @@
 import type { Keyring } from '@polkadot/api'
 
-import {
-  blake2AsHex,
-  blake2AsU8a,
-  naclBoxPairFromSecret
-} from '@polkadot/util-crypto'
+import { blake2AsHex, blake2AsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
@@ -20,7 +16,8 @@ export function generateAttesterDid(keyring: Keyring): TestDidDocument {
   const authSeed = blake2AsU8a('attester-auth')
   const encSeed = blake2AsU8a('attester-enc')
   const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(encSeed)
+  const { publicKey: encPk, secretKey: encSk } =
+    Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(encSeed)
 
   const details: TestDidDocument = {
     authentication: [
@@ -49,7 +46,8 @@ export function generateClaimerDid(keyring: Keyring): TestDidDocument {
   const authSeed = blake2AsU8a('claimer-auth')
   const encSeed = blake2AsU8a('claimer-enc')
   const authKey = keyring.addFromSeed(authSeed) as Kilt.KiltKeyringPair
-  const { publicKey: encPk, secretKey: encSk } = naclBoxPairFromSecret(encSeed)
+  const { publicKey: encPk, secretKey: encSk } =
+    Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(encSeed)
 
   const details: TestDidDocument = {
     authentication: [
