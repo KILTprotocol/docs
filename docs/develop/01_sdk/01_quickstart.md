@@ -14,8 +14,7 @@ import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_fea
 import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
-import VerifyAttestation from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_verify_attestation.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/08_disconnect.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 You will learn how to:
@@ -217,17 +216,6 @@ This will be indicated by the result of the **verification** process as shown in
 </SnippetBlock>
 
 Now excute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
-
-Now it's time to query the credential's `rootHash` from the blockchain to see if it has been **attested** by someone:
-
-<SnippetBlock
-  className="language-ts"
-  funcEnd="return"
->
-  {VerifyAttestation}
-</SnippetBlock>
-
-Now, the last step is to excute the complete script and see if you get a valid attestation for John Doe's credential!
 
 Was it successful? Nice Job!
 
