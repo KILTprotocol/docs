@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { main as connect } from './02_connect'
-import { main as disconnect } from './08_disconnect'
+import { main as disconnect } from './07_disconnect'
 import { main as fetchEndpointData } from './05_fetch_endpoint_data'
 import { main as fetchJohnDoeDid } from './03_fetch_did'
 import { main as fetchJohnDoeEndpoints } from './04_fetch_endpoints'

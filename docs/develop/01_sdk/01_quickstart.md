@@ -14,7 +14,7 @@ import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_fea
 import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/08_disconnect.ts';
+import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
 
 The following guide will give you a starting point to begin with KILT.
 You will learn how to:
