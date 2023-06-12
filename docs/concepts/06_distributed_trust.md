@@ -66,3 +66,10 @@ E.g., Attester 2 cannot revoke credentials issued by Attester 1, 3, 4 and 5, whi
 [Credits to freepngimg.com.](https://freepngimg.com/png/11420-coming-soon-png-file)
 
 </center>
+
+
+## Storing Delegation node
+
+Adding a new node in the delegation hierarchies requires providing a constant deposit, which is currently 1 KILT.
+The deposit serves as a security measure to ensure the integrity of the blockchain and incentivize users to manage their nodes responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of nodes.
+The deposit can be reclaimed by the user by deleting their node.
