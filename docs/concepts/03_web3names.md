@@ -55,7 +55,7 @@ A DID `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` is not to be c
 There is no (immediate) relationship between the two, thus the DID should always be considered a DID and never used as an account.
 Therefore, if instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*", please ignore the advice, as without the required technical expertise, sending funds to a DID can result in those funds being lost.
 
-### Storaging web3name
+### Storing web3name
 
 Storing a web3name in the blockchain requires providing a constant deposit, which is currently around 0.11 KILT. The deposit amount is calculated based on the worst-case scenario for a web3name, which is when a user provides a name with 32 characters.
 The deposit serves as a security measure to ensure the integrity of the blockchain and incentivize users to manage their web3names responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of web3names.
