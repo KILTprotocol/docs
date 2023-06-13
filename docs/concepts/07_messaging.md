@@ -22,10 +22,11 @@ A necessary condition for secure communication with a given person or organizati
 
 To be able to communicate, the two DIDs need to expose **key agreement public keys** for that purpose (a.k.a., an **encryption key**).
 In order to send a message to the other party, a DID owner (let's call her **Alice**) looks up her peer's (let's call him **Bob**) encryption public key, which can be part of either a [full DID](./02_did.md#full-dids) or a [light DID](./02_did.md#light-dids).
-Using this key in combination with her secret encryption key, **Alice** can now encrypt the message such that only she and **Bob** can decrypt it.
+Using this key in combination with her secret encryption key, **Alice** can now encrypt the message such that only she and **Bob** can decrypt it. A **nonce** introduces randomness and uniqueness into encryption operations, making it highly challenging for an attacker to predict or replicate the encryption process.
+Each message has a different **nonce**, resulting in the creation of a unique encryption context for every message.
 
 **Bob** can decrypt this message after looking up **Alice's** encryption key.
-An additional _message authentication code_ (MAC or in practice often called nonce) added during encryption and verified on decryption protects against manipulation of the encrypted data.
+An additional _message authentication code_ (MAC) added during encryption and verified on decryption protects against manipulation of the encrypted data.
 As long as both parties keep their secret keys well protected, the combination of these measures allows **Bob** to be confident that if the message decrypts successfully, it could have only been encrypted by **Alice** and has not been read or tampered with by some malicious third party while in transport.
 
 While encrypted, the message travels in a compact and privacy-preserving envelope format that only exposes data that the recipient needs to be able to decrypt.
