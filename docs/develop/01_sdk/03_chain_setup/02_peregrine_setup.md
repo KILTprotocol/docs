@@ -15,7 +15,7 @@ Since the native token of Peregrine, the _PILT_, does not have any economic valu
 
 ## Connect to the Network
 
-Replace the WebSocket address of [your script](./index.md#set-up-your-project) or application with `wss://peregrine.kilt.io/parachain-public-ws`.
+Replace the WebSocket address of [your script](./index.md#set-up-your-project) or application with `wss://peregrine.kilt.io`.
 
 You can either use your own frontend or the [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws#/explorer) to interact with the chain.
 Moreover, you can use [Subscan](https://kilt-testnet.subscan.io/) as a chain explorer.
