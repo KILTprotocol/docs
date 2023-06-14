@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed.
-Any stable (LTS >= 14.0) version is sufficient.
+Any stable (LTS >= 16.0) version is sufficient.
 
 ## Dependencies
 
