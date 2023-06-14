@@ -33,7 +33,7 @@ Since this is just a simple query, it does not cost any transaction fees.
 >
 <TabItem value="polkadot-apps" label="Polkadot Apps">
 
-In the Polkadot JS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Runtime calls`.
+In the Polkadot JS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io#/explorer)) go to `Developer -> Runtime calls`.
 
 1. Select the `parachainStaking` endpoint.
 2. Select the `getUnclaimedStakingRewards(account)` call.
