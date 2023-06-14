@@ -59,7 +59,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
   await Kilt.init()
 
   const wssAddress =
-    process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io/parachain-public-ws'
+    process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io'
   const mnemonic = process.env[MNEMONIC_ENV]
   const faucetSeed = process.env[FAUCET_SEED_ENV]
 

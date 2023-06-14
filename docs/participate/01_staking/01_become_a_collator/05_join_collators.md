@@ -48,7 +48,7 @@ As a collator candidate you can check the current top candidates to see their po
 
 ![](/img/chain/parachainStaking-topCandidates1.png)
 
-In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer)) go to `Developer -> Chain state -> Storage`
+In Polkadot JS ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), or [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io#/explorer)) go to `Developer -> Chain state -> Storage`
 
 1. Selected state query: `parachainStaking -> topCandidates(): ParachainStakingSetOrderedSet`
 2. Execute the query by pressing the "+" button on the right side

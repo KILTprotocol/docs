@@ -68,7 +68,7 @@ Your output will provide you with `CLAIMER_DID_MNEMONIC`.
 Be sure to save it in your `.env` file, it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine.kilt.io
 
 ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
 ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
