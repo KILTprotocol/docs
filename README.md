@@ -43,7 +43,6 @@ To add a code example that is executed and tested, add the file to one of the co
 Depending on where the code example is used, the code has to be put into a different section in the `code_examples` folder.
 
 * Anything in the SDK section -> `code_examples/sdk_examples/src/core_features/...`
-  * Except ViteJS since it requires a special setup -> `code_examples/vitejs`
 * The workshop -> `code_examples/sdk_examples/src/workshop/...`
 * dApp examples -> `code_examples/sdk_examples/src/dapp/...`
 * The Staking guide -> `code_examples/sdk_examples/src/staking/...`
