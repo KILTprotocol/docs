@@ -18,7 +18,10 @@ export function App() {
       }
     }
     resolveWeb3Name()
-  })
+    return () => {
+      Kilt.disconnect()
+    }
+  }, [])
 
   return <div className="App">john_doe is {did}</div>
 }
