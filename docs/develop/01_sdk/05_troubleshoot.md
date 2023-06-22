@@ -33,4 +33,4 @@ Uncaught SyntaxError: redeclaration of import Buffer
 
 ### Solution
 
-Your project might be using polyfills for the NodeJS built-in `Buffer`, which can cause conflicts with some polkadot-js libraries such as `@polkadot/react-identicon`. Try if upgrading the SDK and its dependencies to their latest versions allows you to drop these polyfills from your configuration.
+Your project might be using polyfills for the NodeJS built-in `Buffer`, which can cause conflicts with some polkadot-js libraries such as `@polkadot/react-identicon`. You can try upgrading the SDK and its dependencies to their latest versions. It's possible that upgrading will allow you to drop these polyfills from your configuration.
