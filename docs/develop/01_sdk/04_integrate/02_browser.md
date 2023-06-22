@@ -14,17 +14,16 @@ Our JavaScript SDK (`@kiltprotocol/sdk-js`) is ready to be used in a browser con
 
 The SDK's functions then become available via a new `kilt` property on the global `window` object.
 
-To get started with your first __React application__ using KILT, we recommend using either the [KILT Distillery](./03_distillery.md) CLI tool or bootstrapping tools like [Create React App](https://create-react-app.dev) or [ViteJS](https://vitejs.dev) that take away some of the complexity in building and testing a React application.
+To get started with your first **React application** using KILT, we recommend using either the [KILT Distillery](./03_distillery.md) CLI tool for bootstrapping or a framework like [Vite](https://vitejs.dev) or [Next.js](https://nextjs.org) that take away some of the complexity in building and testing a React application. You can find a wider selection of popular React-powered frameworks on the [React project's homepage](https://react.dev/learn/start-a-new-react-project).
 
 After completing the respective tool's recommended steps to initialize your project, simply add the SDK to your dependencies and you are ready to hack away!
 
 :::info
 
 You should of course familiarize yourself with the tool of your choice, but these commands have served us well in the past:  
-<Tabs
-  groupId="vite-cra"
->
-<TabItem value="vite" label="ViteJS" default>
+<Tabs groupId="vite-nextjs">
+
+<TabItem value="vite" label="Vite" default>
 
 ```bash
 yarn create vite my-kilt-app --template react-ts
@@ -33,10 +32,10 @@ yarn add @kiltprotocol/sdk-js
 ```
 
 </TabItem>
-<TabItem value="cra" label="Create React App">
+<TabItem value="nextJS" label="NextJS">
 
 ```bash
-yarn create react-app my-kilt-app --template typescript
+yarn create next-app my-kilt-app
 cd my-kilt-app
 yarn add @kiltprotocol/sdk-js
 ```
