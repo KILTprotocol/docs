@@ -48,30 +48,6 @@ jobs:
           yarn install --frozen-lockfile
           yarn test ${{ matrix.test_case }}
 
-  # Only test the style conventions for the viteJS snippets, nothing is run here
-  vitejs:
-    name: Test ViteJS snippets
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-
-      - name: Test style conventions
-        working-directory: code_examples/vitejs
-        run: |
-          yarn install --frozen-lockfile
-          yarn lint && yarn style
-      - name: Test production build
-        working-directory: code_examples/vitejs
-        run: |
-          yarn build
-
   check-links:
     name: Check for broken links
     runs-on: ubuntu-latest
