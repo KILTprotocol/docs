@@ -14,7 +14,7 @@ Our JavaScript SDK (`@kiltprotocol/sdk-js`) is ready to be used in a browser con
 
 The SDK's functions then become available via a new `kilt` property on the global `window` object.
 
-To get started with your first **React application** using KILT, we recommend using either the [KILT Distillery](./03_distillery.md) CLI tool for bootstrapping or a framework like [Vite](https://vitejs.dev) or [Next.js](https://nextjs.org) that take away some of the complexity in building and testing a React application. You can find a wider selection of popular React-powered frameworks on the [React project's homepage](https://react.dev/learn/start-a-new-react-project).
+To get started with your first **React application** using KILT, we recommend using either the [KILT Distillery](./03_distillery.md) CLI tool for bootstrapping or a framework like [Vite](https://vitejs.dev) or [Next.js](https://nextjs.org) that takes away some of the complexity in building and testing a React application. You can find a broader selection of popular React-powered frameworks on the [React project's homepage](https://react.dev/learn/start-a-new-react-project).
 
 After completing the respective tool's recommended steps to initialize your project, simply add the SDK to your dependencies and you are ready to hack away!
 
@@ -22,7 +22,6 @@ After completing the respective tool's recommended steps to initialize your proj
 
 You should of course familiarize yourself with the tool of your choice, but these commands have served us well in the past:  
 <Tabs groupId="vite-nextjs">
-
 <TabItem value="vite" label="Vite" default>
 
 ```bash
