@@ -29,7 +29,7 @@ However, for this workshop we will create our own CType.
 A CType ensures that a credential contains all required attributes, e.g., a driver's license has to contain a name, date of birth, the type of vehicle that can be driven by the claimer.
 The CType is especially important since a Verifier would request credentials for a specific CType (e.g., the traffic police want to see your driver's license and not your gym membership).
 
-If you want to learn more about CTypes take a look at our [in depth CType documentation](@site/docs/concepts/05_credentials/02_ctypes.md).
+If you want to learn more about CTypes take a look at our [in depth CType documentation](../../../concepts/05_credentials/02_ctypes.md).
 You can also [read through existing CTypes in our CType-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
