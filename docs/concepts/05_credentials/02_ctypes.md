@@ -19,9 +19,40 @@ This data format is used to define [CType models](https://github.com/KILTprotoco
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
-- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype#).
+- **KILT specific JSON-Schema**: Accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
+
+:::warning
+ Deprecation Warning: Property Swap
+
+Warning: The following CType Schema property value is deprecated and will be replaced in future versions.
+Please update your code accordingly to avoid any issues.
+It will mean you have to update existing CTypes to include the new value.
+However, they are backwards compatible.
+
+Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
+
+New Property Value:  `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/"`
+
+Action Required:
+
+Locate all instances where `$schema` is used in your codebase.
+Replace `$schema` with `$schema` in the relevant sections of your code.
+Update any dependencies or libraries that rely on the `$schema` to support the `$schema`.
+Test thoroughly to ensure the correct behavior and functionality of the `$schema` in your application.
+If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
+Timeline:
+The `$schema` has been officially removed in the next major release.
+It is strongly advised to make the necessary changes before that release to avoid any disruptions or unexpected behavior.
+
+Note:
+Ignoring this deprecation warning may result in compatibility issues and limited support in future versions.
+Failure to update your code may lead to unexpected errors or loss of functionality.
+
+We appreciate your cooperation in this migration process and apologize for any inconvenience caused.
+Please don't hesitate to reach out if you require further assistance or clarification.
+:::
 
 ### Properties
 
@@ -33,7 +64,7 @@ When creating a new CType schema, the following properties are required:
 - The format field is optionally:
   - *Date* format e.g., 2012-04-23T18:25:43.511Z
   - *Time* format e.g., T18:25:43.511Z
-  - *URI* format e.g., https://www.example.com
+  - *URI* format e.g., <https://www.example.com>
 
 <CodeBlock className="language-json" title="CType schema example">
   {ctypeSchema}

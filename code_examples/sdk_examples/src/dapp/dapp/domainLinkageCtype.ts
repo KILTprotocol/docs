@@ -11,7 +11,7 @@ export async function main(): Promise<Kilt.ICType> {
 
   /** Prints the following definition:
   {
-    "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+    "$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/",
     "properties": {
         "id": {
             "type": "string"

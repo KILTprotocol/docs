@@ -1,5 +1,5 @@
 {
-  "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+  "$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/",
   "title": "Drivers License by did:kilt:4t9FPVbcN42UMxt3Z2Y4Wx38qPL8bLduAB11gLZSwn5hVEfH",
   "properties": {
     "name": {
