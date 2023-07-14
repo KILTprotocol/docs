@@ -61,10 +61,11 @@ if (require.main === module) {
       // Load attester account
       const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
       const { account } = generateAccount(accountMnemonic)
-      const { mnemonic } = await createFullDid(account)
+      const { mnemonic, fullDid } = await createFullDid(account)
 
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_MNEMONIC=${mnemonic}\n`)
+      console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
+      console.error(`ATTESTER_DID_URI="${fullDid.uri}"\n`)
     } catch (e) {
       console.log('Error while creating attester DID')
       throw e

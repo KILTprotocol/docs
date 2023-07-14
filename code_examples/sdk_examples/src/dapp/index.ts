@@ -1,10 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { main as attestCredential } from './dapp/attestCredential'
 import { createFullDid } from '../workshop/attester/generateDid'
-import { domainLinkageCType } from './dapp/domainLinkageCtype'
 import { main as formatCredential } from './dapp/formatCredential'
 import { generateAccount } from '../workshop/attester/generateAccount'
 import { generateKeypairs as generateAttesterKeypairs } from '../workshop/attester/generateKeypairs'
+import { main as getDomainLinkageCType } from './dapp/domainLinkageCtype'
 import { main as getDomainLinkageCredential } from './dapp/domainLinkageClaim'
 import { getFunds } from '../getFunds'
 import { main as signPresentation } from './dapp/signPresentation'
@@ -26,6 +26,7 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
   const { assertionMethod: assertionMethodKey } =
     generateAttesterKeypairs(attesterMnemonic)
 
+  const domainLinkageCType = await getDomainLinkageCType()
   const { domainLinkageCredential } = getDomainLinkageCredential({
     domainLinkageCType,
     didUri: attesterDid.uri

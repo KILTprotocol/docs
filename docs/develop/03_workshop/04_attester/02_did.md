@@ -19,8 +19,8 @@ A KILT decentralized identifier (DID) is a string uniquely identifying each KILT
 You can store information about your DID on the KILT chain.
 This is useful for many different use cases.
 One example would be messaging.
-You would store a public encryption key and a service endpoint on-chain, which can both be queried using your DID.
-Other users can now encrypt messages using your public encryption key and send the message to your service endpoint.
+You would store a public encryption key and a services on-chain, which can both be queried using your DID.
+Other users can now encrypt messages using your public encryption key and send the message to your service.
 
 There are two types of DIDs: light and full.
 Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.
@@ -52,7 +52,7 @@ For our <span className="label-role attester">Attester</span> we'll need all fou
 Since three of the key types are used for signatures, we can use the same key for these.
 We'll use the default KILT keyring to generate them.
 
- <TsJsBlock fileName="attester/generateKeypairs">
+<TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
 
@@ -81,28 +81,30 @@ You can now execute the script with:
   <TabItem value='js' label='Javascript' default>
 
   ```bash
-  node ./attester/generateAccount.js
+  node ./attester/generateDid.js
   ```
 
   </TabItem>
 </Tabs>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC`.
+Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
-ATTESTER_DID_URI=did:kilt:4rgeGJNgHNiZ9TngzQTwmSAYXxMJCUFVbMCcwqwGobwQvc9X
+ATTESTER_DID_MNEMONIC="beyond large galaxy...
+ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Be sure to save it in your `.env` file.
 It should now look similar to this:
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine.kilt.io
 
 ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
 ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
 ATTESTER_DID_MNEMONIC="beyond large galaxy...
+ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Well done - You've successfully generated a full DID! Let's create a CType!

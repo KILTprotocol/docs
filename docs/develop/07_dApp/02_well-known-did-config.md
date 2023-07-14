@@ -48,11 +48,11 @@ Make sure to create the DID with an `assertionMethodKey` so that you are able to
 ### Making the claim
 
 After you get a DID, you can make a claim about that DID.
-The claim has to be based on the [Domain Linkage CType][CType-Domain-Linkage]:
+The claim has to be based on the [Domain Linkage CType][CType-Domain-Linkage], whose definition you can get from the linked GitHub repository, or fetch from the blockchain using the CType's id:
 
-<TsJsBlock>
+<TsJsSnippet funcEnd="return">
   {DomainLinkageCtype}
-</TsJsBlock>
+</TsJsSnippet>
 
 The credential is built from the CType, claim contents, and your dapp's unique DID:
 

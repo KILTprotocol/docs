@@ -5,7 +5,7 @@ title: Build DID Extrinsics
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_tx.ts';
+import FullDidSignTx from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/09_full_did_tx.ts';
 import FullDidBatch from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/08_full_did_batch.ts';
 
 DID keys can be used to sign extrinsic.
@@ -41,7 +41,7 @@ To sign a single extrinsic, you need to provide:
 ## Batch multiple extrinsics
 
 Full DIDs can also be used to batch multiple extrinsics that require the signature of the DID.
-For instance, a batch could create multiple service endpoints with a single submission to the blockchain.
+For instance, a batch could create multiple services with a single submission to the blockchain.
 This would save the user the time of generating one additional signature, as multiple extrinsics are batched and signed at once.
 The extrinsics are also submitted and executed in the same block.
 For more information, see the [official Substrate documentation](https://paritytech.github.io/substrate/master/pallet_utility/pallet/struct.Pallet.html).

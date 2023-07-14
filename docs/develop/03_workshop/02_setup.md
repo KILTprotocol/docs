@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 ## Node.js
 
 You need to have [Node.js](https://nodejs.org/) installed.
-Any stable (LTS >= 14.0) version is sufficient.
+Any stable (LTS >= 16.0) version is sufficient.
 
 ## Dependencies
 
@@ -22,7 +22,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
   <TabItem value='ts' label='Typescript' default>
 
   Install the needed packages:
-  
+
   ```bash npm2yarn
   npm init -y
   npm install @kiltprotocol/sdk-js dotenv ts-node typescript
@@ -32,7 +32,7 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
   <TabItem value='js' label='Javascript' default>
 
   Install the needed packages:
-  
+
   ```bash npm2yarn
   npm init -y
   npm install @kiltprotocol/sdk-js dotenv
@@ -85,11 +85,11 @@ PILT coins don't have any value and can be requested from the [faucet](https://f
 Before you call any SDK functionality, you need to initialize the crypto libraries and configure the SDK.
 For this workshop, we'll be using [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws%2F#/explorer).
 This is done by calling `await Kilt.connect(address)` where `address` is the address of the full node you want to connect to.
-For this workshop, use `wss://peregrine.kilt.io/parachain-public-ws`.
+For this workshop, use `wss://peregrine.kilt.io`.
 Add the address to your `.env` file.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine.kilt.io
 ```
 
 That's it for the basic setup - We're good to go!

@@ -82,6 +82,8 @@ After creating a CType, its full content is included only in the blockchain bloc
 Querying the full content of a CType then becomes trivial, since the CType hash can be used to look up its creation block number, and then that information can be used to ask any KILT archive node for the extrinsic information about the CType creation.
 The information includes the whole CType, which is now available for the user to, e.g., verify credentials against it.
 
+For adding a CType, a constant fee of 0.001 KILT is required.
+
 For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
 
 [kilt-runtime-1.9.0]: https://github.com/KILTprotocol/kilt-node/releases/tag/1.9.0

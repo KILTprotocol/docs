@@ -36,10 +36,9 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 
 ## Create the Account
 
-To generate an account, one method from the Polkadot crypto utility, and one method from the KILT SDK is needed:
+To generate an account, we use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/_kiltprotocol_types.KiltKeyringPair.html) generated via the SDK.
+The mnemonic is generated with the polkadot function `mnemonicGenerate()`, which generates a 12-word mnemonic.
 
-- `mnemonicGenerate()` - Generates a 12-word mnemonic
-- `makeKeypairFromSeed(seed)` - takes a mnemonic as an input, and outputs a `Keypair` instance.
 
 <TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
@@ -70,7 +69,7 @@ Your output will provide you with `ATTESTER_ACCOUNT_MNEMONIC` and `ATTESTER_ACCO
 Be sure to save it in your `.env` file; it should now look similar to this.
 
 ```env title=".env"
-WSS_ADDRESS=wss://peregrine.kilt.io/parachain-public-ws
+WSS_ADDRESS=wss://peregrine.kilt.io
 
 ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry..."
 ATTESTER_ACCOUNT_ADDRESS="4ohMvUHsyeDhMVZF..."

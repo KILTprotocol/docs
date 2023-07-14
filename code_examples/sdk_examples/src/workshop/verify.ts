@@ -20,17 +20,16 @@ async function verifyPresentation(
   trustedAttesterUris: Kilt.DidUri[]
 ): Promise<boolean> {
   try {
-    await Kilt.Credential.verifyPresentation(presentation, { challenge })
-
-    const attestationInfo = Kilt.Attestation.fromChain(
-      await api.query.attestation.attestations(presentation.rootHash),
-      presentation.rootHash
+    const { revoked, attester } = await Kilt.Credential.verifyPresentation(
+      presentation,
+      { challenge }
     )
-    if (attestationInfo.revoked) {
+
+    if (revoked) {
       return false
     }
     // Returns true if no trusted attester URI is provided or, if it is, if it matches the one that issued the presented credential.
-    return trustedAttesterUris.includes(attestationInfo.owner)
+    return trustedAttesterUris.includes(attester)
   } catch {
     return false
   }

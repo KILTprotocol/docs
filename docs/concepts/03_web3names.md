@@ -28,8 +28,8 @@ For example, the full URI for the web3name `example-web3name` is `w3n:example-we
 ### Linking Multiple Accounts to a web3name
 
 Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a single DID.
-These accounts are not specific to the KILT blockchain; they can reference any chain within the Dotsama ecosystem.
-Each account <-> DID link requires the payment of a small deposit, which is returned if the link is ever removed.
+These accounts are not specific to the KILT blockchain; they can reference any chain within the Polkadot ecosystem.
+Each account <-> DID link requires the payment of a small deposit.
 
 For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
 
@@ -54,3 +54,9 @@ DIDs are used to authorize (sign) some operations, but the resulting signature m
 A DID `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` is not to be considered the same as the account `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e`, although they share the same identifier.
 There is no (immediate) relationship between the two, thus the DID should always be considered a DID and never used as an account.
 Therefore, if instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*", please ignore the advice, as without the required technical expertise, sending funds to a DID can result in those funds being lost.
+:::
+
+### Storing web3name
+
+Storing a web3name in the blockchain requires providing a constant deposit, which is currently around 0.11 KILT. The deposit amount is calculated based on the worst-case scenario for a web3name, which is when a user provides a name with 32 characters. The deposit serves
+as a security measure to ensure the integrity of the blockchain and incentivize users to manage their web3names responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of web3names. The deposit can be reclaimed by the user by deleting their web3name.

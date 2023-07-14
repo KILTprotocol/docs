@@ -15,7 +15,7 @@ The following is an example of how to create and write on the blockchain a full 
   {FullDidSimple}
 </TsJsBlock>
 
-If additional keys or service endpoints are to be specified, they can be passed as parameters to the creation transaction.
+If additional keys or services are to be specified, they can be passed as parameters to the creation transaction.
 
 <TsJsBlock>
   {FullDidComplete}

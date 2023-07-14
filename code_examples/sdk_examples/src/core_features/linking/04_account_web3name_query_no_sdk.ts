@@ -15,7 +15,6 @@ export async function queryAccountWeb3Name(
     typesBundle
   })
   // Call to the KILT runtime API `did.queryByAccount`
-
   const didDetails = await api.call.did.queryByAccount({
     AccountId32: lookupAccountAddress
   })

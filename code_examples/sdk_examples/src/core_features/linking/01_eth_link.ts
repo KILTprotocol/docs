@@ -5,27 +5,27 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function linkAccountToDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkedAccount: KeyringPair,
+  linkedAccount: KeyringPair & { type: 'ethereum' },
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // The account to be linked has to sign a specifically-crafted payload to prove
-  // willingness to be linked to the DID.
-  const linkingAccountSignatureGeneration = async (
-    signaturePayload: string | Uint8Array
-  ) => linkedAccount.sign(signaturePayload)
-
-  // Authorizing the tx with the full DID and including a signature of the linked account
-  // results in the provided account being linked to the DID authorizing the operation.
+  // Generate the parameters for the extrinsic that links account and DID.
+  // This will contain the signature of the account that will be linked to the DID
+  // and therefore signals the agreement of the account to be linked.
   const accountLinkingParameters = await Kilt.Did.associateAccountToChainArgs(
     linkedAccount.address,
     did,
-    linkingAccountSignatureGeneration
+    async (payload) => linkedAccount.sign(payload)
   )
+
+  // Afterwards we build the extrinsic using the parameters from above.
   const accountLinkingTx = await api.tx.didLookup.associateAccount(
     ...accountLinkingParameters
   )
+
+  // Next the DID signs the extrinsic.
+  // This signals the agreement of the DID owner to be linked to the account.
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeTx(
     did,
     accountLinkingTx,
@@ -33,6 +33,9 @@ export async function linkAccountToDid(
     submitterAccount.address
   )
 
+  // finally we need to submit everything to the blockchain, so that the link gets
+  // registered.
+  // This account will provide the required deposit and pay the fees.
   await Kilt.Blockchain.signAndSubmitTx(
     authorizedAccountLinkingTx,
     submitterAccount

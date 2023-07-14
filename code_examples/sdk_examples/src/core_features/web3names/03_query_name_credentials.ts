@@ -41,7 +41,7 @@ export async function queryPublishedCredentials(
     credentialEndpoints?.[0]?.serviceEndpoint[0]
   if (!firstCredentialCollectionEndpointUrl) {
     console.log(
-      `The DID has no service endpoints of type "${Kilt.KiltPublishedCredentialCollectionV1Type}".`
+      `The DID has no services of type "${Kilt.KiltPublishedCredentialCollectionV1Type}".`
     )
   }
 
@@ -57,17 +57,10 @@ export async function queryPublishedCredentials(
   // Verify that all credentials are valid and that they all refer to the same subject DID.
   await Promise.all(
     credentialCollection.map(async ({ credential }) => {
-      await Kilt.Credential.verifyCredential(credential)
+      const { revoked } = await Kilt.Credential.verifyCredential(credential)
 
-      const attestationInfo = await api.query.attestation.attestations(
-        credential.rootHash
-      )
-      const attestation = Kilt.Attestation.fromChain(
-        attestationInfo,
-        credential.rootHash
-      )
       // Verify that the credential is not revoked.
-      if (attestation.revoked) {
+      if (revoked) {
         throw new Error(
           'One of the credentials has been revoked, hence it is not valid.'
         )

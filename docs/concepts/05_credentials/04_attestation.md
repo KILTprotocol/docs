@@ -14,3 +14,9 @@ The Claimer can hence monitor the blockchain themselves to listen for the event 
 After the credential has been attested, the Claimer can store it in their own wallet and can now use it with Verifiers that trust credentials issued by that Attester.
 
 For a detailed developer-oriented guide to KILT attestations, see our [Attestation Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/03_attestation_creation.md).
+
+### Storing Attestations
+
+Storing a attestation in the blockchain requires providing a constant deposit, which is currently around 0.12 KILT. The deposit amount is calculated based on the worst-case scenario for a attestation, where the maximum storage for one attestation reaches 179 bytes.
+The deposit serves as a security measure to ensure the integrity of the blockchain and incentivize users to manage their attestation responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of attestation.
+The deposit can be reclaimed by the attester by deleting their attestation. Revoking them is not sufficient.

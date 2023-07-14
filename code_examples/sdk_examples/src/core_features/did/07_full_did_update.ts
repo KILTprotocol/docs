@@ -17,13 +17,20 @@ export async function updateFullDid(
     Kilt.Did.resourceIdToChain('#my-service')
   )
 
+  // Create the tx to add a new service with ID `#my-new-service`.
+  const newServiceEndpointTx = api.tx.did.addServiceEndpoint({
+    id: Kilt.Did.resourceIdToChain('#my-new-service'),
+    serviceTypes: [Kilt.KiltPublishedCredentialCollectionV1Type],
+    urls: ['https://www.new-example.com']
+  })
+
   // Create and sign the DID operation that contains the two (unsigned) txs.
   // This results in a DID-signed tx that can be then signed and submitted to the KILT blockchain by the account
   // authorized in this operation, Alice in this case.
   const authorizedBatchedTxs = await Kilt.Did.authorizeBatch({
     batchFunction: api.tx.utility.batchAll,
     did: fullDid,
-    extrinsics: [didKeyUpdateTx, didServiceRemoveTx],
+    extrinsics: [didKeyUpdateTx, didServiceRemoveTx, newServiceEndpointTx],
     sign: signCallback,
     submitter: submitterAccount.address
   })

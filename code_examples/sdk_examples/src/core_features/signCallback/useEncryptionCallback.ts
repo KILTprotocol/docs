@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { naclSeal } from '@polkadot/util-crypto'
 
 export function useEncryptionCallback({
   keyAgreement,
@@ -12,14 +11,14 @@ export function useEncryptionCallback({
     data,
     peerPublicKey
   }): Promise<Kilt.EncryptResponseData> {
-    const { sealed, nonce } = naclSeal(
+    const { box, nonce } = Kilt.Utils.Crypto.encryptAsymmetric(
       data,
-      keyAgreement.secretKey,
-      peerPublicKey
+      peerPublicKey,
+      keyAgreement.secretKey
     )
     return {
       nonce,
-      data: sealed,
+      data: box,
       keyUri: keyAgreementUri
     }
   }
