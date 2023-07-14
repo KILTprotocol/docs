@@ -17,14 +17,16 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()): {
   )
 
   // Now we derive the authentication, attestation and delegation keypairs from the signer keypair
-  // by using different derivation paths
+  // by using different derivation paths.
+  // This allows us to restore all keys related to this DID from a single mnemonic seed phrase.
+  // The chosen derivation pathes can be anything, but here we use the purpuse of the keys to be generated.
   const authenticationKey = baseSignerKey.derive(
     '//authentication'
   ) as Kilt.KiltKeyringPair
-  const attestationKey = authenticationKey.derive(
+  const attestationKey = baseSignerKey.derive(
     '//attestation'
   ) as Kilt.KiltKeyringPair
-  const delegationKey = authenticationKey.derive(
+  const delegationKey = baseSignerKey.derive(
     '//delegation'
   ) as Kilt.KiltKeyringPair
 
