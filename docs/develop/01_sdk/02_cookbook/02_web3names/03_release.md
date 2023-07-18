@@ -28,9 +28,10 @@ The function `releaseWeb3Name` uses the KILT SDK to create a *web3name release t
 It then authorizes the transaction using the `Kilt.Did.authorizeTx` method and submits the authorized transaction to the blockchain using `Kilt.Blockchain.signAndSubmitTx`.
 This process ensures that the release transaction is signed by the DID owner.
 
-If the web3name is being released by the deposit payer, the signature of the DID owner is not required; a regular signed extrinsic can be submitted to the KILT blockchain, as shown below.
 
 ## Reclaiming a Web3name Deposit by the Deposit Payer
+
+If the web3name is being released by the deposit payer, the signature of the DID owner is not required; a regular signed extrinsic can be submitted to the KILT blockchain, as shown below.
 
 <TsJsBlock>
   {ReclaimDeposit}
