@@ -42,7 +42,7 @@ export async function runAll(
   console.log('2 w3n) Verify web3name owner and DID web3name')
   const doc = await queryDidDocument(randomWeb3Name)
   if (doc.uri !== fullDid.uri) {
-    throw new Error("web3name is registered for a wrong DID")
+    throw new Error('web3name is registered for a wrong DID')
   }
 
   console.log('3 w3n) Query credentials for "john_doe" web3name')
