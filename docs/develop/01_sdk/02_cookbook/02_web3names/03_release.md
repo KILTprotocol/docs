@@ -18,7 +18,7 @@ In the case of the DID owner willing to release the web3name, the following snip
   {Release}
 </TsJsBlock>
 
-In the code above, the releaseWeb3Name function takes the following parameters:
+In the code above, the `releaseWeb3Name` function takes the following parameters:
 
 * **did**: The DID URI of the owner.
 * **submitterAccount**: The keyring pair of the submitter.
