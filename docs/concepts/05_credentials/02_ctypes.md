@@ -38,9 +38,15 @@ New Property Value:  `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4
 Action Required:
 
 Locate all instances where `$schema` is used in your codebase.
-Replace `$schema` with `$schema` in the relevant sections of your code.
-Update any dependencies or libraries that rely on the `$schema` to support the `$schema`.
-Test thoroughly to ensure the correct behavior and functionality of the `$schema` in your application.
+You will need to re-write the CType by taking the old ctype and entering the following code in the relevant sections.
+Where oldCType is the `CType` before the update to verison `0.33.1`.
+
+``` js
+const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
+```
+
+Update any dependencies or libraries that rely on the `oldCType` to support the latest version of the `newCType`.
+Test thoroughly to ensure the correct behavior and functionality of the new CTypes in your application.
 If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
 Timeline:
 The `$schema` has been officially removed in the next major release.

@@ -12,6 +12,7 @@ export async function main(): Promise<Kilt.ICType> {
   /** Prints the following definition:
   {
     "$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/",
+    "additionalProperties": false,
     "properties": {
         "id": {
             "type": "string"
