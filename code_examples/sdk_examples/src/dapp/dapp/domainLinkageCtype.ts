@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function main(): Promise<Kilt.ICType> {
   const { creator, createdAt, ...domainLinkageCType } =
     await Kilt.CType.fetchFromChain(
-      'kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643'
+      'kilt:ctype:0xb08800a574c436831a2b9fce00fd16e9df489b2b3695e88a0895d148eca0311e'
     )
 
   console.log(JSON.stringify(domainLinkageCType, null, 2))
@@ -22,7 +22,7 @@ export async function main(): Promise<Kilt.ICType> {
     },
     "title": "Domain Linkage Credential",
     "type": "object",
-    "$id": "kilt:ctype:0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643"
+    "$id": "kilt:ctype:0xb08800a574c436831a2b9fce00fd16e9df489b2b3695e88a0895d148eca0311e"
   }
   */
   return domainLinkageCType
