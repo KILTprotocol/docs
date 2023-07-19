@@ -5,10 +5,10 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from './01_claim'
 import { createSimpleFullDid } from '../did/04_full_did_simple'
+import { queryDidDocument } from './02_query_did_name'
 import { queryPublishedCredentials } from './03_query_name_credentials'
 import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'
 import { releaseWeb3Name } from './04_release'
-import { verifyNameAndDidEquality } from './02_query_did_name'
 
 import { generateKeypairs } from '../utils/generateKeypairs'
 
@@ -40,7 +40,11 @@ export async function runAll(
     })
   )
   console.log('2 w3n) Verify web3name owner and DID web3name')
-  await verifyNameAndDidEquality(randomWeb3Name, fullDid.uri)
+  const doc = await queryDidDocument(randomWeb3Name)
+  if (doc.uri !== fullDid.uri) {
+    throw new Error('web3name is registered for a wrong DID')
+  }
+
   console.log('3 w3n) Query credentials for "john_doe" web3name')
   try {
     await queryPublishedCredentials('john_doe')
