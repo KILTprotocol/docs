@@ -28,8 +28,8 @@ The following are all required properties of the schema, with no additional prop
 
 Warning: The following CType Schema property value is deprecated and will be replaced in future versions.
 Please update your code accordingly to avoid any issues.
-It will mean you have to update existing CTypes to include the new value.
-However, they are backwards compatible.
+It will mean you should update existing CTypes.
+The previous version of the CType will work, however, it is advised to upgrade.
 
 Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
 
@@ -48,16 +48,6 @@ const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 Update any dependencies or libraries that rely on the `oldCType` to support the latest version of the `newCType`.
 Test thoroughly to ensure the correct behavior and functionality of the new CTypes in your application.
 If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
-Timeline:
-The `$schema` has been officially removed in the next major release.
-It is strongly advised to make the necessary changes before that release to avoid any disruptions or unexpected behavior.
-
-Note:
-Ignoring this deprecation warning may result in compatibility issues and limited support in future versions.
-Failure to update your code may lead to unexpected errors or loss of functionality.
-
-We appreciate your cooperation in this migration process and apologize for any inconvenience caused.
-Please don't hesitate to reach out if you require further assistance or clarification.
 :::
 
 ### Properties
