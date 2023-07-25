@@ -25,7 +25,7 @@ async function fetchDidAndCredential(api: ApiPromise) {
     // For now simply disconnect and return (i.e., ignore this error).
     credential = await fetchEndpointData(endpoints)
   } catch (error) {
-    console.error("Error while fetching IPFS", error)
+    console.error('Error while fetching IPFS', error)
     return
   }
   await verifyCredential(credential)
