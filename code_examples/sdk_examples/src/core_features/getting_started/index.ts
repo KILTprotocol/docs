@@ -1,6 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as connect } from './02_connect'
+import { main as connect_pere } from './02_connect_spirit'
+import { main as connect_spirit } from './02_connect_spirit'
 import { main as disconnect } from './07_disconnect'
 import { main as fetchEndpointData } from './05_fetch_endpoint_data'
 import { main as fetchJohnDoeDid } from './03_fetch_did'
@@ -10,8 +11,8 @@ import { main as verifyCredential } from './06_verify_credential'
 
 export async function runAll(): Promise<void> {
   await printHelloWorld()
-  // Connect to Spiritnet.
-  const api = await connect()
+  await connect_pere()
+  const api = await connect_spirit()
   const johnDoeDid = await fetchJohnDoeDid(api)
   if (!johnDoeDid)
     throw new Error('"john_doe" is not associated to any DID on Spiritnet')
