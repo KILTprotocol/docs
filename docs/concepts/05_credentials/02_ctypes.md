@@ -26,7 +26,7 @@ The following are all required properties of the schema, with no additional prop
 :::warning
  Deprecation Warning: Property Swap
 
-Warning: The following CType Schema property value is deprecated and will be replaced in future versions.
+Warning: The following CType Schema property value is deprecated.
 Please update your code accordingly to avoid any issues.
 It will mean you should update existing CTypes.
 The previous version of the CType will work, however, it is advised to upgrade.
