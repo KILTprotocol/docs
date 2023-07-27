@@ -19,7 +19,7 @@ This data format is used to define [CType models](https://github.com/KILTprotoco
 The following are all required properties of the schema, with no additional properties allowed:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
-- **KILT specific JSON-Schema**: Accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
+- **Reference to CType metaschema (`$schema`)**: Describes what a valid CType must looks like. The latest metaschema is accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
 
@@ -35,19 +35,19 @@ Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
 
 New Property Value:  `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/"`
 
-Action Required:
+**Migration instructions:** 
 
-Locate all instances where `$schema` is used in your codebase.
-You will need to re-write the CType by taking the old ctype and entering the following code in the relevant sections.
-Where oldCType is the `CType` before the update to verison `0.33.1`.
+Attesters are recommended to transition to issuing credentials using upgraded versions of CTypes currently in use.
+
+Using sdk version `0.33.0` or later, you can produce a copy of an existing CType `oldCType` as follows:
 
 ``` js
 const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 ```
 
-Update any dependencies or libraries that rely on the `oldCType` to support the latest version of the `newCType`.
-Test thoroughly to ensure the correct behavior and functionality of the new CTypes in your application.
-If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
+The new CType will have the same title and properties as the existing one, but will be based on the new metaschema, resulting in a different hash and id.
+After [registering the new CType on the Kilt blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
+Depending verifiers are recommended to accept both the old and new CType during a transition period.
 :::
 
 ### Properties
