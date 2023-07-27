@@ -16,12 +16,14 @@ The schema defines which properties exist and what their type should be, e.g., a
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
 This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CType.schemas.ts).
-The following are all required properties of the schema, with no additional properties allowed:
+The following are all required properties of the schema:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
 - **Reference to CType metaschema (`$schema`)**: Describes what a valid CType must looks like. The latest metaschema is accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
+- **Type**: The CType is an object an must be declared.
+- **Additional properties**: The *additionalProperties* is set to false per default, this restriction ensures that unwanted and malicious attesters cannot add properties to the CType without the user's consent.
 
 :::warning
  Deprecation Warning: Property Swap
