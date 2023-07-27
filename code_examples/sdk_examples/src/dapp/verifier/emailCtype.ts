@@ -12,6 +12,7 @@ export function main() {
         type: 'string'
       }
     },
-    type: 'object'
+    type: 'object',
+    additionalProperties: false
   }
 }
