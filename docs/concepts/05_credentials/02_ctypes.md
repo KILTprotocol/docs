@@ -48,6 +48,9 @@ const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 The new CType will have the same title and properties as the existing one, but will be based on the new metaschema, resulting in a different hash and id.
 After [registering the new CType on the Kilt blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
 Depending verifiers are recommended to accept both the old and new CType during a transition period.
+Test thoroughly to ensure the correct behaviour and functionality of the new CTypes in your application.
+
+If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
 :::
 
 ### Properties
