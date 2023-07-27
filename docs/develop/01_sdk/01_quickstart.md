@@ -175,7 +175,7 @@ This helps maintain the integrity of your application and is a good practice to 
 
 
 Congratulations!
-You have connected to a blockchain node.
+You have connected to a KILT blockchain node.
 Let's now start querying some data from the chain!
 
 ## Query a KILT Identity
