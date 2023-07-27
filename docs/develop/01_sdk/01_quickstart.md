@@ -42,7 +42,7 @@ Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kil
 
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  npm install @kiltprotocol/sdk-js ts-node typescript axios
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
@@ -54,7 +54,7 @@ Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kil
 
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js axios node
+  npm install @kiltprotocol/sdk-js node axios
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
