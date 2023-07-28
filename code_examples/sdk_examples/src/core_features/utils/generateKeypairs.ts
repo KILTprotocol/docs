@@ -1,3 +1,5 @@
+import * as Kilt from '@kiltprotocol/sdk-js'
+
 import {
   blake2AsU8a,
   keyExtractPath,
@@ -6,7 +8,6 @@ import {
   mnemonicToMiniSecret,
   sr25519PairFromSeed
 } from '@polkadot/util-crypto'
-import * as Kilt from '@kiltprotocol/sdk-js'
 
 // Because there is no first-class support for this class of keys,
 // we need to use a workaround to generate a key we can use for encryption/decryption.
