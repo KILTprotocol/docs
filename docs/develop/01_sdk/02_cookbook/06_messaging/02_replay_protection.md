@@ -3,7 +3,7 @@ id: replay_protection
 title: Protect Against Replay Attacks
 ---
 
-import SnippetBlock from '@site/src/components/SnippetBlock';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 
 import DefineRange from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/_replay_protection_01.ts';
 import EvaluateMessageTime from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/_replay_protection_02.ts';
@@ -20,24 +20,24 @@ Below you can find example code of how this could be implemented.
 
 1. Define acceptance range and set up a record of past submissions:
 
-<SnippetBlock
+<TsJsBlock
   className="language-ts"
 >
   {DefineRange}
-</SnippetBlock>
+</TsJsBlock>
 
 2. Check record for each incoming message and update if accepted:
 
-<SnippetBlock
+<TsJsBlock
   className="language-ts"
 >
   {EvaluateMessageTime}
-</SnippetBlock>
+</TsJsBlock>
 
 3. Purge at regular intervals:
 
-<SnippetBlock
+<TsJsBlock
   className="language-ts"
 >
   {PurgeTimeout}
-</SnippetBlock>
+</TsJsBlock>
