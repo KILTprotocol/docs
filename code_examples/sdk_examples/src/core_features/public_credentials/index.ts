@@ -34,8 +34,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     })
   )
 
@@ -54,8 +54,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -85,8 +85,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credentialId,
     true
@@ -96,8 +96,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -106,8 +106,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -116,8 +116,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )

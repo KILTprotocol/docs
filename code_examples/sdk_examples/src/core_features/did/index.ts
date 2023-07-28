@@ -31,11 +31,11 @@ export async function runAll(
   console.log('2 did) Create complete light DID')
   const {
     authentication: completeLightDidAuth,
-    encryption: completeLightDidEnc
+    keyAgreement: completeLightDidEnc
   } = generateKeypairs()
   createCompleteLightDid({
     authentication: completeLightDidAuth,
-    encryption: completeLightDidEnc
+    keyAgreement: completeLightDidEnc
   })
   console.log('3 did) Migrate first light DID to full DID')
   await migrateLightDid(simpleLightDid, submitterAccount, async ({ data }) => ({
@@ -57,17 +57,17 @@ export async function runAll(
   console.log('5 did) Create complete full DID')
   const {
     authentication: completeFullDidAuth,
-    encryption: completeFullDidEnc,
-    attestation: completeFullDidAtt,
-    delegation: completeFullDidDel
+    keyAgreement: completeFullDidEnc,
+    assertionMethod: completeFullDidAtt,
+    capabilityDelegation: completeFullDidDel
   } = generateKeypairs()
   const createdCompleteFullDid = await createCompleteFullDid(
     submitterAccount,
     {
       authentication: completeFullDidAuth,
-      encryption: completeFullDidEnc,
-      attestation: completeFullDidAtt,
-      delegation: completeFullDidDel
+      keyAgreement: completeFullDidEnc,
+      assertionMethod: completeFullDidAtt,
+      capabilityDelegation: completeFullDidDel
     },
     async ({ data }) => ({
       signature: completeFullDidAuth.sign(data),

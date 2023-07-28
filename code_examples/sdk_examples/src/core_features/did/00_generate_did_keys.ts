@@ -1,39 +1,58 @@
-import { mnemonicGenerate, mnemonicToMiniSecret } from '@polkadot/util-crypto'
-
+import {
+  blake2AsU8a,
+  keyExtractPath,
+  keyFromPath,
+  mnemonicGenerate,
+  mnemonicToMiniSecret,
+  sr25519PairFromSeed
+} from '@polkadot/util-crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+// Because there is no first-class support for this class of keys,
+// we need to use a workaround to generate a key we can use for encryption/decryption.
+function generateKeyAgreement(mnemonic: string): Kilt.KiltEncryptionKeypair {
+  const secretKeyPair = sr25519PairFromSeed(mnemonicToMiniSecret(mnemonic))
+  const { path } = keyExtractPath('//did//keyAgreement//0')
+  const { secretKey } = keyFromPath(secretKeyPair, path, 'sr25519')
+  return Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(blake2AsU8a(secretKey))
+}
+
 export function generateKeypairs(mnemonic = mnemonicGenerate()): {
-  authentication: Kilt.KiltKeyringPair
-  attestation: Kilt.KiltKeyringPair
-  delegation: Kilt.KiltKeyringPair
-  encryption: Kilt.KiltEncryptionKeypair
+  authentication: Kilt.KiltKeyringPair & {
+    type: 'sr25519'
+  }
+  keyAgreement: Kilt.KiltEncryptionKeypair
+  assertionMethod: Kilt.KiltKeyringPair
+  capabilityDelegation: Kilt.KiltKeyringPair
 } {
-  // At first we generate a signer keypair and an encrytion keypair from the mnemonic
-  const baseSignerKey = Kilt.Utils.Crypto.makeKeypairFromSeed(
-    mnemonicToMiniSecret(mnemonic)
-  )
-  const encryptionKey = Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(
-    mnemonicToMiniSecret(mnemonic)
+  const account = Kilt.Utils.Crypto.makeKeypairFromSeed(
+    mnemonicToMiniSecret(mnemonic),
+    'sr25519'
   )
 
-  // Now we derive the authentication, attestation and delegation keypairs from the signer keypair
-  // by using different derivation paths.
-  // This allows us to restore all keys related to this DID from a single mnemonic seed phrase.
-  // The chosen derivation pathes can be anything, but here we use the purpuse of the keys to be generated.
-  const authenticationKey = baseSignerKey.derive(
-    '//authentication'
-  ) as Kilt.KiltKeyringPair
-  const attestationKey = baseSignerKey.derive(
-    '//attestation'
-  ) as Kilt.KiltKeyringPair
-  const delegationKey = baseSignerKey.derive(
-    '//delegation'
-  ) as Kilt.KiltKeyringPair
+  const authentication = {
+    ...account.derive('//did//0'),
+    type: 'sr25519'
+  } as Kilt.KiltKeyringPair & {
+    type: 'sr25519'
+  }
+
+  const assertionMethod = {
+    ...account.derive('//did//assertion//0'),
+    type: 'sr25519'
+  } as Kilt.KiltKeyringPair
+
+  const capabilityDelegation = {
+    ...account.derive('//did//delegation//0'),
+    type: 'sr25519'
+  } as Kilt.KiltKeyringPair
+
+  const keyAgreement = generateKeyAgreement(mnemonic)
 
   return {
-    authentication: authenticationKey,
-    encryption: encryptionKey,
-    attestation: attestationKey,
-    delegation: delegationKey
+    authentication: authentication,
+    keyAgreement: keyAgreement,
+    assertionMethod: assertionMethod,
+    capabilityDelegation: capabilityDelegation
   }
 }
