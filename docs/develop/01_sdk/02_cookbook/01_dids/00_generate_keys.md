@@ -10,7 +10,7 @@ import GenerateKeys from '!!raw-loader!@site/code_examples/sdk_examples/src/core
 Creating a Decentralized Identifier (DID) in the KILT network involves generating keying material for authentication and encryption.
 In this guide, we'll demonstrate how to create a set of key pairs suitable for generating a KILT DID.
 
-Before we proceed, it's important to note that this example assumes the usage of the @kiltprotocol/sdk-js library along with the @polkadot/util-crypto library for cryptographic operations.
+Before we proceed, it's important to note that this example assumes the usage of the `@kiltprotocol/sdk-js` library along with the `@polkadot/util-crypto` library for cryptographic operations.
 Additionally, we want to emphasize the significance of securely storing keys and the mnemonic seed phrase.
 For production use, ensure that private keys are encrypted and stored safely, while also creating a backup of the mnemonic seed phrase.
 
