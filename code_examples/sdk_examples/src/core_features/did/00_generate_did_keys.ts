@@ -26,11 +26,10 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()): {
   assertionMethod: Kilt.KiltKeyringPair
   capabilityDelegation: Kilt.KiltKeyringPair
 } {
-  const keyring = new Kilt.Utils.Keyring({
-    ss58Format: 38,
-    type: 'sr25519'
-  })
-  const account = keyring.addFromMnemonic(mnemonic)
+  const account = Kilt.Utils.Crypto.makeKeypairFromSeed(
+    mnemonicToMiniSecret(mnemonic),
+    'sr25519'
+  )
 
   const authentication = {
     ...account.derive('//did//0'),

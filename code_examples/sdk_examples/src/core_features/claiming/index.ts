@@ -38,8 +38,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attersterKeys.attestation.sign(data),
-      keyType: attersterKeys.attestation.type
+      signature: attersterKeys.assertionMethod.sign(data),
+      keyType: attersterKeys.assertionMethod.type
     })
   )
   console.log('2 claiming) Fetch CType')
@@ -57,8 +57,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attersterKeys.attestation.sign(data),
-      keyType: attersterKeys.attestation.type
+      signature: attersterKeys.assertionMethod.sign(data),
+      keyType: attersterKeys.assertionMethod.type
     }),
     credential
   )
@@ -81,8 +81,8 @@ export async function runAll(
     attesterFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: attersterKeys.attestation.sign(data),
-      keyType: attersterKeys.attestation.type
+      signature: attersterKeys.assertionMethod.sign(data),
+      keyType: attersterKeys.assertionMethod.type
     }),
     credential,
     false

@@ -40,8 +40,8 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     senderFullDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: senderKeypairs.attestation.sign(data),
-      keyType: senderKeypairs.attestation.type
+      signature: senderKeypairs.assertionMethod.sign(data),
+      keyType: senderKeypairs.assertionMethod.type
     })
   )
 
@@ -59,13 +59,13 @@ export async function runAll(submitterAccount: Kilt.KiltKeyringPair) {
     message,
     senderFullDid.uri,
     receiverFullDid.uri,
-    senderKeypairs.encryption
+    senderKeypairs.keyAgreement
   )
 
   console.log(
     '6 Messaging) Decrypting the message from sender for the receiver'
   )
-  await decryptMessage(encryptedMessage, receiverKeypairs.encryption)
+  await decryptMessage(encryptedMessage, receiverKeypairs.keyAgreement)
 
   console.log('Messaging flow completed!')
 }

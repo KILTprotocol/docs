@@ -4,14 +4,14 @@ export async function createCompleteFullDid(
   submitterAccount: Kilt.KiltKeyringPair,
   {
     authentication,
-    encryption,
-    attestation,
-    delegation
+    keyAgreement,
+    assertionMethod,
+    capabilityDelegation
   }: {
     authentication: Kilt.NewDidVerificationKey
-    encryption: Kilt.NewDidEncryptionKey
-    attestation: Kilt.NewDidVerificationKey
-    delegation: Kilt.NewDidVerificationKey
+    keyAgreement: Kilt.NewDidEncryptionKey
+    assertionMethod: Kilt.NewDidVerificationKey
+    capabilityDelegation: Kilt.NewDidVerificationKey
   },
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.DidDocument> {
@@ -20,9 +20,9 @@ export async function createCompleteFullDid(
   const fullDidCreationTx = await Kilt.Did.getStoreTx(
     {
       authentication: [authentication],
-      keyAgreement: [encryption],
-      assertionMethod: [attestation],
-      capabilityDelegation: [delegation],
+      keyAgreement: [keyAgreement],
+      assertionMethod: [assertionMethod],
+      capabilityDelegation: [capabilityDelegation],
       // Example service.
       service: [
         {
