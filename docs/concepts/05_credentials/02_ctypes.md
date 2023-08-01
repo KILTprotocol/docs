@@ -31,7 +31,7 @@ The following are all required properties of the schema:
 Warning: The following CType Schema property value is deprecated.
 Please update your code accordingly to avoid any issues.
 It will mean you should update existing CTypes.
-The previous version of the CType will work, however, it is advised to upgrade.
+While existing CTypes will continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
 
 Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
 
