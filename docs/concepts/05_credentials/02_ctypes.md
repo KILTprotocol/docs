@@ -22,8 +22,8 @@ The following are all required properties of the schema:
 - **Reference to CType metaschema (`$schema`)**: Describes what a valid CType must looks like. The latest metaschema is accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
-- **Type**: The CType is an object an must be declared.
-- **Additional properties**: The *additionalProperties* is set to false per default, this restriction ensures that unwanted and malicious attesters cannot add properties to the CType without the user's consent.
+- **Type**: Is always `"object"`,  instructing the JSON schema validator to expect an object (where each property is a claim about the Claimer in the credential).
+- **Additional properties**: In newer CTypes, *additionalProperties* must be present and must be set to `false`, restricting allowable claims in a credential to those listed in `properties`.
 
 :::warning
  Deprecation Warning: Property Swap
