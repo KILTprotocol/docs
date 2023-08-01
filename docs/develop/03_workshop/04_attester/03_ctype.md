@@ -47,9 +47,11 @@ Let's have a look at these attributes.
 | Key          | Value                                                                                                                                                               |
 | -------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$id`        | The KILT id of this CType. It is the most important property as it represents the **digital footprint** of the CType.                                               |
-| `$schema`    | A reference to the meta-schema describing what a CType may look like. This is the same for all CTypes.                                                              |
+| `$schema`    | A reference to the meta-schema describing what a CType may look like. There are two versions.                                                              |
 | `title`      | The title of the CType.                                                                                                                                             |
 | `properties` | The properties that a claim conforming to this CType may have.                                                                                                      |
+| `type` | Type is an object for all CTypes.                                                                                                  |
+| `additionalProperties` | The default is set to false. This restricts unwanted properties in a claim.                                                                                                      |
 
 A CType is stored on the KILT blockchain.
 
