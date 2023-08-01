@@ -26,11 +26,15 @@ The following are all required properties of the schema:
 - **Additional properties**: In newer CTypes, *additionalProperties* must be present and must be set to `false`, restricting allowable claims in a credential to those listed in `properties`.
 
 :::warning
- Deprecation Warning: Property Swap
+Deprecation Warning: CType metaschema draft-01
 
-Warning: The following CType Schema property value is deprecated.
-Please update your code accordingly to avoid any issues.
-It will mean you should update existing CTypes.
+CTypes based on the `[http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype%23%60)` metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
+Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged in the creation of new CTypes.
+For optimal security and functionality, it is recommended to use SDK version `0.33.0` or later for creating CTypes.
+This newer version defaults to using the updated metaschema available at [`ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/`](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/%60).
+
+This also means you should update existing CTypes.
+
 While existing CTypes will continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
 
 Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
