@@ -6,7 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import styles from './styles.module.css'
 
-const featureRows = [
+const quickLinkRow = [
   [
     {
       title: 'What is KILT?',
@@ -47,6 +47,43 @@ const featureRows = [
   ],
 ]
 
+const useCases = [
+  {
+    title: 'Your Friendly Name for the Web',
+    imageUrl: 'img/expert_light.svg',
+    imageUrlDark: 'img/expert_dark.svg',
+    link: 'https://w3n.id',
+    description: (
+      <>
+        Claim your web3name! A unique, human readable name that can be used as an alias for your DID.
+      </>
+    ),
+  },
+  {
+    title: 'Send Funds to Your DID',
+    imageUrl: 'img/tools.svg',
+    imageUrlDark: 'img/tools.svg',
+    link: 'docs/develop/sdk/quickstart',
+    description: (
+      <>
+        No need to remember long cryptic account addresses.
+        Add a service endpoint to your DID that specifies where asset should be send to.
+      </>
+    ),
+  },
+  {
+    title: 'Prove Your Public Identity',
+    imageUrl: 'img/apps-light.svg',
+    imageUrlDark: 'img/apps-dark.svg',
+    link: 'docs/develop/builtonkilt',
+    description: (
+      <>
+        Make sure that others know who you are when you comment on polkassembly or are a public figure in the polkadot ecosystem.
+      </>
+    ),
+  },
+]
+
 function Feature({ imageUrl, imageUrlDark, title, description, link }) {
   const imgUrl = useBaseUrl(imageUrl)
   const imgUrlDark = useBaseUrl(imageUrlDark)
@@ -72,6 +109,55 @@ function Feature({ imageUrl, imageUrlDark, title, description, link }) {
   )
 }
 
+function UseCaseImage({ title, imgUrl, imgUrlDark }) {
+
+  return (<div className="text--center">
+    <ThemedImage
+      alt={title}
+      className={styles.featureImage}
+      sources={{
+        light: imgUrl,
+        dark: imgUrlDark,
+      }}
+    />
+  </div>)
+}
+
+function UseCaseText({ title, description, link }) {
+
+  return (<div className="text--center">
+    <a href={useBaseUrl(link)} className={styles.featureLink}>
+      <h3>{title}</h3>
+    </a>
+    <p>{description}</p>
+  </div>)
+}
+
+function UseCase({ imageUrl, imageUrlDark, title, description, link, index }) {
+  const imgUrl = useBaseUrl(imageUrl)
+  const imgUrlDark = useBaseUrl(imageUrlDark)
+
+  let text = (
+    <div className={clsx('col col--8')}>
+      {UseCaseText({ title, description, link })}
+    </div>
+  )
+
+  let img = (
+    <div className={clsx('col col--4')}>
+      {imgUrl && (
+        UseCaseImage({ title, imgUrl, imgUrlDark })
+      )}
+    </div>
+  )
+
+  return (<div className={clsx('row')}>
+    {index % 2 == 0 && [text, img]}
+    {index % 2 == 1 && [img, text]}
+  </div>)
+}
+
+
 export default function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
@@ -87,15 +173,25 @@ export default function Home() {
         </div>
       </header>
       <main>
-        {featureRows && featureRows.length > 0 && (
+        {quickLinkRow && quickLinkRow.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-              {featureRows.map((features, row_idx) => (
+              {quickLinkRow.map((features, row_idx) => (
                 <div className="row" key={row_idx}>
                   {features.map((props, idx) => (
                     <Feature key={`${row_idx}-${idx}`} {...props} />
                   ))}
                 </div>
+              ))}
+            </div>
+          </section>
+        )}
+        {useCases && useCases.length > 0 && (
+          <section className={styles.use_case}>
+            <div className="container">
+              <h1>Use Cases</h1>
+              {useCases.map((useCaseProps, index) => (
+                <UseCase key={index} index={index} {...useCaseProps} />
               ))}
             </div>
           </section>
