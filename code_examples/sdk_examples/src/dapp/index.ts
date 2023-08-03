@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 import { main as attestCredential } from './dapp/04_attest_credential'
 import { createFullDid } from '../workshop/attester/generateDid'
-import { main as formatCredential } from './dapp/05_format_credentia'
+import { main as formatCredential } from './dapp/05_format_credential'
 import { generateAccount } from '../workshop/attester/generateAccount'
 import { generateKeypairs as generateAttesterKeypairs } from '../workshop/attester/generateKeypairs'
 import { main as getDomainLinkageCType } from './dapp/01_domain_linkage_ctype'
