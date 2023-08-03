@@ -1,13 +1,10 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export type Parameter = {
-  api: ApiPromise
+export async function main(
   domainLinkagePresentation: Kilt.ICredentialPresentation
-}
+) {
+  const api = Kilt.ConfigService.get('api')
 
-export async function main({ api, domainLinkagePresentation }: Parameter) {
   const credentialSubject = {
     ...domainLinkagePresentation.claim.contents,
     rootHash: domainLinkagePresentation.rootHash

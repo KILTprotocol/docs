@@ -1,22 +1,18 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export type Parameter = {
-  api: ApiPromise
-  didUri: Kilt.DidUri
-  dappAccount: Kilt.KiltKeyringPair
-  assertionMethodKey: Kilt.KiltKeyringPair
-  domainLinkageCredential: Kilt.ICredential
-}
-
 export async function main({
-  api,
   didUri,
   dappAccount,
   assertionMethodKey,
   domainLinkageCredential
-}: Parameter) {
+}: {
+  didUri: Kilt.DidUri
+  dappAccount: Kilt.KiltKeyringPair
+  assertionMethodKey: Kilt.KiltKeyringPair
+  domainLinkageCredential: Kilt.ICredential
+}) {
+  const api = Kilt.ConfigService.get('api')
+
   const { cTypeHash, claimHash } = Kilt.Attestation.fromCredentialAndDid(
     domainLinkageCredential,
     didUri

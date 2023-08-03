@@ -3,14 +3,14 @@ id: well-known-did-config
 title: Well-Known DID Configuration
 ---
 
-import TsJsSnippet from '@site/src/components/TsJsSnippet';
+
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DomainLinkageCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/domainLinkageCtype.ts';
-import DomainLinkageClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/domainLinkageClaim.ts';
-import SignPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/signPresentation.ts';
-import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/attestCredential.ts';
-import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/formatCredential.ts';
+import DomainLinkageCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/01_domain_linkage_ctype.ts';
+import DomainLinkageClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/02_domain_linkage_claim.ts';
+import SignPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/03_sign_presentation.ts';
+import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/04_attest_credential.ts';
+import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/05_format_credential.ts';
 
 :::danger This is a working draft
 
@@ -25,7 +25,6 @@ The implementation is based on the [*Well-Known DID Configuration*][well-known-s
 
 Once a communication session between a dapp and an extension is opened, the extension will query `<domain-name>/.well-known/did-configuration.json`.
 This JSON-file must contain a credential presentation that conforms to the [Domain Linkage CType][CType-Domain-Linkage].
-
 
 ## Set up the Well-Known DID Configuration
 
@@ -50,15 +49,15 @@ Make sure to create the DID with an `assertionMethodKey` so that you are able to
 After you get a DID, you can make a claim about that DID.
 The claim has to be based on the [Domain Linkage CType][CType-Domain-Linkage], whose definition you can get from the linked GitHub repository, or fetch from the blockchain using the CType's id:
 
-<TsJsSnippet funcEnd="return">
+<TsJsBlock funcEnd="return">
   {DomainLinkageCtype}
-</TsJsSnippet>
+</TsJsBlock>
 
 The credential is built from the CType, claim contents, and your dapp's unique DID:
 
-<TsJsSnippet funcEnd="return">
+<TsJsBlock funcEnd="return">
   {DomainLinkageClaim}
-</TsJsSnippet>
+</TsJsBlock>
 
 The credential isn't attested yet and is therefore not valid yet.
 
@@ -74,9 +73,9 @@ In order to attest the credential we go through the following steps:
 3. authorizing the transaction with your DID
 4. paying for the transaction with a KILT account and submitting it to the chain
 
-<TsJsSnippet funcEnd="return">
+<TsJsBlock funcEnd="return">
   {AttestCredential}
-</TsJsSnippet>
+</TsJsBlock>
 
 If you want to learn more about attestations you can refer to our [concept guide][concept-attestations] or the [cookbook][cookbook-attestations].
 
@@ -84,17 +83,16 @@ If you want to learn more about attestations you can refer to our [concept guide
 
 To use the newly attested credential, we need to derive a presentation from it to host on the dapp website.
 
-<TsJsSnippet funcEnd="return">
+<TsJsBlock funcEnd="return">
   {SignPresentation}
-</TsJsSnippet>
-
+</TsJsBlock>
 
 The Well-Known DID Configuration specification requires a verifiable credential.
 For now we have to manually convert our KILT credential into the required format.
 
-<TsJsSnippet funcEnd="return">
+<TsJsBlock funcEnd="return">
   {FormatCredential}
-</TsJsSnippet>
+</TsJsBlock>
 
 ### Host the Presentation
 

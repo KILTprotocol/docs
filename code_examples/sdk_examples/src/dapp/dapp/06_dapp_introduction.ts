@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+// For example, this should be taken by the extension library
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let window: {
   kilt: {
