@@ -2,12 +2,11 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export async function main(): Promise<Kilt.ICType> {
-  const { creator, createdAt, ...domainLinkageCType } =
-    await Kilt.CType.fetchFromChain(
-      'kilt:ctype:0xb08800a574c436831a2b9fce00fd16e9df489b2b3695e88a0895d148eca0311e'
-    )
+  const { creator, createdAt, ctype } = await Kilt.CType.fetchFromChain(
+    'kilt:ctype:0xb08800a574c436831a2b9fce00fd16e9df489b2b3695e88a0895d148eca0311e'
+  )
 
-  console.log(JSON.stringify(domainLinkageCType, null, 2))
+  console.log(JSON.stringify(ctype, null, 2))
 
   /** Prints the following definition:
   {
@@ -26,5 +25,5 @@ export async function main(): Promise<Kilt.ICType> {
     "$id": "kilt:ctype:0xb08800a574c436831a2b9fce00fd16e9df489b2b3695e88a0895d148eca0311e"
   }
   */
-  return domainLinkageCType
+  return ctype
 }
