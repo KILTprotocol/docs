@@ -14,4 +14,6 @@ export function main() {
     type: 'object',
     additionalProperties: false
   }
+
+  console.log(emailCType)
 }
