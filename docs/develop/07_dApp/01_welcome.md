@@ -9,4 +9,5 @@ This documentation assumes that you already have a browser extension capable of 
 We suggest using Sporran:
 
 - [Sporran Full Version](https://github.com/BTE-Trusted-Entity/sporran-extension)
+- [Sporran Test Version for Peregrine](https://github.com/BTE-Trusted-Entity/sporran-extension/releases)
 - [Sporran Lite (Credentials only)](https://github.com/BTE-Trusted-Entity/sporran-extension/tree/sporran-lite)

@@ -5,43 +5,44 @@ title: Quickstart
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
+import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import PrintHelloWorld from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/01_print_hello_world.ts';
-import Connect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect.ts';
+import ConnectSpirit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_spirit.ts';
+import ConnectPere from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_pere.ts';
 import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/03_fetch_did.ts';
 import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
 import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
 
-The following guide will give you a starting point to begin with KILT.
-You will learn how to:
+Get started with KILT by following this guide.
+You'll learn to:
 
-1. Import the **KILT SDK** into a project
+1. Import the **KILT SDK** into your project
 2. Connect to the **KILT blockchain**
-3. Query a **web3name** to get its **DID**
-4. Verify a **credential**, available via a **DID service**
+3. Query a **web3name** to retrieve its **DID**
+4. Verify a **credential** using a **DID service**
 
-After completing the quickstart guide, you should have gained a better understanding of KILT through hands-on experience.
-The guide requires some experience with javascript and command-line tools.
-We will recommend guides to other tutorials to dive deeper into some of the topics.
+This quickstart guide provides hands-on experience to enhance your understanding of KILT.
+Basic knowledge of JavaScript and command-line tools is recommended.
+For more in-depth tutorials, we'll suggest additional guides.
 
 ## Setup
 
-We will focus on creating a new project from scratch, which will require a little setup.
-First, we need to create a new project in a new directory.
-For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
+Let's start by creating a new project from scratch.
+Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kilt-rocks`.
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Ts-node**, **Axios** and **Typescript**:
+  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Typescript**, **ts-node** and **Axios**:
 
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js axios ts-node typescript
+  npm install @kiltprotocol/sdk-js ts-node typescript axios
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
@@ -53,7 +54,7 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 
   ```bash npm2yarn
   npm init -y
-  npm install @kiltprotocol/sdk-js axios node
+  npm install @kiltprotocol/sdk-js node axios
   ```
 
   With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
@@ -64,28 +65,30 @@ For this, we run `mkdir kilt-rocks && cd kilt-rocks`.
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  After you have imported the SDK you will be able to access the functionalities that KILT provides.
-  We are making a new file that contents the compiler configuration for typescript.
+  Once you've imported the SDK, you'll gain access to KILT's functionalities.
+  Now, let's create a new file containing the TypeScript compiler configuration.
 
   ```bash
   touch tsconfig.json
   ```
 
-  Inside the `tsconfig.json` add in the following value:
+  Inside the `tsconfig.json` file, include the following configuration:
 
-  ```bash
+  ```json
   {
     "compilerOptions": {
-      "module": "CommonJS"
-    },
+        "module": "CommonJS"
+    }
   }
   ```
+
+  This will set the `module` option to "CommonJS" for TypeScript compilation.
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-  After you have imported the SDK you will be able to access the functionalities that KILT provides.
-  Inside the `package.json` add in the value `"type": "module"`.
+  After importing the SDK, you'll have access to KILT's functionalities.
+  To enable ES modules in your project, add `"type": "module"` to the `package.json` file.
 
   </TabItem>
 </Tabs>
@@ -115,7 +118,7 @@ If the setup is correct you can execute the script by calling the name of the fi
   </TabItem>
 </Tabs>
 
-As we will extend the code in this file, you can always excute it with the same command.
+As we will extend the code in this file, you can always execute it with the same command.
 
 **Let's get started! 🔥**
 
@@ -133,22 +136,33 @@ We will move onto connecting to the **KILT blockchain**.
 
 ### Connect to the KILT Blockchain
 
-Connecting to and disconnecting from the KILT blockchain is required for any operation that relies on the KILT blockchain, such as **querying and verifying a credential**.
+To perform operations that rely on the KILT blockchain, such as querying and verifying a credential, it's essential to connect to the KILT blockchain.
+Within the same `main` function, configure the SDK to connect to a KILT node using the `Kilt.connect()` method:
 
-Still within the same `main` function, you need to configure the SDK to connect to a **KILT node**.
-For this, the SDK exposes **`Kilt.connect()`** to configure the address of the node to connect to.
+<Tabs groupId="chain-choice">
+  <TabItem value='pere' label='Peregrine (Testnet)' default>
+    Peregrine is the development blockchain.
+    For testing and development purposes connect to this network.
+    <SnippetBlock
+      className="language-ts"
+      funcEnd="return"
+      >
+      {ConnectPere}
+    </SnippetBlock>
+  </TabItem>
+  <TabItem value='spirit' label='Spiritnet (Production)'>
+    Spiritnet is the production blockchain.
+    When you are ready to publish your DApp, connect to the Spiritnet network for production purposes.
+    <SnippetBlock
+      className="language-ts"
+      funcEnd="return"
+      >
+      {ConnectSpirit}
+    </SnippetBlock>
+  </TabItem>
+</Tabs>
 
-We will use the official **Spiritnet** address:
-
-<SnippetBlock
-  className="language-ts"
-  funcEnd="return"
->
-  {Connect}
-</SnippetBlock>
-
-After establishing a connection, you have access to the chain, but let's not forget to **close** any connections when we are done!
-Connections to blockchain nodes should be dropped when no longer needed: to do that simply call the `Kilt.disconnect()` function at the bottom of `main` function.
+To ensure proper cleanup, call the `Kilt.disconnect()` function at the bottom of the main function:
 
 <SnippetBlock
   className="language-ts"
@@ -156,11 +170,15 @@ Connections to blockchain nodes should be dropped when no longer needed: to do t
   {Disconnect}
 </SnippetBlock>
 
-**Congratulations!
-You have connected to a Spiritnet node.
-Let's now start querying some data from the chain!**
+By adding `await Kilt.disconnect()` at the end of the main function, you ensure that the connection to the blockchain node is properly closed when the script finishes executing.
+This helps maintain the integrity of your application and is a good practice to follow.
 
-## Query the KILT Blockchain
+
+Congratulations!
+You have connected to a KILT blockchain node.
+Let's now start querying some data from the chain!
+
+## Query a KILT Identity
 
 We will be querying information related to a **web3name** (`john_doe`), and using them to retrieve the **KILT DID** linked to it.
 In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
@@ -215,7 +233,7 @@ This will be indicated by the result of the **verification** process as shown in
   {VerifyCredential}
 </SnippetBlock>
 
-Now excute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+Now execute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
 
 Was it successful? Nice Job!
 
