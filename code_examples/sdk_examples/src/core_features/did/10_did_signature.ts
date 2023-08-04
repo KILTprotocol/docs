@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { u8aToHex } from '@polkadot/util'
 
 type KeyLookup = (parameter: {
   didUri: Kilt.DidUri
@@ -26,7 +25,7 @@ export async function generateAndVerifyDidAuthenticationSignature(
 
   // Print the generated signature object.
   console.log('Generated signature:')
-  console.log(u8aToHex(signature))
+  console.log(Kilt.Utils.Crypto.u8aToHex(signature))
 
   // Verify the validity of the signature using the DID's authentication public key.
   // It throws if the signature cannot be verified.

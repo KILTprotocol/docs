@@ -1,6 +1,11 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export interface Param {
+export async function main({
+  message,
+  verifierDidUri,
+  verifierKeys,
+  session
+}: {
   message: Kilt.IMessage
   verifierDidUri: Kilt.DidUri
   verifierKeys: {
@@ -13,14 +18,7 @@ export interface Param {
     encryptionKeyUri: Kilt.DidResourceUri
     send: (message: Kilt.IEncryptedMessage) => Promise<void>
   }
-}
-
-export async function main({
-  message,
-  verifierDidUri,
-  verifierKeys,
-  session
-}: Param) {
+}) {
   const { document: verifierDidDoc } = await Kilt.Did.resolve(verifierDidUri)
   if (!verifierDidDoc) {
     throw new Error('The verifier DID must exist')
