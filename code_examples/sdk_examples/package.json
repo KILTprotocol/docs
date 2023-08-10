@@ -13,7 +13,7 @@
     "test": "ts-node src/test.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.34.0-rc.0",
+    "@kiltprotocol/sdk-js": "0.34.0-rc.1",
     "axios": "^0.27.2",
     "commander": "^9.4.1",
     "dotenv": "^16.0.0",
