@@ -141,7 +141,7 @@ values={[
 ### Run an Archive Node
 
 The full node can also be started as a Docker container.
-To expose the WebSockets ensure that the `--rpc-external` and `--rpc-external` flags are set.
+To expose the WebSockets ensure that the `--rpc-external` flags are set.
 
 To run an Archive full node add the option `--pruning archive` to the command.
 
