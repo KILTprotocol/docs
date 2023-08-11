@@ -108,7 +108,6 @@ values={[
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -126,7 +125,6 @@ values={[
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -143,7 +141,7 @@ values={[
 ### Run an Archive Node
 
 The full node can also be started as a Docker container.
-To expose the WebSockets ensure that the `--rpc-external` and `--ws-external` flags are set.
+To expose the WebSockets ensure that the `--rpc-external` and `--rpc-external` flags are set.
 
 To run an Archive full node add the option `--pruning archive` to the command.
 
@@ -174,7 +172,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -194,7 +191,6 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --rpc-port=9933 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \

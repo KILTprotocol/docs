@@ -12,7 +12,7 @@ This greatly simplifies the setup.
 You only need to start the Docker image:
 
 ```bash
-docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/mashnet-node:latest --dev --ws-external --rpc-external
+docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/mashnet-node:latest --dev --rpc-external
 ```
 
 You should see output similar to the following:
