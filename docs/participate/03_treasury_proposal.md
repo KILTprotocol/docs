@@ -23,7 +23,7 @@ The signature provides integrity and accountability for the submitter, which can
 
 The DID Signature should be done via [DIDSign](https://didsign.io/) a dApp which is built on KILT.
 The DIDSign doesn't have a database, nor store any data by the user.
-The following guide provides a how to create a signature using a DID with DIDSign.
+The following guide provides a [how to create a signature using a DID](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf) with DIDSign.
 
 Once the document has been signed and a link can be added to the proposal so others can verify.
 This MUST include the document and signature.
