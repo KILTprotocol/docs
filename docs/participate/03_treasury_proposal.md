@@ -11,6 +11,45 @@ The first step in applying for a Treasury grant is either to join the community 
 This will help you get valuable community feedback throughout the process.
 It also gives Council members an open and transparent way to measure community sentiment.
 
+When submitting for discussion, it is best practice to include a proposal document.
+[A reference document](https://docs.google.com/document/d/1nz5GNjTL5inaI5s9djIki7DUp5zyPJV9dEI9K06kJ58/edit) can be found in the KILT Protocol discussions this can be used as a template for future proposals.
+
+## DID Sign
+
+The proposed document MUST be DID signed.
+This requires a DID that MUST be assoicated with the proposal, therefore, it requires the proposer to have a DID.
+The signature provides integrity and accountability of the submitter, which can give more confidence to the community and council.
+
+The DID Signature should be done via [DIDSign](https://didsign.io/) a dApp which is built on KILT.
+The DIDSign doesn't have a database nor does it store any data by the user.
+The following guide provides a how to create a signature using a DID with DIDSign.
+
+Once the document has been signed and a link can be added to the proposal so others can verify.
+This MUST include the document and signature.
+The method of storing the document and the signature can veriey, however, we recommend using IPFS or equivelant such as Crust.
+The document can be retrieved easily can verified by anyone with a DID.
+
+Please include how to verify and download the necessary documents.
+The following is an example done by BOTLabs GmbH.
+
+```md
+## How to verify the document integrity
+
+The current version of the proposal document has been digitally signed with one of the DIDs that BOTLabs GmbH controls. To verify the signature:
+
+1. Download the PDF version of the Google Document linked above.
+
+2. Download the DID signature of the file from IPFS, with CID QmRcYyPcCKGDQno2m5qBSZq7dftoZKuwraF9C9M96rXR36 (e.g., ipfs.io).
+
+3. Visit didsign.io, and upload both the PDF file and the downloaded signature. The signature should verify correctly and link to the KILT tx in which the timestamp was generated.
+
+4. To verify the back-link from the DID to the account to which the funds must be sent if the Proposal is accepted, copy the account in the Proposal (15oXzySe6tjF2MumHfUodH8pFQWjy2hraRmXUJXXMKKY6p3F for quick reference) and paste it in w3n.id. The account must be linked to the same web3name that signed the proposal document.
+```
+
+The example may change depending on the method of storing and creation of the document.
+
+If during the discussion the document is edited it will require a new upload and should be updated accordingly.
+
 ## Deposit
 
 A deposit of 5% of the amount requested is required in order to submit a proposal.
