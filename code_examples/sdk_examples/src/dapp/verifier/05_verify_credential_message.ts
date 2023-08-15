@@ -3,7 +3,15 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 type ListenCallback = (message: Kilt.IEncryptedMessage) => Promise<void>
 
-export interface Param {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function isTrustedAttester(_attester: Kilt.DidUri): boolean {
+  return true
+}
+
+export async function main({
+  session,
+  verifierKeys
+}: {
   session: { listen: (call: ListenCallback) => ReturnType<ListenCallback> }
   verifierKeys: {
     authentication: Kilt.KiltKeyringPair
@@ -11,14 +19,7 @@ export interface Param {
     attestation: Kilt.KiltKeyringPair
     delegation: Kilt.KiltKeyringPair
   }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function isTrustedAttester(_attester: Kilt.DidUri): boolean {
-  return true
-}
-
-export async function main({ session, verifierKeys }: Param) {
+}) {
   async function processInBackend(message: Kilt.IEncryptedMessage) {
     // Create a callback that uses the DID encryption key to decrypt the message.
     const decryptCallback: Kilt.DecryptCallback = async ({

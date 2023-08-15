@@ -1,13 +1,13 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { main as attestCredential } from './dapp/attestCredential'
+import { main as attestCredential } from './dapp/04_attest_credential'
 import { createFullDid } from '../workshop/attester/generateDid'
-import { main as formatCredential } from './dapp/formatCredential'
+import { main as formatCredential } from './dapp/05_format_credential'
 import { generateAccount } from '../workshop/attester/generateAccount'
 import { generateKeypairs as generateAttesterKeypairs } from '../workshop/attester/generateKeypairs'
-import { main as getDomainLinkageCType } from './dapp/domainLinkageCtype'
-import { main as getDomainLinkageCredential } from './dapp/domainLinkageClaim'
+import { main as getDomainLinkageCType } from './dapp/01_domain_linkage_ctype'
+import { main as getDomainLinkageCredential } from './dapp/02_domain_linkage_claim'
 import { getFunds } from '../getFunds'
-import { main as signPresentation } from './dapp/signPresentation'
+import { main as signPresentation } from './dapp/03_sign_presentation'
 
 export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
   console.log('Running the dapp examples!')
@@ -32,7 +32,6 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
     didUri: attesterDid.uri
   })
   await attestCredential({
-    api,
     didUri: attesterDid.uri,
     dappAccount,
     assertionMethodKey,
@@ -43,6 +42,6 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
     assertionMethodKey,
     domainLinkageCredential
   })
-  const pseudoVc = await formatCredential({ api, domainLinkagePresentation })
+  const pseudoVc = await formatCredential(domainLinkagePresentation)
   console.log(JSON.stringify(pseudoVc))
 }

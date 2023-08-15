@@ -1,6 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export interface Param {
+export async function main({
+  session,
+  keyAgreementKeyPair,
+  originalChallenge
+}: {
   session: {
     encryptionKeyUri: Kilt.DidResourceUri
     encryptedChallenge: string
@@ -8,13 +12,7 @@ export interface Param {
   }
   keyAgreementKeyPair: Kilt.KiltEncryptionKeypair
   originalChallenge: `0x{string}`
-}
-
-export async function main({
-  session,
-  keyAgreementKeyPair,
-  originalChallenge
-}: Param) {
+}) {
   const { encryptionKeyUri, encryptedChallenge, nonce } = session
   const encryptionKey = await Kilt.Did.resolveKey(encryptionKeyUri)
   if (!encryptionKey) {

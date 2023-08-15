@@ -28,7 +28,19 @@ export async function runAll(
     })
   )
 
-  console.log('1 public credentials) Create credential object')
+
+  console.log('1 public credentials) Create CType')
+  const ctype = await createNftCollectionCType(
+    attesterDid.uri,
+    submitterAccount,
+    async ({ data }) => ({
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
+    })
+  )
+
+  console.log('2 public credentials) Create credential object')
+
   const { authentication } = generateKeypairs()
   const artistDid = Kilt.Did.getFullDidUriFromKey(authentication)
   const collectionDid: Kilt.AssetDidUri =
@@ -39,8 +51,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -70,8 +82,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credentialId,
     true
@@ -81,8 +93,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -91,8 +103,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )
@@ -101,8 +113,8 @@ export async function runAll(
     attesterDid.uri,
     submitterAccount,
     async ({ data }) => ({
-      signature: keypairs.attestation.sign(data),
-      keyType: keypairs.attestation.type
+      signature: keypairs.assertionMethod.sign(data),
+      keyType: keypairs.assertionMethod.type
     }),
     credential
   )

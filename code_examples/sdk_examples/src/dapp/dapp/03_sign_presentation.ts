@@ -1,16 +1,14 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export type Parameter = {
-  didUri: Kilt.DidUri
-  assertionMethodKey: Kilt.KiltKeyringPair
-  domainLinkageCredential: Kilt.ICredential
-}
-
 export async function main({
   didUri,
   assertionMethodKey,
   domainLinkageCredential
-}: Parameter) {
+}: {
+  didUri: Kilt.DidUri
+  assertionMethodKey: Kilt.KiltKeyringPair
+  domainLinkageCredential: Kilt.ICredential
+}) {
   // We need the KeyId of the AssertionMethod Key. There is only
   // one AssertionMethodKey and its id is stored on the blockchain.
   const didResolveResult = await Kilt.Did.resolve(didUri)

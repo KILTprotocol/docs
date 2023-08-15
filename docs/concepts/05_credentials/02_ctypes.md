@@ -16,12 +16,48 @@ The schema defines which properties exist and what their type should be, e.g., a
 
 KILT uses [JSON Schema](https://json-schema.org/) (currently draft-07) to validate and annotate data in a strict format.
 This data format is used to define [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CType.schemas.ts).
-The following are all required properties of the schema, with no additional properties allowed:
+The following are all required properties of the schema:
 
 - **Identifier**: `$id` in the format `kilt:ctype:0x{cTypeHash}`.
-- **KILT specific JSON-Schema**: Accessible at [http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype#).
+- **Reference to CType metaschema (`$schema`)**: Describes what a valid CType must looks like. The latest metaschema is accessible at [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 - **Title**: Defines a user-friendly name for the CType that makes it easier for users to contextualize.
 - **Properties**: Set of fields (e.g., name, birthdate) that the CType can contain, and hence that the Claimer can have attested.
+- **Type**: Is always `"object"`,  instructing the JSON schema validator to expect an object (where each property is a claim about the Claimer in the credential).
+- **Additional properties**: In newer CTypes, *additionalProperties* must be present and must be set to `false`, restricting allowable claims in a credential to those listed in `properties`.
+
+:::warning
+Deprecation Warning: CType metaschema draft-01
+
+CTypes based on the `[http://kilt-protocol.org/draft-01/ctype#](http://kilt-protocol.org/draft-01/ctype%23%60)` metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
+Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged in the creation of new CTypes.
+For optimal security and functionality, it is recommended to use SDK version `0.33.0` or later for creating CTypes.
+This newer version defaults to using the updated metaschema available at [`ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/`](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/%60).
+
+This also means you should update existing CTypes.
+
+While existing CTypes will continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
+
+Old Property Value:  `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
+
+New Property Value:  `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/"`
+
+**Migration instructions:** 
+
+Attesters are recommended to transition to issuing credentials using upgraded versions of CTypes currently in use.
+
+Using sdk version `0.33.0` or later, you can produce a copy of an existing CType `oldCType` as follows:
+
+``` js
+const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
+```
+
+The new CType will have the same title and properties as the existing one, but will be based on the new metaschema, resulting in a different hash and id.
+After [registering the new CType on the Kilt blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
+Depending verifiers are recommended to accept both the old and new CType during a transition period.
+Test thoroughly to ensure the correct behaviour and functionality of the new CTypes in your application.
+
+If you encounter any issues during the migration process or have questions, refer to the documentation or seek support from the relevant community.
+:::
 
 ### Properties
 
@@ -33,7 +69,7 @@ When creating a new CType schema, the following properties are required:
 - The format field is optionally:
   - *Date* format e.g., 2012-04-23T18:25:43.511Z
   - *Time* format e.g., T18:25:43.511Z
-  - *URI* format e.g., https://www.example.com
+  - *URI* format e.g., <https://www.example.com>
 
 <CodeBlock className="language-json" title="CType schema example">
   {ctypeSchema}

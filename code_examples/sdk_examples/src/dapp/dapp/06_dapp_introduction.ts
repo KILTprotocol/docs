@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+// `window` object: Should be used only in the following example.
+// Otherwise import directly from the KILT extension library.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let window: {
   kilt: {

@@ -87,11 +87,12 @@ You can now execute the script with:
   </TabItem>
 </Tabs>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC`.
+Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
 Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
 
 ```
 ATTESTER_DID_MNEMONIC="beyond large galaxy...
+ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Be sure to save it in your `.env` file.
@@ -103,6 +104,7 @@ WSS_ADDRESS=wss://peregrine.kilt.io
 ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
 ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
 ATTESTER_DID_MNEMONIC="beyond large galaxy...
+ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Well done - You've successfully generated a full DID! Let's create a CType!

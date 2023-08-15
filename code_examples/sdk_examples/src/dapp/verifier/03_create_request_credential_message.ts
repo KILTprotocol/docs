@@ -1,14 +1,16 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export interface Param {
+export function main({
+  verifierDidUri,
+  session,
+  requestChallenge
+}: {
   verifierDidUri: Kilt.DidUri
   session: {
     encryptionKeyUri: Kilt.DidResourceUri
   }
   requestChallenge: string
-}
-
-export function main({ verifierDidUri, session, requestChallenge }: Param): {
+}): {
   message: Kilt.IMessage
 } {
   // The `session` was created earlier in your frontend. Only the session DID URI is sent to your backend.
