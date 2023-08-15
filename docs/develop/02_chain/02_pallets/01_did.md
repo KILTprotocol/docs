@@ -102,7 +102,7 @@ All of them have to be authenticated using the DID that is updated following the
 When writing a DID to the chain the submitter of the extrinsic has to pay a deposit.
 The base deposit is currently 2 KILT.
 For additional used storage, for example by adding more services, more tokens are taken as deposit, depending on the amount of additional storage taken.
-Freeing up memory reduces the deposit.
+Freeing up storage reduces the deposit.
 This is to incentivize deleting unused DIDs or keys to reduce the total storage of the chain.
 The deposit is always bound to the account that submitted the extrinsic to create the DID, and not to the DID itself.
 Consequently there are also two ways of reclaiming the deposit:
