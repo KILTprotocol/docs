@@ -14,28 +14,6 @@ As mentioned in the section about credentials, the creation of a CType in KILT i
 
 We will not cover the creation of a CType, please refer to the [CType creation](../04_claiming/01_ctype_creation.md)
 
-For the purpose of the example, we will use a pregenerated CType.
-
-```js
-const ctype = Kilt.CType.fromProperties(
-    `NFT Collection Certification CType`,
-    {
-      name: {
-        type: 'string'
-      },
-      pieces: {
-        type: 'integer'
-      },
-      creationDate: {
-        type: 'string'
-      },
-      artistIdentity: {
-        type: 'string'
-      }
-    }
-  )
-```
-
 ## Create and Issue the Credential
 
 Using the existing CType, the new public credential object can be created with the actual content, and then written to the chain for the rest of the KILT users (and beyond) to consume.

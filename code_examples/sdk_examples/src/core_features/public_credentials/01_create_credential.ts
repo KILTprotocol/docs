@@ -1,28 +1,25 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
+// CType definition.
+const ctype = Kilt.CType.fromProperties(`NFT Collection Certification CType`, {
+  name: {
+    type: 'string'
+  },
+  pieces: {
+    type: 'integer'
+  },
+  creationDate: {
+    type: 'string'
+  },
+  artistIdentity: {
+    type: 'string'
+  }
+})
+
 export function createNftCollectionCredential(
   assetDid: Kilt.AssetDidUri,
   artistDid: Kilt.DidUri
 ): Kilt.IPublicCredentialInput {
-  // CType definition.
-  const ctype = Kilt.CType.fromProperties(
-    `NFT Collection Certification CType`,
-    {
-      name: {
-        type: 'string'
-      },
-      pieces: {
-        type: 'integer'
-      },
-      creationDate: {
-        type: 'string'
-      },
-      artistIdentity: {
-        type: 'string'
-      }
-    }
-  )
-
   const claimProperties: Kilt.IClaimContents = {
     name: 'Awesome NFT drop',
     // NFT collection only has 100 pieces in total
