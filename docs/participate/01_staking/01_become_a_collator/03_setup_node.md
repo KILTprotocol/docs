@@ -97,6 +97,8 @@ Since the collator will collate only for the parachain, there is no need to add 
 
 In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install).
 
+After cloning the repository, you can build the executable by running the `cargo build` command below from the root directory.
+
 ```bash
 # Clone the repository
 git clone https://github.com/KILTprotocol/kilt-node.git
