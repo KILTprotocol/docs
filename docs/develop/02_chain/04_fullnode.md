@@ -65,8 +65,7 @@ values={[
 
 ### Build the Full Node
 
-In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
-After cloning the repository, you can build the executable by running the `cargo build` command below from the root directory.
+In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install).
 
 ```bash
 # Clone the repository
