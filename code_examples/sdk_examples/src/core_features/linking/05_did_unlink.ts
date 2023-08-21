@@ -1,4 +1,4 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
+import type { KeyringPair } from '@kiltprotocol/sdk-js'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 

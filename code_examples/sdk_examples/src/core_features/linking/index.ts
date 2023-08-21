@@ -1,5 +1,5 @@
 import { Keyring } from '@polkadot/api'
-import type { KeyringPair } from '@polkadot/keyring/types'
+import type { KeyringPair } from '@kiltprotocol/sdk-js'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import Web3 from 'web3'

@@ -1,6 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
 import { hexToU8a } from '@polkadot/util'
 import { program } from 'commander'
@@ -79,7 +78,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
 
   switch (baseAccountStrategy) {
     case 'base-mnemonic': {
-      const baseAccount = await new Keyring({
+      const baseAccount = new Kilt.Utils.Keyring({
         type: 'sr25519',
         ss58Format: Kilt.Utils.ss58Format
       }).addFromMnemonic(mnemonic as string)

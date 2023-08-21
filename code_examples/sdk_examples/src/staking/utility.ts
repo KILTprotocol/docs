@@ -1,5 +1,5 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'
-import type { KeyringPair } from '@polkadot/keyring/types'
+import type { KeyringPair } from '@kiltprotocol/sdk-js'
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types'
 import { typesBundle } from '@kiltprotocol/type-definitions'
 

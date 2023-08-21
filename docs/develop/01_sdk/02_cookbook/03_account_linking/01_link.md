@@ -60,9 +60,6 @@ The proof will only be valid up until the blocknumber is reached.
 
 With this option you can link addresses that are supported by the Spiritnet blockchain (Sr25519, Ed25519, Ecdsa), but also ethereum addresses.
 
-You may notice the use of the `@polkadot/keyring` package in the examples. This is due to the fact that account linking also works with accounts that are not native to the KILT blockchain.
-The `@polkadot/keyring` package provides a way to generate signatures for these accounts.
-
 <Tabs
   defaultValue="substrate-link"
 >

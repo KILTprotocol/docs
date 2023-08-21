@@ -1,5 +1,4 @@
 import { BN } from '@polkadot/util'
-import { Keyring } from '@polkadot/api'
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -32,7 +31,7 @@ export async function testCoreFeatures(
   Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
   const api = await Kilt.connect(wssAddress)
 
-  const keyring = new Keyring({
+  const keyring = new Kilt.Utils.Keyring({
     ss58Format: Kilt.Utils.ss58Format
   })
 

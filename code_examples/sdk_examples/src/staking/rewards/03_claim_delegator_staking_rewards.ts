@@ -1,5 +1,5 @@
 import { ApiPromise } from '@polkadot/api'
-import type { KeyringPair } from '@polkadot/keyring/types'
+import type { KeyringPair } from '@kiltprotocol/sdk-js'
 
 export async function claimDelegatorStakingRewards(
   api: ApiPromise,
