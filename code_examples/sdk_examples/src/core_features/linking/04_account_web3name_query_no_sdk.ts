@@ -1,4 +1,4 @@
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
+import type { KeyringPair } from '@polkadot/keyring/types'
 
 import { ApiPromise, WsProvider } from '@polkadot/api'
 

@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { ApiPromise } from '@polkadot/api'
 
 import { main as connect_pere } from './02_connect_spirit'
 import { main as connect_spirit } from './02_connect_spirit'
@@ -10,8 +9,8 @@ import { main as fetchJohnDoeEndpoints } from './04_fetch_endpoints'
 import { main as printHelloWorld } from './01_print_hello_world'
 import { main as verifyCredential } from './06_verify_credential'
 
-async function fetchDidAndCredential(api: ApiPromise) {
-  const johnDoeDid = await fetchJohnDoeDid(api)
+async function fetchDidAndCredential() {
+  const johnDoeDid = await fetchJohnDoeDid()
   if (!johnDoeDid)
     throw new Error('"john_doe" is not associated to any DID on Spiritnet')
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
@@ -35,16 +34,16 @@ export async function runAll(): Promise<void> {
   await printHelloWorld()
 
   // check that the getting started works with both spiritnet and peregine
-  const api_spirit = await connect_spirit()
+  await connect_spirit()
   try {
-    await fetchDidAndCredential(api_spirit)
+    await fetchDidAndCredential()
   } finally {
     await disconnect()
   }
 
-  const api_pere = await connect_pere()
+  await connect_pere()
   try {
-    await fetchDidAndCredential(api_pere)
+    await fetchDidAndCredential()
   } finally {
     await disconnect()
   }

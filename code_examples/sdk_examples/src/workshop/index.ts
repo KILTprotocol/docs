@@ -20,7 +20,7 @@ export async function testWorkshop(
   console.log('Running the workshop!')
 
   Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
-  const api = await Kilt.connect(wssAddress)
+  await Kilt.connect(wssAddress)
 
   // Setup attester account.
   const { account: attesterAccount } = await generateAccount()
@@ -35,7 +35,7 @@ export async function testWorkshop(
     name: 'Karl'
   })
 
-  await getFunds(api, account, attesterAccount.address, 5)
+  await getFunds(account, attesterAccount.address, 5)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =

@@ -1,5 +1,3 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -14,11 +12,12 @@ function getChallenge(): string {
 
 // Verifies validity, ownership & attestation.
 async function verifyPresentation(
-  api: ApiPromise,
   presentation: Kilt.ICredentialPresentation,
   challenge: string,
   trustedAttesterUris: Kilt.DidUri[]
 ): Promise<boolean> {
+  Kilt.ConfigService.get('api')
+
   try {
     const { revoked, attester } = await Kilt.Credential.verifyPresentation(
       presentation,
@@ -40,8 +39,6 @@ export async function verificationFlow(
   signCallback: Kilt.SignCallback,
   trustedAttesterUris: Kilt.DidUri[] = []
 ) {
-  const api = Kilt.ConfigService.get('api')
-
   // Verifier sends a unique challenge to the claimer 🕊
   const challenge = getChallenge()
 
@@ -54,7 +51,6 @@ export async function verificationFlow(
 
   // The verifier checks the presentation.
   const isValid = await verifyPresentation(
-    api,
     presentation,
     challenge,
     trustedAttesterUris

@@ -1,10 +1,12 @@
-import { ApiPromise } from '@polkadot/api'
+import * as Kilt from '@kiltprotocol/sdk-js'
+
 import type { KeyringPair } from '@kiltprotocol/sdk-js'
 
 export async function claimCollatorStakingRewards(
-  api: ApiPromise,
   submitterAccount: KeyringPair
 ) {
+  const api = Kilt.ConfigService.get('api')
+
   const tx = api.tx.utility.batch([
     // convert collator participation points into rewards
     api.tx.parachainStaking.incrementCollatorRewards(),

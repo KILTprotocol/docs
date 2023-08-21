@@ -1,10 +1,12 @@
-import { ApiPromise } from '@polkadot/api'
+import * as Kilt from '@kiltprotocol/sdk-js'
+
 import type { KeyringPair } from '@kiltprotocol/sdk-js'
 
 export async function claimDelegatorStakingRewards(
-  api: ApiPromise,
   submitterAccount: KeyringPair
 ) {
+  const api = Kilt.ConfigService.get('api')
+
   const tx = api.tx.utility.batch([
     // convert delegator participation points into rewards
     api.tx.parachainStaking.incrementDelegatorRewards(),

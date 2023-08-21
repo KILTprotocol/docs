@@ -5,7 +5,7 @@ import {
   DidUri,
   KiltKeyringPair
 } from '@kiltprotocol/sdk-js'
-import { ApiPromise } from '@polkadot/api'
+
 import { useSignCallback } from './useSignCallback'
 import { useSignExtrinsicCallback } from './useExtrinsicCallback'
 import { useStoreTxSignCallback } from './useStoreTxSignCallback'
@@ -31,7 +31,9 @@ export function lookupDidDocument(_did: DidUri): DidDocument {
   return lightDID
 }
 
-export async function runAll(api: ApiPromise): Promise<void> {
+export async function runAll(): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   console.log('Test signCallback')
   const didKey = Kilt.Utils.Crypto.makeKeypairFromSeed()
 

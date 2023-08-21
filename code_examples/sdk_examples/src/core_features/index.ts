@@ -29,7 +29,7 @@ export async function testCoreFeatures(
   await gettingStartedFlow()
 
   Kilt.ConfigService.set({ submitTxResolveOn: resolveOn })
-  const api = await Kilt.connect(wssAddress)
+  await Kilt.connect(wssAddress)
 
   const keyring = new Kilt.Utils.Keyring({
     ss58Format: Kilt.Utils.ss58Format
@@ -55,7 +55,6 @@ export async function testCoreFeatures(
 
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.
   await endowAccounts(
-    api,
     account,
     [
       claimingTestAccount.address,
@@ -109,7 +108,7 @@ export async function testCoreFeatures(
     })(),
     (async () => {
       try {
-        await runAllSignCallback(api)
+        await runAllSignCallback()
       } catch (e) {
         console.error('SignCallback flow failed')
         throw e

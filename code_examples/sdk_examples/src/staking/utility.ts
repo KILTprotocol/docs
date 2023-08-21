@@ -1,22 +1,16 @@
-import { ApiPromise, WsProvider } from '@polkadot/api'
+import * as Kilt from '@kiltprotocol/sdk-js'
+
 import type { KeyringPair } from '@kiltprotocol/sdk-js'
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types'
-import { typesBundle } from '@kiltprotocol/type-definitions'
-
-export async function connect(wssProvider: string) {
-  return ApiPromise.create({
-    provider: new WsProvider(wssProvider),
-    typesBundle
-  })
-}
 
 export async function signAndSend(
-  api: ApiPromise,
   tx: SubmittableExtrinsic,
   signer: KeyringPair,
   onSuccess: (txHash: string) => void,
   onError: (error: Error) => void
 ) {
+  const api = Kilt.ConfigService.get('api')
+
   return tx.signAndSend(signer, ({ status, dispatchError }) => {
     if (status.isFinalized && !dispatchError) {
       onSuccess(status.asFinalized.toString())
