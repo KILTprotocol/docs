@@ -39,6 +39,16 @@ A person can memorize it, and use it later to re-generate their keypairs and add
 To generate an account, we use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/_kiltprotocol_types.KiltKeyringPair.html) generated via the SDK.
 The mnemonic is generated with the polkadot function `mnemonicGenerate()`, which generates a 12-word mnemonic.
 
+:::info polkadot.js
+
+The KILT SDK is built on top of the [polkadot.js](https://polkadot.js.org/) library therefore you will find various uses of it in this workshop.
+It provides a set of tools to interact with the KILT blockchain and other substrate based blockchains
+In addition the polkadot-js library offers cryptographic primitives and a serialization framework to decode data received from the blockchain.
+We recommend developers to familiarize themselves with their [API documentation](https://polkadot.js.org/docs/) to learn more about the functions available.
+
+:::
+
+
 
 <TsJsBlock fileName="attester/generateAccount">
   {GenerateAccount}
