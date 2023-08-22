@@ -26,9 +26,9 @@ The DIDSign doesn't have a database, nor store any data by the user.
 The following guide explains [how to create a signature using a DID with DIDSign](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf).
 
 Once the document has been signed, the signature must be made available to others to verify.
-The easiest way to do this is to store it somewhere publicly accessible, e.g., on IPFS or as a GitHub gist.
-This must include the document and signature.
-The method of storing the document and the signature can vary, however, we recommend using IPFS or an equivelant such as Crust.
+Storing the document and signature publicly is necessary this can be done in a variety of ways such as IPFS or as a GitHub gist or cloud provider.
+The storage must include the document and signature.
+The document and signature must be easily accessable, however, we recommend using IPFS or an equivelant such as Crust.
 
 Please include how to verify and download the necessary documents.
 The following is an example done by BOTLabs GmbH.
@@ -43,8 +43,6 @@ The current version of the proposal document has been digitally signed with one 
 2. Download the DID signature of the file from IPFS, with CID QmRcYyPcCKGDQno2m5qBSZq7dftoZKuwraF9C9M96rXR36 (e.g., ipfs.io).
 
 3. Visit didsign.io, and upload both the PDF file and the downloaded signature. The signature should verify correctly and link to the KILT tx in which the timestamp was generated.
-
-4. To verify the back-link from the DID to the account to which the funds must be sent if the Proposal is accepted, copy the account in the Proposal (15oXzySe6tjF2MumHfUodH8pFQWjy2hraRmXUJXXMKKY6p3F for quick reference) and paste it in w3n.id. The account must be linked to the same web3name that signed the proposal document.
 ```
 
 The example may change depending on the method of storing and creation of the document.
