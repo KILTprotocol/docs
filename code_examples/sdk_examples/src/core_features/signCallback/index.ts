@@ -1,10 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import {
-  DidDocument,
-  DidResourceUri,
-  DidUri,
-  KiltKeyringPair
-} from '@kiltprotocol/sdk-js'
 
 import { useSignCallback } from './useSignCallback'
 import { useSignExtrinsicCallback } from './useExtrinsicCallback'
@@ -12,17 +6,19 @@ import { useStoreTxSignCallback } from './useStoreTxSignCallback'
 
 // The _keyUri parameter is there to show that the DID key pair is looked up using the URI
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function lookupDidKeyPair(_keyUri: DidResourceUri): KiltKeyringPair {
+export function lookupDidKeyPair(
+  _keyUri: Kilt.DidResourceUri
+): Kilt.KiltKeyringPair {
   return Kilt.Utils.Crypto.makeKeypairFromSeed()
 }
 
-export function generateDidKeyPair(): KiltKeyringPair {
+export function generateDidKeyPair(): Kilt.KiltKeyringPair {
   return Kilt.Utils.Crypto.makeKeypairFromSeed()
 }
 
 // The _did parameter is there to show that the DID document is looked up using the DID
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function lookupDidDocument(_did: DidUri): DidDocument {
+export function lookupDidDocument(_did: Kilt.DidUri): Kilt.DidDocument {
   const authentication = Kilt.Utils.Crypto.makeKeypairFromSeed()
   const lightDID = Kilt.Did.createLightDidDocument({
     authentication: [authentication]

@@ -1,5 +1,3 @@
-import { mnemonicGenerate } from '@polkadot/util-crypto'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { attestingFlow } from './attester/attestCredential'
@@ -26,7 +24,7 @@ export async function testWorkshop(
   const { account: attesterAccount } = await generateAccount()
 
   // Setup claimer & create a credential.
-  const claimerMnemonic = mnemonicGenerate()
+  const claimerMnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
   const { authentication } = generateClaimerKeypairs(claimerMnemonic)
   const lightDid = generateLightDid(claimerMnemonic)
 

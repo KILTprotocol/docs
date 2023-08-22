@@ -2,7 +2,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimLinkDeposit(
   submitterAddress: Kilt.KeyringPair,
-  linkedAccountAddress: Kilt.KeyringPair['address']
+  linkedAccountAddress: Kilt.KiltAddress
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 

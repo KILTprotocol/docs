@@ -1,5 +1,3 @@
-import { Keyring } from '@polkadot/api'
-
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import Web3 from 'web3'
@@ -26,7 +24,7 @@ import { generateKeypairs } from '../utils/generateKeypairs'
 
 // The provided DID is assumed to have an associated web3name.
 export async function runAll(
-  keyring: Keyring,
+  keyring: Kilt.Utils.Keyring,
   endpoint: string,
   submitterAccount: Kilt.KiltKeyringPair,
   linkAccount: Kilt.KiltKeyringPair & { type: 'ed25519' | 'sr25519' | 'ecdsa' }
