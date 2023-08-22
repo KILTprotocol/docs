@@ -19,13 +19,14 @@ When submitting for discussion, it is best practice to include a proposal docume
 The proposed document MUST be DID signed.
 This requires a DID that MUST be associated with the proposal.
 Therefore, it requires the proposer to have a DID.
-The signature provides integrity and accountability for the submitter, which can give more confidence to the community and council.
+The signature provides integrity and accountability about the submitter, which can give more confidence to the community and council.
 
-The DID Signature should be done via [DIDSign](https://didsign.io/) a dApp which is built on KILT.
+The DID Signature should be done via the [DIDSign](https://didsign.io/) dApp.
 The DIDSign doesn't have a database, nor store any data by the user.
-The following guide provides a [how to create a signature using a DID](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf) with DIDSign.
+The following guide explains [how to create a signature using a DID with DIDSign](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf).
 
-Once the document has been signed and a link can be added to the proposal so others can verify.
+Once the document has been signed, the signature must be made available to others to verify.
+The easiest way to do this is to store it somewhere publicly accessible, e.g., on IPFS or as a GitHub gist.
 This MUST include the document and signature.
 The method of storing the document and the signature can vary, however, we recommend using IPFS or an equivelant such as Crust.
 The document can be retrieved easily can be verified by anyone with a DID.
