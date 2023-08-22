@@ -16,8 +16,8 @@ When submitting for discussion, it is best practice to include a proposal docume
 
 ## DID Sign
 
-The proposed document MUST be DID signed.
-This requires a DID that MUST be associated with the proposal.
+The proposed document must be DID signed.
+This requires a DID that must be associated with the proposal.
 Therefore, it requires the proposer to have a DID.
 The signature provides integrity and accountability about the submitter, which can give more confidence to the community and council.
 
@@ -27,7 +27,7 @@ The following guide explains [how to create a signature using a DID with DIDSign
 
 Once the document has been signed, the signature must be made available to others to verify.
 The easiest way to do this is to store it somewhere publicly accessible, e.g., on IPFS or as a GitHub gist.
-This MUST include the document and signature.
+This must include the document and signature.
 The method of storing the document and the signature can vary, however, we recommend using IPFS or an equivelant such as Crust.
 The document can be retrieved easily can be verified by anyone with a DID.
 
