@@ -1,6 +1,5 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { Keyring } from '@polkadot/api'
 import { config as envConfig } from 'dotenv'
 import { hexToU8a } from '@polkadot/util'
 import { program } from 'commander'
@@ -75,18 +74,18 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
     throw new Error('Account mnemonic or faucet seed is missing.')
   }
 
-  let [workshopAccount, dappAccount, coreAccount, stakingAccount] = new Array(4)
+  let [workshopAccount, dappAccount, coreAccount] = new Array(3)
 
   switch (baseAccountStrategy) {
     case 'base-mnemonic': {
-      const baseAccount = await new Keyring({
+      const baseAccount = new Kilt.Utils.Keyring({
         type: 'sr25519',
         ss58Format: Kilt.Utils.ss58Format
       }).addFromMnemonic(mnemonic as string)
       workshopAccount = baseAccount.derive('//workshop')
       dappAccount = baseAccount.derive('//dapp')
       coreAccount = baseAccount.derive('//core')
-      stakingAccount = baseAccount.derive('//staking')
+
       break
     }
     case 'faucet-seed': {
@@ -97,7 +96,6 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       workshopAccount = faucetAccount
       dappAccount = faucetAccount
       coreAccount = faucetAccount
-      stakingAccount = faucetAccount
     }
   }
 
@@ -113,7 +111,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       await testCoreFeatures(coreAccount, wssAddress)
     }
     if (whichToRun.staking) {
-      await testStaking(stakingAccount, wssAddress)
+      await testStaking(wssAddress)
     }
     process.exit(0)
   } catch (e) {

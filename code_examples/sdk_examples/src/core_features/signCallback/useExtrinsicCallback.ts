@@ -6,7 +6,7 @@ export async function useSignExtrinsicCallback(
   didUri: Kilt.DidUri,
   didSigningKey: Kilt.KeyringPair & { type: 'sr25519' | 'ed25519' },
   extrinsic: Extrinsic,
-  submitterAddress: Kilt.KiltKeyringPair['address']
+  submitterAddress: Kilt.KiltAddress
 ) {
   // The SignExtrinsicCallback is a more specialized SignCallback since it doesn't
   // need to return the keyUri.

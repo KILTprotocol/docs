@@ -1,10 +1,8 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function reclaimLinkDeposit(
-  submitterAddress: KeyringPair,
-  linkedAccountAddress: KeyringPair['address']
+  submitterAddress: Kilt.KeyringPair,
+  linkedAccountAddress: Kilt.KiltAddress
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
