@@ -74,7 +74,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
     throw new Error('Account mnemonic or faucet seed is missing.')
   }
 
-  let [workshopAccount, dappAccount, coreAccount, stakingAccount] = new Array(4)
+  let [workshopAccount, dappAccount, coreAccount] = new Array(3)
 
   switch (baseAccountStrategy) {
     case 'base-mnemonic': {
@@ -85,7 +85,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       workshopAccount = baseAccount.derive('//workshop')
       dappAccount = baseAccount.derive('//dapp')
       coreAccount = baseAccount.derive('//core')
-      stakingAccount = baseAccount.derive('//staking')
+
       break
     }
     case 'faucet-seed': {
@@ -96,7 +96,6 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       workshopAccount = faucetAccount
       dappAccount = faucetAccount
       coreAccount = faucetAccount
-      stakingAccount = faucetAccount
     }
   }
 
@@ -112,7 +111,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       await testCoreFeatures(coreAccount, wssAddress)
     }
     if (whichToRun.staking) {
-      await testStaking(stakingAccount, wssAddress)
+      await testStaking(wssAddress)
     }
     process.exit(0)
   } catch (e) {

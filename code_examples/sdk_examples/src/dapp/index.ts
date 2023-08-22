@@ -16,7 +16,7 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
   await Kilt.connect(wssAddress)
 
   // Setup attester account.
-  const { account: dappAccount } = await generateAccount()
+  const { account: dappAccount } = generateAccount()
 
   await getFunds(account, dappAccount.address, 4)
 
