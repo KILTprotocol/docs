@@ -1,7 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as connect_pere } from './02_connect_spirit'
-import { main as connect_spirit } from './02_connect_spirit'
+import { main as connectToPeregrine } from './02_connect_spirit'
+import { main as connectToSpiritnet } from './02_connect_spirit'
 import { main as disconnect } from './07_disconnect'
 import { main as fetchEndpointData } from './05_fetch_endpoint_data'
 import { main as fetchJohnDoeDid } from './03_fetch_did'
