@@ -65,10 +65,8 @@ values={[
 
 ### Build the Full Node
 
-In order to build the KILT full node executable, you need to have a [nightly version of Rust](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
-We recommend aligning your nightly version with the one used in the [KILT node repository](https://github.com/KILTprotocol/kilt-node) by executing the [init script](https://github.com/KILTprotocol/kilt-node/blob/develop/scripts/init.sh).
-After cloning the repository, you can build the executable by running the `build` command below from the root directory.
-
+In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install).
+After cloning the repository, you can build the executable by running the `cargo build` command below from the root directory.
 ```bash
 # Clone the repository
 git clone https://github.com/KILTprotocol/kilt-node.git
