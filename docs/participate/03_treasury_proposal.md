@@ -12,7 +12,7 @@ This will help you get valuable community feedback throughout the process.
 It also gives Council members an open and transparent way to measure community sentiment.
 
 When submitting for discussion, it is best practice to include a proposal document.
-[A reference document](https://docs.google.com/document/d/1nz5GNjTL5inaI5s9djIki7DUp5zyPJV9dEI9K06kJ58/edit) can be found in the KILT Protocol discussions this can be used as a template for future proposals.
+[A reference document](https://docs.google.com/document/d/1DBb7jdgVVK09lwQPfOs6WFwbWUGKut7hMMmM_lEX0fA/edit) can be found in the KILT Protocol discussions this can be used as a template for future proposals.
 
 ## DID Sign
 
