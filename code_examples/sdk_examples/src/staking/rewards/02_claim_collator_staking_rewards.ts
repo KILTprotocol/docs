@@ -1,9 +1,7 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
-
 export async function claimCollatorStakingRewards(
-  submitterAccount: KeyringPair
+  submitterAccount: Kilt.KeyringPair
 ) {
   const api = Kilt.ConfigService.get('api')
 

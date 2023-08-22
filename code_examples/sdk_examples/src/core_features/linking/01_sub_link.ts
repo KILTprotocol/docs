@@ -1,11 +1,9 @@
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function linkAccountToDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkedAccount: KeyringPair & { type: 'ed25519' | 'sr25519' | 'ecdsa' },
+  linkedAccount: Kilt.KeyringPair & { type: 'ed25519' | 'sr25519' | 'ecdsa' },
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')

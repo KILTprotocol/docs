@@ -1,5 +1,5 @@
 import { Keyring } from '@polkadot/api'
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
+
 import { randomAsU8a } from '@polkadot/util-crypto'
 
 import Web3 from 'web3'
@@ -72,7 +72,7 @@ export async function runAll(
       randomAsU8a(32),
       undefined,
       'ethereum'
-    ) as KeyringPair & { type: 'ethereum' }
+    ) as Kilt.KeyringPair & { type: 'ethereum' }
     await linkEthAccountToDid(
       fullDid.uri,
       submitterAccount,

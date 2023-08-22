@@ -1,11 +1,10 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types'
 
 export async function signAndSend(
   tx: SubmittableExtrinsic,
-  signer: KeyringPair,
+  signer: Kilt.KeyringPair,
   onSuccess: (txHash: string) => void,
   onError: (error: Error) => void
 ) {

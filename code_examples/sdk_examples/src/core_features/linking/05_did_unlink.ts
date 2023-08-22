@@ -1,11 +1,9 @@
-import type { KeyringPair } from '@kiltprotocol/sdk-js'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function unlinkAccountFromDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkedAccountAddress: KeyringPair['address'],
+  linkedAccountAddress: Kilt.KeyringPair['address'],
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
