@@ -29,7 +29,6 @@ Once the document has been signed, the signature must be made available to other
 The easiest way to do this is to store it somewhere publicly accessible, e.g., on IPFS or as a GitHub gist.
 This must include the document and signature.
 The method of storing the document and the signature can vary, however, we recommend using IPFS or an equivelant such as Crust.
-The document can be retrieved easily can be verified by anyone with a DID.
 
 Please include how to verify and download the necessary documents.
 The following is an example done by BOTLabs GmbH.
