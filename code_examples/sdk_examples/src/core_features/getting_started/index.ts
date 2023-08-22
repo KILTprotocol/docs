@@ -34,14 +34,14 @@ export async function runAll(): Promise<void> {
   await printHelloWorld()
 
   // check that the getting started works with both spiritnet and peregine
-  await connect_spirit()
+  await connectToSpiritnet()
   try {
     await fetchDidAndCredential()
   } finally {
     await disconnect()
   }
 
-  await connect_pere()
+  await connectToPeregrine()
   try {
     await fetchDidAndCredential()
   } finally {
