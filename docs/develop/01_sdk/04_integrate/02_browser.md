@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 Our JavaScript SDK (`@kiltprotocol/sdk-js`) is ready to be used in a browser context. For rapid prototyping of simple web apps, we provide a code bundle of the entire SDK which you can embed in a site by adding the following script tag:
 
 ```html
-<script src="https://unpkg.com/@kiltprotocol/sdk-js@0.34.0-rc.1/dist/sdk-js.min.umd.js"></script>
+<script src="https://unpkg.com/@kiltprotocol/sdk-js@0.34.0/dist/sdk-js.min.umd.js"></script>
 ```
 
 The SDK's functions then become available via a new `kilt` property on the global `window` object.
