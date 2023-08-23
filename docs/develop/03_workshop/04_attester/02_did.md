@@ -22,9 +22,6 @@ One example would be messaging.
 You would store a public encryption key and a services on-chain, which can both be queried using your DID.
 Other users can now encrypt messages using your public encryption key and send the message to your service.
 
-There are two types of DIDs: light and full.
-Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.
-
 :::info KILT DID
 
 There are currently four different key types that a DID supports:
@@ -40,7 +37,7 @@ Keys can be replaced over time, e.g., if a key is compromised.
 
 ## Account vs DID
 
-A full DID needs to be registered on the blockchain.
+A DID needs to be registered on the blockchain.
 For that, an account has to submit the DID creation transaction.
 There is always an account that submits the transactions and pays for the fees and the DID that authorized the call.
 Because the DID and the account are not connected, DIDs do not hold any coins.
@@ -107,4 +104,4 @@ ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
-Well done - You've successfully generated a full DID! Let's create a CType!
+Well done - You've successfully generated a DID! Let's create a CType!

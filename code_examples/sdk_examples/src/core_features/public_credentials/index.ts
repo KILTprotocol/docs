@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { createCompleteFullDid } from '../did/05_full_did_complete'
+import { createCompleteFullDid } from '../did/02_full_did_complete'
 
 import { createNftCollectionCredential } from './01_create_credential'
 import { fetchCredentialById } from './03_retrieve_credential_by_id'

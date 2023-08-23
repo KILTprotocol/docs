@@ -1,6 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { createCompleteFullDid } from '../did/05_full_did_complete'
+import { createCompleteFullDid } from '../did/02_full_did_complete'
 import { createSimpleLightDid } from '../did/01_light_did_simple'
 
 import { createAttestation } from './04_create_attestation'

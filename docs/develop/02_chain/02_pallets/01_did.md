@@ -7,11 +7,7 @@ In KILT a DID is a decentralized identifier that the user owns and controls.
 It consists of a unique set of keys that can be used for different operations on the blockchain.
 For an in-depth explanation see the [KILT DID spec](https://github.com/KILTprotocol/kilt-did-driver/blob/master/docs/did-spec/spec.md).
 
-A DID may be a "light" DID, which is not stored on-chain, or a "full" on-chain DID.
-A light DID is issued by default, with the keys stored locally on your device.
-By upgrading this to a full DID registered on the blockchain, all the keys associated with it can be retrieved from the KILT blockchain storage.
-
-A full DID can then be used to perform certain on-chain actions which include:
+A DID can then be used to perform certain on-chain actions which include:
 
 * Writing CTypes to the chain
 * Writing attestations to the chain

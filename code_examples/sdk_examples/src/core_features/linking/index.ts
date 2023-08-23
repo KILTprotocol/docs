@@ -8,7 +8,7 @@ import { randomUUID } from 'crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from '../web3names/01_claim'
-import { createSimpleFullDid } from '../did/04_full_did_simple'
+import { createSimpleFullDid } from '../did/01_full_did_simple'
 
 import { linkAccountToDid as linkEthAccountToDid } from './01_eth_link'
 import { linkAccountToDid as linkEthAccountToDidWeb3js } from './01_eth_link_web3js'

@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { claimWeb3Name } from './01_claim'
-import { createSimpleFullDid } from '../did/04_full_did_simple'
+import { createSimpleFullDid } from '../did/01_full_did_simple'
 import { queryDidDocument } from './02_query_did_name'
 import { queryPublishedCredentials } from './03_query_name_credentials'
 import { reclaimWeb3NameDeposit } from './05_reclaim_deposit'

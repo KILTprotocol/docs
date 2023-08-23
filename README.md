@@ -78,7 +78,7 @@ The reader can than choose to either read the TS or JS code.
 ```md
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import FullDidSimple from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/04_full_did_simple.ts';
+import FullDidSimple from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/01_full_did_simple.ts';
 
 
 # This is a markdown file
