@@ -20,15 +20,3 @@ If additional keys or services are to be specified, they can be passed as parame
 <TsJsBlock>
   {FullDidComplete}
 </TsJsBlock>
-
-## Upgrade a Light DID to a Full DID
-
-Another way to obtain a full DID is by upgrading a previously-created light DID.
-KILT supports this operation in a way that does not invalidate any credentials that had been issued to the light DID before being upgraded.
-
-The following code shows how to migrate a light DID to a full DID.
-Credentials, presentations, and verifications remain unchanged and remain valid.
-
-<TsJsBlock>
-  {LightDidMigrate}
-</TsJsBlock>
