@@ -1,6 +1,6 @@
 ---
 id: full-did-delete
-title: Delete a Full DID
+title: Delete a DID
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
@@ -16,7 +16,7 @@ The following snippet shows how to do it:
 </TsJsBlock>
 
 :::warning
-Please note that once deleted, a full DID becomes unusable and cannot be re-created anymore.
+Please note that once deleted, a DID becomes unusable and cannot be re-created anymore.
 This means that all credentials obtained with that DID are no longer valid and must be obtained with a different DID if needed.
 :::
 

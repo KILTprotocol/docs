@@ -12,8 +12,8 @@ If the claims correspond to truth, the Attester will proceed by attesting the ro
 A deposit is reserved from the balance of the KILT account submitting the creation transaction, which is returned if and when the attestation is removed from the chain.
 
 :::info
-An Attester is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
+An Attester is required to have a DID with an attestation key.
+To see how to manage DIDs, please refer to the [DID section](../01_dids/02_full_did_update.md).
 :::
 
 <TsJsBlock>

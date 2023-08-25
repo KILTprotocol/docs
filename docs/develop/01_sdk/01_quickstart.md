@@ -238,4 +238,4 @@ Now execute the script wait to see whether we can successfully retrieve **and** 
 Was it successful? Nice Job!
 
 If you want to explore more of KILT's features, check out our [Concepts section](../../concepts/01_what_is_kilt.md).
-If you want to dive deeper into the SDK, please advance to the next section: [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+If you want to dive deeper into the SDK, please advance to the next section: [the KILT Cookbook](./02_cookbook/01_dids/01_full_did_creation.md).

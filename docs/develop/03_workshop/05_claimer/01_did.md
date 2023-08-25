@@ -11,14 +11,15 @@ import TabItem from '@theme/TabItem';
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateKeypairs.ts';
 import GenerateLightDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateLightDid.ts';
 
-Time to make a light DID using the previously created account for the <span className="label-role claimer">Claimer</span>.
-Since a light DID is not registered on the blockchain, you don't need funds for creating one.
-Remember light DIDs can:
+Time to make a DID using the previously created account for the <span className="label-role claimer">Claimer</span>.
+Since a DID is not registered on the blockchain, you need funds for creating one.
+Remember DIDs can:
 
 - Sign attestation requests and presentation with the authentication keys
 - Encrypt messages with the encryption keys
+- TODO
 
-Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between their light and full versions.
+Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_full_did_creation.md) to learn more about DIDs.
 
 ## Generate Keys
 
@@ -31,9 +32,9 @@ Similar to the Attester, the Claimer must set up the DID keys.
 The Claimer only needs an authentication key and an encryption key.
 Here the keys are both derived from the same seed, but they could also have two different seeds.
 
-## Generate Light DID
+## Generate a DID
 
-Once our `keypairs` are generated we can create our light DID.
+Once our `keypairs` are generated we can create our DID.
 Because it's off-chain we can just create the DID object every time, we don't need to resolve them before using it.
 But we'll still accept the `mnemonic` and prompt to save it in `.env` for our reference.
 
@@ -41,9 +42,9 @@ But we'll still accept the `mnemonic` and prompt to save it in `.env` for our re
   {GenerateLightDid}
 </TsJsBlock>
 
-After everything is initialized, we create a mnemonic that will be used to create the light DID.
+After everything is initialized, we create a mnemonic that will be used to create the DID.
 As you may have noticed the Claimer doesn't have an `account`.
-The Claimer doesn't need to hold funds and also doesn't need a blockchain account.
+The Claimer doesn't need to hold funds.
 
 ## Run
 
@@ -77,4 +78,4 @@ ATTESTER_DID_MNEMONIC="beyond large galaxy...
 CLAIMER_DID_MNEMONIC="danger awkward wrestle snap...
 ```
 
-Well done - You've successfully generated a light DID!
+Well done - You've successfully generated a DID!

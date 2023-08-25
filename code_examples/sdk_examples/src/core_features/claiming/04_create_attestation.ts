@@ -9,7 +9,7 @@ export async function createAttestation(
   const api = Kilt.ConfigService.get('api')
 
   // Create an attestation object and write its root hash on the chain
-  // using the provided attester's full DID.
+  // using the provided attester's DID.
   const { cTypeHash, claimHash, delegationId } =
     Kilt.Attestation.fromCredentialAndDid(credential, attester)
 

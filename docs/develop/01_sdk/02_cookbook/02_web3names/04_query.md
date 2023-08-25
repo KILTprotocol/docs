@@ -8,7 +8,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import QueryDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/02_query_did_name.ts';
 
 
-A web3name can be resolved in a similar manner to [how a DID is resolved](../01_dids/04_did_query.md).
+A web3name can be resolved in a similar manner to [how a DID is resolved](../01_dids/03_did_query.md).
 Resolving the web3name will provide the same information as resolving a DID does.
 
 To query and retrieve the DID document associated with a web3name, you can use the following code example:

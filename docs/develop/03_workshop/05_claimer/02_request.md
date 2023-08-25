@@ -24,7 +24,7 @@ To become valid in the eyes of <span className="label-role verifier">Verifiers</
 
 ## Create Credential
 
-We'll use provided `light DID`, `ctype` and <span className="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
+We'll use provided `DID`, `ctype` and <span className="label-role claimer">Claimer</span> provided `content` to generate the `Claim` object.
 
 A claim is composed of attributes that we claim to be true about us.
 
@@ -36,7 +36,7 @@ Since we want to receive an attestation for those claims, we build a `Credential
 The credential contains all necessary information, so that the <span className="label-role attester">Attester</span> can attest it for us.
 
 The `main` function puts it all together.
-There we load our light DID, create a claim and finally the credential.
+There we load our DID, create a claim and finally the credential.
 
 <TsJsBlock fileName="claimer/generateCredential">
   {GenerateCredential}

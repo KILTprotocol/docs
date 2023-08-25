@@ -30,7 +30,7 @@ This JSON-file must contain a credential presentation that conforms to the [Doma
 
 For the *Well-Known DID Configuration* you need to go through the following steps:
 
-0. Create a full DID
+0. Create a DID
     * You will need the `assertionMethodKey` a.k.a. `attestationKey` for signing the credential
     * The `authenticationKey` is required for signing the transaction
 1. Create a claim
@@ -41,7 +41,7 @@ For the *Well-Known DID Configuration* you need to go through the following step
 ### Create a DID
 
 Your dapp needs a DID to identify itself to the extension.
-If your dapp does not have a DID yet, follow the [*create a full DID* guide][create-full-did].
+If your dapp does not have a DID yet, follow the [*create a DID* guide][create-full-did].
 Make sure to create the DID with an `assertionMethodKey` so that you are able to issue attestations.
 
 ### Making the claim
@@ -105,6 +105,6 @@ How the file is hosted depends on your project setup and is out of scope for thi
 
 [concept-attestations]: ../../concepts/05_credentials/04_attestation.md
 [cookbook-attestations]: ../01_sdk/02_cookbook/04_claiming/03_attestation_creation.md
-[create-full-did]: ../01_sdk/02_cookbook/01_dids/02_full_did_creation.md
+[create-full-did]: ../01_sdk/02_cookbook/01_dids/01_full_did_creation.md
 [well-known-spec]: https://identity.foundation/.well-known/resources/did-configuration/
 [CType-Domain-Linkage]: https://github.com/KILTprotocol/ctype-index/tree/main/ctypes/0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643

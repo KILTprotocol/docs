@@ -20,7 +20,7 @@ export async function runAll(
 ): Promise<void> {
   console.log('Running DID flow...')
 
-  console.log('1 did) Create simple full DID')
+  console.log('1 did) Create simple DID')
   const { authentication: simpleFullDidAuth } = generateKeypairs()
   const createdSimpleFullDid = await createSimpleFullDid(
     submitterAccount,
@@ -32,7 +32,7 @@ export async function runAll(
       keyType: simpleFullDidAuth.type
     })
   )
-  console.log('2 did) Create complete full DID')
+  console.log('2 did) Create complete DID')
   const {
     authentication: completeFullDidAuth,
     keyAgreement: completeFullDidEnc,
@@ -52,10 +52,10 @@ export async function runAll(
       keyType: completeFullDidAuth.type
     })
   )
-  console.log('3 did) Query full DID')
+  console.log('3 did) Query DID')
   queryFullDid(createdCompleteFullDid.uri)
 
-  console.log('4 did) Update full DID created at step 5')
+  console.log('4 did) Update DID created at step 5')
   const { authentication: newCompleteFullDidAuth } = generateKeypairs()
   const updatedFullDid = await updateFullDid(
     newCompleteFullDidAuth,
@@ -67,7 +67,7 @@ export async function runAll(
     })
   )
   console.log(
-    '5 did) Use the same full DID created at step 5 to sign the batch'
+    '5 did) Use the same DID created at step 5 to sign the batch'
   )
   await signAndSubmitDidExtrinsicBatch(
     submitterAccount,
@@ -79,7 +79,7 @@ export async function runAll(
   )
 
   console.log(
-    '6 did) Use the same full DID created at step 5 to sign the single tx'
+    '6 did) Use the same DID created at step 5 to sign the single tx'
   )
   await signAndSubmitDidExtrinsic(
     submitterAccount,
@@ -91,7 +91,7 @@ export async function runAll(
   )
 
   console.log(
-    '7 did) Use the same full DID created at step 5 to generate the signature'
+    '7 did) Use the same DID created at step 5 to generate the signature'
   )
   await generateAndVerifyDidAuthenticationSignature(
     updatedFullDid,
@@ -102,7 +102,7 @@ export async function runAll(
       keyUri: `${updatedFullDid.uri}${updatedFullDid.authentication[0].id}`
     })
   )
-  console.log('8 did) Delete full DID created at step 4')
+  console.log('8 did) Delete DID created at step 4')
   await deleteFullDid(
     submitterAccount,
     createdSimpleFullDid.uri,
@@ -113,7 +113,7 @@ export async function runAll(
   )
   console.log('9 did) Export DID created at step 5')
   await exportDid(createdCompleteFullDid, 'application/ld+json')
-  console.log('10 did) Delete full DID created at step 5')
+  console.log('10 did) Delete DID created at step 5')
   await reclaimFullDidDeposit(submitterAccount, createdCompleteFullDid.uri)
   console.log('DID flow completed!')
 }

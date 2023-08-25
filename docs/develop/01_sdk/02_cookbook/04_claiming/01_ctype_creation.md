@@ -16,8 +16,8 @@ To learn more about CTypes, see the [CType concept section](../../../../concepts
 The creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
 :::info DID required
-The creator of a CType is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
+The creator of a CType is required to have a DID with an attestation key.
+To see how to manage DIDs, please refer to the [DID section](../01_dids/02_full_did_update.md).
 :::
 
 :::info CTypes are unique

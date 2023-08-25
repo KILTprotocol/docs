@@ -17,6 +17,11 @@ We will not cover the creation of a CType, please refer to the [CType creation](
 ## Create and Issue the Credential
 
 Using the existing CType, the new public credential object can be created with the actual content, and then written to the chain for the rest of the KILT users (and beyond) to consume.
+<TsJsBlock>
+  {CreateCType}
+</TsJsBlock>
+
+## Create and Issue the Credential
 
 Creating a public credential is as simple as creating an object that conforms to the required structure of the CType:
 

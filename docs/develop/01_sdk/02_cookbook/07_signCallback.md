@@ -24,7 +24,7 @@ The interface is generic enough to support implementations for all these securit
 ## The SignCallback Family
 
 There are three types of signing callbacks:
-1. The `SignCallback` is the most general and can be used in almost all cases, except when signing a full DID creation transaction.
+1. The `SignCallback` is the most general and can be used in almost all cases, except when signing a DID creation transaction.
 2. The `SignExtrinsicCallback` is a special `SignCallback` which can only be used to sign extrinsics.
    Thus, every `SignCallback` can also be used as a `SignExtrinsicCallback`.
 3. The `GetStoreTxSignCallback` can only be used to sign the creation of a new DID.

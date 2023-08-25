@@ -7,7 +7,7 @@ export async function linkDidToAccount(
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
-  // Authorizing the tx with the full DID and submitting it with the provided account
+  // Authorizing the tx with the DID and submitting it with the provided account
   // results in the submitter's account being linked to the DID authorizing the operation.
   const accountLinkingTx = api.tx.didLookup.associateSender()
   const authorizedAccountLinkingTx = await Kilt.Did.authorizeTx(

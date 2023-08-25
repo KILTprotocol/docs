@@ -47,14 +47,14 @@ The challenge can be generated using the polkadot crypto utilities:
 </TsJsBlock>
 
 With the challenge the server can construct the `request-credential` message.
-The request is sent to the light DID (`claimerSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
+The request is sent to the DID (`claimerSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
 
   {CreateRequestCredentialMessage}
 
 :::note Privacy
 
-The credential itself doesn't need to be issued to this DID since the light DID is only used to encrypt the messages.
-We don't use the full DID of the claimer to establish the encrypted communication, so that the claimer first can ensure the origin of the `request-credential` message.
+The credential itself doesn't need to be issued to this DID since the DID is only used to encrypt the messages.
+We don't use the DID of the claimer to establish the encrypted communication, so that the claimer first can ensure the origin of the `request-credential` message.
 
 :::
 

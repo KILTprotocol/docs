@@ -26,7 +26,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
       ├─ createClaim.ts # creates a claim
       ├─ createPresentation.ts # creates a presentation for verifiers
       ├─ generateCredential.ts # create the credential object that is sent to the attester for attestation
-      └─ generateKeypairs.ts # create keypairs for the light DID
+      └─ generateKeypairs.ts # create keypairs for the DID
   ```
 
   </TabItem>
@@ -38,7 +38,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
       ├─ createClaim.js # creates a claim
       ├─ createPresentation.js # creates a presentation for verifiers
       ├─ generateCredential.js # create the credential object that is sent to the attester for attestation
-      └─ generateKeypairs.js # create keypairs for the light DID
+      └─ generateKeypairs.js # create keypairs for the DID
   ```
 
   </TabItem>

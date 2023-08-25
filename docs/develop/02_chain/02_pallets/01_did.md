@@ -14,11 +14,11 @@ A DID can then be used to perform certain on-chain actions which include:
 * Setting delegations
 * Doing key rotations on the DID keys
 
-## Register a Full DID
+## Register a DID
 
-A full DID is needed if the user wants to become an Attester or wants to setup delegations.
-A full DID also allows the user to embed a list of URLs, known as services, into the DID document so that they can be retrieved from the chain as part of the DID document.
-To create a full DID the user first has to create some keys, and optionally some services:
+A DID is needed if the user wants to become an Attester or wants to setup delegations.
+A DID also allows the user to embed a list of URLs, known as services, into the DID document so that they can be retrieved from the chain as part of the DID document.
+To create a DID the user first has to create some keys, and optionally some services:
 
 * one authentication key for signing extrinsics from your DID
 * zero or more key agreement keys for encrypting messages that are sent to you
@@ -39,7 +39,7 @@ This allows the creation of a DID without having to pay any fees or deposits.
 Beware that this also means that the DID creator gives up some power over the DID: The submitter who pays the deposit will be able to delete the DID from the blockchain and claim back its deposit.
 Once the `did::create` extrinsic is submitted and executed, the DID is written to the chain.
 
-## Use a Full DID
+## Use a DID
 
 Once the DID is successfully registered on chain, it can be used to perform certain on-chain actions that are not possible to do with a regular account.
 This includes the handling of attestations and CTypes, setting up trust hierarchies through delegations, managing web3names and much more.
@@ -75,9 +75,9 @@ The process of doing any DID-Call is always the same:
 * After that the actual call gets dispatched with a special `DidOrigin`
     * This allows the executer of the actual call to get the DID and the account of the submitter
 
-## Update a Full DID
+## Update a DID
 
-There is a set of extrinsics available to update a full DID.
+There is a set of extrinsics available to update a DID.
 These are:
 
 * `set_authentication_key`

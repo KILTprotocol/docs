@@ -42,7 +42,7 @@ export async function createFullDid(
   const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
 
   if (!document) {
-    throw new Error('Full DID was not successfully created.')
+    throw new Error('DID was not successfully created.')
   }
 
   return { mnemonic, fullDid: document }

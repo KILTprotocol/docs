@@ -33,7 +33,7 @@ If you want to learn more about CTypes take a look at our [in depth CType docume
 You can also [read through existing CTypes in our CType-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
-Creating CTypes requires an account and a full DID.
+Creating CTypes requires an account and a DID.
 Make sure your account holds KILT tokens so that you can pay the fees for creating a CType.
 
 For example, a very basic CType for a driver's license could look like this:
