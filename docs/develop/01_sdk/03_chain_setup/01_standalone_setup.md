@@ -12,7 +12,7 @@ This greatly simplifies the setup.
 You only need to start the Docker image:
 
 ```bash
-docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/mashnet-node:latest --dev --ws-external --rpc-external
+docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/standalone-node:latest --dev --ws-external --rpc-external
 ```
 
 You should see output similar to the following:
@@ -25,7 +25,7 @@ You should see output similar to the following:
 2022-05-05 13:25:12 🏷  Node name: subdued-chair-0035
 2022-05-05 13:25:12 👤 Role: AUTHORITY
 2022-05-05 13:25:12 💾 Database: RocksDb at /tmp/substrateufCNUV/chains/development/db/full
-2022-05-05 13:25:12 ⛓  Native runtime: mashnet-node-10620 (mashnet-node-0.tx3.au4)
+2022-05-05 13:25:12 ⛓  Native runtime: kilt-kestrel (kilt-kestrel-0.tx3.au4)
 2022-05-05 13:25:13 🔨 Initializing Genesis block/state (state: 0xb4a2…94b3, header-hash: 0x09fc…3a2b)
 2022-05-05 13:25:13 👴 Loading GRANDPA authority set from genesis on what appears to be first startup.
 2022-05-05 13:25:14 Using default protocol ID "sup" because none is configured in the chain specs
