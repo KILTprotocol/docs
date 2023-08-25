@@ -1,5 +1,5 @@
 ---
-id: howto-integrate-distillery
+id: how-to-integrate-distillery
 title: KILT Distillery
 ---
 
