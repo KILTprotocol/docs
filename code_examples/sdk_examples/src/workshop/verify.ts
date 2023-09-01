@@ -5,7 +5,6 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { createPresentation } from './claimer/createPresentation'
 import { generateKeypairs } from './claimer/generateKeypairs'
 
-
 function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
 }
@@ -66,8 +65,8 @@ export async function verificationFlow(
 async function getDidfromUri(didUri: Kilt.DidUri): Promise<Kilt.DidDocument> {
   const claimerDid = await Kilt.Did.resolve(didUri)
 
-  if(!claimerDid.document) {
-    throw new Error("Did is not anchored in the blockchain")
+  if (!claimerDid.document) {
+    throw new Error('Did is not anchored in the blockchain')
   }
   return claimerDid.document
 }

@@ -6,7 +6,6 @@ import { generateAccount } from './generateAccount'
 import { generateCredential } from '../claimer/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
 
-
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
@@ -73,7 +72,9 @@ if (require.main === module) {
       const attesterDidMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
       const { authentication: authenticationAttester, assertionMethod } =
         generateKeypairs(attesterDidMnemonic)
-      const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authenticationAttester)
+      const attesterDidUri = Kilt.Did.getFullDidUriFromKey(
+        authenticationAttester
+      )
 
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
       const { authentication: authenticationClaimer } =

@@ -66,9 +66,7 @@ export async function runAll(
       keyType: completeFullDidAuth.type
     })
   )
-  console.log(
-    '5 did) Use the same DID created at step 5 to sign the batch'
-  )
+  console.log('5 did) Use the same DID created at step 5 to sign the batch')
   await signAndSubmitDidExtrinsicBatch(
     submitterAccount,
     updatedFullDid.uri,
@@ -78,9 +76,7 @@ export async function runAll(
     })
   )
 
-  console.log(
-    '6 did) Use the same DID created at step 5 to sign the single tx'
-  )
+  console.log('6 did) Use the same DID created at step 5 to sign the single tx')
   await signAndSubmitDidExtrinsic(
     submitterAccount,
     updatedFullDid.uri,
