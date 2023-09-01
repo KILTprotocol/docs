@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createPresentation } from './claimer/createPresentation'
 import { generateKeypairs } from './claimer/generateKeypairs'
-import { generateLightDid } from './claimer/generateLightDid'
+
 
 function getChallenge(): string {
   return Kilt.Utils.UUID.generate()
@@ -63,6 +63,15 @@ export async function verificationFlow(
   }
 }
 
+async function getDidfromUri(didUri: Kilt.DidUri): Promise<Kilt.DidDocument> {
+  const claimerDid = await Kilt.Did.resolve(didUri)
+
+  if(!claimerDid.document) {
+    throw new Error("Did is not anchored in the blockchain")
+  }
+  return claimerDid.document
+}
+
 // Don't execute if this is imported by another file.
 if (require.main === module) {
   ;(async () => {
@@ -72,7 +81,9 @@ if (require.main === module) {
       await Kilt.connect(process.env.WSS_ADDRESS as string)
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
       const { authentication } = generateKeypairs(claimerDidMnemonic)
-      const claimerDid = generateLightDid(claimerDidMnemonic)
+      const claimerDidUri = process.env.CLAIMER_DID_URI as Kilt.DidUri
+      const claimerDid = await getDidfromUri(claimerDidUri)
+
       const attesterDid = process.env.ATTESTER_DID_URI as Kilt.DidUri
       // Load credential and claimer DID
       const credential = JSON.parse(process.env.CLAIMER_CREDENTIAL as string)

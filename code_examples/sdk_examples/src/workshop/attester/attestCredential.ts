@@ -5,7 +5,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import { generateAccount } from './generateAccount'
 import { generateCredential } from '../claimer/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
-import { generateLightDid } from '../claimer/generateLightDid'
+
 
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
@@ -71,15 +71,17 @@ if (require.main === module) {
       )
 
       const attesterDidMnemonic = process.env.ATTESTER_DID_MNEMONIC as string
-      const { authentication, assertionMethod } =
+      const { authentication: authenticationAttester, assertionMethod } =
         generateKeypairs(attesterDidMnemonic)
-      const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
+      const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authenticationAttester)
 
       const claimerDidMnemonic = process.env.CLAIMER_DID_MNEMONIC as string
-      const claimerDid = await generateLightDid(claimerDidMnemonic)
+      const { authentication: authenticationClaimer } =
+        generateKeypairs(claimerDidMnemonic)
+      const claimerDidUri = Kilt.Did.getFullDidUriFromKey(authenticationClaimer)
 
       const credential = await attestingFlow(
-        claimerDid.uri,
+        claimerDidUri,
         attesterAccount,
         attesterDidUri,
         async ({ data }) => ({

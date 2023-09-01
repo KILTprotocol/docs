@@ -53,7 +53,7 @@ We'll use the default KILT keyring to generate them.
   {GenerateKeypairs}
 </TsJsBlock>
 
-Once we have created all the necessary keys for a DID we can create the on-chain DID.
+Once we have created all the necessary keys for a DID, we need to anchor them to the blockchain.
 To create a DID we first initialize everything.
 After that, we load the account that we created in the [last section](./01_account.md).
 The account will be used to pay for the DID registration.
