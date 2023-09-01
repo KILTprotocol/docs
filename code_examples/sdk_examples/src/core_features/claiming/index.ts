@@ -1,9 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-
-import { createCompleteFullDid } from '../did/02_full_did_complete'
-import { createSimpleLightDid } from '../did/01_light_did_simple'
-
 import { createAttestation } from './04_create_attestation'
+import { createCompleteFullDid } from '../did/02_full_did_complete'
 import { createDriversLicenseCType } from './01_create_ctype'
 import { createPresentation } from './05_create_presentation'
 import { fetchCType } from './02_fetch_ctype'
@@ -18,10 +15,15 @@ export async function runAll(
   submitterAccount: Kilt.KiltKeyringPair
 ): Promise<void> {
   console.log('Running claiming flow...')
-  const claimerAuthKey = generateKeypairs().authentication
-  const claimerLightDid = createSimpleLightDid({
-    authentication: claimerAuthKey
-  })
+  const claimerKeys = generateKeypairs()
+  const claimerFullDid = await createCompleteFullDid(
+    submitterAccount,
+    claimerKeys,
+    async ({ data }) => ({
+      signature: claimerKeys.authentication.sign(data),
+      keyType: claimerKeys.authentication.type
+    })
+  )
 
   const attersterKeys = generateKeypairs()
   const attesterFullDid = await createCompleteFullDid(
@@ -51,7 +53,7 @@ export async function runAll(
   }
   console.log('Retrieved CType details: ', ctypeDetails)
   console.log('3 claiming) Create credential')
-  const credential = requestAttestation(claimerLightDid, ctype)
+  const credential = requestAttestation(claimerFullDid, ctype)
   console.log('4 claiming) Create attestation and credential')
   await createAttestation(
     attesterFullDid.uri,
@@ -66,9 +68,9 @@ export async function runAll(
   const presentation = await createPresentation(
     credential,
     async ({ data }) => ({
-      signature: claimerAuthKey.sign(data),
-      keyType: claimerAuthKey.type,
-      keyUri: `${claimerLightDid.uri}${claimerLightDid.authentication[0].id}`
+      signature: claimerKeys.authentication.sign(data),
+      keyType: claimerKeys.authentication.type,
+      keyUri: `${claimerFullDid.uri}${claimerFullDid.authentication[0].id}`
     }),
     ['name', 'id']
   )
