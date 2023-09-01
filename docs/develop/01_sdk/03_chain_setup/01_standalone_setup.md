@@ -12,7 +12,7 @@ This greatly simplifies the setup.
 You only need to start the Docker image:
 
 ```bash
-docker run --rm -it -p 9944:9944 -p 9933:9933 kiltprotocol/mashnet-node:latest --dev --rpc-external
+docker run --rm -it -p 9944:9944 kiltprotocol/mashnet-node:latest --dev --rpc-external
 ```
 
 You should see output similar to the following:
@@ -43,18 +43,14 @@ You should see output similar to the following:
 Congratulations!
 You are running your own KILT blockchain. 🎉
 
-The blockchain exposes a WebSocket endpoint on port `9944` and an RPC endpoint on port `9933`.
+The blockchain exposes a RPC endpoint on port `9944`.
 You can test that by calling an RPC endpoint using curl.
 
 ```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_name", "params":[]}' http://127.0.0.1:9933/
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "system_name", "params":[]}' http://127.0.0.1:9944/
 ```
 
 This should give you `{"jsonrpc":"2.0","result":"KILT Node","id":1}` as a response.
-
-In addition, you can also connect to the exposed WebSocket endpoints using [your script](./index.md#set-up-your-project).
-Simply replace the WebSocket address with `ws://127.0.0.1:9944`.
-Please note that we connect to the port `9944` as we are using the WebSocket protocol for our SDK and not bare HTTP.
 
 The `--dev` parameter provides a pre-funded account which you can use as a faucet, and that has the following mnemonic: `receive clutch item involve chaos clutch furnace arrest claw isolate okay together`.
 
