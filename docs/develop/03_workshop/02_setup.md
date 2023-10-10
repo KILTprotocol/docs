@@ -13,10 +13,14 @@ Any stable (LTS >= 16.0) version is sufficient.
 
 ## Dependencies
 
-Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.<br/>
+Start by creating a new project from scratch.
+Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kilt-rocks`.
+
+Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.
+
 - [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
 - [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
-- (Only in case you are using Typescript and not Javascript) [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
+- If you use Typescript and not Javascript: [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -42,8 +46,8 @@ Navigate into your newly created folder `kilt-rocks`, initialize the project and
 </Tabs>
 
 ## Project Folder
-
-The project structure looks like the following:
+<!-- TODO: Or maybe add as we go and say, this will be the final structure -->
+Create the following folder structure. You will add the code later:
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -69,8 +73,6 @@ The project structure looks like the following:
 
   </TabItem>
 </Tabs>
-
-You can set up the directories now or later when we need them.
 
 ## PILT Tokens
 
