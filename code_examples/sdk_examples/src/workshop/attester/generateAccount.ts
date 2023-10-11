@@ -9,7 +9,7 @@ export function generateAccount(
   mnemonic: string
 } {
   return {
-    account: Kilt.Utils.Crypto.makeKeypairFromUri(mnemonic, 'sr25519'),
+    account: Kilt.Utils.Crypto.makeKeypairFromUri(mnemonic),
     mnemonic
   }
 }
