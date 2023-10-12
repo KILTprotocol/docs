@@ -7,6 +7,11 @@ async function failproofSubmit(
   submitter: Kilt.KeyringPair
 ) {
   try {
+    //debugger:
+    const api = Kilt.ConfigService.get('api')
+    const chainName = (await api.rpc.system.chain()).toHuman()
+    console.log('Connected to this blockchain: ', chainName)
+
     await Kilt.Blockchain.signAndSubmitTx(tx, submitter)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
