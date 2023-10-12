@@ -25,16 +25,29 @@ The DID Signature should be done via the [DIDSign](https://didsign.io/) dApp.
 The DIDSign doesn't have a database, nor store any data by the user.
 The following guide explains [how to create a signature using a DID with DIDSign](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf).
 
-Once the document has been signed, the signature must be made available to others to verify.
-Storing the document and signature publicly is necessary this can be done in a variety of ways such as IPFS or as a GitHub gist or cloud provider.
-The storage must include the document and signature.
-The document and signature must be easily accessable, however, we recommend using IPFS or an equivelant such as Crust.
+Once the document has been signed, the signature must be made publicly available for verification.
+Depending on the services and software used, accessing the storage may require different instructions, e.g., on IPFS or as a GitHub gist or cloud provider.
+The document should be made publicly available as well as the signature.
+
+## Example on IPFS
+
+An example of how to do this via IPFS using Google Drive.
+Have a document ready for the proposal or discussion phase.
+
+1. Make the document publicly available to view and download.
+
+2. Sign the PDF version of the Document in the [DIDSign](https://didsign.io/).
+
+3. Download the zip file and upload it to IPFS.
+
+4. Following the instructions of the IPFS to pin the signature to IPFS and make publicly available. Recommendation can be [web3 storage](https://web3.storage/).
+
+5. After the documents and signature has been uploaded add the IPFS url to the proposal or discussion page for verification.
 
 Please include how to verify and download the necessary documents.
 The following is an example done by BOTLabs GmbH.
 
 ```md
-## How to verify the document integrity
 
 The current version of the proposal document has been digitally signed with one of the DIDs that BOTLabs GmbH controls. To verify the signature:
 
