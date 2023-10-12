@@ -2,6 +2,7 @@
 id: quickstart
 title: Quickstart
 ---
+
 import CodeBlock from '@theme/CodeBlock';
 import SnippetBlock from '@site/src/components/SnippetBlock';
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
@@ -18,46 +19,47 @@ import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src
 import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
 
-Get started with KILT by following this guide.
-You'll learn to:
+Get started with KILT by following this guide, which teaches you to:
 
 1. Import the **KILT SDK** into your project
 2. Connect to the **KILT blockchain**
 3. Query a **web3name** to retrieve its **DID**
 4. Verify a **credential** using a **DID service**
 
+:::info Prerequisites
+
 This quickstart guide provides hands-on experience to enhance your understanding of KILT.
 Basic knowledge of JavaScript and command-line tools is recommended.
-For more in-depth tutorials, we'll suggest additional guides.
+
+:::
 
 ## Setup
 
-Let's start by creating a new project from scratch.
-Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kilt-rocks`.
+Start by creating a new project in a fresh directory by running `mkdir kilt-rocks && cd kilt-rocks`.
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Typescript**, **ts-node** and **Axios**:
+From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Typescript**, **ts-node**, and **Axios** dependencies:
 
-  ```bash npm2yarn
-  npm init -y
-  npm install @kiltprotocol/sdk-js ts-node typescript axios
-  ```
+```bash npm2yarn
+npm init -y
+npm install @kiltprotocol/sdk-js ts-node typescript axios
+```
 
-  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.ts`.
+With the required dependencies installed, create an empty TypeScript file with `touch quickstart.ts`.
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-  From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node** and **Axios**:
+From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node**, and **Axios** dependencies:
 
-  ```bash npm2yarn
-  npm init -y
-  npm install @kiltprotocol/sdk-js node axios
-  ```
+```bash npm2yarn
+npm init -y
+npm install @kiltprotocol/sdk-js node axios
+```
 
-  With all the required dependencies set, just create a new (empty) script file with `touch quickstart.js`.
+With the required dependencies installed, create a JavaScript file with `touch quickstart.js`.
 
   </TabItem>
 </Tabs>
@@ -65,84 +67,88 @@ Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kil
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  Once you've imported the SDK, you'll gain access to KILT's functionalities.
-  Now, let's create a new file containing the TypeScript compiler configuration.
+Create a new file containing the TypeScript compiler configuration:
 
-  ```bash
-  touch tsconfig.json
-  ```
+```bash
+touch tsconfig.json
+```
 
-  Inside the `tsconfig.json` file, include the following configuration:
+Inside the `tsconfig.json` file, include the following configuration:
 
-  ```json
-  {
+```json
+{
     "compilerOptions": {
         "module": "CommonJS"
     }
-  }
-  ```
+}
+```
 
-  This will set the `module` option to "CommonJS" for TypeScript compilation.
+This sets the `module` option to "CommonJS" for TypeScript compilation.
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-  After importing the SDK, you'll have access to KILT's functionalities.
-  To enable ES modules in your project, add `"type": "module"` to the `package.json` file.
+To enable ES modules in your project, add `"type": "module"` to the `package.json` file.
 
   </TabItem>
 </Tabs>
 
-Let's first declare our `main` function that will execute our script:
+Declare a `main` function in a new `quickstart.ts` file that executes the remainder of the code in this quickstart:
 
-<CodeBlock className="language-ts">
-  {PrintHelloWorld}
-</CodeBlock>
+{/* TODO: Do we need to test this or provide JS equivalent? */}
 
-If the setup is correct you can execute the script by calling the name of the file using Node.
+```js
+async function main() {
+    console.log('Hello world')
+}
+
+main()
+```
+
+If the setup is correct you can run the code by calling the name of the file.
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  ```bash
-  yarn ts-node quickstart.ts
-  ```
+```bash
+yarn ts-node quickstart.ts
+```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-  ```bash
-  node quickstart.js
-  ```
+```bash
+node quickstart.js
+```
 
   </TabItem>
 </Tabs>
 
-As we will extend the code in this file, you can always execute it with the same command.
+As you add to the code in this file, you can always run it with the same command.
 
 **Let's get started! 🔥**
 
 ### Import the KILT SDK
 
-Let's begin by importing the **KILT SDK** and **Axios**:
+Begin by importing the **KILT SDK** and **Axios**:
 
 ```js
 import * as Kilt from '@kiltprotocol/sdk-js'
 import axios from 'axios'
 ```
 
-Now you are able to access the SDK and all its functionality.
-We will move onto connecting to the **KILT blockchain**.
+Now you are able to access the SDK and all its functionality, the next step is connecting to the **KILT blockchain**.
 
 ### Connect to the KILT Blockchain
 
 To perform operations that rely on the KILT blockchain, such as querying and verifying a credential, it's essential to connect to the KILT blockchain.
+
 Within the same `main` function, configure the SDK to connect to a KILT node using the `Kilt.connect()` method:
 
 <Tabs groupId="chain-choice">
   <TabItem value='pere' label='Peregrine (Testnet)' default>
-    Peregrine is the development blockchain.
-    For testing and development purposes connect to this network.
+    <p>Peregrine is the development blockchain.
+    Connect to this network for testing and development purposes.</p>
     <SnippetBlock
       className="language-ts"
       funcEnd="return"
@@ -151,8 +157,8 @@ Within the same `main` function, configure the SDK to connect to a KILT node usi
     </SnippetBlock>
   </TabItem>
   <TabItem value='spirit' label='Spiritnet (Production)'>
-    Spiritnet is the production blockchain.
-    When you are ready to publish your DApp, connect to the Spiritnet network for production purposes.
+    <p>Spiritnet is the production blockchain.
+    When you are ready to publish your DApp, connect to the Spiritnet network for production purposes.</p>
     <SnippetBlock
       className="language-ts"
       funcEnd="return"
@@ -162,80 +168,84 @@ Within the same `main` function, configure the SDK to connect to a KILT node usi
   </TabItem>
 </Tabs>
 
-To ensure proper cleanup, call the `Kilt.disconnect()` function at the bottom of the main function:
+To ensure proper cleanup, call the `Kilt.disconnect()` function at the bottom of the main function. You should add all other code before this function call:
 
 <SnippetBlock
-  className="language-ts"
+className="language-ts"
 >
-  {Disconnect}
+{Disconnect} 
 </SnippetBlock>
 
 By adding `await Kilt.disconnect()` at the end of the main function, you ensure that the connection to the blockchain node is properly closed when the script finishes executing.
 This helps maintain the integrity of your application and is a good practice to follow.
 
+**Congratulations! 🔥**
 
-Congratulations!
-You have connected to a KILT blockchain node.
-Let's now start querying some data from the chain!
+You have connected to a KILT blockchain node, the next step is to start querying data from the blockchain.
 
 ## Query a KILT Identity
 
-We will be querying information related to a **web3name** (`john_doe`), and using them to retrieve the **KILT DID** linked to it.
-In between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
+The following code queries information related to a **web3name** (`john_doe`), and uses it to retrieve the **KILT DID** linked to it.
+
+Between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
 
 <SnippetBlock
-  className="language-ts"
-  funcEnd="return"
+className="language-ts"
+funcEnd="return"
 >
-  {FetchDid}
+{FetchDid}
 </SnippetBlock>
 
-Try executing it and check the result.
+Try running the code and check the result.
 
-Did you get the DID? Nice work! You now have `john_doe`'s DID.
-Now let's see if John Doe has any public KILT credentials that we could retrieve and verify!
+Did you get the DID? You now have `john_doe`'s DID.
+The next step is to see if `john_doe` has any public KILT credentials to retrieve and verify.
 
 ## Retrieve and Verify a Credential
 
 A **KILT DID** can expose services, which allow external resources to be linked to the DID.
-One type of external resource is represented by, you guessed it, **KILT credentials**!
-Therefore, let's see how we can retrieve the **services** of John Doe's DID and see if they link to any public credentials for us to **query** and **verify**.
+**KILT credentials** represent one type of external resource.
 
-We will keep adding code below what we just added.
-The code snippet retrieves the services exposed by the DID we found for `john_doe`:
+You can retrieve the **services** of John Doe's DID and see if they link to any public credentials to **query** and **verify**.
+
+Add the following code after the code you added in the previous step but before the `await Kilt.disconnect()`. It retrieves the services exposed by the DID found for `john_doe`:
 
 <SnippetBlock
-  className="language-ts"
-  funcEnd="return"
->
-  {FetchEndpoints}
+className="language-ts"
+funcEnd="return"
+> 
+{FetchEndpoints}
 </SnippetBlock>
 
-If the snippet printed some endpoints, congratulations!
-Let's see if we can find a credential among them.
+The code should print endpoints as JSON. The next step is to see if you can find a credential among them.
 
-We can select one of the endpoints and query the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1):
+You do this by selecting one of the endpoints and querying the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1):
+
+{/* TODO: Needs significant rework */}
 
 <TsJsSnippet funcEnd="return">
   {FetchEndpointData}
 </TsJsSnippet>
 
-If the script completes with no errors, it means that we were able to retrieve the published credential using the URL specified in the service.
+If the script completes with no errors, you were able to retrieve the published credential using the URL specified in the service.
 
-We will now have to make sure the credential is **valid** and has a valid **structure**.
+You now have to make sure the credential is **valid** and has a valid **structure**.
 
-It is then time to verify the credential.
-This will be indicated by the result of the **verification** process as shown in the snippet below:
+The following code outputs a string depending if the credential is valid, revoked, or not valid:
 
 <SnippetBlock
-  className="language-ts"
+className="language-ts"
 >
-  {VerifyCredential}
+{VerifyCredential}
 </SnippetBlock>
 
-Now execute the script wait to see whether we can successfully retrieve **and** verify one of John Doe's credentials!
+Run the script and wait to see if you can retrieve **and** verify one of John Doe's credentials!
 
-Was it successful? Nice Job!
+{/* TODO: No, but what is successful? */}
 
-If you want to explore more of KILT's features, check out our [Concepts section](../../concepts/01_what_is_kilt.md).
-If you want to dive deeper into the SDK, please advance to the next section: [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+:::info Next steps
+
+If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
+If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+
+:::
