@@ -1,8 +1,8 @@
-import type { ApiPromise } from '@polkadot/api'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(api: ApiPromise): Promise<Kilt.DidUri | null> {
+export async function main(): Promise<Kilt.DidUri | null> {
+  const api = Kilt.ConfigService.get('api')
+
   const encodedJohnDoeDetails = await api.call.did.queryByWeb3Name('john_doe')
 
   // This function will throw if johnDoeOwner does not exist

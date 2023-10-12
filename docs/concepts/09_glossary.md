@@ -143,6 +143,12 @@ More details about Parachains can be found at the [offical Polkadot documentatio
 A multi-chain network that allows for interoperability between different blockchain protocols, including the KILT Protocol.
 More details about Polkadot can be found on their [offical documentation](https://wiki.polkadot.network/docs/getting-started#what-is-polkadot)
 
+### polkadot.js
+
+A JavaScript library that allows developers to interact with Substrate-based blockchains, including KILT Spiritnet and Peregrine.
+It is the basis of the KILT SDK and provides many utils and functions that may be useful for application developers.
+More details about polkadot.js can be found on their [official documentation](https://polkadot.js.org/docs/).
+
 ### Substrate
 
 A modular blockchain development framework used to build custom blockchain solutions, including the KILT Protocol blockchain.

@@ -1,11 +1,9 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function unlinkAccountFromDid(
   did: Kilt.DidUri,
   submitterAccount: Kilt.KiltKeyringPair,
-  linkedAccountAddress: KeyringPair['address'],
+  linkedAccountAddress: Kilt.KiltAddress,
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')

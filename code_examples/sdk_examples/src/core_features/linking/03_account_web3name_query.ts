@@ -1,9 +1,7 @@
-import type { KeyringPair } from '@polkadot/keyring/types'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function queryAccountWeb3Name(
-  lookupAccountAddress: KeyringPair['address']
+  lookupAccountAddress: Kilt.KiltAddress
 ): Promise<Kilt.Did.Web3Name | null> {
   const api = Kilt.ConfigService.get('api')
 

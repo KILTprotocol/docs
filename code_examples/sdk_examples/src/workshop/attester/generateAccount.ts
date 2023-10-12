@@ -1,10 +1,10 @@
 import { config as envConfig } from 'dotenv'
 
-import { mnemonicGenerate } from '@polkadot/util-crypto'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export function generateAccount(mnemonic = mnemonicGenerate()): {
+export function generateAccount(
+  mnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
+): {
   account: Kilt.KiltKeyringPair
   mnemonic: string
 } {
