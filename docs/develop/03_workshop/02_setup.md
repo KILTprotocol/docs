@@ -6,21 +6,23 @@ title: 🎒 Setup
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Node.js
+:::info Prerequisites
 
-You need to have [Node.js](https://nodejs.org/) installed.
-Any stable (LTS >= 16.0) version is sufficient.
+- [Node.js](https://nodejs.org/) installed. Any stable LTS version >= 16.0.
 
-## Dependencies
+:::
 
-Start by creating a new project from scratch.
-Create a new project in a fresh directory by running `mkdir kilt-rocks && cd kilt-rocks`.
+## Project setup
 
-Navigate into your newly created folder `kilt-rocks`, initialize the project and install dependencies.
+Create a new project in a fresh directory and navigate into it by running `mkdir kilt-rocks && cd kilt-rocks`.
+
+Initialize the project and install dependencies. The dependencies needed are the following:
+
+<!-- TODO: Any kind of preference here for list style? -->
 
 - [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
-- [dotenv](https://github.com/motdotla/dotenv#readme) - to help us load variables from `.env`
-- If you use Typescript and not Javascript: [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
+- [dotenv](https://github.com/motdotla/dotenv#readme) - to load environment variables
+- If you use Typescript and not JavaScript [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute our TS code
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
