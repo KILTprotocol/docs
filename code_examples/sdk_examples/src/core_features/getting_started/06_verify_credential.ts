@@ -2,9 +2,8 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(credential: Kilt.ICredential): Promise<void> {
   try {
-    const { attester, revoked } = await Kilt.Credential.verifyCredential(
-      credential
-    )
+    const { attester, revoked } =
+      await Kilt.Credential.verifyCredential(credential)
 
     // Verify that the credential is not revoked. Exception caught by the catch {} block below.
     if (revoked) {
