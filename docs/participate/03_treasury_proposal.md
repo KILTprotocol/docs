@@ -40,9 +40,9 @@ Have a document ready for the proposal or discussion phase.
 
 3. Download the zip file and upload it to IPFS.
 
-4. Following the instructions of the IPFS to pin the signature to IPFS and make publicly available. Recommendation can be [web3 storage](https://web3.storage/).
+4. Following the instructions of the IPFS, pin the signature to IPFS and make it publicly available. One solution for doing is [web3 storage](https://web3.storage/).
 
-5. After the documents and signature has been uploaded add the IPFS url to the proposal or discussion page for verification.
+5. After the documents and signature have been uploaded to IPFS, add their URL to the proposal or discussion page for verification.
 
 Please include how to verify and download the necessary documents.
 The following is an example done by BOTLabs GmbH.
