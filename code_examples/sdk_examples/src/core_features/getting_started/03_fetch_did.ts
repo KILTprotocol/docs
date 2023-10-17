@@ -1,7 +1,7 @@
+/* eslint-disable prefer-const */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(): Promise<Kilt.DidUri | null> {
-  // eslint-disable-next-line prefer-const
   let api = Kilt.ConfigService.get('api')
 
   const encodedJohnDoeDetails = await api.call.did.queryByWeb3Name('john_doe')
