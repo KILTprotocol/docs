@@ -2,9 +2,9 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 export async function main(): Promise<Kilt.DidUri | null> {
-  let api = Kilt.ConfigService.get('api')
-
-  const encodedJohnDoeDetails = await api.call.did.queryByWeb3Name('john_doe')
+  let apiConfig = Kilt.ConfigService.get('api')
+  const encodedJohnDoeDetails =
+    await apiConfig.call.did.queryByWeb3Name('john_doe')
 
   // This function will throw if johnDoeOwner does not exist
   const {
