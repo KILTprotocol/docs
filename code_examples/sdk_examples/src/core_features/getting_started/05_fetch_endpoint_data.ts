@@ -10,7 +10,6 @@ export async function main(
   } = await axios.get<Kilt.KiltPublishedCredentialCollectionV1>(
     endpoints[0].serviceEndpoint[0]
   )
-  console.log('Credentials:')
-  console.log(credential)
+  console.log(`Credentials: ${credential}`)
   return credential
 }
