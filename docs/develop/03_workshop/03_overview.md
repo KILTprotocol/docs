@@ -13,9 +13,7 @@ It involves three actors, which work together to create **distributed trust**:
 
 For the workshop you'll play all three roles.
 
-<!-- Always people? Or also automated? -->
-
-In a real application, different services would run these actors, which this workshop simulates by using different folders for each service. Each actor performs different roles:
+In a real world use case, these actors would be different people and services, which this workshop simulates by using different folders for each service. Each actor typically performs different roles:
 
 -   Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
 -   But only the <span className="label-role attester">Attester</span> is required to own KILTs since they have to pay for storing the attestation on chain.
@@ -24,9 +22,9 @@ In a real application, different services would run these actors, which this wor
 
 ## Request an Attestation
 
-Before the <span className="label-role claimer">Claimer</span> can attest a credential, it needs to generate a [light DID](../01_sdk/02_cookbook/01_dids/01_light_did_creation.md), which it can do off-chain.
+Before the <span className="label-role claimer">Claimer</span> can attest a credential, they need to generate a [light DID](../01_sdk/02_cookbook/01_dids/01_light_did_creation.md), which can happen off-chain.
 
-The <span className="label-role attester">Attester</span> has to register its DID on chain and needs KILT coins.
+The <span className="label-role attester">Attester</span> has to register their DID on chain and needs KILT coins.
 
 After both the <span className="label-role attester">Attester</span> and the <span className="label-role claimer">Claimer</span> have set up their identities, the <span className="label-role claimer">Claimer</span> can start the attestation process by requesting an attestation from the <span className="label-role attester">Attester</span>.
 
@@ -44,8 +42,8 @@ participant B as KILT Blockchain
 ```
 
 1. The <span className="label-role claimer">Claimer</span> prepares the Credential to attest, along with some proof, for example, a bank statement and ID.
-2. The document is sent to the <span className="label-role attester">Attester</span> for attestation.
-3. Upon receiving the credential, the <span className="label-role attester">Attester</span> decides whether the claim is valid by examining the proofs. If the <span className="label-role claimer">Attester</span> trusts the claim, it stores the attestation document's hash value on the chain, which is a non-functional copy of the document.
+2. They send the document to the <span className="label-role attester">Attester</span> for attestation.
+3. Upon receiving the credential, the <span className="label-role attester">Attester</span> decides whether the claim is valid by examining the proofs. If the <span className="label-role claimer">Attester</span> trusts the claim, they store the attestation document's hash value on the chain, which is a non-functional copy of the document.
 4. The <span className="label-role attester">Attester</span> sends this hash value to the <span className="label-role claimer">Claimer</span>, which represents verification of a document.
 
 ## Verify an Attestation
@@ -87,8 +85,8 @@ To take an example of applying for a travel visa:
 
 :::tip
 
-As you can see, the Embassy didn't need to trust us directly in this system. They trusted the Attester, whom they had previously worked with or respected due to their position. And with that trust, they granted us the visa.
+As you can see, the Embassy didn't need to trust the Claimer directly in this system. They trusted the Attester, whom they had previously worked with or respected due to their position. And with that trust, they granted the visa.
 
-Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it. Privacy was achieved with trust.
+Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it. Privacy was achieved with distributed trust.
 
 :::
