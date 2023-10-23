@@ -170,7 +170,7 @@ funcEnd="return"
 Try running the code and check the result.
 
 Did you get the DID? You now have `john_doe`'s DID.
-The next step is to see if `john_doe` has any public KILT credentials to retrieve and verify.
+The next step is to see if `john_doe` has any publicly linked KILT credentials to retrieve and verify.
 
 ## Retrieve and Verify a Credential
 
