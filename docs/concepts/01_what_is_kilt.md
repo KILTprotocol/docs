@@ -1,13 +1,13 @@
 ---
 id: what-is-kilt
-title: What is KILT?
+title: What is Kilt?
 ---
 
-KILT is a protocol for self-sovereign data and interoperability built on top of the permissionless KILT blockchain.
+Kilt is a protocol for self-sovereign data and interoperability built on top of the permissionless Kilt blockchain.
 The core component of KILT is a digital identity protocol for 1. generating and managing [**decentralized identifiers (DIDs)**](./09_glossary.md#Decentralized-Identifiers-(DID)), and 2. issuing and presenting digital [**verifiable credentials (VCs)**](./09_glossary.md#verifiable-credentials).
-In contrast to other centralized alternatives, KILT features self-sovereign data as well as revocable [credentials](./09_glossary.md#credential) anchored to the KILT blockchain.
+In contrast to other centralized alternatives, KILT features self-sovereign data as well as revocable [credentials](./09_glossary.md#credential) anchored to the Kilt blockchain.
 
-KILT was built to be a business enabler, not only for the software industry but also for any entity.
+Kilt was built to be a business enabler, not only for the software industry but also for any entity.
 Such entities can establish a business model based on the trust infrastructure KILT provides, which will be an essential building block of Web 3.0.
 
 In particular KILT provides:
