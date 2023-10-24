@@ -7,7 +7,7 @@ Here is a glossary of terms related to the KILT Protocol:
 
 ## W3C: Self-Sovereign Identity (SSI)
 
-**Decentralized Identifier (DID)** – a unique digital identifier for entities (people, machines, services and anything that identities can be built on) which can be anc–hored to a blockchain to provide the core of a verifiable digital identity.
+**Decentralized Identifier (DID)** – a unique digital identifier for entities (people, machines, services, and anything that identities can be built on) which can be anchored to a blockchain to provide the core of a verifiable digital identity.
 For example, **did:kilt:4sxSYXakw1ZXBymzT9t3Yw91mUaqKST5bFUEjGEpvkTuckar**.
 In KILT, identity is built by adding credentials to the DID.
 
