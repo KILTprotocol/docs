@@ -83,7 +83,7 @@ To take an example of applying for a travel visa:
 4. The embassy verified the document's authenticity by comparing its hash value with the one on their internal system or a decentralized ledger.
 5. Since they trust the Attester (in this case, the bank that attested the bank statement), they approved the visa application.
 
-:::tip
+:::tip Summary
 
 As you can see, the Embassy didn't need to trust the Claimer directly in this system. They trusted the Attester, whom they had previously worked with or respected due to their position. And with that trust, they granted the visa.
 

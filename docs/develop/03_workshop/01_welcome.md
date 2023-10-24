@@ -36,5 +36,3 @@ You'll create a claim as a <span className="label-role claimer">Claimer</span>, 
 ✔ Use the KILT SDK to write onto and read from the KILT blockchain.
 
 Ready? Let's go!
-
-👉 [Step 0: Setup](./02_setup.md)

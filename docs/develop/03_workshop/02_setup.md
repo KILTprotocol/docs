@@ -95,5 +95,3 @@ WSS_ADDRESS=wss://peregrine.kilt.io
 ```
 
 That's it for the basic setup - You're good to go!
-
-👉 [Step 1: Overview](./03_overview.md)
