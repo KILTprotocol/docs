@@ -36,7 +36,7 @@ Verifiable credentials are often associated with DIDs and can be stored and mana
 **Attestation** -the act of formally confirming and certifying the validity of the data within a claim, typically performed by a trusted Attester.
 
 **Attester** - a trusted entity or organization that attests claims and issues credentials on the KILT Protocol.
-The Attester confirms e truth of the claim requested based on the information presented by the Claimer.
+The Attester confirms the truth of the claim requested based on the information presented by the Claimer.
 
 **Claimer** - an individual or entity that asserts a claim or statement about their identity or qualifications.
 The Claimer can use credentials to provide evidence of their claims, which can be verified by third-party entities or systems.
