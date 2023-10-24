@@ -10,8 +10,7 @@ export async function main(credential: Kilt.ICredential): Promise<void> {
       throw new Error('The credential has been revoked, hence it is not valid.')
     }
     console.log(
-      `John Doe's credential is valid and has been attested by ${attester}!`,
-      JSON.stringify(credential, null, 2)
+      `John Doe's credential is valid and has been attested by ${attester}!`
     )
   } catch {
     console.log("John Doe's credential is not valid.")
