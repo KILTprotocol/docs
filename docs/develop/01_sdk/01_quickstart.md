@@ -88,7 +88,8 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 import axios from 'axios'
 ```
 
-Now, you can access the SDK and all its functionality. The next step is connecting to the **KILT blockchain**.
+Now, you can access the SDK and all its functionality.
+The next step is connecting to the **KILT blockchain**.
 
 ### Connect to the KILT Blockchain
 
@@ -119,7 +120,8 @@ Within the `main` function, configure the SDK to connect to a KILT node using th
   </TabItem>
 </Tabs>
 
-To ensure proper cleanup, call the `Kilt.disconnect()` function at the bottom of the `main()` function. You should add all other code before this function call:
+To ensure proper cleanup, call the `Kilt.disconnect()` function at the bottom of the `main()` function.
+You should add all other code before this function call:
 
 <SnippetBlock
 className="language-ts"
@@ -129,7 +131,8 @@ className="language-ts"
 
 By adding `await Kilt.disconnect()`, you ensure that the connection to the blockchain node is properly closed when the script finishes executing, which helps maintain the integrity of your application and is a good practice to follow.
 
-Run the code by calling the name of the file. If you set up everything correctly, you should see no output showing that your code connected to the **KILT blockchain**.
+Run the code by calling the name of the file.
+If you set up everything correctly, you should see no output showing that your code connected to the **KILT blockchain**.
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -152,7 +155,8 @@ As you add to the code in this file, you can always run it with the same command
 
 **Congratulations! 🔥**
 
-You have connected to a KILT blockchain node. The next step is to start querying data from the blockchain.
+You have connected to a KILT blockchain node.
+The next step is to start querying data from the blockchain.
 
 ## Query a KILT Identity
 
@@ -179,7 +183,8 @@ A **KILT DID** can expose services that allow external resources to be linked to
 
 You can retrieve the **services** attached to John Doe's DID and see if they link to any public credentials to **query** and **verify**.
 
-Add the following code after the code you added in the previous step but before the `await Kilt.disconnect()`. It retrieves the services exposed by the DID found for `john_doe`:
+Add the following code after the code you added in the previous step but before the `await Kilt.disconnect()`.
+It retrieves the services exposed by the DID found for `john_doe`:
 
 <SnippetBlock
 className="language-ts"
@@ -190,7 +195,8 @@ funcEnd="return"
 
 The code should print endpoints as JSON.
 
-The next step is to see if you can find a credential among them. You do this by selecting one of the endpoints and querying the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1).
+The next step is to see if you can find a credential among them.
+You do this by selecting one of the endpoints and querying the URL to see if it returns a KILT credential collection as described in the [KiltPublishedCredentialCollectionV1 specification](https://github.com/KILTprotocol/spec-KiltPublishedCredentialCollectionV1).
 
 Add the following code after the code you added in the previous step but before `await Kilt.disconnect()`:
 
@@ -202,7 +208,8 @@ If the script completes without errors, you retrieved the published credential u
 
 The next step is to make sure the credential is **valid** and has a valid **structure**.
 
-The following code outputs a string depending on whether the credential is valid, revoked, or not valid. Add it before `await Kilt.disconnect()`:
+The following code outputs a string depending on whether the credential is valid, revoked, or not valid.
+Add it before `await Kilt.disconnect()`:
 
 <SnippetBlock
 className="language-ts"
