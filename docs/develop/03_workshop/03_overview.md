@@ -13,7 +13,8 @@ It involves three actors, which work together to create **distributed trust**:
 
 For the workshop you'll play all three roles.
 
-In a real world use case, these actors would be different people and services, which this workshop simulates by using different folders for each service. Each actor typically performs different roles:
+In a real world use case, these actors would be different people and services, which this workshop simulates by using different folders for each service.
+Each actor typically performs different roles:
 
 -   Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
 -   But only the <span className="label-role attester">Attester</span> is required to own KILTs since they have to pay for storing the attestation on chain.
