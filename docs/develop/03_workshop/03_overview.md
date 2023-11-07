@@ -55,7 +55,8 @@ The <span className="label-role verifier">Verifier</span> requests a presentatio
 
 A presentation is derived from a credential and does not need to contain all attributes.
 
-After the request, the <span className="label-role claimer">Claimer</span> can choose to hide elements of their credentials that aren't relevant to the claim. For example, hide their address from their ID if the <span className="label-role verifier">Verifier</span> is only interested in their age.
+After the request, the <span className="label-role claimer">Claimer</span> can choose to hide elements of their credentials that aren't relevant to the claim.
+For example, hide their address from their ID if the <span className="label-role verifier">Verifier</span> is only interested in their age.
 
 :::info
 
