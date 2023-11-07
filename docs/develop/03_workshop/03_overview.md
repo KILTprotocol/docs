@@ -89,6 +89,7 @@ To take an example of applying for a travel visa:
 
 As you can see, the Embassy didn't need to trust the Claimer directly in this system. They trusted the Attester, whom they had previously worked with or respected due to their position. And with that trust, they granted the visa.
 
-Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it. Privacy was achieved with distributed trust.
+Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it.
+Privacy was achieved with distributed trust.
 
 :::
