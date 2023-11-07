@@ -32,12 +32,14 @@ For example, `waste frown beach save hidden bar inmate oil mind member junk famo
 
 You use a mnemonic to generate signing keypairs.
 What's great about a mnemonic is that it's **human-readable**, and a person could memorize it to later re-generate their keypairs and address.
+A mnemonic is critical for security, so it;s crucial to keep it safe!
 
 :::
 
 ## Create the Account
 
-To generate an account, use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.KiltKeyringPair.html) interface of the SDK. The function uses the underlying polkadot `mnemonicGenerate()` function to generate a 12-word mnemonic.
+To generate an account, use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.KiltKeyringPair.html) interface of the SDK.
+The function uses the underlying polkadot `mnemonicGenerate()` function to generate a 12-word mnemonic.
 
 :::info polkadot.js
 
@@ -45,7 +47,8 @@ The KILT SDK is built on top of the [polkadot.js](https://polkadot.js.org/) libr
 
 The library provides tools to interact with the KILT blockchain and other substrate-based blockchains.
 
-In addition, the polkadot.js library offers cryptographic primitives and a serialization framework to encode/decode data sent to and received from the blockchain. Read the [API documentation](https://polkadot.js.org/docs/) to learn more about the functions available.
+In addition, the polkadot.js library offers cryptographic primitives and a serialization framework to encode/decode data sent to and received from the blockchain.
+Read the [API documentation](https://polkadot.js.org/docs/) to learn more about the functions available.
 
 :::
 
@@ -55,20 +58,22 @@ Add the following code to the `generateAccount` file.
   {GenerateAccount}
 </TsJsBlock>
 
-The `generateAccount` method generates the account address and mnemonic key using the value structure definition to return the following:
+The `generateAccount` method returns an object with the following two properties:
 
--   A key `account` with the type `Kilt.KiltKeyringPair`.
+- A key `account` with the type `Kilt.KiltKeyringPair`.
+- A key `mnemonic` with the type `string`.
 
-    Generating the account address takes a couple of steps. First, define a `keyring` value, which is a data structure for defining the keypair type with the following parameters:
+Generating these values takes two steps:
 
--   A key `mnemonic` with the type `string`.
+1. Create the `mnemonic` value using the `mnemonicGenerate()` method from the `Utils.Crypto` package.
+2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the keypair type with the following parameters:
 
-    The `mnemonicGenerate()` method from the `Utils.Crypto` package generates the value for the mnemonic.
+   1. `ss58Format`: Specifies the encoding format for the key. Substrate-based blockchains commonly use SS58.
+   The value "38" represents the KILT blockchain.
+   2. `type`: Specifies the user's cryptographic algorithm.
+   Substrate-based blockchains commonly use sr25519.
 
--   `ss58Format`: Specifies the encoding format for the key. SS58 is commonly used in Substrate-based blockchains. The value "38" represents the KILT blockchain.
--   `type`: Specifies the user's cryptographic algorithm. It uses sr25519, which is commonly used in Substrate-based blockchains.
-
-The function returns the structure using the `addFromMnemonic()` method to create an address key pair using the given mnemonic passphrase and the mnemonic value.
+  The function then returns the value using the `addFromMnemonic()` method to create an address key pair using the given mnemonic passphrase and the mnemonic value.
 
 The rest of the code runs the `generateAccount` function and logs the results to the console.
 
