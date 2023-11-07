@@ -72,11 +72,11 @@ The dependencies needed are the following:
 
 This workshop interacts with the Peregrine test blockchain, which requires you to pay for each transaction with Peregrine Kilt (PILT) tokens.
 
-But don't worry, PILT tokens don't have any value and you can request them from the [faucet](https://faucet.peregrine.kilt.io).
+But don't worry. PILT tokens have no value, and you can request them from the [faucet](https://faucet.peregrine.kilt.io).
 
 ## Blockchain Connection
 
-Before you make use of any SDK functionality, you need to initialize and configure the Kilt SDK.
+Before using any SDK functionality, you must initialize and configure the Kilt SDK.
 
 As this workshop uses the [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws%2F#/explorer) you use its address whenever using the SDK to interact with the Kilt blockchain.
 

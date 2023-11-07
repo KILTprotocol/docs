@@ -5,15 +5,15 @@ title: 👓 Overview
 
 This tutorial runs through the full story of a claim.
 
-It involves three actors, which work together to create **distributed trust**:
+It involves three actors which work together to create **distributed trust**:
 
--   A <span className="label-role claimer">Claimer</span> is an actor that claims to posses certain credentials, abilities, or other attributes.
+-   A <span className="label-role claimer">Claimer</span> is an actor who claims to possess certain credentials, abilities, or other attributes.
 -   An <span className="label-role attester">Attester</span> is an actor that verifies the claims of a <span className="label-role claimer">Claimer</span>.
 -   A <span className="label-role verifier">Verifier</span> is an actor that asks for proof of a claim.
 
-For the workshop you'll play all three roles.
+For the workshop, you play all three roles.
 
-In a real world use case, these actors would be different people and services, which this workshop simulates by using different folders for each service.
+In a real-world use case, these actors would be different people and services, which this workshop simulates using different folders for each service.
 Each actor typically performs different roles:
 
 -   Both the <span className="label-role verifier">Verifier</span> and the <span className="label-role attester">Attester</span> have to interact with the KILT blockchain.
@@ -79,16 +79,17 @@ participant B as KILT Blockchain
 
 To take an example of applying for a travel visa:
 
-1. The Embassy (analogous to the Verifier) asks a traveler (analogous to the Claimer), for a specific document or CType. For example, it could be a bank statement. The Embassy asks, "Provide proof of financial stability, and we'll grant you a visa." The traveller gets the bank statement from their bank, gets it attested by the bank (The Attester), and prepares the document.
-2. The document is ready, but the Embassy doesn't need all the information in the document. The embassy wants to know if a traveller has sufficient funds, but they don't need to know any transaction details. So, the traveller redacts or hides these details while presenting.
-3. The traveller presents the document to the embassy.
+1. The Embassy (analogous to the Verifier) asks a traveler (analogous to the Claimer) for a specific document or CType. For example, it could be a bank statement. The Embassy asks, "Provide proof of financial stability, and we'll grant you a visa." The traveler gets the bank statement from their bank, gets it attested by the bank (The Attester), and prepares the document.
+2. The document is ready, but the Embassy doesn't need all the information in the document. The embassy wants to know if a traveler has sufficient funds, but they don't need to know any transaction details. The traveler redacts or hides these details while presenting.
+3. The traveler presents the document to the embassy.
 4. The embassy verified the document's authenticity by comparing its hash value with the one on their internal system or a decentralized ledger.
 5. Since they trust the Attester (in this case, the bank that attested the bank statement), they approved the visa application.
 
 :::tip Summary
 
-As you can see, the Embassy didn't need to trust the Claimer directly in this system. They trusted the Attester, whom they had previously worked with or respected due to their position. And with that trust, they granted the visa.
-
+As you can see, the Embassy didn't need to trust the Claimer directly in this system.
+They trust the Attester, whom they had previously worked with, or respect due to their position.
+And with that trust, they grant the visa with no knowledge of what the Claimer has used the credential for.
 Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it.
 Privacy was achieved with distributed trust.
 
