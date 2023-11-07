@@ -14,10 +14,8 @@ import GenerateCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/wor
 <!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
 import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
-A claim type (CType for short) is a KILT-specific term, but the concept is simple:
-A CType defines the structure of a claim.
-You can think of it as the data model for your claim.
-
+A claim type (CType) is a KILT-specific term, but the concept is simple:
+A CType defines the structure of a claim and you can think of it as the data model for your claim.
 
 Before the <span className="label-role attester">Attester</span> can attest credentials, they need to decide which CType they support.
 For example, a traffic authority will only issue driver's licenses (=> CType for drivers license) and not trade register excerpts.

@@ -6,17 +6,19 @@ title: 🏢 Attester
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In this section you will walk though all processes done by the <span className="label-role attester">Attester</span>.
+This section of the workshop covers creating the <span className="label-role attester">Attester</span> code. The steps are the following:
 
-1. You will [create an account](./01_account.md) that is used to pay for all transactions and the storage deposits.
-2. The next step is to [create a DID](./02_did.md), which is the identity that is used to create attestations.
-   While you can always switch the KILT account and pay deposits and fees with any account you like, your DID stays the same and is the way Claimers will identify you and put trust in you.
-3. Before we can attest claims, [we need a CType](./03_ctype.md) which describes and gives context to what we attest.
-4. Once we have a way to pay fees and deposits, have an identity and a CType [we can create attestations](../06_attestation.md).
+1. [Create an account](./01_account.md) to pay for all transactions and storage deposits.
+2. [Create a DID](./02_did.md), which is the identity used to create attestations.
+
+   While you can always switch the KILT account and pay deposits and fees with any , your DID stays the same and is the way Claimers identify you and put trust in you.
+
+3. Before you can attest claims, [you need a CType](./03_ctype.md) which describes and gives context to what you attest.
+4. Once you have a way to pay fees and deposits, have an identity and a CType, [you can create attestations](../06_attestation.md).
 
 ## Folder Structure
 
-Create the following files in the <span className="label-role attester">Attester</span> folder.
+Create the following files in the `attester`` folder.
 This folders serves to mimic an <span className="label-role attester">Attester</span> service.
 
 <Tabs groupId="ts-js-choice">

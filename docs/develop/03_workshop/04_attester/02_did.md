@@ -11,64 +11,63 @@ import TabItem from '@theme/TabItem';
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
 import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
 
-Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
+The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
 
-A DID may represent any entity, which could be a person, an organization or a machine.
+A DID may represent any entity, such as a person, an organization, or a machine.
 
-A KILT decentralized identifier (DID) is a string uniquely identifying each KILT user.
-You can store information about your DID on the KILT chain.
-This is useful for many different use cases.
-One example would be messaging.
-You would store a public encryption key and a services on-chain, which can both be queried using your DID.
-Other users can now encrypt messages using your public encryption key and send the message to your service.
+A DID is a string uniquely identifying each KILT user.
+You can store information about a DID on the KILT chain, which is useful for different use cases.
 
-There are two types of DIDs: light and full.
-Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.
+One use case is messaging.
+You could store a public encryption key and a service on-chain, and a user can query both using a DID.
+Other users can now encrypt messages using your public encryption key and send a message to your service.
+
+There are two types of DIDs: **light** and **full**.
+
+Read the [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about the difference between the light and full types.
 
 :::info KILT DID
 
-There are currently four different key types that a DID supports:
+There are four different key types that a DID supports:
 
 - An _authentication keypair_, used to sign claims and create authenticated credential presentations
 - A _key-agreement keypair_, used to encrypt/decrypt messages
 - An _assertion-method keypair_, used to write CTypes and attestations on chain
 - A _capability-delegation keypair_, used to write delegations on chain
 
-Keys can be replaced over time, e.g., if a key is compromised.
+You can replace keys over time, e.g., if a key is compromised.
 
 :::
 
-## Account vs DID
-
-A full DID needs to be registered on the blockchain.
-For that, an account has to submit the DID creation transaction.
-There is always an account that submits the transactions and pays for the fees and the DID that authorized the call.
+## Account vs. DID
+<!-- TODO: ? -->
+You need to register a full DID on the blockchain by an account submitting the DID creation transaction.
+An account submits the transactions and pays the fees and the DID that authorized the call.
 Because the DID and the account are not connected, DIDs do not hold any coins.
 
 ## Create a DID
+<!-- TODO: ?? -->
+To create a DID, you use the same keyring used to generate accounts.
+For the <span className="label-role attester">Attester</span> you need all four types of key.
+Since three of the key types are used for signatures, you can use the same key for these using the default KILT keyring to generate them.
 
-To create a DID we can use the same keyrings that are used to generate accounts.
-For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
-Since three of the key types are used for signatures, we can use the same key for these.
-We'll use the default KILT keyring to generate them.
+Add the following code to the `attester/generateKeypairs` file.
 
 <TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
 
-Once we have created all the necessary keys for a DID we can create the on-chain DID.
-To create a DID we first initialize everything.
-After that, we load the account that we created in the [last section](./01_account.md).
-The account will be used to pay for the DID registration.
-Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
+Once you have created all the necessary keys for a DID, you can create the on-chain DID.
+To create a DID, load the account created in the [last section](./01_account.md) and use it to pay for the DID registration.
+Create and submit the extrinsic (aka transaction) that registers the DID.
 
 <TsJsBlock fileName="attester/generateDid">
   {GenerateDid}
 </TsJsBlock>
 
-## Execute
+## Run the code
 
-You can now execute the script with:
+Now run the code with:
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -87,16 +86,15 @@ You can now execute the script with:
   </TabItem>
 </Tabs>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
-Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
+Once you have run the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
+The output should look like the following, but not identical since the DIDs are constructed from your account:
 
 ```
 ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
-Be sure to save it in your `.env` file.
-It should now look similar to this:
+Save it in the `.env` file, which should now look similar to the following:
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
@@ -107,4 +105,4 @@ ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
-Well done - You've successfully generated a full DID! Let's create a CType!
+Well done - You've generated a full DID! The next step is to create a CType!
