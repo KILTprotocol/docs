@@ -7,13 +7,13 @@ services:
     restart: unless-stopped
     user: "1000"
     ports:
-      - "9944:9944"
+      # - "9944:9944"
       - "30336:30336"
       - "30333:30333"
     volumes:
       - ~/data:/data
     command: >-
-      --rpc-port=9944
+      --rpc-port=9933
       --prometheus-external
       --prometheus-port=9615
       --rpc-cors=all

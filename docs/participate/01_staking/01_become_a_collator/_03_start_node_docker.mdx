@@ -13,11 +13,11 @@ Please select your target network:
 
   To start the **Spiritnet** collator container, run:
   ```bash=
-  docker run -p 127.0.0.1:9944:9944 -p 30333:30333 -p 30334:30334 \
+  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
     -v ~/data:/data kiltprotocol/kilt-node:latest \
     --chain=spiritnet \
     --runtime=spiritnet \
-    --rpc-port=9944 \
+    --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --unsafe-rpc-external \
@@ -39,11 +39,11 @@ Please select your target network:
 
   To start the **Peregrine** Collator container, run:
   ```bash=
-  docker run -p 127.0.0.1:9944:9944 -p 30333:30333 -p 30334:30334 \
+  docker run -p 127.0.0.1:9933:9933 -p 30333:30333 -p 30334:30334 \
     -v ~/data:/data kiltprotocol/kilt-node:latest \
     --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
     --runtime=peregrine \
-    --rpc-port=9944 \
+    --rpc-port=9933 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --unsafe-rpc-external \

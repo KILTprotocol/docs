@@ -49,7 +49,7 @@ Nevertheless, the session keys can also be rotated using the PolkadotJS Apps int
 A collator can use the following command to rotate the session key.
 
 ```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9944
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
 ```
 
 The answer should look like the JSON object below.
@@ -63,7 +63,7 @@ The `result` key is the HEX-encoded public part of the newly created session key
 <TabItem value="apps">
 
 In order to use the PolkadotJS Apps UI, the node WebSocket endpoint must be reachable.
-This can be done either by publicly exposing it with the `--rpc-external` flag, which is discouraged, or by setting up an SSH tunnel for the WebSocket endpoint with `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`.
+This can be done either by publicly exposing it with the `--ws-external` flag, which is discouraged, or by setting up an SSH tunnel for the WebSocket endpoint with `ssh -L 127.0.0.1:9933:127.0.0.1:9933 <user>@<server>`.
 If the latter option is chosen, there is no need to have a separate SSH tunnel for RPC traffic as all the RPC operations can be performed directly from the now-accessible PolkadotJS Apps interface.
 
 ![](/img/chain/chain-menu.png)
