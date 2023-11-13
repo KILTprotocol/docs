@@ -5,28 +5,18 @@ title: Credential Issuance
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import CreateCType from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/01_create_ctype.ts';
-import CreateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/02_create_credential.ts';
-import IssueCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/03_issue_credential.ts';
+import CreateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/01_create_credential.ts';
+import IssueCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/02_issue_credential.ts';
 
 As for traditional KILT credentials, public credentials also have their structure defined by a [CType][ctypes-link], although CTypes that can be used to represent information about assets would probably differ from the ones used to represent information about people.
 
 As mentioned in the section about credentials, the creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
-:::info
-The creator of a CType is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
-:::
+We will not cover the creation of a CType, please refer to the [CType creation](../04_claiming/01_ctype_creation.md)
 
-The following snippets show how to create a CType:
+## Create and Issue the Credential
 
-<TsJsBlock>
-  {CreateCType}
-</TsJsBlock>
-
-## Create and Issue the Credential 
-
-With the new CType written to the chain, the new public credential object can be created with the actual content, and then written to the chain for the rest of the KILT users (and beyond) to consume.
+Using the existing CType, the new public credential object can be created with the actual content, and then written to the chain for the rest of the KILT users (and beyond) to consume.
 
 Creating a public credential is as simple as creating an object that conforms to the required structure of the CType:
 

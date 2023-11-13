@@ -10,9 +10,8 @@ export async function deleteFullDid(
   // Create a DID deletion tx. We specify the number of endpoints currently stored under the DID because
   // of the upper computation limit required by the blockchain runtime.
   const didIdentifier = Kilt.Did.toChain(fullDid)
-  const endpointsCountForDid = await api.query.did.didEndpointsCount(
-    didIdentifier
-  )
+  const endpointsCountForDid =
+    await api.query.did.didEndpointsCount(didIdentifier)
   const didDeletionExtrinsic = api.tx.did.delete(endpointsCountForDid)
 
   // Sign the DID deletion tx using the DID authentication key.

@@ -1,9 +1,10 @@
-import type { ApiPromise } from '@polkadot/api'
-
+/* eslint-disable prefer-const */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-export async function main(api: ApiPromise): Promise<Kilt.DidUri | null> {
-  const encodedJohnDoeDetails = await api.call.did.queryByWeb3Name('john_doe')
+export async function main(): Promise<Kilt.DidUri | null> {
+  let apiConfig = Kilt.ConfigService.get('api')
+  const encodedJohnDoeDetails =
+    await apiConfig.call.did.queryByWeb3Name('john_doe')
 
   // This function will throw if johnDoeOwner does not exist
   const {

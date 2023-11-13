@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { Extrinsic } from '@polkadot/types/interfaces'
 
 export function useSignCallback(
   keyUri: Kilt.DidResourceUri,

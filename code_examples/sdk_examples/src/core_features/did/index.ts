@@ -26,7 +26,7 @@ export async function runAll(
   console.log('1 did) Create simple light DID')
   const { authentication: simpleLightDidAuth } = generateKeypairs()
   const simpleLightDid = createSimpleLightDid({
-    authentication: simpleLightDidAuth
+    authentication: simpleLightDidAuth as Kilt.NewLightDidVerificationKey
   })
   console.log('2 did) Create complete light DID')
   const {
@@ -34,7 +34,7 @@ export async function runAll(
     keyAgreement: completeLightDidEnc
   } = generateKeypairs()
   createCompleteLightDid({
-    authentication: completeLightDidAuth,
+    authentication: completeLightDidAuth as Kilt.NewLightDidVerificationKey,
     keyAgreement: completeLightDidEnc
   })
   console.log('3 did) Migrate first light DID to full DID')

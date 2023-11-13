@@ -1,5 +1,4 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { ApiPromise } from '@polkadot/api'
 import { BN } from '@polkadot/util'
 import { setTimeout } from 'timers/promises'
 
@@ -24,11 +23,11 @@ async function failproofSubmit(
 }
 
 export async function getFunds(
-  api: ApiPromise,
   faucetAccount: Kilt.KeyringPair,
   recipient: Kilt.KiltAddress,
   kiltAmount: number
 ) {
+  const api = Kilt.ConfigService.get('api')
   const tx = api.tx.balances.transfer(
     recipient,
     Kilt.BalanceUtils.convertToTxUnit(new BN(kiltAmount), 0)
@@ -38,11 +37,12 @@ export async function getFunds(
 }
 
 export async function endowAccounts(
-  api: ApiPromise,
   faucetAccount: Kilt.KeyringPair,
   destinationAccounts: Kilt.KiltAddress[],
   amount: BN
 ): Promise<void> {
+  const api = Kilt.ConfigService.get('api')
+
   const transferBatch = destinationAccounts.map((acc) =>
     api.tx.balances.transfer(
       acc,

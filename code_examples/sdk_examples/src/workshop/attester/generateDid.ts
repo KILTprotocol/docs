@@ -1,7 +1,5 @@
 import { config as envConfig } from 'dotenv'
 
-import { mnemonicGenerate } from '@polkadot/util-crypto'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAccount } from './generateAccount'
@@ -15,7 +13,7 @@ export async function createFullDid(
 }> {
   const api = Kilt.ConfigService.get('api')
 
-  const mnemonic = mnemonicGenerate()
+  const mnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
   const {
     authentication,
     keyAgreement,

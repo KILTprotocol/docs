@@ -65,9 +65,8 @@ values={[
 
 ### Build the Full Node
 
-In order to build the KILT full node executable, you need to have a [nightly version of Rust](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
-We recommend aligning your nightly version with the one used in the [KILT node repository](https://github.com/KILTprotocol/kilt-node) by executing the [init script](https://github.com/KILTprotocol/kilt-node/blob/develop/scripts/init.sh).
-After cloning the repository, you can build the executable by running the `build` command below from the root directory.
+In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install).
+After cloning the repository, you can build the executable by running the `cargo build` command below from the root directory.
 
 ```bash
 # Clone the repository
@@ -115,6 +114,7 @@ values={[
   --chain=polkadot \
   --execution=wasm
 ```
+
 </TabItem>
 <TabItem value="Peregrine">
 
@@ -132,6 +132,7 @@ values={[
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
 ```
+
 </TabItem>
 </Tabs>
 
@@ -180,6 +181,7 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --chain=polkadot \
   --execution=wasm
 ```
+
 </TabItem>
 <TabItem value="Peregrine">
 
@@ -199,6 +201,7 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --chain=/node/dev-specs/kilt-parachain/peregrine-relay.json \
   --execution=wasm
 ```
+
 </TabItem>
 </Tabs>
 
@@ -212,6 +215,7 @@ Depending on the size of both blockchain states and the node hardware specs, it 
 More details can be found in the [Polkadot network documentation](https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot#synchronize-chain-data).
 
 :::note Example of node sync
+
 ```Example of node sync
 2021-06-17 02:34:34 🔍 Discovered new external address for our node: /ip4/100.102.231.64/tcp/30333/ws/p2p/12D3KooWLE7ivpuXJQpFVP4fuuutAqEsk8nrNEpuR3tddqnXgLPB
 2021-06-17 02:34:36 ⚙️  Syncing 409.2 bps, target=#8062689 (5 peers), best: #3477 (0x63ad…e046), finalized #3072 (0x0e4c…f587), ⬇ 153.2kiB/s ⬆ 12.9kiB/s
@@ -221,4 +225,5 @@ More details can be found in the [Polkadot network documentation](https://wiki.p
 2021-06-17 02:34:46 ⚙️  Syncing 394.8 bps, target=#8062691 (11 peers), best: #7383 (0x0689…6f1e), finalized #7168 (0x72a9…8d8c), ⬇ 352.9kiB/s ⬆ 5.1kiB/s
 2021-06-17 02:34:51 ⚙️  Syncing 347.0 bps, target=#8062692 (12 peers), best: #9118 (0x66fc…cce3), finalized #8704 (0x14c9…705e), ⬇ 62.7kiB/s ⬆ 1.7kiB/s
 ```
+
 :::

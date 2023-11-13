@@ -13,12 +13,12 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
   console.log('Running the dapp examples!')
 
   Kilt.ConfigService.set({ submitTxResolveOn: Kilt.Blockchain.IS_IN_BLOCK })
-  const api = await Kilt.connect(wssAddress)
+  await Kilt.connect(wssAddress)
 
   // Setup attester account.
-  const { account: dappAccount } = await generateAccount()
+  const { account: dappAccount } = generateAccount()
 
-  await getFunds(api, account, dappAccount.address, 4)
+  await getFunds(account, dappAccount.address, 4)
 
   // Create attester DID & ensure CType.
   const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
