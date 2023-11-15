@@ -94,7 +94,7 @@ Create and submit the extrinsic (aka transaction) that registers the DID.
   {GenerateDid}
 </TsJsBlock>
 
-The `createFullDid` function takes the key pair generated for the submitter in the previous step and creates a full DID. It returns a mnemonic as a string and DID definition document.
+The `createFullDid` function takes the key pair generated for the submitter in the previous step and creates a full DID. It returns a mnemonic as a string and DID document.
 Inside the function, the `getStoreTx` method creates A DID creation operation based on the four key pairs created earlier.
 It returns the extrinsic (aka transaction) that registers the DID.
 
