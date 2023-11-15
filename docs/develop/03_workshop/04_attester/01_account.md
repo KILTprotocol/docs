@@ -17,7 +17,7 @@ With KILT, an account is an object that interacts with the blockchain.
 
 A KILT account is a set of cryptographic elements:
 
--   The address, generated from the public key and is the entity's unique and public on-chain identifier, used to pay fees and deposits.
+-   The address, generated from the public key, is the entity's unique and public on-chain identifier, used to pay fees and deposits.
 -   A signing keypair to write transactions on-chain
 
 :::
