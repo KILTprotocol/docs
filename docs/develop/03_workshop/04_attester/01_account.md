@@ -69,7 +69,7 @@ Generating these values takes two steps:
 2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the keypair type with the following parameters:
 
    1. `ss58Format`: Specifies the encoding format for the key. Substrate-based blockchains commonly use SS58.
-   The value "38" represents the KILT blockchain.
+   The value `38` represents the KILT blockchain.
    2. `type`: Specifies the user's cryptographic algorithm.
    Substrate-based blockchains commonly use sr25519.
 
