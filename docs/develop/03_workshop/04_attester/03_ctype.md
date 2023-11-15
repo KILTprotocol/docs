@@ -68,6 +68,13 @@ Copy the following that defines a `CType` with a given schema:
   {CtypeSchema}
 </TsJsBlock>
 
+:::warning
+
+As many people follow this workshop, using the CType schema defined above will result in a duplicate error when you run the code later.
+To avoid this, change the value of `fromProperties` to something unique, such as adding your name to the "Drivers License" string.
+
+:::
+
 ## Get CType
 
 Copy the following to create a `CType` on the chain:
