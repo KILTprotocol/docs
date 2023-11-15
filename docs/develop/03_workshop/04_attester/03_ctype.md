@@ -20,7 +20,8 @@ A CType is a JSON schema that defines the structure of a claim, and you can thin
 :::info CType
 
 A CType ensures that a credential contains all required attributes, e.g., a driver's license has to contain a name, date of birth, and the vehicle types that the claimer can drive.
-The CType is important since a Verifier requests credentials for a specific CType. For example, the traffic police want to see your driver's license, not your gym membership.
+The CType is important since a Verifier requests credentials for a specific CType.
+For example, the traffic police want to see your driver's license, not your gym membership.
 
 To learn more about CTypes, read the [in-depth CType documentation](../../../concepts/05_credentials/02_ctypes.md).
 You can also [read through existing CTypes in the CType-index](https://github.com/KILTprotocol/ctype-index).
