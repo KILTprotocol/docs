@@ -45,7 +45,7 @@ The function uses the underlying polkadot `mnemonicGenerate()` function to gener
 
 The KILT SDK is built on top of the [polkadot.js](https://polkadot.js.org/) library, so this workshop uses several functions from the library.
 
-The library provides tools to interact with the KILT blockchain and other substrate-based blockchains.
+The library provides tools to interact with the KILT blockchain and other Substrate-based blockchains.
 
 In addition, the polkadot.js library offers cryptographic primitives and a serialization framework to encode/decode data sent to and received from the blockchain.
 Read the [API documentation](https://polkadot.js.org/docs/) to learn more about the functions available.
