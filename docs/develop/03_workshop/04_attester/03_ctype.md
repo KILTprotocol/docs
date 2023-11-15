@@ -62,7 +62,7 @@ In this tutorial, the <span className="label-role attester">Attester</span> crea
 
 ## Create CType
 
-Copy the following that defines a `CType` with a given schema:
+Copy the following to define a `CType` with a given schema:
 
 <TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}
