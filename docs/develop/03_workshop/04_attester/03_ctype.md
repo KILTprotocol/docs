@@ -79,7 +79,7 @@ Copy the following to create a `CType` on the chain:
 <!-- TODO: Already exists and code hangs -->
 The `ensureStoredCType` function takes the Attester's account, DID, and a callback to sign the function and checks if the CType is already on chain.
 It uses the `verifyStored` method to pass the CType to the KILT blockchain and make the check.
-If it does not exist, it stores it on-chain, using the `toChain` method to encode the CType into a unique hash and the `add` method to create a new CType from the given unique hash and associate it with the Attester.
+If it does not exist, it stores it on chain, using the `toChain` method to encode the CType into a unique hash and the `add` method to create a new CType from the given unique hash and associate it with the Attester.
 The function then uses the `authorizeTx` to authorize the transaction and `signAndSubmitTx` to sign and submit the transaction containing the new CType.
 
 :::warning
