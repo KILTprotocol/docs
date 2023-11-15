@@ -18,7 +18,7 @@ This section of the workshop covers creating the <span className="label-role att
 
 ## Folder Structure
 
-Create the following files in the `attester`` folder.
+Create the following files in the `attester` folder.
 These folders mimics an <span className="label-role attester">Attester</span> service.
 
 <Tabs groupId="ts-js-choice">
