@@ -32,7 +32,7 @@ For example, `waste frown beach save hidden bar inmate oil mind member junk famo
 
 You use a mnemonic to generate signing keypairs.
 What's great about a mnemonic is that it's **human-readable**, and a person could memorize it to later re-generate their keypairs and address.
-A mnemonic is critical for security, so it;s crucial to keep it safe!
+A mnemonic is critical for security, so it's crucial to keep it safe!
 
 :::
 
