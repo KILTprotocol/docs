@@ -73,7 +73,7 @@ Add the following code to the `attester/generateKeypairs` file.
 
 <!-- TODO: Is this enough? -->
 
-Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
+Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the Substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
 
 The `generateKeypairs` function code derives base and sub keys from a particular path relevant to the use case for each key.
 It uses the sr25519 key type, which is the default key type for KILT.
