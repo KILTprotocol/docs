@@ -21,7 +21,7 @@ A DID is a string uniquely identifying each KILT user.
 You can store information about a DID on the KILT chain, which is useful for different use cases.
 
 One use case is messaging.
-You could store a public encryption key and a service on-chain, and a user can query both using a DID.
+You could store a public encryption key and a service on chain, and a user can query both using a DID.
 Other users can now encrypt messages using your public encryption key and send a message to your service.
 
 ## Light and full DIDs
