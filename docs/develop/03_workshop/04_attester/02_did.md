@@ -21,7 +21,7 @@ A DID is a string uniquely identifying each KILT user.
 You can store information about a DID on the KILT chain, which is useful for different use cases.
 
 One use case is messaging.
-You could store a public encryption key and a service on-chain, and a user can query both using a DID.
+You could store a public encryption key and a service on chain, and a user can query both using a DID.
 Other users can now encrypt messages using your public encryption key and send a message to your service.
 
 ## Light and full DIDs
@@ -73,7 +73,7 @@ Add the following code to the `attester/generateKeypairs` file.
 
 <!-- TODO: Is this enough? -->
 
-Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
+Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the Substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
 
 The `generateKeypairs` function code derives base and sub keys from a particular path relevant to the use case for each key.
 It uses the sr25519 key type, which is the default key type for KILT.
@@ -94,8 +94,8 @@ Create and submit the extrinsic (aka transaction) that registers the DID.
   {GenerateDid}
 </TsJsBlock>
 
-The `createFullDid` function takes the key pair generated for the submitter in the previous step and creates a full DID. It returns a mnemonic as a string and DID definition document.
-Inside the function, the `getStoreTx` method creates A DID creation operation based on the four key pairs created earlier.
+The `createFullDid` function takes the key pair generated for the submitter in the previous step and creates a full DID. It returns a mnemonic as a string and DID document.
+Inside the function, the `getStoreTx` method creates a DID creation operation based on the four key pairs created earlier.
 It returns the extrinsic (aka transaction) that registers the DID.
 
 The `signAndSubmitTx` method takes that extrinsic and submits it to the chain, also passing the submitter's account.
