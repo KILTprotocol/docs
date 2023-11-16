@@ -18,7 +18,7 @@ With KILT, an account is an object that interacts with the blockchain.
 A KILT account is a set of cryptographic elements:
 
 -   The address, generated from the public key, is the entity's unique and public on-chain identifier, used to pay fees and deposits.
--   A signing keypair to write transactions on-chain
+-   A signing key pair to write transactions on-chain
 
 :::
 
@@ -30,8 +30,8 @@ In cryptography, a mnemonic consists of a series of 12 or 24 random words.
 
 For example, `waste frown beach save hidden bar inmate oil mind member junk famous` is a mnemonic.
 
-You use a mnemonic to generate signing keypairs.
-What's great about a mnemonic is that it's **human-readable**, and a person could memorize it to later re-generate their keypairs and address.
+You use a mnemonic to generate signing key pairs.
+What's great about a mnemonic is that it's **human-readable**, and a person could memorize it to later re-generate their key pairs and address.
 A mnemonic is critical for security, so it's crucial to keep it safe!
 
 :::
@@ -66,14 +66,14 @@ The `generateAccount` method returns an object with the following two properties
 Generating these values takes two steps:
 
 1. Create the `mnemonic` value using the `mnemonicGenerate()` method from the `Utils.Crypto` package.
-2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the keypair type with the following parameters:
+2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the key pair type with the following parameters:
 
    1. `ss58Format`: Specifies the encoding format for the key. Substrate-based blockchains commonly use [SS58](https://docs.substrate.io/reference/address-formats/).
    The value `38` represents the KILT blockchain.
    2. `type`: Specifies the user's cryptographic algorithm.
    Substrate-based blockchains commonly use sr25519.
 
-  The function then returns the value using the `addFromMnemonic()` method to create an address key pair using the given mnemonic passphrase and the mnemonic value.
+  The function then returns the value using the `addFromMnemonic()` method to create a key pair for the address using the given mnemonic.
 
 The rest of the code runs the `generateAccount` function and logs the results to the console.
 

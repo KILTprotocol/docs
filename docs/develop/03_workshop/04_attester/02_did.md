@@ -35,10 +35,10 @@ Read the [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_ligh
 
 There are four different key types that a DID supports:
 
-- An _authentication keypair_, used to sign claims and present authenticated credentials 
-- A _key-agreement keypair_, used to encrypt/decrypt messages
-- An _assertion-method keypair_, used to write CTypes and attestations on chain
-- A _capability-delegation keypair_, used to write delegations on chain
+- An _authentication key pair_, used to sign claims and present authenticated credentials 
+- A _key-agreement key pair_, used to encrypt/decrypt messages
+- An _assertion-method key pair_, used to write CTypes and attestations on chain
+- A _capability-delegation key pair_, used to write delegations on chain
 
 You can replace keys over time, e.g., if a key becomes compromised.
 
@@ -51,7 +51,7 @@ A DID and an account sound quite similar, but there are some differences:
 - You record both to chain
 - You can have a DID without an account
 - You can have an account without a DID
-- Only an account can pay deposits and fees and start a DID verification process
+- Only an account can pay deposits and fees and attest claims
 - DIDs don't hold any coins
 
 In summary, you register a DID on the blockchain by an account submitting the DID creation transaction and paying the fees.
@@ -60,10 +60,10 @@ In summary, you register a DID on the blockchain by an account submitting the DI
 
 As an <span className="label-role attester">Attester</span> needs to interact with the chain, you must create a full DID.
 
-### Generate keypairs
+### Generate key pairs
 
 An <span className="label-role attester">Attester</span> needs all four types of key.
-Since three of the key types write and sign to the chain, you can use the same key for them using the default KILT keyring to generate them, which is the same keyring used to generate accounts.
+Since three of the key types sign transactions, you can use the same key for them using the default KILT keyring to generate them, which is the same keyring used to generate accounts.
 
 Add the following code to the `attester/generateKeypairs` file.
 
@@ -78,7 +78,7 @@ Throughout the code are `account.derive` methods that use key derivation syntax.
 The `generateKeypairs` function code derives base and sub keys from a particular path relevant to the use case for each key.
 It uses the sr25519 key type, which is the default key type for KILT.
 
-This method works for three of the four key types needed, so the `generateKeyAgreement` function helps generate the key-agreement keypair using the mnemonic.
+This method works for three of the four key types needed, so the `generateKeyAgreement` function helps generate the key-agreement key pair using the mnemonic.
 The function takes the mnemonic and creates another key pair from it using the `sr25519PairFromSeed(mnemonicToMiniSecret(mnemonic))` combination of functions.
 The function then creates a secret key based on the earlier temporary key pair and a derivation path relevant to key agreement.
 
