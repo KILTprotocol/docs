@@ -27,7 +27,7 @@ You can also [read through existing CTypes in the CType-index](https://github.co
 :::
 
 Before the <span className="label-role attester">Attester</span> can attest credentials, they must decide which CType they support.
-For example, a traffic authority only issues driver's licenses (A CType for driver's license), not trade register excerpts.
+For example, a traffic authority only issues driver's licenses (A CType for driver's license), not a university diploma.
 
 Since CTypes enable interoperability between Attesters, using existing CTypes rather than creating new ones is highly recommended.
 However, this workshop creates a new CType to show the process.
@@ -62,7 +62,7 @@ In this tutorial, the <span className="label-role attester">Attester</span> crea
 
 ## Create CType
 
-Copy the following that defines a `CType` with a given schema:
+Copy the following to define a `CType` with a given schema:
 
 <TsJsBlock fileName="attester/ctypeSchema">
   {CtypeSchema}
@@ -83,7 +83,6 @@ Copy the following to create a `CType` on the chain:
   {GenerateCtype}
 </TsJsBlock>
 
-<!-- TODO: Already exists and code hangs -->
 The `ensureStoredCType` function takes the Attester's account, DID, and a callback to sign the function and checks if the CType is already on chain.
 It uses the `verifyStored` method to pass the CType to the KILT blockchain and make the check.
 If it does not exist, it stores it on chain, using the `toChain` method to encode the CType into a unique hash and the `add` method to create a new CType from the given unique hash and associate it with the Attester.
