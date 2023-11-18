@@ -9,29 +9,27 @@ import TabItem from '@theme/TabItem';
 
 import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/attestCredential.ts';
 
-In this section, your <span className="label-role attester">Attester</span> will receive and process a `Credential` where you'll
+This section covers how the <span className="label-role attester">Attester</span> receives and processes a `Credential` and how you can:
 
-- Attest or deny it;
-- Store the attestation information on the chain;
+- Attest or deny it
+- Store the attestation information on the chain
 
 ## Attest a Credential
-
-The `attestCredential` function loads the account and DID of the <span className="label-role attester">Attester</span>.
-When everything is prepared, we can issue an attestation for the credential we received from the <span className="label-role claimer">Claimer</span>.
-The credential is considered to be valid from the time it is attested on chain until the time it is revoked.
 
 <TsJsBlock fileName="attester/attestCredential">
   {AttestCredential}
 </TsJsBlock>
 
-The function `attestingFlow` shows the process from the beginning to the end.
-First the <span className="label-role claimer">Claimer</span> generates the credential and sends it to the <span className="label-role attester">Attester</span>.
-After that the <span className="label-role attester">Attester</span> checks the attributes and either attests or denies the attestation because the attributes are invalid.
-Once the attestation is written on the chain, they can share all or part of the attested credentials with verifiers.
+The `attestCredential` function loads the account and DID of the <span className="label-role attester">Attester</span> and issues an attestation for the credential received from the <span className="label-role claimer">Claimer</span>.
+The credential is valid from the time an Attester attests it on chain until the time it is revoked.
+
+In the `attestingFlow` function, the <span className="label-role claimer">Claimer</span> generates the demo credential and sends it to the <span className="label-role attester">Attester</span>.
+The <span className="label-role attester">Attester</span> checks the attributes and either attests or denies the attestation if the attributes are invalid.
+Once the attestation is written on the chain, the Attester can share all or part of the attested credentials with verifiers.
 
 ## Run
 
-Run it from command line:
+Run the code from the command line:
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -50,8 +48,8 @@ Run it from command line:
   </TabItem>
 </Tabs>
 
-You can copy the `Credential` object if you want to test with other `Verifiers` in the workshop :-)
+## Summary
 
-Your job as an <span className="label-role attester">Attester</span> is done: you've successfully attested a credential and written the attestation hash onto the chain.
+Your job as an <span className="label-role attester">Attester</span> is complete. You've attested a credential and written the attestation hash onto the chain.
 
-Let's move on to setup our <span className="label-role verifier">Verifier</span>!
+Let's move on to set up the Verifier</span>!
