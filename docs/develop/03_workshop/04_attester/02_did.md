@@ -62,7 +62,8 @@ As an <span className="label-role attester">Attester</span> needs to interact wi
 
 ### Generate key pairs
 
-An <span className="label-role attester">Attester</span> needs all four types of key.
+<!-- TODO: Based on feedback, but does this make code samples wrong? -->
+An <span className="label-role attester">Attester</span> needs an authentication and attestation key at minimum.
 Since three of the key types sign transactions, you can use the same key for them using the default KILT keyring to generate them, which is the same keyring used to generate accounts.
 
 Add the following code to the `attester/generateKeypairs` file.

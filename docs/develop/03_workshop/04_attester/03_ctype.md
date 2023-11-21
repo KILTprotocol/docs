@@ -55,8 +55,7 @@ The CType has the following attributes:
 
 A CType is stored on the KILT blockchain.
 
-<!-- TODO: What is a Credential Registry's REST API? -->
-In a real-world situation, a user would retrieve an existing CType from the chain or a repository of CTypes.
+In a real-world situation, a user would retrieve an existing CType from the chain or a CType registry.
 For example, via a Credential Registry's REST API.
 
 In this tutorial, the <span className="label-role attester">Attester</span> creates and attempts to store a CType on the KILT test blockchain.
