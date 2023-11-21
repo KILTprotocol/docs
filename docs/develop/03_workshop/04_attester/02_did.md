@@ -13,7 +13,6 @@ import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/works
 
 The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
 
-<!-- TODO: Also factor into quickstart -->
 
 A DID may represent any entity, such as a person, an organization, or a machine.
 
