@@ -12,16 +12,10 @@ import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/sr
 
 This section covers creating a `Claim` and a `Credential`.
 
-A credential in itself has no value.
-To be valid to a <span className="label-role verifier">Verifier</span>, an entity they can trust needs to attest it, an <span className="label-role attester">Attester</span>.
-
-:::info
-
-KILT is an open system.
+KILT is a permissionless system.
 Anyone or anything can claim something and attest to it.
-But a credential only has value if the Verifier _trusts_ the Attester.
+But an attested credential only has value if the <span className="label-role verifier">Verifier</span> of the credential _trusts_ the <span className="label-role attester">Attester</span> of the credential.
 
-:::
 
 ## Create Credential
 

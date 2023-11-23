@@ -16,6 +16,8 @@ Here's an overview:
 
 ## What is a Claimer?
 
+Claimers are a crucial part of the Self-Sovereign Identity system.
+
 A Claimer is an individual or institution that makes a claim or statement about their identity or abilities.
 They can use their identity credentials to prove these claims, and third-party institutions verify them.
 
@@ -23,10 +25,8 @@ Anyone can be a Claimer.
 All you need to do is complete a CType and create a claim.
 Then, you can send these claims to Attesters for verification.
 
-Claimers are crucial in the Self-Sovereign Identity system.
-They have full control over their data and decide which data to share, where, and how.
-
 They store their identity credentials in their digital wallets, so they decide which information to provide to which service.
+They have full control over their data and decide which data to share, where, and how.
 
 You don't need to create a DID on the chain, meaning you are entirely independent!
 
