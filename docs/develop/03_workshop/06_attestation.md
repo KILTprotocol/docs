@@ -52,4 +52,4 @@ Run the code from the command line:
 
 Your job as an <span className="label-role attester">Attester</span> is complete. You've attested a credential and written the attestation hash onto the chain.
 
-Let's move on to set up the Verifier</span>!
+Let's move on to set up the Verifier!
