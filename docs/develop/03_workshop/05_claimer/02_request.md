@@ -12,7 +12,7 @@ import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/sr
 
 This section covers creating a `Claim` and a `Credential`.
 
-KILT is a permissionless system.
+KILT is a premissionless system.
 Anyone or anything can claim something and attest to it.
 But an attested credential only has value if the <span className="label-role verifier">Verifier</span> of the credential _trusts_ the <span className="label-role attester">Attester</span> of the credential.
 
