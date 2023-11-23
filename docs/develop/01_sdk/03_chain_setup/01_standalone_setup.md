@@ -62,3 +62,52 @@ const devFaucet = Crypto.makeKeypairFromUri(faucetSeed)
 ```
 
 With the new `devFaucet`, you can transfer funds to other accounts and test all the KILT features that require tx fee payment.
+
+## Standalone vs. Parachain (Peregrine/Spiritnet)
+
+The standalone chain is close in functionality to Kilt parachains but there are a few fundamental differences between them.
+
+<!-- ### Blocktime
+
+Block time is actually the same, but this might change in the future. -->
+
+### Governance
+
+While governance is an important part of Kilt parachains, it's not used in the standalone version and the **Sudo** pallet replaces it.
+None of the following pallets are part of the standalone chain, but they are all part of the parachain runtime:
+
+* Democracy
+* Council
+* TechnicalCommittee
+* TechnicalMembership
+* Treasury
+* Scheduler
+
+### Staking
+
+Staking is part of the consensus protocol and is used to elect who is allowed to produce blocks.
+Parachains need to have this election process as decentralized as possible.
+On the other hand, for a standalone development chain, it's not necessary since all nodes are probably controlled by you or your organization.
+
+### Deployment Complexity
+
+Deploying a parachain is more complex than deploying a standalone chain.
+For the standalone node, a single Docker command is enough.
+In contrast, the task of spinning up a parachain is split into three steps.
+
+1. Setup a Relay Chain with 4 validators.
+2. Start and connect your parachain node to the Relay Chain.
+3. Register your parachain using the runtime WASM and the genesis state.
+
+Since these steps are not trivial to execute and take some time to do manually, you can use this [Docker-based setup script](https://github.com/KILTprotocol/local-parachain-setup) to automate the steps.
+
+### Transaction Encoding
+
+Before transactions are sent to the chain, they are encoded and signed.
+The encoding depends on the runtime and can differ from chain to chain.
+Even the same call in the same pallet can have a different encoding for different chains, for instance, the `vest`()` call of the `vesting` pallet:
+
+| Chain      | Encoding of Vesting.vest() |
+| ---------- | -------------------------- |
+| Spiritnet  | `0x2900`                   |
+| Standalone | `0x2100`                   |
