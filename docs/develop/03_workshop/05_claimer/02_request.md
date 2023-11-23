@@ -17,7 +17,7 @@ To be valid to a <span className="label-role verifier">Verifier</span>, an entit
 
 :::info
 
-KILT is an open system.
+KILT is a premissionless system.
 Anyone or anything can claim something and attest to it.
 But a credential only has value if the Verifier _trusts_ the Attester.
 
