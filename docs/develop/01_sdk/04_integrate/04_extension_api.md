@@ -3,93 +3,202 @@ id: kilt-extension-api
 title: KILT Extension API
 ---
 
-KILT Extension API is a JavaScript/TypeScript library that provides helper functions for interacting with KILT enabled extensions.
-It facilitates seamless communication between your application and KILT extensions.
+import TsJsBlock from '@site/src/components/TsJsBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Getting Started
+The KILT Extension API is a JavaScript and TypeScript library that provides helper functions for interacting with KILT extensions.
+It facilitates communication between your application and KILT extensions.
 
-Before you can communicate with KILT extensions, you must call the `initializeKiltExtensionAPI()` function to signal the API versions supported by your application.
-This is crucial for the extension to inject the appropriate scripts into the website.
+<!-- TODO: Possible to test code as it's browser-based? -->
 
-```ts
-import { initializeKiltExtensionAPI } from 'kilt-extension-api'
+## Installation
 
-initializeKiltExtensionAPI()
-```
+Add the package:
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```bash
+  yarn add @kiltprotocol/kilt-extension-api
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```bash
+  npm install --save @kiltprotocol/kilt-extension-api
+  ```
+
+  </TabItem>
+</Tabs>
+
+## Initialize Extension API
+
+Before your application can communicate with KILT extensions, call the `initializeKiltExtensionAPI()` method to signal the API versions supported by your application so the extension can inject the appropriate scripts.
+
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
+
+  ```ts
+  import { initializeKiltExtensionAPI } from 'kilt-extension-api'
+
+  initializeKiltExtensionAPI()
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```js
+  import { initializeKiltExtensionAPI } from 'kilt-extension-api'
+
+  initializeKiltExtensionAPI()
+  ```
+
+  </TabItem>
+</Tabs>
 
 ## Get Extensions
 
-The `getExtensions()` function returns a list of extensions currently injected into the website.
+The `getExtensions()` method returns a list of extensions injected into the browser.
 
-```ts
-import { getExtensions } from 'kilt-extension-api'
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-const extensions = getExtensions()
-```
+  ```ts
+  import { getExtensions } from 'kilt-extension-api'
+
+  const extensions = getExtensions()
+  console.log(extensions)
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```js
+  import { getExtensions } from 'kilt-extension-api'
+
+  const extensions = getExtensions()
+  console.log(extensions)
+  ```
+
+  </TabItem>
+</Tabs>
 
 ## Watch Extensions
 
-Extensions may take longer to load than the website.
-Therefore, the first call to `getExtensions()` might not return all available extensions.
-To receive updates on additional extensions as they load, you can use `watchExtensions`.
+Extensions can take longer to load than the host application, so the first call to `getExtensions()` might not return all available extensions.
+To receive updates on extensions as they load, use the `watchExtensions` method.
 
-Here's an example of how you can use this function in a React application:
+The following is an example of how you can use this method in a React application:
 
-```ts
-import { watchExtensions, Types } from 'kilt-extension-api'
+<Tabs groupId="ts-js-choice">
+  <TabItem value='ts' label='Typescript' default>
 
-export default function Home(): JSX.Element {
-  const [extensions, setExtensions] = useState<
-    Types.InjectedWindowProvider<Types.PubSubSessionV1 | Types.PubSubSessionV2>[]
-  >([])
+  ```ts
+  import { watchExtensions, Types } from 'kilt-extension-api'
 
-  useEffect(() => {
-    watchExtensions((extensions) => {
-      setExtensions(extensions)
-    })
-  }, [])
+  export default function Home(): JSX.Element {
+    const [extensions, setExtensions] = useState<
+      Types.InjectedWindowProvider<Types.PubSubSessionV1 | Types.PubSubSessionV2>[]
+    >([])
 
-  return (
-    <>
-      <h2>Extensions</h2>
-      <ul>
-        {extensions.map((ext, i) => (
-          <li key={i}>{ext.name}</li>
-        ))}
-      </ul>
-    </>
-  )
-}
-```
+    useEffect(() => {
+      watchExtensions((extensions) => {
+        setExtensions(extensions)
+      })
+    }, [])
+
+    return (
+      <>
+        <h2>Extensions</h2>
+        <ul>
+          {extensions.map((ext, i) => (
+            <li key={i}>{ext.name}</li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+  ```
+
+  </TabItem>
+  <TabItem value='js' label='Javascript'>
+
+  ```js
+  import { watchExtensions } from "kilt-extension-api"
+
+  function App() {
+    const [extensions, setExtensions] = useState([])
+
+    useEffect(() => {
+      watchExtensions(extensions => {
+        setExtensions(extensions)
+      })
+    }, [])
+
+    return (
+      <>
+        <h2>Extensions</h2>
+        <ul>
+          {extensions.map((ext, i) => (
+            <li key={i}>{ext.name}</li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+  ```
+
+  </TabItem>
+</Tabs>
+
+<!-- TODO: Unable to test -->
 
 ## Well-Known DID Configuration
 
-This library also aids in setting up the [Well-Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/) as required by the [KILT Credential API specification](https://github.com/KILTprotocol/spec-ext-credential-api).
+This library helps set up the [Well-Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/) as required by the [KILT Credential API specification](https://github.com/KILTprotocol/spec-ext-credential-api).
 
 ### Using the CLI Tool
 
-A CLI tool is included in this library to create a [DID Configuration Resource](https://identity.foundation/.well-known/resources/did-configuration/#did-configuration-resource) as specified in the above documentation. This resource is necessary to establish a secure, end-to-end encrypted communication channel between a conforming browser extension and the application backend.
+This library includes a CLI tool to create a [DID Configuration Resource](https://identity.foundation/.well-known/resources/did-configuration/#did-configuration-resource). This resource is necessary to establish a secure, end-to-end encrypted communication channel between a conforming browser extension and the application backend.
 
-To start using this tool, you can add this package to your application using `yarn add --dev kilt-extension-api` or install it globally if needed (`yarn global add kilt-extension-api`).
+:::warning KILT Account
 
-You can run the CLI tool using Yarn as follows:
+The `createDidConfig` CLI tool **only** works if you installed the package with Yarn.
+
+:::
+
+Run the CLI tool using Yarn as follows:
 
 ```bash
-yarn createDidConfig --did <your DID> --origin <your domain> --assertionMethod <id of your DID's assertionMethod key> --seed <seed or mnemonic of the assertionMethod key>
+yarn createDidConfig --did <your DID> \
+    --origin <your domain> \
+    --assertionMethod <id of your DID's assertionMethod key> \
+    --seed <seed or mnemonic of the assertionMethod key>
 ```
 
-For additional commands and configuration options, refer to the CLI tool's helper:
+:::info
+
+- `did`: DID of the issuer (and subject) of the Domain Linkage Credential. If omitted, the tool attempts to infer this from the `assertionMethod`.
+- `seed`: Mnemonic or seed for the `assertionMethod` key used for issuing a new credential.
+- `origin`: The domain for which you are creating the credential. See [https://developer.mozilla.org/en-US/docs/Glossary/Origin] for details.
+- `assertionMethod`: ID of the `assertionMethod` key used for issuing a new credential.
+- 
+:::
+
+Use the tool's `--help` flag to see all available options:
 
 ```bash
 yarn createDidConfig --help
 ```
 
-### Integration into Your App
+### Integration into an App
 
-Similar functionality to the CLI tool is available for import into your Node.js scripts using the subpath `kilt-extension-api/wellKnownDidConfiguration`:
+Similar functionality to the CLI tool is available for use in application code using the `@kiltprotocol/extension-api/wellKnownDidConfiguration` subpath:
 
 ```ts
-import { createCredential, didConfigResourceFromCredential } from './wellKnownDidConfiguration/index.js'
+import { createCredential, didConfigResourceFromCredential } from '@kiltprotocol/extension-api/wellKnownDidConfiguration'
 
 const credential = await createCredential(
   ({ data }) => {
@@ -102,16 +211,20 @@ const credential = await createCredential(
 const didConfigResource = didConfigResourceFromCredential(credential)
 ```
 
-This module also assists in verifying a DID configuration resource within an extension context:
+You can also verify a DID configuration resource within an extension context. From either a 3rd party DID resource:
 
 ```ts
-import { verifyDidConfigResource } from './wellKnownDidConfiguration/index.js'
+import { verifyDidConfigResource } from '@kiltprotocol/extension-api/wellKnownDidConfiguration'
 
-// load didConfigResource from https://example.com/.well-known/did-configuration.json
+let didConfigResource = … // Load from https://socialkyc.io/.well-known/did-configuration.json or some other source
 
-const didLinkedToOrigin = await verifyDidConfigResource(didConfigResource, 'https://example.com')
+const didLinkedToOrigin = await verifyDidConfigResource(didConfigResource, 'https://socialkyc.io')
+```
 
-// or, if a specific DID is expected:
+Or, if you expect a specific DID:
+
+```ts
+import { verifyDidConfigResource } from '@kiltprotocol/extension-api/wellKnownDidConfiguration'
 
 await verifyDidConfigResource(
   didConfigResource,
