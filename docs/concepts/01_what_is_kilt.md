@@ -48,7 +48,8 @@ That holder then has full control of their credential (their passport) and can u
 With the invention of the internet, and later of Web 2.0, services evolved and merged into totally centralized solutions including Google, Meta, and X among others.
 They no longer attest to someone's email account, but due to their business model, those same service providers store and control our personal data (i.e., our identity).
 For instance, they could stop allowing us to log into a certain website if they decide to.
-More often than not, companies store the data out of necessity and for their own business purpose. Every time users log into any service, they generate new data points which are then aggregated and sold for advertising purposes.
+More often than not, companies store the data out of necessity and for their own business purpose.
+Every time users log into any service, they generate new data points which are then aggregated and sold for advertising purposes.
 
 KILT Protocol aims to change that and give users back control over their data.
 
