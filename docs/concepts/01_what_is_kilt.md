@@ -28,7 +28,8 @@ KILT enables businesses and governments to rely on a common standard owned by ev
 
 ## The Problem
 
-In the beginning, identity and trust between entities were organized in a fully decentralized way. Individuals created trust relationships directly between them based on their observations.
+In the beginning, identity and trust between entities were organized in a fully decentralized way.
+Individuals created trust relationships directly between them based on their observations.
 Of course, this had major drawbacks:
 
 * The size of the personal social network is limited
