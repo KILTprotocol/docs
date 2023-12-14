@@ -10,8 +10,6 @@ import TabItem from '@theme/TabItem';
 The KILT Extension API is a JavaScript and TypeScript library that provides helper functions for interacting with KILT extensions.
 It facilitates communication between your application and KILT extensions.
 
-<!-- TODO: Possible to test code as it's browser-based? -->
-
 ## Installation
 
 Add the package:
@@ -153,8 +151,6 @@ The following is an example of how you can use this method in a React applicatio
   </TabItem>
 </Tabs>
 
-<!-- TODO: Unable to test -->
-
 ## Well-Known DID Configuration
 
 This library helps set up the [Well-Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/) as required by the [KILT Credential API specification](https://github.com/KILTprotocol/spec-ext-credential-api).
@@ -182,9 +178,9 @@ yarn createDidConfig --did <your DID> \
 
 - `did`: DID of the issuer (and subject) of the Domain Linkage Credential. If omitted, the tool attempts to infer this from the `assertionMethod`.
 - `seed`: Mnemonic or seed for the `assertionMethod` key used for issuing a new credential.
-- `origin`: The domain for which you are creating the credential. See [https://developer.mozilla.org/en-US/docs/Glossary/Origin] for details.
+- `origin`: The domain for which you are creating the credential. [Read MDN docs for more details](https://developer.mozilla.org/en-US/docs/Glossary/Origin]) for details.
 - `assertionMethod`: ID of the `assertionMethod` key used for issuing a new credential.
-- 
+
 :::
 
 Use the tool's `--help` flag to see all available options:
