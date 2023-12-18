@@ -178,7 +178,7 @@ yarn createDidConfig --did <your DID> \
 
 - `did`: DID of the issuer (and subject) of the Domain Linkage Credential. If omitted, the tool attempts to infer this from the `assertionMethod`.
 - `seed`: Mnemonic or seed for the `assertionMethod` key used for issuing a new credential.
-- `origin`: The domain for which you are creating the credential. [Read MDN docs for more details](https://developer.mozilla.org/en-US/docs/Glossary/Origin]) for details.
+- `origin`: The [HTTP origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) or URL of the web application for which you are creating the credential. Note that this must be an https:// URL with an empty path component. The resulting credential is valid for all paths under this origin. 
 - `assertionMethod`: ID of the `assertionMethod` key used for issuing a new credential.
 
 :::
