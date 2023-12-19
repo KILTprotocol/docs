@@ -10,8 +10,6 @@ import TabItem from '@theme/TabItem';
 The KILT Extension API is a JavaScript and TypeScript library that provides helper functions for interacting with KILT extensions.
 It facilitates communication between your application and KILT extensions.
 
-
-
 ## Installation
 
 Add the package:
@@ -154,12 +152,28 @@ This resource is necessary to establish a secure, end-to-end encrypted communica
 
 Run the CLI tool using Yarn as follows:
 
-```bash
-yarn createDidConfig --did <your DID> \
-    --origin <your domain> \
-    --assertionMethod <id of your DID's assertionMethod key> \
-    --seed <seed or mnemonic of the assertionMethod key>
-```
+<Tabs groupId="yarn-node-choice">
+  <TabItem value='yarn' label='Yarn' default>
+
+  ```bash
+  yarn createDidConfig --did <your DID> \
+      --origin <your domain> \
+      --assertionMethod <id of your DID's assertionMethod key> \
+      --seed <seed or mnemonic of the assertionMethod key>
+  ```
+
+  </TabItem>
+  <TabItem value='node' label='Node'>
+
+  ```bash
+  npx @kiltprotocol/kilt-extension-api createDidConfig --did <your DID> \
+      --origin <your domain> \
+      --assertionMethod <id of your DID's assertionMethod key> \
+      --seed <seed or mnemonic of the assertionMethod key>
+  ```
+
+  </TabItem>
+</Tabs>
 
 :::info
 
@@ -172,9 +186,22 @@ yarn createDidConfig --did <your DID> \
 
 Use the tool's `--help` flag to see all available options:
 
-```bash
-yarn createDidConfig --help
-```
+<Tabs groupId="yarn-node-choice">
+  <TabItem value='yarn' label='Yarn' default>
+
+  ```bash
+  yarn createDidConfig --help
+  ```
+
+  </TabItem>
+  <TabItem value='node' label='Node'>
+
+  ```bash
+  npx @kiltprotocol/kilt-extension-api createDidConfig --help
+  ```
+
+  </TabItem>
+</Tabs>
 
 ### Integration into an App
 
