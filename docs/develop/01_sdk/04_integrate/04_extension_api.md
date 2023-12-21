@@ -7,7 +7,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The KILT Extension API is a JavaScript and TypeScript library that provides helper functions for interacting with KILT extensions.
+The KILT Extension API is a JavaScript and TypeScript library that provides helper functions for backend, frontend, and browser-based applications interacting with KILT extensions.
 It facilitates communication between your application and KILT extensions.
 
 ## Installation
@@ -141,7 +141,7 @@ The following is an example of how you can use this method in a React applicatio
 
 ## DID Configuration
 
-You need [an existing DID configuration](../../01_sdk/02_cookbook/01_dids/00_generate_keys.md) setup for your application to communicate with KILT extensions.
+You need [an active DID](../../01_sdk/02_cookbook/01_dids/00_generate_keys.md) with a signed DID configuration resource for your application to communicate with KILT extensions.
 
 This library helps set up the [Well-Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/) as required by the [KILT Credential API specification](https://github.com/KILTprotocol/spec-ext-credential-api).
 
@@ -150,10 +150,10 @@ This library helps set up the [Well-Known DID Configuration](https://identity.fo
 This library includes a CLI tool to create a [DID Configuration Resource](https://identity.foundation/.well-known/resources/did-configuration/#did-configuration-resource).
 This resource is necessary to establish a secure, end-to-end encrypted communication channel between a conforming browser extension and the application backend.
 
-Run the CLI tool using Yarn as follows:
-
 <Tabs groupId="yarn-node-choice">
   <TabItem value='yarn' label='Yarn' default>
+
+  After adding the dependency to your project, run the CLI tool using Yarn as follows:
 
   ```bash
   yarn createDidConfig --did <your DID> \
