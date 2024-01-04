@@ -7,10 +7,10 @@ KILT is a protocol for self-sovereign data and interoperability built on top of 
 
 The core component of KILT is a digital identity protocol for:
 
-1. Generating and managing [**decentralized identifiers (DIDs)**](./09_glossary.md#Decentralized-Identifiers-(DID))
-2. Issuing and presenting digital [**verifiable credentials (VCs)**](./09_glossary.md#verifiable-credentials).
+1. Generating and managing [**decentralized identifiers (DIDs)**](./10_glossary.md#Decentralized-Identifiers-(DID))
+2. Issuing and presenting digital [**verifiable credentials (VCs)**](./10_glossary.md#verifiable-credentials).
 
-In contrast to other centralized alternatives, KILT features self-sovereign data as well as revocable [credentials](./09_glossary.md#credential) anchored to the KILT blockchain.
+In contrast to other centralized alternatives, KILT features self-sovereign data as well as revocable [credentials](./10_glossary.md#credential) anchored to the KILT blockchain.
 
 KILT was built to be a business enabler, not only for the software industry but also for any entity.
 Such entities can establish a business model based on the trust infrastructure KILT provides, which is an essential building block of Web 3.0.
@@ -19,9 +19,9 @@ Such entities can establish a business model based on the trust infrastructure K
 
 In particular, KILT provides:
 
-* A **universal identity protocol** for individuals, organizations, objects, and intelligent agents to obtain credentials for arbitrary attributes about themselves issued by trusted [Attesters](./09_glossary.md#attester).
+* A **universal identity protocol** for individuals, organizations, objects, and intelligent agents to obtain credentials for arbitrary attributes about themselves issued by trusted [Attesters](./10_glossary.md#attester).
 * A **self-sovereign mechanism** for putting credential holders in control of their own data, allowing them to choose if and where they make their credentials public and how much information from those credentials they wish to share.
-* A **[Trust Market](./09_glossary.md#trust-market) for [Attesters](./09_glossary.md#attester)** of such credentials, allowing widely trusted entities to be compensated for their valuable attestation work.
+* A **[Trust Market](./10_glossary.md#trust-market) for [Attesters](./10_glossary.md#attester)** of such credentials, allowing widely trusted entities to be compensated for their valuable attestation work.
 
 KILT's main goal is to generate a level playing field for companies to explore new business models related to trust relationships and data sovereignty.
 KILT enables businesses and governments to rely on a common standard owned by everyone participating and not by a single company or set thereof.
@@ -56,13 +56,13 @@ KILT Protocol aims to change that and give users back control over their data.
 
 ## The Solution
 
-KILT provides a protocol and the tools for people to manage their own data, and to build a [digital identity](./09_glossary.md#digital-identity) by collecting credentials issued by trusted entities.
+KILT provides a protocol and the tools for people to manage their own data, and to build a [digital identity](./10_glossary.md#digital-identity) by collecting credentials issued by trusted entities.
 Such credentials are not publicly available but stay within the user's control.
 This is similar to the approach used for centuries before big corporations monetized our data.
 
 The core ideas are:
 
 * Managing user identities in the form of [decentralized identifiers (DIDs)](https://w3c-ccg.github.io/did-spec/), with the support of the KILT blockchain
-* Obtaining digital [verifiable credentials](./09_glossary.md#verifiable-credentials) for user-specified claims
+* Obtaining digital [verifiable credentials](./10_glossary.md#verifiable-credentials) for user-specified claims
 * Supporting revocation of verifiable credentials by their Attesters
 * Presenting and verifying verifiable credentials in a privacy-preserving and user-controlled way
