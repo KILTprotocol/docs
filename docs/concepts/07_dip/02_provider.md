@@ -3,13 +3,16 @@ id: provider-pallet
 title: Provider pallet
 ---
 
-The Decentralized Identity Provider (DIP) provider pallet enables a Substrate-based chain (provider) to bridge the identities of its users to other connected chains (consumers) trustlessly. A consumer chain is connected to a provider if there is a way for the consumer chain to verify state proofs about parts of the state of the provider chain.
+The Decentralized Identity Provider (DIP) provider pallet enables a Substrate-based chain (provider) to bridge the identities of its users to other connected chains (consumers) trustlessly.
+A consumer chain is connected to a provider if there is a way for the consumer chain to verify state proofs about parts of the state of the provider chain.
 
 The pallet is agnostic over the chain-specific definition of identity and delegates the definition of it to the provider chain's runtime.
 
-Because providers and consumers evolve at different speeds, identity commitments are versioned. This allows the provider chain to upgrade to a newer commitment scheme while allowing users to use the old version if the chains on which they want to use their identity don't yet support the new scheme.
+Because providers and consumers evolve at different speeds, identity commitments are versioned.
+This allows the provider chain to upgrade to a newer commitment scheme while allowing users to use the old version if the chains on which they want to use their identity don't yet support the new scheme.
 
-The identity subject can replace or remove identity commitments, for example, if something in the identity info changes. After removal, the identity becomes unusable cross-chain, although it continues to exist on the provider chain and is usable for local operations.
+The identity subject can replace or remove identity commitments, for example, if something in the identity info changes.
+After removal, the identity becomes unusable cross-chain, although it continues to exist on the provider chain and is usable for local operations.
 
 #### Add the pallet to the runtime
 
@@ -51,9 +54,13 @@ The following configuration parameters are required. Read the xxx :
 
 The pallet stores identity commitments, which are opaque byte blobs in the pallet storage and on which you can build the cross-chain identity bridging protocol.
 
-The runtime must define an identity commitment and is provider-specific. You must make this definition available to consumers willing to integrate the identities on the provider chain.
+The runtime must define an identity commitment and is provider-specific.
+You must make this definition available to consumers willing to integrate the identities on the provider chain.
 
-The pallet contains a single storage element, the `IdentityCommitments` double map. Its first key is the `Identifier` of subjects, while the second key is the commitment version. The values are identity commitments. The double map allows the same subject to have one commitment for each version supported by the provider, without forcing consumers to upgrade to a new version to support the latest commitment scheme.
+The pallet contains a single storage element, the `IdentityCommitments` double map.
+Its first key is the `Identifier` of subjects, while the second key is the commitment version.
+The values are identity commitments.
+The double map allows the same subject to have one commitment for each version supported by the provider, without forcing consumers to upgrade to a new version to support the latest commitment scheme.
 
 #### Events
 

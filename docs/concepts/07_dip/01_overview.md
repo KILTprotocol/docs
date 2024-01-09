@@ -3,8 +3,10 @@ id: what-is-dip
 title: Overview
 ---
 
-The Decentralized Identity Provider (DIP) enables cross-chain decentralized identity system that mirrors the functionality of OpenID. This means that parachains requiring an identity solution don’t need to build their own infrastructure. Instead, they can leverage the infrastructure DIP provides. DIP is open-source, and you can integrate it with existing Polkadot-compatible runtimes with minimal changes and without affecting the fee model of the relying party.
-
+The Decentralized Identity Provider (DIP) enables cross-chain decentralized identity system that mirrors the functionality of OpenID.
+This means that parachains requiring an identity solution don’t need to build their own infrastructure.
+Instead, they can leverage the infrastructure DIP provides.
+DIP is open-source, and you can integrate it with existing Polkadot-compatible runtimes with minimal changes and without affecting the fee model of the relying party.
 
 DIP has three key roles: the identity **provider**, the **consumer**, and the **user**.
 
@@ -20,12 +22,15 @@ There are several steps to add DIP support to a substrate-based parachain, depen
 ### Provider chain
 
 
-1. Agree on the format of your identity proofs and how verification works with your consumer chains.
+1. Find the format of your identity proofs and how verification works with your consumer chains.
 2. Add the DIP provider pallet as a dependency in your chain runtime.
 3. Configure the DIP provider pallet using the required `Config` trait.
 
+:::info
+
 You can find more details in the [Provider pallet](./02_provider.md) section.
 
+:::
 
 ### Consumer chain
 
@@ -34,11 +39,8 @@ You can find more details in the [Provider pallet](./02_provider.md) section.
 3. Configure the DIP consumer pallet using the required `Config` trait.
 4. Deploy it on your chain, along with any additional pallets the identity provider requires.
 
+:::info
+
 You can find more details in the [Consumer pallet](./03_consumer.md) section.
 
-## Developer
-
-Use SDK methods
-
-
-
+:::
