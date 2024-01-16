@@ -13,7 +13,7 @@ With a generated identity commitment, a cross-chain transaction flow for a gener
 
 1. `A` generates a state proof proving the state of the identity commitment on the provider chain.
 2. `A` generates any additional information required for the consumer runtime to successfully verify an identity proof.
-3. `A`, using their account `AccC` on the consumer chain, calls the `dispatch_as` extrinsic by providing its identifier on the provider chain, the generated proof, and the `Call` to be dispatched on the consumer chain.
+3. `A`, using their account `AccC` on the consumer chain `C`, calls the `dispatch_as` extrinsic by providing its identifier on the provider chain, the generated proof, and the `Call` to be dispatched on the consumer chain.
 
     1. This pallet verifies if the proof is correct, if not it returns an error.
     2. This pallet dispatches the provided `Call` with a new origin created by this pallet, returning any errors the dispatch action returns. The origin contains the information revealed in the proof, the identifier of the acting subject and the account `AccC` dispatching the transaction.
@@ -28,7 +28,7 @@ Similarly, if the provider defines an identity commitment as some ZK commitment,
 For identifiers, if the provider establishes that an identifier is a public key, the consumer pallet must use the same definition.
 You must configure other definitions for an identifier, such as a simple integer or a [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/) in the same way.
 
-The pallet allows the consumer runtime to define some `LocalIdentityInfo` associated with each identifier, which the pallet's proof verifier can access and optionally modify upon proof verification.
+The pallet allows the consumer runtime to define some `LocalIdentityInfo` associated with each identifier, which is additional information the pallet's proof verifier can access and optionally modify upon proof verification.
 Any changes made to the `LocalIdentityInfo` will be persisted if the identity proof is verified correctly and the extrinsic executed successfully.
 
 If the consumer does not need to store anything in addition to the information an identity proof conveys, they can use an empty tuple `()` for the local identity info.
