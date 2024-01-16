@@ -12,6 +12,7 @@ This means that a KILT DID can be linked to only one web3name, and a web3name ca
 
 Each web3name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human readability and reduce the chances of *two web3names looking the same, despite being different*.
 The character set includes only:
+
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
 - the symbols `-` and `_`
@@ -29,7 +30,7 @@ For example, the full URI for the web3name `example-web3name` is `w3n:example-we
 
 Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a single DID.
 These accounts are not specific to the KILT blockchain; they can reference any chain within the Polkadot ecosystem.
-Each account <-> DID link requires the payment of a small deposit.
+Each account to DID link requires the payment of a small deposit.
 
 For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
 

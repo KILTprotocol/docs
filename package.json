@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "build": "yarn check-ts && yarn check-links && yarn generate-examples && docusaurus build",
@@ -26,24 +26,25 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "@babel/standalone": "^7.20.4",
-    "@docusaurus/core": "^2.2.0",
-    "@docusaurus/preset-classic": "^2.2.0",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.2.0",
-    "@docusaurus/theme-mermaid": "^2.2.0",
-    "@mdx-js/react": "^1.6.21",
-    "archiver": "^5.3.1",
-    "clsx": "^1.2.1",
-    "markdown-link-check": "^3.10.3",
+    "@babel/standalone": "^7.23.8",
+    "@babel/parser": "^7.23.6",
+    "@docusaurus/core": "^3.1.0",
+    "@docusaurus/preset-classic": "^3.1.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.1.0",
+    "@docusaurus/theme-mermaid": "^3.1.0",
+    "@mdx-js/react": "^3.0.0",
+    "archiver": "^6.0.1",
+    "clsx": "^2.1.0",
+    "markdown-link-check": "^3.11.2",
     "node-args": "^2.1.8",
-    "prettier": "^2.8.0",
+    "prettier": "^3.2.4",
     "raw-loader": "^4.0.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-markdown": "^8.0.3"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1"
   },
   "browserslist": {
     "production": [

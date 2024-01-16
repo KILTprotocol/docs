@@ -69,7 +69,7 @@ When creating a new CType schema, the following properties are required:
 - The format field is optionally:
   - *Date* format e.g., 2012-04-23T18:25:43.511Z
   - *Time* format e.g., T18:25:43.511Z
-  - *URI* format e.g., <https://www.example.com>
+  - *URI* format e.g., "https://www.example.com"
 
 <CodeBlock className="language-json" title="CType schema example">
   {ctypeSchema}

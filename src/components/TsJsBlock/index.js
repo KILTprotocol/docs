@@ -1,13 +1,13 @@
 import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 
-import { format } from 'prettier/standalone'
-import { parsers } from 'prettier/parser-babel'
 import { transform } from '@babel/standalone'
+import * as prettier from 'prettier/standalone'
+import pluginBabel from 'prettier/plugins/babel'
+import pluginEstree from 'prettier/plugins/estree'
 
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
-
 import CodeBlock from '@theme/CodeBlock'
 
 const TsJsBlock = ({ children, fileName, ...props }) => {
@@ -17,14 +17,17 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     plugins: ['transform-typescript'],
     retainLines: true,
   })
-  const { siteConfig: { customFields: { prettierConfig } } } = useDocusaurusContext()
+  const {
+    siteConfig: {
+      customFields: { prettierConfig },
+    },
+  } = useDocusaurusContext()
   // 2. Prettify the resulting JS
-  const prettyJsSnippet =
-    format(
-      jsSnippet, {
-        parser: parsers.babel.parse,
-        ...prettierConfig
-      })
+  const prettyJsSnippet = prettier.format(jsSnippet, {
+    parser: 'babel',
+    plugins: [pluginBabel, pluginEstree],
+    ...prettierConfig,
+  })
   const tsFileName = fileName ? `${fileName}.ts` : undefined
   const jsFileName = fileName ? `${fileName}.js` : undefined
   return (
