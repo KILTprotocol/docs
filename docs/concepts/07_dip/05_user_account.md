@@ -1,6 +1,6 @@
 ---
 id: dip-accounts
-title: Enabling DIP for accounts
+title: Enabling DIP for user accounts
 ---
 
 For an account to take advantage of DIP it needs a decentralized identity (DID) and to create a transaction on the provider chain to generate a cross-chain identity commitment.
