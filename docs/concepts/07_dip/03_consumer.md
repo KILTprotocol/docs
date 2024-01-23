@@ -6,7 +6,7 @@ title: Consumer pallet
 This pallet is a component of the DIP protocol.
 It enables entities with an identity on a connected Substrate-based chain (provider) to use those identities on the chain this pallet is deployed (consumers) without requiring those entities to set up a new identity locally.
 
-A consumer chain is _connected_ to a provider if there is a way for the consumer chain to verify state proofs about parts of the state of the provider chain.
+A consumer chain is _connected_ to a provider if there is a way for the consumer chain to verify proofs about parts of the state of the provider chain.
 
 A cross-chain transaction with DIP assumes the entity submitting the transaction has already generated a cross-chain identity commitment on the provider chain, by interacting with the DIP provider pallet on the provider chain.
 With a generated identity commitment, a cross-chain transaction flow for a generic entity `A` works as follows:
