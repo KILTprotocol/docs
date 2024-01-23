@@ -32,7 +32,7 @@ You can find more details in the [Provider pallet](./02_provider.md) section.
 
 ### Consumer chain
 
-1. Agree on the format of your identity proofs and how verification works with your identity provider
+1. Discover/Retrieve on the format of your identity proofs and how verification works with your identity provider
 2. Add the DIP consumer pallet as a dependency in your chain runtime
 3. Configure the DIP consumer pallet using the required `Config` trait.
 4. Deploy it on your chain, along with any additional pallets the identity provider requires.
