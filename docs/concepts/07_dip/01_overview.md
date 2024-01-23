@@ -16,7 +16,7 @@ DIP has three key roles: the identity **provider**, the **consumer**, and the **
 
 ## Adding support to a parachain
 
-There are several steps to add DIP support to a substrate-based parachain, depending on the chain's role.
+There are several steps to add DIP support to a Substrate-based parachain, depending on the chain's role.
 
 ### Provider chain
 
