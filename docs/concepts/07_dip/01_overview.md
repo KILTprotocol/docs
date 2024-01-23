@@ -20,7 +20,7 @@ There are several steps to add DIP support to a Substrate-based parachain, depen
 
 ### Provider chain
 
-1. Find the format of your identity proofs and how verification works with your consumer chains.
+1. Define the format of your identity proofs and how verification works with your consumer chains.
 2. Add the DIP provider pallet as a dependency in your chain runtime.
 3. Configure the DIP provider pallet using the required `Config` trait.
 
