@@ -11,7 +11,7 @@ DIP is open-source, and you can integrate it with existing Polkadot-compatible r
 DIP has three key roles: the identity **provider**, the **consumer**, and the **user**.
 
 - The identity **provider** is any blockchain with an identity system that makes it available for other chains, e.g., KILT Protocol, Litentry, etc.
-- The relaying party or **consumer** is any blockchain that has chosen to delegate identity management to the provider, thus relieving it of needing to maintain its identity infrastructure.
+- The **consumer** is any blockchain that has chosen to delegate identity management to the provider, thus relieving it of needing to maintain its identity infrastructure.
 - The **user** is an entity with an identity on the provider chain and wants to use it on other chains without setting up a new identity on each. A Dapp developer can use the DIP SDK to make this process easier for the user and add other DIP-related features to their app.
 
 ## Adding support to a parachain
@@ -47,10 +47,7 @@ You can find more details in the [Consumer pallet](./03_consumer.md) section.
 
 For an account to take advantage of DIP it needs a decentralized identity (DID) and to create a transaction on the provider chain to generate a cross-chain identity commitment.
 
-There are two options for an account to do this:
-
--   A Dapp developer builds the functionality into their app for a user using the DIP SDK.
--   The user uses the KILT DID utilities library themselves.
+For an account to be able to do this, a Dapp developer needs to build the functionality into their app for a user using the DIP SDK.
 
 :::info Find out more
 
