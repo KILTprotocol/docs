@@ -4,7 +4,7 @@ title: Provider pallet
 ---
 
 The Decentralized Identity Provider (DIP) provider pallet enables a Substrate-based chain (provider) to bridge the identities of its users to other connected chains (consumers) trustlessly.
-A consumer chain is connected to a provider if there is a way for the consumer chain to verify state proofs about parts of the state of the provider chain.
+A consumer chain is connected to a provider if there is a way for the consumer chain to verify proofs about parts of the state of the provider chain.
 
 The pallet is agnostic over the chain-specific definition of identity and delegates the definition of it to the provider chain's runtime.
 
