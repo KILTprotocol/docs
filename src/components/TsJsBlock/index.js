@@ -23,27 +23,53 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     },
   } = useDocusaurusContext()
   // 2. Prettify the resulting JS
-  const prettyJsSnippet = prettier.format(jsSnippet, {
-    parser: 'babel',
-    plugins: [pluginBabel, pluginEstree],
-    ...prettierConfig,
-  })
-  const tsFileName = fileName ? `${fileName}.ts` : undefined
-  const jsFileName = fileName ? `${fileName}.js` : undefined
-  return (
-    <Tabs groupId="ts-js-choice">
-      <TabItem value="ts" label="Typescript" default>
-        <CodeBlock {...props} className="language-ts" title={tsFileName}>
-          {tsSnippet}
-        </CodeBlock>
-      </TabItem>
-      <TabItem value="js" label="Javascript">
-        <CodeBlock {...props} className="language-js" title={jsFileName}>
-          {prettyJsSnippet}
-        </CodeBlock>
-      </TabItem>
-    </Tabs>
-  )
+  const prettyJsSnippet = prettier
+    .format(jsSnippet, {
+      parser: 'babel',
+      plugins: [pluginBabel, pluginEstree],
+      ...prettierConfig,
+    })
+    .finally(() => {
+      const tsFileName = fileName ? `${fileName}.ts` : undefined
+      const jsFileName = fileName ? `${fileName}.js` : undefined
+
+      var fileArray = [
+        {
+          fileName: tsFileName,
+          fileContents: tsSnippet,
+          fileID: 'ts',
+          fileLabel: 'Typescript',
+        },
+        {
+          fileName: jsFileName,
+          fileContents: prettyJsSnippet,
+          fileID: 'js',
+          fileLabel: 'Javascript',
+        },
+      ]
+
+      return (
+        <>
+          <Tabs groupId="ts-js-choice">
+            {fileArray.map((codeFile) => (
+              <TabItem
+                value={codeFile.fileID}
+                label={codeFile.fileLabel}
+                default
+              >
+                <CodeBlock
+                  {...props}
+                  className={'language-' + codeFile.fileID}
+                  title={codeFile.fileName}
+                >
+                  {codeFile.fileContents}
+                </CodeBlock>
+              </TabItem>
+            ))}
+          </Tabs>
+        </>
+      )
+    })
 }
 
 export default TsJsBlock

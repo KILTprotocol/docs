@@ -23,27 +23,53 @@ const TsJsSnippet = ({ children, fileName, ...props }) => {
     },
   } = useDocusaurusContext()
   // 2. Prettify the resulting JS
-  const prettyJsSnippet = prettier.format(jsSnippet, {
-    parser: 'babel',
-    plugins: [pluginBabel, pluginEstree],
-    ...prettierConfig,
-  })
-  const tsFileName = fileName ? `${fileName}.ts` : undefined
-  const jsFileName = fileName ? `${fileName}.js` : undefined
-  return (
-    <Tabs groupId="ts-js-choice">
-      <TabItem value="ts" label="Typescript" default>
-        <SnippetBlock {...props} className="language-ts" title={tsFileName}>
-          {tsSnippet}
-        </SnippetBlock>
-      </TabItem>
-      <TabItem value="js" label="Javascript">
-        <SnippetBlock {...props} className="language-js" title={jsFileName}>
-          {prettyJsSnippet}
-        </SnippetBlock>
-      </TabItem>
-    </Tabs>
-  )
+  const prettyJsSnippet = prettier
+    .format(jsSnippet, {
+      parser: 'babel',
+      plugins: [pluginBabel, pluginEstree],
+      ...prettierConfig,
+    })
+    .finally(() => {
+      const tsFileName = fileName ? `${fileName}.ts` : undefined
+      const jsFileName = fileName ? `${fileName}.js` : undefined
+
+      var fileArray = [
+        {
+          fileName: tsFileName,
+          fileContents: tsSnippet,
+          fileID: 'ts',
+          fileLabel: 'Typescript',
+        },
+        {
+          fileName: jsFileName,
+          fileContents: prettyJsSnippet,
+          fileID: 'js',
+          fileLabel: 'Javascript',
+        },
+      ]
+
+      return (
+        <>
+          <Tabs groupId="ts-js-choice">
+            {fileArray.map((codeFile) => (
+              <TabItem
+                value={codeFile.fileID}
+                label={codeFile.fileLabel}
+                default
+              >
+                <SnippetBlock
+                  {...props}
+                  className={'language-' + codeFile.fileID}
+                  title={codeFile.fileName}
+                >
+                  {codeFile.fileContents}
+                </SnippetBlock>
+              </TabItem>
+            ))}
+          </Tabs>
+        </>
+      )
+    })
 }
 
 export default TsJsSnippet
