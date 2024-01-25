@@ -16,7 +16,7 @@ After removal, the identity becomes unusable cross-chain, although it continues 
 
 #### Add the pallet to the runtime
 
-Add the pallet to runtime in your `Cargo.toml` file dependencies section:
+Add the pallet to runtime to the `Cargo.toml` file dependencies section:
 
 :::info
 
@@ -52,12 +52,12 @@ The following configuration parameters are required. Read the xxx :
 
 #### Storage
 
-The pallet stores identity commitments, which are opaque byte blobs in the pallet storage and on which you can build the cross-chain identity bridging protocol.
+The pallet stores identity commitments, which are opaque byte blobs in the pallet storage and on which runtime developers can build the cross-chain identity bridging protocol.
 
 The runtime must define an identity commitment and is provider-specific.
-You must make this definition available to consumers willing to integrate the identities on the provider chain.
+Runtime developers must make this definition available to consumers willing to integrate the identities on the provider chain.
 
-The pallet contains a single storage element, the `IdentityCommitments` double map.
+The pallet currently contains a single storage element, the `IdentityCommitments` double map.
 Its first key is the `Identifier` of subjects, while the second key is the commitment version.
 The values are identity commitments.
 The double map allows the same subject to have one commitment for each version supported by the provider, without forcing consumers to upgrade to a new version to support the latest commitment scheme.

@@ -20,24 +20,24 @@ With a generated identity commitment, a cross-chain transaction flow for a gener
 
     <!-- TODO: Mermaid diagram? -->
 
-The pallet is agnostic over the chain-specific definition of _identity proof verifier_ and _identifier_, although, when deployed, you must configure them to respect the definition of identity and identity commitment established by the provider linked to this pallet.
+The pallet is agnostic over the chain-specific definition of _identity proof verifier_ and _identifier_, although, when deployed, runtime developers must configure them to respect the definition of identity and identity commitment established by the provider linked to this pallet.
 
 For instance, if the provider establishes that an identity commitment is a Merkle root of a set of public keys, an identity proof for the consumer will most likely be a Merkle proof revealing a subset of those keys.
 Similarly, if the provider defines an identity commitment as some ZK commitment, the respective identity proof on the consumer chain will be a ZK proof verifying the validity of the commitment and the revealed information.
 
 For identifiers, if the provider establishes that an identifier is a public key, the consumer pallet must use the same definition.
-You must configure other definitions for an identifier, such as a simple integer or a [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/) in the same way.
+Runtime developers must configure other definitions for an identifier, such as a simple integer or a [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/) in the same way.
 
 The pallet allows the consumer runtime to define some `LocalIdentityInfo` associated with each identifier, which is additional information the pallet's proof verifier can access and optionally modify upon proof verification.
 Any changes made to the `LocalIdentityInfo` will be persisted if the identity proof is verified correctly and the extrinsic executed successfully.
 
 If the consumer does not need to store anything in addition to the information an identity proof conveys, they can use an empty tuple `()` for the local identity info.
 Another example could be the use of signatures, which requires a nonce to avoid replay protections.
-In this case, you could use a numeric type such as a `u64` or a `u128` and the proof verifier increases it when validating each new cross-chain transaction proof.
+In this case, use a numeric type such as a `u64` or a `u128` and the proof verifier increases it when validating each new cross-chain transaction proof.
 
 #### Add the pallet to the runtime
 
-Add the pallet to runtime in your `Cargo.toml` file dependencies section:
+Add the pallet to runtime to the `Cargo.toml` file dependencies section:
 
 :::info
 
