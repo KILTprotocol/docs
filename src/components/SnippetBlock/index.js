@@ -9,7 +9,8 @@ const SnippetBlock = ({
   leadingSpaces = 2,
   ...props
 }) => {
-  const raw = children.split(/\r?\n/)
+  // I don't understand why this is needed…
+  const raw = children.toString().split(/\r?\n/)
 
   let code = ''
 
