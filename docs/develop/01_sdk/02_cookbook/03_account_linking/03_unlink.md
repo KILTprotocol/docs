@@ -9,7 +9,7 @@ import DidUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_fe
 import AccountUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/06_account_unlink.ts';
 import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/07_reclaim_deposit.ts';
 
-Similar to the way a new account <-> DID link is created, removing a link can happen in one of three ways:
+Similar to the way a new account to DID link is created, removing a link can happen in one of three ways:
 
 1. The DID owner submits a transaction indicating which account to unlink:
 

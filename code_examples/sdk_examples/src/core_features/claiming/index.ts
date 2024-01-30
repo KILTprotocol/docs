@@ -20,7 +20,7 @@ export async function runAll(
   console.log('Running claiming flow...')
   const claimerAuthKey = generateKeypairs().authentication
   const claimerLightDid = createSimpleLightDid({
-    authentication: claimerAuthKey
+    authentication: claimerAuthKey as Kilt.NewLightDidVerificationKey
   })
 
   const attersterKeys = generateKeypairs()

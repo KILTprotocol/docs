@@ -8,12 +8,8 @@ export function generateAccount(
   account: Kilt.KiltKeyringPair
   mnemonic: string
 } {
-  const keyring = new Kilt.Utils.Keyring({
-    ss58Format: 38,
-    type: 'sr25519'
-  })
   return {
-    account: keyring.addFromMnemonic(mnemonic) as Kilt.KiltKeyringPair,
+    account: Kilt.Utils.Crypto.makeKeypairFromUri(mnemonic),
     mnemonic
   }
 }

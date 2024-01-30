@@ -9,6 +9,7 @@
 .docusaurus
 .cache-loader
 **/*.zip
+/scripts/out
 
 # Misc
 .DS_Store

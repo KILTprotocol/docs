@@ -11,6 +11,57 @@ The first step in applying for a Treasury grant is either to join the community 
 This will help you get valuable community feedback throughout the process.
 It also gives Council members an open and transparent way to measure community sentiment.
 
+When submitting for discussion, it is best practice to include a proposal document.
+[A reference document](https://docs.google.com/document/d/1DBb7jdgVVK09lwQPfOs6WFwbWUGKut7hMMmM_lEX0fA/edit) can be found in the KILT Protocol discussions this can be used as a template for future proposals.
+
+## DID Sign
+
+The proposed document must be DID signed.
+This requires a DID that must be associated with the proposal.
+Therefore, it requires the proposer to have a DID.
+The signature provides integrity and accountability about the submitter, which can give more confidence to the community and council.
+
+The DID Signature should be done via the [DIDSign](https://didsign.io/) dApp.
+The DIDSign doesn't have a database, nor store any data by the user.
+The following guide explains [how to create a signature using a DID with DIDSign](https://kilt-protocol.org/files/How-to-Guide-DIDsign.pdf).
+
+Once the document has been signed, the signature must be made publicly available for verification.
+Depending on the services and software used, accessing the storage may require different instructions, e.g., on IPFS or as a GitHub gist or cloud provider.
+The document should be made publicly available as well as the signature.
+
+## Example on IPFS
+
+An example of how to do this via IPFS using Google Drive.
+Have a document ready for the proposal or discussion phase.
+
+1. Make the document publicly available to view and download.
+
+2. Sign the PDF version of the Document in the [DIDSign](https://didsign.io/).
+
+3. Download the zip file and upload it to IPFS.
+
+4. Following the instructions of the IPFS, pin the signature to IPFS and make it publicly available. One solution for doing is [web3 storage](https://web3.storage/).
+
+5. After the documents and signature have been uploaded to IPFS, add their URL to the proposal or discussion page for verification.
+
+Please include how to verify and download the necessary documents.
+The following is an example done by BOTLabs GmbH.
+
+```md
+
+The current version of the proposal document has been digitally signed with one of the DIDs that BOTLabs GmbH controls. To verify the signature:
+
+1. Download the PDF version of the Google Document linked above.
+
+2. Download the DID signature of the file from IPFS, with CID QmRcYyPcCKGDQno2m5qBSZq7dftoZKuwraF9C9M96rXR36 (e.g., ipfs.io).
+
+3. Visit didsign.io, and upload both the PDF file and the downloaded signature. The signature should verify correctly and link to the KILT tx in which the timestamp was generated.
+```
+
+The example may change depending on the method of storing and creation of the document.
+
+If during the discussion the document is edited it will require a new upload and should be updated accordingly.
+
 ## Deposit
 
 A deposit of 5% of the amount requested is required in order to submit a proposal.

@@ -1,48 +1,75 @@
 import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 
-import { format } from 'prettier/standalone'
-import { parsers } from 'prettier/parser-babel'
 import { transform } from '@babel/standalone'
+import * as prettier from 'prettier/standalone'
+import pluginBabel from 'prettier/plugins/babel'
+import pluginEstree from 'prettier/plugins/estree'
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 import SnippetBlock from '../SnippetBlock'
 
-const TsJsSnippet = ({
-  children,
-  fileName,
-  ...props
-}) => {
+const TsJsSnippet = ({ children, fileName, ...props }) => {
   const tsSnippet = children
   // 1. Transpile TS to JS
   const { code: jsSnippet } = transform(tsSnippet, {
     plugins: ['transform-typescript'],
     retainLines: true,
   })
-  const { siteConfig: { customFields: { prettierConfig } } } = useDocusaurusContext()
+  const {
+    siteConfig: {
+      customFields: { prettierConfig },
+    },
+  } = useDocusaurusContext()
   // 2. Prettify the resulting JS
-  const prettyJsSnippet =
-    format(
-      jsSnippet, {
-        parser: parsers.babel.parse,
-        ...prettierConfig
-      })
-  const tsFileName = fileName ? `${fileName}.ts` : undefined
-  const jsFileName = fileName ? `${fileName}.js` : undefined
-  return <Tabs groupId="ts-js-choice">
-    <TabItem value='ts' label='Typescript' default>
-      <SnippetBlock {...props} className="language-ts" title={tsFileName}>
-        {tsSnippet}
-      </SnippetBlock>
-    </TabItem>
-    <TabItem value='js' label='Javascript'>
-      <SnippetBlock {...props} className="language-js" title={jsFileName}>
-        {prettyJsSnippet}
-      </SnippetBlock>
-    </TabItem>
-  </Tabs>
+  const prettyJsSnippet = prettier
+    .format(jsSnippet, {
+      parser: 'babel',
+      plugins: [pluginBabel, pluginEstree],
+      ...prettierConfig,
+    })
+    .finally(() => {
+      const tsFileName = fileName ? `${fileName}.ts` : undefined
+      const jsFileName = fileName ? `${fileName}.js` : undefined
+
+      var fileArray = [
+        {
+          fileName: tsFileName,
+          fileContents: tsSnippet,
+          fileID: 'ts',
+          fileLabel: 'Typescript',
+        },
+        {
+          fileName: jsFileName,
+          fileContents: prettyJsSnippet,
+          fileID: 'js',
+          fileLabel: 'Javascript',
+        },
+      ]
+
+      return (
+        <>
+          <Tabs groupId="ts-js-choice">
+            {fileArray.map((codeFile) => (
+              <TabItem
+                value={codeFile.fileID}
+                label={codeFile.fileLabel}
+                default
+              >
+                <SnippetBlock
+                  {...props}
+                  className={'language-' + codeFile.fileID}
+                  title={codeFile.fileName}
+                >
+                  {codeFile.fileContents}
+                </SnippetBlock>
+              </TabItem>
+            ))}
+          </Tabs>
+        </>
+      )
+    })
 }
 
 export default TsJsSnippet

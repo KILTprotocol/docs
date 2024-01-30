@@ -106,5 +106,5 @@ How the file is hosted depends on your project setup and is out of scope for thi
 [concept-attestations]: ../../concepts/05_credentials/04_attestation.md
 [cookbook-attestations]: ../01_sdk/02_cookbook/04_claiming/03_attestation_creation.md
 [create-full-did]: ../01_sdk/02_cookbook/01_dids/02_full_did_creation.md
-[well-known-spec]: https://identity.foundation/.well-known/resources/did-configuration/
+[well-known-spec]: https://identity.foundation/specs/did-configuration/
 [CType-Domain-Linkage]: https://github.com/KILTprotocol/ctype-index/tree/main/ctypes/0x9d271c790775ee831352291f01c5d04c7979713a5896dcf5e81708184cc5c643

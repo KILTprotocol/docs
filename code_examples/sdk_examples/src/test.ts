@@ -19,6 +19,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
     core: false,
     staking: false
   }
+  // Can pass specific tests via command line arguments, or run all tests by default.
   program.description('Test the code examples used in the KILT documentation.')
   program
     .command('all', { isDefault: true })
