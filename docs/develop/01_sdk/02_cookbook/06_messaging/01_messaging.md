@@ -9,7 +9,8 @@ import GenerateRequestCredentialMessage from '!!raw-loader!@site/code_examples/s
 import EncryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/02_encrypt_message.ts';
 import DecryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/03_decrypt_message.ts';
 
-KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) [messaging protocol](../../../../concepts/07_messaging.md).
+KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) messaging protocol
+
 Each of the messages sent is encrypted using the [DID key agreement key](https://www.w3.org/TR/did-core/#key-agreement).
 A message consists of the sender's DID URI, the receiver's DID URI, the message type and the body.
 There are multiple different message types, each of them with a different structure and containing different information.
