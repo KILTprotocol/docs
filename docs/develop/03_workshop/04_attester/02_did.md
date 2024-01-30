@@ -13,7 +13,6 @@ import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/works
 
 The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
 
-
 A DID may represent any entity, such as a person, an organization, or a machine.
 
 A DID is a string uniquely identifying each KILT user.
@@ -61,7 +60,6 @@ As an <span className="label-role attester">Attester</span> needs to interact wi
 
 ### Generate key pairs
 
-<!-- TODO: Based on feedback, but does this make code samples wrong? -->
 An <span className="label-role attester">Attester</span> needs an authentication and attestation key at minimum.
 Since three of the key types sign transactions, you can use the same key for them using the default KILT keyring to generate them, which is the same keyring used to generate accounts.
 
@@ -70,8 +68,6 @@ Add the following code to the `attester/generateKeypairs` file.
 <TsJsBlock fileName="attester/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
-
-<!-- TODO: Is this enough? -->
 
 Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the Substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
 
