@@ -3,7 +3,7 @@ id: what-is-dip
 title: Overview
 ---
 
-The Decentralized Identity Provider (DIP) enables cross-chain decentralized identity system that mirrors the functionality of OpenID.
+The Decentralized Identity Provider (DIP) enables a cross-chain decentralized identity system that mirrors the functionality of OpenID.
 
 DIP has three key roles: the identity **provider**, the **consumer**, and the **user**.
 

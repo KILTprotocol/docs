@@ -11,7 +11,7 @@ For an account to be able to do this, a Dapp developer needs to build the functi
 
 Add the SDK as a dependency:
 
-```shell
+```bash npm2yarn
 npm install @kiltprotocol/dip-sdk
 ```
 

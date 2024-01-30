@@ -54,7 +54,7 @@ The following configuration parameters are required. Read the xxx :
 
 The pallet stores identity commitments, which are opaque byte blobs in the pallet storage and on which runtime developers can build the cross-chain identity bridging protocol.
 
-The runtime must define an identity commitment and is provider-specific.
+The runtime must define what an identity commitment looks like and is provider-specific.
 Runtime developers must make this definition available to consumers willing to integrate the identities on the provider chain.
 
 The pallet currently contains a single storage element, the `IdentityCommitments` double map.
