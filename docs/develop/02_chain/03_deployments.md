@@ -22,6 +22,8 @@ To learn more about how to set up a node for either environment, please check ou
 |  Link Accounts   |                                                                    [linking.trusted-entity.io](https://linking.trusted-entity.io/)                                                                     |                  [test.linking.trusted-entity.io](https://test.linking.trusted-entity.io/)                   |
 |     DIDsign      |                                                                                   [didsign.io](https://didsign.io/)                                                                                    |                                 [test.didsign.io](https://test.didsign.io/)                                  |
 |    SocialKYC     |                                                                                 [socialkyc.io](https://socialkyc.io/)                                                                                  |                               [test.socialkyc.io](https://test.socialkyc.io/)                                |
+
+
 [spirit-polkassembly]: https://kilt.polkassembly.network
 [spirit-wss-kilt]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.kilt.io
 [spirit-wss-onfinality]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws
