@@ -13,7 +13,7 @@ import CodeBlock from '@theme/CodeBlock'
 const TsJsBlock = ({ children, fileName, ...props }) => {
   const tsSnippet = children
 
-  const [prettyJsSnippet, setJsSnippet] = useState()
+  const [prettyJsSnippet, setJsSnippet] = useState('# loading code...')
   const {
     siteConfig: {
       customFields: { prettierConfig },
@@ -42,7 +42,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
   const tsFileName = fileName ? `${fileName}.ts` : undefined
   const jsFileName = fileName ? `${fileName}.js` : undefined
 
-  var fileArray = [
+  const fileArray = [
     {
       fileName: tsFileName,
       fileContents: tsSnippet,
