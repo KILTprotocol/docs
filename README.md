@@ -108,14 +108,14 @@ We imported `SnippetBlock` and the content `Connect` in the top of the file.
 
 <SnippetBlock
   className="language-ts"
-  funcEnd="return"
+  dropTail="1"
 >
   {Connect}
 </SnippetBlock>
 
 A `TsJsSnippet` is preferred since it automatically generates JavaScript examples.
 
-<TsJsSnippet funcEnd="return">
+<TsJsSnippet dropTail="1">
   {FetchEndpointData}
 </TsJsSnippet>
 ```

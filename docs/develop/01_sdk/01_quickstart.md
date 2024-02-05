@@ -103,7 +103,7 @@ Within the `main` function, configure the SDK to connect to a KILT node using th
     Connect to this network for testing and development purposes.</p>
     <SnippetBlock
       className="language-ts"
-      funcEnd="return"
+      dropTail="1"
       >
       {ConnectPere}
     </SnippetBlock>
@@ -113,7 +113,7 @@ Within the `main` function, configure the SDK to connect to a KILT node using th
     When you are ready to publish your DApp, connect to the Spiritnet network for production purposes.</p>
     <SnippetBlock
       className="language-ts"
-      funcEnd="return"
+      dropTail="1"
       >
       {ConnectSpirit}
     </SnippetBlock>
@@ -126,7 +126,7 @@ You should add all other code before this function call:
 <SnippetBlock
 className="language-ts"
 >
-{Disconnect} 
+{Disconnect}
 </SnippetBlock>
 
 By adding `await Kilt.disconnect()`, you ensure that the connection to the blockchain node is properly closed when the script finishes executing, which helps maintain the integrity of your application and is a good practice to follow.
@@ -166,7 +166,7 @@ Between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following co
 
 <SnippetBlock
 className="language-ts"
-funcEnd="return"
+dropTail="1"
 >
 {FetchDid}
 </SnippetBlock>
@@ -188,7 +188,7 @@ It retrieves the services exposed by the DID found for `john_doe`:
 
 <SnippetBlock
 className="language-ts"
-funcEnd="return"
+dropTail="1"
 >
 {FetchEndpoints}
 </SnippetBlock>
@@ -200,7 +200,7 @@ You do this by selecting one of the endpoints and querying the URL to see if it 
 
 Add the following code after the code you added in the previous step but before `await Kilt.disconnect()`:
 
-<TsJsSnippet funcName="Promise<Kilt.ICredential>" funcEnd="return">
+<TsJsSnippet dropTail="1">
   {FetchEndpointData}
 </TsJsSnippet>
 
