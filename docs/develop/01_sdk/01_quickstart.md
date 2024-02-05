@@ -126,7 +126,7 @@ You should add all other code before this function call:
 <SnippetBlock
 className="language-ts"
 >
-{Disconnect} 
+{Disconnect}
 </SnippetBlock>
 
 By adding `await Kilt.disconnect()`, you ensure that the connection to the blockchain node is properly closed when the script finishes executing, which helps maintain the integrity of your application and is a good practice to follow.
@@ -200,7 +200,7 @@ You do this by selecting one of the endpoints and querying the URL to see if it 
 
 Add the following code after the code you added in the previous step but before `await Kilt.disconnect()`:
 
-<TsJsSnippet funcName="Promise<Kilt.ICredential>" funcEnd="return">
+<TsJsSnippet funcEnd="return">
   {FetchEndpointData}
 </TsJsSnippet>
 
