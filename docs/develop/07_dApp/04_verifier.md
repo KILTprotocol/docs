@@ -35,7 +35,7 @@ In this guide the website requests an email address that is owned by the DID.
 For that it uses the Email CType.
 You can search through existing CTypes in the [CType Index](https://github.com/KILTprotocol/ctype-index).
 
-<TsJsSnippet funcEnd="console">
+<TsJsSnippet dropTail="1">
   {EmailCtype}
 </TsJsSnippet>
 
@@ -77,8 +77,7 @@ After sending the `request-credential` message to the extension, the verifier li
 After the response from the extension is received, forwarded to the server and decrypted, the verifier must check that it has the expected CType and that it contains a valid credential.
 Since everyone can run an attestation service, you need to make sure that you also verify that the attester is trusted.
 
-<!-- TODO: crazy hacky, not even sure we want to use a snippet here; but the example had so much dummy code in it -->
-<TsJsSnippet funcName="})">
+<TsJsSnippet>
   {DecryptCredentialMessage}
 </TsJsSnippet>
 

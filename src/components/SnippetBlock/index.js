@@ -4,60 +4,30 @@ import CodeBlock from '@theme/CodeBlock'
 const SnippetBlock = ({
   children,
   funcName = 'main',
-  funcEnd = '}',
-  snippets,
   leadingSpaces = 2,
+  dropHead = 0,
+  dropTail = 0,
   ...props
 }) => {
-  // I don't understand why this is needed…
-  const raw = children.toString().split(/\r?\n/)
+  const regex = new RegExp(
+    `${funcName}\\((?:.|\\n|\\r)*?\\)(?::(?:.|\\n|\\r)*?)?\\s*{(?:\\n|\\r)*(?<body>(?:.|\\n|\\r)+)\\}`
+  )
+  const matched = children.toString().match(regex) ?? {}
 
   let code = ''
-
-  if (snippets) {
-    code = JSON.parse(snippets)
-      .map((snip) => {
-        if (Array.isArray(snip)) {
-          return raw
-            .slice(snip[0], snip[1])
-            .map((line) => line.slice(leadingSpaces))
-            .join('\n')
-        } else {
-          return snip
-        }
-      })
-      .join('\n')
-  } else if (funcName) {
-    let start, end
-
-    // FIXME: Very very very fragile implementation.
-    for (let i = 0; i < raw.length; i++) {
-      if (raw[i].includes(funcName)) {
-        start = i
-        // Start and end of function signature on same line
-        if (raw[i].includes(' {')) break
-      } else if (raw[i].includes(' {') && start !== undefined) {
-        // End of function signature on different line
-        start = i
-        break
-      }
-    }
-
-    for (let i = raw.length - 1; i > 0; i--) {
-      if (raw[i].includes(funcEnd)) {
-        end = i
-        break
-      }
-    }
-
-    code = raw
-      // Exclude start index. End index is already excluded by `slice`
-      .slice(start + 1, end)
+  if (!matched?.groups?.body) {
+    code = children.toString()
+  } else {
+    const { body } = matched.groups
+    const lines = body
       // Remove leading spaces
+      .split(/\r?\n/)
+    code = lines
       .map((line) => line.slice(leadingSpaces))
+      // Exclude start index. End index is already excluded by `slice`
+      .slice(parseInt(dropHead), lines.length - parseInt(dropTail) - 1)
       .join('\n')
   }
-
   return <CodeBlock {...props}>{code}</CodeBlock>
 }
 
