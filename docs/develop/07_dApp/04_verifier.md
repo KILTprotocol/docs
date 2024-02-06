@@ -3,8 +3,6 @@ id: dapp-verifier
 title: Verifying a Credential
 ---
 
-import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
@@ -47,9 +45,9 @@ The presentation must include this challenge and since it's random, the presenta
 This ensures that it's not possible to record a presentation and just send this, pretending to be the owner of the DID.
 The challenge can be generated using the polkadot crypto utilities:
 
-<CodeBlock language="js">
+<TsJsBlock>
   {GenerateChallenge}
-</CodeBlock>
+</TsJsBlock>
 
 With the challenge the server can construct the `request-credential` message.
 The request is sent to the light DID (`claimerSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
