@@ -3,6 +3,7 @@ id: dapp-verifier
 title: Verifying a Credential
 ---
 
+import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
