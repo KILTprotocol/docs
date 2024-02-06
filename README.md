@@ -1,6 +1,6 @@
 # KILT Protocol Documentation Website
 
-The KILT Documentation website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+The KILT Documentation website is built using [Docusaurus 3](https://docusaurus.io/), a modern static website generator.
 
 Hosted at https://docs.kilt.io
 
