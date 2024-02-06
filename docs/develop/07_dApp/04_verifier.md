@@ -5,7 +5,6 @@ title: Verifying a Credential
 
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
-import TsJsSnippet from '@site/src/components/TsJsSnippet';
 
 import EmailCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/01_email_ctype.ts';
 import GenerateChallenge from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/02_generate_challenge.ts';
