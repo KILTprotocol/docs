@@ -6,7 +6,7 @@ title: 👋🏻 Welcome
 <!-- When updating this version also update 02_setup.md! -->
 <!-- TODO: Turn into variable -->
 <!-- TODO: Is the Quickstart a dependency? -->
-SDK version **0.34.0**.
+SDK version **0.35.0**.
 
 :::info What you can expect to learn
 
