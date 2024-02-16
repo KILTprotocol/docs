@@ -104,8 +104,6 @@ After cloning the repository, you can build the executable by running the `cargo
 git clone https://github.com/KILTprotocol/kilt-node.git
 # Check out master branch
 git checkout master
-# Set up the build environment by installing the Rust compiler.
-./scripts/init.sh
 # Build the executable from source enabling all the optimizations with --release.
 cargo build --release -p kilt-parachain
 ```
