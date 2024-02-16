@@ -234,7 +234,7 @@ module.exports = {
         {
             // options here
             name: "dip-provider-docs", // used by CLI, must be path safe
-            sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-dip-provider/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+            sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/", // the base url for the markdown (gets prepended to all of the documents when fetching)
             outDir: "docs/concepts/07_dip", // the base directory to output to.
             documents: ["README.md"], // the file names to download,
             modifyContent(filename, content) {
@@ -253,7 +253,7 @@ module.exports = {
           {
               // options here
               name: "dip-consumer-docs", // used by CLI, must be path safe
-              sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-dip-consumer/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+              sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/", // the base url for the markdown (gets prepended to all of the documents when fetching)
               outDir: "docs/concepts/07_dip", // the base directory to output to.
               documents: ["README.md"], // the file names to download,
               modifyContent(filename, content) {
