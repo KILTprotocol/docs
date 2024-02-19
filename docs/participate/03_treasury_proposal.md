@@ -68,7 +68,7 @@ This is why it is essential to engage with the community and show how the propos
 ## Create Proposal
 
 To maximize your chances of success, create a full proposal document with as much information as possible to communicate the value of your work and what it will add to the network’s growth and success.
-Check out our Treasury proposal template or Polkassembly’s [proposal document #6](https://docs.google.com/document/d/1NilDtFljCc6boyHkz2o2kGyFNhR6hVQSGzz7J0Xhwco/edit) as examples to help guide your process.
+Check out our Treasury proposal template or Polkassembly’s [proposal document #6](https://docs.google.com/document/d/1K0ScDodCxzgoqHSp-62rW0JLvBpMRgH97R37OoqYH-0) as examples to help guide your process.
 
 Multiple types of proposals can be created covering building and infrastructure, outreach and hackathons, or [educational content](04_content_creation_guidelines.md) such as videos, blogs and translations.
 
