@@ -13,7 +13,7 @@ DIP has three key roles: the identity **provider**, the **consumer**, and the **
 
 This means that parachains requiring an identity solution don’t need to build their own infrastructure.
 Instead, they can leverage the infrastructure DIP provides.
-DIP is open-source, and you can integrate it with existing Polkadot-compatible runtimes with minimal changes and without affecting the fee model of the relying party.
+DIP is open-source, and you can integrate it with existing Polkadot-compatible runtimes with minimal changes and without affecting the fee model of the consumer system.
 
 ## Adding support to a parachain
 
