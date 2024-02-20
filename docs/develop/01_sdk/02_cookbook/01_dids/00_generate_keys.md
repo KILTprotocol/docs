@@ -38,7 +38,7 @@ A hard derivation path does not allow someone to do either of these.
 Even if you know a derived private key, it's not possible to figure out the private key of the root address, and it's impossible to prove that the first account is linked with the second.
 
 A `//` (double slash) indicates a hard derivation path.
-For example, `deal rice sunny now boss cluster team use wreck electric wing deliver//0` is a soft derivation path.
+For example, `deal rice sunny now boss cluster team use wreck electric wing deliver//0` is a hard derivation path.
 
 ## Creating new accounts from a seed
 
