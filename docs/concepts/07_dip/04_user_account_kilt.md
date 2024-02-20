@@ -1,13 +1,15 @@
 ---
-id: dip-accounts
-title: Enabling DIP for user accounts
+id: dip-accounts-kilt
+title: Enabling DIP for user accounts on the KILT blockchain
 ---
 
 For an account to take advantage of DIP it needs a decentralized identity (DID) and to create a transaction on the provider chain to generate a cross-chain identity commitment.
 
 For an account to be able to do this, a Dapp developer needs to build the functionality into their app for a user using the DIP SDK.
 
-## Using the DIP SDK
+The implementation of this transaction is per-chain and this documentation provides an example of how to do this on the KILT blockchain.
+
+## Using the KILT DIP SDK
 
 Add the SDK as a dependency:
 

@@ -44,15 +44,15 @@ Find more details in the [Consumer pallet](./03_consumer.md) section.
 
 :::
 
-## User accounts
+## User accounts on KILT
 
-For an account to take advantage of DIP it needs a decentralized identity (DID) and to create a transaction on the provider chain to generate a cross-chain identity commitment.
+For an account to take advantage of DIP with KILT it needs a decentralized identity (DID) and to create a transaction on the provider chain to generate a cross-chain identity commitment.
 
 For an account to be able to do this, a Dapp developer needs to build the functionality into their app for a user using the DIP SDK.
 
 :::info
 
-Find more details in the [user account](./05_user_account.md) section.
+Find more details in the [user account](./04_user_account_kilt.md) section.
 
 :::
 
@@ -62,6 +62,6 @@ The DIP SDK is a JavaScript library that makes it easier for Dapp developers to 
 
 :::info
 
-Find more details in the [Dapp developer](./04_dapp_developer.md) section.
+Find more details in the [Dapp developer](./05_dapp_developer.md) section.
 
 :::
