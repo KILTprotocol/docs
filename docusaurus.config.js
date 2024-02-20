@@ -226,4 +226,46 @@ module.exports = {
       printWidth: 80,
     },
   },
+  plugins: [
+    // TODO: Rewrite titles
+    // TODO: Document
+    [
+        "docusaurus-plugin-remote-content",
+        {
+            // options here
+            name: "dip-provider-docs", // used by CLI, must be path safe
+            sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+            outDir: "docs/concepts/07_dip", // the base directory to output to.
+            documents: ["README.md"], // the file names to download,
+            modifyContent(filename, content) {
+              console.log(content)
+              if (filename.includes("README")) {
+                return {
+                  filename: "02_provider.md",
+                  content: content
+                }
+              }
+              return undefined
+            },
+          },
+        ],[
+          "docusaurus-plugin-remote-content",
+          {
+              // options here
+              name: "dip-consumer-docs", // used by CLI, must be path safe
+              sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+              outDir: "docs/concepts/07_dip", // the base directory to output to.
+              documents: ["README.md"], // the file names to download,
+              modifyContent(filename, content) {
+                if (filename.includes("README")) {
+                  return {
+                    filename: "03_consumer.md",
+                    content: content
+                  }
+                }
+                return undefined
+              },
+            }
+    ],
+],
 }
