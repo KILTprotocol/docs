@@ -21,7 +21,7 @@ did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS
 
 Beyond the standard prefix `did:kilt:`, the `light:` component indicates that this DID is a light DID, hence it can be resolved and utilized offline.
 
-Light DIDs optionally support the specification of an **encryption key** (of one of the supported key types) and service endpoints, which are both serialized, encoded and added at the end of the DID, like the following:
+Light DIDs optionally support the specification of an **encryption key** (of one of the supported key types) and services, which are both serialized, encoded and added at the end of the DID, like the following:
 
 ```
 did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS:z1ERkVVjngcarMbJn6YssB1PYULescQneSSEfCTJwYbzT2aK8fzH5WPsp3G4UVuLWWfsTayketnFV74YCnyboHBUvqEs6J8jdYY5dK2XeqCCs653Sf9XVH4RN2WvPrDFZXzzKf3KigvcaE7kkaEwLZvcas3U1M2ZDZCajDG71winwaRNrDtcqkJL9V6Q5yKNWRacw7hJ58d
@@ -31,7 +31,6 @@ did:kilt:light:014nv4phaKc4EcwENdRERuMF79ZSSB5xvnAk3zNySSbVbXhSwS:z1ERkVVjngcarM
 
 As mentioned above, the creation of a full DID requires interaction with the KILT blockchain.
 Therefore, the DID creation operation must be submitted by a KILT address with enough funds to pay the transaction fees and the required deposit.
-While transaction fees cannot be refunded, the deposit is returned if the DID is later deleted from the blockchain: this is to incentivize users to clean the data from the blockchain once such data is no longer required.
 
 The following is an example of a full KILT DID:
 
@@ -41,7 +40,7 @@ did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e
 
 Here, there is no `light:` component, which indicates that the DID is a full DID and that the keys associated with it must not be derived from the DID identifier, but must be retrieved from the KILT blockchain.
 
-Along with an authentication key, an encryption key, and service endpoints, a full DID also supports an **attestation key**, which must be used to write CTypes and attestations on the blockchain, and a **delegation key**, which must be used to write delegations on the blockchain.
+Along with an authentication key, an encryption key, and services, a full DID also supports an **attestation key**, which must be used to write CTypes and attestations on the blockchain, and a **delegation key**, which must be used to write delegations on the blockchain.
 
 ## Migrating a Light DID to a Full DID
 
@@ -54,3 +53,14 @@ This is by design, as it is assumed that the user had valid reasons to migrate t
 KILT will thus reject light DID signatures even if the original claim in the credential was generated with that off-chain DID.
 
 For a detailed developer-oriented guide to KILT DIDs, see our [DID Cookbook section](../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md).
+
+## Storing a DID
+
+Storing a DID in the blockchain requires a deposit, consisting of a base deposit and an additional fee. The base deposit is a fixed amount of 4 KILT, while the additional fee is 0.05 KILT.
+
+In addition to the base deposit and fee, the total deposit increases based on the storage space used by the DID. Each byte of storage occupied by the DID requires a deposit of 50 micro KILT (0.000005 KILT).
+The overall size of the DID is determined by the inclusion of services and keys. The more services and keys in the DID, the larger the storage space required and, consequently, the higher the additional deposit.
+
+When updating the DID, the deposit is automatically adjusted to match the updated size. This ensures that the deposit accurately reflects the current storage requirements of the DID, whether they increase or decrease.
+
+The deposit can be reclaimed when the DID is deleted from the blockchain, allowing users to retrieve the deposited amount. However, please note that the additional fee cannot be refunded once it has been paid.

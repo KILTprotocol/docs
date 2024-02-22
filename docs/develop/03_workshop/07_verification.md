@@ -8,48 +8,49 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Verify from '!!raw-loader!@site/code_examples/workshop/verify.ts';
-import CreatePresentation from '!!raw-loader!@site/code_examples/workshop/claimer/createPresentation.ts';
+import Verify from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/verify.ts';
+import CreatePresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/createPresentation.ts';
 
-In this section, you'll play the role of a <span className="label-role verifier">Verifier</span>:
+In this section, you play the role of a <span className="label-role verifier">Verifier</span> that does the following:
 
-- You'll take an `Presentation` object given to you by a <span className="label-role claimer">Claimer</span>;
-- You'll verify that its data is correct;
-- You'll verify that the attestation is valid, i.e., its hash exists on-chain and the attestation has not been revoked.
-- You'll verify that the `Credential` is owned by the <span className="label-role claimer">Claimer</span> sending it
+1. Take a `Presentation` object supplied by a <span className="label-role claimer">Claimer</span>
+2. Verify that its data is correct
+3. Verify that the attestation is valid, i.e., its hash exists on-chain and the attestation has not been revoked
+4. Verify that the <span className="label-role claimer">Claimer</span> sending the `Credential` owns it
 
-:::info Presentation
+:::info Presentation object
 
-A Credential is used to create the `Presentation` object by the <span className="label-role claimer">claimer</span>.
-Unlike the credential, a `presentation` can hide some attributes that are not required by the <span className="label-role verifier">verifiers</span> and can contain a claimer-signed challenge.
-A `presentation` also contains a proof that the <span className="label-role claimer">claimer</span> owns the credential.
+The <span className="label-role claimer">Claimer</span> uses a Credential to create the `Presentation` object.
+Unlike the credential, a `Presentation` can hide some attributes that are not required by the <span className="label-role verifier">Verifier</span> and can contain a claimer-signed challenge.
+A `Presentation` also contains a proof that the <span className="label-role claimer">Claimer</span> owns the credential.
 
 :::
 
 ## Create Presentation
 
-It's not enough to just send our credential as a <span className="label-role claimer">Claimer</span> as we also need to prove ownership of it.
-This is done by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
+A <span className="label-role claimer">Claimer</span> needs to send more than a credential, as they also need to prove ownership of the credential.
+A <span className="label-role claimer">Claimer</span> does this by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
 
-<TsJsBlock title="claimer/createPresentation">
+<TsJsBlock fileName="claimer/createPresentation">
   {CreatePresentation}
 </TsJsBlock>
 
+The `createPresentation` method returns a presentation, taking the credential, a callback to sign data, and the <span className="label-role verifier">Verifier</span>'s challenge as input.
+
 ## Verify
 
-Let's write our verification script.
-Here we'll expose `getChallenge` which returns a random and unique
-challenge for the <span className="label-role claimer">Claimer</span> to sign; this is used to prove ownership.
-We'll also expose `verifyPresentation` which will do the actual verification.
-Copy the code below, this completes the <span className="label-role verifier">Verifier</span> code!
+The verification code exposes the `getChallenge` method which returns a random and unique challenge for the <span className="label-role claimer">Claimer</span> to sign.
+This unique challenge is used to prove ownership.
 
-<TsJsBlock title="verify">
+<TsJsBlock fileName="verify">
   {Verify}
 </TsJsBlock>
 
+The `verifyPresentation` method performs the actual verification, taking a presentation and the <span className="label-role claimer">Claimer</span>'s challenge as input.
+
 ## Run
 
-Run the verification flow on command line:
+Run the code from the command line:
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>

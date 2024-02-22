@@ -1,6 +1,7 @@
 {
-  "$id": "kilt:ctype:0xc22f85da01c18c1b48acf9556ac7167247ce253cc10373ea77f50fc91521d478",
-  "$schema": "http://kilt-protocol.org/draft-01/ctype#",
+  "$id": "kilt:ctype:0x4f1d68ac46daf4613181b33b16faaf10cf94879dc2246d7485dc2ccbb843641d",
+  "$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/",
+  "additionalProperties": false,
   "properties": {
     "age": {
       "type": "integer"

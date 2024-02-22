@@ -3,7 +3,7 @@
 module.exports = {
   title: 'KILT Protocol',
   tagline:
-    'A Blockchain Identity Protocol for Issuing Self-Sovereign Verifiable Credentials and Decentralized Identifiers.',
+    'A blockchain identity protocol for issuing self-sovereign verifiable credentials and decentralized identifiers.',
   url: 'https://docs.kilt.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -11,11 +11,36 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+  // Config taken from https://docusaurus.io/docs/search#using-algolia-docsearch
+  // `appId`, `apiKey`, and `indexName` were provided in the email
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'I7C7DMFMTM',
+      // Public API key: it is safe to commit it
+      apiKey: '7f744ee37f644c445d01463be7c2eb4d',
+      indexName: 'kilt',
+      // Optional: see doc section below
+      contextualSearch: true,
+      // Optional: Algolia search parameters
+      searchParameters: {},
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+
+      // Algolia-specific configurations
+      placeholder: 'Search within the KILT documentation!',
+    },
+    mermaid: {
+      theme: { light: 'default', dark: 'dark' },
+    },
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'sdk-refactor-announcement',
-      content: 'Our Javascript SDK has undergone a major overhaul with the latest version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
+      content: 'Our Javascript SDK has undergone a major overhaul with the version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -59,7 +84,7 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/specifications/index',
+              docId: 'develop/specifications',
               label: 'Technical Specifications',
             },
             {
@@ -92,6 +117,11 @@ module.exports = {
               type: 'doc',
               docId: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
+            },
+            {
+              type: 'doc',
+              docId: 'participate/content-creation-guidelines',
+              label: 'Content Creation Guidelines',
             },
             {
               type: 'doc',
@@ -173,10 +203,10 @@ module.exports = {
         docs: {
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
-            require('mdx-mermaid'),
           ],
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -190,10 +220,52 @@ module.exports = {
   // !!!
   customFields: {
     prettierConfig: {
-      trailingComma: "es5",
+      trailingComma: 'es5',
       semi: false,
       singleQuote: true,
-      printWidth: 80
-    }
-  }
+      printWidth: 80,
+    },
+  },
+  plugins: [
+    // TODO: Rewrite titles
+    // TODO: Document
+    [
+        "docusaurus-plugin-remote-content",
+        {
+            // options here
+            name: "dip-provider-docs", // used by CLI, must be path safe
+            sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+            outDir: "docs/concepts/07_dip", // the base directory to output to.
+            documents: ["README.md"], // the file names to download,
+            modifyContent(filename, content) {
+              console.log(content)
+              if (filename.includes("README")) {
+                return {
+                  filename: "02_provider.md",
+                  content: content
+                }
+              }
+              return undefined
+            },
+          },
+        ],[
+          "docusaurus-plugin-remote-content",
+          {
+              // options here
+              name: "dip-consumer-docs", // used by CLI, must be path safe
+              sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+              outDir: "docs/concepts/07_dip", // the base directory to output to.
+              documents: ["README.md"], // the file names to download,
+              modifyContent(filename, content) {
+                if (filename.includes("README")) {
+                  return {
+                    filename: "03_consumer.md",
+                    content: content
+                  }
+                }
+                return undefined
+              },
+            }
+    ],
+],
 }

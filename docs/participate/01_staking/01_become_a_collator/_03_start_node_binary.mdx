@@ -14,10 +14,9 @@ Please select your target network:
 
   ```bash=
   ./target/release/kilt-parachain \
-    --state-cache-size=1 \
     --chain=spiritnet \
     --runtime=spiritnet \
-    --rpc-port=9933 \
+    --rpc-port=9944 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \
@@ -27,7 +26,7 @@ Please select your target network:
     --keystore-path=$HOME/data/keystore \
     --collator \
     -- \
-    --chain=kusama \
+    --chain=polkadot \
     --listen-addr=/ip4/0.0.0.0/tcp/30334 \
     --base-path=$HOME/data/relay \
     --execution=wasm
@@ -39,10 +38,9 @@ Please select your target network:
 
   ```bash=
   ./target/release/kilt-parachain \
-    --state-cache-size=1 \
     --chain=./dev-specs/kilt-parachain/peregrine-kilt.json \
     --runtime=peregrine \
-    --rpc-port=9933 \
+    --rpc-port=9944 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \

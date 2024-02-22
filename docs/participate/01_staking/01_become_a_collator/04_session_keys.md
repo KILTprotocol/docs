@@ -49,7 +49,7 @@ Nevertheless, the session keys can also be rotated using the PolkadotJS Apps int
 A collator can use the following command to rotate the session key.
 
 ```bash
-curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9933
+curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9944
 ```
 
 The answer should look like the JSON object below.
@@ -63,7 +63,7 @@ The `result` key is the HEX-encoded public part of the newly created session key
 <TabItem value="apps">
 
 In order to use the PolkadotJS Apps UI, the node WebSocket endpoint must be reachable.
-This can be done either by publicly exposing it with the `--ws-external` flag, which is discouraged, or by setting up an SSH tunnel for the WebSocket endpoint with `ssh -L 127.0.0.1:9933:127.0.0.1:9933 <user>@<server>`.
+This can be done either by publicly exposing it with the `--rpc-external` flag, which is discouraged, or by setting up an SSH tunnel for the WebSocket endpoint with `ssh -L 127.0.0.1:9944:127.0.0.1:9944 <user>@<server>`.
 If the latter option is chosen, there is no need to have a separate SSH tunnel for RPC traffic as all the RPC operations can be performed directly from the now-accessible PolkadotJS Apps interface.
 
 ![](/img/chain/chain-menu.png)
@@ -108,7 +108,7 @@ You can find more information about session keys in the [Substrate Documentation
 Once a new session key is generated, you must then link that key to your collator account in order to receive rewards for producing new blocks..
 This operation is performed by submitting a signed extrinsic to the blockchain.
 
-For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), while for Peregrine it is [wss://peregrine.kilt.io/parachain-public-ws](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io%2Fpara-public-ws#/explorer).
+For Spiritnet, the endpoint is [wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), while for Peregrine it is [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io#/explorer).
 
 `Developer -> Extrinsics -> Submission`
 

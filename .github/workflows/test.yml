@@ -11,85 +11,59 @@ on:
       - "*"
 
 jobs:
-  workshop:
-    name: Test Workshop snippets
+  code_examples:
+    name: Test code snippets
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test_case: ["dapp", "workshop", "core"]
+        required: ['required']
+        include:
+          - test_case: "staking"
+            required: 'optional'
+
+    continue-on-error: ${{ matrix.required == 'optional' }}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
 
       - name: Test style conventions
-        working-directory: code_examples/workshop
+        working-directory: code_examples/sdk_examples
         run: |
           yarn install --frozen-lockfile
           yarn lint && yarn style
 
       - name: Run tests
         timeout-minutes: 60
-        working-directory: code_examples/workshop
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
+          BASE_MNEMONIC: ${{ secrets.BASE_MNEMONIC }}
         run: |
           yarn install --frozen-lockfile
-          yarn run ts-node test.ts
+          yarn test ${{ matrix.test_case }}
 
-  core_features:
-    name: Test core features snippets
+  check-links:
+    name: Check for broken links
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
-      - name: Test style conventions
-        working-directory: code_examples/core_features
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - name: Install
         run: |
           yarn install --frozen-lockfile
-          yarn lint && yarn style
-
-      - name: Run tests
-        timeout-minutes: 60
-        working-directory: code_examples/core_features
-        env:
-          NODE_OPTIONS: --unhandled-rejections=strict
-          FAUCET_SEED: ${{ secrets.PEREGRINE_FAUCET_SEED }}
+      - name: Check for broken links
         run: |
-          yarn install --frozen-lockfile
-          yarn run ts-node run_core_features.ts
-
-  # Only test the style conventions for the viteJS snippets, nothing is run here
-  vitejs:
-    name: Test ViteJS snippets
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Test style conventions
-        working-directory: code_examples/vitejs
-        run: |
-          yarn install --frozen-lockfile
-          yarn lint && yarn style
-      - name: Test production build
-        working-directory: code_examples/vitejs
-        run: |
-          yarn build
-
-  # Only test the style conventions for the dapp snippets, nothing is run here
-  dapp_examples:
-    name: Test dapp interactions snippets
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Test style conventions
-        working-directory: code_examples/dapp
-        run: |
-          yarn install --frozen-lockfile
-          yarn lint && yarn style
+          yarn check-links

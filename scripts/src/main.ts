@@ -9,6 +9,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAttesterDid, generateClaimerDid, resolveKey } from './dids'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore Hacking tweetnacl randomBytes & UUID generate to produce deterministic output
 nacl.randomBytes = (n: number) => new Uint8Array(n).fill(1)
 Kilt.Utils.UUID.generate = () => Kilt.Utils.Crypto.hashStr("look ma I'm random")
@@ -93,6 +94,15 @@ async function main() {
     { resolveKey }
   )
 
+  const assetDid: Kilt.AssetDidUri =
+    'did:asset:eip155:1.erc721:0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb:1005'
+  const publicCredential: Kilt.IPublicCredentialInput = {
+    claims: claimContents,
+    cTypeHash: Kilt.CType.idToHash(drivingLicenseCtype.$id),
+    delegationId: null,
+    subject: assetDid
+  }
+
   const outDir = normalize(`${__dirname}/../out`)
 
   console.log(`Creating output directory at ${outDir}...`)
@@ -107,6 +117,10 @@ async function main() {
     writeFile(
       `${outDir}/encrypted-message.json`,
       JSON.stringify(encrypted, null, 2)
+    ),
+    writeFile(
+      `${outDir}/public-credential.json`,
+      JSON.stringify(publicCredential, null, 2)
     )
   ])
 
