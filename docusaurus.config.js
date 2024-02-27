@@ -225,6 +225,10 @@ module.exports = {
       singleQuote: true,
       printWidth: 80,
     },
+    customVariables: {
+latestRuntime:,
+latestSDK:
+    },
   },
   plugins: [
     // TODO: Rewrite titles
