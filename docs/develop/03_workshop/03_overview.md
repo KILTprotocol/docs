@@ -11,6 +11,12 @@ It involves three actors which work together to create **distributed trust**:
 -   An <span className="label-role attester">Attester</span> is an actor that verifies the claims of a <span className="label-role claimer">Claimer</span>.
 -   A <span className="label-role verifier">Verifier</span> is an actor that asks for proof of a claim.
 
+:::version-label[My Title]
+
+It works!
+
+:::
+
 For the workshop, you play all three roles.
 
 In a real-world use case, these actors would be different people and services, which this workshop simulates using different folders for each service.

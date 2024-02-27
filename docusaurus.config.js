@@ -40,7 +40,8 @@ module.exports = {
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'sdk-refactor-announcement',
-      content: 'Our Javascript SDK has undergone a major overhaul with the version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
+      content:
+        'Our Javascript SDK has undergone a major overhaul with the version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -207,6 +208,10 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
           showLastUpdateTime: true,
+          admonitions: {
+            keywords: ['version-label'],
+            extendDefaults: true,
+          }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -226,50 +231,52 @@ module.exports = {
       printWidth: 80,
     },
     customVariables: {
-latestRuntime:,
-latestSDK:
+      latestRuntime: '1.12.1',
+      latestSDK: '0.32.1',
     },
   },
   plugins: [
     // TODO: Rewrite titles
     // TODO: Document
     [
-        "docusaurus-plugin-remote-content",
-        {
-            // options here
-            name: "dip-provider-docs", // used by CLI, must be path safe
-            sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-            outDir: "docs/concepts/07_dip", // the base directory to output to.
-            documents: ["README.md"], // the file names to download,
-            modifyContent(filename, content) {
-              console.log(content)
-              if (filename.includes("README")) {
-                return {
-                  filename: "02_provider.md",
-                  content: content
-                }
-              }
-              return undefined
-            },
-          },
-        ],[
-          "docusaurus-plugin-remote-content",
-          {
-              // options here
-              name: "dip-consumer-docs", // used by CLI, must be path safe
-              sourceBaseUrl: "https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-              outDir: "docs/concepts/07_dip", // the base directory to output to.
-              documents: ["README.md"], // the file names to download,
-              modifyContent(filename, content) {
-                if (filename.includes("README")) {
-                  return {
-                    filename: "03_consumer.md",
-                    content: content
-                  }
-                }
-                return undefined
-              },
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'dip-provider-docs', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'docs/concepts/07_dip', // the base directory to output to.
+        documents: ['README.md'], // the file names to download,
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            return {
+              filename: '02_provider.md',
+              content: content,
             }
+          }
+          return undefined
+        },
+      },
     ],
-],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'dip-consumer-docs', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'docs/concepts/07_dip', // the base directory to output to.
+        documents: ['README.md'], // the file names to download,
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            return {
+              filename: '03_consumer.md',
+              content: content,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
+  ],
 }
