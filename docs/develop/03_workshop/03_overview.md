@@ -2,6 +2,13 @@
 id: overview
 title: 👓 Overview
 ---
+import {siteVariables} from '@site/src/versions'
+
+:::version-label[My Title]
+
+{siteVariables.latestRuntime}
+
+:::
 
 This tutorial runs through the full story of a claim.
 
@@ -10,12 +17,6 @@ It involves three actors which work together to create **distributed trust**:
 -   A <span className="label-role claimer">Claimer</span> is an actor who claims to possess certain credentials, abilities, or other attributes.
 -   An <span className="label-role attester">Attester</span> is an actor that verifies the claims of a <span className="label-role claimer">Claimer</span>.
 -   A <span className="label-role verifier">Verifier</span> is an actor that asks for proof of a claim.
-
-:::version-label[My Title]
-
-It works!
-
-:::
 
 For the workshop, you play all three roles.
 
