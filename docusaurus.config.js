@@ -211,7 +211,7 @@ module.exports = {
           admonitions: {
             keywords: ['version-label'],
             extendDefaults: true,
-          }
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -229,10 +229,6 @@ module.exports = {
       semi: false,
       singleQuote: true,
       printWidth: 80,
-    },
-    customVariables: {
-      latestRuntime: '1.12.1',
-      latestSDK: '0.32.1',
     },
   },
   plugins: [
