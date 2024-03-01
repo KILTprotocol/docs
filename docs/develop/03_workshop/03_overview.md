@@ -2,13 +2,6 @@
 id: overview
 title: 👓 Overview
 ---
-import {siteVariables} from '@site/src/versions'
-
-:::version-label[My Title]
-
-{siteVariables.latestRuntime}
-
-:::
 
 This tutorial runs through the full story of a claim.
 

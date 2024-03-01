@@ -6,6 +6,12 @@ title: Dapp developer
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import {siteVariables} from '@site/src/versions'
+
+:::version-label {siteVariables.dipVersion}
+
+:::
+
 The Decentralized Identity Provider (DIP) SDK helps Dapp developers build DIP functionality into their apps.
 
 ## Installation
