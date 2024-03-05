@@ -48,22 +48,26 @@ The dependencies needed are the following:
 
   Create the following remaining files and folders to end up with the folder structure below:
 
-    └─ kilt-rocks/ # project
-        ├─ attester/ # all attester code
-        ├─ claimer/ # all claimer code
-        ├─ verify.ts # all verifier code
-        └─ .env # environment variables
+  ```
+  └─ kilt-rocks/ # project
+      ├─ attester/ # all attester code
+      ├─ claimer/ # all claimer code
+      ├─ verify.ts # all verifier code
+      └─ .env # environment variables
+  ```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
   Create the following remaining files and folders to end up with the folder structure below:
 
-    └─ kilt-rocks/ # project
-        ├─ attester/ # all attester code
-        ├─ claimer/ # all claimer code
-        ├─ verify.js # all verifier code
-        └─ .env # environment variables
+  ```
+  └─ kilt-rocks/ # project
+      ├─ attester/ # all attester code
+      ├─ claimer/ # all claimer code
+      ├─ verify.js # all verifier code
+      └─ .env # environment variables
+  ```
 
   </TabItem>
 </Tabs>
