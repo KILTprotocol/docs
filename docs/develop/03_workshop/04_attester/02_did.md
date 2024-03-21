@@ -58,43 +58,30 @@ In summary, you register a DID on the blockchain by an account submitting the DI
 
 As an <span className="label-role attester">Attester</span> needs to interact with the chain, you must create a full DID.
 
-### Generate key pairs
-
-An <span className="label-role attester">Attester</span> needs an authentication and attestation key at minimum.
-Since three of the key types sign transactions, you can use the same key for them using the default KILT keyring to generate them, which is the same keyring used to generate accounts.
-
-Add the following code to the `attester/generateKeypairs` file.
-
-<TsJsBlock fileName="attester/generateKeypairs">
-  {GenerateKeypairs}
-</TsJsBlock>
-
-Throughout the code are `account.derive` methods that use key derivation syntax. You can read more about this syntax in [the Substrate documentation](https://docs.substrate.io/reference/command-line-tools/subkey/#working-with-derived-keys).
-
-The `generateKeypairs` function code derives base and sub keys from a particular path relevant to the use case for each key.
-It uses the sr25519 key type, which is the default key type for KILT.
-
-This method works for three of the four key types needed, so the `generateKeyAgreement` function helps generate the key-agreement key pair using the mnemonic.
-The function takes the mnemonic and creates another key pair from it using the `sr25519PairFromSeed(mnemonicToMiniSecret(mnemonic))` combination of functions.
-The function then creates a secret key based on the earlier temporary key pair and a derivation path relevant to key agreement.
-
-The function returns the key pair needed by generating one more key pair suitable for encryption and decryption using the secret key.
-
 ### Write DID to chain
 
-Once you have created all the necessary keys for a DID, you can create the on-chain DID.
-To create a DID, load the account created in the [last section](./01_account.md) and use it to pay for the DID registration.
+The KILT SDK provides multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account.
+
+<!-- TODO: If you don't have an account?  -->
+<!-- TODO: Also no longer need account MD in context of this tutorial -->
+
+:::info other methods
+
+ff
+
+:::
+
 Create and submit the extrinsic (aka transaction) that registers the DID.
 
 <TsJsBlock fileName="attester/generateDid">
   {GenerateDid}
 </TsJsBlock>
 
-The `createFullDid` function takes the key pair generated for the submitter in the previous step and creates a full DID. It returns a mnemonic as a string and DID document.
-Inside the function, the `getStoreTx` method creates a DID creation operation based on the four key pairs created earlier.
-It returns the extrinsic (aka transaction) that registers the DID.
+The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Attester's DID creation.
 
-The `signAndSubmitTx` method takes that extrinsic and submits it to the chain, also passing the submitter's account.
+The `createFromAccount` method takes the public key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID will need and use.
+
+The `signAndSubmitTx` method then takes those transactions and submits them as a batch to the chain.
 
 ## Run the code
 

@@ -1,51 +1,40 @@
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
-
+// TODO: No longer needed in content, but needed for tutorial?
+// TODO: What to do?
+// TODO: And generateAccount needed changes, why?
 import { generateAccount } from './generateAccount'
-import { generateKeypairs } from './generateKeypairs'
 
-export async function createFullDid(
-  submitterAccount: Kilt.KiltKeyringPair
-): Promise<{
-  mnemonic: string
-  fullDid: Kilt.DidDocument
-}> {
-  const api = Kilt.ConfigService.get('api')
+export async function createFullDid() {
+  const api = await Kilt.connect(process.env.WSS_ADDRESS as string);
+  const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string;
+  const { account } = generateAccount(accountMnemonic);
+  const { type, publicKey } = account;
 
-  const mnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
-  const {
-    authentication,
-    keyAgreement,
-    assertionMethod,
-    capabilityDelegation
-  } = generateKeypairs(mnemonic)
-  // Get tx that will create the DID on chain and DID-URI that can be used to resolve the DID Document.
-  const fullDidCreationTx = await Kilt.Did.getStoreTx(
-    {
-      authentication: [authentication],
-      keyAgreement: [keyAgreement],
-      assertionMethod: [assertionMethod],
-      capabilityDelegation: [capabilityDelegation]
-    },
-    submitterAccount.address,
-    async ({ data }) => ({
-      signature: authentication.sign(data),
-      keyType: authentication.type
+  const txs = [
+    api.tx.did.createFromAccount({ [type]: publicKey }),
+    api.tx.did.setAttestationKey({ [type]: publicKey }),
+  ];
+
+  console.log("Creating DID from account…");
+  await Kilt.Blockchain.signAndSubmitTx(api.tx.utility.batch(txs), account)
+    .then((result) => {
+      console.log(result);
     })
-  )
+    .catch((error) => {
+      console.log(error);
+    });
 
-  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
-
-  const didUri = Kilt.Did.getFullDidUriFromKey(authentication)
-  const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
-  const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
+  const didUri = Kilt.Did.getFullDidUriFromKey(account);
+  const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri));
+  const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid);
 
   if (!document) {
-    throw new Error('Full DID was not successfully created.')
+    throw new Error("Full DID was not successfully created.");
   }
 
-  return { mnemonic, fullDid: document }
+  console.log(document);
 }
 
 // Don't execute if this is imported by another file.
