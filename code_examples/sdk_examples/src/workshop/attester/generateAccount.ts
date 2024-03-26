@@ -5,7 +5,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export function generateAccount(
   mnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
 ): {
-  account: Kilt.KiltKeyringPair & { type: "ed25519" }
+  account: Kilt.KiltKeyringPair & { type: 'ed25519' }
   mnemonic: string
 } {
   return {
