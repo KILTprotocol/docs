@@ -5,6 +5,7 @@ title: DID
 
 import CodeBlock from '@theme/CodeBlock';
 import TsJsBlock from '@site/src/components/TsJsBlock';
+import SnippetBlock from '@site/src/components/SnippetBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -26,12 +27,12 @@ Other users can now encrypt messages using your public encryption key and send a
 
 Kilt supports two DID types: **light** and **full**.
 
-There are many differences between the two types, but the most crucial is that you can use a light DID offline, but a full DID needs access to the blockchain to work.
+There are differences between the two types, but the most crucial is that you can use a light DID offline, but a full DID needs access to the blockchain to work.
 Read the [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about the difference between the light and full types.
 
 :::info KILT DID
 
-There are four different key types that a DID supports:
+A DID supports four different key types:
 
 - An _authentication key pair_, used to sign claims and present authenticated credentials 
 - A _key-agreement key pair_, used to encrypt/decrypt messages
@@ -62,12 +63,11 @@ As an <span className="label-role attester">Attester</span> needs to interact wi
 
 The KILT SDK provides multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account.
 
-<!-- TODO: If you don't have an account?  -->
-<!-- TODO: Also no longer need account MD in context of this tutorial -->
+<!-- TODO: Add other methods -->
 
-:::info other methods
+:::info Bring your own account
 
-ff
+This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead by adding the `ATTESTER_ACCOUNT_ADDRESS` and `ATTESTER_ACCOUNT_MNEMONIC` to the `.env` file.
 
 :::
 
@@ -104,15 +104,17 @@ Now run the code with:
   </TabItem>
 </Tabs>
 
-Once you have run the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
-The output should look like the following, but not identical since the DIDs are constructed from your account:
+Once you have run the script, the output should provide you with the `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
+Using the `createFromAccount` method means that the `ATTESTER_DID_MNEMONIC` and `ATTESTER_ACCOUNT_MNEMONIC` are the same.
+
+The output should look like the following, but not identical since the code creates the DIDs from your account:
 
 ```
 ATTESTER_DID_MNEMONIC="beyond large galaxy…
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD…"
 ```
 
-Save it in the `.env` file, which should now look like the following:
+Save the values in the `.env` file, which should now look like the following:
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
