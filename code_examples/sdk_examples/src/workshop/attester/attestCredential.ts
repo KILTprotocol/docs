@@ -11,6 +11,8 @@ export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
   credential: Kilt.ICredential,
+  // TODO: Sort later
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')

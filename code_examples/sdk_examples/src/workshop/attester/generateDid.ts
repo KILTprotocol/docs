@@ -1,5 +1,5 @@
-import { config as envConfig } from 'dotenv'
 import * as Kilt from '@kiltprotocol/sdk-js'
+import { config as envConfig } from 'dotenv'
 import { generateAccount } from './generateAccount'
 
 export async function createFullDid(
@@ -8,11 +8,8 @@ export async function createFullDid(
   mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
-  // console.log(process.env.WSS_ADDRESS)
-  // const api = await Kilt.connect(process.env.WSS_ADDRESS as string)
   const api = Kilt.ConfigService.get('api')
   const mnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
-  // const { account: didAccount } = generateDidAccount(mnemonic)
   const { type, publicKey } = submitterAccount
 
   const txs = [

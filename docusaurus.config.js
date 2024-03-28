@@ -238,7 +238,6 @@ module.exports = {
             outDir: "docs/concepts/07_dip", // the base directory to output to.
             documents: ["README.md"], // the file names to download,
             modifyContent(filename, content) {
-              console.log(content)
               if (filename.includes("README")) {
                 return {
                   filename: "02_provider.md",
