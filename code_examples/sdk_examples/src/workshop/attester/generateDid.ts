@@ -8,22 +8,27 @@ export async function createFullDid(
   mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
-  const api = await Kilt.connect(process.env.WSS_ADDRESS as string)
+  // console.log(process.env.WSS_ADDRESS)
+  // const api = await Kilt.connect(process.env.WSS_ADDRESS as string)
+  const api = Kilt.ConfigService.get('api')
   const mnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
-  const { account } = generateAccount(mnemonic)
-  const { type, publicKey } = account
+  // const { account: didAccount } = generateDidAccount(mnemonic)
+  const { type, publicKey } = submitterAccount
 
   const txs = [
-    api.tx.did.createFromAccount({ [type]: publicKey }),
-    api.tx.did.setAttestationKey({ [type]: publicKey })
+    api.tx.did.createFromAccount({ [type as 'ed25519']: publicKey }),
+    api.tx.did.dispatchAs(
+      submitterAccount.address,
+      api.tx.did.setAttestationKey({ [type as 'ed25519']: publicKey })
+    )
   ]
 
   console.log('Creating DID from account…')
   const didDocument = await Kilt.Blockchain.signAndSubmitTx(
     api.tx.utility.batch(txs),
-    account
+    submitterAccount
   ).then(async () => {
-    const didUri = Kilt.Did.getFullDidUriFromKey(account)
+    const didUri = Kilt.Did.getFullDidUriFromKey(submitterAccount)
     const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
     const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
     return document

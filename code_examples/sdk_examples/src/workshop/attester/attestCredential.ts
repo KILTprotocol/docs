@@ -23,12 +23,7 @@ export async function attestCredential(
 
   // Create the tx and authorize it.
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
-  const extrinsic = await Kilt.Did.authorizeTx(
-    attesterDid,
-    tx,
-    signCallback,
-    attesterAccount.address
-  )
+  const extrinsic = api.tx.did.dispatchAs(attesterAccount.address, tx)
 
   // Submit the tx to write the attestation to the chain.
   console.log('Attester -> create attestation...')
