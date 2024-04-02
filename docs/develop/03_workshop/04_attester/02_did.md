@@ -81,6 +81,8 @@ The `txs` array holds the two transactions containing the extrinsics needed to s
 
 The `createFromAccount` method takes the public key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID will need and use.
 
+An Attester account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Attester account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
+
 The `signAndSubmitTx` method then takes those transactions and submits them as a batch to the chain.
 
 ## Run the code
