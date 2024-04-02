@@ -160,7 +160,7 @@ The next step is to start querying data from the blockchain.
 
 ## Query a KILT Identity
 
-The following code queries information related to a **web3name** (`john_doe`) and uses it to retrieve the **KILT DID** linked to it.
+The following code queries information related to a **web3name** (`kiltnerd123`) and uses it to retrieve the **KILT DID** linked to it.
 
 Between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following code:
 
@@ -173,18 +173,18 @@ dropTail="1"
 
 Try running the code and check the result.
 
-Did you get the DID? You now have `john_doe`'s DID.
-The next step is to see if `john_doe` has any publicly linked KILT credentials to retrieve and verify.
+Did you get the DID? You now have `kiltnerd123`'s DID.
+The next step is to see if `kiltnerd123` has any publicly linked KILT credentials to retrieve and verify.
 
 ## Retrieve and Verify a Credential
 
 A **KILT DID** can expose services that allow external resources to be linked to the DID.
 **KILT credentials** represent one type of external resource.
 
-You can retrieve the **services** attached to John Doe's DID and see if they link to any public credentials to **query** and **verify**.
+You can retrieve the **services** attached to kiltnerd123's DID and see if they link to any public credentials to **query** and **verify**.
 
 Add the following code after the code you added in the previous step but before the `await Kilt.disconnect()`.
-It retrieves the services exposed by the DID found for `john_doe`:
+It retrieves the services exposed by the DID found for `kiltnerd123`:
 
 <SnippetBlock
 className="language-ts"
@@ -217,7 +217,7 @@ className="language-ts"
 {VerifyCredential}
 </SnippetBlock>
 
-Run the code and wait to see if you can retrieve **and** verify one of John Doe's credentials!
+Run the code and wait to see if you can retrieve **and** verify one of kiltnerd123's credentials!
 
 :::info Next steps
 
