@@ -241,12 +241,16 @@ module.exports = {
         sourceBaseUrl:
           'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/', // the base url for the markdown (gets prepended to all of the documents when fetching)
         outDir: 'docs/concepts/07_dip', // the base directory to output to.
-        documents: ['README.md'], // the file names to download,
+        documents: ['README.md'], // the file nafmes to download,
         modifyContent(filename, content) {
           if (filename.includes('README')) {
             return {
               filename: '02_provider.md',
-              content: content,
+              content: `---
+title: We are now adding a front matter field to any README files!
+---
+ss
+${content}`,
             }
           }
           return undefined
