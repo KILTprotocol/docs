@@ -231,26 +231,21 @@ module.exports = {
     },
   },
   plugins: [
-    // TODO: Rewrite titles
-    // TODO: Document
+    // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
     [
       'docusaurus-plugin-remote-content',
       {
-        // options here
-        name: 'dip-provider-docs', // used by CLI, must be path safe
+        name: 'dip-provider-docs',
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'docs/concepts/07_dip', // the base directory to output to.
-        documents: ['README.md'], // the file nafmes to download,
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/',
+        outDir: 'docs/concepts/07_dip',
+        documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
+            var trimContent = content.replace("# Decentralized Identity Provider (DIP) provider pallet", "# Provider pallet")
             return {
               filename: '02_provider.md',
-              content: `---
-title: We are now adding a front matter field to any README files!
----
-ss
-${content}`,
+              content: trimContent,
             }
           }
           return undefined
@@ -260,17 +255,18 @@ ${content}`,
     [
       'docusaurus-plugin-remote-content',
       {
-        // options here
-        name: 'dip-consumer-docs', // used by CLI, must be path safe
+        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+        name: 'dip-consumer-docs',
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'docs/concepts/07_dip', // the base directory to output to.
-        documents: ['README.md'], // the file names to download,
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/',
+        outDir: 'docs/concepts/07_dip',
+        documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
+            var trimContent = content.replace("# Decentralized Identity Provider (DIP) consumer pallet", "# Consumer pallet")
             return {
               filename: '03_consumer.md',
-              content: content,
+              content: trimContent,
             }
           }
           return undefined
