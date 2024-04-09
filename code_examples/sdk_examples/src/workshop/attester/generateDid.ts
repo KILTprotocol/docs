@@ -5,11 +5,10 @@ import { generateAccount } from './generateAccount'
 export async function createFullDid(
   creatorAccount: Kilt.KiltKeyringPair & { type: 'ed25519' }
 ): Promise<{
-  mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
   const api = Kilt.ConfigService.get('api')
-  const mnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
+
   const { type, publicKey } = creatorAccount
 
   const txs = [
@@ -25,15 +24,15 @@ export async function createFullDid(
     api.tx.utility.batch(txs),
     creatorAccount
   )
-    const didUri = Kilt.Did.getFullDidUriFromKey(creatorAccount)
-    const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
-    const { document: didDocument } = Kilt.Did.linkedInfoFromChain(encodedFullDid)  
+  const didUri = Kilt.Did.getFullDidUriFromKey(creatorAccount)
+  const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
+  const { document: didDocument } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
 
   if (!didDocument) {
     throw new Error('Full DID was not successfully created.')
   }
 
-  return { mnemonic, fullDid: didDocument }
+  return { fullDid: didDocument }
 }
 
 // Don't execute if this is imported by another file.
@@ -47,10 +46,10 @@ if (require.main === module) {
       // Load attester account
       const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
       const { account } = generateAccount(accountMnemonic)
-      const { mnemonic, fullDid } = await createFullDid(account)
+      const { fullDid } = await createFullDid(account)
 
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
+      // console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
       console.error(`ATTESTER_DID_URI="${fullDid.uri}"\n`)
     } catch (e) {
       console.log('Error while creating attester DID')
