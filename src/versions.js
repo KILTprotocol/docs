@@ -1,4 +1,12 @@
 export const siteVariables = {
-    dipVersion: 'Feature available in version 1.12.0 of the KILT runtime and higher',
-    dispatchAsVersion: 'Feature available in version 1.12.0 of the KILT runtime and higher'
+    1.12.0:
+    [name: "Peregrine"],
+    features:
+    [
+        DIP,
+        dispatchAs
+    ],
+    "1.12.0 Spiritnet": [
+
+    ]
 };
