@@ -237,7 +237,7 @@ module.exports = {
       {
         name: 'dip-provider-docs',
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-provider/',
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-provider/',
         outDir: 'docs/concepts/07_dip',
         documents: ['README.md'],
         modifyContent(filename, content) {
@@ -258,7 +258,7 @@ module.exports = {
         // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
         name: 'dip-consumer-docs',
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/release-1.12.1/pallets/pallet-dip-consumer/',
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-consumer/',
         outDir: 'docs/concepts/07_dip',
         documents: ['README.md'],
         modifyContent(filename, content) {
