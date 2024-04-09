@@ -3,33 +3,31 @@ import { config as envConfig } from 'dotenv'
 import { generateAccount } from './generateAccount'
 
 export async function createFullDid(
-  submitterAccount: Kilt.KiltKeyringPair
+  creatorAccount: Kilt.KiltKeyringPair & { type: 'ed25519' }
 ): Promise<{
   mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
   const api = Kilt.ConfigService.get('api')
   const mnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
-  const { type, publicKey } = submitterAccount
+  const { type, publicKey } = creatorAccount
 
   const txs = [
-    api.tx.did.createFromAccount({ [type as 'ed25519']: publicKey }),
+    api.tx.did.createFromAccount(creatorAccount.address),
     api.tx.did.dispatchAs(
-      submitterAccount.address,
+      creatorAccount.address,
       api.tx.did.setAttestationKey({ [type as 'ed25519']: publicKey })
     )
   ]
 
   console.log('Creating DID from account…')
-  const didDocument = await Kilt.Blockchain.signAndSubmitTx(
+  await Kilt.Blockchain.signAndSubmitTx(
     api.tx.utility.batch(txs),
-    submitterAccount
-  ).then(async () => {
-    const didUri = Kilt.Did.getFullDidUriFromKey(submitterAccount)
+    creatorAccount
+  )
+    const didUri = Kilt.Did.getFullDidUriFromKey(creatorAccount)
     const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
-    const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
-    return document
-  })
+    const { document: didDocument } = Kilt.Did.linkedInfoFromChain(encodedFullDid)  
 
   if (!didDocument) {
     throw new Error('Full DID was not successfully created.')
