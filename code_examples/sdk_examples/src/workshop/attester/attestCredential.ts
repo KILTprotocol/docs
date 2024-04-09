@@ -44,7 +44,7 @@ export async function attestingFlow(
   // ... send the request to the attester
 
   // The attester checks the attributes and attests the provided credential.
-  await attestCredential(attesterAccount, attesterDid, credential, signCallback)
+  await attestCredential(attesterAccount, attesterDid, credential)
 
   // Return the generated credential.
   return credential
