@@ -40,7 +40,8 @@ module.exports = {
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'dip-announcement',
-      content: 'DIP enables OpenID inspired cross-chain identity, <a href="docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
+      // Use absolute links proceeded by '/docs'
+      content: 'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
