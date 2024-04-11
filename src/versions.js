@@ -1,12 +1,12 @@
-export const siteVariables = {
-    1.12.0:
-    [name: "Peregrine"],
-    features:
-    [
-        DIP,
-        dispatchAs
-    ],
-    "1.12.0 Spiritnet": [
-
-    ]
-};
+export const releaseVersions = [
+  {
+    number: '1.12.0',
+    name: 'x',
+    features: [one, two],
+  },
+  {
+    number: '1.13.0',
+    name: 'x',
+    features: [one, two],
+  },
+]
