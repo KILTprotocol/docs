@@ -1,12 +1,19 @@
-export const releaseVersions = [
-  {
-    number: '1.12.0',
-    name: 'x',
-    features: [one, two],
-  },
+export const nodeVersions = [
   {
     number: '1.13.0',
-    name: 'x',
-    features: [one, two],
+    name: 'Dippy Duck',
+    features: [
+      { DIP: Spiritnet },
+      { DIP: Peregrine },
+      { limitedReserveTransfers: Spiritnet },
+      { limitedReserveTransfers: Peregrine },
+    ],
+  },
+  {
+    number: '1.12.1',
+    name: 'Migration Madness',
+    features: [{ DIP: Peregrine }],
   },
 ]
+
+// Ref: https://github.com/KILTprotocol/kilt-node/releases
