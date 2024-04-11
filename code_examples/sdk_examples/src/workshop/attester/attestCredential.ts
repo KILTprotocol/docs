@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -10,7 +11,7 @@ import { generateLightDid } from '../claimer/generateLightDid'
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
-  credential: Kilt.ICredential,
+  credential: Kilt.ICredential
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
