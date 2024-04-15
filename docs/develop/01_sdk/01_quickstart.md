@@ -18,16 +18,6 @@ import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/co
 import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
 import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
 import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
-import {siteVariables} from '@site/src/versions'
-
-<Tabs groupId="version-example">
-  <TabItem value={siteVariables.dipVersion} label={siteVariables.dipVersion} default>
-    Do this and that.
-  </TabItem>
-  <TabItem value={siteVariables.dispatchAsVersion} label={siteVariables.dispatchAsVersion}>
-    Do this and that.
-  </TabItem>
-</Tabs>
 
 Get started with KILT by following this guide, which teaches you to:
 

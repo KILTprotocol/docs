@@ -3,9 +3,9 @@ id: what-is-dip
 title: Overview
 ---
 
-import {siteVariables} from '@site/src/versions'
+:::version-label[DIP]
 
-:::version-label {siteVariables.dipVersion}
+Text
 
 :::
 
