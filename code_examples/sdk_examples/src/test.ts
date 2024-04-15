@@ -59,8 +59,10 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
   await Kilt.init()
 
   const wssAddress = process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io'
-  const mnemonic =  '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
-  const faucetSeed =  '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
+  const mnemonic =
+    '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
+  const faucetSeed =
+    '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
 
   let baseAccountStrategy: 'base-mnemonic' | 'faucet-seed' = 'base-mnemonic'
 
@@ -79,7 +81,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
 
   switch (baseAccountStrategy) {
     case 'base-mnemonic': {
-      console.log("mnemonic", mnemonic)
+      console.log('mnemonic', mnemonic)
 
       const baseAccount = new Kilt.Utils.Keyring({
         type: 'sr25519',
@@ -90,7 +92,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       workshopAccount = baseAccount.derive('//workshop')
       dappAccount = baseAccount.derive('//dapp')
       coreAccount = baseAccount.derive('//core')
-console.log('workshopAccount', workshopAccount.address)
+      console.log('workshopAccount', workshopAccount.address)
       break
     }
     case 'faucet-seed': {
@@ -102,7 +104,6 @@ console.log('workshopAccount', workshopAccount.address)
       dappAccount = faucetAccount
       coreAccount = faucetAccount
       console.log('workshopAccount2', workshopAccount.address)
-
     }
   }
 
