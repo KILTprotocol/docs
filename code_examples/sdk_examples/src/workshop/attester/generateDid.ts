@@ -10,12 +10,12 @@ export async function createFullDid(
   const api = Kilt.ConfigService.get('api')
 
   const { type, publicKey } = creatorAccount
-
+  console.log('creatorAccount', creatorAccount.address)
   const txs = [
-    api.tx.did.createFromAccount(creatorAccount.address),
+    api.tx.did.createFromAccount({ [type]: publicKey }),
     api.tx.did.dispatchAs(
       creatorAccount.address,
-      api.tx.did.setAttestationKey({ [type as 'ed25519']: publicKey })
+      api.tx.did.setAttestationKey({ [type]: publicKey })
     )
   ]
 

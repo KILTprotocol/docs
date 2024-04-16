@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { attestingFlow } from './attester/attestCredential'
@@ -33,41 +32,39 @@ export async function testWorkshop(
     age: 27,
     name: 'Karl'
   })
-  console.log(account.address)
-  console.log(attesterAccount.address)
+
   await getFunds(account, attesterAccount.address, 5)
 
-  // // Create attester DID & ensure CType.
-  // const { fullDid: attesterDid} =
-  //   await createFullDid(attesterAccount)
-  // const { assertionMethod } = generateAttesterKeypairs()
+  // Create attester DID & ensure CType.
+  const { fullDid: attesterDid } = await createFullDid(attesterAccount)
+  const { assertionMethod } = generateAttesterKeypairs()
 
-  // await ensureStoredCtype(
-  //   attesterAccount,
-  //   attesterDid.uri,
-  //   async ({ data }) => ({
-  //     signature: assertionMethod.sign(data),
-  //     keyType: assertionMethod.type
-  //   })
-  // )
+  await ensureStoredCtype(
+    attesterAccount,
+    attesterDid.uri,
+    async ({ data }) => ({
+      signature: assertionMethod.sign(data),
+      keyType: assertionMethod.type
+    })
+  )
 
-  // // Do attestation & verification.
-  // const credential = await attestingFlow(
-  //   lightDid.uri,
-  //   attesterAccount,
-  //   attesterDid.uri,
-  //   async ({ data }) => ({
-  //     signature: assertionMethod.sign(data),
-  //     keyType: assertionMethod.type
-  //   })
-  // )
-  // await verificationFlow(
-  //   credential,
-  //   async ({ data }) => ({
-  //     signature: authentication.sign(data),
-  //     keyType: authentication.type,
-  //     keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
-  //   }),
-  //   [attesterDid.uri]
-  // )
+  // Do attestation & verification.
+  const credential = await attestingFlow(
+    lightDid.uri,
+    attesterAccount,
+    attesterDid.uri,
+    async ({ data }) => ({
+      signature: assertionMethod.sign(data),
+      keyType: assertionMethod.type
+    })
+  )
+  await verificationFlow(
+    credential,
+    async ({ data }) => ({
+      signature: authentication.sign(data),
+      keyType: authentication.type,
+      keyUri: `${lightDid.uri}${lightDid.authentication[0].id}`
+    }),
+    [attesterDid.uri]
+  )
 }

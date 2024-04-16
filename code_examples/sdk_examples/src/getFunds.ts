@@ -7,7 +7,6 @@ async function failproofSubmit(
   submitter: Kilt.KeyringPair
 ) {
   try {
-    console.log('account', submitter.address)
     await Kilt.Blockchain.signAndSubmitTx(tx, submitter)
   } catch {
     // Try a second time after a small delay and fetching the right nonce.
@@ -33,7 +32,6 @@ export async function getFunds(
     recipient,
     Kilt.BalanceUtils.convertToTxUnit(new BN(kiltAmount), 0)
   )
-  console.log('faucet', faucetAccount.address)
   await failproofSubmit(tx, faucetAccount)
   console.log('Successfully transferred tokens')
 }

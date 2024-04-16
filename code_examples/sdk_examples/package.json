@@ -10,7 +10,7 @@
     "style": "prettier --check --config .prettierrc '**/*.ts'",
     "style:fix": "yarn style --write",
     "fix": "yarn lint:fix && yarn style:fix",
-    "test": "ts-node src/test.ts workshop"
+    "test": "ts-node src/test.ts"
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "0.35.0",

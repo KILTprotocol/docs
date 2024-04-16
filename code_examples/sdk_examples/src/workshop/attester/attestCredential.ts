@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
@@ -34,6 +33,7 @@ export async function attestingFlow(
   claimerDid: Kilt.DidUri,
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICredential> {
   // First the claimer.
