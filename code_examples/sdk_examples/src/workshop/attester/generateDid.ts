@@ -3,7 +3,9 @@ import { config as envConfig } from 'dotenv'
 import { generateAccount } from './generateAccount'
 
 export async function createFullDid(
-  creatorAccount: Kilt.KiltKeyringPair & { type: 'ed25519' }
+  creatorAccount: Kilt.KiltKeyringPair & {
+    type: 'ed25519' | 'sr25519' | 'ecdsa'
+  }
 ): Promise<{
   fullDid: Kilt.DidDocument
 }> {
