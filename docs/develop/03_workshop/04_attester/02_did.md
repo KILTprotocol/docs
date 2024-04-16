@@ -64,10 +64,11 @@ As an <span className="label-role attester">Attester</span> needs to interact wi
 The KILT SDK provides multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account.
 
 <!-- TODO: Add other methods -->
+<!-- TODO: Add how -->
 
 :::info Bring your own account
 
-This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead by adding the `ATTESTER_ACCOUNT_ADDRESS` and `ATTESTER_ACCOUNT_MNEMONIC` to the `.env` file.
+This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead.
 
 :::
 
