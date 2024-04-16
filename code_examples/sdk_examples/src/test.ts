@@ -59,8 +59,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
   await Kilt.init()
 
   const wssAddress = process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io'
-  const mnemonic =
-    '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
+  const mnemonic = undefined
   const faucetSeed =
     '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
 
@@ -86,7 +85,7 @@ const FAUCET_SEED_ENV = 'FAUCET_SEED'
       const baseAccount = new Kilt.Utils.Keyring({
         type: 'sr25519',
         ss58Format: Kilt.Utils.ss58Format
-      }).addFromMnemonic(mnemonic as string)
+      }).addFromMnemonic(mnemonic as unknown as string)
       console.log('base', baseAccount.address)
 
       workshopAccount = baseAccount.derive('//workshop')
