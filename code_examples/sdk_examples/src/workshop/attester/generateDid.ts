@@ -49,7 +49,6 @@ if (require.main === module) {
       const { fullDid } = await createFullDid(account)
 
       console.log('\nsave following to .env to continue\n')
-      // console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
       console.error(`ATTESTER_DID_URI="${fullDid.uri}"\n`)
     } catch (e) {
       console.log('Error while creating attester DID')
