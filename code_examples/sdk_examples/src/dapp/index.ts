@@ -21,10 +21,8 @@ export async function testDapp(account: Kilt.KeyringPair, wssAddress: string) {
   await getFunds(account, dappAccount.address, 4)
 
   // Create attester DID & ensure CType.
-  const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
-    await createFullDid(dappAccount)
-  const { assertionMethod: assertionMethodKey } =
-    generateAttesterKeypairs(attesterMnemonic)
+  const { fullDid: attesterDid } = await createFullDid(dappAccount)
+  const { assertionMethod: assertionMethodKey } = generateAttesterKeypairs()
 
   const domainLinkageCType = await getDomainLinkageCType()
   const { domainLinkageCredential } = getDomainLinkageCredential({

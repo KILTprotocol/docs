@@ -44,6 +44,7 @@ jobs:
         env:
           NODE_OPTIONS: --unhandled-rejections=strict
           BASE_MNEMONIC: ${{ secrets.BASE_MNEMONIC }}
+          FAUCET_SEED: ${{ secrets.FAUCET_SEED }}
         run: |
           yarn install --frozen-lockfile
           yarn test ${{ matrix.test_case }}
