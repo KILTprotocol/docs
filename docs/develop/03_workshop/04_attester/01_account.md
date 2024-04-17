@@ -66,7 +66,7 @@ The `generateAccount` method returns an object with the following two properties
 Generating these values takes two steps:
 
 1. Create the `mnemonic` value using the `mnemonicGenerate()` method from the `Utils.Crypto` package.
-2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the key pair type. This example uses `ed25519`, but `sr25519`, `ed25519`, or `ecdsa` are also valid.
+2. The `account` value first needs a `keyring` value defined, which is a data structure for defining the key pair type. This example uses `ed25519`, but `sr25519` or `ecdsa` are also valid.
 
 The function then returns the value using the `makeKeypairFromUri()` method to create a key pair for the address using the given mnemonic.
 
