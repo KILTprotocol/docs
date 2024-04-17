@@ -78,9 +78,11 @@ Create and submit the extrinsic (aka transaction) that registers the DID.
   {GenerateDid}
 </TsJsBlock>
 
+The `publicKeyToChain` helper method returns a public key of the correct type.
+
 The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Attester's DID creation.
 
-The `createFromAccount` method takes the public key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID will need and use.
+The `createFromAccount` method takes the authenticated key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID needs and uses.
 
 An Attester account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Attester account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
 
