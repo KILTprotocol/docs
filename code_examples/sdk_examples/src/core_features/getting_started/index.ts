@@ -1,7 +1,6 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as connectToPeregrine } from './02_connect_spirit'
-import { main as connectToSpiritnet } from './02_connect_spirit'
+import { main as connectToPeregrine } from './02_connect_pere'
 import { main as disconnect } from './07_disconnect'
 import { main as fetchEndpointData } from './05_fetch_endpoint_data'
 import { main as fetchkiltnerd123Did } from './03_fetch_did'
@@ -32,14 +31,6 @@ async function fetchDidAndCredential() {
 
 export async function runAll(): Promise<void> {
   await printHelloWorld()
-
-  // check that the getting started works with both spiritnet and peregine
-  await connectToSpiritnet()
-  try {
-    await fetchDidAndCredential()
-  } finally {
-    await disconnect()
-  }
 
   await connectToPeregrine()
   try {
