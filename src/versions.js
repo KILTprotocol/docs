@@ -1,6 +1,5 @@
-export const nodeVersions = [
-  {
-    number: '1.13.0',
+export const nodeVersions = {
+    '1.13.0':{
     name: 'Dippy Duck',
     features: [
       { DIP: "Spiritnet" },
@@ -9,12 +8,11 @@ export const nodeVersions = [
       { limitedReserveTransfers: "Peregrine" },
     ],
   },
-  {
-    number: '1.12.1',
+  '1.12.1':{
     name: 'Migration Madness',
     features: [{ DIP: "Peregrine" }],
   },
-]
+  }
 
 export const sdkVersions = []
 

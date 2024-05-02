@@ -5,8 +5,6 @@ title: Overview
 
 :::version-label[DIP]
 
-Text
-
 :::
 
 The Decentralized Identity Provider (DIP) enables a cross-chain decentralized identity system that mirrors the functionality of OpenID.
