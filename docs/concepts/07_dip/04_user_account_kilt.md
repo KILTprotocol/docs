@@ -3,7 +3,7 @@ id: dip-accounts-kilt
 title: Enabling DIP for user accounts on the KILT blockchain
 ---
 
-import {siteVariables} from '@site/src/versions'
+import { siteVariables } from '@site/src/versions'
 
 :::version-label {siteVariables.dipVersion}
 
