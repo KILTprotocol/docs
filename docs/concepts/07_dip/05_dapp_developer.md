@@ -6,9 +6,7 @@ title: Dapp developer
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import { siteVariables } from '@site/src/versions'
-
-:::version-label {siteVariables.dipVersion}
+:::version-label[DIP]
 
 :::
 

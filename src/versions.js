@@ -12,6 +12,10 @@ export const nodeVersions = {
     name: 'Migration Madness',
     features: [{ DIP: "Peregrine" }],
   },
+  '1.11.1':{
+    name: 'Multisig Marvel',
+    features: [],
+  },
   }
 
 export const sdkVersions = []
