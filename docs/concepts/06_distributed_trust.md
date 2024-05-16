@@ -7,7 +7,8 @@ import ThemedImage from '@theme/ThemedImage';
 
 Sometimes, Attesters are individuals that attest to the validity of claims made by Claimers.
 However, usually multiple Attesters group together to build up trust in a brand.
-In this way, Verifiers no longer need to trust each and every Attester individually. They can put trust in the brand as a whole, which in return ensures that all Attesters working for this brand are credible.
+In this way, Verifiers no longer need to trust each and every Attester individually.
+They can put trust in the brand as a whole, which in return ensures that all Attesters working for this brand are credible.
 Such a brand can be organized in many different ways.
 The KILT protocol provides mechanisms to form such brands on the blockchain.
 
