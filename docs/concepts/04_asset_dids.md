@@ -20,7 +20,7 @@ This AssetDID refers to the [CryptoPunks NFT collection][cryptopunks-nft].
 
 An AssetDID is a *generative* identifier, meaning that it doesn't depend nor rely on any information stored anywhere.
 Rather, given the asset to identify, it's **always** possible to generate its AssetDID.
-The reverse is also true. Given an AssetDID, it's always possible to dereference it into its components which, together, uniquely identified a given asset.
+The reverse is also true. Given an AssetDID, it's always possible to dereference it into its components, which, together, uniquely identify a given asset.
 
 AssetDIDs always start with the `did:asset` prefix, and then contain a *chain* component (namespace + reference) and an *asset* component (namespace + reference + identifier).
 
