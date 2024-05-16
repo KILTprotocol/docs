@@ -50,7 +50,7 @@ Install the latest version of docker-compose from the [official docker-compose i
 The configuration can be checked by visiting `https://localhost:3000` and authenticating with the username and password set in `.env` at step 3.
 
 ## Configuring Alert Notification Channel
-Choose any of the supported notification channels and follow the [grafana documentation](https://grafana.com/docs/grafana/latest/alerting/old-alerting/notifications/) to receive alerts and notifications.
+Choose any of the supported notification channels and follow the [grafana documentation](https://grafana.com/docs/grafana/latest/alerting/) to receive alerts and notifications.
 
 Overall, for monitoring we recommend the following stack:
 - Prometheus
