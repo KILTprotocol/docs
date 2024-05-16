@@ -5,7 +5,8 @@ title: AssetDIDs
 
 import ThemedImage from '@theme/ThemedImage';
 
-KILT DIDs are suitable for use cases that involve "active" participants. For example, entities that can act of their will (a person, an organization, a DAO).
+KILT DIDs are suitable for use cases that involve "active" participants.
+For example, entities that can act of their will (a person, an organization, a DAO).
 
 There are classes of entities that represent "passive" participants. That is, they can be "used" by active participants within a given use case.
 KILT defines these class of participants as **assets**.
