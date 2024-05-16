@@ -79,7 +79,8 @@ Storing a DID on the KILT blockchain requires a deposit, consisting of a base de
 
 In addition to the base deposit and fee, the total deposit increases based on the storage space used by the DID. Each byte of storage occupied by the DID requires a deposit of 50 micro KILT (0.000005 KILT).
 
-The inclusion of services and keys determines the overall size of the DID. The more services and keys in the DID, the larger the storage space required and, consequently, the higher the additional deposit.
+The inclusion of services and keys determines the overall size of the DID.
+The more services and keys in the DID, the larger the storage space required and, consequently, the higher the additional deposit.
 
 When updating the DID, the deposit is automatically adjusted to match the updated size. This ensures that the deposit accurately reflects the current storage requirements of the DID, whether they increase or decrease.
 
