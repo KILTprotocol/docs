@@ -35,7 +35,8 @@ These accounts aren't specific to the KILT blockchain.
 They can reference any chain within the Polkadot ecosystem.
 Each account to DID link requires paying a small deposit.
 
-For DIDs that have also claimed a web3name, the linking feature opens the way to a host of possibilities. For example, showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
+For DIDs that have also claimed a web3name, the linking feature opens the way to a host of possibilities.
+For example, showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
 
 <ThemedImage
   alt="DID lookup diagram"
