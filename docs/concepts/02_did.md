@@ -46,7 +46,8 @@ The following is an example of a full KILT DID:
 did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e
 ```
 
-Above, there is no `light:` component. This indicates that the DID is a full DID and that you can't derive the keys associated with it from the DID identifier, but retrieve them from the KILT blockchain.
+Above, there is no `light:` component.
+This indicates that the DID is a full DID and that you can't derive the keys associated with it from the DID identifier, but retrieve them from the KILT blockchain.
 
 Along with an authentication key, encryption key, and services, a full DID also supports an **attestation key**, which you must use to write CTypes and attestations on the blockchain, and a **delegation key** to write delegations on the blockchain.
 
