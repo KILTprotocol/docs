@@ -21,7 +21,8 @@ VCOs will be more flexible and able to support more decentralized use cases than
 
 Delegation Hierarchies organize their members in a traditional hierarchical structure, and are modeled as a [Tree data structure](https://en.wikipedia.org/wiki/Tree_(data_structure)), also shown in the graph below.
 Everyone can use KILT to create a new hierarchy and immediately become the only member of the newly created organization.
-Not only is the creator the only member of the organization, they're also the root of the hierarchy. This means that the creator has full control over the whole hierarchy.
+Not only is the creator the only member of the organization, they're also the root of the hierarchy.
+This means that the creator has full control over the whole hierarchy.
 
 <center>
 
