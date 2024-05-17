@@ -12,7 +12,7 @@ import { main as verifyCredential } from './06_verify_credential'
 async function fetchDidAndCredential() {
   const johnDoeDid = await fetchJohnDoeDid()
   if (!johnDoeDid)
-    throw new Error('"john_doe" is not associated to any DID on Spiritnet')
+    throw new Error('"kiltnerd123" is not associated to any DID on Spiritnet')
   const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
   if (!endpoints || !endpoints.length)
     throw new Error(`DID doesn't include services`)

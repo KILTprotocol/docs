@@ -150,10 +150,6 @@ module.exports = {
               href: 'https://discord.gg/hX4pc8rdHS',
             },
             {
-              label: 'Telegram',
-              href: 'https://t.me/KILTProtocolChat',
-            },
-            {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
             },

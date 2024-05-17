@@ -15,7 +15,7 @@ const featureRows = [
       link: 'docs/concepts/what-is-kilt',
       description: (
         <>
-          Learn about KILT identity components and why they matter. Read on KILT
+          Learn about KILT identity components and why they matter. Read about KILT
           credentials and what they provide.
         </>
       ),
@@ -27,8 +27,8 @@ const featureRows = [
       link: 'docs/develop/sdk/quickstart',
       description: (
         <>
-          Start building with KILT. Issue and verify your first credential or
-          set up an app.
+          Start building with KILT to issue and verify your first credential.
+          Use the KILT SDK with your app.
         </>
       ),
     },
