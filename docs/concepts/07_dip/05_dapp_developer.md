@@ -68,7 +68,9 @@ const dipSubmittable = DipSdk.generateDipSubmittableExtrinsic({
 })
 ```
 
-The method returns the different components of the proof:
+
+
+The method returns the different components of the proof, [which you can see in the example code](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/tests/dip-provider-template-dip-consumer-template/develop.test.ts#L219):
 
 -   The provider head proof, which is proof of the provider parachain header on the relay chain.
 -   The commitment proof, which proves the deep commitment for a specific subject, which is the DID URI.
@@ -85,7 +87,10 @@ await signAndSubmitTx(consumerApi, dipSubmittable, submitterKeypair)
 
 Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof.
 
-For all the accounts you want to link, use the `associateAccountToChainArgs` method, passing the account and DID to link.
+For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md##linking-an-account-to-a-did). Optionally, you can reveal the web3name of the account
+
+
+passing the account and DID to link.
 
 ```typescript
 const linkAccountTxs = await Promise.all(
@@ -114,10 +119,10 @@ const signedLinkedAccounts = await Kilt.Did.authorizeTx(
 
 ## Creating extensions for specific proofs
 
-If you need a specific proof type for your consumer chain, then you can submit a PR to the SDK repository in the `src > dipProof > extensions` folder.
-The example application includes an extension for a time-bound DID signature. This adds a time-limited DID signature.
+If you need a specific proof type for a consumer chain, then a chain developer needs to submit a PR to the SDK repository in the `src > dipProof > extensions` folder.
+The extension included with the SDK adds support for a time-bound DID signature. This adds a time-limited DID signature.
 
-The extension can take any form you need, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string. You can see how the example extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
+The extension can take any form, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string. There's an example of how the extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
 
 To use the extension, the `generateDipSubmittableExtrinsic` method and pass the additional proof elements along with consumer chain specific components.
 
