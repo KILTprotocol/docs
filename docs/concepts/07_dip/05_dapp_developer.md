@@ -39,7 +39,7 @@ const baseDipProof = await DipSdk.generateDipSiblingBaseProof(config)
 ```
 
 :::info What's a base proof?
-A Base proof is a cross chain state proof, representing the parts of a DID stored on the KILT blockchain.
+A base proof is a cross-chain state proof, revealing the parts of a DID stored on the KILT blockchain.
 :::
 
 The configuration takes the following parameters:
