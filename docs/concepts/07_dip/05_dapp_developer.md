@@ -115,7 +115,7 @@ const signedLinkedAccounts = await Kilt.Did.authorizeTx(
 ## Creating extensions for specific proofs
 
 If you need a specific proof type for your consumer chain, then you can submit a PR to the SDK repository in the `src > dipProof > extensions` folder.
-The example application includes an extension for a time-bound DID signature. This adds a time-limited DID signature.
+The example application includes an extension for a time-bound DID signature, i.e., a signature which is valid only until a certain block number.
 
 The extension can take any form you need, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string. You can see how the example extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
 
