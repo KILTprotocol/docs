@@ -3,11 +3,11 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 export async function main(
   uri: Kilt.DidUri
 ): Promise<Kilt.DidServiceEndpoint[]> {
-  const johnDoeDidDocument = await Kilt.Did.resolve(uri)
-  console.log(`John Doe's DID Document:`)
-  console.log(JSON.stringify(johnDoeDidDocument, null, 2))
+  const kiltnerd123DidDocument = await Kilt.Did.resolve(uri)
+  console.log(`kiltnerd123's DID Document:`)
+  console.log(JSON.stringify(kiltnerd123DidDocument, null, 2))
 
-  const endpoints = johnDoeDidDocument?.document?.service
+  const endpoints = kiltnerd123DidDocument?.document?.service
   if (!endpoints) {
     console.log('No endpoints for the DID.')
     return []
