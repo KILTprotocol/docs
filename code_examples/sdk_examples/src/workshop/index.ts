@@ -36,9 +36,8 @@ export async function testWorkshop(
   await getFunds(account, attesterAccount.address, 5)
 
   // Create attester DID & ensure CType.
-  const { fullDid: attesterDid, mnemonic: attesterMnemonic } =
-    await createFullDid(attesterAccount)
-  const { assertionMethod } = generateAttesterKeypairs(attesterMnemonic)
+  const { fullDid: attesterDid } = await createFullDid(attesterAccount)
+  const { assertionMethod } = generateAttesterKeypairs()
 
   await ensureStoredCtype(
     attesterAccount,

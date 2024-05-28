@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export async function main(): Promise<Kilt.ICType> {
   const {
     creator,

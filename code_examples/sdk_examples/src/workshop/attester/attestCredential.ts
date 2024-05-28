@@ -10,8 +10,7 @@ import { generateLightDid } from '../claimer/generateLightDid'
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
-  credential: Kilt.ICredential,
-  signCallback: Kilt.SignExtrinsicCallback
+  credential: Kilt.ICredential
 ): Promise<void> {
   const api = Kilt.ConfigService.get('api')
 
@@ -23,12 +22,7 @@ export async function attestCredential(
 
   // Create the tx and authorize it.
   const tx = api.tx.attestation.add(claimHash, cTypeHash, null)
-  const extrinsic = await Kilt.Did.authorizeTx(
-    attesterDid,
-    tx,
-    signCallback,
-    attesterAccount.address
-  )
+  const extrinsic = api.tx.did.dispatchAs(attesterAccount.address, tx)
 
   // Submit the tx to write the attestation to the chain.
   console.log('Attester -> create attestation...')
@@ -39,6 +33,7 @@ export async function attestingFlow(
   claimerDid: Kilt.DidUri,
   attesterAccount: Kilt.KiltKeyringPair,
   attesterDid: Kilt.DidUri,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   signCallback: Kilt.SignExtrinsicCallback
 ): Promise<Kilt.ICredential> {
   // First the claimer.
@@ -50,7 +45,7 @@ export async function attestingFlow(
   // ... send the request to the attester
 
   // The attester checks the attributes and attests the provided credential.
-  await attestCredential(attesterAccount, attesterDid, credential, signCallback)
+  await attestCredential(attesterAccount, attesterDid, credential)
 
   // Return the generated credential.
   return credential
