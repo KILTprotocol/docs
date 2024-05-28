@@ -59,6 +59,13 @@ You need to pass the following parameters:
 -   The extrinsic call to the consumer chain.
 -   The DID URI.
 
+:::info What is a submittable extrinsic?
+
+A transaction that originates from an external account and affects the state of the blockchain.
+An extrinisc is used to execute actions on the network, such as transferring funds, making governance decisions, using functionality of the parachain, or interacting with smart contracts.
+
+:::
+
 ```typescript
 const dipSubmittable = DipSdk.generateDipSubmittableExtrinsic({
     api: consumerApi,
@@ -67,8 +74,6 @@ const dipSubmittable = DipSdk.generateDipSubmittableExtrinsic({
     didUri: did.uri,
 })
 ```
-
-
 
 The method returns the different components of the proof, [which you can see in the example code](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/tests/dip-provider-template-dip-consumer-template/develop.test.ts#L219):
 
