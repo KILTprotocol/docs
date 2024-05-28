@@ -59,10 +59,10 @@ You need to pass the following parameters:
 -   The extrinsic call to the consumer chain.
 -   The DID URI.
 
-:::info What is a submittable extrinsic?
+:::info Submittable extrinsics
 
 A transaction that originates from an external account and affects the state of the blockchain.
-An extrinisc is used to execute actions on the network, such as transferring funds, making governance decisions, using functionality of the parachain, or interacting with smart contracts.
+An extrinisc executes actions on the network, such as transferring funds, making governance decisions, using functionality of the parachain, or interacting with smart contracts.
 
 :::
 
@@ -81,7 +81,7 @@ The method returns the different components of the proof, [which you can see in 
 -   The commitment proof, which proves the deep commitment for a specific subject, which is the DID URI.
 -   The actual deep proof, which reveals parts of the DID document as specified by key IDs, proof version, whether to include the web rename and the linked account, and the proof version that the user specified.
 
-Behind the scenes, the method uses the `dispatchAs` method to pass the extrinsic following the consumer's type registry.
+Behind the scenes, the method uses the `dispatchAs` method ([and corresponding chain method](https://github.com/KILTprotocol/kilt-node/blob/4ddb8a0ef6258873458f19d3ee9dcb6d7c24e645/pallets/did/src/lib.rs#L1152)) to pass the extrinsic following the consumer's type registry.
 You can now sign and submit to the consumer chain.
 
 ```typescript
@@ -90,25 +90,9 @@ await signAndSubmitTx(consumerApi, dipSubmittable, submitterKeypair)
 
 ### 3. Linking accounts (optional)
 
-Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof.
+Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof. As part of the proof provided, you can also include other values, such as the web3name.
 
-For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md##linking-an-account-to-a-did). Optionally, you can reveal the web3name of the account
-
-
-passing the account and DID to link.
-
-```typescript
-const linkAccountTxs = await Promise.all(
-    linkedAccounts.map(async (acc) => {
-        const functionArgs = await Kilt.Did.associateAccountToChainArgs(
-            acc.address,
-            newFullDidUri,
-            async (input) => acc.sign(input, { withType: true })
-        )
-        return providerApi.tx.didLookup.associateAccount(...functionArgs)
-    })
-)
-```
+For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md##linking-an-account-to-a-did).
 
 You can then batch all the linked account transactions and authorize them using the `authorizeTx` method.
 
