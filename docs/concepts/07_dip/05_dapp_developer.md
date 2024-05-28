@@ -50,7 +50,7 @@ The configuration takes the following parameters:
 
 ### 2. Generate a submittable extrinsic
 
-The method returns the DID base proof. You have to call a second method, the `[generateDipSubmittableExtrinsic](https://kiltprotocol.github.io/dip-sdk/functions/generateDipSubmittableExtrinsic.html)` method to generate a submittal extrinsic.
+The method returns the DID base proof. You have to call a second method, the `[generateDipSubmittableExtrinsic](https://kiltprotocol.github.io/dip-sdk/functions/generateDipSubmittableExtrinsic.html)` method to generate a submittable extrinsic.
 
 You need to pass the following parameters:
 
