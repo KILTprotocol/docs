@@ -91,7 +91,7 @@ The method returns the different components of the proof, [which you can see in 
 
 -   The provider head proof, which is proof of the provider parachain header on the relay chain.
 -   The commitment proof, which proves the DIP commitment for the subject of the action, which is the DID URI.
--   The actual deep proof, which reveals parts of the DID document as specified by key IDs, proof version, whether to include the web rename and the linked account, and the proof version that the user specified.
+-   The DID proof, which reveals parts of the DID document as specified by key IDs, proof version, and whether to include the web3name and any of its linked accounts.
 
 Behind the scenes, the method uses the `dispatchAs` method ([and corresponding chain method](https://github.com/KILTprotocol/kilt-node/blob/4ddb8a0ef6258873458f19d3ee9dcb6d7c24e645/pallets/did/src/lib.rs#L1152)) to pass the extrinsic following the consumer's type registry.
 You can now sign and submit to the consumer chain.
