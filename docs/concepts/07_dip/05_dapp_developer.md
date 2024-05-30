@@ -129,7 +129,7 @@ You can also include accounts you want to link as part of the initial configurat
 If you need a specific proof type for a consumer chain, then a chain developer needs to submit a PR to the SDK repository in the `src > dipProof > extensions` folder.
 The extension included with the SDK adds support for a time-bound DID signature, i.e., a signature which is valid only until a certain block number.
 
-The extension can take any form, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string. There's an example of how the extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
+The extension can take any form, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) object. There's an example of how the extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
 
 To use the extension, the `generateDipSubmittableExtrinsic` method and pass the additional proof elements along with consumer chain specific components.
 
