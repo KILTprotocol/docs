@@ -42,10 +42,22 @@ const baseDipProof = await DipSdk.generateDipSiblingBaseProof(config)
 A base proof is a cross-chain state proof, revealing the parts of a DID stored on the KILT blockchain.
 :::
 
-The configuration takes the following parameters:
+The configuration for the base proof takes the following parameters:
+
+-   `DipSiblingBaseProofInput`: The input for the base proof. It can be one of the following values:
+    -   `didUri`: (Required) The DID URI of the DIP subject performing the cross-chain operation.
+    -   `keyIds`: (Required) An array of verification method IDs of the DID revealed in the cross-chain operation.
+    -   `proofVersion`: (Required) The version of the DIP proof to generate.
+    -   `blockNumber`: The block number of the relay chain to use for the generation of the DIP proof. If not provided, uses the last finalized block.
+    -   `linkedAccounts`: An array of account addresses to link to the DID and reveal in the generated proof.
+    -   `web3Name`: Whether to reveal the web3name of the DID subject in the generated proof.
+
+In the example, the configuration also has extra parameters for the time-bound DID signature extension [mentioned below](#creating-extensions-for-specific-proofs).
+
+For this example, the configuration also needs details of the provider, which in this example case uses this value populated from an environment variable:
 
 ```typescript
-
+const providerAddress = `ws://127.0.0.1:${process.env['PROVIDER_ALICE_RPC']}`
 ```
 
 ### 2. Generate a submittable extrinsic
@@ -105,6 +117,12 @@ const signedLinkedAccounts = await Kilt.Did.authorizeTx(
     { txCounter: new BN(4) }
 )
 ```
+
+:::tip
+
+You can also include accounts you want to link as part of the initial configuration object for the base proof as a list of account addresses.
+
+:::
 
 ## Creating extensions for specific proofs
 
