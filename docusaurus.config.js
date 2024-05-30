@@ -76,7 +76,7 @@ module.exports = {
             {
               type: 'doc',
               docId: 'develop/workshop/welcome',
-              label: 'Workshop',
+              label: 'Workshop1',
             },
             {
               type: 'doc',
@@ -87,6 +87,11 @@ module.exports = {
               type: 'doc',
               docId: 'develop/specifications',
               label: 'Technical Specifications',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/opendid/overview',
+              label: 'OpenDID',
             },
             {
               type: 'doc',
