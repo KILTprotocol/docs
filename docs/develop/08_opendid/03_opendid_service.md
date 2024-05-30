@@ -134,7 +134,6 @@ clients:
 
 Note that an [Email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by [attester](https://test.w3n.id/attester) is required.
 This credential can be acquired on [test socialKYC](https://test.socialkyc.io/).
-If All the requirements are removed, a DID will be enough for authentication.
 
 ## Run the service
 
