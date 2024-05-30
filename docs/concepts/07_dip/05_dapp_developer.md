@@ -44,17 +44,19 @@ A base proof is a cross-chain state proof, revealing the parts of a DID stored o
 
 The configuration for the base proof takes the following parameters:
 
--   `DipSiblingBaseProofInput`: The input for the base proof. It can be one of the following values:
-    -   `didUri`: (Required) The DID URI of the DIP subject performing the cross-chain operation.
-    -   `keyIds`: (Required) An array of verification method IDs of the DID revealed in the cross-chain operation.
-    -   `proofVersion`: (Required) The version of the DIP proof to generate.
-    -   `blockNumber`: The block number of the relay chain to use for the generation of the DIP proof. If not provided, uses the last finalized block.
-    -   `linkedAccounts`: An array of account addresses to link to the DID and reveal in the generated proof.
-    -   `web3Name`: Whether to reveal the web3name of the DID subject in the generated proof.
+-   `didUri`: (Required) The DID URI of the DIP subject performing the cross-chain operation.
+For example, `did:kilt:4q4QzFTs9hKh4QizLB3B7zuGYCG3QPamiBFEgwM6gTM7gK3g`
+-   `keyIds`: (Required) An array of verification method IDs of the DID revealed in the cross-chain operation.
+-   `proofVersion`: (Required) The version of the DIP proof to generate.
+Currently only supports version 1.
+-   `blockNumber`: The block number of the relay chain to use for the generation of the DIP proof.
+If not provided, uses the last finalized block.
+-   `linkedAccounts`: An array of [account addresses linked to the DID](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md##linking-an-account-to-a-did) to reveal in the generated proof.
+-   `web3Name`: Whether to reveal [the web3name of the DID subject](../../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) in the generated proof.
 
-In the example, the configuration also has extra parameters for the time-bound DID signature extension [mentioned below](#creating-extensions-for-specific-proofs).
+In the example code, the configuration also has extra parameters for the time-bound DID signature extension [mentioned below](#creating-extensions-for-specific-proofs).
 
-For this example, the configuration also needs details of the provider, which in this example case uses this value populated from an environment variable:
+The configuration also has details of the provider, which in this case uses a value populated from an environment variable:
 
 ```typescript
 const providerAddress = `ws://127.0.0.1:${process.env['PROVIDER_ALICE_RPC']}`
@@ -62,13 +64,14 @@ const providerAddress = `ws://127.0.0.1:${process.env['PROVIDER_ALICE_RPC']}`
 
 ### 2. Generate a submittable extrinsic
 
-The method returns the DID base proof. You have to call a second method, the `[generateDipSubmittableExtrinsic](https://kiltprotocol.github.io/dip-sdk/functions/generateDipSubmittableExtrinsic.html)` method to generate a submittable extrinsic.
+The method returns the DID base proof.
+You have to call a second method, the `[generateDipSubmittableExtrinsic](https://kiltprotocol.github.io/dip-sdk/functions/generateDipSubmittableExtrinsic.html)` method to generate a submittable extrinsic that includes the generated proof.
 
 You need to pass the following parameters:
 
 -   The API of the consumer chain.
 -   The base proof.
--   The extrinsic call to the consumer chain.
+-   The call to the consumer chain.
 -   The DID URI.
 
 :::info Submittable extrinsics
@@ -102,7 +105,8 @@ await signAndSubmitTx(consumerApi, dipSubmittable, submitterKeypair)
 
 ### 3. Linking accounts (optional)
 
-Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof. As part of the proof provided, you can also include other values, such as the web3name.
+Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof.
+As part of the proof provided, you can also include other values, such as the web3name.
 
 For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md##linking-an-account-to-a-did).
 
@@ -118,20 +122,15 @@ const signedLinkedAccounts = await Kilt.Did.authorizeTx(
 )
 ```
 
-:::tip
-
-You can also include accounts you want to link as part of the initial configuration object for the base proof as a list of account addresses.
-
-:::
-
 ## Creating extensions for specific proofs
 
 If you need a specific proof type for a consumer chain, then a chain developer needs to submit a PR to the SDK repository in the `src > dipProof > extensions` folder.
 The extension included with the SDK adds support for a time-bound DID signature, i.e., a signature which is valid only until a certain block number.
 
-The extension can take any form, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string. There's an example of how the extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
+The extension can take any form, but must return [a SCALE encoded](https://docs.substrate.io/reference/scale-codec/) string.
+There's an example of how the extension does this [on GitHub](https://github.com/KILTprotocol/dip-sdk/blob/9ad141b3757e076744ab8b2d29bcf10bbeaddd9f/src/dipProof/extensions/timeBoundDidSignature.ts#L113).
 
-To use the extension, the `generateDipSubmittableExtrinsic` method and pass the additional proof elements along with consumer chain specific components.
+To add the extension, use the `generateDipSubmittableExtrinsic` method and pass the additional proof elements along with consumer chain specific components.
 
 ```typescript
 const dipSubmittable = DipSdk.generateDipSubmittableExtrinsic({
