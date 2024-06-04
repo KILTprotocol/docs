@@ -3,7 +3,7 @@ id: advanced
 title: Advanced Usage
 ---
 
-### Use dynamic client management
+## Use dynamic client management
 
 If you want to dynamically create or remove OpenID Connect clients, you can configure the service to get its configuration from an [etcd cluster](https://etcd.io).
 To do so, configure the connection parameters for the etcd cluster in the `config.yaml` file.
@@ -50,7 +50,7 @@ CLIENT_SPEC=$(echo $CLIENT_SPEC | jq -c)
 etcdctl put /opendid/clients/new-client "${CLIENT_SPEC}"
 ```
 
-If you want to try this out you can first generate a config using the setup image as described above, add the etcd configuration and then start the service using the example script in [./scripts/start-demo-etcd.sh](./scripts/start-demo-etcd.sh).
+If you want to try this out you can first generate a config using the setup image as described above, add the etcd configuration and then start the service using the example script in _./scripts/start-demo-etcd.sh_.
 
 ### Add advanced claim checks using RHAI scripts
 

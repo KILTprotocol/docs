@@ -19,7 +19,7 @@ docker run -d -it --rm \
     docker.io/kiltprotocol/opendid-demo
 ```
 
-The demo page will run on [http://localhost:1606](http://localhost:1606).
+The demo page will run on _http://localhost:1606_.
 
 For this demo to work a running OpenDID Service is needed, an Identity Wallet (e.g. [Sporran](https://www.sporran.org/))
 with a DID and Credential issued by the required attester specified in the `config.yaml` file (Default is SocialKYC).
