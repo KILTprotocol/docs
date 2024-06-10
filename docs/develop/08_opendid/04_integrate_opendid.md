@@ -77,16 +77,16 @@ The OpenDID service returns the `id_token` in the response body serialized as a 
 In full-stack applications, calling the `token` endpoint is usually done through the back end to improve security.
 :::
 
-The `id_token` is a JSON web token (JWT) signed by the JWT key-pair specified in the `config.yaml` file of the OpenDID service. Yout can be verified using the JWT public key, for example, by the backend of the Web app.
+The `id_token` is a JSON web token (JWT) signed by the JWT key-pair specified in the `config.yaml` file of the OpenDID service. 
+You can verify this using the JWT public key, for example, by the back end of the Web app.
 
-## Implicit Flow
+## Implicit flow
 
-Initiate the flow by redirecting to the **GET** `/api/v1/authorize` endpoint on the OpenDID Service and setting the following query
-parameters:
+Initiate the flow by redirecting to the **GET** `/api/v1/authorize` endpoint on the OpenDID Service and setting the following query parameters:
 
 -   `response_type`: set value to `id_token` to indicate Implicit Flow.
 -   `client_id`: The client ID set in the config.yaml file.
--   `redirect_uri`: OpenDID will redirect to this URL after authentication.
+-   `redirect_uri`: OpenDID redirects to this URL after authentication.
 -   `scope`: set value to `openid`.
 -   `state`: set to a secure random number.
 -   `nonce`: optional value, set to a secure random number.
@@ -103,7 +103,7 @@ GET /api/v1/authorize?
     nonce=ia7sa06ungxdfzaqphk2 HTTP/1.1
 ```
 
-After successful authentication, OpenDID will redirect back to the provided `redirect_uri` with `id_token` and `state`
+After successful authentication, OpenDID redirects back to the provided `redirect_uri` with `id_token` and `state`
 **fragment components**.
 
 **Example**:
