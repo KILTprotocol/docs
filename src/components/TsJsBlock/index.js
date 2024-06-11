@@ -20,14 +20,38 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     },
   } = useDocusaurusContext()
 
-  // 1. Transpile TS to JS
+  // // 1. Transpile TS to JS
   const jsSnippet = useMemo(() => {
     const { code } = transform(tsSnippet, {
       plugins: ['transform-typescript'],
       retainLines: true,
     })
-    return code
+
+    // List of modules to which .js extension should be added
+    const modulesToTransform = ['./generateAccount', './generateKeypairs', './ctypeSchema'];
+
+    // Ensure only specific import statements have .js extension
+    let jsCodeWithExtensions = code.replace(
+      /from\s+['"](.+)['"]/g,
+      (match, p1) => {
+        if (modulesToTransform.includes(p1)) {
+          return `from '${p1}.js'`;
+        }
+        return match;
+      }
+    );
+    // Replace require.main === module logic with an IIFE
+    jsCodeWithExtensions = jsCodeWithExtensions.replace(
+      /if\s*\(require\.main\s*===\s*module\)/,
+      'if (import.meta.url === new URL(import.meta.url).href)'
+    )
+    
+    return jsCodeWithExtensions
   }, [tsSnippet])
+
+    // Ensure all import statements have .js extension
+
+
   // 2. Prettify the resulting JS
   useEffect(() => {
     prettier
