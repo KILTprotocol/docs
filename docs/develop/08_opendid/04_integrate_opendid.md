@@ -9,12 +9,11 @@ Read the [demo project guide](05_demo_project.md) for an example of integrating 
 
 ## Authorization code flow
 
-Initiate the flow by redirecting to the **GET** `/api/v1/authorize` endpoint on the OpenDID service and setting the following query
-parameters:
+Initiate the flow by redirecting to the **GET** `/api/v1/authorize` endpoint on the OpenDID service and setting the following query URL-encoded parameters:
 
 -   `response_type`: set value to `code` to indicate Authorization Code Flow.
 -   `client_id`: The client ID set in the `config.yaml` file.
--   `redirect_uri`: OpenDID will redirect to this URL after authentication.
+-   `redirect_uri`: OpenDID redirects to this URL after authentication.
 -   `scope`: set value to `openid`.
 -   `state`: set to a secure random number.
 -   `nonce`: optional value, set to a secure random number.
