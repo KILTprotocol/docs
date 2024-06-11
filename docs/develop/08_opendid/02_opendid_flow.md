@@ -13,7 +13,7 @@ Common use cases include the following:
 - Web app back end
 - OpenDID front end
 - OpenDID back end
-- Identity wallet (a browser extension, for example, [Sporran](https://www.sporran.org/))
+- Identity wallet that follows [the Credential API spec](https://github.com/KILTprotocol/spec-ext-credential-api) (typically a browser extension, for example, [Sporran](https://www.sporran.org/))
 
 The following steps outline the interactions necessary to implement the Implicit Flow:
 
@@ -70,5 +70,5 @@ AB->>AF: (10) Access granted.
 
 :::info
 Although this example describes the implicit flow, the authorization code flow is similar.
-Instead of returning an `id_token` directly, the OpenDID service instead returns a `code` to exhange for an `id_token` using the `token` endpoint.
+Instead of returning an `id_token` directly, the OpenDID service instead returns a `code` to exchange for an `id_token` using the `token` endpoint.
 :::

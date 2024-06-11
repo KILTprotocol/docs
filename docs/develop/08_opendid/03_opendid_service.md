@@ -67,17 +67,17 @@ The container generates sensible defaults in the `config.yaml` file, but here ar
 
     -   The client ID as a key (The default is: `example-client`).
     -   The `requirements` section, including:
-    -   What CTypes are required for authentication.
-    -   The trusted attesters as an address (The default is for the [SocialKYC attester](https://socialkyc.io/)).
+        -   What CTypes are required for authentication.
+        -   The trusted attesters as an address (The default is for the [SocialKYC attester](https://socialkyc.io/)).
 
-        :::note info
+            :::note info
 
-        The generated default `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an attester.
+            The generated default `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an attester.
 
-        :::
+            :::
 
-    -   What `redirect_url`s the service accepts (The default is `http://localhost:1606/callback.html` for the demo project).
-    -   The `clientSecret` is optional but recommended. If you use the authorization code flow, the `token` endpoint requires it.
+        -   What `redirect_url`s the service accepts (The default is `http://localhost:1606/callback.html` for the demo project).
+        -   The `clientSecret` is optional but recommended. If you use the authorization code flow, the `token` endpoint requires it.
 
 ## Run the service
 
