@@ -13,7 +13,7 @@ Initiate the flow by redirecting to the **GET** `/api/v1/authorize` endpoint on 
 parameters:
 
 -   `response_type`: set value to `code` to indicate Authorization Code Flow.
--   `client_id`: The client ID set in the config.yaml file.
+-   `client_id`: The client ID set in the `config.yaml` file.
 -   `redirect_uri`: OpenDID will redirect to this URL after authentication.
 -   `scope`: set value to `openid`.
 -   `state`: set to a secure random number.
