@@ -72,7 +72,7 @@ The container generates sensible defaults in the `config.yaml` file, but here ar
 
         :::note info
 
-        The generated `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an attester.
+        The generated default `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an attester.
 
         :::
 
