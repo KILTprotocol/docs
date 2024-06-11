@@ -107,5 +107,5 @@ docker run -d --rm \
     docker.io/kiltprotocol/opendid:latest
 ```
 
-When you now log in with a user that has an email address ending with `kilt.io` the service allows you to log in.
+When you now log in with a user that has an email address ending with `kilt.io` as attested by the configured attester, the service allows you to log in.
 If you use a different email address, the service denies you access.
