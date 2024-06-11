@@ -19,7 +19,7 @@ To learn more about the flow of OpenDID, see the [OpenDID Flow](./02_opendid_flo
 
 ## Project container structure
 
-The project consist of multiple parts that supplement and interact with each other all shipped as docker containers and released to docker hub.
+The project consist of multiple parts that supplement and interact with each other all shipped as Docker containers and released to Docker Hub.
 
 ### opendid-setup container
 
