@@ -7,7 +7,7 @@ The example code at [demo-project](https://github.com/KILTprotocol/opendid/tree/
 It's an [express](https://expressjs.com) application that exposes three things:
 
 - A login page that handles the dispatching of the user to the OpenDID service.
-- A callback page for the OpenID connect flow to accept the token.
+- A callback page for one of the OpenID Connect flows supported to accept the token.
 - A protected resource that only authenticated users can access.
 
 For the demo application to work you need a running OpenDID Service and an identity wallet (e.g. [Sporran](https://www.sporran.org/)) with a DID and Credential issued by the required attester specified in the `config.yaml` file (Default is SocialKYC).
