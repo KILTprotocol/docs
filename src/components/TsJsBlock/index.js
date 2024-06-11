@@ -28,7 +28,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     })
 
     // List of modules to which .js extension should be added
-    const modulesToTransform = ['./generateAccount', './generateKeypairs', './ctypeSchema'];
+    const modulesToTransform = ['./generateAccount', './generateKeypairs', './ctypeSchema', './createClaim', './generateLightDid', '../attester/ctypeSchema', '../claimer/generateLightDid', '../claimer/generateCredential'];
 
     // Ensure only specific import statements have .js extension
     let jsCodeWithExtensions = code.replace(
@@ -42,7 +42,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     );
     // Replace require.main === module logic with an IIFE
     jsCodeWithExtensions = jsCodeWithExtensions.replace(
-      /if\s*\(require\.main\s*===\s*module\)/,
+      'if (require.main === module)',
       'if (import.meta.url === new URL(import.meta.url).href)'
     )
     

@@ -128,3 +128,4 @@ ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Well done - You've generated a full DID! The next step is to create a CType!
+
