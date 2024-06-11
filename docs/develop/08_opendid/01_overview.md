@@ -7,7 +7,7 @@ title: Overview
 
 It follows the [OpenID Connect 1.0 Specification](https://openid.net/specs/openid-connect-core-1_0.html#Introduction) and acts as a bridge between the decentralized identity world and the centralized authentication world supporting both the implicit and Authorization Code Flow.
 
-A major use of OpenDID is Single Sign-On (SSO) is to use the same DID and credentials to sign into multiple platforms and web services. For instance, by adding a "Sign in with KILT" button to a webpage.
+A major use of OpenDID is Single Sign-On (SSO), which allows users to use the same DID and credentials to sign into multiple platforms and web services. For instance, by adding a "Sign in with KILT" button to a webpage.
 
 Although integrating that functionality into a webpage is relatively simple, configuring and running OpenDID is more involved.
 
