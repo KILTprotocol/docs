@@ -77,7 +77,7 @@ The OpenDID service returns the `id_token` in the response body serialized as a 
 In full-stack applications, calling the `token` endpoint is usually done through the back end to improve security.
 :::
 
-The `id_token` is a JSON web token (JWT) signed by the JWT key-pair specified in the `config.yaml` file of the OpenDID service. 
+The `id_token` is a bearer JSON web token (JWT) signed by the JWT key-pair specified in the `config.yaml` file of the OpenDID service. 
 You can verify this using the JWT public key, for example, by the back end of the Web app.
 
 ## Implicit flow
