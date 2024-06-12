@@ -9,7 +9,7 @@ Understanding this flow is helpful for setting up and configuring an OpenDID Ser
 OpenDID includes interactions between multiple apps to authenticate and authorize users.
 Common use cases include the following:
 
-- Web app Frontend (app that includes the login button, for example, the demo app)
+- Web app front end (app that includes the login button, for example, the demo app)
 - Web app back end
 - OpenDID front end
 - OpenDID back end
