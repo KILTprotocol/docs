@@ -5,10 +5,10 @@ on:
     branches:
       - master
     tags:
-      - "*"
+      - '*'
   pull_request:
     branches:
-      - "*"
+      - '*'
 
 jobs:
   code_examples:
@@ -16,19 +16,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test_case: ["dapp", "workshop", "core"]
+        test_case: ['dapp', 'workshop', 'core']
         required: ['required']
         include:
-          - test_case: "staking"
+          - test_case: 'staking'
             required: 'optional'
 
     continue-on-error: ${{ matrix.required == 'optional' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -53,10 +53,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
