@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { blake2AsHex } from '@polkadot/util-crypto'
 
 import * as Kilt from '@kiltprotocol/sdk-js'

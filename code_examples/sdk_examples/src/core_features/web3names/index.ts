@@ -45,13 +45,13 @@ export async function runAll(
     throw new Error('web3name is registered for a wrong DID')
   }
 
-  console.log('3 w3n) Query credentials for "john_doe" web3name')
+  console.log('3 w3n) Query credentials for "kiltnerd123" web3name')
   try {
-    await queryPublishedCredentials('john_doe')
+    await queryPublishedCredentials('kiltnerd123')
   } catch (e) {
     if (e instanceof FetchError) {
       console.log(
-        'Query credentials for "john_doe" web3name failed because of bad IPFS gateway. Ignoring this.'
+        'Query credentials for "kiltnerd123" web3name failed because of bad IPFS gateway. Ignoring this.'
       )
     } else {
       // This one should not have happened.

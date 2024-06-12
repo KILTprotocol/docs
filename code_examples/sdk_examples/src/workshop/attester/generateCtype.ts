@@ -53,10 +53,22 @@ if (require.main === module) {
       const { authentication, assertionMethod } = generateKeypairs(didMnemonic)
       const attesterDidUri = Kilt.Did.getFullDidUriFromKey(authentication)
 
-      await ensureStoredCtype(account, attesterDidUri, async ({ data }) => ({
-        signature: assertionMethod.sign(data),
-        keyType: assertionMethod.type
-      }))
+      const newCType = await ensureStoredCtype(
+        account,
+        attesterDidUri,
+        async ({ data }) => ({
+          signature: assertionMethod.sign(data),
+          keyType: assertionMethod.type
+        })
+      )
+
+      console.log(
+        `your ctype was succsesfully created\n\n${JSON.stringify(
+          newCType,
+          null,
+          2
+        )}`
+      )
     } catch (e) {
       console.log('Error while checking on chain ctype')
       throw e

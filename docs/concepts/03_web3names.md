@@ -5,18 +5,21 @@ title: web3names
 
 import ThemedImage from '@theme/ThemedImage';
 
-In short, web3names are user-friendly aliases for KILT DIDs.
-They serve the same purpose that domain names do for IP addresses: who knows the IP address under the `kilt.io` domain name? 🤷🏽‍♀️
+web3names are user-friendly aliases for KILT DIDs.
+They serve the same purpose as domain names for IP addresses.
+Do you know the IP address for the "kilt.io" domain name? 🤷🏽‍♀️
 There is a one-to-one relationship between DIDs and web3names.
-This means that a KILT DID can be linked to only one web3name, and a web3name can be claimed only by one DID.
+This means that you can link a KILT DID to only one web3name, and a web3name can only claim one DID.
 
-Each web3name is globally unique within the KILT space, and is composed of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human readability and reduce the chances of *two web3names looking the same, despite being different*.
+Each web3name is globally unique within the KILT blockchain and consists of a sequence of a minimum of 3 to a maximum of 32 characters taken from a specific character set to enhance human readability and reduce the chances of *two web3names looking the same, despite being different*.
+
 The character set includes only:
+
 - *lowercase letters*, from `a` to `z`
 - *digits* from `0` to `9`
 - the symbols `-` and `_`
 
-A regex that would match all and only the allowed web3names would be the following:
+A regex that matches all and only the allowed web3names is the following:
 
 ```
 ^[a-z0-9_-]{3,32}$
@@ -25,13 +28,15 @@ A regex that would match all and only the allowed web3names would be the followi
 In the global URI space, web3names are prefixed with the `w3n:` URI namespace.
 For example, the full URI for the web3name `example-web3name` is `w3n:example-web3name`.
 
-### Linking Multiple Accounts to a web3name
+### Linking multiple accounts to a web3name
 
-Beyond linking a web3name, KILT allows DID owners to link multiple accounts to a single DID.
-These accounts are not specific to the KILT blockchain; they can reference any chain within the Polkadot ecosystem.
-Each account <-> DID link requires the payment of a small deposit.
+Beyond linking a web3name, KILT lets DID owners link multiple accounts to a single DID.
+These accounts aren't specific to the KILT blockchain.
+They can reference any chain within the Polkadot ecosystem.
+Each account to DID link requires paying a small deposit.
 
-For DIDs that have also claimed a web3name, the linking feature opens up the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
+For DIDs that have also claimed a web3name, the linking feature opens the way to a host of possibilities.
+For example, showing the web3name of a collator's account on the [KILT Stakeboard](https://stakeboard.kilt.io/).
 
 <ThemedImage
   alt="DID lookup diagram"
@@ -41,22 +46,31 @@ For DIDs that have also claimed a web3name, the linking feature opens up the way
   }}
 />
 
-For a detailed developer-oriented guide to web3names and account linking, see our [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and our [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md).
+For a detailed developer-oriented guide to web3names and account linking, read the [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and the [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md).
+
+## KILT DIDs vs. KILT accounts
+
+While you can link multiple accounts to a DID, it's important to notice the difference between the two.
+
+KILT *accounts* are classical blockchain accounts, that can hold and send KILT tokens, and sign and submit transactions.
+
+KILT *DIDs* are a higher level construct derived from KILT accounts, but are completely separated from them.
+
+This means that **KILT DIDs can't hold any KILT tokens**.
+
+You use DIDs to authorize (sign) some operations, but you must submit the resulting signature to the KILT blockchain with a KILT account, which must pay for the transaction fees.
+
+Don't consider a DID `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` the same as the account `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e`, although they share the same identifier.
 
 :::caution
-While multiple accounts can be linked to a DID, it is important to notice the difference between the two.
 
-KILT *accounts* are classical blockchain accounts, that can be used to hold and send KILT tokens, as well as to sign and submit transactions.
-On the other hand, KILT *DIDs* are a higher level construct which are derived from KILT accounts, but are completely separated from them.
-This means that **KILT DIDs cannot hold any KILT tokens**.
-DIDs are used to authorize (sign) some operations, but the resulting signature must then be submitted to the blockchain by a KILT account, which must pay for the transaction fees.
+There's no (immediate) relationship between the two, so you should consider a DID **only as a DID** and never as an account.
+If instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*". Ignore the advice, as without the required technical expertise, sending funds to a DID can result in loss of those funds.
 
-A DID `did:kilt:4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e` is not to be considered the same as the account `4rp4rcDHP71YrBNvDhcH5iRoM3YzVoQVnCZvQPwPom9bjo2e`, although they share the same identifier.
-There is no (immediate) relationship between the two, thus the DID should always be considered a DID and never used as an account.
-Therefore, if instructed to "*send some funds to the DID by using the account after the `did:kilt` prefix*", please ignore the advice, as without the required technical expertise, sending funds to a DID can result in those funds being lost.
 :::
 
-### Storing web3name
+### The cost for storing a web3name
 
-Storing a web3name in the blockchain requires providing a constant deposit, which is currently around 0.11 KILT. The deposit amount is calculated based on the worst-case scenario for a web3name, which is when a user provides a name with 32 characters. The deposit serves
-as a security measure to ensure the integrity of the blockchain and incentivize users to manage their web3names responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of web3names. The deposit can be reclaimed by the user by deleting their web3name.
+Storing a web3name on the KILT blockchain requires providing a constant deposit, which is currently around 0.11 KILT. The deposit amount is calculated based on the worst-case scenario for a web3name, which is when a user provides a name with 32 characters.
+The deposit serves as a security measure to ensure the integrity of the KILT blockchain and incentivize users to manage their web3names responsibly.
+A deposit discourages spamming or unnecessary creation of web3names. You can reclaim the deposit can by deleting a web3name.

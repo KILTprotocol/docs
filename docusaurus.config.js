@@ -39,8 +39,9 @@ module.exports = {
     },
     image: 'img/expert_dark_preview.png',
     announcementBar: {
-      id: 'sdk-refactor-announcement',
-      content: 'Our Javascript SDK has undergone a major overhaul with the version 0.29.0! Check out the <a target="_blank" href="https://github.com/KILTprotocol/sdk-js/releases/tag/0.29.0">release notes</a> to find out what changed. Planning an upgrade? Read <a href="/docs/develop/sdk/cookbook/upgrading_to_v0_29/">this</a> first.',
+      id: 'dip-announcement',
+      // Use absolute links proceeded by '/docs'
+      content: 'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -149,10 +150,6 @@ module.exports = {
               href: 'https://discord.gg/hX4pc8rdHS',
             },
             {
-              label: 'Telegram',
-              href: 'https://t.me/KILTProtocolChat',
-            },
-            {
               label: 'Twitter',
               href: 'https://twitter.com/Kiltprotocol',
             },
@@ -207,6 +204,10 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
           showLastUpdateTime: true,
+          admonitions: {
+            keywords: ['version-label'],
+            extendDefaults: true,
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -226,4 +227,48 @@ module.exports = {
       printWidth: 80,
     },
   },
+  plugins: [
+    // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        name: 'dip-provider-docs',
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-provider/',
+        outDir: 'docs/concepts/07_dip',
+        documents: ['README.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replace("# Decentralized Identity Provider (DIP) provider pallet", "# Provider pallet")
+            return {
+              filename: '02_provider.md',
+              content: trimContent,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+        name: 'dip-consumer-docs',
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-consumer/',
+        outDir: 'docs/concepts/07_dip',
+        documents: ['README.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replace("# Decentralized Identity Provider (DIP) consumer pallet", "# Consumer pallet")
+            return {
+              filename: '03_consumer.md',
+              content: trimContent,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
+  ],
 }

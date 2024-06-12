@@ -49,8 +49,8 @@ export async function testCoreFeatures(
         keyring.addFromSeed(
           randomAsU8a(32),
           undefined,
-          'sr25519'
-        ) as Kilt.KiltKeyringPair & { type: 'sr25519' }
+          'ed25519'
+        ) as Kilt.KiltKeyringPair & { type: 'ed25519' }
     )
 
   // Endow all the needed accounts in one batch transfer, to avoid tx collisions.

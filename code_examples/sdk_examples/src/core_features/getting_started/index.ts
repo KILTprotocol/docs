@@ -1,19 +1,18 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { main as connectToPeregrine } from './02_connect_spirit'
-import { main as connectToSpiritnet } from './02_connect_spirit'
+import { main as connectToPeregrine } from './02_connect_pere'
 import { main as disconnect } from './07_disconnect'
 import { main as fetchEndpointData } from './05_fetch_endpoint_data'
-import { main as fetchJohnDoeDid } from './03_fetch_did'
-import { main as fetchJohnDoeEndpoints } from './04_fetch_endpoints'
+import { main as fetchkiltnerd123Did } from './03_fetch_did'
+import { main as fetchkiltnerd123Endpoints } from './04_fetch_endpoints'
 import { main as printHelloWorld } from './01_print_hello_world'
 import { main as verifyCredential } from './06_verify_credential'
 
 async function fetchDidAndCredential() {
-  const johnDoeDid = await fetchJohnDoeDid()
-  if (!johnDoeDid)
-    throw new Error('"john_doe" is not associated to any DID on Spiritnet')
-  const endpoints = await fetchJohnDoeEndpoints(johnDoeDid)
+  const kiltnerd123Did = await fetchkiltnerd123Did()
+  if (!kiltnerd123Did)
+    throw new Error('"kiltnerd123" is not associated to any DID on Spiritnet')
+  const endpoints = await fetchkiltnerd123Endpoints(kiltnerd123Did)
   if (!endpoints || !endpoints.length)
     throw new Error(`DID doesn't include services`)
 
@@ -32,14 +31,6 @@ async function fetchDidAndCredential() {
 
 export async function runAll(): Promise<void> {
   await printHelloWorld()
-
-  // check that the getting started works with both spiritnet and peregine
-  await connectToSpiritnet()
-  try {
-    await fetchDidAndCredential()
-  } finally {
-    await disconnect()
-  }
 
   await connectToPeregrine()
   try {

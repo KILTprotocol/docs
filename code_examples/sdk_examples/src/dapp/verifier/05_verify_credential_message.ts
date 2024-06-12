@@ -50,9 +50,8 @@ export async function main({
     }
     const credential = decryptedMessage.body.content[0]
 
-    const { revoked, attester } = await Kilt.Credential.verifyPresentation(
-      credential
-    )
+    const { revoked, attester } =
+      await Kilt.Credential.verifyPresentation(credential)
 
     if (revoked) {
       throw new Error("Credential has been revoked and hence it's not valid.")

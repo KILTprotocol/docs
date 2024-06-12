@@ -5,8 +5,8 @@ import { useSignExtrinsicCallback } from './useExtrinsicCallback'
 import { useStoreTxSignCallback } from './useStoreTxSignCallback'
 
 // The _keyUri parameter is there to show that the DID key pair is looked up using the URI
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function lookupDidKeyPair(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _keyUri: Kilt.DidResourceUri
 ): Kilt.KiltKeyringPair {
   return Kilt.Utils.Crypto.makeKeypairFromSeed()

@@ -5,70 +5,92 @@ title: DID
 
 import CodeBlock from '@theme/CodeBlock';
 import TsJsBlock from '@site/src/components/TsJsBlock';
+import SnippetBlock from '@site/src/components/SnippetBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
 import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
 
-Now it's time to generate a DID using the previously created account for the <span className="label-role attester">Attester</span>.
+The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
 
-A DID may represent any entity, which could be a person, an organization or a machine.
+A DID may represent any entity, such as a person, an organization, or a machine.
 
-A KILT decentralized identifier (DID) is a string uniquely identifying each KILT user.
-You can store information about your DID on the KILT chain.
-This is useful for many different use cases.
-One example would be messaging.
-You would store a public encryption key and a services on-chain, which can both be queried using your DID.
-Other users can now encrypt messages using your public encryption key and send the message to your service.
+A DID is a string uniquely identifying each KILT user.
+You can store information about a DID on the KILT chain, which is useful for different use cases.
 
-There are two types of DIDs: light and full.
-Take a look at our [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about DIDs and the difference between the light and full versions.
+One use case is messaging.
+You could store a public encryption key and a service on chain, and a user can query both using a DID.
+Other users can now encrypt messages using your public encryption key and send a message to your service.
+
+## Light and full DIDs
+
+Kilt supports two DID types: **light** and **full**.
+
+There are differences between the two types, but the most crucial is that you can use a light DID offline, but a full DID needs access to the blockchain to work.
+Read the [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about the difference between the light and full types.
 
 :::info KILT DID
 
-There are currently four different key types that a DID supports:
+A DID supports four different key types:
 
-- An _authentication keypair_, used to sign claims and create authenticated credential presentations
-- A _key-agreement keypair_, used to encrypt/decrypt messages
-- An _assertion-method keypair_, used to write CTypes and attestations on chain
-- A _capability-delegation keypair_, used to write delegations on chain
+- An _authentication key pair_, used to sign claims and present authenticated credentials 
+- A _key-agreement key pair_, used to encrypt/decrypt messages
+- An _assertion-method key pair_, used to write CTypes and attestations on chain
+- A _capability-delegation key pair_, used to write delegations on chain
 
-Keys can be replaced over time, e.g., if a key is compromised.
+You can replace keys over time, e.g., if a key becomes compromised.
 
 :::
 
-## Account vs DID
+## What's the difference between a DID and an account?
 
-A full DID needs to be registered on the blockchain.
-For that, an account has to submit the DID creation transaction.
-There is always an account that submits the transactions and pays for the fees and the DID that authorized the call.
-Because the DID and the account are not connected, DIDs do not hold any coins.
+A DID and an account sound quite similar, but there are some differences:
+
+- You record both to chain
+- You can have a DID without an account
+- You can have an account without a DID
+- Only an account can pay deposits and fees and attest claims
+- DIDs don't hold any coins
+
+In summary, you register a DID on the blockchain by an account submitting the DID creation transaction and paying the fees.
 
 ## Create a DID
 
-To create a DID we can use the same keyrings that are used to generate accounts.
-For our <span className="label-role attester">Attester</span> we'll need all four types of keys.
-Since three of the key types are used for signatures, we can use the same key for these.
-We'll use the default KILT keyring to generate them.
+As an <span className="label-role attester">Attester</span> needs to interact with the chain, you must create a full DID.
 
-<TsJsBlock fileName="attester/generateKeypairs">
-  {GenerateKeypairs}
-</TsJsBlock>
+### Write DID to chain
 
-Once we have created all the necessary keys for a DID we can create the on-chain DID.
-To create a DID we first initialize everything.
-After that, we load the account that we created in the [last section](./01_account.md).
-The account will be used to pay for the DID registration.
-Finally, we create and submit the extrinsic (aka transaction) that will register our DID.
+The KILT SDK provides multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account.
+
+<!-- TODO: Add other methods -->
+<!-- TODO: Add how -->
+
+:::info Bring your own account
+
+This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead.
+
+:::
+
+Create and submit the extrinsic (aka transaction) that registers the DID.
 
 <TsJsBlock fileName="attester/generateDid">
   {GenerateDid}
 </TsJsBlock>
 
-## Execute
+The `publicKeyToChain` helper method returns a public key of the correct type.
 
-You can now execute the script with:
+The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Attester's DID creation.
+
+The `createFromAccount` method takes the authenticated key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID needs and uses.
+
+An Attester account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Attester account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
+
+The `signAndSubmitTx` method then takes those transactions and submits them as a batch to the chain.
+
+## Run the code
+
+Now run the code with:
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -87,16 +109,16 @@ You can now execute the script with:
   </TabItem>
 </Tabs>
 
-Once you have executed the script, the output should provide you with your `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
-Your output should look like this (but it won't be identical since the DIDs are constructed from your account):
+Once you have run the script, the output should provide you with the `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
+
+The output should look like the following, but not identical since the code creates the DIDs from your account:
 
 ```
-ATTESTER_DID_MNEMONIC="beyond large galaxy...
-ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
+ATTESTER_DID_MNEMONIC="beyond large galaxy…
+ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD…"
 ```
 
-Be sure to save it in your `.env` file.
-It should now look similar to this:
+Save the values in the `.env` file, which should now look like the following:
 
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
@@ -107,4 +129,4 @@ ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
-Well done - You've successfully generated a full DID! Let's create a CType!
+Well done - You've generated a full DID! The next step is to create a CType!

@@ -41,7 +41,7 @@ This can either be `peregrine` or `spiritnet`.
 
 Hence, to start a full node for the Spiritnet network, the parameter would be `--chain=spiritnet`.
 Unfortunately, there is no hardcoded chain spec for the Peregrine network, so the full path of the chainspec file must be provided `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
-Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/dev-specs/kilt-parachain/peregrine-kilt.json) or the [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) for more information.
+Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/master/dev-specs/kilt-parachain/peregrine-kilt.json) or the [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) for more information.
 
 ### Specify the Blockchain Storage Path
 
@@ -65,7 +65,7 @@ values={[
 
 ### Build the Full Node
 
-In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install) and the `wasm32-unknown-unknown` target for this toolchain installed.
+In order to build the KILT full node executable, you need to have [rustup and Rust installed](https://www.rust-lang.org/tools/install).
 After cloning the repository, you can build the executable by running the `cargo build` command below from the root directory.
 
 ```bash
@@ -73,8 +73,6 @@ After cloning the repository, you can build the executable by running the `cargo
 git clone https://github.com/KILTprotocol/kilt-node.git
 # Check out master branch
 git checkout master
-# Set up the build environment by installing the Rust compiler.
-./scripts/init.sh
 # Build the executable from source enabling all the optimizations with --release.
 cargo build --release -p kilt-parachain
 ```
@@ -104,10 +102,9 @@ values={[
 ./target/release/kilt-parachain \
   --chain=spiritnet \
   --runtime=spiritnet \
-  --rpc-port=9933 \
+  --rpc-port=9944 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -123,10 +120,9 @@ values={[
 ./target/release/kilt-parachain \
   --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
   --runtime=peregrine \
-  --rpc-port=9933 \
+  --rpc-port=9944 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -144,7 +140,7 @@ values={[
 ### Run an Archive Node
 
 The full node can also be started as a Docker container.
-To expose the WebSockets ensure that the `--rpc-external` and `--ws-external` flags are set.
+To expose the WebSockets ensure that the `--rpc-external` flags is set.
 
 To run an Archive full node add the option `--pruning archive` to the command.
 
@@ -172,10 +168,9 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --base-path=/data/para \
   --chain=spiritnet \
   --runtime=spiritnet \
-  --rpc-port=9933 \
+  --rpc-port=9944 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \
@@ -193,10 +188,9 @@ docker run -v kilt-node-data:/data kiltprotocol/kilt-node:latest \
   --base-path=/data/para \
   --chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json \
   --runtime=peregrine \
-  --rpc-port=9933 \
+  --rpc-port=9944 \
   --rpc-cors=all \
   --rpc-external \
-  --ws-external \
   --name="name of full node" \
   --execution=wasm \
   --pruning archive \

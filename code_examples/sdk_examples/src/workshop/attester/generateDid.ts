@@ -1,51 +1,40 @@
-import { config as envConfig } from 'dotenv'
-
 import * as Kilt from '@kiltprotocol/sdk-js'
-
+import { config as envConfig } from 'dotenv'
 import { generateAccount } from './generateAccount'
-import { generateKeypairs } from './generateKeypairs'
 
 export async function createFullDid(
-  submitterAccount: Kilt.KiltKeyringPair
+  creatorAccount: Kilt.KiltKeyringPair & {
+    type: 'ed25519' | 'sr25519' | 'ecdsa'
+  }
 ): Promise<{
-  mnemonic: string
   fullDid: Kilt.DidDocument
 }> {
   const api = Kilt.ConfigService.get('api')
 
-  const mnemonic = Kilt.Utils.Crypto.mnemonicGenerate()
-  const {
-    authentication,
-    keyAgreement,
-    assertionMethod,
-    capabilityDelegation
-  } = generateKeypairs(mnemonic)
-  // Get tx that will create the DID on chain and DID-URI that can be used to resolve the DID Document.
-  const fullDidCreationTx = await Kilt.Did.getStoreTx(
-    {
-      authentication: [authentication],
-      keyAgreement: [keyAgreement],
-      assertionMethod: [assertionMethod],
-      capabilityDelegation: [capabilityDelegation]
-    },
-    submitterAccount.address,
-    async ({ data }) => ({
-      signature: authentication.sign(data),
-      keyType: authentication.type
-    })
+  const verificationMethod = Kilt.Did.publicKeyToChain(creatorAccount)
+
+  const txs = [
+    api.tx.did.createFromAccount(verificationMethod),
+    api.tx.did.dispatchAs(
+      creatorAccount.address,
+      api.tx.did.setAttestationKey(verificationMethod)
+    )
+  ]
+
+  console.log('Creating DID from account…')
+  await Kilt.Blockchain.signAndSubmitTx(
+    api.tx.utility.batch(txs),
+    creatorAccount
   )
-
-  await Kilt.Blockchain.signAndSubmitTx(fullDidCreationTx, submitterAccount)
-
-  const didUri = Kilt.Did.getFullDidUriFromKey(authentication)
+  const didUri = Kilt.Did.getFullDidUriFromKey(creatorAccount)
   const encodedFullDid = await api.call.did.query(Kilt.Did.toChain(didUri))
-  const { document } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
+  const { document: didDocument } = Kilt.Did.linkedInfoFromChain(encodedFullDid)
 
-  if (!document) {
+  if (!didDocument) {
     throw new Error('Full DID was not successfully created.')
   }
 
-  return { mnemonic, fullDid: document }
+  return { fullDid: didDocument }
 }
 
 // Don't execute if this is imported by another file.
@@ -59,10 +48,9 @@ if (require.main === module) {
       // Load attester account
       const accountMnemonic = process.env.ATTESTER_ACCOUNT_MNEMONIC as string
       const { account } = generateAccount(accountMnemonic)
-      const { mnemonic, fullDid } = await createFullDid(account)
+      const { fullDid } = await createFullDid(account)
 
       console.log('\nsave following to .env to continue\n')
-      console.error(`ATTESTER_DID_MNEMONIC="${mnemonic}"\n`)
       console.error(`ATTESTER_DID_URI="${fullDid.uri}"\n`)
     } catch (e) {
       console.log('Error while creating attester DID')

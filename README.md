@@ -1,6 +1,6 @@
 # KILT Protocol Documentation Website
 
-The KILT Documentation website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+The KILT Documentation website is built using [Docusaurus 3](https://docusaurus.io/), a modern static website generator.
 
 Hosted at https://docs.kilt.io
 
@@ -108,14 +108,14 @@ We imported `SnippetBlock` and the content `Connect` in the top of the file.
 
 <SnippetBlock
   className="language-ts"
-  funcEnd="return"
+  dropTail="1"
 >
   {Connect}
 </SnippetBlock>
 
 A `TsJsSnippet` is preferred since it automatically generates JavaScript examples.
 
-<TsJsSnippet funcEnd="return">
+<TsJsSnippet dropTail="1">
   {FetchEndpointData}
 </TsJsSnippet>
 ```
