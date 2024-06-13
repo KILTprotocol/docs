@@ -40,7 +40,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
         return match;
       }
     );
-    // Replace require.main === module logic with an IIFE
+    // Replace require.main === module logic 
     jsCodeWithExtensions = jsCodeWithExtensions.replace(
       'if (require.main === module)',
       'if (import.meta.url === new URL(import.meta.url).href)'
@@ -48,9 +48,6 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     
     return jsCodeWithExtensions
   }, [tsSnippet])
-
-    // Ensure all import statements have .js extension
-
 
   // 2. Prettify the resulting JS
   useEffect(() => {
