@@ -41,7 +41,8 @@ module.exports = {
     announcementBar: {
       id: 'dip-announcement',
       // Use absolute links proceeded by '/docs'
-      content: 'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
+      content:
+        'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -97,6 +98,11 @@ module.exports = {
               type: 'doc',
               docId: 'develop/dApp/welcome',
               label: 'DApp Documentation',
+            },
+            {
+              type: 'doc',
+              docId: 'develop/opendid/what-is-opendid',
+              label: 'OpenDID Documentation',
             },
           ],
         },
@@ -239,7 +245,10 @@ module.exports = {
         documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
-            var trimContent = content.replace("# Decentralized Identity Provider (DIP) provider pallet", "# Provider pallet")
+            var trimContent = content.replace(
+              '# Decentralized Identity Provider (DIP) provider pallet',
+              '# Provider pallet'
+            )
             return {
               filename: '02_provider.md',
               content: trimContent,
@@ -260,7 +269,10 @@ module.exports = {
         documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
-            var trimContent = content.replace("# Decentralized Identity Provider (DIP) consumer pallet", "# Consumer pallet")
+            var trimContent = content.replace(
+              '# Decentralized Identity Provider (DIP) consumer pallet',
+              '# Consumer pallet'
+            )
             return {
               filename: '03_consumer.md',
               content: trimContent,
