@@ -21,21 +21,21 @@ The following are all required properties of the JSON schema for [CType models](
 -   `$id`: An **identifier**: in the format `kilt:ctype:0x{cTypeHash}`.
 -   `$schema`: A **reference to CType metaschema**: Describes what a valid CType must looks like. You can find the latest metaschema on IPFS at the following address [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 -   `title`: A user-friendly name for the CType that makes it easier for users to contextualize.
--   `properties`: A set of fields (e.g., name, birth date) that the CType can contain, and that the Claimer can have attested.
+-   `properties`: A set of fields (e.g., name, birth date) that the CType can contain, and that the Claimer can have attested. [Read more details about properties below](#properties).
 -   `type`: An object containing properties for a claim about the Claimer in the credential.
 <!-- TODO: Since when? -->
--   `additionalProperties`: Deprecated since version x of CTypes, but must be present and set to `false`, instead now using the values in `properties`.
+-   `additionalProperties`: A boolean added since version x of CTypes, that must be set and allows or disallows any properties in addition to those in `properties`. If set to `false`, the CType validation will fail if there are any additional properties.
 
 ### Properties
 
-<!-- TODO: Is this `properties`? -->
+When creating the accepted properties of a new CType schema, you define each property as a key-value pair.
+The **key** is the property name (such as "age") and the **value** is an object that has a "type" property whose property defines which type the credential property should have (e.g., "number") or a `$ref` property whose value is a reference to another CType or one of its properties. Using a `$ref` allows for nested CTypes
 
-When creating a new CType schema, the following properties are required:
+Each property must have:
 
 -   One of the following fields: `type` or `$ref`
-<!-- TODO: What attribute? -->
 -   A type of `string`, `integer`, `number` or `boolean` to define the attribute
--   Nested JSON schemas can be referenced by a `uri` using `$ref` (giving the advantage of being able to reference previously-created CTypes)
+-   Reference nested JSON schemas from previously created CTypes with a `uri` using `$ref`.
 -   The format field is optionally:
     -   _Date_ format e.g., 2012-04-23T18:25:43.511Z
     -   _Time_ format e.g., T18:25:43.511Z
@@ -44,8 +44,6 @@ When creating a new CType schema, the following properties are required:
 <CodeBlock className="language-json" title="CType schema example">
   {ctypeSchema}
 </CodeBlock>
-
-<!-- TODO: Move this below? -->
 
 When submitted, the CType schema is hashed to generate its own identifier, and it becomes the full CType object:
 
@@ -82,11 +80,11 @@ A typical CType ID looks like this: `kilt:ctype:0xda3861a45e0197f3ca145c2c209f91
 
 ## Storing and querying CTypes
 
-As of the [KILT runtime 1.9.0][kilt-runtime-1.9.0], you can query CTypes directly from any KILT archive node!
+As of the [KILT runtime 1.9.0][kilt-runtime-1.9.0], you can query CTypes directly from any KILT archive node.
 
 After creating a CType, its full content is only included in the blockchain block history and its hash and creation block number anchored to the blockchain state.
 
-To query the full content of a CType, use its hash to look up the creation block number and use that to query any KILT archive node for the extrinsic information about the CType creation.
+To query the full content of a CType, use its hash to look up the creation block number, and use that to query any KILT archive node for the extrinsic information about the CType.
 
 The returned information includes the whole CType, which is now available for the user to, for example, verify credentials against it.
 
@@ -102,7 +100,7 @@ For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook
 
 <!-- TODO: Do we still need this? -->
 
-:::danger title="Deprecation Warning: CType metaschema draft-01"
+:::danger Deprecation Warning: CType metaschema draft-01
 
 CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype%23%60) metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
 Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged when creating new CTypes.
@@ -111,7 +109,7 @@ This newer version defaults to using the updated metaschema available at [`ipfs:
 
 This also means you should update existing CTypes.
 
-While existing CTypes will continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
+While existing CTypes continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
 
 Old Property Value: `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
 New Property Value: `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/"`
@@ -126,8 +124,8 @@ Using sdk version `0.33.0` or later, you can produce a copy of an existing CType
 const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 ```
 
-The new CType will have the same title and properties as the existing one, but be based on the new metaschema, resulting in a different hash and id.
-After [registering the new CType on the Kilt blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
+The new CType has the same title and properties as the existing one, but be based on the new metaschema, resulting in a different hash and id.
+After [registering the new CType on the KILT blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
 
 Verifiers depending on these CTypes should accept both the old and new CType during a transition period.
 Test thoroughly to ensure the correct behavior and functionality of the new CTypes in your application.
