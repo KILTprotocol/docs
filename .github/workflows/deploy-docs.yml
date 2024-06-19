@@ -2,8 +2,8 @@ name: deploy
 
 on:
   workflow_run:
-    workflows: [ "test-code-examples" ]
-    branches: [ master ]
+    workflows: ['test-code-examples']
+    branches: [master]
     types:
       - completed
 
@@ -12,8 +12,8 @@ jobs:
     if: (github.event_name != 'pull_request' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'

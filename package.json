@@ -2,6 +2,10 @@
   "name": "docs",
   "version": "2.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">= 20.0"
+  },
   "scripts": {
     "build": "yarn check-ts && yarn check-links && yarn generate-examples && docusaurus build",
     "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find docs -name '*.md')",
