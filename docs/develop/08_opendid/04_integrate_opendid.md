@@ -114,3 +114,13 @@ After successful authentication, OpenDID redirects back to the provided `redirec
     state=nitctpl7nmqcpvob7xthrw&
     token_type=bearer
 ```
+
+## Self-Issued OpenID Provider v2 (SIOPv2)
+
+You can configure OpenDID to be compatible with [SIOPv2](https://openid.net/specs/openid-connect-self-issued-v2-1_0.html).
+In this case, you only need a DID for the authorization, and no credentials.
+To configure the OpenDID service to allow SIOPv2, it must have a `client` key with an empty requirements
+value in the `config.yaml` file.
+
+Initiate the SIOPv2 flow the same way as the [Implicit Flow](#implicit-flow) with the exception that the `nonce`
+value is required.
