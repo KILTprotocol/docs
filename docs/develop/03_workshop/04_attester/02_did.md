@@ -109,7 +109,7 @@ Now run the code with:
   </TabItem>
 </Tabs>
 
-Once you have run the script, the output should provide you with the `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
+Once you have run the script, the output should provide you with the `ATTESTER_DID_URI`.
 
 The output should look like the following, but not identical since the code creates the DIDs from your account:
 

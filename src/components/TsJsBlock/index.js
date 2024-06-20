@@ -28,7 +28,15 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     })
 
     // List of modules to which .js extension should be added
-    const modulesToTransform = ['./generateAccount', './generateKeypairs', './ctypeSchema', './createClaim', './generateLightDid', '../attester/ctypeSchema', '../claimer/generateLightDid', '../claimer/generateCredential'];
+    const modulesToTransform = [
+      './generateAccount', 
+      './generateKeypairs', 
+      './ctypeSchema', 
+      './createClaim', 
+      './generateLightDid', 
+      '../attester/ctypeSchema', 
+      '../claimer/generateLightDid', 
+      '../claimer/generateCredential']
 
     // Ensure only specific import statements have .js extension
     let jsCodeWithExtensions = code.replace(
@@ -40,7 +48,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
         return match;
       }
     );
-    // Replace require.main === module logic 
+    // Replace 'require.main === module' logic to make it ES6 friendly 
     jsCodeWithExtensions = jsCodeWithExtensions.replace(
       'if (require.main === module)',
       'if (import.meta.url === new URL(import.meta.url).href)'
