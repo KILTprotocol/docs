@@ -10,7 +10,7 @@ import CodeBlock from '@theme/CodeBlock';
 import ctypeSchema from '@site/scripts/out/ctype-schema.json.raw!=!raw-loader!@site/scripts/out/ctype-schema.json';
 import ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
-CTypes are data types specific to KILT that define the structure of a claim (i.e., its data model).
+Claim types (CTypes) are data types specific to KILT that define the structure of a claim (i.e., its data model).
 CTypes are based on [JSON Schema](https://json-schema.org/), a standard used to annotate and validate JSON documents.
 The schema defines which properties exist and what their type should be, e.g., a string, a number, an object, etc.
 
