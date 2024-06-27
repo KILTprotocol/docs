@@ -52,7 +52,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
   ```
 
   ```bash
-  mkdir claimer && touch claimer/createClaim.ts && touch claimer/createPresentation.ts && touch claimer/generateCredential.ts && touch claimer/generateKeypairs.ts && touch claimer/generateLightDid.ts
+  cd claimer && touch createClaim.ts createPresentation.ts generateCredential.ts generateKeypairs.ts generateLightDid.ts && cd ..
   ```
 
   </TabItem>
@@ -69,7 +69,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
   ```
 
   ```bash
-  mkdir claimer && touch claimer/createClaim.js && touch claimer/createPresentation.js && touch claimer/generateCredential.js && touch claimer/generateKeypairs.js && touch claimer/generateLightDid.js
+  cd claimer && touch createClaim.js createPresentation.js generateCredential.js generateKeypairs.js generateLightDid.js && cd ..
   ```
 
   </TabItem>

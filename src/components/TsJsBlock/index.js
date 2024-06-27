@@ -36,7 +36,11 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
       './generateLightDid', 
       '../attester/ctypeSchema', 
       '../claimer/generateLightDid', 
-      '../claimer/generateCredential']
+      '../claimer/generateCredential',
+      './claimer/createPresentation',
+      './claimer/generateKeypairs',
+      './claimer/generateLightDid',
+    ]
 
     // Ensure only specific import statements have .js extension
     let jsCodeWithExtensions = code.replace(
@@ -51,7 +55,7 @@ const TsJsBlock = ({ children, fileName, ...props }) => {
     // Replace 'require.main === module' logic to make it ES6 friendly 
     jsCodeWithExtensions = jsCodeWithExtensions.replace(
       'if (require.main === module)',
-      'if (import.meta.url === new URL(import.meta.url).href)'
+      'if (process.argv[1] === new URL(import.meta.url).pathname)'
     )
     
     return jsCodeWithExtensions
