@@ -2,16 +2,16 @@ name: test-docs-examples-2
 
 on:
   repository_dispatch:
-    types: [ sdk-update ]
+    types: [sdk-update]
 
 jobs:
   code_examples:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -23,8 +23,8 @@ jobs:
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**/*"
-          exclude: "**/*.lock"
+          include: 'code_examples/**/*'
+          exclude: '**/*.lock'
           regex: false
       - name: Install and dedupe
         working-directory: code_examples/sdk_examples/
@@ -41,12 +41,12 @@ jobs:
 
   create_pull_request:
     runs-on: ubuntu-latest
-    needs: [ code_examples ]
+    needs: [code_examples]
     if: success() && !contains(github.event.client_payload.latestTag, 'rc')
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -58,21 +58,21 @@ jobs:
         with:
           find: '${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '${{ github.event.client_payload.latestTag }}'
-          include: "docs/**/*.md"
+          include: 'docs/**/*.md'
           regex: false
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "code_examples/**/*"
-          exclude: "**/*.lock"
+          include: 'code_examples/**/*'
+          exclude: '**/*.lock'
           regex: false
       - uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: '@kiltprotocol/sdk-js": "${{ steps.kiltprotocol_sdk.outputs.current_tag }}'
           replace: '@kiltprotocol/sdk-js": "${{ github.event.client_payload.latestTag }}'
-          include: "scripts/**"
-          exclude: "**/*.lock"
+          include: 'scripts/**'
+          exclude: '**/*.lock'
           regex: false
       - name: Regenerate yarn lock for SDK examples
         working-directory: code_examples/sdk_examples
@@ -102,11 +102,11 @@ jobs:
 
   create_issue:
     runs-on: ubuntu-latest
-    needs: [ code_examples ]
+    needs: [code_examples]
     if: failure()
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Generate issue body
         run: |
           echo "ISSUE_BODY=[At least one of the test workflows](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) using the latest released SDK ${{ github.event.client_payload.latestTag }} on docs has failed." >> $GITHUB_ENV
@@ -114,10 +114,10 @@ jobs:
         id: issue
         uses: imjohnbo/issue-bot@v3
         with:
-          title: "[AUTOMATIC] New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples"
+          title: '[AUTOMATIC] New SDK ${{ github.event.client_payload.latestTag }} is incompatible with deployed docs examples'
           body: |
             ## Incompatible SDK detected
-            
+
             ${{ env.ISSUE_BODY }}
 
             ### Tasks
@@ -129,6 +129,6 @@ jobs:
             🧰 sdk
             🚚 high
           column: 📥  Inbox
-          assignees: "ntn-x2, rflechtner"
+          assignees: 'ntn-x2, rflechtner'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           project-v2-path: orgs/KILTprotocol/projects/24

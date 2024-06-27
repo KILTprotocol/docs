@@ -1,31 +1,40 @@
 ---
-id: overview
+id: what-is-opendid
 title: Overview
 ---
 
+[OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation capable of authenticating users through their [Decentralized Identifier (DID)](../../concepts/02_did.md) and Verifiable Credentials.
 
-[OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation that is capable of authenticating users through their [Decentralized Identifier (DID)](/docs/concepts/02_did.md) and Verifiable Credentials.
 It follows the [OpenID Connect 1.0 Specification](https://openid.net/specs/openid-connect-core-1_0.html#Introduction) and acts as a bridge between the decentralized identity world and the centralized authentication world supporting both the implicit and Authorization Code Flow.
 
-A major use of OpenDID is SSO (Single Sign-On) where the same DID and credentials can be used to sign into multiple
-platforms and webservices for instance by adding a `Sign in with Kilt` button to a webpage.
+A major use of OpenDID is Single Sign-On (SSO), which allows users to use the same DID and credentials to sign into multiple platforms and web services. For instance, by adding a "Sign in with KILT" button to a webpage.
 
-Although, integrating that functionality into a webpage is relatively simple, configuring and running the OpenDID is a little more involved.
+Although integrating that functionality into a webpage is relatively simple, configuring and running OpenDID is more involved.
 
-## Project Structure
-The project is composed of multiple parts that supplement and interact with each other all shipped as docker containers
-released to docker hub:
+:::info
 
-### opendid-setup:
-In order to run the OpenDID Service, some configurations are needed, these configurations can be conveniently created using this
-container. For example, a DID is required to establish a session with the Identity Wallet. This container creates a DID
-and the necessary configurations by providing an account with enough funds. Learn more at [Run Setup
-Container](/docs/develop/opendid/opendid_service#run-setup-container).
+To learn more about the flow of OpenDID, see the [OpenDID Flow](./02_opendid_flow.md) documentation.
 
-### kiltprotocol/opendid
-This container [runs the OpenDID Service](/docs/develop/opendid/opendid_service#run-the-service), both the OpenDID front and backend. This container requires the
-configuration file created from the `opendid-setup` container.
+:::
+
+## Project container structure
+
+The project consist of multiple parts that supplement and interact with each other all shipped as Docker containers and released to Docker Hub.
+
+### opendid-setup container
+
+The OpenDID Service needs configuration to run, which you can apply using this
+container.
+For example, it requires a DID to establish a session with an identity wallet.
+This container creates a DID and the necessary configuration by providing an account with enough funds.
+
+Learn more in the [run setup container documentation](./03_opendid_service.md#run-setup-container).
+
+### kiltprotocol/opendid container
+
+This container [runs the OpenDID Service](./03_opendid_service.md#run-the-service), both the OpenDID front and back end.
+This container requires the configuration file created from the `opendid-setup` container.
 
 ### kiltprotocol/opendid-demo
-A [WebApp demo](/docs/develop/opendid/demo_project) including simple front and backend services to demonstrate the use of OpenDID.
 
+This container is a [web app demo](./05_demo_project.md), including front and back end services to demonstrate the use of OpenDID.
