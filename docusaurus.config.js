@@ -282,5 +282,30 @@ module.exports = {
         },
       },
     ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+        name: 'swap-pallet',
+        // TODO: Temp URL
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/b23207e9782ea024cde8f4883cb4029eebb1735f/pallets/pallet-asset-swap/',
+        outDir: 'docs/develop/09_polarpath',
+        documents: ['README.md'],
+        // modifyContent(filename, content) {
+        //   if (filename.includes('README')) {
+        //     var trimContent = content.replace(
+        //       '# Decentralized Identity Provider (DIP) consumer pallet',
+        //       '# Consumer pallet'
+        //     )
+        //     return {
+        //       filename: '03_consumer.md',
+        //       content: trimContent,
+        //     }
+        //   }
+        //   return undefined
+        // },
+      },
+    ],
   ],
 }
