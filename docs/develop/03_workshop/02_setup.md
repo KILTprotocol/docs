@@ -55,9 +55,13 @@ The dependencies needed are the following:
       ├─ verify.ts # all verifier code
       └─ .env # environment variables
   ```
+  ```
+  mkdir attester claimer && touch verify.ts .env
+  ```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
+
 
   Create the following remaining files and folders to end up with the folder structure below:
 
@@ -67,6 +71,9 @@ The dependencies needed are the following:
       ├─ claimer/ # all claimer code
       ├─ verify.js # all verifier code
       └─ .env # environment variables
+  ```
+  ```
+  mkdir attester claimer && touch verify.js .env
   ```
 
   </TabItem>
