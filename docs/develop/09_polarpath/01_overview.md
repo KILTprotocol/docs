@@ -50,6 +50,11 @@ Polar path uses Polkadot's [Cross-Consensus Message Format (XCM)](https://wiki.p
 
 Extrinsics
 
+:::tip Remote asset
+A remote asset is the identifier of the asset considered to be the other side of the switch pair. For an ERC20 token, this is a [MultiLocation](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-summary) (in XCM terms) pointing to an address on one of the many EVM-based deployments.
+
+:::
+
 `setSwapPair`
 Create a new switch pair between a parachain token and an ERC-20 token. Returns a result and takes the following parameters:
 
@@ -71,5 +76,9 @@ Pause switching assets for a specific parachain token and ERC-20 pair.
 Restart switching assets for a specific parachain token and ERC-20 pair.
 
 `swap`
-Allow any user with enough local asset balance to send them to the pool account for this specific swap pair and get issued a corresponding amount of remote asset from the parachain’s sovereign account on remote location, to a `MultiLocation` of their choice.
+// Pool account Asset Hub
+// Remote asset?
+// Sovereign account?
+
+Allow any user with enough parachain asset balance to send them to the [Asset Hub pool account](https://docs.rs/pallet-asset-conversion/latest/pallet_asset_conversion/pallet/struct.Pallet.html#method.create_pool) for this specific switch pair and receive a corresponding amount of remote asset from the parachain's sovereign account on remote location, to a `MultiLocation` of their choice.
 
