@@ -91,11 +91,6 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'develop/opendid/overview',
-              label: 'OpenDID',
-            },
-            {
-              type: 'doc',
               docId: 'develop/builtonkilt',
               label: 'Built on KILT',
             },
