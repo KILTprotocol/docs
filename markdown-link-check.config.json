@@ -16,6 +16,9 @@
   "ignorePatterns": [
     {
       "pattern": "^#.+"
+    },
+    {
+      "pattern": "/(localhost)."
     }
   ]
 }

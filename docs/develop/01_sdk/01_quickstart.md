@@ -181,7 +181,7 @@ The next step is to see if `kiltnerd123` has any publicly linked KILT credential
 A **KILT DID** can expose services that allow external resources to be linked to the DID.
 **KILT credentials** represent one type of external resource.
 
-You can retrieve the **services** attached to John Doe's DID and see if they link to any public credentials to **query** and **verify**.
+You can retrieve the **services** attached to kiltnerd123's DID and see if they link to any public credentials to **query** and **verify**.
 
 Add the following code after the code you added in the previous step but before the `await Kilt.disconnect()`.
 It retrieves the services exposed by the DID found for `kiltnerd123`:
@@ -217,7 +217,7 @@ className="language-ts"
 {VerifyCredential}
 </SnippetBlock>
 
-Run the code and wait to see if you can retrieve **and** verify one of John Doe's credentials!
+Run the code and wait to see if you can retrieve **and** verify one of kiltnerd123's credentials!
 
 :::info Next steps
 
