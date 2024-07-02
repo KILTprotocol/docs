@@ -12,6 +12,8 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()): {
 
   const assertionMethod = Kilt.Utils.Crypto.makeKeypairFromUri(mnemonic)
 
+  const capabilityDelegation = Kilt.Utils.Crypto.makeKeypairFromUri(mnemonic)
+
   const keyAgreement = Kilt.Utils.Crypto.makeEncryptionKeypairFromSeed(
     Kilt.Utils.Crypto.mnemonicToMiniSecret(mnemonic)
   )
@@ -19,6 +21,7 @@ export function generateKeypairs(mnemonic = mnemonicGenerate()): {
   return {
     authentication: authentication,
     keyAgreement: keyAgreement,
-    assertionMethod: assertionMethod
+    assertionMethod: assertionMethod,
+    capabilityDelegation: capabilityDelegation
   }
 }
