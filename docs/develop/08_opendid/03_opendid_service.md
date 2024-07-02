@@ -3,8 +3,6 @@ id: opendid_service
 title: Run OpenDID Service
 ---
 
-<!-- TODO: Overview and steps -->
-
 ## Configuration
 
 Running the OpenDID service requires some configuration and a KILT DID.
@@ -68,6 +66,7 @@ The container generates sensible defaults in the `config.yaml` file, but here ar
 
     -   The client ID as a key (The default is: `example-client`).
     -   The `requirements` section, including:
+
         -   What CTypes are required for authentication.
         -   The trusted attesters as an address (The default is for the [SocialKYC attester](https://socialkyc.io/)).
 
