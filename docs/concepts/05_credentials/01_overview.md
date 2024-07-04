@@ -17,7 +17,7 @@ import ThemedImage from '@theme/ThemedImage';
 />
 </center>
 
-To get a credential, a Claimer needs to take the following process:
+To get a credential, a Claimer needs to take the following steps:
 
 1. Find a **CType** to base a claim on. Potential Attesters and Verifiers might advertise this information themselves.
 2. Make a **claim** containing a set of properties about themselves.
