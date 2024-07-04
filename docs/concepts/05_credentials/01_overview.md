@@ -21,7 +21,7 @@ To get a credential, a Claimer needs to take the following steps:
 
 1. Find a **CType** to base a claim on. Potential Attesters and Verifiers might advertise this information themselves.
 2. Make a **claim** containing a set of properties about themselves.
-3. Optionally request and receive **Terms** and agree on a **Quote** with the potential Attester.
+3. Fulfil any requirement from your Attester; e.g. accepting their **Terms** and paying a **Quote**. 
 4. **Request an attestation** from the Attester.
 5. Wait for the Attester to **attest** claims.
 
