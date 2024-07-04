@@ -30,7 +30,7 @@ Once attested, the claims are considered to be a valid credential.
 To verify a credential, a Claimer can generate a presentation of it to a Verifier, with the following process:
 
 1. The Verifier may request a **credential** as the first step, along with with properties to reveal from the Credential.
-2. The Claimer selectively **discloses** the requested properties and signs the generated presentation.
+2. The Claimer selectively **discloses** the requested properties and signs them along with the challenge to generate a presentation.
 3. The Verifier **checks** the presentation structure, content and signature, and decides whether they trust the Attester of the presented credential.
 
 The next sections describe each step in more detail.
