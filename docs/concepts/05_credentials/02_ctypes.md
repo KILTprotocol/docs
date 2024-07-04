@@ -63,7 +63,7 @@ Use the hash of the CType to identify and anchor it to the KILT blockchain.
 
 ### Constructing the `hash` for the `$id`
 
-KILT uses the `blake2b256` hashing algorithm to compute the hash of CTypes, sorting the CType object by a canonicalization algorithm to ensure that semantically equivalent CTypes with different orders of their properties result in the same final hash.
+KILT uses the `blake2b256` hashing algorithm to compute the hash of CTypes, after sorting the CType object by a canonicalization algorithm to ensure that semantically equivalent CTypes with different orders of their properties result in the same final hash.
 
 KILT computes the hash from the following fields of the CType schema:
 
