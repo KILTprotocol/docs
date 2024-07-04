@@ -15,7 +15,7 @@ Therefore, Verifiers might trust different Attesters for distinct scenarios.
 
 In KILT, claims are based on claim types (CTypes).
 Given a CType, a Claimer only needs to create a claim with the properties specified in the CType schema.
-The resulting claim contains a reference to the CType by its hash and includes the identity of the claim subject (identified by the `owner` property).
+The resulting claim contains a reference to the CType by its hash and includes the identity of the claim subject (identified by the `owner` property, which has the value of a KILT DID).
 
 <CodeBlock className="language-json" title="Claim example">
   {Claim}
