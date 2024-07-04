@@ -90,7 +90,7 @@ The returned information includes the whole CType, which is now available for th
 
 :::info CType creation cost
 
-It costs 0.001 KILT to create a CType on the KILT blockchain.
+Currently, it costs 0.001 KILT to create a CType on the KILT blockchain.
 
 :::
 
