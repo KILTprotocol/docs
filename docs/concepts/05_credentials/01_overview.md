@@ -27,7 +27,8 @@ To get a credential, a Claimer needs to take the following steps:
 
 Once attested, the claims are considered to be a valid credential.
 
-To verify a credential, a Claimer can generate a presentation of it to a Verifier, with the following process:
+To use a Credential, the Claimer can generate a Credential-Presentation for a Verifier.
+The verification would follow this process:
 
 1. The Verifier may request a **credential** as the first step, along with with properties to reveal from the Credential.
 2. The Claimer selectively **discloses** the requested properties and signs them along with the challenge to generate a presentation.
