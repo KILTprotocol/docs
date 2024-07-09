@@ -23,7 +23,7 @@ The resulting claim contains a reference to the CType by its hash and includes t
 
 ## Requesting a credential
 
-Once the Claimer has wrapped his claims into a `Credential`, it must be sent the chosen Attester using any messaging system to get them **certified**, i.e. attested.
+Once the Claimer has wrapped their claims into a `Credential`, they send it to the chosen Attester using any messaging system for **certification**, i.e. attested.
 
 The to-be-attested `Credential` contains the original claim, data needed for future selective disclosure of the claim contents (read more in the [Verification documentation](./05_verification.md)), and the legitimation and / or delegation ID of the Attester and the credential root hash, used to identify both the credential and its on-chain attestation.
 
