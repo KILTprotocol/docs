@@ -22,5 +22,7 @@ For a detailed developer-oriented guide to KILT attestations, read the [Attestat
 ### Storing attestations
 
 Storing a attestation in the blockchain requires providing a constant deposit, which is currently around 0.12 KILT. The deposit amount is calculated based on the worst-case scenario for a attestation, where the maximum storage for one attestation reaches 179 bytes.
-The deposit serves as a security measure to ensure the integrity of the blockchain and incentivize users to manage their attestation responsibly. By requiring a deposit, it discourages spamming or unnecessary creation of attestation.
-The attester can reclaim the deposit by deleting their attestation. Revoking them isn't sufficient.
+The deposit serves as a security measure to ensure the integrity of the blockchain and incentivize users to manage their attestation responsibly.
+By requiring a deposit, it discourages spamming or unnecessary creation of attestation.
+The attester can reclaim the deposit by deleting their attestation.
+Revoking them isn't sufficient as the deposit still shows in chain storage, but marked as invalid.

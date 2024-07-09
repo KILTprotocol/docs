@@ -97,17 +97,17 @@ For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook
 
 [kilt-runtime-1.9.0]: https://github.com/KILTprotocol/kilt-node/releases/tag/1.9.0
 
-<!-- TODO: Do we still need this? -->
-
 :::danger Deprecation Warning: CType metaschema draft-01
 
-CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype) metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
+CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype) metaschema are subject to a vulnerability that could fool an **Attester** by introducing data they never checked.
+
+
 Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged when creating new CTypes.
+
 For optimal security and functionality, use SDK version `0.33.0` or later for creating CTypes.
 This newer version defaults to using the updated metaschema available at [`ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/`](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq).
 
 This also means you should update existing CTypes.
-
 While existing CTypes continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
 
 Old Property Value: `"$schema": "http://kilt-protocol.org/draft-01/ctype"`

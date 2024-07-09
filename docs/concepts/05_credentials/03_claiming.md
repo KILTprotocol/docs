@@ -7,9 +7,15 @@ import CodeBlock from '@theme/CodeBlock';
 import Claim from '@site/scripts/out/claim.json.raw!=!raw-loader!@site/scripts/out/claim.json';
 
 As KILT is an open system, entities can make claims about any other entities, including themselves.
-An entity can only trust a claim (as in the real world) if another trusted entity (called Attesters) *certifies* this claim.
-<!-- TODO: But what's a verifier? -->
-Therefore, Verifiers might trust different Attesters for distinct scenarios.
+An entity can only trust a claim (as in the real world) if another trusted entity (called **Attesters**) *certifies* this claim.
+Therefore, **Verifiers** might trust different **Attesters** for distinct scenarios.
+
+:::info Role recap
+- **Claimers** want information about themselves certified.
+They also issue credentials, but these remain invalid without an attestation.
+- **Attester** check the truthfulness of a claim and certify them.
+- **Verifiers** accept the credentials, only verifying that your certification are legitimate.
+:::
 
 ## Creating a claim
 
