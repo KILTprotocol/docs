@@ -30,7 +30,8 @@ Once attested, the claims are considered to be a valid credential.
 To use a Credential, the Claimer can generate a Credential-Presentation for a Verifier.
 The verification would follow this process:
 
-1. The Verifier may request a **credential** as the first step, along with with properties to reveal from the Credential.
+1. The Verifier may request a **Credential** of a CType, along with with properties to reveal.
+He would also provide a **challenge** to ensure the presentations are not recycled. 
 2. The Claimer selectively **discloses** the requested properties and signs them along with the challenge to generate a presentation.
 3. The Verifier **checks** the presentation structure, content and signature, and decides whether they trust the Attester of the presented credential.
 
