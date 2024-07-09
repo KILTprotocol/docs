@@ -104,6 +104,11 @@ module.exports = {
               docId: 'develop/opendid/what-is-opendid',
               label: 'OpenDID Documentation',
             },
+            {
+              type: 'doc',
+              docId: 'develop/polarpath/what-is-polarpath',
+              label: 'Polar path Documentation',
+            },
           ],
         },
         {
