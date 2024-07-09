@@ -17,7 +17,7 @@ For the verification process:
 During the verification process the Claimer wants to prove three things to the Verifier:
 
 -   The credential is valid (i.e., not revoked by its Attester)
--   The attributes in the credential actually refer to the Claimer
+-   The attributes in the credential actually refer to it's Presenter
 -   The credential contains information relevant for the Verifier for this use case
 
 ## Requesting a credential from a Claimer
