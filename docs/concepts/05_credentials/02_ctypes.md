@@ -23,8 +23,7 @@ The following are all required properties of the JSON schema for [CType models](
 -   `title`: A user-friendly name for the CType that makes it easier for users to contextualize.
 -   `properties`: A set of fields (e.g., name, birth date) that the CType can contain, and that the Claimer can have attested. [Read more details about properties below](#properties).
 -   `type`: An object containing properties for a claim about the Claimer in the credential.
-<!-- TODO: Since when? -->
--   `additionalProperties`: A boolean added since version x of CTypes, that must be set and allows or disallows any properties in addition to those in `properties`. If set to `false`, the CType validation will fail if there are any additional properties.
+-   `additionalProperties`: A boolean added since version 1 of CTypes, that must be set and allows or disallows any properties in addition to those in `properties`. If set to `false`, the CType validation will fail if there are any additional properties.
 
 ### Properties
 
@@ -59,7 +58,7 @@ You can link CType Metadata to a given CType to provide title and descriptions i
 
 ## Hashing
 
-Use the hash of the CType to identify and anchor it to the KILT blockchain.
+Use the hash of the CType to identify and anchor it to the KILT blockchain. Once this is done, it's no longer possible to change or delete the CType schema.
 
 ### Constructing the `hash` for the `$id`
 
@@ -102,16 +101,16 @@ For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook
 
 :::danger Deprecation Warning: CType metaschema draft-01
 
-CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype%23%60) metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
+CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype) metaschema are susceptible to faulty or malicious attester integrations that may introduce unexpected properties to a claim.
 Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged when creating new CTypes.
 For optimal security and functionality, use SDK version `0.33.0` or later for creating CTypes.
-This newer version defaults to using the updated metaschema available at [`ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/`](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/%60).
+This newer version defaults to using the updated metaschema available at [`ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/`](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq).
 
 This also means you should update existing CTypes.
 
 While existing CTypes continue to work in the short term, we advise to upgrade to the latest metaschema at your earliest convenience.
 
-Old Property Value: `"$schema": "http://kilt-protocol.org/draft-01/ctype#"`
+Old Property Value: `"$schema": "http://kilt-protocol.org/draft-01/ctype"`
 New Property Value: `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/"`
 
 ## Migration instructions
