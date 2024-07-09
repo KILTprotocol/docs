@@ -81,7 +81,7 @@ The Verifier can resolve the DID to the public key of the Claimer according to t
 The Verifier assumes that the private key for the DID public key is only known to the owner of the credential, and isn't shared across users.
 Therefore, when requesting the Claimer to generate a presentation, the Verifier challenges the Claimer to sign a nonce (a random number used once) that the Verifier sends together with their request.
 
-If the Claimer can sign both the nonce and the presentation with the private key that only the credential's owner should have knowledge of, the Verifier won't be sure that the Claimer is the legitimate owner of the credential.
+If the Claimer can sign both the nonce and the presentation with the private key that only the credential's owner should have knowledge of, the Verifier can be sure that the Claimer is the legitimate owner of the credential.
 
 ### Verifying the content of the presented credential
 
