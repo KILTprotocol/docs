@@ -62,7 +62,7 @@ Use the hash of the CType to identify and anchor it to the KILT blockchain. Once
 
 ### Constructing the `hash` for the `$id`
 
-KILT uses the `blake2b256` hashing algorithm to compute the hash of CTypes, sorting the CType object by a canonicalization algorithm to ensure that semantically equivalent CTypes with different orders of their properties result in the same final hash.
+KILT uses the `blake2b256` hashing algorithm to compute the hash of CTypes, after sorting the CType object by a canonicalization algorithm to ensure that semantically equivalent CTypes with different orders of their properties result in the same final hash.
 
 KILT computes the hash from the following fields of the CType schema:
 
@@ -89,7 +89,7 @@ The returned information includes the whole CType, which is now available for th
 
 :::info CType creation cost
 
-It costs 0.001 KILT to create a CType on the KILT blockchain.
+Currently, it costs 0.001 KILT to create a CType on the KILT blockchain.
 
 :::
 

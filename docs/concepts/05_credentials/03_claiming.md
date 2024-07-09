@@ -15,7 +15,7 @@ Therefore, Verifiers might trust different Attesters for distinct scenarios.
 
 In KILT, claims are based on claim types (CTypes).
 Given a CType, a Claimer only needs to create a claim with the properties specified in the CType schema.
-The resulting claim contains a reference to the CType by its hash and includes the identity of the claim subject (identified by the `owner` property).
+The resulting claim contains a reference to the CType by its hash and includes the identity of the claim subject (identified by the `owner` property, which has the value of a KILT DID).
 
 <CodeBlock className="language-json" title="Claim example">
   {Claim}
@@ -23,7 +23,7 @@ The resulting claim contains a reference to the CType by its hash and includes t
 
 ## Requesting a credential
 
-Once the Claimer has created a claim, and Attester needs to certify it and the resulting `Credential` sent to the chosen Attester using any messaging system.
+Once the Claimer has wrapped his claims into a `Credential`, it must be sent the chosen Attester using any messaging system to get them **certified**, i.e. attested.
 
 The to-be-attested `Credential` contains the original claim, data needed for future selective disclosure of the claim contents (read more in the [Verification documentation](./05_verification.md)), and the legitimation and / or delegation ID of the Attester and the credential root hash, used to identify both the credential and its on-chain attestation.
 
