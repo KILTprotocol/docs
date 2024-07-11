@@ -47,8 +47,12 @@ Polar path uses Polkadot's [Cross-Consensus Message Format (XCM)](https://wiki.p
 
 Before performing a switch, you first need to create a switch pair between the parachain token and the ERC-20 token using the `setSwitchPair` extrinisc. Then you can use any of the other extriniscs with the switch pair, including performing the switch itself using the `switch` extrinisc.
 
-:::tip Remote asset
-A remote asset is the identifier of the asset considered to be the other side of the switch pair. For an ERC20 token, this is a [MultiLocation](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-summary) (in XCM terms) pointing to an address on one of the many EVM-based deployments.
+:::tip Local and remote assets
+A **local asset** is the identifier of the asset considered to be the parachain token.
+This is a [Junction](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-junctions) type, refering where in the current hierachy to find the asset.
+
+A **remote asset** is the identifier of the asset considered to be the other side of the switch pair.
+For an ERC20 token, this is a [MultiLocation](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-summary) type (in XCM terms) pointing directly to an address on one of the many EVM-based deployments.
 :::
 
 ### `setSwitchPair`
@@ -56,29 +60,29 @@ A remote asset is the identifier of the asset considered to be the other side of
 Create a new switch pair between a parachain token and an ERC-20 token. Returns a result and takes the following parameters:
 
 -   `origin`: Polkadot [Junction](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-junctions) defining the
--   `reserve_location`: 
--   `remote_asset_id`: 
--   `remote_fee`: 
--   `total_issuance`: A `u128` defining
+-   `reserve_location`: `MultiLocation` defining the location of the remote asset.
+-   `remote_asset_id`: Box<VersionedAssetId>
+-   `remote_fee`: Box<VersionedMultiAsset>
+-   `total_issuance`: A `u128` defining ,
 -   `circulating_supply`: A `u128` defining,
 
 ### `removeSwitchPair`
 
 Remove an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: 
+-   `remote_asset_id`: Box<VersionedAssetId>,
 
 ### `pauseSwitchPair`
 
 Pause an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: 
+-   `remote_asset_id`: Box<VersionedAssetId>,
 
 ### `resumeSwitchPair`
 
 Resume a paused an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: 
+-   `remote_asset_id`: Box<VersionedAssetId>,
 
 ### `switch`
 
@@ -88,4 +92,4 @@ Returns a result and takes the following parameters:
 
 -   `from`: T::AccountId
 -   `to`: VersionedMultiLocation
--   `amount`: LocalCurrencyBalanceOf
+-   `amount`: LocalCurrencyBalanceOf<T>
