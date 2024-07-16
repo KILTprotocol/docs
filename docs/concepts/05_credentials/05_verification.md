@@ -14,11 +14,12 @@ For the verification process:
 -   The Claimer needs their credential and the private key associated with their identifier
 -   The Verifier needs the identifier of the trusted Attester
 
-During the verification process the Claimer wants to prove three things to the Verifier:
+During the verification process the Claimer wants to prove the following things to the Verifier:
 
 -   The credential is valid (i.e., not revoked by its Attester)
 -   The attributes in the credential actually refer to it's Presenter
 -   The credential contains information relevant for the Verifier for this use case
+- That an Attester ensured the correctness of the Claimer's attributes
 
 ## Requesting a credential from a Claimer
 
