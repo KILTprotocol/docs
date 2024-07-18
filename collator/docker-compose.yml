@@ -3,7 +3,7 @@ services:
   collator:
     profiles: ["collator"]
     container_name: collator
-    image: "kiltprotocol/peregrine:1.0.0"
+    image: "kiltprotocol/kilt-node:latest"
     restart: unless-stopped
     user: "1000"
     ports:
@@ -19,8 +19,6 @@ services:
       --rpc-cors=all
       --rpc-methods=unsafe
       --chain=spiritnet
-      --runtime=spiritnet
-      --execution=wasm
       --listen-addr=/ip4/0.0.0.0/tcp/30336
       --name "name of collator"
       --base-path /data/db/parachain
@@ -30,7 +28,6 @@ services:
       --listen-addr=/ip4/0.0.0.0/tcp/30333
       --base-path /data/db/relay
       --chain=polkadot
-      --execution=wasm
 # ----- MONITORING -----
   node-exporter:
     image: prom/node-exporter:latest

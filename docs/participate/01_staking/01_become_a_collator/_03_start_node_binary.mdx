@@ -15,12 +15,10 @@ Please select your target network:
   ```bash=
   ./target/release/kilt-parachain \
     --chain=spiritnet \
-    --runtime=spiritnet \
     --rpc-port=9944 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \
-    --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
@@ -28,8 +26,7 @@ Please select your target network:
     -- \
     --chain=polkadot \
     --listen-addr=/ip4/0.0.0.0/tcp/30334 \
-    --base-path=$HOME/data/relay \
-    --execution=wasm
+    --base-path=$HOME/data/relay
   ```
   </TabItem>
 
@@ -38,22 +35,19 @@ Please select your target network:
 
   ```bash=
   ./target/release/kilt-parachain \
-    --chain=./dev-specs/kilt-parachain/peregrine-kilt.json \
-    --runtime=peregrine \
+    --chain=./chainspecs/peregrine/peregrine-paseo.json \
     --rpc-port=9944 \
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \
-    --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
     --collator \
     -- \
-    --chain=./dev-specs/kilt-parachain/peregrine-relay.json \
+    --chain=./chainspecs/peregrine/peregrine-relay.json \
     --listen-addr=/ip4/0.0.0.0/tcp/30334 \
-    --base-path=$HOME/data/relay \
-    --execution=wasm
+    --base-path=$HOME/data/relay
   ```
 
   </TabItem>
