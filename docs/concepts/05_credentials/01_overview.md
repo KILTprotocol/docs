@@ -25,7 +25,7 @@ To get a credential, a Claimer needs to take the following steps:
 4. **Request an attestation** from the Attester.
 5. Wait for the Attester to **attest** claims.
 
-Once attested, the claims are recorded on chain and considered to be a valid credential.
+Once attested, the wrapped claims are considered to be a valid credential.
 
 To use a Credential, the Claimer can generate a Credential-Presentation for a Verifier.
 The verification would follow this process:
