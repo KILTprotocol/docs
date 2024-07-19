@@ -19,7 +19,7 @@ During the verification process the Claimer wants to prove the following things 
 -   The credential is valid (i.e., not revoked by its Attester)
 -   The attributes in the credential actually refer to it's Presenter
 -   The credential contains information relevant for the Verifier for this use case
-- That an Attester ensured the correctness of the Claimer's attributes
+- That an Attester ensured the correct and trustworthy-ness of the Claimer's attributes
 
 ## Requesting a credential from a Claimer
 
