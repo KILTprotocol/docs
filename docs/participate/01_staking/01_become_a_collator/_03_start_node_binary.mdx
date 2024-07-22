@@ -20,7 +20,6 @@ Please select your target network:
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \
-    --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
@@ -29,7 +28,8 @@ Please select your target network:
     --chain=polkadot \
     --listen-addr=/ip4/0.0.0.0/tcp/30334 \
     --base-path=$HOME/data/relay \
-    --execution=wasm
+    --blocks-pruning 256 \
+    --state-pruning 256
   ```
   </TabItem>
 
@@ -44,7 +44,6 @@ Please select your target network:
     --rpc-cors=all \
     --rpc-methods=unsafe \
     --name="name of collator" \
-    --execution=wasm \
     --listen-addr=/ip4/0.0.0.0/tcp/30333 \
     --base-path=$HOME/data/parachain \
     --keystore-path=$HOME/data/keystore \
@@ -53,7 +52,8 @@ Please select your target network:
     --chain=./dev-specs/kilt-parachain/peregrine-relay.json \
     --listen-addr=/ip4/0.0.0.0/tcp/30334 \
     --base-path=$HOME/data/relay \
-    --execution=wasm
+    --blocks-pruning 256 \
+    --state-pruning 256
   ```
 
   </TabItem>
