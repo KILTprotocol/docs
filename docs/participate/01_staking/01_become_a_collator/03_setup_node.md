@@ -58,13 +58,6 @@ You should be the only one able to call the RPC endpoint.
 For a secure setup, follow the instructions in the previous section about [generating the session keys](./04_session_keys.md).
 :::
 
-### WASM Runtime Execution
-
-A KILT collator node should use the `--execution=wasm` parameter for both the Relay Chain and parachain collation.
-The alternative to WASM runtime execution is native runtime execution, which might be faster but can, in some cases, deviate from the WASM execution logic and result in a different state.
-When this happens, the collator node will crash and will stop synchronizing with the network and stop producing blocks.
-Since the WASM runtime logic is part of the blockchain state itself and hence represents the single source of truth, all nodes should execute the WASM version of the runtime logic.
-
 ### Specify the Right Chainspec
 
 The `--chain` parameter indicates which blockchain the KILT collator node will join.
