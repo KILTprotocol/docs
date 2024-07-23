@@ -19,7 +19,7 @@ Making a Parachain Token to be usable on Ethereum requires the following steps:
 
 1. Deploy an ERC-20 contract token to Ethereum with a fixed supply based on the parachain needs.
 2. [Disable the token issuer rights](https://ethereum.org/en/guides/how-to-revoke-token-access/) on the ERC-20 contract.
-3. [Register the ERC-20 token on Asset Hub](https://wiki.polkadot.network/docs/learn-assets#creation-and-management).
+3. [Register the ERC-20 token on Asset Hub](https://docs.snowbridge.network/applications/token-transfers#token-registration).
 4. The entity holding ERC-20 funds performs a one-time transfer of all tokens from their Ethereum account to the parachain's sovereign account on Asset Hub.
 5. Parachain governance recognizes the wrapper around the ERC-20 token by pairing the ERC-20 token to the parachain token in the swap pallet and enable the token issuer rights.
 
