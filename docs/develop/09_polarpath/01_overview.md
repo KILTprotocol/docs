@@ -3,6 +3,10 @@ id: what-is-polarpath
 title: Overview
 ---
 
+:::version-label[polarPath]
+
+:::
+
 Polar path consists of an `asset-swap` pallet for parachain runtimes and extrinisics that let parachain developers make their native token accessible on the Ethereum network using [the Snowbridge bridge](https://docs.snowbridge.network) between Polkadot and Ethereum.
 
 Polar path provides parachains with a solution for creating an ERC-20 wrapper around their native tokens, enabling a trustless, one to one conversion of any existing native parachain token (PARA) into a wrapped parachain token (wPARA) on Ethereum while maintaining the trustlessness guarantees Snowbridge provides.
