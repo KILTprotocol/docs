@@ -68,39 +68,20 @@ For an ERC20 token, this is a [MultiLocation](https://wiki.polkadot.network/docs
 
 ### `setSwitchPair`
 
-Create a new switch pair between a parachain token and an ERC-20 token. Returns a result and takes the following parameters:
-
--   `origin`: Polkadot [Junction](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-junctions) defining the
--   `reserve_location`: `MultiLocation` defining the location of the remote asset.
--   `remote_asset_id`: VersionedAssetId
--   `remote_fee`: VersionedMultiAsset
--   `total_issuance`: A `u128` defining
--   `circulating_supply`: A `u128` defining
+Create a new switch pair between a parachain token and an ERC-20 token.
 
 ### `removeSwitchPair`
 
-Remove an existing switch pair. Returns a result and takes the following parameters:
-
--   `remote_asset_id`: VersionedAssetId
+Remove an existing switch pair.
 
 ### `pauseSwitchPair`
 
-Pause an existing switch pair. Returns a result and takes the following parameters:
-
--   `remote_asset_id`: VersionedAssetId
+Pause an existing switch pair.
 
 ### `resumeSwitchPair`
 
-Resume a paused an existing switch pair. Returns a result and takes the following parameters:
-
--   `remote_asset_id`: VersionedAssetId
+Resume a paused an existing switch pair.
 
 ### `switch`
 
 Allow any user with enough parachain asset balance to send them to the [Asset Hub pool account](https://docs.rs/pallet-asset-conversion/latest/pallet_asset_conversion/pallet/struct.Pallet.html#method.create_pool) for a specific switch pair and receive a corresponding amount of remote asset from the parachain's sovereign account on the remote location, to a `MultiLocation` of their choice.
-
-Returns a result and takes the following parameters:
-
--   `from`: T::AccountId
--   `to`: VersionedMultiLocation
--   `amount`: LocalCurrencyBalanceOf
