@@ -72,28 +72,28 @@ Create a new switch pair between a parachain token and an ERC-20 token. Returns 
 
 -   `origin`: Polkadot [Junction](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-junctions) defining the
 -   `reserve_location`: `MultiLocation` defining the location of the remote asset.
--   `remote_asset_id`: Box<VersionedAssetId>
--   `remote_fee`: Box<VersionedMultiAsset>
--   `total_issuance`: A `u128` defining ,
--   `circulating_supply`: A `u128` defining,
+-   `remote_asset_id`: VersionedAssetId
+-   `remote_fee`: VersionedMultiAsset
+-   `total_issuance`: A `u128` defining
+-   `circulating_supply`: A `u128` defining
 
 ### `removeSwitchPair`
 
 Remove an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: Box<VersionedAssetId>,
+-   `remote_asset_id`: VersionedAssetId
 
 ### `pauseSwitchPair`
 
 Pause an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: Box<VersionedAssetId>,
+-   `remote_asset_id`: VersionedAssetId
 
 ### `resumeSwitchPair`
 
 Resume a paused an existing switch pair. Returns a result and takes the following parameters:
 
--   `remote_asset_id`: Box<VersionedAssetId>,
+-   `remote_asset_id`: VersionedAssetId
 
 ### `switch`
 
@@ -103,4 +103,4 @@ Returns a result and takes the following parameters:
 
 -   `from`: T::AccountId
 -   `to`: VersionedMultiLocation
--   `amount`: LocalCurrencyBalanceOf<T>
+-   `amount`: LocalCurrencyBalanceOf
