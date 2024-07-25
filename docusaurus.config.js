@@ -291,25 +291,29 @@ module.exports = {
       'docusaurus-plugin-remote-content',
       {
         // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
-        name: 'swap-pallet',
+        name: 'switch-pallet',
         // TODO: Temp URL
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/b23207e9782ea024cde8f4883cb4029eebb1735f/pallets/pallet-asset-swap/',
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/604a78397c20a396e50c19fb925c96b7c9c51635/pallets/pallet-asset-switch/',
         outDir: 'docs/develop/09_polarpath',
         documents: ['README.md'],
-        // modifyContent(filename, content) {
-        //   if (filename.includes('README')) {
-        //     var trimContent = content.replace(
-        //       '# Decentralized Identity Provider (DIP) consumer pallet',
-        //       '# Consumer pallet'
-        //     )
-        //     return {
-        //       filename: '03_consumer.md',
-        //       content: trimContent,
-        //     }
-        //   }
-        //   return undefined
-        // },
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replaceAll(
+              './src/xcm/',
+              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/604a78397c20a396e50c19fb925c96b7c9c51635/pallets/pallet-asset-switch/src/xcm/'
+            )
+            var trimContent2 = trimContent.replace(
+              '../../runtime-api/asset-switch/',
+              'https://github.com/KILTprotocol/kilt-node/tree/604a78397c20a396e50c19fb925c96b7c9c51635/runtime-api/asset-switch'
+            )
+            return {
+              filename: '02_switch_pallet.md',
+              content: trimContent2,
+            }
+          }
+          return undefined
+        },
       },
     ],
   ],
