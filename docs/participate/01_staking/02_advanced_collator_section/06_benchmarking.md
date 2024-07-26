@@ -26,7 +26,6 @@ Below is an example of benchmarking for the the `balances` pallet.
 ./target/release/kilt-parachain \
   benchmark \
   --chain=spiritnet-dev \
-  --execution=wasm \
   --wasm-execution=Compiled \
   --heap-pages=4096 \
   --extrinsic=* \

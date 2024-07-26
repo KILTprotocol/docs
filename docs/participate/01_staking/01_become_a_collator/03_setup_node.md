@@ -73,8 +73,8 @@ The KILT parachain accepts an additional parameter to select the environment to 
 This can either be `peregrine` or `spiritnet`.
 
 Hence, to start a collator node for the Spiritnet network, the parameter would be `--chain=spiritnet`.
-Unfortunately, there is no hardcoded chain spec for the Peregrine network, so the full path of the chainspec file must be provided `--chain=/node/dev-specs/kilt-parachain/peregrine-kilt.json`.
-Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/master/dev-specs/kilt-parachain/peregrine-kilt.json) or the [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) for more information.
+Unfortunately, there is no hardcoded chain spec for the Peregrine network, so the full path of the chainspec file must be provided `--chain=/node/chainspecs/peregrine/peregrine-paseo.json`.
+Please refer to the [KILT node repository](https://github.com/KILTprotocol/kilt-node/blob/develop/chainspecs/peregrine/peregrine-paseo.json) or the [Docker image](https://hub.docker.com/r/kiltprotocol/kilt-node/tags) for more information.
 
 ### Specify the Blockchain Storage Path
 
@@ -152,7 +152,7 @@ In addition to the websocket, you need to expose the ports for p2p connections.
 In the the command above these are `30333` for the parachain and `30334` for the relaychain.
 Make sure you configure your firewall in a way that allows incoming and outgoing connections to these ports.
 
-The Docker command will map the database files for the Relay Chain and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
+The Docker command will map the database files for the Relaychain and parachain as well as the keystore directory to `~/data` on the host system using the flag `-v $HOME/data:/data`.
 That way the blockchain database files are not lost when and if the Docker container is removed and can be mounted back on the next containers.
 
 The Docker container runs as an user with id 1000 and will try to access the mapped volume and the files it contains.
