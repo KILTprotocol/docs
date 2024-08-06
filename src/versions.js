@@ -1,5 +1,12 @@
 export const nodeVersions = {
-    '1.13.0':{
+  '1.14.0':{
+    name: 'Polar Path',
+    features: [
+      { polarPath: "Spiritnet" },
+      { polarPath: "Peregrine" },
+    ],
+  },
+  '1.13.0':{
     name: 'Dippy Duck',
     features: [
       { DIP: "Spiritnet" },

@@ -104,6 +104,11 @@ module.exports = {
               docId: 'develop/opendid/what-is-opendid',
               label: 'OpenDID Documentation',
             },
+            {
+              type: 'doc',
+              docId: 'develop/polarpath/what-is-polarpath',
+              label: 'Polar path Documentation',
+            },
           ],
         },
         {
@@ -276,6 +281,35 @@ module.exports = {
             return {
               filename: '03_consumer.md',
               content: trimContent,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+        name: 'switch-pallet',
+        // TODO: Temp URL
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.14.0/pallets/pallet-asset-switch/',
+        outDir: 'docs/develop/09_polarpath',
+        documents: ['README.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replaceAll(
+              './src/xcm/',
+              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.14.0/pallets/pallet-asset-switch/src/xcm/'
+            )
+            var trimContent2 = trimContent.replace(
+              '../../runtime-api/asset-switch/',
+              'https://github.com/KILTprotocol/kilt-node/tree/1.14.0/runtime-api/asset-switch'
+            )
+            return {
+              filename: '02_switch_pallet.md',
+              content: trimContent2,
             }
           }
           return undefined
