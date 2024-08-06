@@ -69,7 +69,7 @@ KILT thus rejects light DID signatures even if the original claim in the credent
 
 :::tip
 
-For a detailed developer-oriented guide to KILT DIDs, read the [DID Cookbook section](../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md).
+For a detailed developer-oriented guide to KILT DIDs, read the [DID Cookbook section](/develop/sdk/cookbook/dids/light-did-creation).
 
 :::
 

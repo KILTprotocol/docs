@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "yarn check-ts && yarn check-links && yarn generate-examples && docusaurus build",
-    "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find docs -name '*.md')",
+    "check-links": "yarn markdown-link-check -c markdown-link-check.config.json -q $(find participate concepts develop -name '*.md')",
     "check-ts": "concurrently -m 1 yarn:check-ts:*",
     "check-ts:scripts": "cd scripts && yarn install && yarn check-ts",
     "check-ts:examples": "cd code_examples/sdk_examples && yarn install && yarn check-ts",

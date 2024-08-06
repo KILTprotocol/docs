@@ -40,9 +40,8 @@ module.exports = {
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'dip-announcement',
-      // Use absolute links proceeded by '/docs'
       content:
-        'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
+        'DIP enables OpenID inspired cross-chain identity, <a href="/concepts/dip/what-is-dip">help us test this new feature</a>!',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -56,8 +55,7 @@ module.exports = {
       },
       items: [
         {
-          type: 'doc',
-          docId: 'concepts/what-is-kilt',
+          to: '/concepts/what-is-kilt',
           label: 'What is KILT?',
         },
         {
@@ -66,42 +64,42 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'develop/sdk/quickstart',
+              docId: 'sdk/quickstart',
               label: 'SDK Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/chain/introduction',
+              docId: 'chain/introduction',
               label: 'Blockchain Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/workshop/welcome',
+              docId: 'workshop/welcome',
               label: 'Workshop',
             },
             {
               type: 'doc',
-              docId: 'develop/contribute',
+              docId: 'contribute',
               label: 'Contribute',
             },
             {
               type: 'doc',
-              docId: 'develop/specifications',
+              docId: 'specifications',
               label: 'Technical Specifications',
             },
             {
               type: 'doc',
-              docId: 'develop/builtonkilt',
+              docId: 'builtonkilt',
               label: 'Built on KILT',
             },
             {
               type: 'doc',
-              docId: 'develop/dApp/welcome',
+              docId: 'dApp/welcome',
               label: 'DApp Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/opendid/what-is-opendid',
+              docId: 'opendid/what-is-opendid',
               label: 'OpenDID Documentation',
             },
           ],
@@ -111,28 +109,23 @@ module.exports = {
           label: 'Participate',
           items: [
             {
-              type: 'doc',
-              docId: 'participate/staking/become_a_collator/overview',
+              to: 'participate/staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
-              type: 'doc',
-              docId: 'participate/governance/vote',
+              to: 'participate/governance/vote',
               label: 'Voting',
             },
             {
-              type: 'doc',
-              docId: 'participate/treasury-proposal',
+              to: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
             },
             {
-              type: 'doc',
-              docId: 'participate/content-creation-guidelines',
+              to: 'participate/content-creation-guidelines',
               label: 'Content Creation Guidelines',
             },
             {
-              type: 'doc',
-              docId: 'participate/treasury-tip',
+              to: 'participate/treasury-tip',
               label: 'Treasury Tips',
             },
           ],
@@ -206,16 +199,12 @@ module.exports = {
         docs: {
           path: 'develop',
           routeBasePath: 'develop',
+          sidebarPath: './sidebarsDevelop.js',
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
           ],
-          sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
           showLastUpdateTime: true,
-          admonitions: {
-            keywords: ['version-label'],
-            extendDefaults: true,
-          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -242,7 +231,16 @@ module.exports = {
         id: 'concepts',
         path: 'concepts',
         routeBasePath: 'concepts',
-        // sidebarPath: './sidebarsCommunity.js',
+        sidebarPath: './sidebarsConcepts.js',
+        admonitions: {
+          keywords: ['version-label'],
+          extendDefaults: true,
+        },
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
         // ... other options
       },
     ],
@@ -252,7 +250,12 @@ module.exports = {
         id: 'participate',
         path: 'participate',
         routeBasePath: 'participate',
-        // sidebarPath: './sidebarsCommunity.js',
+        sidebarPath: './sidebarsParticipate.js',
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
         // ... other options
       },
     ],

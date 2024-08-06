@@ -28,7 +28,7 @@ Other users can now encrypt messages using your public encryption key and send a
 Kilt supports two DID types: **light** and **full**.
 
 There are differences between the two types, but the most crucial is that you can use a light DID offline, but a full DID needs access to the blockchain to work.
-Read the [DID documentation](../../../develop/01_sdk/02_cookbook/01_dids/01_light_did_creation.md) to learn more about the difference between the light and full types.
+Read the [DID documentation](/develop/sdk/cookbook/dids/light-did-creation) to learn more about the difference between the light and full types.
 
 :::info KILT DID
 

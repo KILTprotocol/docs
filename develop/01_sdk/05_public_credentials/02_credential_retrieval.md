@@ -65,4 +65,4 @@ Rather, the block number in which the extrinsic is submitted is stored inside th
 This represents a very good tradeoff between **security** - because the blockchain itself dictates what the creation block number is for any given public credential - and **storage efficiency** - since the full credential is stored off-chain, accessible via any KILT archive node or indexing service.
 :::
 
-[asset-did-concept]: ../../../../concepts/04_asset_dids.md
+[asset-did-concept]: /concepts/asset-dids

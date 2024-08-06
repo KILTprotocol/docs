@@ -13,7 +13,7 @@ The Claimer can hence monitor the blockchain themselves to listen for the event 
 
 After the credential has been attested, the Claimer can store it in their own wallet and can now use it with Verifiers that trust credentials issued by that Attester.
 
-For a detailed developer-oriented guide to KILT attestations, see our [Attestation Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/03_attestation_creation.md).
+For a detailed developer-oriented guide to KILT attestations, see our [Attestation Cookbook section](/develop/sdk/cookbook/claiming/attestation-creation).
 
 ### Storing Attestations
 

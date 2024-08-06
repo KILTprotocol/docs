@@ -29,4 +29,4 @@ The resulting `Credential` must then be sent to the chosen Attester using any me
 
 The to-be-attested `Credential` contains the original claim, data needed for future selective disclosure (more on that in the [Verification section](./05_verification.md)) of the claim contents, the legitimation and / or delegation ID of the Attester and the credential root hash, which is used to identify both the credential and its on-chain attestation.
 
-For a detailed developer-oriented guide to KILT claims, see our [Claim Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/02_attestation_request.md).
+For a detailed developer-oriented guide to KILT claims, see our [Claim Cookbook section](/develop/sdk/cookbook/claiming/attestation-request).

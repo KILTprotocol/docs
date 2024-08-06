@@ -20,7 +20,7 @@ After the browser extension verified the Well-Known DID Configuration and the en
 This is a two step process.
 
 First the server sends a message to the extension that request the presentation of a credential.
-Since we don't want to see just any credential, but expect specific content, we also require that the credential conforms to a specific [CType](../../concepts/05_credentials/02_ctypes.md).
+Since we don't want to see just any credential, but expect specific content, we also require that the credential conforms to a specific [CType](/concepts/credentials/ctypes).
 When the extension receives the request, it will prompt the user to select a credential that should be presented to the server.
 The user can also choose to reject this request and not to show any presentation.
 

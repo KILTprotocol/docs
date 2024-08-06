@@ -6,7 +6,7 @@ title: Treasury Tips
 Similar to [opening a Treasury proposal](./03_treasury_proposal.md), anyone can start a tipping process.
 
 You can expect success if the tip is based on a meaningful contribution.
-The variety of potential contributions is vast, read the [KILT Contribution guide](../develop/06_contribute.md) for a high level description of tips and the differences to Treasury proposals.
+The variety of potential contributions is vast, read the [KILT Contribution guide](/develop/contribute) for a high level description of tips and the differences to Treasury proposals.
 
 This document covers the necessary steps from requesting a tip to receiving it.
 

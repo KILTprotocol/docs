@@ -221,7 +221,7 @@ Run the code and wait to see if you can retrieve **and** verify one of kiltnerd1
 
 :::info Next steps
 
-- If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
-- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+- If you want to explore more of KILT's features, read our [Concepts section](/concepts/what-is-kilt).
+- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_dids/01_light_did_creation.md).
 
 :::

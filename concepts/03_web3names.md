@@ -46,7 +46,7 @@ For example, showing the web3name of a collator's account on the [KILT Stakeboar
   }}
 />
 
-For a detailed developer-oriented guide to web3names and account linking, read the [web3name Cookbook section](../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) and the [account linking Cookbook section](../develop/01_sdk/02_cookbook/03_account_linking/01_link.md).
+For a detailed developer-oriented guide to web3names and account linking, read the [web3name Cookbook section](/develop/sdk/cookbook/web3names/claim) and the [account linking Cookbook section](/develop/sdk/cookbook/account_linking/link).
 
 ## KILT DIDs vs. KILT accounts
 

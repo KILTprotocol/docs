@@ -3,7 +3,7 @@ id: what-is-opendid
 title: Overview
 ---
 
-[OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation capable of authenticating users through their [Decentralized Identifier (DID)](../../concepts/02_did.md) and Verifiable Credentials.
+[OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation capable of authenticating users through their [Decentralized Identifier (DID)](/concepts/did) and Verifiable Credentials.
 
 It follows the [OpenID Connect 1.0 Specification](https://openid.net/specs/openid-connect-core-1_0.html#Introduction) and acts as a bridge between the decentralized identity world and the centralized authentication world supporting both the implicit and Authorization Code Flow.
 

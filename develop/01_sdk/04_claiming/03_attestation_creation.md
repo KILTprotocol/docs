@@ -13,7 +13,7 @@ A deposit is reserved from the balance of the KILT account submitting the creati
 
 :::info
 An Attester is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
+To see how to manage DIDs, please refer to the [DID section](../02_dids/03_full_did_update.md).
 :::
 
 <TsJsBlock>

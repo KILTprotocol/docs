@@ -52,7 +52,7 @@ const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 ```
 
 The new CType will have the same title and properties as the existing one, but will be based on the new metaschema, resulting in a different hash and id.
-After [registering the new CType on the Kilt blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
+After [registering the new CType on the Kilt blockchain](/develop/sdk/cookbook/claiming/ctype-creation), you can use the new CType as a drop-in replacement in issuing credentials.
 Depending verifiers are recommended to accept both the old and new CType during a transition period.
 Test thoroughly to ensure the correct behaviour and functionality of the new CTypes in your application.
 
@@ -120,6 +120,6 @@ The information includes the whole CType, which is now available for the user to
 
 For adding a CType, a constant fee of 0.001 KILT is required.
 
-For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
+For a detailed developer-oriented guide to KILT CTypes, see our [CType Cookbook section](/develop/sdk/cookbook/claiming/ctype-creation).
 
 [kilt-runtime-1.9.0]: https://github.com/KILTprotocol/kilt-node/releases/tag/1.9.0

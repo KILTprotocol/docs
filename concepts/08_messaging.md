@@ -40,5 +40,5 @@ Therefore, this scheme still works if a DID should expose multiple encryption ke
 
 :::caution
 While no one can read or change what's inside an encrypted message even if they intercept it while traveling on the network, a sophisticated attacker may try to guess what's inside and trick either side of the channel by resubmitting a copy of that message later.
-For a detailed developer-oriented guide about how to protect against *replay attacks*, read the [Replay Protection Cookbook section](../develop/01_sdk/02_cookbook/06_messaging/02_replay_protection.md).
+For a detailed developer-oriented guide about how to protect against *replay attacks*, read the [Replay Protection Cookbook section](/develop/sdk/cookbook/messaging/replay-protection).
 :::

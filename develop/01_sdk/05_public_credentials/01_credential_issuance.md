@@ -41,4 +41,4 @@ This is to save space on credentials that actually benefit from CBOR compression
 Hence, creating public credentials without the SDK requires the credential to be CBOR-encoded!
 :::
 
-[ctypes-link]: ../../../../concepts/05_credentials/02_ctypes.md
+[ctypes-link]: /concepts/credentials/ctypes

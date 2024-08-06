@@ -11,13 +11,13 @@ import FetchCType from '!!raw-loader!@site/code_examples/sdk_examples/src/core_f
 Every KILT credential has to conform to a CType.
 A CType describes which properties a credential has and what type these properties have.
 CTypes must be registered on the Spiritnet blockchain.
-To learn more about CTypes, see the [CType concept section](../../../../concepts/05_credentials/02_ctypes.md).
+To learn more about CTypes, see the [CType concept section](/concepts/credentials/ctypes).
 
 The creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
 :::info DID required
 The creator of a CType is required to have a full DID with an attestation key.
-To see how to manage DIDs, please refer to the [DID section](../01_dids/03_full_did_update.md).
+To see how to manage DIDs, please refer to the [DID section](../02_dids/03_full_did_update.md).
 :::
 
 :::info CTypes are unique
