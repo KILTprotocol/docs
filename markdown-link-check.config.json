@@ -19,6 +19,15 @@
     },
     {
       "pattern": "/(localhost)."
+    },
+    {
+      "pattern": "^/develop/"
+    },
+    {
+      "pattern": "^/participate/"
+    },
+    {
+      "pattern": "^/concepts/"
     }
   ]
 }
