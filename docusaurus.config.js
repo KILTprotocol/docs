@@ -55,6 +55,11 @@ module.exports = {
       },
       items: [
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+        },
+        {
           to: '/concepts/what-is-kilt',
           label: 'What is KILT?',
         },
@@ -198,6 +203,16 @@ module.exports = {
       {
         docs: {
           path: 'develop',
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '1.0.x',
+            },
+            0.3: {
+              label: '0.3.x',
+              path: '0.3',
+            },
+          },
           routeBasePath: 'develop',
           sidebarPath: './sidebarsDevelop.js',
           remarkPlugins: [
