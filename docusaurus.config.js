@@ -275,52 +275,52 @@ module.exports = {
       },
     ],
     // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
-    // [
-    //   'docusaurus-plugin-remote-content',
-    //   {
-    //     name: 'dip-provider-docs',
-    //     sourceBaseUrl:
-    //       'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-provider/',
-    //     outDir: 'docs/concepts/07_dip',
-    //     documents: ['README.md'],
-    //     modifyContent(filename, content) {
-    //       if (filename.includes('README')) {
-    //         var trimContent = content.replace(
-    //           '# Decentralized Identity Provider (DIP) provider pallet',
-    //           '# Provider pallet'
-    //         )
-    //         return {
-    //           filename: '02_provider.md',
-    //           content: trimContent,
-    //         }
-    //       }
-    //       return undefined
-    //     },
-    //   },
-    // ],
-    // [
-    //   'docusaurus-plugin-remote-content',
-    //   {
-    //     // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
-    //     name: 'dip-consumer-docs',
-    //     sourceBaseUrl:
-    //       'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-consumer/',
-    //     outDir: 'docs/concepts/07_dip',
-    //     documents: ['README.md'],
-    //     modifyContent(filename, content) {
-    //       if (filename.includes('README')) {
-    //         var trimContent = content.replace(
-    //           '# Decentralized Identity Provider (DIP) consumer pallet',
-    //           '# Consumer pallet'
-    //         )
-    //         return {
-    //           filename: '03_consumer.md',
-    //           content: trimContent,
-    //         }
-    //       }
-    //       return undefined
-    //     },
-    //   },
-    // ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        name: 'dip-provider-docs',
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-provider/',
+        outDir: 'concepts/07_dip',
+        documents: ['README.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replace(
+              '# Decentralized Identity Provider (DIP) provider pallet',
+              '# Provider pallet'
+            )
+            return {
+              filename: '02_provider.md',
+              content: trimContent,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
+        name: 'dip-consumer-docs',
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-consumer/',
+        outDir: 'concepts/07_dip',
+        documents: ['README.md'],
+        modifyContent(filename, content) {
+          if (filename.includes('README')) {
+            var trimContent = content.replace(
+              '# Decentralized Identity Provider (DIP) consumer pallet',
+              '# Consumer pallet'
+            )
+            return {
+              filename: '03_consumer.md',
+              content: trimContent,
+            }
+          }
+          return undefined
+        },
+      },
+    ],
   ],
 }
