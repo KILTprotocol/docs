@@ -5,9 +5,9 @@ title: Retrieve Public Credentials
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import RetrieveCredentialbyId from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/03_retrieve_credential_by_id.ts';
-import RetrieveCredentialsbySubject from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/04_retrieve_credentials_by_subject.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/05_verify_credential.ts';
+import RetrieveCredentialbyId from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/03_retrieve_credential_by_id.ts';
+import RetrieveCredentialsbySubject from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/04_retrieve_credentials_by_subject.ts';
+import VerifyCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/05_verify_credential.ts';
 
 Public credentials have their best capability in the fact that they are, indeed, public by design.
 This means that once issued, anyone who has access to an archive or full node for the KILT blockchain can retrieve them, making them very decentralized in nature.

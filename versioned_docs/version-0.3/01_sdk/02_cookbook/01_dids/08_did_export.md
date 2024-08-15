@@ -5,7 +5,7 @@ title: Exporting a KILT DID
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DidExport from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/12_did_export.ts';
+import DidExport from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/did/12_did_export.ts';
 
 The DID Document exporter provides the functionality needed to convert an instance of an SDK `DidDocument` object into a document that is compliant with the [W3C specification](https://www.w3.org/TR/did-core/).
 This component is required for the KILT plugin for the [DIF Universal Resolver](https://dev.uniresolver.io/).

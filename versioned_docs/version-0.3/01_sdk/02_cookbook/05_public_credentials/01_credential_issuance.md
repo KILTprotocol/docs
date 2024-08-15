@@ -5,8 +5,8 @@ title: Credential Issuance
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import CreateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/01_create_credential.ts';
-import IssueCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/02_issue_credential.ts';
+import CreateCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/01_create_credential.ts';
+import IssueCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/02_issue_credential.ts';
 
 As for traditional KILT credentials, public credentials also have their structure defined by a [CType][ctypes-link], although CTypes that can be used to represent information about assets would probably differ from the ones used to represent information about people.
 

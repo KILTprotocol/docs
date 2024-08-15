@@ -5,7 +5,7 @@ title: Generate DID keys
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import GenerateKeys from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/00_generate_did_keys.ts';
+import GenerateKeys from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/did/00_generate_did_keys.ts';
 
 Creating a Decentralized Identifier (DID) on the KILT network involves generating keying material for authentication and encryption.
 This guide shows how to create a set of key pairs suitable for generating a KILT DID.

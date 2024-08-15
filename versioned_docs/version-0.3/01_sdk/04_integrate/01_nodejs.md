@@ -5,7 +5,7 @@ title: NodeJS
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import QueryAccountName from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
+import QueryAccountName from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
 
 NodeJS is natively supported and doesn't require any additional setup.
 

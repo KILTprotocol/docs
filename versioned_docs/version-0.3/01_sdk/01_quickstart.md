@@ -10,14 +10,14 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import PrintHelloWorld from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/01_print_hello_world.ts';
-import ConnectSpirit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_spirit.ts';
-import ConnectPere from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_pere.ts';
-import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/03_fetch_did.ts';
-import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
+import PrintHelloWorld from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/01_print_hello_world.ts';
+import ConnectSpirit from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/02_connect_spirit.ts';
+import ConnectPere from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/02_connect_pere.ts';
+import FetchDid from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/03_fetch_did.ts';
+import FetchEndpoints from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
+import FetchEndpointData from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
+import VerifyCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
+import Disconnect from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/getting_started/07_disconnect.ts';
 
 Get started with KILT by following this guide, which teaches you to:
 

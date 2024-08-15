@@ -7,7 +7,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateAccount.ts';
+import GenerateAccount from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/generateAccount.ts';
 
 With the [project structure setup](./) in the last step, you can create your <span className="label-role attester">Attester</span> account.
 

@@ -5,8 +5,8 @@ title: Setting Up the Communication Session
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DappIntroduction from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/06_dapp_introduction.ts';
-import SessionCheck from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/07_session_check.ts';
+import DappIntroduction from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/06_dapp_introduction.ts';
+import SessionCheck from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/07_session_check.ts';
 
 The first step in creating your dapp is to set up the communication session.
 The purpose of the session is to pass encrypted messages back and forth between your dapp and the extension.

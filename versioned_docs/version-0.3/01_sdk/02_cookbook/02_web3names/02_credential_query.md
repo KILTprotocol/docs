@@ -5,7 +5,7 @@ title: Query Public Credentials for a web3name
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import QueryNameCredentials from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/03_query_name_credentials.ts';
+import QueryNameCredentials from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/web3names/03_query_name_credentials.ts';
 
 web3names are linked to KILT DIDs, and KILT DIDs can define services to expose additional service/information.
 One of the possible endpoint types is the [`KiltPublishedCredentialCollectionV1`][kilt-published-credential-collection-v1-type] type.

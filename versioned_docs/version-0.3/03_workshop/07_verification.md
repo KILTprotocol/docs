@@ -8,8 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Verify from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/verify.ts';
-import CreatePresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/createPresentation.ts';
+import Verify from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/verify.ts';
+import CreatePresentation from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/claimer/createPresentation.ts';
 
 In this section, you play the role of a <span className="label-role verifier">Verifier</span> that does the following:
 

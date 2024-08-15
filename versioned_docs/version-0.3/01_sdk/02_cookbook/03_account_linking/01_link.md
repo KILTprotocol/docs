@@ -7,11 +7,11 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import SubAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_sub_link.ts';
-import EthAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link.ts';
-import EthWeb3AccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_web3js.ts';
-import EthMetamaskAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_metamask.ts';
-import SenderLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/02_sender_link.ts';
+import SubAccLink from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/01_sub_link.ts';
+import EthAccLink from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/01_eth_link.ts';
+import EthWeb3AccLink from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/01_eth_link_web3js.ts';
+import EthMetamaskAccLink from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/01_eth_link_metamask.ts';
+import SenderLink from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/linking/02_sender_link.ts';
 
 Sometimes there is the need to link a DID to an account publicly.
 The link makes it possible to lookup a DID for an account.

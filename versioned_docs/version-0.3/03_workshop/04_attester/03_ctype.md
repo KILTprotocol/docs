@@ -8,8 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CtypeSchema from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/ctypeSchema.ts';
-import GenerateCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateCtype.ts';
+import CtypeSchema from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/ctypeSchema.ts';
+import GenerateCtype from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/generateCtype.ts';
 
 <!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
 import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';

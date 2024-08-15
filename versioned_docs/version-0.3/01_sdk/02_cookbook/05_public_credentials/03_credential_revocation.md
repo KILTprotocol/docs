@@ -5,10 +5,10 @@ title: Revoke (and remove) Public Credentials
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import RevokeRemoveCredentialById from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/06_revoke_remove_credential_by_id.ts';
-import RevokeCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/07_revoke_remove_credential_by_content.ts';
-import UnrevokeCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/08_unrevoke_credential.ts';
-import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/public_credentials/09_reclaim_deposit.ts';
+import RevokeRemoveCredentialById from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/06_revoke_remove_credential_by_id.ts';
+import RevokeCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/07_revoke_remove_credential_by_content.ts';
+import UnrevokeCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/08_unrevoke_credential.ts';
+import ReclaimDeposit from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/public_credentials/09_reclaim_deposit.ts';
 
 Depending on the use cases, some credentials, as with any other type of credential, might need to be temporarily or permanently revoked.
 

@@ -5,8 +5,8 @@ title: Create a CType
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import CreateCType from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/claiming/01_create_ctype.ts';
-import FetchCType from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/claiming/02_fetch_ctype.ts';
+import CreateCType from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/claiming/01_create_ctype.ts';
+import FetchCType from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/claiming/02_fetch_ctype.ts';
 
 Every KILT credential has to conform to a CType.
 A CType describes which properties a credential has and what type these properties have.

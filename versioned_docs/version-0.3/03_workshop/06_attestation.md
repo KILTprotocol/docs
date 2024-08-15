@@ -7,7 +7,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/attestCredential.ts';
+import AttestCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/attestCredential.ts';
 
 This section covers how the <span className="label-role attester">Attester</span> receives and processes a `Credential` and how you can:
 

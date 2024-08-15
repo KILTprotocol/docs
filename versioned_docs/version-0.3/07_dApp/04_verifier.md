@@ -6,11 +6,11 @@ title: Verifying a Credential
 import TsJsSnippet from '@site/src/components/TsJsSnippet';
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import EmailCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/01_email_ctype.ts';
-import GenerateChallenge from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/02_generate_challenge.ts';
-import CreateRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/03_create_request_credential_message.ts';
-import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/04_encrypt_request_credential_message.ts';
-import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/05_verify_credential_message.ts';
+import EmailCtype from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/verifier/01_email_ctype.ts';
+import GenerateChallenge from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/verifier/02_generate_challenge.ts';
+import CreateRequestCredentialMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/verifier/03_create_request_credential_message.ts';
+import EncryptRequestCredentialMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/verifier/04_encrypt_request_credential_message.ts';
+import DecryptCredentialMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/verifier/05_verify_credential_message.ts';
 
 This section demonstrates how to build a basic verifier according to the [Credential API Specification](https://github.com/KILTprotocol/spec-ext-credential-api).
 Before continuing, please make sure you have already set up the [communication session](03_session.md) and [Well-Known DID Configuration](02_well-known-did-config.md).

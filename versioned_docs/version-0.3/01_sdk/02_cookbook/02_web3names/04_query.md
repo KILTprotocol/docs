@@ -5,7 +5,7 @@ title: Resolve a web3name
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import QueryDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/02_query_did_name.ts';
+import QueryDid from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/web3names/02_query_did_name.ts';
 
 
 A web3name can be resolved in a similar manner to [how a DID is resolved](../01_dids/04_did_query.md).

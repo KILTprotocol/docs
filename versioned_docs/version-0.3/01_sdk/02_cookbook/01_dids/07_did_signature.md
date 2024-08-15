@@ -5,7 +5,7 @@ title: Generate and Verify a DID Signature
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DidSignature from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/10_did_signature.ts';
+import DidSignature from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/did/10_did_signature.ts';
 
 In addition to being used to authorize chain operations, both light and full DIDs have off-chain applications.
 

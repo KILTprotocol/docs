@@ -9,8 +9,8 @@ import SnippetBlock from '@site/src/components/SnippetBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
-import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/generateKeypairs.ts';
+import GenerateDid from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/workshop/attester/generateDid.ts';
 
 The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
 

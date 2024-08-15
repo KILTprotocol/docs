@@ -6,11 +6,11 @@ title: Well-Known DID Configuration
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import DomainLinkageCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/01_domain_linkage_ctype.ts';
-import DomainLinkageClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/02_domain_linkage_claim.ts';
-import SignPresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/03_sign_presentation.ts';
-import AttestCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/04_attest_credential.ts';
-import FormatCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/dapp/05_format_credential.ts';
+import DomainLinkageCtype from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/01_domain_linkage_ctype.ts';
+import DomainLinkageClaim from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/02_domain_linkage_claim.ts';
+import SignPresentation from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/03_sign_presentation.ts';
+import AttestCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/04_attest_credential.ts';
+import FormatCredential from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/dapp/dapp/05_format_credential.ts';
 
 :::danger This is a working draft
 

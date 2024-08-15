@@ -5,9 +5,9 @@ title: Generate a Message
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import GenerateRequestCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/01_generate_request_credential_message.ts';
-import EncryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/02_encrypt_message.ts';
-import DecryptMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/messaging/03_decrypt_message.ts';
+import GenerateRequestCredentialMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/messaging/01_generate_request_credential_message.ts';
+import EncryptMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/messaging/02_encrypt_message.ts';
+import DecryptMessage from '!!raw-loader!@site/versioned_docs/0.3-sdk_examples/src/core_features/messaging/03_decrypt_message.ts';
 
 KILT defines a [unicast](https://en.wikipedia.org/wiki/Unicast) messaging protocol
 
