@@ -225,3 +225,19 @@ Run the code and wait to see if you can retrieve **and** verify one of kiltnerd1
 - If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_dids/01_light_did_creation.md).
 
 :::
+
+
+
+
+---
+id: howto-integrate-nodejs
+title: NodeJS
+---
+
+<!-- import QueryAccountName from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
+
+
+
+<TsJsBlock>
+  {QueryAccountName}
+</TsJsBlock> -->

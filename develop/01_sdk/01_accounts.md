@@ -1,6 +1,6 @@
 ---
-id: account-link
-title: Link an Account to a KILT DID
+id: accounts
+title: Accounts
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
@@ -12,6 +12,18 @@ import EthAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_f
 import EthWeb3AccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_web3js.ts';
 import EthMetamaskAccLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/01_eth_link_metamask.ts';
 import SenderLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/02_sender_link.ts';
+
+import AccountWeb3NameQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
+import AccountWeb3NameQueryNoSDK from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/04_account_web3name_query_no_sdk.ts';
+
+
+import DidUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/05_did_unlink.ts';
+import AccountUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/06_account_unlink.ts';
+import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/07_reclaim_deposit.ts';
+
+
+<!-- Include create, update, delete, query -->
+
 
 Sometimes there is the need to link a DID to an account publicly.
 The link makes it possible to lookup a DID for an account.
@@ -85,3 +97,51 @@ With this option you can link addresses that are supported by the Spiritnet bloc
         </TsJsBlock>
     </TabItem>
 </Tabs>
+
+
+
+## Query the web3name of an Account
+
+
+For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard][kilt-stakeboard].
+
+This section shows how to perform the `account -> web3name` querying both with and without the support of the KILT SDK.
+
+## Query an Account's web3name with the KILT SDK
+
+<TsJsBlock>
+  {AccountWeb3NameQuery}
+</TsJsBlock>
+
+## Query an Account's web3name without the KILT SDK
+
+<TsJsBlock>
+  {AccountWeb3NameQueryNoSDK}
+</TsJsBlock>
+
+[kilt-stakeboard]: https://stakeboard.kilt.io/
+
+
+
+## Unlink an Account From a KILT DID
+
+
+Similar to the way a new account to DID link is created, removing a link can happen in one of three ways:
+
+1. The DID owner submits a transaction indicating which account to unlink:
+
+<TsJsBlock>
+  {DidUnlink}
+</TsJsBlock>
+
+2. The linked account submits a transaction indicating that the link with the DID should be removed:
+
+<TsJsBlock>
+  {AccountUnlink}
+</TsJsBlock>
+
+3. The deposit payer submits a transaction indicating that they want to reclaim their deposit, which in turn removes the existing link between the specified account and DID:
+
+<TsJsBlock>
+  {ReclaimDeposit}
+</TsJsBlock>

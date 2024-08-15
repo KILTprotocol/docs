@@ -25,7 +25,7 @@ import DidSignature from '!!raw-loader!@site/code_examples/sdk_examples/src/core
 
 <!-- TODO: Overview -->
 <!-- TODO: Correct paths -->
-
+<!-- Include create, update, delete, query -->
 :::info Creating a light DID
 Older versions of the KILT SDK allowed you to also create "light DIDs", which are usable offline with no connection with the KILT blockchain. This new SDK documentation focuses on creating and working with full DIDs, which are more flexible and secure. If you need to create a light DID, refer to the [old SDK documentation](#)
 :::
