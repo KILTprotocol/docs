@@ -9,7 +9,7 @@ title: Overview
 
 Polar path consists of an `asset-swap` pallet for parachain runtimes and extrinisics that let parachain developers make their native token accessible on the Ethereum network using [the Snowbridge bridge](https://docs.snowbridge.network) between Polkadot and Ethereum.
 
-Polar path provides parachains with a solution for creating an ERC-20 wrapper around their native tokens, enabling a trustless, one to one conversion of any existing native parachain token (PARA) into a wrapped parachain token (wPARA) on Ethereum while maintaining the trustlessness guarantees Snowbridge provides.
+Polar path provides parachains with a solution for creating an ERC-20 wrapper around their native tokens, enabling a trustless, one to one conversion of any existing native parachain token (TOKEN) into a wrapped parachain token (wTOKEN) on Ethereum while maintaining the trustlessness guarantees Snowbridge provides.
 
 ## Setup
 
@@ -22,7 +22,7 @@ Making a Parachain token usable on Ethereum requires the following steps:
 1. Deploy an ERC-20 contract token to Ethereum with a fixed supply based on the parachain needs.
 
     :::tip Asset Hub
-    In most cases, the total supply should match the parachain max supply.
+    Usually, the total supply should match the parachain max supply.
     :::
 
 2. [Disable the token issuer rights](https://ethereum.org/en/guides/how-to-revoke-token-access/) on the ERC-20 contract.
