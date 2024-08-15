@@ -79,8 +79,8 @@ module.exports = {
             },
             {
               type: 'doc',
-              docId: 'workshop/welcome',
-              label: 'Workshop',
+              docId: 'tutorial/welcome',
+              label: 'Tutorial',
             },
             {
               type: 'doc',
