@@ -222,18 +222,12 @@ Run the code and wait to see if you can retrieve **and** verify one of kiltnerd1
 :::info Next steps
 
 - If you want to explore more of KILT's features, read our [Concepts section](/concepts/what-is-kilt).
-- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_dids/01_light_did_creation.md).
+<!-- - If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_dids/01_light_did_creation.md). -->
 
 :::
 
 
-
-
----
-id: howto-integrate-nodejs
-title: NodeJS
----
-
+## NodeJS
 <!-- import QueryAccountName from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
 
 

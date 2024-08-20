@@ -14,7 +14,7 @@ Another important aspect when hosting a full node is availability.
 Public full nodes typically do not come with a Service Level Agreement (SLA) and might go down for maintenance or are simply too slow.
 With your own full node infrastructure, you can ensure that there is always enough capacity to serve your needs and your customers.
 
-In our [blockchain section](../../02_chain/01_introduction.md), you can find a [tutorial on how to run your own full node](../../02_chain/04_fullnode.md).
+In our [blockchain section](../02_chain/01_introduction.md), you can find a [tutorial on how to run your own full node](../02_chain/04_fullnode.md).
 
 ## Connect to the Network
 
@@ -22,4 +22,4 @@ Replace the WebSocket address of [your script](./index.md#set-up-your-project) o
 
 You can either use your own frontend or the [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com/explorer) to interact with the chain.
 Moreover, you can use [Subscan](https://spiritnet.subscan.io/) as a chain explorer.
-For a full list of deployments and services, see [here](../../02_chain/03_deployments.md).
+For a full list of deployments and services, see [here](../02_chain/03_deployments.md).

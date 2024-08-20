@@ -6,7 +6,6 @@ title: DIDIDIDID
 import TsJsBlock from '@site/src/components/TsJsBlock';
 
 import GenerateKeys from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/00_generate_did_keys.ts';
-import TsJsBlock from '@site/src/components/TsJsBlock';
 
 import FullDidSimple from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/04_full_did_simple.ts';
 import FullDidComplete from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/05_full_did_complete.ts';
@@ -171,8 +170,8 @@ The first function signs a single extrinsic while the second one batches multipl
 To sign a single extrinsic, you need to provide:
 
 * the DID that wants to sign the extrinsic (also called *origin* of the extrinsic)
-  * refer to the [full did creation guide](02_full_did_creation.md) to learn how to create a DID
-* [a `SignCallback` that signs the extrinsic](../07_signCallback.md)
+  <!-- * refer to the [full did creation guide](02_full_did_creation.md) to learn how to create a DID -->
+<!-- * [a `SignCallback` that signs the extrinsic](../07_signCallback.md) -->
 * the extrinsic that should be signed and submitted
 * and the address of the account that pays for the fees.
 

@@ -22,7 +22,7 @@ In the code above, the `releaseWeb3Name` function takes the following parameters
 
 * **did**: The DID URI of the owner.
 * **submitterAccount**: The keyring pair of the submitter.
-* **signCallback**: The sign extrinsic callback function. This function is used to sign the extrinsic, read more that in [the SignCallback section](../07_signCallback.md).
+<!-- * **signCallback**: The sign extrinsic callback function. This function is used to sign the extrinsic, read more that in [the SignCallback section](../07_signCallback.md). -->
 
 The function `releaseWeb3Name` uses the KILT SDK to create a *web3name release transaction* using `api.tx.web3Names.releaseByOwner`.
 It then authorizes the transaction using the `Kilt.Did.authorizeTx` method and submits the authorized transaction to the blockchain using `Kilt.Blockchain.signAndSubmitTx`.

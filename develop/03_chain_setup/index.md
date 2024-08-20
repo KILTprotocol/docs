@@ -21,4 +21,4 @@ In this section, we will guide you through the process of
 ## Set up your Project
 
 We expect you to already have a small project which can connect and potentially interact with a KILT blockchain given the WebSocket address of a KILT node.
-If that is not the case, please take a look at our [Quickstart section](../01_quickstart.md#connecting-to-kilt-blockchain) which will provide you with all necessary means to create and run a basic script.
+If that is not the case, please take a look at our [Quickstart section](/develop/sdk/quickstart#connecting-to-kilt-blockchain) which will provide you with all necessary means to create and run a basic script.

@@ -69,12 +69,11 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'sdk/quickstart',
+              docId: 'quickstart',
               label: 'SDK Documentation',
             },
             {
-              type: 'doc',
-              docId: 'chain/introduction',
+              to: 'develop/chain/introduction',
               label: 'Blockchain Documentation',
             },
             {
@@ -83,28 +82,23 @@ module.exports = {
               label: 'Tutorial',
             },
             {
-              type: 'doc',
-              docId: 'contribute',
+              to: 'develop/contribute',
               label: 'Contribute',
             },
             {
-              type: 'doc',
-              docId: 'specifications',
+              to: 'develop/specifications',
               label: 'Technical Specifications',
             },
             {
-              type: 'doc',
-              docId: 'builtonkilt',
+              to: 'develop/builtonkilt',
               label: 'Built on KILT',
             },
             {
-              type: 'doc',
-              docId: 'dApp/welcome',
+              to: 'develop/dApp/welcome',
               label: 'DApp Documentation',
             },
             {
-              type: 'doc',
-              docId: 'opendid/what-is-opendid',
+              to: 'develop/opendid/what-is-opendid',
               label: 'OpenDID Documentation',
             },
           ],
@@ -202,7 +196,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'develop',
+          path: 'sdk',
           lastVersion: 'current',
           versions: {
             current: {
@@ -213,8 +207,8 @@ module.exports = {
               path: '0.3',
             },
           },
-          routeBasePath: 'develop',
-          sidebarPath: './sidebarsDevelop.js',
+          routeBasePath: 'develop/sdk',
+          sidebarPath: './sidebarsSDK.js',
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
           ],
@@ -240,6 +234,25 @@ module.exports = {
     },
   },
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'develop',
+        path: 'develop',
+        routeBasePath: 'develop',
+        sidebarPath: './sidebarsDevelop.js',
+        admonitions: {
+          keywords: ['version-label'],
+          extendDefaults: true,
+        },
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
+        // ... other options
+      },
+    ],
     [
       '@docusaurus/plugin-content-docs',
       {

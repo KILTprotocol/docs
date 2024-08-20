@@ -23,7 +23,7 @@ Each actor typically performs different roles:
 
 ## Request an Attestation
 
-Before the <span className="label-role claimer">Claimer</span> can attest a credential, they need to generate a [light DID](../../01_sdk/02_dids/01_light_did_creation.md), which can happen off-chain.
+<!-- Before the <span className="label-role claimer">Claimer</span> can attest a credential, they need to generate a [light DID](../../01_sdk/02_dids/01_light_did_creation.md), which can happen off-chain. -->
 
 The <span className="label-role attester">Attester</span> has to register their DID on chain and needs KILT coins.
 

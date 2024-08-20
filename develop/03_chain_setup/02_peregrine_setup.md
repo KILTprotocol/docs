@@ -19,4 +19,4 @@ Replace the WebSocket address of [your script](./index.md#set-up-your-project) o
 
 You can either use your own frontend or the [Polkadot JS Apps](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws#/explorer) to interact with the chain.
 Moreover, you can use [Subscan](https://kilt-testnet.subscan.io/) as a chain explorer.
-For a full list of deployments and services, take a look [here](../../02_chain/03_deployments.md).
+For a full list of deployments and services, take a look [here](../02_chain/03_deployments.md).
