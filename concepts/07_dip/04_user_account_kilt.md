@@ -50,7 +50,7 @@ The command requires the following variables:
 -   `relayApi` The [`ApiPromise`](https://polkadot.js.org/docs/api/examples/promise/) instance for the parent relay chain.
 -   `signer` The signing callback to sign the cross-chain transaction.
 -   `submitterAddress` The address of the transaction submitter on the consumer chain.
--   `keyRelationship` The [`VerificationKeyRelationship`](https://kiltprotocol.github.io/sdk-js/types/types_src.VerificationKeyRelationship.html) required for the DIP operation authorized on the relay chain.
+-   `keyRelationship` The `VerificationKeyRelationship` required for the DIP operation authorized on the relay chain.
 
 And the following optional environment variables:
 

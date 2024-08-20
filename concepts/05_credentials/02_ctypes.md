@@ -16,7 +16,7 @@ The schema defines which properties exist and what their type should be, e.g., a
 
 ## CType model JSON schema
 
-The following are all required properties of the JSON schema for [CType models](https://github.com/KILTprotocol/sdk-js/blob/master/packages/core/src/ctype/CType.schemas.ts):
+The following are all required properties of the JSON schema for [CType models](https://github.com/KILTprotocol/sdk-js/blob/develop/packages/credentials/src/ctype/CType.schemas.ts):
 
 -   `$id`: An **identifier**: in the format `kilt:ctype:0x{cTypeHash}`.
 -   `$schema`: A **reference to CType metaschema**: Describes what a valid CType must looks like. You can find the latest metaschema on IPFS at the following address [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
