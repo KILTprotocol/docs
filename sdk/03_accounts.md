@@ -16,14 +16,14 @@ import SenderLink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_f
 import AccountWeb3NameQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
 import AccountWeb3NameQueryNoSDK from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/04_account_web3name_query_no_sdk.ts';
 
-
 import DidUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/05_did_unlink.ts';
 import AccountUnlink from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/06_account_unlink.ts';
 import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/07_reclaim_deposit.ts';
 
-
-<!-- Include create, update, delete, query -->
-
+## Create
+## Update
+## Delete
+## Query
 
 Sometimes there is the need to link a DID to an account publicly.
 The link makes it possible to lookup a DID for an account.
@@ -73,8 +73,10 @@ The proof will only be valid up until the blocknumber is reached.
 With this option you can link addresses that are supported by the Spiritnet blockchain (Sr25519, Ed25519, Ecdsa), but also ethereum addresses.
 
 <Tabs
-  defaultValue="substrate-link"
+defaultValue="substrate-link"
+
 >
+
     <TabItem value="substrate-link" label="Substrate">
         <TsJsBlock>
             {SubAccLink}
@@ -96,12 +98,10 @@ With this option you can link addresses that are supported by the Spiritnet bloc
             {EthMetamaskAccLink}
         </TsJsBlock>
     </TabItem>
+
 </Tabs>
 
-
-
 ## Query the web3name of an Account
-
 
 For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard][kilt-stakeboard].
 
@@ -121,10 +121,7 @@ This section shows how to perform the `account -> web3name` querying both with a
 
 [kilt-stakeboard]: https://stakeboard.kilt.io/
 
-
-
 ## Unlink an Account From a KILT DID
-
 
 Similar to the way a new account to DID link is created, removing a link can happen in one of three ways:
 
