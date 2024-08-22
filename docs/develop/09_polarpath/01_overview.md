@@ -9,7 +9,7 @@ title: Overview
 
 Polar path consists of an `asset-swap` pallet for parachain runtimes and extrinisics that let parachain developers make their native token accessible on the Ethereum network using [the Snowbridge bridge](https://docs.snowbridge.network) between Polkadot and Ethereum.
 
-Polar path provides parachains with a solution for creating an ERC-20 wrapper around their native tokens, enabling a trustless, one to one conversion of any existing native parachain token (TOKEN) into a wrapped parachain token (wTOKEN) on Ethereum while maintaining the trustlessness guarantees Snowbridge provides.
+Polar path provides parachains with a solution for creating an ERC-20 wrapper around their native tokens, enabling a trustless, one to one conversion of any existing native parachain token (TOKEN) into a wrapped parachain token (eTOKEN) on Ethereum while maintaining the trustlessness guarantees Snowbridge provides. The switch also sends a corresponding amount of the native token to the parachain's sovereign account on the Asset Hub (wTOKEN).
 
 ## Setup
 
@@ -19,16 +19,21 @@ The Polkadot Relay Chain doesn't natively support assets apart from DOT. Instead
 
 Making a Parachain token usable on Ethereum requires the following steps:
 
-1. Deploy an ERC-20 contract token to Ethereum with a fixed supply based on the parachain needs.
+1. All involved accounts need enough balance of TOKEN and wTOKEN to cover the switch. This includes the amount of the switch, fees, and an existential deposit.
+2. Deploy an ERC-20 contract token to Ethereum with a fixed supply based on the parachain needs.
 
     :::tip Asset Hub
     Usually, the total supply should match the parachain max supply.
     :::
 
-2. [Disable the token issuer rights](https://ethereum.org/en/guides/how-to-revoke-token-access/) on the ERC-20 contract.
-3. [Register the ERC-20 token on Asset Hub](https://docs.snowbridge.network/applications/token-transfers#token-registration).
-4. The entity holding ERC-20 funds performs a one-time transfer of all tokens from their Ethereum account, minus the amount of tokens previously locked with the parachain, to the parachain's sovereign account on Asset Hub.
-5. Parachain governance recognizes the wrapper around the ERC-20 token by pairing the ERC-20 token to the parachain token in the swap pallet and enable the token issuer rights.
+3. [Disable the token issuer rights](https://ethereum.org/en/guides/how-to-revoke-token-access/) on the ERC-20 contract.
+4. [Register the ERC-20 token on Asset Hub](https://docs.snowbridge.network/applications/token-transfers#token-registration).
+5. The parachain must have a representative asset on the state of the reserve XCM fees asset.
+
+    For example, in the case of Asset Hub, the parachain should implement, `pallet-assets` to manage DOT on their chain.
+
+6. The entity holding ERC-20 funds performs a one-time transfer of all tokens from their Ethereum account, minus the amount of tokens previously locked with the parachain, to the parachain's sovereign account on Asset Hub.
+7. Parachain governance recognizes the wrapper around the ERC-20 token by pairing the ERC-20 token to the parachain token in the swap pallet and enable the token issuer rights.
 
 Holders of the token on the parachain can can now switch tokens between it and Ethereum.
 
@@ -42,13 +47,13 @@ Polar path uses Polkadot's [Cross-Consensus Message Format (XCM)](https://wiki.p
 
 ### Sending tokens from the parachain to Ethereum
 
-1. Transmit custom parachain tokens, "PARA", from the parachain to wrapped tokens "wPARAs" on Asset Hub via XCM
-2. Send wPARAs from Asset Hub to the ERC-20 contract on Ethereum via Snowbridge
+1. Transmit custom parachain tokens, "TOKEN", from the parachain to tokens "eTOKEN" on Asset Hub via XCM
+2. Send eTOKENs from Asset Hub to the ERC-20 contract on Ethereum via Snowbridge
 
 ### Sending tokens from Ethereum to the parachain
 
-1. Send wPARAs from the ERC-20 contract on Ethereum to Asset Hub via Snowbridge
-2. Send wPARAs on Asset Hub to PARAs on the parachain via XCM
+1. Send eTOKENs from the ERC-20 contract on Ethereum to Asset Hub via Snowbridge
+2. Send wTOKENs on Asset Hub to TOKENs on the parachain via XCM
 
 ## Extrinsics
 
