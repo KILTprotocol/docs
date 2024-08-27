@@ -57,7 +57,9 @@ Polar path uses Polkadot's [Cross-Consensus Message Format (XCM)](https://wiki.p
 
 ## Extrinsics
 
-Before performing a switch, the `origin` account first needs to create a switch pair between the parachain token and the ERC-20 token using the `setSwitchPair` extrinisc. Then you can use any of the other extriniscs with the switch pair, including performing the switch itself using the `switch` extrinisc.
+Before performing a switch, the `origin` account first needs to create a switch pair between the parachain token and the ERC-20 token using the `setSwitchPair` extrinisc. Then you can use any of the other extriniscs with the switch pair, including pausing, resuming, and performing the switch itself using the `switch` extrinisc.
+
+Read [the `switch` pallet's documentation](./02_switch_pallet.md) for more information on the extriniscs.
 
 :::tip KILT example
 The KILT parachain uses the `Root` origin account, so creating a switch pair requires a referendum to dispatch the extrinsic.
@@ -70,23 +72,3 @@ This is a [Junction](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/m
 A **remote asset** is the identifier of the asset considered to be the other side of the switch pair.
 For an ERC20 token, this is a [MultiLocation](https://wiki.polkadot.network/docs/learn/xcm/fundamentals/multilocation-summary) type (in XCM terms) pointing directly to an address on one of the many EVM-based deployments.
 :::
-
-### `setSwitchPair`
-
-Create a new switch pair between a parachain token and an ERC-20 token.
-
-### `removeSwitchPair`
-
-Remove an existing switch pair.
-
-### `pauseSwitchPair`
-
-Pause an existing switch pair.
-
-### `resumeSwitchPair`
-
-Resume a paused an existing switch pair.
-
-### `switch`
-
-Allow any user with enough parachain asset balance to send them to the [Asset Hub pool account](https://docs.rs/pallet-asset-conversion/latest/pallet_asset_conversion/pallet/struct.Pallet.html#method.create_pool) for a specific switch pair and receive a corresponding amount of remote asset from the parachain's sovereign account on the remote location, to a `MultiLocation` of their choice.
