@@ -21,9 +21,7 @@ Each actor typically performs different roles:
 -   The <span className="label-role verifier">Verifier</span> only needs to query the KILT blockchain to ensure that the attestation is still valid and was not revoked.
 -   The <span className="label-role claimer">Claimer</span> is not required to query the blockchain, but they might do so to check whether their credential is still valid or if the <span className="label-role attester">Attester</span> has revoked it in the meantime.
 
-## Request an Attestation
-
-<!-- Before the <span className="label-role claimer">Claimer</span> can attest a credential, they need to generate a [light DID](../../01_sdk/02_dids/01_light_did_creation.md), which can happen off-chain. -->
+## Request an attestation
 
 The <span className="label-role attester">Attester</span> has to register their DID on chain and needs KILT coins.
 
@@ -53,7 +51,7 @@ The <span className="label-role verifier">Verifier</span> requests a presentatio
 
 <!-- TODO: Find out more link… -->
 
-A presentation is derived from a credential and does not need to contain all attributes.
+A presentation is derived from a credential and doesn't need to contain all attributes.
 
 After the request, the <span className="label-role claimer">Claimer</span> can choose to hide elements of their credentials that aren't relevant to the claim.
 For example, hide their address from their ID if the <span className="label-role verifier">Verifier</span> is only interested in their age.
@@ -90,7 +88,7 @@ To take an example of applying for a travel visa:
 As you can see, the Embassy didn't need to trust the Claimer directly in this system.
 They trust the Attester, whom they had previously worked with, or respect due to their position.
 And with that trust, they grant the visa with no knowledge of what the Claimer has used the credential for.
-Even though this process emerged due to the trust in the Attester, the Attester was not involved in the second stage, so they were unaware of it.
+Even though this process emerged due to the trust in the Attester, the Attester wasn't involved in the second stage, so they were unaware of it.
 Privacy was achieved with distributed trust.
 
 :::

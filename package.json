@@ -33,12 +33,12 @@
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "@babel/parser": "^7.25.3",
-    "@babel/standalone": "^7.25.3",
-    "@docusaurus/core": "^3.4.0",
-    "@docusaurus/preset-classic": "^3.4.0",
-    "@docusaurus/remark-plugin-npm2yarn": "^3.4.0",
-    "@docusaurus/theme-mermaid": "^3.4.0",
+    "@babel/parser": "^7.25.4",
+    "@babel/standalone": "^7.25.5",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.5.2",
+    "@docusaurus/theme-mermaid": "^3.5.2",
     "@mdx-js/react": "^3.0.1",
     "archiver": "^7.0.1",
     "clsx": "^2.1.1",

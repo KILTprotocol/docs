@@ -10,8 +10,6 @@ import TabItem from '@theme/TabItem';
 
 Create a new project in a fresh directory and navigate into it by running `mkdir kilt-rocks && cd kilt-rocks`.
 
-<!-- TODO: When MDX v2, can move these into tabs -->
-
 The dependencies needed are the following:
 
 - [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
@@ -41,7 +39,7 @@ The dependencies needed are the following:
   </TabItem>
 </Tabs>
 
-## Project Folder
+## Project folder
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
@@ -62,7 +60,6 @@ The dependencies needed are the following:
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-
   Create the following remaining files and folders to end up with the folder structure below:
 
   ```
@@ -79,19 +76,17 @@ The dependencies needed are the following:
   </TabItem>
 </Tabs>
 
-## PILT Tokens
+## PILT tokens
 
-This workshop interacts with the Peregrine test blockchain, which requires you to pay for each transaction with Peregrine Kilt (PILT) tokens.
+This workshop interacts with the Peregrine test blockchain, which requires you to pay for each transaction with Peregrine KILT (PILT) tokens.
 
-But don't worry. PILT tokens have no value, and you can request them from the [faucet](https://faucet.peregrine.kilt.io).
+PILT tokens have no value, and you can request them from the [faucet](https://faucet.peregrine.kilt.io).
 
-## Blockchain Connection
+## Blockchain connection
 
-Before using any SDK functionality, you must initialize and configure the Kilt SDK.
+Before using any SDK functionality, initialize and configure the KILT SDK.
 
-As this workshop uses the [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws%2F#/explorer) you use its address whenever using the SDK to interact with the Kilt blockchain.
-
-You do this by calling the following function:
+As this workshop uses the [Peregrine Testnet](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine.kilt.io%2Fparachain-public-ws%2F#/explorer) you use its address whenever using the SDK to interact with the KILT blockchain using following function:
 
 ```JavaScript
 await Kilt.connect({address})

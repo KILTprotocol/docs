@@ -14,18 +14,21 @@
   },
   "dependencies": {
     "@kiltprotocol/sdk-js": "1.0.0",
-    "axios": "^1.7.4",
+    "@polkadot/util-crypto": "^13.0.2",
+    "@kiltprotocol/utils":"^0.100.0",
+    "@kiltprotocol/types":"^0.100.0",
+    "axios": "^1.7.5",
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",
-    "web3": "^4.11.1"
+    "web3": "^4.12.1"
   },
   "devDependencies": {
     "@polkadot/types": "^12.3.1",
-    "@types/node": "^22.3.0",
+    "@types/node": "^22.5.0",
     "@types/node-fetch": "^2.6.11",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^9.9.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-formatter-codeframe": "^7.32.1",
     "eslint-plugin-import": "^2.29.1",
