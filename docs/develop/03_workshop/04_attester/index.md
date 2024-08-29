@@ -34,7 +34,9 @@ These folders mimic an <span className="label-role attester">Attester</span> ser
        ├─ generateDid.ts # registers the attester's on-chain DID
        └─ generateKeypairs.ts # setup the keys for the attester's DID
   ```
-
+  ```bash
+  cd attester && touch attestCredential.ts ctypeSchema.ts generateAccount.ts generateCtype.ts generateDid.ts generateKeypairs.ts && cd ..
+  ```
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
@@ -47,6 +49,10 @@ These folders mimic an <span className="label-role attester">Attester</span> ser
        ├─ generateCtype.js # register the CType on chain
        ├─ generateDid.js # registers the attester's on-chain DID
        └─ generateKeypairs.js # setup the keys for the attester's DID
+  ```
+
+  ```bash
+  cd attester && touch attestCredential.js ctypeSchema.js generateAccount.js generateCtype.js generateDid.js generateKeypairs.js && cd ..
   ```
 
   </TabItem>

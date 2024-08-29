@@ -109,12 +109,11 @@ Now run the code with:
   </TabItem>
 </Tabs>
 
-Once you have run the script, the output should provide you with the `ATTESTER_DID_MNEMONIC` and `ATTESTER_DID_URI`.
+Once you have run the script, the output should provide you with the `ATTESTER_DID_URI`.
 
 The output should look like the following, but not identical since the code creates the DIDs from your account:
 
 ```
-ATTESTER_DID_MNEMONIC="beyond large galaxy…
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD…"
 ```
 
@@ -125,8 +124,16 @@ WSS_ADDRESS=wss://peregrine.kilt.io
 
 ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
 ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
-ATTESTER_DID_MNEMONIC="beyond large galaxy...
 ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
 Well done - You've generated a full DID! The next step is to create a CType!
+
+## Generate Keys
+
+Add the following code to the `generateKeypairs` file.
+
+<TsJsBlock fileName="attester/generateKeypairs">
+  {GenerateKeypairs}
+</TsJsBlock>
+
