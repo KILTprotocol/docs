@@ -9,10 +9,10 @@ import SnippetBlock from '@site/src/components/SnippetBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateKeypairs.ts';
-import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateKeypairs.ts';
+import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateDid.ts';
 
-The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role attester">Attester</span> in [the previous step](./01_account.md).
+The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role issuer">Issuer</span> in [the previous step](./01_account.md).
 
 A DID may represent any entity, such as a person, an organization, or a machine.
 
@@ -57,7 +57,7 @@ In summary, you register a DID on the blockchain by an account submitting the DI
 
 ## Create a DID
 
-As an <span className="label-role attester">Attester</span> needs to interact with the chain, you must create a full DID.
+As an <span className="label-role issuer">Issuer</span> needs to interact with the chain, you must create a full DID.
 
 ### Write DID to chain
 
@@ -74,17 +74,17 @@ This workshop assumes you followed the [create account step](./01_account.md), b
 
 Create and submit the extrinsic (aka transaction) that registers the DID.
 
-<TsJsBlock fileName="attester/generateDid">
+<TsJsBlock fileName="issuer/generateDid">
   {GenerateDid}
 </TsJsBlock>
 
 The `publicKeyToChain` helper method returns a public key of the correct type.
 
-The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Attester's DID creation.
+The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Issuer's DID creation.
 
 The `createFromAccount` method takes the authenticated key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID needs and uses.
 
-An Attester account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Attester account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
+An Issuer account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Issuer account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
 
 The `signAndSubmitTx` method then takes those transactions and submits them as a batch to the chain.
 
@@ -96,14 +96,14 @@ Now run the code with:
   <TabItem value='ts' label='Typescript' default>
 
   ```bash
-  yarn ts-node ./attester/generateDid.ts
+  yarn ts-node ./issuer/generateDid.ts
   ```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   ```bash
-  node ./attester/generateDid.js
+  node ./issuer/generateDid.js
   ```
 
   </TabItem>
@@ -133,7 +133,7 @@ Well done - You've generated a full DID! The next step is to create a CType!
 
 Add the following code to the `generateKeypairs` file.
 
-<TsJsBlock fileName="attester/generateKeypairs">
+<TsJsBlock fileName="issuer/generateKeypairs">
   {GenerateKeypairs}
 </TsJsBlock>
 

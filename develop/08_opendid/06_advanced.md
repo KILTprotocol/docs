@@ -35,7 +35,7 @@ CLIENT_SPEC=$(cat <<EOF
 {
   "requirements": [{
     "cTypeHash":"0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac",
-    "trustedAttesters": [
+    "trustedIssuers": [
     "did:kilt:4pehddkhEanexVTTzWAtrrfo2R7xPnePpuiJLC7shQU894aY",
     "did:kilt:4pnfkRn5UurBJTW92d9TaVLR2CqJdY4z5HPjrEbpGyBykare"
     ],
@@ -65,7 +65,7 @@ clients:
     example-client:
         requirements:
             - cTypeHash: '0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac'
-              trustedAttesters:
+              trustedIssuers:
                   [
                       'did:kilt:4pehddkhEanexVTTzWAtrrfo2R7xPnePpuiJLC7shQU894aY',
                       'did:kilt:4pnfkRn5UurBJTW92d9TaVLR2CqJdY4z5HPjrEbpGyBykare',
@@ -107,5 +107,5 @@ docker run -d --rm \
     docker.io/kiltprotocol/opendid:latest
 ```
 
-When you now log in with a user that has an email address ending with `kilt.io` as attested by the configured attester, the service allows you to log in.
+When you now log in with a user that has an email address ending with `kilt.io` as attested by the configured issuer, the service allows you to log in.
 If you use a different email address, the service denies you access.

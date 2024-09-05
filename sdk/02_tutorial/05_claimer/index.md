@@ -10,7 +10,7 @@ This section covers the steps undertaken by the <span className="label-role clai
 
 Here's an overview:
 
-1. [Create a DID](./01_did.md), which is the identity used to interact with <span className="label-role attester">Attesters</span> and <span className="label-role verifier">Verifiers</span>.
+1. [Create a DID](./01_did.md), which is the identity used to interact with <span className="label-role issuer">Issuers</span> and <span className="label-role verifier">Verifiers</span>.
 2. Create a claim, request an attestation, and generate a credential using the attestation for our claim.
 3. Present the claim to a <span className="label-role verifier">Verifier</span>.
 
@@ -23,7 +23,7 @@ They can use their identity credentials to prove these claims, and third-party i
 
 Anyone can be a Claimer.
 All you need to do is complete a CType and create a claim.
-Then, you can send these claims to Attesters for verification.
+Then, you can send these claims to Issuers for verification.
 
 They store their identity credentials in their digital wallets, so they decide which information to provide to which service.
 They have full control over their data and decide which data to share, where, and how.
@@ -46,7 +46,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
     └─ claimer/ # all claimer code
       ├─ createClaim.ts # creates a claim
       ├─ createPresentation.ts # creates a presentation for verifiers
-      ├─ generateCredential.ts # create the credential object that is sent to the attester for attestation
+      ├─ generateCredential.ts # create the credential object that is sent to the issuer for attestation
       ├─ generateKeypairs.ts # create keypairs for the light DID
       └─ generateLightDid.ts # create the light DID for the claimer
   ```
@@ -63,7 +63,7 @@ This folders serves to mimic a <span className="label-role claimer">Claimer</spa
     └─ claimer/ # all claimer code
       ├─ createClaim.js # creates a claim
       ├─ createPresentation.js # creates a presentation for verifiers
-      ├─ generateCredential.js # create the credential object that is sent to the attester for attestation
+      ├─ generateCredential.js # create the credential object that is sent to the issuer for attestation
       ├─ generateKeypairs.js # create keypairs for the light DID
       └─ generateLightDid.js # create the light DID for the claimer
   ```

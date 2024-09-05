@@ -7,9 +7,9 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateAccount.ts';
+import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateAccount.ts';
 
-With the [project structure setup](./) in the last step, you can create your <span className="label-role attester">Attester</span> account.
+With the [project structure setup](./) in the last step, you can create your <span className="label-role issuer">Issuer</span> account.
 
 With KILT, an account is an object that interacts with the blockchain.
 
@@ -54,7 +54,7 @@ Read the [API documentation](https://polkadot.js.org/docs/) to learn more about 
 
 Add the following code to the `generateAccount` file.
 
-<TsJsBlock fileName="attester/generateAccount">
+<TsJsBlock fileName="issuer/generateAccount">
   {GenerateAccount}
 </TsJsBlock>
 
@@ -74,20 +74,20 @@ The rest of the code runs the `generateAccount` function and logs the results to
 
 ## Run code
 
-Run the code above to receive your <span className="label-role attester">Attester</span> `<address>` and `<mnenomic>`.
+Run the code above to receive your <span className="label-role issuer">Issuer</span> `<address>` and `<mnenomic>`.
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
 ```bash
-yarn ts-node ./attester/generateAccount.ts
+yarn ts-node ./issuer/generateAccount.ts
 ```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
 ```bash
-node ./attester/generateAccount.js
+node ./issuer/generateAccount.js
 ```
 
   </TabItem>

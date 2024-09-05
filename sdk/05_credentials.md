@@ -14,7 +14,7 @@ As for traditional KILT credentials, public credentials also have their structur
 
 As mentioned in the section about credentials, the creation of a CType in KILT involves two steps: the definition of a CType and the anchoring of its hash on the KILT blockchain.
 
-We will not cover the creation of a CType, please refer to the [CType creation](../04_claiming/01_ctype_creation.md)
+We will not cover the creation of a CType, please refer to the [CType creation](./04_claiming/01_ctype_creation.md)
 
 ## Create and Issue the Credential
 
@@ -82,7 +82,7 @@ The KILT SDK makes also this use case very easy:
 
 A third class of use cases might involve users exchanging whole public credentials, for instance when showing some sort of proof.
 
-This case is also supported by the KILT SDK, and relies on an important feature of public credentials: **the identifier (ID) of a public credential is generated from its content and from the KILT DID of its attester**.
+This case is also supported by the KILT SDK, and relies on an important feature of public credentials: **the identifier (ID) of a public credential is generated from its content and from the KILT DID of its issuer**.
 This means that even a minimal change in the content of a public credential object before being shared with other parties, will result in those parties deriving a different identifier from the credential, which will then lead to an error during the verification process.
 
 Verifying a public credential is shown in the following snippet:
@@ -93,7 +93,7 @@ Verifying a public credential is shown in the following snippet:
 
 What the `verifyCredential` function does internally is the following:
 
-1. Derive the credential identifier from the provided content and attester information.
+1. Derive the credential identifier from the provided content and issuer information.
 2. Fetch the actual credential from the blockchain, as shown in the [section above](#retrieve-a-credential-by-id), failing if the credential does not exist.
 3. [OPTIONAL] Verify that the credential structure matches what the optionally-provided CType defines.
 4. Verify that the rest of the fields in the provided credential (i.e., revocation status, identifier, creation block number) match the retrieved credential.
@@ -122,7 +122,9 @@ The KILT SDK provides different features depending on the needs of the use case.
 
 ## Revoke and Remove a Credential
 
-As we have seen for [public credential retrieval][credential-retrieval], a credential identifier is sufficient to perform most operations on public credentials.
+<!-- TODO: Update link -->
+
+As we have seen for public credential retrievalcredential-retrieval, a credential identifier is sufficient to perform most operations on public credentials.
 This is true also for revocation and removal.
 
 Some use cases might need a revoked credential to remain on chain and marked as revoked, while other use cases might combine together revocation and removal, removing a credential whenever it is to be marked as revoked, fulfilling the same goal of marking the credential as invalid.
@@ -134,7 +136,7 @@ In the latter case, all information about the information is cleared, hence the 
   {RevokeRemoveCredentialById}
 </TsJsBlock>
 
-Because a credential identifier can also be calculated starting from the credential itself and the information about its attester, it is also possible to revoke (and optionally remove) a credential given the credential itself.
+Because a credential identifier can also be calculated starting from the credential itself and the information about its issuer, it is also possible to revoke (and optionally remove) a credential given the credential itself.
 
 <TsJsBlock>
   {RevokeCredential}
@@ -155,15 +157,13 @@ As for revocation, both the credential ID and the whole credential can be used, 
 
 ## Reclaim the Deposit for a Credential
 
-All the operations mentioned so far, always require the participation of the public credential attester, who must use their assertion key to sign all operations before they are submitted to the KILT blockchain.
+All the operations mentioned so far, always require the participation of the public credential issuer, who must use their assertion key to sign all operations before they are submitted to the KILT blockchain.
 
 The only operation that can be submitted directly by someone else, as with other places in the SDK, is the transaction to remove a credential and obtain the initial deposit.
 
 This is, technically speaking, a different operation compared to the one to remove a credential, albeit the two yield the same result: all traces of the credential are removed from the chain and the deposit is returned to its payer.
-The difference between the two is about who is authorized to perform the operation: while credential removal requires a DID signature by the original credential creator (a.k.a. issuer), the deposit claiming operation requires a regular transaction signature by the KILT account that paid the original deposit, with no involvement of the original attester.
+The difference between the two is about who is authorized to perform the operation: while credential removal requires a DID signature by the original credential creator (a.k.a. issuer), the deposit claiming operation requires a regular transaction signature by the KILT account that paid the original deposit, with no involvement of the original issuer.
 
 <TsJsBlock>
   {ReclaimDeposit}
 </TsJsBlock>
-
-[credential-retrieval]: ./02_credential_retrieval.md

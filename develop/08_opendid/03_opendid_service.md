@@ -68,11 +68,11 @@ The container generates sensible defaults in the `config.yaml` file, but here ar
     -   The `requirements` section, including:
 
         -   What CTypes are required for authentication.
-        -   The trusted attesters as an address (The default is for the [SocialKYC attester](https://socialkyc.io/)).
+        -   The trusted issuers as an address (The default is for the [SocialKYC issuer](https://socialkyc.io/)).
 
             :::note info
 
-            The generated default `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an attester.
+            The generated default `config.yaml` requires an [email credential](https://test.ctypehub.galaniprojects.de/ctype/kilt:ctype:0x3291bb126e33b4862d421bfaa1d2f272e6cdfc4f96658988fbcffea8914bd9ac) issued by an issuer.
 
             :::
 

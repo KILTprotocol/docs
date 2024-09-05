@@ -48,13 +48,13 @@ The dependencies needed are the following:
 
   ```
   └─ kilt-rocks/ # project
-      ├─ attester/ # all attester code
+      ├─ issuer/ # all issuer code
       ├─ claimer/ # all claimer code
       ├─ verify.ts # all verifier code
       └─ .env # environment variables
   ```
   ```
-  mkdir attester claimer && touch verify.ts .env
+  mkdir issuer claimer && touch verify.ts .env
   ```
 
   </TabItem>
@@ -64,13 +64,13 @@ The dependencies needed are the following:
 
   ```
   └─ kilt-rocks/ # project
-      ├─ attester/ # all attester code
+      ├─ issuer/ # all issuer code
       ├─ claimer/ # all claimer code
       ├─ verify.js # all verifier code
       └─ .env # environment variables
   ```
   ```
-  mkdir attester claimer && touch verify.js .env
+  mkdir issuer claimer && touch verify.js .env
   ```
 
   </TabItem>

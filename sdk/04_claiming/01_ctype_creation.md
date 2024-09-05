@@ -22,7 +22,7 @@ The creator of a CType is required to have a full DID with an attestation key.
 
 :::info CTypes are unique
 The creation of a new CType requires the CType hash to be unique.
-Before writing a new CType, Attesters should check whether there is already an existing CType which matches their requirements.
+Before writing a new CType, Issuers should check whether there is already an existing CType which matches their requirements.
 
 Visit our [CType index repository](https://github.com/KILTprotocol/ctype-index) for a non-exhaustive list of existing CTypes.
 :::

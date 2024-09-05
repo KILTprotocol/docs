@@ -19,9 +19,9 @@ Such entities can establish a business model based on the trust infrastructure K
 
 In particular, KILT provides:
 
-* A **universal identity protocol** for individuals, organizations, objects, and intelligent agents to obtain credentials for arbitrary attributes about themselves issued by trusted [Attesters](./10_glossary.md#attester).
+* A **universal identity protocol** for individuals, organizations, objects, and intelligent agents to obtain credentials for arbitrary attributes about themselves issued by trusted [Issuers](./10_glossary.md#issuer).
 * A **self-sovereign mechanism** for putting credential holders in control of their own data, allowing them to choose if and where they make their credentials public and how much information from those credentials they wish to share.
-* A **[Trust Market](./10_glossary.md#trust-market) for [Attesters](./10_glossary.md#attester)** of such credentials, allowing widely trusted entities to be compensated for their valuable attestation work.
+* A **[Trust Market](./10_glossary.md#trust-market) for [Issuers](./10_glossary.md#issuer)** of such credentials, allowing widely trusted entities to be compensated for their valuable attestation work.
 
 KILT's main goal is to generate a level playing field for companies to explore new business models related to trust relationships and data sovereignty.
 KILT enables businesses and governments to rely on a common standard owned by everyone participating and not by a single company or set thereof.
@@ -47,7 +47,7 @@ Trusted entities issue them and hand them out to the holder.
 That holder then has full control of their credential (their passport) and can use it wherever needed.
 
 With the invention of the internet, and later of Web 2.0, services evolved and merged into totally centralized solutions including Google, Meta, and X among others.
-They no longer attest to someone's email account, but due to their business model, those same service providers store and control our personal data (i.e., our identity).
+They no longer attest someone's email account, but due to their business model, those same service providers store and control our personal data (i.e., our identity).
 For instance, they could stop allowing us to log into a certain website if they decide to.
 More often than not, companies store the data out of necessity and for their own business purpose.
 Every time users log into any service, they generate new data points which are then aggregated and sold for advertising purposes.
@@ -64,5 +64,5 @@ The core ideas are:
 
 * Managing user identities in the form of [decentralized identifiers (DIDs)](https://w3c-ccg.github.io/did-spec/), with the support of the KILT blockchain
 * Obtaining digital [verifiable credentials](./10_glossary.md#verifiable-credentials) for user-specified claims
-* Supporting revocation of verifiable credentials by their Attesters
+* Supporting revocation of verifiable credentials by their Issuers
 * Presenting and verifying verifiable credentials in a privacy-preserving and user-controlled way
