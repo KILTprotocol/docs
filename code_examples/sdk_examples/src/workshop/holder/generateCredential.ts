@@ -4,7 +4,7 @@ import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { createClaim } from './createClaim'
 import { generateLightDid } from './generateLightDid'
-import { getCtypeSchema } from '../attester/ctypeSchema'
+import { getCtypeSchema } from '../issuer/ctypeSchema'
 
 export function generateCredential(
   claimerDid: Kilt.DidUri,

@@ -7,8 +7,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CreateClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/createClaim.ts';
-import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateCredential.ts';
+import CreateClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/createClaim.ts';
+import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateCredential.ts';
 
 This section covers creating a `Claim` and a `Credential`.
 

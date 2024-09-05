@@ -3,9 +3,9 @@ import { config as envConfig } from 'dotenv'
 import * as Kilt from '@kiltprotocol/sdk-js'
 
 import { generateAccount } from './generateAccount'
-import { generateCredential } from '../claimer/generateCredential'
+import { generateCredential } from '../holder/generateCredential'
 import { generateKeypairs } from './generateKeypairs'
-import { generateLightDid } from '../claimer/generateLightDid'
+import { generateLightDid } from '../holder/generateLightDid'
 
 export async function attestCredential(
   attesterAccount: Kilt.KiltKeyringPair,

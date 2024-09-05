@@ -8,8 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateKeypairs.ts';
-import GenerateLightDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/claimer/generateLightDid.ts';
+import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateKeypairs.ts';
+import GenerateLightDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateLightDid.ts';
 
 This section covers creating a light DID using the account you created for the <span className="label-role claimer">Claimer</span>.
 
