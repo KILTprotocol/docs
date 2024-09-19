@@ -5,7 +5,7 @@ title: Overview
 
 import ThemedImage from '@theme/ThemedImage';
 
-**Credentials** consist of a set of claims which belong to a **Holder**, are attested by an **Issuer**, and that a **Verifier** can verify.
+**Credentials** consist of a set of claims which belong to a **Holder**, are issued/attested by an **Issuer**, and that a **Verifier** can verify.
 
 <center>
 <ThemedImage
