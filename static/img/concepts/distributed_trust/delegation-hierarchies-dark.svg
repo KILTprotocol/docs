@@ -1,85 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 555 371">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 555 371">
   <defs>
     <style>
       .cls-1 {
-        font-size: 12px;
+        font-size: 18px;
       }
 
       .cls-1, .cls-2, .cls-3 {
         isolation: isolate;
       }
 
+      .cls-1, .cls-4, .cls-3, .cls-5 {
+        fill: #fff;
+      }
+
       .cls-1, .cls-3 {
         font-family: Helvetica, Helvetica;
       }
 
-      .cls-2 {
-        font-family: ArialMT, Arial;
-        font-size: 10px;
-      }
-
-      .cls-4 {
+      .cls-6 {
         fill: none;
       }
 
-      .cls-4, .cls-5, .cls-6 {
+      .cls-6, .cls-4, .cls-5 {
+        stroke: #fff;
+        fill: none;
+      }
+
+      .cls-6, .cls-5 {
         stroke-miterlimit: 10;
       }
 
-      .cls-4, .cls-6 {
-        stroke: #fff;
-      }
-
-      .cls-7, .cls-5 {
-        stroke: #000;
-      }
-
-      .cls-7, .cls-5, .cls-6 {
-        fill: #fff;
-      }
-
       .cls-3 {
-        font-size: 18px;
+        font-size: 12px;
       }
     </style>
   </defs>
-  <!-- Generator: Adobe Illustrator 28.7.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 136)  -->
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
   <g>
     <g id="Layer_1">
       <g>
-        <path class="cls-4" d="M352.5,240.5v20h-110v13.6" pointer-events="stroke"/>
-        <path class="cls-6" d="M242.5,279.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="all"/>
-        <path class="cls-4" d="M352.5,240.5v20h110v13.6" pointer-events="stroke"/>
-        <path class="cls-6" d="M462.5,279.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="all"/>
-        <rect class="cls-7" x="260.5" y="150.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="all"/>
-        <text class="cls-3" transform="translate(313.5 175)"><tspan x="0" y="0">Issuer 3</tspan></text>
-        <rect class="cls-7" x="130.5" y=".5" width="184" height="100" rx="15" ry="15" pointer-events="none"/>
-        <text class="cls-1" transform="translate(199.7 19)"><tspan x="0" y="0">&lt;root&gt;...</tspan></text>
+        <path class="cls-6" d="M352.5,240.5v20h-110v13.6" pointer-events="stroke"/>
+        <path class="cls-5" d="M242.5,279.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="all"/>
+        <path class="cls-6" d="M352.5,240.5v20h110v13.6" pointer-events="stroke"/>
+        <path class="cls-5" d="M462.5,279.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="all"/>
+        <rect class="cls-4" x="260.5" y="150.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="all"/>
+        <g class="cls-2">
+          <text class="cls-1" transform="translate(313.5 175)"><tspan x="0" y="0">Issuer 3</tspan></text>
+        </g>
+        <rect class="cls-4" x="130.5" y=".5" width="184" height="100" rx="15" ry="15" pointer-events="none"/>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(199.7 19)"><tspan x="0" y="0">&lt;root&gt;...</tspan></text>
+        </g>
         <path class="cls-5" d="M170.5,50.5h20l20,19.4-20,19.4h-20l-20-19.4,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(164.7 73)"><tspan x="0" y="0">Attest</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(164.7 73)"><tspan x="0" y="0">Attest</tspan></text>
+        </g>
         <path class="cls-5" d="M240.5,50.5h40l20,19.4-20,19.4h-40l-20-19.4,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(236 73)"><tspan x="0" y="0">Delegate</tspan></text>
-        <rect class="cls-7" x="370.5" y="280.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
-        <text class="cls-3" transform="translate(423.5 305)"><tspan x="0" y="0">Issuer 5</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(236 73)"><tspan x="0" y="0">Delegate</tspan></text>
+        </g>
+        <rect class="cls-4" x="370.5" y="280.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
+        <g class="cls-2">
+          <text class="cls-1" transform="translate(423.5 305)"><tspan x="0" y="0">Issuer 5</tspan></text>
+        </g>
         <path class="cls-5" d="M407.5,320.5h20l20,19.4-20,19.5h-20l-20-19.5,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(401.7 343)"><tspan x="0" y="0">Attest</tspan></text>
-        <rect class="cls-7" x="150.5" y="280.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
-        <text class="cls-3" transform="translate(203.5 305)"><tspan x="0" y="0">Issuer 4</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(401.7 343)"><tspan x="0" y="0">Attest</tspan></text>
+        </g>
+        <rect class="cls-4" x="150.5" y="280.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
+        <g class="cls-2">
+          <text class="cls-1" transform="translate(203.5 305)"><tspan x="0" y="0">Issuer 4</tspan></text>
+        </g>
         <path class="cls-5" d="M187.5,320.5h20l20,19.4-20,19.5h-20l-20-19.5,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(181.7 343)"><tspan x="0" y="0">Attest</tspan></text>
-        <path class="cls-4" d="M222.5,100.5v25H92.5v18.6" pointer-events="none"/>
-        <path class="cls-6" d="M92.5,149.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="none"/>
-        <path class="cls-4" d="M222.5,100.5v25h130v18.6" pointer-events="none"/>
-        <path class="cls-6" d="M352.5,149.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="none"/>
-        <rect class="cls-7" x=".5" y="150.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
-        <text class="cls-3" transform="translate(53.5 175)"><tspan x="0" y="0">Issuer 2</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(181.7 343)"><tspan x="0" y="0">Attest</tspan></text>
+        </g>
+        <path class="cls-6" d="M222.5,100.5v25H92.5v18.6" pointer-events="none"/>
+        <path class="cls-5" d="M92.5,149.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="none"/>
+        <path class="cls-6" d="M222.5,100.5v25h130v18.6" pointer-events="none"/>
+        <path class="cls-5" d="M352.5,149.4l-3.5-7,3.5,1.8,3.5-1.8-3.5,7Z" pointer-events="none"/>
+        <rect class="cls-4" x=".5" y="150.5" width="184" height="90" rx="13.5" ry="13.5" pointer-events="none"/>
+        <g class="cls-2">
+          <text class="cls-1" transform="translate(53.5 175)"><tspan x="0" y="0">Issuer 2</tspan></text>
+        </g>
         <path class="cls-5" d="M37.5,190.5h20l20,19.4-20,19.4h-20l-20-19.4,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(31.7 213)"><tspan x="0" y="0">Attest</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(31.7 213)"><tspan x="0" y="0">Attest</tspan></text>
+        </g>
         <path class="cls-5" d="M107.5,190.5h40l20,19.4-20,19.4h-40l-20-19.4,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(103 213)"><tspan x="0" y="0">Delegate</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(103 213)"><tspan x="0" y="0">Delegate</tspan></text>
+        </g>
         <path class="cls-5" d="M367.5,190.5h40l20,19.4-20,19.4h-40l-20-19.4,20-19.4Z" pointer-events="none"/>
-        <text class="cls-1" transform="translate(363 213)"><tspan x="0" y="0">Delegate</tspan></text>
+        <g class="cls-2">
+          <text class="cls-3" transform="translate(363 213)"><tspan x="0" y="0">Delegate</tspan></text>
+        </g>
       </g>
     </g>
   </g>
