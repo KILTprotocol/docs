@@ -15,7 +15,7 @@ import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examp
 This section demonstrates how to build a basic verifier according to the [Credential API Specification](https://github.com/KILTprotocol/spec-ext-credential-api).
 Before continuing, please make sure you have already set up the [communication session](03_session.md) and [Well-Known DID Configuration](02_well-known-did-config.md).
 
-This guide explains specifically how a web server can request a credential presentation from one of its visitors (the claimer).
+This guide explains specifically how a web server can request a credential presentation from one of its visitors (the holder).
 After the browser extension verified the Well-Known DID Configuration and the encrypted communication channel between the extension and the server was established, the web server can request the credential presentation.
 This is a two step process.
 
@@ -50,7 +50,7 @@ The challenge can be generated using the polkadot crypto utilities:
 </TsJsBlock>
 
 With the challenge the server can construct the `request-credential` message.
-The request is sent to the light DID (`claimerSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
+The request is sent to the light DID (`holderSessionDid`) that is used to encrypt the messages (see [Session](03_session.md) for more information).
 
 <TsJsBlock>
   {CreateRequestCredentialMessage}
@@ -59,11 +59,11 @@ The request is sent to the light DID (`claimerSessionDid`) that is used to encry
 :::note Privacy
 
 The credential itself doesn't need to be issued to this DID since the light DID is only used to encrypt the messages.
-We don't use the full DID of the claimer to establish the encrypted communication, so that the claimer first can ensure the origin of the `request-credential` message.
+We don't use the full DID of the holder to establish the encrypted communication, so that the holder first can ensure the origin of the `request-credential` message.
 
 :::
 
-After the server has built the message object, it must encrypt the message for the claimer.
+After the server has built the message object, it must encrypt the message for the holder.
 Once the message is encrypted the server can pass on the message to the extension.
 
 <TsJsBlock>
@@ -75,7 +75,7 @@ Once the message is encrypted the server can pass on the message to the extensio
 After sending the `request-credential` message to the extension, the verifier listens for a message of type `submit-credential` in response.
 
 After the response from the extension is received, forwarded to the server and decrypted, the verifier must check that it has the expected CType and that it contains a valid credential.
-Since everyone can run an attestation service, you need to make sure that you also verify that the attester is trusted.
+Since everyone can run an attestation service, you need to make sure that you also verify that the issuer is trusted.
 
 <TsJsSnippet>
   {DecryptCredentialMessage}

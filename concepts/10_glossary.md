@@ -33,23 +33,22 @@ Verifiable credentials are often associated with DIDs and can be stored and mana
 
 ## KILT Protocol Specific Terms
 
-**Attestation** -the act of formally confirming and certifying the validity of the data within a claim, typically performed by a trusted Attester.
+**Attestation** -the act of formally confirming and certifying the validity of the data within a claim, typically performed by a trusted Issuer.
 
-**Attester** - a trusted entity or organization that attests claims and issues credentials on the KILT Protocol.
-The Attester confirms the truth of the claim requested based on the information presented by the Claimer.
+**Issuer** - a trusted entity or organization that attests claims and issues credentials on the KILT Protocol.
+The Issuer confirms the truth of the claim requested based on the information presented by the Holder.
 
-**Claimer** - an individual or entity that asserts a claim or statement about their identity or qualifications.
-The Claimer can use credentials to provide evidence of their claims, which can be verified by third-party entities or systems.
+**Holder** - an individual or entity that asserts a claim or statement about their identity or qualifications.
+The Holder can use credentials to provide evidence of their claims, which can be verified by third-party entities or systems.
 
 **Claim Type (CType)** - a specific type of claim that can be made about an individual, such as their education, work experience, or identity information.
 Each claim type has a defined set of attributes that must be provided to support the claims data type and structure.
 It can be used to generate verifiable credentials that can be shared with others. [See the CTypes concept page for more details](https://docs.kilt.io/docs/concepts/credentials/ctypes)
-
-**Credential** - a verifiable digital representation of a claim made by a Claimer, which has been attested to by a trusted entity, such as an Attester or Issuer.
+**Credential** - a verifiable digital representation of a claim made by a Holder, which has been attested to by a trusted entity, such as an Issuer or Verifier.
 It consists of a set of attributes that describe the claim and the proof of its validity, and can be shared with third parties to provide verifiable proof of the claim.
 
 **KILT Digital Identity** - a self-sovereign identity that is owned and controlled by the individual or entity it represents.
-It consists of verifiable credentials that are issued by trusted entities, such as Attesters, and can be used to prove claims about the individual or entity's identity, qualifications, or other attributes.
+It consists of verifiable credentials that are issued by trusted entities, such as Issuers, and can be used to prove claims about the individual or entity's identity, qualifications, or other attributes.
 
 **KILT Coin** - the native token of the KILT blockchain used for paying for attestations and DIDs. It can also be used for governance, staking, transaction fees and as a means of exchange on the network.
 
@@ -57,8 +56,6 @@ It consists of verifiable credentials that are issued by trusted entities, such 
 KILT’s mission is to return control over personal data to its owner, restoring privacy to the individual.
 
 ### Request for Attestation
-
-
 **Trust Anchors** - entities that are trusted to issue or verify claims on the KILT network, such as governments, educational institutions, or professional organizations.
 
 **Trust Market** - a market that operates on trust and reputation in addition to financial incentives, where buyers and sellers exchange goods or services based on established reputation through digital platforms.

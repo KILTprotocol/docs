@@ -2,9 +2,9 @@ import { config as envConfig } from 'dotenv'
 
 import * as Kilt from '@kiltprotocol/sdk-js'
 
-import { createPresentation } from './claimer/createPresentation'
-import { generateKeypairs } from './claimer/generateKeypairs'
-import { generateLightDid } from './claimer/generateLightDid'
+import { createPresentation } from './holder/createPresentation'
+import { generateKeypairs } from './holder/generateKeypairs'
+import { generateLightDid } from './holder/generateLightDid'
 
 function getChallenge(): string {
   return Kilt.Utils.UUID.generate()

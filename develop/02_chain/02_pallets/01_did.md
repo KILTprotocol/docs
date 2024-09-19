@@ -20,7 +20,7 @@ A full DID can then be used to perform certain on-chain actions which include:
 
 ## Register a Full DID
 
-A full DID is needed if the user wants to become an Attester or wants to setup delegations.
+A full DID is needed if the user wants to become an Issuer or wants to setup delegations.
 A full DID also allows the user to embed a list of URLs, known as services, into the DID document so that they can be retrieved from the chain as part of the DID document.
 To create a full DID the user first has to create some keys, and optionally some services:
 

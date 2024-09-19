@@ -8,8 +8,8 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CtypeSchema from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/ctypeSchema.ts';
-import GenerateCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/attester/generateCtype.ts';
+import CtypeSchema from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/ctypeSchema.ts';
+import GenerateCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateCtype.ts';
 
 <!-- Taken from https://github.com/webpack-contrib/raw-loader/issues/91#issuecomment-648830498 -->
 import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
@@ -27,10 +27,10 @@ To learn more about CTypes, read the [in-depth CType documentation](/concepts/cr
 You can also [read through existing CTypes in the CType-index](https://github.com/KILTprotocol/ctype-index).
 :::
 
-Before the <span className="label-role attester">Attester</span> can attest credentials, they must decide which CType they support.
+Before the <span className="label-role issuer">Issuer</span> can attest credentials, they must decide which CType they support.
 For example, a traffic authority only issues driver's licenses (A CType for driver's license), not a university diploma.
 
-Since CTypes enable interoperability between Attesters, using existing CTypes rather than creating new ones is highly recommended.
+Since CTypes enable interoperability between Issuers, using existing CTypes rather than creating new ones is highly recommended.
 However, this workshop creates a new CType to show the process.
 
 Creating CTypes requires an account and a full DID.
@@ -58,13 +58,13 @@ A CType is stored on the KILT blockchain.
 In a real-world situation, a user would retrieve an existing CType from the chain or a CType registry.
 For example, via a Credential Registry's REST API.
 
-In this tutorial, the <span className="label-role attester">Attester</span> creates and attempts to store a CType on the KILT test blockchain.
+In this tutorial, the <span className="label-role issuer">Issuer</span> creates and attempts to store a CType on the KILT test blockchain.
 
 ## Create CType
 
 Copy the following to define a `CType` with a given schema:
 
-<TsJsBlock fileName="attester/ctypeSchema">
+<TsJsBlock fileName="issuer/ctypeSchema">
   {CtypeSchema}
 </TsJsBlock>
 
@@ -79,13 +79,13 @@ To avoid this, change the value of `fromProperties` to something unique, such as
 
 Copy the following to create a `CType` on the chain:
 
-<TsJsBlock fileName="attester/generateCtype">
+<TsJsBlock fileName="issuer/generateCtype">
   {GenerateCtype}
 </TsJsBlock>
 
-The `ensureStoredCType` function takes the Attester's account, DID, and a callback to sign the function and checks if the CType is already on chain.
+The `ensureStoredCType` function takes the Issuer's account, DID, and a callback to sign the function and checks if the CType is already on chain.
 It uses the `verifyStored` method to pass the CType to the KILT blockchain and make the check.
-If it does not exist, it stores it on chain, using the `toChain` method to encode the CType into a unique hash and the `add` method to create a new CType from the given unique hash and associate it with the Attester.
+If it does not exist, it stores it on chain, using the `toChain` method to encode the CType into a unique hash and the `add` method to create a new CType from the given unique hash and associate it with the Issuer.
 The function then uses the `authorizeTx` to authorize the transaction and `signAndSubmitTx` to sign and submit the transaction containing the new CType.
 
 :::warning
@@ -99,19 +99,19 @@ Remember, an account must have the required amount of tokens to pay the transact
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  Run the `attester/generateCtype.ts` file.
+  Run the `issuer/generateCtype.ts` file.
 
   ```bash
-  yarn ts-node attester/generateCtype.ts
+  yarn ts-node issuer/generateCtype.ts
   ```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-  Run the `attester/generateCtype.js` file.
+  Run the `issuer/generateCtype.js` file.
 
   ```bash
-  node attester/generateCtype.js
+  node issuer/generateCtype.js
   ```
 
   </TabItem>

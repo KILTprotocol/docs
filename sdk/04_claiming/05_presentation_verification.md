@@ -22,6 +22,6 @@ One way of achieving this is by asking the Claimer to include a challenge in the
 Without a challenge, Verifiers must implement other measures to be certain about the identity of the presenter.
 :::
 
-:::warning Evaluation of the attester's trust is up to the Verifiers
-Verifiers must also have a registry of attesters they trust, and verify that the issuer of the credential they are verifying belongs to such list and, where necessary, whether it is still in operation or not, i.e., whether its DID still exists or has been deleted.
+:::warning Evaluation of the issuer's trust is up to the Verifiers
+Verifiers must also have a registry of issuers they trust, and verify that the issuer of the credential they are verifying belongs to such list and, where necessary, whether it is still in operation or not, i.e., whether its DID still exists or has been deleted.
 :::

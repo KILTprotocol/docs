@@ -21,7 +21,7 @@ The following are all required properties of the JSON schema for [CType models](
 -   `$id`: An **identifier**: in the format `kilt:ctype:0x{cTypeHash}`.
 -   `$schema`: A **reference to CType metaschema**: Describes what a valid CType must looks like. You can find the latest metaschema on IPFS at the following address [ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/](ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4tpqt65udlhimd7hcxjyq/).
 -   `title`: A user-friendly name for the CType that makes it easier for users to contextualize.
--   `properties`: A set of fields (e.g., name, birth date) that the CType can contain, and that the Claimer can have attested. [Read more details about properties below](#properties).
+-   `properties`: A set of fields (e.g., name, birth date) that the CType can contain, and that the Holder can have attested. [Read more details about properties below](#properties).
 -   `type`: An object containing properties for a claim about the Claimer in the credential.
 -   `additionalProperties`: A boolean added since version 1 of CTypes, that must be set and allows or disallows any properties in addition to those in `properties`. If set to `false`, the CType validation will fail if there are any additional properties.
 
@@ -99,7 +99,7 @@ For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook
 
 :::danger Deprecation Warning: CType metaschema draft-01
 
-CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype) metaschema are subject to a vulnerability that could fool an **Attester** by introducing data they never checked.
+CTypes based on the [Draft 01](http://kilt-protocol.org/draft-01/ctype) metaschema are subject to a vulnerability that could fool an **Issuer** by introducing data they never checked.
 
 
 Due to this vulnerability, this version of the metaschema is deprecated and its use is discouraged when creating new CTypes.
@@ -115,7 +115,7 @@ New Property Value: `"$schema": "ipfs://bafybeiah66wbkhqbqn7idkostj2iqyan2tstc4t
 
 ## Migration instructions
 
-Attesters should transition to issuing credentials using upgraded versions of CTypes currently in use.
+Issuers should transition to issuing credentials using upgraded versions of CTypes currently in use.
 
 Using sdk version `0.33.0` or later, you can produce a copy of an existing CType `oldCType` as follows:
 

@@ -6,7 +6,7 @@ title: 🚀 Done
 ## Congrats!
 
 Well done!
-You now understand the main actors in KILT, the `Claimers`, `Attesters` and `Verifiers`.
+You now understand the main actors in KILT, the `Claimers`, `Issuers` and `Verifiers`.
 
 You have also learned how to:
 
