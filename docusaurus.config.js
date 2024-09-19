@@ -40,9 +40,8 @@ module.exports = {
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'dip-announcement',
-      // Use absolute links proceeded by '/docs'
       content:
-        'DIP enables OpenID inspired cross-chain identity, <a href="/docs/concepts/dip/what-is-dip">help us test this new feature</a>!',
+        'DIP enables OpenID inspired cross-chain identity, <a href="/concepts/dip/what-is-dip">help us test this new feature</a>!',
       backgroundColor: '#2db528',
       textColor: '#fff',
       isCloseable: true,
@@ -56,8 +55,12 @@ module.exports = {
       },
       items: [
         {
-          type: 'doc',
-          docId: 'concepts/what-is-kilt',
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+        },
+        {
+          to: '/concepts/what-is-kilt',
           label: 'What is KILT?',
         },
         {
@@ -66,42 +69,36 @@ module.exports = {
           items: [
             {
               type: 'doc',
-              docId: 'develop/sdk/quickstart',
+              docId: 'quickstart',
               label: 'SDK Documentation',
             },
             {
-              type: 'doc',
-              docId: 'develop/chain/introduction',
+              to: 'develop/chain/introduction',
               label: 'Blockchain Documentation',
             },
             {
               type: 'doc',
-              docId: 'develop/workshop/welcome',
-              label: 'Workshop',
+              docId: 'tutorial/welcome',
+              label: 'Tutorial',
             },
             {
-              type: 'doc',
-              docId: 'develop/contribute',
+              to: 'develop/contribute',
               label: 'Contribute',
             },
             {
-              type: 'doc',
-              docId: 'develop/specifications',
+              to: 'develop/specifications',
               label: 'Technical Specifications',
             },
             {
-              type: 'doc',
-              docId: 'develop/builtonkilt',
+              to: 'develop/builtonkilt',
               label: 'Built on KILT',
             },
             {
-              type: 'doc',
-              docId: 'develop/dApp/welcome',
+              to: 'develop/dApp/welcome',
               label: 'DApp Documentation',
             },
             {
-              type: 'doc',
-              docId: 'develop/opendid/what-is-opendid',
+              to: 'develop/opendid/what-is-opendid',
               label: 'OpenDID Documentation',
             },
           ],
@@ -111,28 +108,23 @@ module.exports = {
           label: 'Participate',
           items: [
             {
-              type: 'doc',
-              docId: 'participate/staking/become_a_collator/overview',
+              to: 'participate/staking/become_a_collator/overview',
               label: 'Staking',
             },
             {
-              type: 'doc',
-              docId: 'participate/governance/vote',
+              to: 'participate/governance/vote',
               label: 'Voting',
             },
             {
-              type: 'doc',
-              docId: 'participate/treasury-proposal',
+              to: 'participate/treasury-proposal',
               label: 'Treasury Proposals',
             },
             {
-              type: 'doc',
-              docId: 'participate/content-creation-guidelines',
+              to: 'participate/content-creation-guidelines',
               label: 'Content Creation Guidelines',
             },
             {
-              type: 'doc',
-              docId: 'participate/treasury-tip',
+              to: 'participate/treasury-tip',
               label: 'Treasury Tips',
             },
           ],
@@ -204,16 +196,24 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          path: 'sdk',
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '1.0.x',
+            },
+            0.3: {
+              label: '0.3.x',
+              path: '0.3',
+            },
+          },
+          routeBasePath: 'develop/sdk',
+          sidebarPath: './sidebarsSDK.js',
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
           ],
-          sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
           showLastUpdateTime: true,
-          admonitions: {
-            keywords: ['version-label'],
-            extendDefaults: true,
-          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -234,6 +234,59 @@ module.exports = {
     },
   },
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'develop',
+        path: 'develop',
+        routeBasePath: 'develop',
+        sidebarPath: './sidebarsDevelop.js',
+        admonitions: {
+          keywords: ['version-label'],
+          extendDefaults: true,
+        },
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'concepts',
+        path: 'concepts',
+        routeBasePath: 'concepts',
+        sidebarPath: './sidebarsConcepts.js',
+        admonitions: {
+          keywords: ['version-label'],
+          extendDefaults: true,
+        },
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'participate',
+        path: 'participate',
+        routeBasePath: 'participate',
+        sidebarPath: './sidebarsParticipate.js',
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+        ],
+        editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
+        showLastUpdateTime: true,
+        // ... other options
+      },
+    ],
     // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
     [
       'docusaurus-plugin-remote-content',
@@ -241,7 +294,7 @@ module.exports = {
         name: 'dip-provider-docs',
         sourceBaseUrl:
           'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-provider/',
-        outDir: 'docs/concepts/07_dip',
+        outDir: 'concepts/07_dip',
         documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
@@ -265,7 +318,7 @@ module.exports = {
         name: 'dip-consumer-docs',
         sourceBaseUrl:
           'https://raw.githubusercontent.com/KILTprotocol/kilt-node/1.13.0/pallets/pallet-dip-consumer/',
-        outDir: 'docs/concepts/07_dip',
+        outDir: 'concepts/07_dip',
         documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
