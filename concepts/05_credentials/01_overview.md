@@ -23,7 +23,7 @@ To get a credential, a Holder needs to take the following steps:
 2. Make a **claim** containing a set of properties about themselves.
 2. Fulfil any requirement from your Issuer. This may include providing them with **claims** about yourself that you want to see included in a credential, accepting their **Terms**, and paying a **Quote**.
 4. **Request an attestation** from the Issuer.
-5. Wait for the Issuer to **attest** claims.
+5. Wait for the Issuer to **issue** a credential.
 
 Once attested, the wrapped claims are considered to be a valid credential.
 
