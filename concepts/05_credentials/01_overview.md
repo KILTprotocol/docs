@@ -33,7 +33,7 @@ The verification would follow this process:
 1. The Verifier may request a **Credential** of a CType, along with with properties to reveal.
 They also provide a **challenge** to ensure the presentations aren't recycled.
 2. The Holder selectively **discloses** the requested properties and signs them along with the challenge to generate a presentation.
-3. The Verifier **verify** the presentation structure, content and signature, and decides whether they trust the Issuer of the presented credential.
+3. The Verifier **verifies** the presentation structure, content and signature, and decides whether they trust the Issuer of the presented credential.
 
 The next sections describe each step in more detail.
 
