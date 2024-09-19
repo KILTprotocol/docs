@@ -27,7 +27,7 @@ To get a credential, a Holder needs to take the following steps:
 
 Once attested, the wrapped claims are considered to be a valid credential.
 
-To use a Credential, the Holder can generate a Credential-Presentation for a Verifier.
+To use a Credential, the Holder can generate a Verifiable Presentation for a Verifier.
 The verification would follow this process:
 
 1. The Verifier may request a **Credential** of a CType, along with with properties to reveal.
