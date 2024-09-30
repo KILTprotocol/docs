@@ -19,10 +19,10 @@ The Polkadot Relay Chain doesn't natively support assets apart from DOT. Instead
 
 Making a Parachain token usable on Ethereum requires the following steps:
 
-1. All involved accounts need enough balance of TOKEN and wTOKEN to cover the switch. This includes the amount of the switch, fees, and an existential deposit. The balance can be in DOT, KSM, ETH, or USDC.
+1. The involved AssetHub account need enough balance of wTOKEN to cover the switch. This includes the amount of the switch, fees, and an existential deposit. The balance can be in DOT, KSM, ETH, or USDC.
 
     :::danger
-    If you don't have enough balance when you perform the switch, you will lock your funds, requiring someone from the KILT governance team to unlock them.
+    If you don't have enough balance when you perform the switch, you will lock your funds, requiring a public KILT governance referendum to unlock them.
     :::
 
 2. Deploy an ERC-20 contract token to Ethereum with a fixed supply based on the parachain needs.
