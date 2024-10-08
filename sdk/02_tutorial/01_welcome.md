@@ -6,7 +6,7 @@ title: 👋🏻 Welcome
 <!-- When updating this version also update 02_setup.md! -->
 <!-- TODO: Turn into variable -->
 <!-- TODO: Is the Quickstart a dependency? -->
-SDK version **0.35.0**.
+SDK version **1.x**.
 
 :::info What you can expect to learn
 
@@ -20,7 +20,7 @@ This includes creating a CType and a claim, attesting a claim, and finally verif
 - Basic JavaScript or TypeScript knowledge.
 - [Node.js](https://nodejs.org/) installed. Any stable LTS version >= 16.0.
 
-❓ **Questions?** Join our [developer community channel](https://discord.gg/hX4pc8rdHS)!
+❓ **Questions?** Join the [developer community channel](https://discord.gg/hX4pc8rdHS)!
 
 :::
 

@@ -36,8 +36,8 @@ A mnemonic is critical for security, so it's crucial to keep it safe!
 
 :::
 
-## Create the Account
-
+## Create the account
+<!-- TODO: Update when code updates -->
 To generate an account, use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.KiltKeyringPair.html) interface of the SDK.
 The function uses the underlying polkadot `mnemonicGenerate()` function to generate a 12-word mnemonic.
 

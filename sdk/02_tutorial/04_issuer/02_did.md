@@ -23,13 +23,6 @@ One use case is messaging.
 You could store a public encryption key and a service on chain, and a user can query both using a DID.
 Other users can now encrypt messages using your public encryption key and send a message to your service.
 
-## Light and full DIDs
-
-Kilt supports two DID types: **light** and **full**.
-
-There are differences between the two types, but the most crucial is that you can use a light DID offline, but a full DID needs access to the blockchain to work.
-Read the [DID documentation](/develop/sdk/cookbook/dids/light-did-creation) to learn more about the difference between the light and full types.
-
 :::info KILT DID
 
 A DID supports four different key types:
@@ -39,13 +32,13 @@ A DID supports four different key types:
 - An _assertion-method key pair_, used to write CTypes and attestations on chain
 - A _capability-delegation key pair_, used to write delegations on chain
 
-You can replace keys over time, e.g., if a key becomes compromised.
+You can replace keys over time, for example if a key becomes compromised.
 
 :::
 
-## What's the difference between a DID and an account?
+## The difference between a DID and an account
 
-A DID and an account sound quite similar, but there are some differences:
+A DID and an account sound similar, but there are some differences:
 
 - You record both to chain
 - You can have a DID without an account
@@ -61,7 +54,10 @@ As an <span className="label-role issuer">Issuer</span> needs to interact with t
 
 ### Write DID to chain
 
-The KILT SDK provides multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account.
+The KILT SDK provides the `createDid` method from the `DidHelpers` class to create a DID on the chain.
+<!-- What about using pre-existing accounts? -->
+
+<!-- multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account. -->
 
 <!-- TODO: Add other methods -->
 <!-- TODO: Add how -->
