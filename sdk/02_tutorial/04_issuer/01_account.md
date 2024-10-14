@@ -7,7 +7,7 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateAccount.ts';
+import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/index.ts';
 
 With the [project structure setup](./) in the last step, you can create your <span className="label-role issuer">Issuer</span> account.
 
@@ -31,14 +31,14 @@ In cryptography, a mnemonic consists of a series of 12 or 24 random words.
 For example, `waste frown beach save hidden bar inmate oil mind member junk famous` is a mnemonic.
 
 You use a mnemonic to generate signing key pairs.
-What's great about a mnemonic is that it's **human-readable**, and a person could memorize it to later re-generate their key pairs and address.
+A mnemonic is **human-readable**, and a someone can memorize it to later re-generate their key pairs and address.
 A mnemonic is critical for security, so it's crucial to keep it safe!
 
 :::
 
 ## Create the account
-<!-- TODO: Update when code updates -->
-To generate an account, use the `addFromMnemonic()` function on the [`KiltKeyringPair`](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.KiltKeyringPair.html) interface of the SDK.
+<!-- TODO: What if you don't? -->
+To generate an account, use the `generateKeypair()` function, passing a key type and a mnemonic.
 The function uses the underlying polkadot `mnemonicGenerate()` function to generate a 12-word mnemonic.
 
 :::info polkadot.js
@@ -57,7 +57,7 @@ Add the following code to the `generateAccount` file.
 <TsJsBlock fileName="issuer/generateAccount">
   {GenerateAccount}
 </TsJsBlock>
-
+<!-- TODO: Not any more -->
 The `generateAccount` method returns an object with the following two properties:
 
 - A key `account` with the type `Kilt.KiltKeyringPair`.

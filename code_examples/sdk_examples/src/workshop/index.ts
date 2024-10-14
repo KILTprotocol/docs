@@ -26,6 +26,7 @@ import { getFunds } from '../getFunds'
 export function generateAccount() {
   // Generate account
   const authenticationKeyPair = Kilt.generateKeypair({ type: 'ed25519' })
+  // TODO: Do you want to also create a submitter account?
   const submitterAccount = Kilt.generateKeypair({
     type: 'ed25519',
     seed: 'frequent arrange trap mouse shove labor rookie bitter absent club field exhibit'
@@ -54,7 +55,7 @@ export async function generateDid(
   // enough funds to cover the required storage deposit.
   // - `fromPublicKey`: The public key that will feature as the DID's initial authentication method and will determine the DID identifier.
 
-  // Much like current workshop, these two accoutns can be the same
+  // Much like current workshop, these two accounts can be the same
   const transactionHandler = Kilt.DidHelpers.createDid({
     api,
     signers: [authenticationKeyPair],
@@ -138,7 +139,7 @@ export async function claimWeb3Name(
     didDocument,
     submitter: submitterAccount,
     signers,
-    name: 'kiltnerd456'
+    name: 'testtest7865348'
   }).submit()
 
   if (claimW3nTransactionResult.status !== 'confirmed') {
@@ -147,8 +148,8 @@ export async function claimWeb3Name(
 
   // The didDocument now contains an `alsoKnownAs` entry.
   ;({ didDocument } = claimW3nTransactionResult.asConfirmed)
-  return { didDocument }
   console.log('w3n claimed')
+  return { didDocument }
 }
 
 export async function addService(api, submitterAccount, signers, didDocument) {
@@ -441,13 +442,13 @@ export async function runAll() {
   ;({ didDocument, signers } = await verifyDid(
     api,
     submitterAccount,
-    authenticationKeyPair,
+    didDocument,
     signers
   ))
   ;({ didDocument } = await claimWeb3Name(
     api,
     submitterAccount,
-    authenticationKeyPair,
+    didDocument,
     signers
   ))
   ;({ didDocument } = await addService(api, submitterAccount, signers, didDocument))
