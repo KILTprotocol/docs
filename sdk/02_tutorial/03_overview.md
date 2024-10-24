@@ -5,27 +5,29 @@ title: 👓 Overview
 
 This tutorial runs through the full story of a claim.
 
-It involves three actors which work together to create **distributed trust**:
+It involves four actors which work together to create **distributed trust**:
 
--   A <span className="label-role claimer">Holder</span> is an actor who claims to possess certain credentials, abilities, or other attributes.
--   An <span className="label-role issuer">Issuer</span> is an actor that verifies the claims of a <span className="label-role claimer">Claimer</span>.
--   A <span className="label-role verifier">Verifier</span> is an actor that asks for proof of a claim.
+-   A <span className="label-role holder">Holder</span> claims to possess certain credentials, abilities, or other attributes.
+-   An <span className="label-role issuer">Issuer</span> verifies the claims of a <span className="label-role holder">Holder</span>.
+-   A <span className="label-role verifier">Verifier</span> asks for proof of a claim.
+-   A <span className="label-role submitter">Submitter</span> handles and pays for submitting transactions.
 
-For the workshop, you play all three roles.
+In a real-world use case, these actors could be different people and services, which this workshop simulates using different folders and functions for each service or actor.
 
-In a real-world use case, these actors would be different people and services, which this workshop simulates using different folders for each service.
 Each actor typically performs different roles:
 
 -   Both the <span className="label-role holder">Holder</span> and the <span className="label-role issuer">Issuer</span> have to interact with the KILT blockchain.
--   But only the <span className="label-role issuer">Issuer</span> is required to own KILTs since they have to pay for storing the attestation on chain.
--   The <span className="label-role verifier">Verifier</span> only needs to query the KILT blockchain to ensure that the attestation is still valid and wasn't revoked.
+-   Only the <span className="label-role issuer">Issuer</span> has to own KILTs since they have to pay for storing the attestation on chain.
+-   The <span className="label-role verifier">Verifier</span> only needs to query the KILT blockchain to check that the attestation is still valid and wasn't revoked.
 -   The <span className="label-role holder">Holder</span> isn't required to query the blockchain, but they might do so to check whether their credential is still valid or if the <span className="label-role issuer">Issuer</span> has revoked it in the meantime.
 
-## Request an attestation
+## Issue a credential
 
 The <span className="label-role holder">Holder</span> has to register their DID on chain and needs KILT coins.
 
-After both the <span className="label-role holder">Holder</span> and the <span className="label-role issuer">Issuer</span> have set up their identities, the <span className="label-role holder">Holder</span> can start the attestation process by requesting an attestation from the <span className="label-role issuer">Issuer</span>.
+After both the <span className="label-role holder">Holder</span> and the <span className="label-role issuer">Issuer</span> have set up their identities, the <span className="label-role holder">Holder</span> can start the verification process by requesting an verification from the <span className="label-role issuer">Issuer</span>.
+
+<!-- TODO: Correct diagrams -->
 
 ```mermaid
 sequenceDiagram
@@ -33,23 +35,21 @@ actor C as Holder
 actor A as Issuer
 participant B as KILT Blockchain
     C->>+C: Create credential from provided claims
-    C->>+A: Transmit credential to request attestation
+    C->>+A: Transmit credential to request verification
     A->>A: Validate received attributes
-    A->>+B: Store attestation
+    A->>+B: Store attestation of verification
     B-->>-A: Attestation hash
     A-->>-C: Attestation Hash
 ```
 
-1. The <span className="label-role holder">Holder</span> prepares the Credential to attest, along with some proof, for example, a bank statement and ID.
-2. They send the document to the <span className="label-role issuer">Issuer</span> for attestation.
+1. The <span className="label-role holder">Holder</span> prepares the Credential to verify, along with some proof, for example, a bank statement and ID.
+2. They send the document to the <span className="label-role issuer">Issuer</span> for verification.
 3. Upon receiving the credential, the <span className="label-role issuer">Issuer</span> decides whether the claim is valid by examining the proofs. If the <span className="label-role claimer">Issuer</span> trusts the claim, they store the attestation document's hash value on the chain, which is a non-functional copy of the document.
 4. The <span className="label-role issuer">Issuer</span> sends this hash value to the <span className="label-role holder">Holder</span>, which represents verification of a document.
 
-## Verify an Attestation
+## Create a presentation
 
 The <span className="label-role verifier">Verifier</span> requests a presentation from the <span className="label-role holder">Holder</span> for a specific required CType. Without a specific CType, the presentation is meaningless.
-
-<!-- TODO: Find out more link… -->
 
 A presentation is derived from a credential and doesn't need to contain all attributes.
 
@@ -72,6 +72,8 @@ participant B as KILT Blockchain
     C-->>-V: submit presentation
     V->>B: check validity of presentation
 ```
+
+<!-- TODO: verify? -->
 
 ### Example: Requesting a travel visa
 

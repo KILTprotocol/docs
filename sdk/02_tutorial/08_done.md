@@ -11,7 +11,7 @@ You now understand the main actors in KILT, the `Claimers`, `Issuers` and `Verif
 You have also learned how to:
 
 - create accounts
-- create light and full DIDs
+- create DIDs
 - create claims and attestation requests
 - process requests and attest credentials
 - generate and sign credential presentations

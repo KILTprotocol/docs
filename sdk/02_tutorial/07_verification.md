@@ -11,59 +11,71 @@ import TabItem from '@theme/TabItem';
 import Verify from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/verify.ts';
 import CreatePresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/createPresentation.ts';
 
+<!-- Verficiation criteria, expect it  to be tied to Verifier DID, tied to the verficationCriteria, based on four options -->
+
 In this section, you play the role of a <span className="label-role verifier">Verifier</span> that does the following:
 
-1. Take a `Presentation` object supplied by a <span className="label-role claimer">Claimer</span>
-2. Verify that its data is correct
-3. Verify that the attestation is valid, i.e., its hash exists on-chain and the attestation has not been revoked
-4. Verify that the <span className="label-role claimer">Claimer</span> sending the `Credential` owns it
+:::info
 
-:::info Presentation object
-
-The <span className="label-role claimer">Claimer</span> uses a Credential to create the `Presentation` object.
-Unlike the credential, a `Presentation` can hide some attributes that are not required by the <span className="label-role verifier">Verifier</span> and can contain a claimer-signed challenge.
-A `Presentation` also contains a proof that the <span className="label-role claimer">Claimer</span> owns the credential.
+The Verifier also needs an account and DID, but the tutorial omits these steps.
 
 :::
 
-## Create Presentation
+1. Take a `VerifiablePresentation` object supplied by a <span className="label-role holder">Holder</span>
+2. Verify that its data is correct
+3. Verify that the presentation is valid, i.e., its hash exists on-chain and the presentation hasn't been revoked
+4. Verify that the <span className="label-role holder">Holder</span> sending the `Credential` owns it
 
-A <span className="label-role claimer">Claimer</span> needs to send more than a credential, as they also need to prove ownership of the credential.
-A <span className="label-role claimer">Claimer</span> does this by creating a presentation and signing the <span className="label-role verifier">Verifier</span>'s challenge.
+:::info VerifiablePresentation object
 
-<TsJsBlock fileName="claimer/createPresentation">
-  {CreatePresentation}
+The <span className="label-role holder">Holder</span> uses a Credential to create the `VerifiablePresentation` object.
+Unlike the credential, a `VerifiablePresentation` can hide some attributes that aren't required by the <span className="label-role verifier">Verifier</span> and can contain a holder-signed challenge.
+A `VerifiablePresentation` also contains a proof that the <span className="label-role holder">Holder</span> owns the credential.
+
+:::
+
+## Verify presentation
+
+
+
+The KILT SDK provides the `verifyPresentation` method from the `Verifier` class to verify a credential presentation. It takes the following parameters:
+
+- `presentation`: The `VerifiableCredential` to verify.
+- `verficationCriteria`: An object of criteria that need to pass to verify the presentation. These can be any combination of criteria.
+<!-- TODO: Find out more link -->
+
+The method returns a boolean value indicating whether the presentation is valid.
+
+
+<TsJsBlock>
+  {VerifyPresentation}
 </TsJsBlock>
 
-The `createPresentation` method returns a presentation, taking the credential, a callback to sign data, and the <span className="label-role verifier">Verifier</span>'s challenge as input.
+<TsJsBlock>
 
-## Verify
+```typescript
+export async function runAll() {
+  …
+  await verifyPresentation(presentation, verifierDid.didDocument)
+}
+```
 
-The verification code exposes the `getChallenge` method which returns a random and unique challenge for the <span className="label-role claimer">Claimer</span> to sign.
-This unique challenge is used to prove ownership.
-
-<TsJsBlock fileName="verify">
-  {Verify}
 </TsJsBlock>
 
-The `verifyPresentation` method performs the actual verification, taking a presentation and the <span className="label-role claimer">Claimer</span>'s challenge as input.
-
-## Run
-
-Run the code from the command line:
+## Run code
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
   ```bash
-  yarn ts-node verify.ts
+  yarn ts-node ./index.ts
   ```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
   ```bash
-  node verify.js
+  node ./index.js
   ```
 
   </TabItem>

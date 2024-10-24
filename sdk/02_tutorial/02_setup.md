@@ -8,33 +8,33 @@ import TabItem from '@theme/TabItem';
 
 ## Project setup
 
-Create a new project in a fresh directory and navigate into it by running `mkdir kilt-rocks && cd kilt-rocks`.
+Create a new project and navigate into it by running `mkdir kilt-rocks && cd kilt-rocks`.
 
-The dependencies needed are the following:
+You need the following dependencies:
 
-- [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
-- [dotenv](https://github.com/motdotla/dotenv#readme) - to load environment variables
-- If you use Typescript and not JavaScript [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute TS code
+-   [KILT SDK-JS](https://github.com/KILTprotocol/sdk-js#readme) - for KILT functionality
+-   [dotenv](https://github.com/motdotla/dotenv#readme) - to load environment variables
+-   If you use Typescript and not JavaScript [ts-node](https://www.npmjs.com/package/ts-node) and [Typescript](https://www.typescriptlang.org/) - to execute TS code
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  Initialize the project and install dependencies.
+Initialize the project and install dependencies.
 
-  ```bash npm2yarn
-  npm init -y
-  npm install @kiltprotocol/sdk-js dotenv ts-node typescript
-  ```
+```bash npm2yarn
+npm init -y
+npm install @kiltprotocol/sdk-js dotenv ts-node typescript
+```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-  Initialize the project and install dependencies.
+Initialize the project and install dependencies.
 
-  ```bash npm2yarn
-  npm init -y
-  npm install @kiltprotocol/sdk-js dotenv
-  ```
+```bash npm2yarn
+npm init -y
+npm install @kiltprotocol/sdk-js dotenv
+```
 
   </TabItem>
 </Tabs>
@@ -44,37 +44,50 @@ The dependencies needed are the following:
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  Create the following remaining files and folders to end up with the folder structure below:
+Create the following remaining files to end up with the folder structure below:
 
-  ```
-  └─ kilt-rocks/ # project
-      ├─ issuer/ # all issuer code
-      ├─ claimer/ # all claimer code
-      ├─ verify.ts # all verifier code
-      └─ .env # environment variables
-  ```
-  ```
-  mkdir issuer claimer && touch verify.ts .env
-  ```
+```
+└─ kilt-rocks/ # project
+    ├─ index.ts # all code
+    └─ .env # environment variables
+```
+
+```
+touch index.ts .env
+```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-  Create the following remaining files and folders to end up with the folder structure below:
+Create the following remaining files to end up with the folder structure below:
 
-  ```
-  └─ kilt-rocks/ # project
-      ├─ issuer/ # all issuer code
-      ├─ claimer/ # all claimer code
-      ├─ verify.js # all verifier code
-      └─ .env # environment variables
-  ```
-  ```
-  mkdir issuer claimer && touch verify.js .env
-  ```
+```
+└─ kilt-rocks/ # project
+    ├─ index.js # all code
+    └─ .env # environment variables
+```
+
+```
+touch index.js .env
+```
 
   </TabItem>
 </Tabs>
+
+## Boilerplate code
+
+In the `index.ts` or `index.js` file, add the following code:
+
+<TsJsBlock fileName="index">
+
+```typescript
+export async function runAll() {
+    // Code to run all methods will go here
+}
+runAll()
+```
+
+</TsJsBlock>
 
 ## PILT tokens
 

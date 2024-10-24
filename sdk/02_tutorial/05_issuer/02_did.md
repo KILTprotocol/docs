@@ -14,9 +14,9 @@ import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/works
 
 The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role issuer">Issuer</span> in [the previous step](./01_account.md).
 
+A DID is a string uniquely identifying each KILT user.
 A DID may represent any entity, such as a person, an organization, or a machine.
 
-A DID is a string uniquely identifying each KILT user.
 You can store information about a DID on the KILT chain, which is useful for different use cases.
 
 One use case is messaging.
@@ -38,7 +38,7 @@ You can replace keys over time, for example if a key becomes compromised.
 
 ## The difference between a DID and an account
 
-A DID and an account sound similar, but there are some differences:
+A DID and an account sound similar, but there are differences:
 
 - You record both to chain
 - You can have a DID without an account
@@ -50,17 +50,37 @@ In summary, you register a DID on the blockchain by an account submitting the DI
 
 ## Create a DID
 
-As an <span className="label-role issuer">Issuer</span> needs to interact with the chain, you must create a full DID.
+As an <span className="label-role issuer">Issuer</span> needs to interact with the chain, you must create a DID.
 
 ### Write DID to chain
 
-The KILT SDK provides the `createDid` method from the `DidHelpers` class to create a DID on the chain.
-<!-- What about using pre-existing accounts? -->
+The KILT SDK provides the `createDid` method from the `DidHelpers` class to create a DID on the chain. It takes the following parameters:
 
-<!-- multiple methods to create DIDs, this workshop highlights the `createFromAccount` method, that creates a DID from any pre-existing substrate-compatible account. -->
+- `api`: The connection to the KILT blockchain.
+- `signers`: An array of keys used for verification methods in the DID Document. For creating a DID, you only need the key for the authentication verification method.
+- `submitter`: The account used to submit the transaction to the blockchain.
 
-<!-- TODO: Add other methods -->
-<!-- TODO: Add how -->
+  :::caution
+
+  The submitter account must have enough funds to cover the required storage deposit.
+
+  :::
+
+- `fromPublicKey`: The public key that features as the DID's initial authentication method and determines the DID identifier.
+
+The method returns a `TransactionHandler` type, which includes two methods:
+
+- `submit`: Submits a transaction for inclusion in a block on the blockchain.
+
+  :::info
+
+  The `submit()` method by default, waits for the block to be finalized. [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` as the second parameter.
+
+  :::
+
+- `getSubmittable`: Produces a transaction that you can submit to a blockchain node for inclusion, or to be signed and submitted by an external service.
+
+In this case, the example uses the `submit` method to submit the transaction to the chain.
 
 :::info Bring your own account
 
@@ -68,49 +88,46 @@ This workshop assumes you followed the [create account step](./01_account.md), b
 
 :::
 
-Create and submit the extrinsic (aka transaction) that registers the DID.
-
-<TsJsBlock fileName="issuer/generateDid">
+<TsJsBlock>
   {GenerateDid}
 </TsJsBlock>
 
-The `publicKeyToChain` helper method returns a public key of the correct type.
+<TsJsBlock>
 
-The `txs` array holds the two transactions containing the extrinsics needed to submit to the chain for the Issuer's DID creation.
+```typescript
+export async function runAll() {
+  …
+  let issuerDid = await generateIssuerDid(submitterAccount, issuerAccount)
+}
+```
 
-The `createFromAccount` method takes the authenticated key of the account to attach the DID to, and the `setAttestationKey` method takes the same parameter to set the attestation key the DID needs and uses.
+</TsJsBlock>
 
-An Issuer account needs to have an attestation key to write CTypes and attestations on chain. Use the `setAttestationKey` method to set this. For this example transaction, the Issuer account uses the `dispatchAs` proxy method to assign the attestation key to the same account. However, you can also use this method to assign the attestation key to another account.
-
-The `signAndSubmitTx` method then takes those transactions and submits them as a batch to the chain.
-
-## Run the code
-
-Now run the code with:
+## Run code
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-  ```bash
-  yarn ts-node ./issuer/generateDid.ts
-  ```
+```bash
+yarn ts-node ./index.ts
+```
 
   </TabItem>
   <TabItem value='js' label='Javascript' default>
 
-  ```bash
-  node ./issuer/generateDid.js
-  ```
+```bash
+node ./index.js
+```
 
   </TabItem>
 </Tabs>
 
-Once you have run the script, the output should provide you with the `ATTESTER_DID_URI`.
+Once you have run the script, the output should provide you with the `ISSUER_DID_URI`.
 
 The output should look like the following, but not identical since the code creates the DIDs from your account:
 
 ```
-ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD…"
+ISSUER_DID_URI="did:kilt:4ohMvUHsyeD…"
 ```
 
 Save the values in the `.env` file, which should now look like the following:
@@ -118,18 +135,8 @@ Save the values in the `.env` file, which should now look like the following:
 ```env title=".env"
 WSS_ADDRESS=wss://peregrine.kilt.io
 
-ATTESTER_ACCOUNT_MNEMONIC="warrior icon use cry...
-ATTESTER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
-ATTESTER_DID_URI="did:kilt:4ohMvUHsyeD..."
+ISSUER_ACCOUNT_ADDRESS=4ohMvUHsyeDhMVZF...
+ISSUER_DID_URI="did:kilt:4ohMvUHsyeD..."
 ```
 
-Well done - You've generated a full DID! The next step is to create a CType!
-
-## Generate Keys
-
-Add the following code to the `generateKeypairs` file.
-
-<TsJsBlock fileName="issuer/generateKeypairs">
-  {GenerateKeypairs}
-</TsJsBlock>
-
+Well done - You've generated a full DID! The next step is to issue a credential.
