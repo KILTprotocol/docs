@@ -68,10 +68,11 @@ To enable ES modules in your project, add `"type": "module"` to the `package.jso
 
 Declare an `async main` function in the `quickstart.ts` file that executes the rest of the code in this quickstart and call the `main()` function by default:
 
-{/_ TODO: Do we need to test this or provide JS/TS equivalent? _/}
+{/* TODO: Do we need to test this or provide JS/TS equivalent? */}
 
 ```js
-async function main() {}
+async function main() {
+}
 
 main()
 ```
@@ -83,8 +84,10 @@ main()
 Begin by importing the **KILT SDK** and **Axios** at the top of the file:
 
 ```js
-import * as Kilt from '@kiltprotocol/sdk-js'
-import axios from 'axios'
+import * as Kilt from "@kiltprotocol/sdk-js";
+import axios from "axios";
+import * as Did from "@kiltprotocol/did";
+import  {types}from "@kiltprotocol/credentials"
 ```
 
 Now, you can access the SDK and all its functionality.
@@ -124,9 +127,9 @@ You should add all other code before this function call:
 
 <SnippetBlock
 className="language-ts"
-
-> {Disconnect}
-> </SnippetBlock>
+>
+{Disconnect}
+</SnippetBlock>
 
 By adding `await Kilt.disconnect()`, you ensure that the connection to the blockchain node is properly closed when the script finishes executing, which helps maintain the integrity of your application and is a good practice to follow.
 
@@ -166,9 +169,9 @@ Between the `Kilt.connect()` and `Kilt.disconnect()` lines, add the following co
 <SnippetBlock
 className="language-ts"
 dropTail="1"
-
-> {FetchDid}
-> </SnippetBlock>
+>
+{FetchDid}
+</SnippetBlock>
 
 Try running the code and check the result.
 
@@ -188,9 +191,9 @@ It retrieves the services exposed by the DID found for `kiltnerd123`:
 <SnippetBlock
 className="language-ts"
 dropTail="1"
-
-> {FetchEndpoints}
-> </SnippetBlock>
+>
+{FetchEndpoints}
+</SnippetBlock>
 
 The code should print endpoints as JSON.
 
@@ -212,15 +215,15 @@ Add it before `await Kilt.disconnect()`:
 
 <SnippetBlock
 className="language-ts"
-
-> {VerifyCredential}
-> </SnippetBlock>
+>
+{VerifyCredential}
+</SnippetBlock>
 
 Run the code and wait to see if you can retrieve **and** verify one of kiltnerd123's credentials!
 
 :::info Next steps
 
--   If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
--   If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+- If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
+- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
 
 :::
