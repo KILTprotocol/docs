@@ -46,7 +46,7 @@ A CType has the following attributes:
 
 The [CTypeHUB](https://ctypehub.galaniprojects.de) is a repository of useful CTypes, but there are others. This tutorial uses a CType from [the test CTypeHUB](https://test.ctypehub.galaniprojects.de). You can also create your own CTypes.
 
-Fetch a CType using the `fetchFromChain` method, passing the `$id` of the CType you want to fetch.
+Futch a CType using the `fetchFromChain` method, passing the `$id` of the CType you want to fetch.
 
 ## Create and issue credential
 

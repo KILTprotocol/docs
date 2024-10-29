@@ -36,15 +36,13 @@ A `VerifiablePresentation` also contains a proof that the <span className="label
 
 ## Verify presentation
 
-
-
 The KILT SDK provides the `verifyPresentation` method from the `Verifier` class to verify a credential presentation. It takes the following parameters:
 
 - `presentation`: The `VerifiableCredential` to verify.
 - `verficationCriteria`: An object of criteria that need to pass to verify the presentation. These can be any combination of criteria.
 <!-- TODO: Find out more link -->
 
-The method returns a boolean value indicating whether the presentation is valid.
+The method returns an object with a `verified` boolean that  indicates whether the presentation is valid.
 
 
 <TsJsBlock>

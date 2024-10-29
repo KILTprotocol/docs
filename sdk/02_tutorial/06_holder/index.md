@@ -24,7 +24,5 @@ They can use their identity credentials to prove these claims, and third-party i
 Anyone with an account can be a Holder.
 You need a DID, to complete a CType, and create a claim.
 
-Then, you can send these claims to Issuers for verification.
-
 They store their identity credentials in their digital wallets, so they decide which information to provide to which service.
 They have full control over their data and decide which data to share, where, and how.

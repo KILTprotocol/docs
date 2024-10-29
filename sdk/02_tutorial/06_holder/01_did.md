@@ -15,7 +15,7 @@ This section covers creating a DID using the account you created for the <span c
 
 ## Create a DID
 
-As an <span className="label-role holder">Holder</span> needs to interact with the chain, you must create a DID.
+A <span className="label-role holder">Holder</span> needs a DID to attach their credentials to and identify the subject of any claims.
 
 ### Write DID to chain
 

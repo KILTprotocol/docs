@@ -23,7 +23,7 @@ import { CType } from '@kiltprotocol/credentials'
 import { getFunds } from '../getFunds'
 // import { releaseWeb3Name } from '../core_features/web3names/04_release'
 
-export function generateAccount() {
+export function generateAccounts() {
   const issuerAccount = Kilt.generateKeypair({ type: 'ed25519' })
   const submitterAccount = Kilt.generateKeypair({ type: 'ed25519' })
   const holderAccount = Kilt.generateKeypair({ type: 'ed25519' })
@@ -380,8 +380,8 @@ export async function runAll() {
     seed: '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
   })
 
-  const { issuerAccount, submitterAccount, holderAccount } = generateAccount()
-const verifierAccount = generateAccount()
+  const { issuerAccount, submitterAccount, holderAccount } = generateAccounts()
+const verifierAccount = generateAccounts()
 
   // ┏━━━━━━━━━━━━┓
   // ┃ Get funds  ┃

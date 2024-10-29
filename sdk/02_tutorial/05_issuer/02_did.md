@@ -74,13 +74,11 @@ The method returns a `TransactionHandler` type, which includes two methods:
 
   :::info
 
-  The `submit()` method by default, waits for the block to be finalized. [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` as the second parameter.
+  The `submit()` method by default, waits for the block to be finalized. [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` to the `awaitFinalized` named parameter of the `submit` object.
 
   :::
 
-- `getSubmittable`: Produces a transaction that you can submit to a blockchain node for inclusion, or to be signed and submitted by an external service.
 
-In this case, the example uses the `submit` method to submit the transaction to the chain.
 
 :::info Bring your own account
 

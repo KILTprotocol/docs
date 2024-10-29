@@ -5,14 +5,14 @@ title: 👓 Overview
 
 This tutorial runs through the full story of a claim.
 
-It involves four actors which work together to create **distributed trust**:
+It involves four roles which work together to create **distributed trust**:
 
 -   A <span className="label-role holder">Holder</span> claims to possess certain credentials, abilities, or other attributes.
 -   An <span className="label-role issuer">Issuer</span> verifies the claims of a <span className="label-role holder">Holder</span>.
 -   A <span className="label-role verifier">Verifier</span> asks for proof of a claim.
--   A <span className="label-role submitter">Submitter</span> handles and pays for submitting transactions.
+-   <span className="label-role submitter">Submitter</span> accounts handles and pays for submitting transactions.
 
-In a real-world use case, these actors could be different people and services, which this workshop simulates using different folders and functions for each service or actor.
+In a real-world use case, these roles could be different people and services, which this workshop simulates using different folders and functions for each service or actor.
 
 Each actor typically performs different roles:
 
@@ -25,7 +25,7 @@ Each actor typically performs different roles:
 
 The <span className="label-role holder">Holder</span> has to register their DID on chain and needs KILT coins.
 
-After both the <span className="label-role holder">Holder</span> and the <span className="label-role issuer">Issuer</span> have set up their identities, the <span className="label-role holder">Holder</span> can start the verification process by requesting an verification from the <span className="label-role issuer">Issuer</span>.
+After both the <span className="label-role holder">Holder</span> and the <span className="label-role issuer">Issuer</span> have set up their identities, the <span className="label-role holder">Holder</span> can start the attestation process by requesting an attestation from the <span className="label-role issuer">Issuer</span>.
 
 <!-- TODO: Correct diagrams -->
 
