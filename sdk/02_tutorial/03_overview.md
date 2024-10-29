@@ -12,7 +12,7 @@ It involves four actors which work together to create **distributed trust**:
 -   A <span className="label-role verifier">Verifier</span> asks for proof of a claim.
 -   A <span className="label-role submitter">Submitter</span> handles and pays for submitting transactions.
 
-In a real-world use case, these actors could be different people and services, which this workshop simulates using different folders and functions for each service or actor.
+In a real-world use case, these actors could be different people and services, which this workshop simulates using different functions for each service or actor.
 
 Each actor typically performs different roles:
 
