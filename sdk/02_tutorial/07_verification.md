@@ -26,11 +26,13 @@ The Verifier also needs an account and DID, but the tutorial omits these steps.
 3. Verify that the <span className="label-role holder">Holder</span> of the `Credential` has authorised and consented to its use in the current context by checking the presentation's signature and attributes.  
 4. Verify the authenticity and validity of the credential by checking its on-chain proof created by the Issuer and ensuring it hasn't been revoked since
 
-:::info VerifiablePresentation object
+:::info A VerifiablePresentation object
 
-The <span className="label-role holder">Holder</span> uses a Credential to create the `VerifiablePresentation` object.
-Unlike the credential, a `VerifiablePresentation` can hide some attributes that aren't required by the <span className="label-role verifier">Verifier</span> and can contain a holder-signed challenge.
-A `VerifiablePresentation` also contains a proof that the <span className="label-role holder">Holder</span> owns the credential.
+The <span className="label-role holder">Holder</span> uses a Credential to create an array of `VerifiablePresentation` objects as .
+
+A `VerifiablePresentation` object contains an array of `VerifiableCredential` objects, a `holder` value, and a `proof` that the <span className="label-role holder">Holder</span> owns the credential.
+
+Each `VerifiableCredential` can hide or show properties, allowing for selective disclosure.
 
 :::
 
