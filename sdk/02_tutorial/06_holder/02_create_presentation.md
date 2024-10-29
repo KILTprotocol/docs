@@ -78,4 +78,4 @@ export async function runAll() {
 </Tabs>
 
 OK, you've made a claim as a <span className="label-role holder">Holder</span> and created a presentation from it.
-The next step is to finish the <span className="label-role issuer">Issuer</span> and get the credential verified!
+The next step is to finish the <span className="label-role verifier">Verifier</span> and get the credential verified!
