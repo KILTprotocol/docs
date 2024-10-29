@@ -35,7 +35,7 @@ The KILT SDK provides the `createPresentation` method from the `Holder` class to
 
 - `credential`: The derived credential.
 - `holder`: The details object of the Holder.
-- `presentationOptions`: An optional object specifying what to consider a valid presentation.
+- `presentationOptions`: An optional object holding parameters that allow defining when (e.g., how long) and under which circumstances the Credential Presentation is to be considered valid. These are important to ensure that a presentation is not taken out of context or (re-)used without your permission. 
 
 The method returns a `VerifiablePresentation` that a Verifier can now verify.
 
@@ -77,5 +77,5 @@ export async function runAll() {
   </TabItem>
 </Tabs>
 
-OK, you've made a claim as a <span className="label-role holder">Holder</span> and created a presentation from it.
-The next step is to finish the <span className="label-role issuer">Issuer</span> and get the credential verified!
+OK, you've issued a credential as a <span className="label-role holder">Holder</span> and created a presentation from it.
+The next step is to finish the <span className="label-role verifier">Verifier</span> and get the credential verified!

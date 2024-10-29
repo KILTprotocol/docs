@@ -13,7 +13,7 @@ This section of the workshop covers creating the <span className="label-role iss
 
   :::tip
 
-  While you can pay deposits and fees with any KILT account you like, your DID stays the same and is the way Holders identify and trust you.
+  While you can pay deposits and fees with any KILT account you like, your DID stays the same and is the way Holders and Verifiers identify and trust you.
 
   :::
 
