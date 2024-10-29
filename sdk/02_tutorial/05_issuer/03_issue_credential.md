@@ -92,4 +92,4 @@ export async function runAll() {
   </TabItem>
 </Tabs>
 
-Before you can verify Credentials, you need a <span className="label-role holder">Holder</span> to request it.
+Before you learn how to verify Credentials, you'll see how the Credential <span className="label-role holder">Holder</span> retains control over their data by deciding what attributes they reveal in a Credential Presentation.
