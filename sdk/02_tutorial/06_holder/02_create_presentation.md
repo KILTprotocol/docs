@@ -35,7 +35,7 @@ The KILT SDK provides the `createPresentation` method from the `Holder` class to
 
 - `credential`: The derived credential.
 - `holder`: The details object of the Holder.
-- `presentationOptions`: An optional object specifying what to consider a valid presentation.
+- `presentationOptions`: An optional object holding parameters that allow defining when (e.g., how long) and under which circumstances the Credential Presentation is to be considered valid. These are important to ensure that a presentation is not taken out of context or (re-)used without your permission. 
 
 The method returns a `VerifiablePresentation` that a Verifier can now verify.
 
