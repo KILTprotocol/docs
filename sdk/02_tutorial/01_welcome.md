@@ -6,7 +6,7 @@ title: 👋🏻 Welcome
 <!-- When updating this version also update 02_setup.md! -->
 <!-- TODO: Turn into variable -->
 <!-- TODO: Is the Quickstart a dependency? -->
-SDK version **0.35.0**.
+SDK version **1.x**.
 
 :::info What you can expect to learn
 
@@ -20,7 +20,7 @@ This includes creating a CType and a claim, attesting a claim, and finally verif
 - Basic JavaScript or TypeScript knowledge.
 - [Node.js](https://nodejs.org/) installed. Any stable LTS version >= 16.0.
 
-❓ **Questions?** Join our [developer community channel](https://discord.gg/hX4pc8rdHS)!
+❓ **Questions?** Join the [developer community channel](https://discord.gg/hX4pc8rdHS)!
 
 :::
 
@@ -29,9 +29,9 @@ This includes creating a CType and a claim, attesting a claim, and finally verif
 In this tutorial, you will:
 
 ✔ Get familiar with the essential concepts in KILT: accounts, DIDs, CTypes, claims, credentials, and more.
-
 ✔ Use the KILT SDK to implement the basic flow of a KILT claim, from creation until verification.
-You'll create a claim as a <span className="label-role claimer">Claimer</span>, attest it as an <span className="label-role issuer">Issuer</span> and verify it as a <span className="label-role verifier">Verifier</span>.
+
+    You'll create a Credential as an <span className="label-role issuer">Issuer</span>, produce a Credential Presentation as a <span className="label-role holder">Holder</span>, and verify it as a <span className="label-role verifier">Verifier</span>.
 
 ✔ Use the KILT SDK to write onto and read from the KILT blockchain.
 
