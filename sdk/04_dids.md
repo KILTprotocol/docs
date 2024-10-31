@@ -1,6 +1,6 @@
 ---
 id: dids
-title: DIDIDIDID
+title: DID
 ---
 
 import TsJsBlock from '@site/src/components/TsJsBlock';
@@ -31,16 +31,72 @@ import ReclaimDeposit from '!!raw-loader!@site/code_examples/sdk_examples/src/co
 
 import QueryDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/02_query_did_name.ts';
 
-<!-- TODO: Overview -->
 <!-- TODO: Correct paths -->
+
+A Decentralized Identifier (DID) is a string uniquely identifying each KILT user.
+A DID may represent any entity, such as a person, an organization, or a machine.
+You can store information about a DID on the KILT chain, which is useful for different use cases.
+
+The `Kilt.DidHelpers` namespace of the KILT SDK provides the methods to create, update, and delete DIDs on the KILT blockchain.
+
+:::info Light DIDs
+
+Older versions of the KILT SDK supported creating "light DIDs," usable offline with no connection with the KILT blockchain.
+
+This is no longer recommended, but [you can use pre-version 1.0 of the SDK to create them](/docs/0.3/sdk/cookbook/dids/light-did-creation) if you need to.
+
+:::
+
 ## Create
 
+:::info
 
-### Creating new accounts from a seed
+Use the `createDid` method from the `DidHelpers` class to create a DID on the chain.
 
-This approach allows you to generate various key pairs for authentication, key agreement, assertion methods, and capability delegation from one mnemonic seed phrase.
+[Read more in the API documentation](https://kiltprotocol.github.io/sdk-js/functions/sdk_js_src.DidHelpers.createDid.html).
 
-### Derivation paths
+:::
+
+<!-- TODO: Same as tutorial, refactor to a partial -->
+
+```ts
+const transactionHandler = Kilt.DidHelpers.createDid({
+  api,
+  signers: [authenticationKeyPair],
+  submitter: submitterAccount,
+  fromPublicKey: authenticationKeyPair.publicKeyMultibase
+})
+
+const didDocumentTransactionResult = await transactionHandler.submit()
+```
+
+The KILT SDK provides the `createDid` method from the `DidHelpers` class to create a DID on the chain.
+It takes the following parameters:
+
+- `api`: The connection to the KILT blockchain.
+- `signers`: An array of keys used for verification methods in the DID Document. For creating a DID, you only need the key for the authentication verification method.
+- `submitter`: The account used to submit the transaction to the blockchain.
+
+  :::caution
+
+  The submitter account must have enough funds to cover the required storage deposit.
+
+  :::
+
+- `fromPublicKey`: The public key that features as the DID's initial authentication method and determines the DID identifier.
+
+The method returns a `TransactionHandler` type, which includes two methods:
+
+- `submit`: Submits a transaction for inclusion in a block on the blockchain.
+
+  :::info
+
+  The `submit()` method by default, waits for the block to be finalized.
+  [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` to the `awaitFinalized` named parameter of the `submit` object.
+
+  :::
+
+## Derivation paths
 
 The code example below derives different types of keys from a single account using derivation paths.
 
@@ -77,34 +133,66 @@ It is recommended to store the keys in a secure manner, e.g. only storing the pr
 The mnemonic seed phrase can be used to regenerate the keys, so it is recommended to also store the mnemonic in a secure manner and create a backup of it.
 :::
 
-## Create a Full DID
+## Update a DID
 
-:::info Creating a light DID
-Older versions of the KILT SDK allowed you to also create "light DIDs", which are usable offline with no connection with the KILT blockchain. This new SDK documentation focuses on creating and working with full DIDs, which are more flexible and secure. If you need to create a light DID, refer to the [old SDK documentation](#)
+Once anchored to the KILT blockchain, you can update a full DID.
+The SDK doesn't have a specific method for updating a DID, instead you use relevant methods to update the DID.
+
+### Services
+#### Add a service
+
+:::info
+
+Use the `addService` method from the `DidHelpers` class to add a service to a DID.
+
+[Read more in the API documentation](https://kiltprotocol.github.io/sdk-js/functions/sdk_js_src.DidHelpers.addService.html).
+
 :::
 
-The following is an example of how to create and write on the blockchain a full DID that specifies only an authentication key.
+```ts
+const transactionHandler = Kilt.DidHelpers.addService({
+     api,
+     submitter,
+     signers: [didKeypair],
+     didDocument,
+     // TODO:  change service endpoint.
+     service: {
+       id: '#email_service',
+       type: ['https://schema.org/email'],
+       serviceEndpoint: ['mailto:info@kilt.io'],
+     },
+   })
 
-<TsJsBlock>
-  {FullDidSimple}
-</TsJsBlock>
+const didDocumentTransactionResult = await transactionHandler.submit()
+```
 
-If additional keys or services are to be specified, they can be passed as parameters to the creation transaction.
+#### Remove a service
 
-<TsJsBlock>
-  {FullDidComplete}
-</TsJsBlock>
+:::info
 
-## Update
+Use the `removeService` method from the `DidHelpers` class to add a service to a DID.
 
-### Update a Full DID keys and service endpoints
+[Read more in the API documentation](https://kiltprotocol.github.io/sdk-js/functions/sdk_js_src.DidHelpers.removeService.html).
 
-Once anchored to the KILT blockchain, a full DID can be updated.
-For instance, the following snippet shows how to use the `authorizeBatch` function to update the authentication key, remove an old service _and_ add a new one for a full DID in the same transaction.
+:::
 
-<TsJsBlock>
-  {FullDidUpdate}
-</TsJsBlock>
+```ts
+const transactionHandler = Kilt.DidHelpers.addService({
+     api,
+     submitter,
+     signers: [didKeypair],
+     didDocument,
+     // TODO:  change service endpoint.
+     service: {
+       id: '#email_service',
+       type: ['https://schema.org/email'],
+       serviceEndpoint: ['mailto:info@kilt.io'],
+     },
+   })
+
+const didDocumentTransactionResult = await transactionHandler.submit()
+```
+
 
 ## Delete
 
