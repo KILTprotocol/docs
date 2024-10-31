@@ -5,35 +5,25 @@
  * found in the LICENSE file in the root directory of this source tree.
  */
 
-import type {
-  KiltAddress,
-  SignerInterface,
-  KeyringPair,
-  MultibaseKeyPair,
-  TransactionSigner,
-  ICType
-} from '@kiltprotocol/types'
-import { Keyring } from '@polkadot/keyring'
-import { BN } from '@polkadot/util'
 import * as Kilt from '@kiltprotocol/sdk-js'
-import { Multikey } from '@kiltprotocol/utils'
-import { Blockchain, BalanceUtils } from '@kiltprotocol/chain-helpers'
 import { CType } from '@kiltprotocol/credentials'
 // TODO: Look into tidier way with PD Keyring…
 import { getFunds } from '../getFunds'
-// import { releaseWeb3Name } from '../core_features/web3names/04_release'
 
 export function generateAccounts() {
   const issuerAccount = Kilt.generateKeypair({ type: 'ed25519' })
   const submitterAccount = Kilt.generateKeypair({ type: 'ed25519' })
   const holderAccount = Kilt.generateKeypair({ type: 'ed25519' })
+  const verifierAccount = Kilt.generateKeypair({ type: 'ed25519' })
 
   console.log('keypair generation complete')
-  console.log(`ISSUER_ACCOUNT_ADDRESS=${issuerAccount}`)
-  console.log(`SUBMITTER_ACCOUNT_ADDRESS=${submitterAccount}`)
-  console.log(`HOLDER_ACCOUNT_ADDRESS=${holderAccount}`)
+  console.log(`ISSUER_ACCOUNT_ADDRESS=${issuerAccount.publicKeyMultibase}`)
+  console.log(
+    `SUBMITTER_ACCOUNT_ADDRESS=${submitterAccount.publicKeyMultibase}`
+  )
+  console.log(`HOLDER_ACCOUNT_ADDRESS=${holderAccount.publicKeyMultibase}`)
 
-  return { issuerAccount, submitterAccount, holderAccount }
+  return { issuerAccount, submitterAccount, holderAccount, verifierAccount }
 }
 
 export async function generateIssuerDid(
@@ -56,7 +46,7 @@ export async function generateIssuerDid(
   }
 
   let { didDocument, signers } = didDocumentTransactionResult.asConfirmed
-  console.log(`ISSUER_DID_URI=${didDocument}`)
+  console.log(`ISSUER_DID_URI=${didDocument.id}`)
   // TODO: Don't need to pass signers? but explain that it's more flexible in real use
   return { didDocument, signers }
 }
@@ -82,11 +72,10 @@ export async function generateHolderDid(
   }
 
   let { didDocument, signers } = didDocumentTransactionResult.asConfirmed
-  console.log(`HOLDER_DID_URI=${didDocument}`)
+  console.log(`HOLDER_DID_URI=${didDocument.id}`)
   // TODO: Don't need to pass signers? but explain that it's more flexible in real use
   return { didDocument, signers }
 }
-
 
 export async function generateVerifierDid(
   submitterAccount,
@@ -112,7 +101,6 @@ export async function generateVerifierDid(
   // TODO: Don't need to pass signers? but explain that it's more flexible in real use
   return { didDocument, signers }
 }
-
 
 export async function verifyDid(submitterAccount, didDocument, signers) {
   // TODO: DID verify step currently. What step?
@@ -154,12 +142,8 @@ export async function verifyDid(submitterAccount, didDocument, signers) {
   console.log('assertion method added')
   return { didDocument, signers }
 }
-//Issuer
-// add into tutorial. Actually does it make sense?
+// TODO: Add into tutorial. Actually does it make sense?
 export async function claimWeb3Name(submitterAccount, didDocument, signers) {
-  // ┏━━━━━━━━━━━━━━━━━┓
-  // ┃ Claim web3name  ┃
-  // ┗━━━━━━━━━━━━━━━━━┛
   const api = Kilt.ConfigService.get('api')
 
   const claimW3nTransactionResult = await Kilt.DidHelpers.claimWeb3Name({
@@ -167,7 +151,7 @@ export async function claimWeb3Name(submitterAccount, didDocument, signers) {
     didDocument,
     submitter: submitterAccount,
     signers,
-    name: 'testtest7865348'
+    name: 'testtest7865348999'
   }).submit()
 
   if (claimW3nTransactionResult.status !== 'confirmed') {
@@ -181,16 +165,16 @@ export async function claimWeb3Name(submitterAccount, didDocument, signers) {
 }
 
 // Issuer
-export async function issueCredential(didDocument, signers, submitterAccount) {
+export async function issueCredential(issuerDid, holderDid, signers, submitterAccount) {
   const passportCType = await CType.fetchFromChain(
     'kilt:ctype:0x5f6634bc0edf08ced5fc7a7bec24a2019228570b912703c834955e0d00f69bf4'
   )
 
   const passportCredential = await Kilt.Issuer.createCredential({
-    issuer: didDocument.id,
+    issuer: issuerDid.id,
     credentialSubject: {
-      id: didDocument.id,
-      age: 22,
+      id: holderDid.id,
+      age: 22
     },
     cType: passportCType.cType
   })
@@ -198,7 +182,7 @@ export async function issueCredential(didDocument, signers, submitterAccount) {
   const credential = await Kilt.Issuer.issue({
     credential: passportCredential,
     issuer: {
-      didDocument,
+      didDocument: issuerDid,
       signers: [...signers, submitterAccount],
       submitter: submitterAccount
     }
@@ -209,20 +193,11 @@ export async function issueCredential(didDocument, signers, submitterAccount) {
 }
 
 export async function createPresentation(credential, didDocument, signers) {
-  // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-  // ┃ Create a Presentation        ┃
-  // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-  //
-  // Create a derived credential (a copy) that only contains selected properties (selective disclosure), then create a credential presentation for it.
-  // The presentation includes a proof of ownership and is scoped to a verified and time frame to prevent unauthorized re-use.
-  // Not on chain
-  // TODO: Why DID then? Because credential is attactached to a DID
   const derived = await Kilt.Holder.deriveProof({
     credential,
-    // Change
     proofOptions: { includeClaims: ['/credentialSubject/age'] }
   })
-  
+
   const presentation = await Kilt.Holder.createPresentation({
     credentials: [derived],
     holder: {
@@ -261,17 +236,7 @@ export async function removeVerificationMethod(
   submitterAccount,
   signers
 ) {
-  // More for internal tests, not part of workshop, links
   // TODO: Need more now to tear down all created assets
-  // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-  // ┃ Remove a Verification Method ┃
-  // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-  //
-  // Removing a verification method can be done by specifying its id.
-  //
-  // Note:
-  // - The provided `didDocument` must include the specified verification method.
-  // - The authentication verification method can not be removed.
   const api = Kilt.ConfigService.get('api')
 
   const removeVmTransactionResult =
@@ -294,11 +259,6 @@ export async function removeVerificationMethod(
 }
 
 export async function releaseWeb3Name(didDocument, submitterAccount, signers) {
-  // ┏━━━━━━━━━━━━━━━━━━┓
-  // ┃ Release web3name ┃
-  // ┗━━━━━━━━━━━━━━━━━━┛
-  //
-  // A web3name can be released from a DID and potentially claimed by another DID.
   const api = Kilt.ConfigService.get('api')
 
   const releaseW3nTransactionResult = await Kilt.DidHelpers.releaseWeb3Name({
@@ -317,11 +277,6 @@ export async function releaseWeb3Name(didDocument, submitterAccount, signers) {
 }
 
 export async function removeService(didDocument, submitterAccount, signers) {
-  // ┏━━━━━━━━━━━━━━━━━━┓
-  // ┃ Remove a service ┃
-  // ┗━━━━━━━━━━━━━━━━━━┛
-  //
-  // Services can be removed by specifying the service `id`
   const api = Kilt.ConfigService.get('api')
 
   const removeServiceTransactionResult = await Kilt.DidHelpers.removeService({
@@ -341,12 +296,6 @@ export async function removeService(didDocument, submitterAccount, signers) {
 }
 
 export async function deactivateDid(didDocument, submitterAccount, signers) {
-  // ┏━━━━━━━━━━━━━━━━━━┓
-  // ┃ Deactivate a DID ┃
-  // ┗━━━━━━━━━━━━━━━━━━┛
-  //
-  // _Permanently_ deactivate the DID, removing all verification methods and services from its document.
-  // Deactivating a DID cannot be undone, once a DID has been deactivated, all operations on it (including attempts at re-creation) are permanently disabled.
   const api = Kilt.ConfigService.get('api')
 
   const deactivateDidTransactionResult = await Kilt.DidHelpers.deactivateDid({
@@ -369,7 +318,6 @@ export async function deactivateDid(didDocument, submitterAccount, signers) {
 }
 
 export async function runAll() {
-  // Setup code
   const api = await Kilt.connect(
     process.env.WSS_ADDRESS || 'wss://peregrine.kilt.io'
   )
@@ -380,20 +328,12 @@ export async function runAll() {
     seed: '0xe566550fec3ca23d80dfe9e9529ada463b93fc33f17219c1089de906f7253f1c'
   })
 
-  const { issuerAccount, submitterAccount, holderAccount } = generateAccounts()
-const verifierAccount = generateAccounts()
-
-  // ┏━━━━━━━━━━━━┓
-  // ┃ Get funds  ┃
-  // ┗━━━━━━━━━━━━┛
-  //
-
-  await getFunds(faucetAccount, submitterAccount, 5)
+  const { issuerAccount, submitterAccount, holderAccount, verifierAccount } = generateAccounts()
+  
+  await getFunds(faucetAccount, submitterAccount, 10)
   console.log('Successfully transferred tokens')
   let issuerDid = await generateIssuerDid(submitterAccount, issuerAccount)
-
   let holderDid = await generateHolderDid(submitterAccount, holderAccount)
-
   let verifierDid = await generateVerifierDid(submitterAccount, verifierAccount)
 
   issuerDid = await verifyDid(
@@ -403,11 +343,12 @@ const verifierAccount = generateAccounts()
   )
   issuerDid = await claimWeb3Name(
     submitterAccount,
-    issuerDid,
+    issuerDid.didDocument,
     issuerDid.signers
   )
   const credential = await issueCredential(
     issuerDid.didDocument,
+    holderDid.didDocument,
     issuerDid.signers,
     submitterAccount
   )
@@ -444,7 +385,6 @@ const verifierAccount = generateAccounts()
     holderDid.signers
   )
 
-  // Release the connection to the blockchain.
   await api.disconnect()
 
   console.log('disconnected')

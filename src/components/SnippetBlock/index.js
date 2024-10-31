@@ -9,6 +9,8 @@ const SnippetBlock = ({
   dropTail = 0,
   ...props
 }) => {
+  // TODO: Sanity check for a value
+  funcName = props.func 
   const regex = new RegExp(
     `${funcName}\\((?:.|\\n|\\r)*?\\)(?::(?:.|\\n|\\r)*?)?\\s*{(?:\\n|\\r)*(?<body>(?:.|\\n|\\r)+)\\}`
   )

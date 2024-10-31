@@ -8,9 +8,6 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import Verify from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/verify.ts';
-import CreatePresentation from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/createPresentation.ts';
-
 <!-- Verficiation criteria, expect it  to be tied to Verifier DID, tied to the verficationCriteria, based on four options -->
 
 In this section, you play the role of a <span className="label-role verifier">Verifier</span> that does the following:

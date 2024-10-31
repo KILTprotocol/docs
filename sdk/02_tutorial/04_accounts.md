@@ -7,8 +7,6 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateAccount from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/index.ts';
-
 With the [project structure setup](./) in the last step, you can create your <span className="label-role issuer">Issuer</span> account.
 
 With KILT, an account is an object that interacts with the blockchain.

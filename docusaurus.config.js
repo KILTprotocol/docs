@@ -54,11 +54,12 @@ module.exports = {
         srcDark: 'img/logo_dark.svg',
       },
       items: [
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-        },
+        // TODO: Not working right now…
+        // {
+        //   type: 'docsVersionDropdown',
+        //   position: 'right',
+        //   dropdownActiveClassDisabled: true,
+        // },
         {
           to: '/concepts/what-is-kilt',
           label: 'What is KILT?',

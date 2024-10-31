@@ -56,12 +56,6 @@ A presentation is derived from a credential and doesn't need to contain all attr
 After the request, the <span className="label-role holder">Holder</span> can choose to hide elements of their credentials that aren't relevant to the claim.
 For example, hide their address from their ID if the <span className="label-role issuer">Issuer</span> is only interested in their age.
 
-:::info
-
-A later step in the workshop [explains CTypes in more detail](./04_issuer/03_ctype.md).
-
-:::
-
 ```mermaid
 sequenceDiagram
 actor C as Holder

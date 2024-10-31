@@ -6,6 +6,9 @@
     "target": "ES2020"
   },
   "exclude": [
-    "src/test.ts"
+    "src/test.ts",
+    "src/core_features",
+    "src/dapp",
+    "src/staking"
   ]
 }

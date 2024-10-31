@@ -7,8 +7,6 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CreateClaim from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/createClaim.ts';
-import GenerateCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateCredential.ts';
 <!-- Explain that info mmight come from holder or come from other sources, but code shows create a presentation -->
 
 This section covers creating a presentation of a credential.

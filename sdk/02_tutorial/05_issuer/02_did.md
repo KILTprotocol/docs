@@ -3,16 +3,15 @@ id: did
 title: DID
 ---
 
-import CodeBlock from '@theme/CodeBlock';
 import TsJsBlock from '@site/src/components/TsJsBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
+import TsJsSnippet from '@site/src/components/TsJsSnippet';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateKeypairs.ts';
-import GenerateDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateDid.ts';
+import TutorialCode from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/index.ts';
 
-The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role issuer">Issuer</span> in [the previous step](./01_account.md).
+The next step is to generate a KILT decentralized identifier (DID) using the account you created for the <span className="label-role issuer">Issuer</span> in [the previous step](../04_accounts.md).
 
 A DID is a string uniquely identifying each KILT user.
 A DID may represent any entity, such as a person, an organization, or a machine.
@@ -27,10 +26,10 @@ Other users can now encrypt messages using your public encryption key and send a
 
 A DID supports four different key types:
 
-- An _authentication key pair_, used to sign claims and present authenticated credentials 
-- A _key-agreement key pair_, used to encrypt/decrypt messages
-- An _assertion-method key pair_, used to write CTypes and attestations on chain
-- A _capability-delegation key pair_, used to write delegations on chain
+-   An _authentication key pair_, used to sign claims and present authenticated credentials
+-   A _key-agreement key pair_, used to encrypt/decrypt messages
+-   An _assertion-method key pair_, used to write CTypes and attestations on chain
+-   A _capability-delegation key pair_, used to write delegations on chain
 
 You can replace keys over time, for example if a key becomes compromised.
 
@@ -40,11 +39,11 @@ You can replace keys over time, for example if a key becomes compromised.
 
 A DID and an account sound similar, but there are differences:
 
-- You record both to chain
-- You can have a DID without an account
-- You can have an account without a DID
-- Only an account can pay deposits and fees and attest claims
-- DIDs don't hold any coins
+-   You record both to chain
+-   You can have a DID without an account
+-   You can have an account without a DID
+-   Only an account can pay deposits and fees and attest claims
+-   DIDs don't hold any coins
 
 In summary, you register a DID on the blockchain by an account submitting the DID creation transaction and paying the fees.
 
@@ -54,52 +53,46 @@ As an <span className="label-role issuer">Issuer</span> needs to interact with t
 
 ### Write DID to chain
 
+<TsJsSnippet func="generateIssuerDid">
+  {TutorialCode}
+</TsJsSnippet>
+
 The KILT SDK provides the `createDid` method from the `DidHelpers` class to create a DID on the chain. It takes the following parameters:
 
-- `api`: The connection to the KILT blockchain.
-- `signers`: An array of keys used for verification methods in the DID Document. For creating a DID, you only need the key for the authentication verification method.
-- `submitter`: The account used to submit the transaction to the blockchain.
+-   `api`: The connection to the KILT blockchain.
+-   `signers`: An array of keys used for verification methods in the DID Document. For creating a DID, you only need the key for the authentication verification method.
+-   `submitter`: The account used to submit the transaction to the blockchain.
 
-  :::caution
+    :::caution
 
-  The submitter account must have enough funds to cover the required storage deposit.
+    The submitter account must have enough funds to cover the required storage deposit.
 
-  :::
+    :::
 
-- `fromPublicKey`: The public key that features as the DID's initial authentication method and determines the DID identifier.
+-   `fromPublicKey`: The public key that features as the DID's initial authentication method and determines the DID identifier.
 
 The method returns a `TransactionHandler` type, which includes two methods:
 
-- `submit`: Submits a transaction for inclusion in a block on the blockchain.
+-   `submit`: Submits a transaction for inclusion in a block on the blockchain.
 
-  :::info
+    :::info
 
-  The `submit()` method by default, waits for the block to be finalized. [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` to the `awaitFinalized` named parameter of the `submit` object.
+    The `submit()` method by default, waits for the block to be finalized. [You can override this behavior](https://kiltprotocol.github.io/sdk-js/interfaces/types_src.TransactionHandlers.html) by passing `false` to the `awaitFinalized` named parameter of the `submit` object.
 
-  :::
-
-
+    :::
 
 :::info Bring your own account
 
-This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead.
+This workshop assumes you followed the [create account step](../04_accounts.md), but if you have a pre-existing account, you can use that instead.
 
 :::
 
-<TsJsBlock>
-  {GenerateDid}
-</TsJsBlock>
-
-<TsJsBlock>
-
-```typescript
+```ts
 export async function runAll() {
   …
   let issuerDid = await generateIssuerDid(submitterAccount, issuerAccount)
 }
 ```
-
-</TsJsBlock>
 
 ## Run code
 

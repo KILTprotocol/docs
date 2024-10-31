@@ -5,7 +5,8 @@ import {
 } from '@docusaurus/plugin-content-docs/client';
 import useRouteContext from '@docusaurus/useRouteContext';
 import {useDocsPreferredVersion} from '@docusaurus/theme-common';
-import {useDocsVersionCandidates} from '@docusaurus/theme-common/internal';
+// TODO: Also failing here
+// import {useDocsVersionCandidates} from '@docusaurus/theme-common/internal';
 import {translate} from '@docusaurus/Translate';
 import {useLocation} from '@docusaurus/router';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
@@ -44,7 +45,7 @@ export default function DocsVersionDropdownNavbarItem({
     ...dropdownItemsAfter,
   ];
   const {plugin} = useRouteContext();
-  const dropdownVersion = useDocsVersionCandidates(docsPluginId)[0];
+  // const dropdownVersion = useDocsVersionCandidates(docsPluginId)[0];
   // Mobile dropdown is handled a bit differently
   const dropdownLabel =
     mobile && items.length > 1

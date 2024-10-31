@@ -12,7 +12,7 @@ import SnippetBlock from '../SnippetBlock'
 
 const TsJsSnippet = ({ children, fileName, ...props }) => {
   const tsSnippet = children
-
+console.log(props)
   const [prettyJsSnippet, setJsSnippet] = useState('# loading code...')
   const {
     siteConfig: {

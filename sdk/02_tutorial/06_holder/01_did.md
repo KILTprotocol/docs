@@ -8,9 +8,6 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import GenerateKeypairs from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateKeypairs.ts';
-import GenerateLightDid from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/holder/generateLightDid.ts';
-
 This section covers creating a DID using the account you created for the <span className="label-role holder">Holder</span>.
 
 ## Create a DID
@@ -51,7 +48,7 @@ In this case, the example uses the `submit` method to submit the transaction to 
 
 :::info Bring your own account
 
-This workshop assumes you followed the [create account step](./01_account.md), but if you have a pre-existing account, you can use that instead.
+This workshop assumes you followed the [create account step](../04_accounts.md), but if you have a pre-existing account, you can use that instead.
 
 :::
 

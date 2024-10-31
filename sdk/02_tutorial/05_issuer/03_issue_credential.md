@@ -8,8 +8,6 @@ import TsJsBlock from '@site/src/components/TsJsBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import CtypeSchema from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/ctypeSchema.ts';
-import GenerateCtype from '!!raw-loader!@site/code_examples/sdk_examples/src/workshop/issuer/generateCtype.ts';
 import Ctype from '@site/scripts/out/ctype.json.raw!=!raw-loader!@site/scripts/out/ctype.json';
 
 Before a holder can issue a presentation, the issuer needs to a issue a credential. To do this, you need a CType.
