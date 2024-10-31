@@ -28,7 +28,7 @@ The Verifier also needs an account and DID, but the tutorial omits these steps.
 
 :::info A VerifiablePresentation object
 
-The <span className="label-role holder">Holder</span> uses a Credential to create an array of `VerifiablePresentation` objects as .
+The <span className="label-role holder">Holder</span> uses a Credential to create an array of `VerifiablePresentation` objects.
 
 A `VerifiablePresentation` object contains an array of `VerifiableCredential` objects, a `holder` value, and a `proof` that the <span className="label-role holder">Holder</span> owns the credential.
 
