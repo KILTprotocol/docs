@@ -77,5 +77,5 @@ export async function runAll() {
   </TabItem>
 </Tabs>
 
-OK, you've issued a credential as a <span className="label-role holder">Holder</span> and created a presentation from it.
+OK, you've issued a credential as an <span className="label-role issuer">Issuer</span> and created a presentation from it as a <span className="label-role holder">Holder</span>.
 The next step is to finish the <span className="label-role verifier">Verifier</span> and get the credential verified!
