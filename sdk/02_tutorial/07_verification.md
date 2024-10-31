@@ -24,7 +24,7 @@ The Verifier also needs an account and DID, but the tutorial omits these steps.
 1. Take a `VerifiablePresentation` object supplied by a <span className="label-role holder">Holder</span>
 2. Verify that its data is correct
 3. Verify that the <span className="label-role holder">Holder</span> of the `Credential` has authorised and consented to its use in the current context by checking the presentation's signature and attributes.  
-4. Verify the authenticity and validity of the credential by checking its on-chain proof created by the Issuer and ensuring it hasn't been revoked since
+4. Verify the authenticity and validity of the credential by checking its on-chain proof created by the Issuer and ensuring it hasn't been revoked since.
 
 :::info A VerifiablePresentation object
 
