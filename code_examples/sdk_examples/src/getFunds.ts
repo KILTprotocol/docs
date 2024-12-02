@@ -28,7 +28,7 @@ export async function getFunds(
   kiltAmount: number
 ) {
   const api = Kilt.ConfigService.get('api')
-  const tx = api.tx.balances.transfer(
+  const tx = api.tx.balances.transferKeepAlive(
     recipient,
     Kilt.BalanceUtils.convertToTxUnit(new BN(kiltAmount), 0)
   )
@@ -44,7 +44,7 @@ export async function endowAccounts(
   const api = Kilt.ConfigService.get('api')
 
   const transferBatch = destinationAccounts.map((acc) =>
-    api.tx.balances.transfer(
+    api.tx.balances.transferKeepAlive(
       acc,
       Kilt.BalanceUtils.convertToTxUnit(
         Kilt.BalanceUtils.KILT_COIN.mul(amount),

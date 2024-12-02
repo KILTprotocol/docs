@@ -141,13 +141,13 @@ Because the switch functionality relies on XCM, the pallet provides a few XCM co
 The pallet itself implements the [OnResponse trait][on-response-trait], that must be added to runtimes that deploy this pallet to allow for the error-recovery process to take place.
 The trait implementation validates the received query response message based on the state of the switch pair, and then performs the required action on the pending transfer info accordingly.
 
-[asset-switch-runtime-api]: https://github.com/KILTprotocol/kilt-node/tree/develop/runtime-api/asset-switch
-[xcm-convert]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/develop/pallets/pallet-asset-switch/src/xcm/convert/mod.rs
-[xcm-match]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/develop/pallets/pallet-asset-switch/src/xcm/match/mod.rs
+[asset-switch-runtime-api]: https://github.com/KILTprotocol/kilt-node/tree/master/runtime-api/asset-switch
+[xcm-convert]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/convert/mod.rs
+[xcm-match]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/match/mod.rs
 [XcmExecutorError::AssetNotHandled]: https://github.com/paritytech/polkadot-sdk/blob/33324fe01c5b1f341687cef2aa6e767f6acf40f3/polkadot/xcm/xcm-executor/src/traits/token_matching.rs#L54
 [XcmExecutor::Config]: https://github.com/paritytech/polkadot-sdk/blob/33324fe01c5b1f341687cef2aa6e767f6acf40f3/polkadot/xcm/xcm-executor/src/config.rs#L31
-[xcm-trade]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/develop/pallets/pallet-asset-switch/src/xcm/trade/mod.rs
+[xcm-trade]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/trade/mod.rs
 [Error::AssetNotFound]: https://github.com/paritytech/polkadot-sdk/blob/e5791a56dcc35e308a80985cc3b6b7f2ed1eb6ec/polkadot/xcm/src/v3/traits.rs#L68
-[xcm-transact]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/develop/pallets/pallet-asset-switch/src/xcm/transact/mod.rs
-[xcm-transfer]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/develop/pallets/pallet-asset-switch/src/xcm/transfer/mod.rs
+[xcm-transact]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/transact/mod.rs
+[xcm-transfer]: https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/transfer/mod.rs
 [on-response-trait]: https://github.com/paritytech/polkadot-sdk/blob/33324fe01c5b1f341687cef2aa6e767f6acf40f3/polkadot/xcm/xcm-executor/src/traits/on_response.rs#L29
