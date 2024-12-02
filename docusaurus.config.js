@@ -301,7 +301,7 @@ module.exports = {
             const regex = /\.\/[^\/]+\/[^\/]+\/([^\/]+\/mod\.rs)/g
             var trimContent = content.replaceAll(
               regex,
-              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/xcm/$1'
+              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/src/xcm/$1'
             )
             var trimContent2 = trimContent.replace(
               '../../runtime-api/asset-switch/',
