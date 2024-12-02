@@ -293,7 +293,7 @@ module.exports = {
         // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
         name: 'switch-pallet',
         sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/',
+          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/',
         outDir: 'docs/develop/09_polarpath',
         documents: ['README.md'],
         modifyContent(filename, content) {
@@ -301,7 +301,7 @@ module.exports = {
             const regex = /\.\/[^\/]+\/[^\/]+\/([^\/]+\/mod\.rs)/g
             var trimContent = content.replaceAll(
               regex,
-              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/master/pallets/pallet-asset-switch/src/xcm/$1'
+              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/xcm/$1'
             )
             var trimContent2 = trimContent.replace(
               '../../runtime-api/asset-switch/',
