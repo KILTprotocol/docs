@@ -27,10 +27,10 @@ In this case, it is better to rule out other options before thinking about upgra
 There should be a 32 Byte long public key stored in `session > nextKeys(your AccountId)`.
 2. Check that the node has the corresponding private key for the public session key.
 Connect to the node and query `author > hasKey(<pubKey from 1.>, aura)` to see if it returns `true`.
-3. Check that the node is fully synced with the Relay Chain & parachain (best and finalized block number is equal to the one shown in the PolkadotJS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io#/explorer)) and on Subscan ([Spiritnet](https://spiritnet.subscan.io/), [Peregrine](https://kilt-testnet.subscan.io/)).
-4. Check that the collator is among the selected candidates.
+1. Check that the node is fully synced with the Relay Chain & parachain (best and finalized block number is equal to the one shown in the PolkadotJS Apps ([wss://spiritnet.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkilt-rpc.dwellir.com#/explorer), [wss://peregrine.kilt.io](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fperegrine-stg.kilt.io#/explorer)) and on Subscan (only for [Spiritnet](https://spiritnet.subscan.io/)).
+2. Check that the collator is among the selected candidates.
 Its address should included in the list returned by querying `parachainStaking > topCandidates()`.
-5. Check that the `parachainStaking` pallet has registered the collator's address among the authorized authors in the `session`.
+1. Check that the `parachainStaking` pallet has registered the collator's address among the authorized authors in the `session`.
 Its address should be listed when querying `session > validators()`.
 
 ## Collator Rewards Have Stopped
