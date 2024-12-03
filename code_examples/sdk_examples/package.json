@@ -1,7 +1,6 @@
 {
   "author": "KILT Protocol",
   "name": "kilt-sdk_examples",
-  "private": "true",
   "license": "MIT",
   "scripts": {
     "check-ts": "yarn tsc -p tsconfig.json --noEmit",
