@@ -298,12 +298,14 @@ module.exports = {
         documents: ['README.md'],
         modifyContent(filename, content) {
           if (filename.includes('README')) {
+            // Regex that captures all `.../mod.rs`.
             const regex = /\.\/[^\/]+\/[^\/]+\/([^\/]+\/mod\.rs)/g
-            var trimContent = content.replaceAll(
+            // Prepend the `<parent>/mod.rs` occurrence with the appropriate prefix
+            const trimContent = content.replaceAll(
               regex,
-              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/src/xcm/$1'
+              'https://github.com/KILTprotocol/kilt-node/blob/master/pallets/pallet-asset-switch/src/xcm/$1'
             )
-            var trimContent2 = trimContent.replace(
+            const trimContent2 = trimContent.replace(
               '../../runtime-api/asset-switch/',
               'https://github.com/KILTprotocol/kilt-node/tree/master/runtime-api/asset-switch'
             )
