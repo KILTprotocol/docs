@@ -52,7 +52,7 @@ Verifying a public credential is shown in the following snippet:
 What the `verifyCredential` function does internally is the following:
 
 1. Derive the credential identifier from the provided content and attester information.
-2. Fetch the actual credential from the blockchain, as shown in the [section above](#retrieve-a-credential-by-id), failing if the credential does not exist.
+2. Fetch the actual credential from the blockchain, as shown in the [section above](#retrieve-a-credential-by-its-identifier), failing if the credential does not exist.
 3. [OPTIONAL] Verify that the credential structure matches what the optionally-provided CType defines.
 4. Verify that the rest of the fields in the provided credential (i.e., revocation status, identifier, creation block number) match the retrieved credential.
 

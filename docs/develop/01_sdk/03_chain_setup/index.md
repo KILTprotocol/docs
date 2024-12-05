@@ -13,7 +13,7 @@ This gives developers like you the chance to test your software with any new fea
 Nevertheless, there are a scenarios where a public network (that everyone else is also using) is not ideal.
 For instance, if you need more funds than the faucet can provide, or if you need to reset the state of the blockchain at any time, you will need to setup your own little KILT blockchain.
 
-In this section, we will guide you through the process of 
+In this section, we will guide you through the process of
 1. [Running your own KILT blockchain](./01_standalone_setup.md)
 2. [Connecting to the Peregrine test network](./02_peregrine_setup.md)
 3. [Connecting to the Spiritnet production network](./03_prod_chain_setup.md)
@@ -21,4 +21,4 @@ In this section, we will guide you through the process of
 ## Set up your Project
 
 We expect you to already have a small project which can connect and potentially interact with a KILT blockchain given the WebSocket address of a KILT node.
-If that is not the case, please take a look at our [Quickstart section](../01_quickstart.md#connecting-to-kilt-blockchain) which will provide you with all necessary means to create and run a basic script.
+If that is not the case, please take a look at our [Quickstart section](../01_quickstart.md) which will provide you with all necessary means to create and run a basic script.
