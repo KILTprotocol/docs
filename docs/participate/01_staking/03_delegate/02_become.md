@@ -69,7 +69,7 @@ If the delegation pool of your chosen collator candidate is full, you may still 
 When that happens,
 
 - The kicked delegator will be replaced by the delegator with a higher delegation (you) immediately
-- The kicked delegator's stake is prepared for unstaking as if they revoked the delegation (*see [revoking](#Revoking)*)
+- The kicked delegator's stake is prepared for unstaking as if they revoked the delegation
 - A delegator needs to wait 7 days (in block time) to be able to unlock the stake.
 Please note that it can take longer in real time as the block times assumes a constant block time of 12s, which is not guaranteed.
 
