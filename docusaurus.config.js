@@ -287,34 +287,5 @@ module.exports = {
         },
       },
     ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // Pulls external files and adds them as files in the Docusaurus folder, rewriting the title and the file name
-        name: 'switch-pallet',
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/',
-        outDir: 'docs/develop/09_polarpath',
-        documents: ['README.md'],
-        modifyContent(filename, content) {
-          if (filename.includes('README')) {
-            const regex = /\.\/[^\/]+\/[^\/]+\/([^\/]+\/mod\.rs)/g
-            var trimContent = content.replaceAll(
-              regex,
-              'https://raw.githubusercontent.com/KILTprotocol/kilt-node/refs/heads/master/pallets/pallet-asset-switch/src/xcm/$1'
-            )
-            var trimContent2 = trimContent.replace(
-              '../../runtime-api/asset-switch/',
-              'https://github.com/KILTprotocol/kilt-node/tree/master/runtime-api/asset-switch'
-            )
-            return {
-              filename: '02_switch_pallet.md',
-              content: trimContent2,
-            }
-          }
-          return undefined
-        },
-      },
-    ],
   ],
 }
