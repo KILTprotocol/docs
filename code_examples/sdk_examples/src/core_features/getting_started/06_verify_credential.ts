@@ -1,17 +1,15 @@
 import * as Kilt from '@kiltprotocol/sdk-js'
+import { VerifiableCredential } from '@kiltprotocol/credentials/lib/cjs/V1/types'
 
-export async function main(credential: Kilt.ICredential): Promise<void> {
+export async function main(credential: VerifiableCredential): Promise<void> {
   try {
-    const { attester, revoked } =
-      await Kilt.Credential.verifyCredential(credential)
-
-    // Verify that the credential is not revoked. Exception caught by the catch {} block below.
-    if (revoked) {
-      throw new Error('The credential has been revoked, hence it is not valid.')
+    const result = await Kilt.Verifier.verifyCredential({ credential })
+    console.log(JSON.stringify(result, null, 2))
+    if (result.verified == false) {
+      throw new Error("kiltnerd123's credential is not valid.")
+    } else {
+      console.log(`kiltnerd123's credential is valid`)
     }
-    console.log(
-      `kiltnerd123's credential is valid and has been attested by ${attester}!`
-    )
   } catch {
     console.log("kiltnerd123's credential is not valid.")
   }
