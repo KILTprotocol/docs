@@ -3,25 +3,12 @@ id: account-name
 title: Query the web3name of an Account
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import AccountWeb3NameQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/03_account_web3name_query.ts';
-import AccountWeb3NameQueryNoSDK from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/linking/04_account_web3name_query_no_sdk.ts';
+**We are currently documenting version 1.0!** 🔨
 
-For accounts that have been linked to DIDs that have claimed a web3name, the linking feature opens the way to a host of possibilities, e.g., showing the web3name of a collator's account on the [KILT Stakeboard][kilt-stakeboard].
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-This section shows how to perform the `account -> web3name` querying both with and without the support of the KILT SDK.
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-## Query an Account's web3name with the KILT SDK
-
-<TsJsBlock>
-  {AccountWeb3NameQuery}
-</TsJsBlock>
-
-## Query an Account's web3name without the KILT SDK
-
-<TsJsBlock>
-  {AccountWeb3NameQueryNoSDK}
-</TsJsBlock>
-
-[kilt-stakeboard]: https://stakeboard.kilt.io/
+:::

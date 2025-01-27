@@ -3,19 +3,12 @@ id: did-export
 title: Exporting a KILT DID
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import DidExport from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/12_did_export.ts';
+**We are currently documenting version 1.0!** 🔨
 
-The DID Document exporter provides the functionality needed to convert an instance of an SDK `DidDocument` object into a document that is compliant with the [W3C specification](https://www.w3.org/TR/did-core/).
-This component is required for the KILT plugin for the [DIF Universal Resolver](https://dev.uniresolver.io/).
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-## How to use the exporter
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-The exporter interface and used types are part of the `@kiltprotocol/types` package, while the actual `DidDocumentExporter` is part of the `@kiltprotocol/did` package. 
-Both types and DID packages are accessible via the top-level `@kiltprotocol/sdk-js` import.
-The following shows how to use the exporter to generate a W3C-compliant DID Document from a given `DidDocument`, which can represent either a light or a full DID.
-
-<TsJsBlock>
-  {DidExport}
-</TsJsBlock>
+:::

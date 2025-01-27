@@ -3,27 +3,12 @@ id: full-did-delete
 title: Delete a Full DID
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import FullDidDelete from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/11_full_did_delete.ts';
-import FullDidDepositReclaim from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/13_full_did_deposit_reclaim.ts';
+**We are currently documenting version 1.0!** 🔨
 
-Once a DID is no longer needed, it is recommended to deactivate it by removing it from the KILT blockchain.
-The following snippet shows how to do it:
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-<TsJsBlock>
-  {FullDidDelete}
-</TsJsBlock>
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-:::warning
-Please note that once deleted, a full DID becomes unusable and cannot be re-created anymore.
-This means that all credentials obtained with that DID are no longer valid and must be obtained with a different DID if needed.
 :::
-
-## Claim back a DID deposit
-
-Claiming back the deposit of a DID is semantically equivalent to deactivating and deleting the DID, with the difference that the extrinsic to claim the deposit can only be called by the deposit owner and does not require a signature by the DID subject:
-
-<TsJsBlock>
-  {FullDidDepositReclaim}
-</TsJsBlock>

@@ -3,22 +3,12 @@ id: web3name-query
 title: Resolve a web3name
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import QueryDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/02_query_did_name.ts';
+**We are currently documenting version 1.0!** 🔨
 
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-A web3name can be resolved in a similar manner to [how a DID is resolved](../01_dids/04_did_query.md).
-Resolving the web3name will provide the same information as resolving a DID does.
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-To query and retrieve the DID document associated with a web3name, you can use the following code example:
-
-
-<TsJsBlock>
-  {QueryDid}
-</TsJsBlock>
-
-In the code example above, the `queryDidDocument` function takes a web3Name parameter, which represents the web3name to be resolved.
-It internally uses the `api.call.did.queryByWeb3Name` method to query the information of the provided web3name from the blockchain.
-
-The function then decodes the result using `Kilt.Did.linkedInfoFromChain` to extract the associated DID document and any other linked blockchain accounts. Finally, it returns the resolved DID document.
+:::

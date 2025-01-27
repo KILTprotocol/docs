@@ -3,20 +3,12 @@ id: did-query
 title: Resolve a DID
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import DidQuery from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/06_did_query.ts';
+**We are currently documenting version 1.0!** 🔨
 
-Querying the state of a DID is called **resolution**.
-The entity that queries the DID Document for a given DID, i.e., resolves it, is called a **resolver**.
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-The KILT SDK provides such a resolver to use with KILT DIDs, as the snippet below shows:
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-<TsJsBlock>
-  {DidQuery}
-</TsJsBlock>
-
-:::note
-The DID resolver can resolve both light and full DIDs.
-For a more in-depth explanation about the KILT DID method and resolution, refer to our [specification](https://github.com/KILTprotocol/spec-kilt-did).
 :::

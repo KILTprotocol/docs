@@ -3,17 +3,12 @@ id: web3name-claim
 title: Claim a web3name
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import Claim from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/web3names/01_claim.ts';
+**We are currently documenting version 1.0!** 🔨
 
-A web3name can be claimed if it currently has no owner, using the following snippet as reference.
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-<TsJsBlock>
-  {Claim}
-</TsJsBlock>
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-The claiming process requires the reservation of a deposit that is freed upon web3name release.
-
-Once claimed, the web3name will start appearing whenever the DID of its owner is resolved, for instance via the [Universal Resolver](https://dev.uniresolver.io/#did:kilt:4pZGzLSybfMsxB1DcpFNYmnqFv5QihbFb1zuSuuATqjRQv2g).
-For more information about web3names and DIDs, see the official [KILT DID Specification](https://github.com/KILTprotocol/spec-kilt-did/blob/main/README.md).
+:::

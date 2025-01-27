@@ -3,13 +3,12 @@ id: full-did-update
 title: Update a Full DID keys and service endpoints
 ---
 
-import TsJsBlock from '@site/src/components/TsJsBlock';
+:::caution Under Construction 🚨
 
-import FullDidUpdate from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/did/07_full_did_update.ts';
+**We are currently documenting version 1.0!** 🔨
 
-Once anchored to the KILT blockchain, a full DID can be updated.
-For instance, the following snippet shows how to use the `authorizeBatch` function to update the authentication key, remove an old service *and* add a new one for a full DID in the same transaction.
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-<TsJsBlock>
-  {FullDidUpdate}
-</TsJsBlock>
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
+
+:::

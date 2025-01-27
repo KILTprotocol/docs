@@ -2,20 +2,13 @@
 id: attestation-request
 title: Request an Attestation
 ---
-import TsJsBlock from '@site/src/components/TsJsBlock';
 
-import RequestAttestation from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/claiming/03_request_attestation.ts';
+:::caution Under Construction 🚨
 
-To obtain credentials, Claimers have to request an attestation for a set of claims from an Attester.
-The resulting object is a `Credential`, which can be created following the snippet below.
+**We are currently documenting version 1.0!** 🔨
 
-This process does not involve any interaction with the KILT blockchain, but is simply a communication channel where the Claimer and the Attester can communicate.
+The documentation for **version 0.35.0** is complete and fully accessible - you can switch to it by selecting `0.35.0` from the version dropdown in the top right corner. 🎯
 
-<TsJsBlock>
-  {RequestAttestation}
-</TsJsBlock>
+> Some sections may be incomplete or subject to change as we document the new features. Check back soon for the latest updates! ✨
 
-:::note
-The structure of the claims must respect the schema defined in the specified CType.
-Attesters (and Verifiers) will reject claims that fail to verify correctly.
 :::
