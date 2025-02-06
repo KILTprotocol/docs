@@ -13,14 +13,14 @@
     "test": "ts-node src/test.ts"
   },
   "dependencies": {
-    "@kiltprotocol/sdk-js": "0.35.0",
+    "@kiltprotocol/sdk-js": "0.36.0-rc.1",
     "axios": "^1.5.1",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "web3": "^4.1.2"
   },
   "devDependencies": {
-    "@polkadot/types": "^10.4.0",
+    "@polkadot/types": "^11.3.1",
     "@types/node": "^20.8.6",
     "@types/node-fetch": "^2.6.6",
     "@typescript-eslint/eslint-plugin": "^5.36.0",
@@ -35,5 +35,9 @@
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "resolutions": {
+    "@kiltprotocol/type-definitions": "1.11501.0-peregrine",
+    "@kiltprotocol/augment-api": "1.11501.0-peregrine"
   }
 }
