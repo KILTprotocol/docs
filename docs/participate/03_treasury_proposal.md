@@ -42,11 +42,11 @@ Have a document ready for the proposal or discussion phase.
 5. After the documents and signature have been uploaded to IPFS, add their URL to the proposal or discussion page for verification.
 
 Please include how to verify and download the necessary documents.
-The following is an example done by KILT Fundation.
+The following is an example done by KILT Foundation.
 
 ```md
 
-The current version of the proposal document has been digitally signed with one of the DIDs that KILT Fundation controls. To verify the signature:
+The current version of the proposal document has been digitally signed with one of the DIDs that KILT Foundation controls. To verify the signature:
 
 1. Download the PDF version of the Google Document linked above.
 

@@ -23,7 +23,7 @@ Each time a website needs to access some information about the visitor, the wall
     width='90'
     alt='bte-sporran-wallet-logo'>
     Sporran is the first wallet to support the KILT protocol.
-    It is maintained by KILT Fundation
+    It is maintained by KILT Foundation
 </LogoText>
 
 ## Web Apps
