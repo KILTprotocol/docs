@@ -23,7 +23,7 @@ Each time a website needs to access some information about the visitor, the wall
     width='90'
     alt='bte-sporran-wallet-logo'>
     Sporran is the first wallet to support the KILT protocol.
-    It is maintained by _BOTLabs Trusted Entity B.T.E GmbH_ and it is [open source](https://github.com/BTE-Trusted-Entity/sporran-extension).
+    It is maintained by KILT Fundation
 </LogoText>
 
 ## Web Apps
@@ -61,7 +61,7 @@ Decentralized applications have already been built that use the functions of the
     width='140'
     alt='bte-didsign-logo'>
     DIDsign provides a decentralized way to sign any file directly in your browser using your KILT DID.
-    Your data stays locally on your device and is never transferred or held in a centralized place. 
+    Your data stays locally on your device and is never transferred or held in a centralized place.
 </LogoText>
 
 ---
