@@ -106,9 +106,6 @@ Enter the following information:
 * Engage
 * Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter)
 
-Click [here](https://www.kilt.io/treasury/overview/) to get an overview of the Treasury.
-Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
-
 ## Illustration
 
 The following diagram depicts the flow of a Treasury proposal from having an idea to receiving the funds in the beneficiary address.
