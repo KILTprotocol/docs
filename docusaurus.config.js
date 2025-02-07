@@ -196,7 +196,7 @@ module.exports = {
             },
             {
               label: 'Privacy Policy',
-              href: 'https://www.kilt.io/privacy-policy-for-kilt-protocol/',
+              href: 'https://www.kilt.io/privacy-policy/',
             },
           ],
         },
