@@ -201,7 +201,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} BOTLabs GmbH – All rights reserved. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} KILT Foundation – All rights reserved. Built with Docusaurus.`,
     },
   },
   presets: [

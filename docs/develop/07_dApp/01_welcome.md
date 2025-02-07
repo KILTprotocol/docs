@@ -8,6 +8,6 @@ This section expands on the [Credential API Specification](https://github.com/KI
 This documentation assumes that you already have a browser extension capable of exposing the credential API to your dapp.
 We suggest using Sporran:
 
-- [Sporran Full Version](https://github.com/BTE-Trusted-Entity/sporran-extension)
-- [Sporran Test Version for Peregrine](https://github.com/BTE-Trusted-Entity/sporran-extension/releases)
-- [Sporran Lite (Credentials only)](https://github.com/BTE-Trusted-Entity/sporran-extension/tree/sporran-lite)
+- [Sporran Full Version](https://github.com/KILT-Foundation/sporran-extension)
+- [Sporran Test Version for Peregrine](https://github.com/KILT-Foundation/sporran-extension/releases)
+- [Sporran Lite (Credentials only)](https://github.com/KILT-Foundation/sporran-extension/tree/sporran-lite)

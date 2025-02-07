@@ -5,7 +5,7 @@ title: Backward Compatibility with Pre-0.29.x Versions
 
 Depending on how exactly your application interacts with other applications, changes to some data formats and interfaces might mean that conversions are required for them to remain compatible.
 
-To align with breaking changes to data structures in messaging, credentials, and CTypes, we published version 3.0 of the [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) that specifies how browser extensions like the [Sporran credential wallet](https://github.com/BTE-Trusted-Entity/sporran-extension) interact with web applications that produce or consume credentials.
+To align with breaking changes to data structures in messaging, credentials, and CTypes, we published version 3.0 of the [Credentials API specification](https://github.com/KILTprotocol/spec-ext-credential-api) that specifies how browser extensions like the [Sporran credential wallet](https://github.com/KILT-Foundation/sporran-extension) interact with web applications that produce or consume credentials.
 
 When upgrading to a 0.29.x version of the SDK and to the Credentials API version 3.0, we recommend backward support of Credentials API version 2.0, as supporting only the latest version may result in poor user experience. In what follows, we outline an upgrade strategy for implementers of the Credentials API specification.
 
