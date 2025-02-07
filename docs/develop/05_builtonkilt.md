@@ -23,7 +23,7 @@ Each time a website needs to access some information about the visitor, the wall
     width='90'
     alt='bte-sporran-wallet-logo'>
     Sporran is the first wallet to support the KILT protocol.
-    It is maintained by _BOTLabs Trusted Entity B.T.E GmbH_ and it is [open source](https://github.com/BTE-Trusted-Entity/sporran-extension).
+    It is maintained by _KILT Foundation_ and it is [open source](https://github.com/KILT-Foundation/sporran-extension).
 </LogoText>
 
 ## Web Apps

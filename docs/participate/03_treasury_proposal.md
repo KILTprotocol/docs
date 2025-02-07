@@ -42,11 +42,11 @@ Have a document ready for the proposal or discussion phase.
 5. After the documents and signature have been uploaded to IPFS, add their URL to the proposal or discussion page for verification.
 
 Please include how to verify and download the necessary documents.
-The following is an example done by BOTLabs GmbH.
+The following is an example done by KILT Foundation.
 
 ```md
 
-The current version of the proposal document has been digitally signed with one of the DIDs that BOTLabs GmbH controls. To verify the signature:
+The current version of the proposal document has been digitally signed with one of the DIDs that KILT Foundation controls. To verify the signature:
 
 1. Download the PDF version of the Google Document linked above.
 
@@ -105,9 +105,6 @@ Enter the following information:
 * Contact: email or social handle (please specify social network)
 * Engage
 * Share your proposal in our channels to generate support from community and showcase your project (Discord, Telegram, Element, Twitter)
-
-Click [here](https://www.kilt.io/treasury/overview/) to get an overview of the Treasury.
-Or click [here](https://www.kilt.io/treasury/content-creation/) to see the guidelines for content creation.
 
 ## Illustration
 
