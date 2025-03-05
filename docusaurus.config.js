@@ -259,7 +259,7 @@ module.exports = {
               content: trimContent,
             }
           }
-          return undefined
+          return undefined;
         },
       },
     ],
