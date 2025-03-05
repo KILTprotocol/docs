@@ -13,7 +13,7 @@ To learn more about how to set up a node for either environment, please check ou
 |     Service      |                                                                                               Spiritnet                                                                                                |                                                  Peregrine                                                   |
 | :--------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: |
 |      Faucet      |                                                                                                   -                                                                                                    |                                       [Peregrine Faucet][pere-faucet]                                        |
-| Public Endpoints | [KILT Foundation: wss://spiritnet.kilt.io][spirit-wss-kilt]<br/>[OnFinality: wss://spiritnet.api.onfinality.io/public-ws][spirit-wss-onfinality]<br/>[Dwellir: wss://kilt-rpc.dwellir.com][spirit-wss-dwellir] |                              [KILT Foundation: wss://peregrine.kilt.io][pere-wss-kilt]                               |
+| Public Endpoints | [KILT Foundation: wss://spiritnet.kilt.io][spirit-wss-kilt]<br/>[IBP: wss://kilt.ibp.network][spirit-wss-IBP]<br/>[Dwellir: wss://kilt-rpc.dwellir.com][spirit-wss-dwellir] |                              [KILT Foundation: wss://peregrine.kilt.io][pere-wss-kilt]                               |
 |      Wallet      |                                                                                  [Sporran](https://www.sporran.org/)                                                                                   | [GitHub](https://github.com/KILT-Foundation/sporran-extension/releases) (manual loading into the browser) |
 |    Staking UI    |                           Collators' performance (view only): [Stakekilt](https://stakekilt.com/)<br/>Delegation staking platform: [Stakeboard](https://stakeboard.kilt.io)                            |                                                      -                                                       |
 |  Governance UI   |                                                                                  [Polkassembly][spirit-polkassembly]                                                                                   |                                                      -                                                       |
@@ -25,7 +25,7 @@ To learn more about how to set up a node for either environment, please check ou
 
 [spirit-polkassembly]: https://kilt.polkassembly.network
 [spirit-wss-kilt]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.kilt.io
-[spirit-wss-onfinality]: https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws
+[spirit-wss-IBP]: https://polkadot.js.org/apps/?rpc=wss://kilt.ibp.network
 [spirit-wss-dwellir]: https://polkadot.js.org/apps/?rpc=wss://kilt-rpc.dwellir.com
-[pere-faucet]: https://faucet.peregrine.kilt.io
+[pere-faucet]: https://substratefaucet.xyz/kilt
 [pere-wss-kilt]: https://polkadot.js.org/apps/?rpc=wss://peregrine.kilt.io

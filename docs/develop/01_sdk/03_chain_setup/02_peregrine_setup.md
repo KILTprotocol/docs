@@ -11,7 +11,7 @@ Additionally, we explain the difference between the Standalone and Parachain run
 
 ## Receive Funds
 
-Since the native token of Peregrine, the _PILT_, does not have any economic value, you can request 100 PILT from the [Peregrine faucet](https://faucet.peregrine.kilt.io).
+Since the native token of Peregrine, the _PILT_, does not have any economic value, you can request 100 PILT from the [Peregrine faucet](https://substratefaucet.xyz/kilt).
 
 ## Connect to the Network
 

@@ -106,6 +106,6 @@ ATTESTER_ACCOUNT_ADDRESS="4ohMvUHsyeDhMVZF..."
 :::warning Get PILT coins!
 
 You now have a blockchain account to use to pay fees and deposits.
-If you haven't already requested PILT, go to the [faucet](https://faucet.peregrine.kilt.io) and request tokens for your `<address>`.
+If you haven't already requested PILT, go to the [faucet](https://substratefaucet.xyz/kilt) and request tokens for your `<address>`.
 
 :::

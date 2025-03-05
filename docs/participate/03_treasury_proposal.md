@@ -77,7 +77,7 @@ Don’t forget to link it when completing the Polkassembly information!
 
 ## Submit Proposal
 
-When you have feedback from the community and are satisfied with your proposal, head to [Polkadot.JS apps](https://polkadot.js.org/apps/?rpc=wss://spiritnet.api.onfinality.io/public-ws#/treasury)
+When you have feedback from the community and are satisfied with your proposal, head to [Polkadot.JS apps](https://polkadot.js.org/apps/?rpc=wss://kilt.ibp.network#/treasury)
 
 Scroll to  the “+ Submit Proposal” button and click.
 Complete the form:

@@ -83,7 +83,7 @@ The dependencies needed are the following:
 
 This workshop interacts with the Peregrine test blockchain, which requires you to pay for each transaction with Peregrine Kilt (PILT) tokens.
 
-But don't worry. PILT tokens have no value, and you can request them from the [faucet](https://faucet.peregrine.kilt.io).
+But don't worry. PILT tokens have no value, and you can request them from the [faucet](https://substratefaucet.xyz/kilt).
 
 ## Blockchain Connection
 
