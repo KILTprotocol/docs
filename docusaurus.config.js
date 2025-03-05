@@ -143,6 +143,12 @@ module.exports = {
           ],
         },
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [{ to: '/versions' }],
+          dropdownActiveClassDisabled: true,
+        },
+        {
           href: 'https://github.com/KILTprotocol/docs',
           position: 'right',
           className: 'header-github-link',
