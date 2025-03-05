@@ -44,3 +44,24 @@
 html[data-theme='dark'] .featureLink {
   color: white;
 }
+
+.useCases {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.useCaseImage {
+  height: 200px;
+  width: 200px;
+}
+
+.useCaseLink {
+  color: #000000;
+}
+
+html[data-theme='dark'] .useCaseLink {
+  color: white;
+}
