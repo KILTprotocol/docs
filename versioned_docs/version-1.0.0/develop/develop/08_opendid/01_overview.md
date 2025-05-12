@@ -3,7 +3,7 @@ id: what-is-opendid
 title: Overview
 ---
 
-[OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation capable of authenticating users through their [Decentralized Identifier (DID)](../../concepts/02_did.md) and Verifiable Credentials.
+<!-- [OpenDID](https://github.com/KILTprotocol/opendid) is an OpenID Provider implementation capable of authenticating users through their [Decentralized Identifier (DID)](../../concepts/02_did.md) and Verifiable Credentials. -->
 
 It follows the [OpenID Connect 1.0 Specification](https://openid.net/specs/openid-connect-core-1_0.html#Introduction) and acts as a bridge between the decentralized identity world and the centralized authentication world supporting both the implicit and Authorization Code Flow.
 
@@ -13,7 +13,7 @@ Although integrating that functionality into a webpage is relatively simple, con
 
 :::info
 
-To learn more about the flow of OpenDID, see the [OpenDID Flow](./02_opendid_flow.md) documentation.
+<!-- To learn more about the flow of OpenDID, see the [OpenDID Flow](./02_opendid_flow.md) documentation. -->
 
 :::
 
@@ -28,13 +28,13 @@ container.
 For example, it requires a DID to establish a session with an identity wallet.
 This container creates a DID and the necessary configuration by providing an account with enough funds.
 
-Learn more in the [run setup container documentation](./03_opendid_service.md#run-setup-container).
+<!-- Learn more in the [run setup container documentation](./03_opendid_service.md#run-setup-container). -->
 
 ### kiltprotocol/opendid container
 
-This container [runs the OpenDID Service](./03_opendid_service.md#run-the-service), both the OpenDID front and back end.
+<!-- This container [runs the OpenDID Service](./03_opendid_service.md#run-the-service), both the OpenDID front and back end. -->
 This container requires the configuration file created from the `opendid-setup` container.
 
 ### kiltprotocol/opendid-demo
 
-This container is a [web app demo](./05_demo_project.md), including front and back end services to demonstrate the use of OpenDID.
+<!-- This container is a [web app demo](./05_demo_project.md), including front and back end services to demonstrate the use of OpenDID. -->

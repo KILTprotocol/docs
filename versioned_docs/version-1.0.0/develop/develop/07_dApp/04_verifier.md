@@ -13,14 +13,14 @@ import EncryptRequestCredentialMessage from '!!raw-loader!@site/code_examples/sd
 import DecryptCredentialMessage from '!!raw-loader!@site/code_examples/sdk_examples/src/dapp/verifier/05_verify_credential_message.ts';
 
 This section demonstrates how to build a basic verifier according to the [Credential API Specification](https://github.com/KILTprotocol/spec-ext-credential-api).
-Before continuing, please make sure you have already set up the [communication session](03_session.md) and [Well-Known DID Configuration](02_well-known-did-config.md).
+<!-- Before continuing, please make sure you have already set up the [communication session](03_session.md) and [Well-Known DID Configuration](02_well-known-did-config.md). -->
 
 This guide explains specifically how a web server can request a credential presentation from one of its visitors (the claimer).
 After the browser extension verified the Well-Known DID Configuration and the encrypted communication channel between the extension and the server was established, the web server can request the credential presentation.
 This is a two step process.
 
 First the server sends a message to the extension that request the presentation of a credential.
-Since we don't want to see just any credential, but expect specific content, we also require that the credential conforms to a specific [CType](../../concepts/05_credentials/02_ctypes.md).
+<!-- Since we don't want to see just any credential, but expect specific content, we also require that the credential conforms to a specific [CType](../../concepts/05_credentials/02_ctypes.md). -->
 When the extension receives the request, it will prompt the user to select a credential that should be presented to the server.
 The user can also choose to reject this request and not to show any presentation.
 

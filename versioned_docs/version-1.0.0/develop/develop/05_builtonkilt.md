@@ -49,7 +49,7 @@ Decentralized applications have already been built that use the functions of the
     width='80'
     alt='bte-w3n-id-logo'>
     w3n.id is a website that helps you claim and search web3names.
-    Learn more about KILT web3names in our [concepts section](../concepts/03_web3names.md).
+    <!-- Learn more about KILT web3names in our [concepts section](../concepts/03_web3names.md). -->
 </LogoText>
 
 ---
