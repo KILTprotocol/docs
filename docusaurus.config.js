@@ -11,9 +11,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'KILTprotocol', // the github org name. Will be used in the deploy step to clone the repository
   projectName: 'docs', // the github project name. Will be used in the deploy step to clone the repository
-  markdown: {
-    mermaid: true,
-  },
+  markdown: { mermaid: true },
   themes: ['@docusaurus/theme-mermaid'],
   // Config taken from https://docusaurus.io/docs/search#using-algolia-docsearch
   // `appId`, `apiKey`, and `indexName` were provided in the email
@@ -34,9 +32,7 @@ module.exports = {
       // Algolia-specific configurations
       placeholder: 'Search within the KILT documentation!',
     },
-    mermaid: {
-      theme: { light: 'default', dark: 'dark' },
-    },
+    mermaid: { theme: { light: 'default', dark: 'dark' } },
     image: 'img/expert_dark_preview.png',
     announcementBar: {
       id: 'dip-announcement',
@@ -55,20 +51,11 @@ module.exports = {
         srcDark: 'img/logo_dark.svg',
       },
       items: [
-        {
-          type: 'doc',
-          docId: 'concepts/what-is-kilt',
-          label: 'What is KILT?',
-        },
+        { type: 'doc', docId: 'concepts/what-is-kilt', label: 'What is KILT?' },
         {
           type: 'dropdown',
           label: 'Develop',
           items: [
-            {
-              type: 'doc',
-              docId: 'develop/sdk/quickstart',
-              label: 'SDK Documentation',
-            },
             {
               type: 'doc',
               docId: 'develop/chain/introduction',
@@ -79,11 +66,7 @@ module.exports = {
               docId: 'develop/workshop/welcome',
               label: 'Workshop',
             },
-            {
-              type: 'doc',
-              docId: 'develop/contribute',
-              label: 'Contribute',
-            },
+            { type: 'doc', docId: 'develop/contribute', label: 'Contribute' },
             {
               type: 'doc',
               docId: 'develop/specifications',
@@ -143,6 +126,19 @@ module.exports = {
           ],
         },
         {
+          type: 'dropdown',
+          label: 'SDK',
+          items: [
+            { type: 'doc', docId: 'sdk/quickstart', label: 'Quickstart' },
+            { type: 'doc', docId: 'sdk/tutorial/tutorial', label: 'Tutorial' },
+            { type: 'doc', docId: 'sdk/accounts', label: 'Accounts' },
+            { type: 'doc', docId: 'sdk/claiming/claiming', label: 'Claiming' },
+            { type: 'doc', docId: 'sdk/dids', label: 'DIDs' },
+            { type: 'doc', docId: 'sdk/credentials', label: 'Credentials' },
+            { type: 'doc', docId: 'sdk/upgrading', label: 'Upgrading' },
+          ],
+        },
+        {
           type: 'docsVersionDropdown',
           position: 'right',
           dropdownItemsAfter: [{ to: '/versions' }],
@@ -162,44 +158,23 @@ module.exports = {
         {
           title: 'Community',
           items: [
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/hX4pc8rdHS',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/Kiltprotocol',
-            },
+            { label: 'Discord', href: 'https://discord.gg/hX4pc8rdHS' },
+            { label: 'Twitter', href: 'https://twitter.com/Kiltprotocol' },
           ],
         },
         {
           title: 'Resources',
           items: [
-            {
-              label: 'KILT Protocol',
-              href: 'https://www.kilt.io/',
-            },
-            {
-              label: 'Medium',
-              href: 'https://kilt-protocol.medium.com/',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/KILTprotocol',
-            },
+            { label: 'KILT Protocol', href: 'https://www.kilt.io/' },
+            { label: 'Medium', href: 'https://kilt-protocol.medium.com/' },
+            { label: 'GitHub', href: 'https://github.com/KILTprotocol' },
           ],
         },
         {
           title: 'Legal',
           items: [
-            {
-              label: 'Imprint',
-              href: 'https://www.kilt.io/imprint/',
-            },
-            {
-              label: 'Disclaimer',
-              href: 'https://www.kilt.io/disclaimer/',
-            },
+            { label: 'Imprint', href: 'https://www.kilt.io/imprint/' },
+            { label: 'Disclaimer', href: 'https://www.kilt.io/disclaimer/' },
             {
               label: 'Privacy Policy',
               href: 'https://www.kilt.io/privacy-policy-for-kilt-protocol/',
@@ -221,14 +196,9 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/KILTprotocol/docs/edit/master/',
           showLastUpdateTime: true,
-          admonitions: {
-            keywords: ['version-label'],
-            extendDefaults: true,
-          },
+          admonitions: { keywords: ['version-label'], extendDefaults: true },
         },
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
+        theme: { customCss: require.resolve('./src/css/custom.css') },
       },
     ],
   ],
@@ -260,10 +230,7 @@ module.exports = {
               '# Decentralized Identity Provider (DIP) provider pallet',
               '# Provider pallet'
             )
-            return {
-              filename: '02_provider.md',
-              content: trimContent,
-            }
+            return { filename: '02_provider.md', content: trimContent }
           }
           return undefined
         },
@@ -284,10 +251,7 @@ module.exports = {
               '# Decentralized Identity Provider (DIP) consumer pallet',
               '# Consumer pallet'
             )
-            return {
-              filename: '03_consumer.md',
-              content: trimContent,
-            }
+            return { filename: '03_consumer.md', content: trimContent }
           }
           return undefined
         },
