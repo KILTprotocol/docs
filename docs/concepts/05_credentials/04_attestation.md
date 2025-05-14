@@ -15,7 +15,7 @@ After the credential has been attested, the Claimer can store it in their wallet
 
 :::info
 
-For a detailed developer-oriented guide to KILT attestations, read the [Attestation cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/03_attestation_creation.md).
+<!-- For a detailed developer-oriented guide to KILT attestations, read the [Attestation cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/03_attestation_creation.md). -->
 
 :::
 
