@@ -93,7 +93,7 @@ Currently, it costs 0.001 KILT to create a CType on the KILT blockchain.
 
 :::
 
-For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md).
+<!-- For a detailed developer-oriented guide to KILT CTypes, read the [CType Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md). -->
 
 [kilt-runtime-1.9.0]: https://github.com/KILTprotocol/kilt-node/releases/tag/1.9.0
 
@@ -124,7 +124,7 @@ const newCType = CType.fromProperties(oldCType.title, oldCType.properties, 'V1')
 ```
 
 The new CType has the same title and properties as the existing one, but be based on the new metaschema, resulting in a different hash and id.
-After [registering the new CType on the KILT blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials.
+<!-- After [registering the new CType on the KILT blockchain](../../develop/01_sdk/02_cookbook/04_claiming/01_ctype_creation.md), you can use the new CType as a drop-in replacement in issuing credentials. -->
 
 Verifiers depending on these CTypes should accept both the old and new CType during a transition period.
 Test thoroughly to ensure the correct behavior and functionality of the new CTypes in your application.

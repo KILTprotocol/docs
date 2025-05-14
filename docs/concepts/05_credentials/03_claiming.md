@@ -35,6 +35,6 @@ The to-be-attested `Credential` contains the original claim, data needed for fut
 
 :::info
 
-For a detailed developer-oriented guide to KILT claims, read the [Claim Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/02_attestation_request.md).
+<!-- For a detailed developer-oriented guide to KILT claims, read the [Claim Cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/02_attestation_request.md). -->
 
 :::
