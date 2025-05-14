@@ -74,7 +74,7 @@ This increases the privacy of the Claimer since they only need to show attribute
 
 :::info
 
-For a detailed developer-oriented guide to KILT presentation creation, read the [presentation creation cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/04_presentation_creation.md).
+<!-- For a detailed developer-oriented guide to KILT presentation creation, read the [presentation creation cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/04_presentation_creation.md). -->
 
 :::
 
@@ -107,7 +107,7 @@ Therefore, the Verifier has to check if the CType matches one of the requested C
 
 :::info
 
-For a detailed developer-oriented guide to KILT credential verification, read the [verification cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/05_presentation_verification.md).
+<!-- For a detailed developer-oriented guide to KILT credential verification, read the [verification cookbook section](../../develop/01_sdk/02_cookbook/04_claiming/05_presentation_verification.md). -->
 
 :::
 

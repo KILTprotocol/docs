@@ -51,8 +51,8 @@ For example, `did:kilt:4q4QzFTs9hKh4QizLB3B7zuGYCG3QPamiBFEgwM6gTM7gK3g`
 Currently only supports version 1.
 -   `blockNumber`: The block number of the relay chain to use for the generation of the DIP proof.
 If not provided, uses the last finalized block.
--   `linkedAccounts`: An array of [account addresses linked to the DID](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md#linking-an-account-to-a-did) to reveal in the generated proof.
--   `web3Name`: Whether to reveal [the web3name of the DID subject](../../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) in the generated proof.
+<!-- -   `linkedAccounts`: An array of [account addresses linked to the DID](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md#linking-an-account-to-a-did) to reveal in the generated proof. -->
+<!-- -   `web3Name`: Whether to reveal [the web3name of the DID subject](../../develop/01_sdk/02_cookbook/02_web3names/01_claim.md) in the generated proof. -->
 
 In the example code, the configuration also has extra parameters for the time-bound DID signature extension [mentioned below](#creating-extensions-for-specific-proofs).
 
@@ -96,7 +96,7 @@ The method returns the different components of the proof, [which you can see in 
 -   The commitment proof, which proves the DIP commitment for the subject of the action, which is the DID URI.
 -   The DID proof, which reveals parts of the DID document as specified by key IDs, proof version, and whether to include the web3name and any of its linked accounts.
 
-Behind the scenes, the method uses the `dispatchAs` method ([and corresponding chain method](https://github.com/KILTprotocol/kilt-node/blob/4ddb8a0ef6258873458f19d3ee9dcb6d7c24e645/pallets/did/src/lib.rs#L1152)) to pass the extrinsic following the consumer's type registry.
+<!-- Behind the scenes, the method uses the `dispatchAs` method ([and corresponding chain method](https://github.com/KILTprotocol/kilt-node/blob/4ddb8a0ef6258873458f19d3ee9dcb6d7c24e645/pallets/did/src/lib.rs#L1152)) to pass the extrinsic following the consumer's type registry. -->
 You can now sign and submit to the consumer chain.
 
 ```typescript
@@ -108,7 +108,7 @@ await signAndSubmitTx(consumerApi, dipSubmittable, submitterKeypair)
 Linked accounts let you specify which accounts you want to prove that you control when you make the cross-chain proof.
 As part of the proof provided, you can also include other values, such as the web3name.
 
-For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md#linking-an-account-to-a-did).
+<!-- For all the accounts you want to link, use the `associateAccountToChainArgs` method, [as detailed in this guide](../../develop/01_sdk/02_cookbook/03_account_linking/01_link.md#linking-an-account-to-a-did). -->
 
 You can then batch all the linked account transactions and authorize them using the `authorizeTx` method.
 

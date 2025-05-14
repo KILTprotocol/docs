@@ -48,7 +48,7 @@ module.exports = {
       isCloseable: true,
     },
     navbar: {
-      title: '', // no title since the Name is already in the logo
+      title: '',
       logo: {
         alt: 'KILT Logo',
         src: 'img/logo_light.svg',
@@ -62,22 +62,53 @@ module.exports = {
         },
         {
           type: 'dropdown',
+          label: 'SDK',
+          items: [
+            {
+              type: 'doc',
+              docId: 'sdk/quickstart',
+              label: 'SDK Quickstart',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/tutorial/tutorial',
+              label: 'Tutorial',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/accounts',
+              label: 'Accounts',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/dids',
+              label: 'DIDs',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/claiming/claiming',
+              label: 'Claiming',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/credentials',
+              label: 'Credentials',
+            },
+            {
+              type: 'doc',
+              docId: 'sdk/upgrading',
+              label: 'Upgrading',
+            },
+          ],
+        },
+        {
+          type: 'dropdown',
           label: 'Develop',
           items: [
             {
               type: 'doc',
-              docId: 'develop/sdk/quickstart',
-              label: 'SDK Documentation',
-            },
-            {
-              type: 'doc',
               docId: 'develop/chain/introduction',
-              label: 'Blockchain Documentation',
-            },
-            {
-              type: 'doc',
-              docId: 'develop/workshop/welcome',
-              label: 'Workshop',
+              label: 'Blockchain',
             },
             {
               type: 'doc',
@@ -87,7 +118,7 @@ module.exports = {
             {
               type: 'doc',
               docId: 'develop/specifications',
-              label: 'Technical Specifications',
+              label: 'Specifications',
             },
             {
               type: 'doc',
@@ -97,7 +128,7 @@ module.exports = {
             {
               type: 'doc',
               docId: 'develop/dApp/welcome',
-              label: 'DApp Documentation',
+              label: 'DApp Docs',
             },
             {
               type: 'doc',
