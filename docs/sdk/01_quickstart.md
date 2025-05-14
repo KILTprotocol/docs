@@ -3,113 +3,109 @@ id: quickstart
 title: Quickstart
 ---
 
-import CodeBlock from '@theme/CodeBlock';
-import SnippetBlock from '@site/src/components/SnippetBlock';
-import TsJsSnippet from '@site/src/components/TsJsSnippet';
-import TsJsBlock from '@site/src/components/TsJsBlock';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-import ConnectSpirit from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_spirit.ts';
-import ConnectPere from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/02_connect_pere.ts';
-import FetchDid from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/03_fetch_did.ts';
-import FetchEndpoints from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/04_fetch_endpoints.ts';
-import FetchEndpointData from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/05_fetch_endpoint_data.ts';
-import VerifyCredential from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/06_verify_credential.ts';
-import Disconnect from '!!raw-loader!@site/code_examples/sdk_examples/src/core_features/getting_started/07_disconnect.ts';
-
 Get started with KILT by following this guide, which teaches you to:
 
-1. Import the **KILT SDK** into your project
-2. Connect to the **KILT blockchain**
-3. Query a **web3name** to retrieve its **DID**
+1. Import the **KILT SDK** into your project  
+2. Connect to the **KILT blockchain**  
+3. Query a **web3name** to retrieve its **DID**  
 4. Verify a **credential** using a **DID service**
 
-:::info Prerequisites
-
-This quickstart guide provides hands-on experience to enhance your understanding of KILT.
-Basic knowledge of JavaScript and command-line tools is recommended.
-
-:::
+> **Prerequisites:**  
+> This quickstart guide provides hands-on experience to enhance your understanding of KILT.  
+> Basic knowledge of JavaScript and command-line tools is recommended.
 
 ## Core Functions Explained
 
-Throughout this guide, we use several key functions from the KILT SDK:
-
-### Kilt.connect()
+### `Kilt.connect()`
 
 This function establishes a connection to a KILT blockchain node:
 
-- Creates a WebSocket connection to the specified node
-- Initializes the blockchain API interface
-- Enables communication with the KILT network
+- Creates a WebSocket connection to the specified node  
+- Initializes the blockchain API interface  
+- Enables communication with the KILT network  
 
-### Did.linkedInfoFromChain()
+### `Did.linkedInfoFromChain()`
 
 This function processes blockchain data to extract DID information:
 
-- Takes encoded blockchain data as input
-- Decodes the DID document information
-- Returns the structured DID document with its identifier
+- Takes encoded blockchain data as input  
+- Decodes the DID document information  
+- Returns the structured DID document with its identifier  
 
-### Kilt.DidResolver.resolve()
+### `Kilt.DidResolver.resolve()`
 
 The resolver function retrieves comprehensive DID information:
 
-- Takes a DID identifier as input
-- Queries the blockchain for the complete DID Document
-- Returns service endpoints and other DID-related data
-- Useful for finding where to query for credentials
+- Takes a DID identifier as input  
+- Queries the blockchain for the complete DID Document  
+- Returns service endpoints and other DID-related data  
+- Useful for finding where to query for credentials  
 
-### Kilt.Verifier.verifyCredential()
+### `Kilt.Verifier.verifyCredential()`
 
 This crucial function performs comprehensive credential verification:
 
-- Validates the credential's cryptographic signatures
-- Checks if the credential has been revoked
-- Verifies the credential's format and structure
-- Returns a verification result object with detailed status
+- Validates the credential's cryptographic signatures  
+- Checks if the credential has been revoked  
+- Verifies the credential's format and structure  
+- Returns a verification result object with detailed status  
 
 The verification result includes:
 
-- `verified`: Boolean indicating overall validity
-- Details about the verification process
-- Any errors or issues encountered
+- `verified`: Boolean indicating overall validity  
+- Details about the verification process  
+- Any errors or issues encountered  
 
 ## Setup
 
-Create a new project and directory and move into the directory by running `mkdir kilt-rocks && cd kilt-rocks`.
+Create a new project and directory:
+
+```bash
+mkdir kilt-rocks && cd kilt-rocks
+```
 
 <Tabs groupId="ts-js-choice">
   <TabItem value='ts' label='Typescript' default>
 
-Inside the `kilt-rocks` project directory, install the **KILT SDK**, **Typescript**, **ts-node**, and **Axios** dependencies:
+Install the dependencies:
 
 ```bash npm2yarn
 npm init -y
 npm install @kiltprotocol/sdk-js @kiltprotocol/did @kiltprotocol/credentials ts-node typescript axios
 ```
 
-With the required dependencies installed, create a TypeScript file with `touch quickstart.ts`.
+Create a TypeScript file:
+
+```bash npm2yarn
+touch quickstart.ts
+```
 
   </TabItem>
   <TabItem value='js' label='Javascript'>
 
-From inside the `kilt-rocks` project directory, install the **KILT SDK**, **Node**, and **Axios** dependencies:
+Install the dependencies:
 
 ```bash npm2yarn
 npm init -y
 npm install @kiltprotocol/sdk-js @kiltprotocol/did @kiltprotocol/credentials node axios
 ```
 
-With the required dependencies installed, create a JavaScript file with `touch quickstart.js`.
+Create a TypeScript file:
 
-To enable ES modules in your project, add `"type": "module"` to the `package.json` file.
+```bash npm2yarn
+touch quickstart.ts
+```
 
   </TabItem>
 </Tabs>
 
-Declare an `async main` function that executes the rest of the code in this quickstart:
+Enable ES modules by adding the following to your package.json:
+
+```json
+"type": "module"
+```
+
+Declare an async main function:
 
 ```js
 async function main() {
@@ -144,39 +140,37 @@ To perform operations that rely on the **KILT blockchain**, first establish a co
   <TabItem value='pere' label='Peregrine (Testnet)' default>
     <p>Peregrine is the development blockchain.
     Connect to this network for testing and development purposes.</p>
-    <SnippetBlock
-      className="language-ts"
-      dropTail="1"
-      >
-      {import type { ApiPromise } from '@polkadot/api'
 
-import * as Kilt from '@kiltprotocol/sdk-js'
+```ts
+  import type { ApiPromise } from '@polkadot/api'
 
-export async function main(): Promise<ApiPromise> {
-  let api = await Kilt.connect('wss://peregrine.kilt.io/')
+  import * as Kilt from '@kiltprotocol/sdk-js'
 
-  return api
-}     }
-    </SnippetBlock>
+  export async function main(): Promise<ApiPromise> {
+    let api = await Kilt.connect('wss://peregrine.kilt.io/')
+
+    return api
+  }
+  ```
+
   </TabItem>
   <TabItem value='spirit' label='Spiritnet (Production)'>
     <p>Spiritnet is the production blockchain.
     When you are ready to publish your DApp, connect to the Spiritnet network for production purposes.</p>
-    <SnippetBlock
-      className="language-ts"
-      dropTail="1"
-      >
-      {import type { ApiPromise } from '@polkadot/api'
 
-        import * as Kilt from '@kiltprotocol/sdk-js'
+```ts
+import type { ApiPromise } from '@polkadot/api'
 
-        export async function main(): Promise<ApiPromise> {
-          let api = await Kilt.connect('wss://spiritnet.kilt.io/')
+  import * as Kilt from '@kiltprotocol/sdk-js'
 
-          return api
-        }     
-      }
-    </SnippetBlock>
+  export async function main(): Promise<ApiPromise> {
+    let api = await Kilt.connect('wss://spiritnet.kilt.io/')
+
+    return api
+  }     
+}
+```
+
   </TabItem>
 </Tabs>
 
@@ -184,12 +178,22 @@ export async function main(): Promise<ApiPromise> {
 
 The following code demonstrates how to retrieve a DID associated with a web3name. Web3names are human-readable identifiers that map to DIDs on the KILT blockchain:
 
-<SnippetBlock
-className="language-ts"
-dropTail="1"
->
-{FetchDid}
-</SnippetBlock>
+``` ts
+import * as Kilt from '@kiltprotocol/sdk-js'
+import * as Did from '@kiltprotocol/did'
+
+export async function main(): Promise<string | null> {
+  const apiConfig = Kilt.ConfigService.get('api')
+  const encodedKiltnerd123Details = await apiConfig.call.did.queryByWeb3Name('kiltnerd123')
+
+  const {
+    document: { id }
+  } = Did.linkedInfoFromChain(encodedKiltnerd123Details)
+
+  console.log(`My name is kiltnerd123 and this is my DID: "${id}"`)
+  return id
+}
+```
 
 Try running the code and check the result.
 
@@ -201,36 +205,78 @@ A **KILT DID** can expose services that allow external resources to be linked to
 
 First, retrieve the services exposed by the DID:
 
-<SnippetBlock
-className="language-ts"
-dropTail="1"
->
-{FetchEndpoints}
-</SnippetBlock>
+```ts
+import * as Kilt from '@kiltprotocol/sdk-js'
+import {Did} from "@kiltprotocol/types"
+
+export async function main(id: Did): Promise<Object[]> {
+  const kiltnerd123DidDocument = await Kilt.DidResolver.resolve(id)
+  console.log(`kiltnerd123's DID Document:`)
+  console.log(JSON.stringify(kiltnerd123DidDocument, null, 2))
+
+  const endpoints = kiltnerd123DidDocument?.didDocument?.service
+  if (!endpoints) {
+    console.log('No endpoints for the DID.')
+    return []
+  }
+  console.log('Endpoints:')
+  console.log(JSON.stringify(endpoints, null, 2))
+
+  return endpoints
+}
+```
 
 The code should print endpoints as JSON.
 
 Next, query the endpoint to retrieve a credential:
 
-<TsJsSnippet dropTail="1">
-  {FetchEndpointData}
-</TsJsSnippet>
+```ts
+import axios from 'axios'
+
+import * as Kilt from '@kiltprotocol/sdk-js'
+import { types } from '@kiltprotocol/credentials'
+
+export async function main(
+  endpoints: types.DidUrl[]
+): Promise<types.VerifiableCredential> {
+  const { data: credential } = await axios.get<types.VerifiableCredential>(
+    endpoints[0].serviceEndpoint[0]
+  )
+  console.log(`Credentials: ${JSON.stringify(credential, null, 2)}`)
+  return credential
+}
+```
 
 Finally, verify the credential using KILT's verification system:
 
-<SnippetBlock
-className="language-ts"
->
-{VerifyCredential}
-</SnippetBlock>
+```ts
+import * as Kilt from '@kiltprotocol/sdk-js'
+import { VerifiableCredential } from '@kiltprotocol/credentials/lib/cjs/V1/types'
+
+export async function main(credential: VerifiableCredential): Promise<void> {
+  try {
+    const result = await Kilt.Verifier.verifyCredential({ credential })
+    console.log(JSON.stringify(result, null, 2))
+    if (result.verified == false) {
+      throw new Error("kiltnerd123's credential is not valid.")
+    } else {
+      console.log(`kiltnerd123's credential is valid`)
+    }
+  } catch {
+    console.log("kiltnerd123's credential is not valid.")
+  }
+}
+```
 
 To ensure proper cleanup, make sure to disconnect at the end of your main function:
 
-<SnippetBlock
-className="language-ts"
->
-{Disconnect}
-</SnippetBlock>
+```ts
+import * as Kilt from '@kiltprotocol/sdk-js'
+
+export async function main(): Promise<void> {
+  await Kilt.disconnect()
+}
+```
 
 ## Running the Code
 
@@ -253,7 +299,7 @@ node quickstart.js
 
 :::info Next steps
 
-- If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
-- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md).
+<!-- - If you want to explore more of KILT's features, read our [Concepts section](../../concepts/01_what_is_kilt.md).
+- If you want to dive deeper into the SDK, read the next section, [the KILT Cookbook](./02_cookbook/01_dids/01_light_did_creation.md). -->
 
 :::
