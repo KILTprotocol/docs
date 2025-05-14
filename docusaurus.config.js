@@ -174,6 +174,11 @@ module.exports = {
           ],
         },
         {
+          label: 'v0.35.0',
+          href: 'https://github.com/KILTprotocol/docs/tree/v0.35.0', // This shuold be updated to the latest version of the docs.
+          position: 'right',
+        },
+        {
           href: 'https://github.com/KILTprotocol/docs',
           position: 'right',
           className: 'header-github-link',
